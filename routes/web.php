@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
-Route::get('/login', [UserController::class, 'login'])->name('login_page');
+Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/login', [UserController::class, 'authenticate']);
+
+Route::get('/reset-password', [UserController::class, 'resetPassword'])->name('reset_password')->middleware('auth');

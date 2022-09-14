@@ -7,7 +7,7 @@
             <input class="form-control" type="text" placeholder="Username" name="username">
         </div>
         <div class="px-2 mb-4 d-flex justify-content-between align-items-center form-container">
-            <input class="form-control px-2 me-2" type="password" name="newpass" placeholder="Password baru">
+            <input class="form-control px-2 me-2" type="password" name="password" placeholder="Password baru">
             <i class="fas fa-eye-slash"></i>
         </div>
         <div class="mb-3">
