@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserLoginRequest;
-use App\Services\UserService;
+use App\Http\Services\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -12,6 +13,6 @@ class UserController extends Controller
     {
         $response = $service->login($request);
 
-        //Return ke view
+        return $response;
     }
 }
