@@ -24,8 +24,10 @@ class UserLoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|exists:user,username',
+            'username' => 'required|exists:users,username',
             'password' => 'required',
         ];
     }
+
+    protected $redirectRoute = 'login_page';
 }
