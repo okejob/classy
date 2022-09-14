@@ -3,7 +3,7 @@
 <title>Classy</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
 <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
-<link rel="stylesheet" href="{{asset('css/styles.css')}}">
+<link rel="stylesheet" href="{{asset('css/style.css')}}">
 <script src="https://kit.fontawesome.com/118575507a.js" crossorigin="anonymous"></script>
 
 <script src="{{asset('js/jquery.min.js')}}"></script>
