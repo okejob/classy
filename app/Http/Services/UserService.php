@@ -23,23 +23,18 @@ class UserService
 
         if ($user) {
             if (!password_verify($request['password'], $user->password)) {
-                $response['status'] = 422;
-                $response['message'] = 'Gagal melakukan Login, Password salah.';
-                return $response;
+                return back()->withErrors([
+                    'password' => 'Password tidak cocok.'
+                ]);
             }
-            $auth = Auth::attempt(['email' => $user->email, 'password' => $request['password']]);
-            $roles = $user->getRoleNames();
-            Session::put('username', $user->username);
-            Session::put('role', $roles[0]);
-            Session::put('auth', $auth);
 
-            $response['status'] = 200;
-            $response['user'] = $user;
-            $response['roles'] = $roles[0];
-            return $response;
+            Auth::attempt(['email' => $user->email, 'password' => $request['password']]);
+            Session::put('user_id', $user->id);
+            $request->session()->regenerate();
+            return redirect()->intended('dashboard');
         }
-        $response['status'] = 422;
-        $response['message'] = 'User tidak ditemukan.';
-        return $response;
+        return back()->withErrors([
+            'username' => 'Username tidak ditemukan.'
+        ]);
     }
 }

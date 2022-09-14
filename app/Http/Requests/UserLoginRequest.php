@@ -28,4 +28,6 @@ class UserLoginRequest extends FormRequest
             'password' => 'required',
         ];
     }
+
+    protected $redirectRoute = 'login_page';
 }
