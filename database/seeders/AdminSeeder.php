@@ -22,7 +22,8 @@ class AdminSeeder extends Seeder
             'name' => 'Vincent',
             'phone' => '081239687792',
             'address' => 'surabaya',
-            'email' => 'vincentiusmandala@gmail.com'
+            'email' => 'vincentiusmandala@gmail.com',
+            'status' => 'A',
         ])->assignRole('administrator');
     }
 }
