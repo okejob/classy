@@ -3,9 +3,6 @@
 @section('content')
 <section class="bg-clean vh-100 d-flex align-items-center">
     <form method="post">
-        <div class="illustration">
-            <i class="fa-regular fa-location-arrow"></i>
-        </div>
         <div class="px-2 mb-3 d-flex justify-content-between align-items-center form-container">
             <input class="form-control" type="text" placeholder="Username" name="username">
         </div>
