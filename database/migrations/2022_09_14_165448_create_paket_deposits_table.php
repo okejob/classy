@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('paket_deposits', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('deskripsi');
+            $table->string('deskripsi')->nullable();
             $table->integer('nominal');
             $table->integer('harga');
-            $table->string('status');
+            $table->string('status')->default('A');
             $table->timestamps();
         });
     }

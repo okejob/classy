@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('paket_cucis', function (Blueprint $table) {
             $table->id();
             $table->string('nama_paket');
-            $table->string('deskripsi');
+            $table->string('deskripsi')->nullable();
             $table->integer('harga_paket');
             $table->integer('harga_per_bobot');
             $table->integer('jumlah_bobot');
-            $table->string('status');
+            $table->string('status')->default('A');
             $table->timestamps();
         });
     }
