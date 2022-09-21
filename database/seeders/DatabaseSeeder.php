@@ -24,5 +24,8 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
         $this->call(AdminSeeder::class);
         $this->call(PaketSeeder::class);
+        $this->call(ParfumSeeder::class);
+        $this->call(KategoriSeeder::class);
+        $this->call(JenisRewashSeeder::class);
     }
 }

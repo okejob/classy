@@ -50,16 +50,6 @@ class UserController extends Controller
         return redirect()->intended('reset-password');
     }
 
-    /**
-     * Reset Password Page
-     *
-     * @return View reset password
-     */
-    public function resetPassword()
-    {
-        return view('pages.session.ubahPassword');
-    }
-
     public function logout(Request $request)
     {
         Auth::logout();

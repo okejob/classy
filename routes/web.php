@@ -21,9 +21,15 @@ Route::get('/', function () {
 
 Route::get('/login', [PageController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/login', [UserController::class, 'authenticate']);
-
-Route::get('/reset-password', [UserController::class, 'resetPassword'])->name('reset_password')->middleware('auth');
+Route::get('/reset-password', [PageController::class, 'resetPassword'])->name('reset_password')->middleware('auth');
+Route::get('/logout', [UserController::class, 'logout']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
+    Route::get('/data/item', [PageController::class, 'item'])->name('data-item');
+    Route::get('/data/kategori', [PageController::class, 'kategori'])->name('data-kategori');
+    Route::get('/data/parfum', [PageController::class, 'parfum'])->name('data-parfum');
+    Route::get('/data/pelanggan', [PageController::class, 'item'])->name('data-pelanggan');
+    Route::get('/data/pengeluaran', [PageController::class, 'pengeluaran'])->name('data-pengeluaran');
+    Route::get('/data/rewash', [PageController::class, 'rewash'])->name('data-rewash');
 });
