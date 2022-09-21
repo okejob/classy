@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ParfumController;
+use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,19 +23,22 @@ Route::get('/', function () {
 
 Route::get('/login', [PageController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/login', [UserController::class, 'authenticate']);
-Route::get('/reset-password', [PageController::class, 'resetPassword'])->name('reset_password')->middleware('auth');
 Route::get('/logout', [UserController::class, 'logout']);
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
-    Route::get('/data/item', [PageController::class, 'item'])->name('data-item');
-    Route::get('/data/kategori', [PageController::class, 'kategori'])->name('data-kategori');
-    Route::get('/data/parfum', [PageController::class, 'parfum'])->name('data-parfum');
-    Route::get('/data/pelanggan', [PageController::class, 'item'])->name('data-pelanggan');
-    Route::get('/data/pengeluaran', [PageController::class, 'pengeluaran'])->name('data-pengeluaran');
-    Route::get('/data/rewash', [PageController::class, 'rewash'])->name('data-rewash');
+    Route::get('/reset-password', [PageController::class, 'resetPassword'])->name('reset_password');
 
-    Route::middleware(['role:administrator'])->group(function () {
-        Route::post('/parfum', [ParfumController::class, 'insert']);
-    });
+    Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
+    Route::get('/data/item', [PageController::class, 'item'])->name('data-item')->middleware('permission:menu_item');
+    Route::get('/data/kategori', [PageController::class, 'kategori'])->name('data-kategori')->middleware('permission:menu_kategori');
+    Route::get('/data/pengeluaran', [PageController::class, 'pengeluaran'])->name('data-pengeluaran')->middleware('permission:menu_pengeluaran');
+    Route::get('/data/rewash', [PageController::class, 'rewash'])->name('data-rewash')->middleware('permission:menu_rewash');
+
+    //parfum
+    Route::get('/data/parfum', [PageController::class, 'parfum'])->name('data-parfum')->middleware('permission:menu_parfum');
+    Route::post('/data/parfum', [ParfumController::class, 'insert'])->middleware('permission:insert_parfum');
+
+    //Pelanggan
+    Route::get('/data/pelanggan', [PageController::class, 'item'])->name('data-pelanggan')->middleware('permission:menu_pelanggan');
+    Route::post('/data/pelanggan', [PelangganController::class, 'insert'])->middleware('permission:insert_pelanggan');
 });
