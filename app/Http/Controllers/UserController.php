@@ -14,16 +14,6 @@ class UserController extends Controller
 {
 
     /**
-     * Route To login page
-     *
-     * @return View login
-     */
-    public function login()
-    {
-        return view('pages.session.login');
-    }
-
-    /**
      * Authenticate Login
      *
      * @param UserLoginRequest $request
@@ -39,7 +29,7 @@ class UserController extends Controller
             $request->session()->regenerate();
             Session::put('user_id', $user->id);
             //need dashboard page
-            return redirect()->intended('reset-password');
+            return redirect()->intended('dashboard');
         }
         return back()->withErrors([
             'password' => 'Password tidak cocok.'
@@ -60,24 +50,11 @@ class UserController extends Controller
         return redirect()->intended('reset-password');
     }
 
-    /**
-     * Reset Password Page
-     *
-     * @return View reset password
-     */
-    public function resetPassword()
-    {
-        return view('pages.session.ubahPassword');
-    }
-
     public function logout(Request $request)
     {
         Auth::logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
-
         return redirect('/');
     }
 }
