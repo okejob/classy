@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('pengeluarans', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->text('deskripsi');
+            $table->text('deskripsi')->nullable();
             $table->integer('nominal');
-            $table->string('status');
+            $table->string('status')->default('A');
             $table->timestamps();
         });
     }

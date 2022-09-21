@@ -32,4 +32,26 @@ class UserCreateRequest extends FormRequest
             'email' => 'required|email',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'required' => ':attribute harus terisi!',
+            'unique' => ':attribute sudah terdaftar!',
+            'email' => 'Format :attribute tidak valid!',
+            'numeric' => 'Harap isi :attribute dengan angka saja',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'username' => 'Username',
+            'password' => 'Password',
+            'phone' => 'Nomor Telepon',
+            'address' => 'Alamat',
+            'name' => 'Nama',
+            'email' => 'Email'
+        ];
+    }
 }

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('address');
             $table->string('email')->unique();
-            $table->string('status');
+            $table->string('status')->default('A');
             $table->rememberToken();
             $table->timestamps();
         });

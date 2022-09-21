@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('parfums', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('deskripsi');
+            $table->string('deskripsi')->nullable();
             $table->string('jenis');
-            $table->string('status');
+            $table->string('status')->default('A');
             $table->timestamps();
         });
     }

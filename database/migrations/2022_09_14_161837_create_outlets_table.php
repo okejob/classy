@@ -19,10 +19,9 @@ return new class extends Migration
             $table->string('nama');
             $table->text('alamat');
             $table->string('telp_1');
-            $table->string('telp_2');
-            $table->string('fax');
-            $table->text('slogan');
-            $table->string('status');
+            $table->string('telp_2')->nullable();
+            $table->string('fax')->nullable();
+            $table->string('status')->default('A');
             $table->timestamps();
         });
     }

@@ -44,8 +44,8 @@ class UserController extends Controller
      */
     public function store(UserCreateRequest $request)
     {
-        $validated = $request->safe()->merge(['status' => 'A']);
-        User::create($validated);
+        //$validated = $request->safe()->merge(['status' => 'A']);
+        User::create($request);
         //need dashboard page
         return redirect()->intended('reset-password');
     }

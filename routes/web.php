@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ParfumController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,4 +33,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/data/pelanggan', [PageController::class, 'item'])->name('data-pelanggan');
     Route::get('/data/pengeluaran', [PageController::class, 'pengeluaran'])->name('data-pengeluaran');
     Route::get('/data/rewash', [PageController::class, 'rewash'])->name('data-rewash');
+
+    Route::middleware(['role:administrator'])->group(function () {
+        Route::post('/parfum', [ParfumController::class, 'insert']);
+    });
 });

@@ -21,9 +21,9 @@ return new class extends Migration
             $table->boolean('member');
             $table->string('no_id')->nullable();
             $table->string('jenis_id')->nullable();
-            $table->string('telephone');
-            $table->string('email');
-            $table->string('status');
+            $table->string('telephone')->nullable();
+            $table->string('email')->nullable();
+            $table->string('status')->default('A');
 
             $table->timestamps();
         });
