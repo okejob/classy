@@ -28,4 +28,20 @@ class UserLoginRequest extends FormRequest
             'password' => 'required',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'required' => ':attribute harus terisi!',
+            'exists' => ':attribute tidak ditemukan!'
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'username' => 'Username',
+            'password' => 'Password',
+        ];
+    }
 }
