@@ -20,13 +20,22 @@ class PermissionSeeder extends Seeder
         //Menu
         Permission::create(['name' => 'menu_item']);
         Permission::create(['name' => 'menu_kategori']);
-        Permission::create(['name' => 'menu_parfum']);
-        Permission::create(['name' => 'menu_pelanggan']);
         Permission::create(['name' => 'menu_pengeluaran']);
         Permission::create(['name' => 'menu_rewash']);
 
-        //Insert
+        //setting
+        Permission::create(['name' => 'setting_karyawan']);
+        Permission::create(['name' => 'setting_outlet']);
+        Permission::create(['name' => 'setting_paket']);
+
+        //Parfum
+        Permission::create(['name' => 'menu_parfum']);
         Permission::create(['name' => 'insert_parfum']);
+        Permission::create(['name' => 'delete_parfum']);
+
+        //Pelanggan
+        Permission::create(['name' => 'menu_pelanggan']);
         Permission::create(['name' => 'insert_pelanggan']);
+        Permission::create(['nama' => 'delete_pelanggan']);
     }
 }

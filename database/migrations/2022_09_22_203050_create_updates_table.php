@@ -13,10 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('jenis_rewashes', function (Blueprint $table) {
+        Schema::create('updates', function (Blueprint $table) {
             $table->id();
-            $table->string('keterangan');
             $table->foreignId('user_id');
+            $table->string('type');
+            $table->string('table');
+            $table->string('id');
+            $table->string('column')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jenis_rewashes');
+        Schema::dropIfExists('updates');
     }
 };

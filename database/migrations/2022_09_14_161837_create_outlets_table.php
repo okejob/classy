@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('telp_2')->nullable();
             $table->string('fax')->nullable();
             $table->string('status')->default('A');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }

@@ -24,7 +24,9 @@ class InsertPengeluaranRequest extends FormRequest
     public function rules()
     {
         return [
-            
+            'nama' => 'required|string',
+            'deskripsi' => 'string',
+            'nominal' => 'required|numeric',
         ];
     }
 }

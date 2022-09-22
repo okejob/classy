@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('nominal');
             $table->integer('harga');
             $table->string('status')->default('A');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }

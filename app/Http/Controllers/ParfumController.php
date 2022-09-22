@@ -4,13 +4,33 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\InsertParfumRequest;
 use App\Models\Data\Parfum;
+use App\Models\Update;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ParfumController extends Controller
 {
     public function insert(InsertParfumRequest $request)
     {
-        Parfum::create([$request]);
+        $merged = $request->safe()->merge(['user_id' => Auth::id()]);
+        $parfum = Parfum::create([$merged]);
+        Update::create([
+            'user_id' => Auth::id(),
+            'type' => 'insert',
+            'id' => $parfum->id,
+        ]);
+
+        return redirect()->intended('data-parfum');
+    }
+
+    public function delete($id)
+    {
+        Parfum::destroy($id);
+        Update::create([
+            'user_id' => Auth::id(),
+            'type' => 'delete',
+            'id' => $id,
+        ]);
 
         return redirect()->intended('data-parfum');
     }

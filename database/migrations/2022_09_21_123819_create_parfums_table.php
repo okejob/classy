@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('deskripsi')->nullable();
             $table->string('jenis');
             $table->string('status')->default('A');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }

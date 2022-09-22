@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('harga_per_bobot');
             $table->integer('jumlah_bobot');
             $table->string('status')->default('A');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }

@@ -19,12 +19,20 @@ class RoleSeeder extends Seeder
         $admin->givePermissionTo([
             'menu_item',
             'menu_kategori',
-            'menu_parfum',
-            'menu_pelanggan',
             'menu_pengeluaran',
             'menu_rewash',
+
+            'setting_karyawan',
+            'setting_outlet',
+            'setting_paket',
+
+            'menu_parfum',
             'insert_parfum',
-            'insert_pelanggan'
+            'delete_parfum',
+
+            'menu_pelanggan',
+            'insert_pelanggan',
+            'delete_pelanggan',
         ]);
         Role::create(['name' => 'supervisor']);
         Role::create(['name' => 'operator']);

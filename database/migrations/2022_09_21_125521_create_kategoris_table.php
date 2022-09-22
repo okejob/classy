@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('deskripsi')->nullable();
             $table->string('status')->default('A');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }
