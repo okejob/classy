@@ -35,9 +35,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/data/rewash', [PageController::class, 'rewash'])->name('data-rewash')->middleware('permission:menu_rewash');
 
     //Setting
-    Route::get('/setting/karyawan', [PageController::class, 'karyawan'])->name('setting-karyawan');
-    Route::get('/setting/outlet', [PageController::class, 'outlet'])->name('setting-outlet');
-    Route::get('/setting/paket', [PageController::class, 'paket'])->name('setting-paket');
+    Route::get('/setting/karyawan', [PageController::class, 'karyawan'])->name('setting-karyawan')->middleware('permission:setting_karyawan');
+    Route::get('/setting/outlet', [PageController::class, 'outlet'])->name('setting-outlet')->middleware('permission:setting_outlet');
+    Route::get('/setting/paket', [PageController::class, 'paket'])->name('setting-paket')->middleware('permission:setting_paket');
 
     //parfum
     Route::get('/data/parfum', [PageController::class, 'parfum'])->name('data-parfum')->middleware('permission:menu_parfum');
