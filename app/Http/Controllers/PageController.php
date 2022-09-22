@@ -6,6 +6,9 @@ use App\Models\Data\Kategori;
 use App\Models\Data\Parfum;
 use App\Models\Data\Pelanggan;
 use App\Models\Data\Pengeluaran;
+use App\Models\Outlet;
+use App\Models\Paket\PaketCuci;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -76,6 +79,30 @@ class PageController extends Controller
     {
         return view(
             'pages.data.Rewash'
+        );
+    }
+
+    public function karyawan()
+    {
+        return view(
+            'pages.pengaturan.Karyawan',
+            ['data' => User::paginate(5)]
+        );
+    }
+
+    public function outlet()
+    {
+        return view(
+            'pages.pengaturan.Outlet',
+            ['data' => Outlet::paginate(5)]
+        );
+    }
+
+    public function paket()
+    {
+        return view(
+            'pages.pengaturan.Paket',
+            ['data' => PaketCuci::paginate()]
         );
     }
 }
