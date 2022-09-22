@@ -4,6 +4,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ParfumController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,9 +31,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/reset-password', [PageController::class, 'resetPassword'])->name('reset_password');
 
     Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
-    Route::get('/data/item', [PageController::class, 'item'])->name('data-item')->middleware('permission:menu_item');
-    Route::get('/data/pengeluaran', [PageController::class, 'pengeluaran'])->name('data-pengeluaran')->middleware('permission:menu_pengeluaran');
-    Route::get('/data/rewash', [PageController::class, 'rewash'])->name('data-rewash')->middleware('permission:menu_rewash');
+    Route::get('/data/item', [PageController::class, 'item'])->name('menu-item')->middleware('permission:menu_item');
+    Route::get('/data/rewash', [PageController::class, 'rewash'])->name('menu-rewash')->middleware('permission:menu_rewash');
 
     //Setting
     Route::get('/setting/karyawan', [PageController::class, 'karyawan'])->name('setting-karyawan')->middleware('permission:setting_karyawan');
@@ -40,18 +40,22 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/setting/paket', [PageController::class, 'paket'])->name('setting-paket')->middleware('permission:setting_paket');
 
     //kategori
-    Route::get('/data/kategori', [PageController::class, 'kategori'])->name('data-kategori')->middleware('permission:menu_kategori');
+    Route::get('/data/kategori', [PageController::class, 'kategori'])->name('menu-kategori')->middleware('permission:menu_kategori');
     Route::post('/data/kategori', [KategoriController::class, 'insert'])->middleware('permission:insert_kategori');
     Route::get('/data/kategori/delete/{id}', [KategoriController::class, 'delete'])->middleware('permission:delete_kategori');
 
+    //pengeluaran
+    Route::get('/data/pengeluaran', [PageController::class, 'pengeluaran'])->name('menu-pengeluaran')->middleware('permission:menu_pengeluaran');
+    Route::post('/data/pengeluaran', [PengeluaranController::class, 'insert'])->middleware('permission:insert_pengeluaran');
+    Route::get('/data/pengeluaran/delete/{id}', [PengeluaranController::class, 'delete'])->middleware('permission:delete_pengeluaran');
 
     //parfum
-    Route::get('/data/parfum', [PageController::class, 'parfum'])->name('data-parfum')->middleware('permission:menu_parfum');
+    Route::get('/data/parfum', [PageController::class, 'parfum'])->name('menu-parfum')->middleware('permission:menu_parfum');
     Route::post('/data/parfum', [ParfumController::class, 'insert'])->middleware('permission:insert_parfum');
     Route::get('data/parfum/delete/{id}', [ParfumController::class, 'delete'])->middleware('permission:delete_parfum');
 
     //Pelanggan
-    Route::get('/data/pelanggan', [PageController::class, 'item'])->name('data-pelanggan')->middleware('permission:menu_pelanggan');
+    Route::get('/data/pelanggan', [PageController::class, 'item'])->name('menu-pelanggan')->middleware('permission:menu_pelanggan');
     Route::post('/data/pelanggan', [PelangganController::class, 'insert'])->middleware('permission:insert_pelanggan');
     Route::get('/data/pelanggan/delete/{id}', [PelangganController::class, 'delete'])->middleware('permission:delete_pelanggan');
 });

@@ -20,7 +20,7 @@ class PelangganController extends Controller
             'affected_id' => $pelanggan->id,
         ]);
 
-        return redirect()->intended('data-pelanggan');
+        return redirect()->intended('menu-pelanggan');
     }
 
     public function delete($id)
@@ -32,6 +32,6 @@ class PelangganController extends Controller
             'affected_id' => $id,
         ]);
 
-        return redirect()->intended('data-parfum');
+        return redirect()->intended('menu-parfum');
     }
 }

@@ -20,7 +20,7 @@ class KategoriController extends Controller
             'affected_id' => $kategori->id,
         ]);
 
-        return redirect()->intended('data-kategori');
+        return redirect()->intended('menu-kategori');
     }
 
     public function delete($id)
@@ -32,6 +32,6 @@ class KategoriController extends Controller
             'affected_id' => $id,
         ]);
 
-        return redirect()->intended('data-kategori');
+        return redirect()->intended('menu-kategori');
     }
 }

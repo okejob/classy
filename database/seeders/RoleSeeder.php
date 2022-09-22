@@ -36,6 +36,10 @@ class RoleSeeder extends Seeder
             'menu_pelanggan',
             'insert_pelanggan',
             'delete_pelanggan',
+
+            'menu_pengeluaran',
+            'insert_pengeluaran',
+            'delete_pengeluaran',
         ]);
         Role::create(['name' => 'supervisor']);
         Role::create(['name' => 'operator']);

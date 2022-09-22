@@ -20,7 +20,7 @@ class ParfumController extends Controller
             'affected_id' => $parfum->id,
         ]);
 
-        return redirect()->intended('data-parfum');
+        return redirect()->intended('menu-parfum');
     }
 
     public function delete($id)
@@ -32,6 +32,6 @@ class ParfumController extends Controller
             'affected_id' => $id,
         ]);
 
-        return redirect()->intended('data-parfum');
+        return redirect()->intended('menu-parfum');
     }
 }
