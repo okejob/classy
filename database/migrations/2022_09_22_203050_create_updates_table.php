@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->string('type');
             $table->string('table');
-            $table->string('id');
+            $table->string('affected_id');
             $table->string('column')->nullable();
             $table->timestamps();
         });

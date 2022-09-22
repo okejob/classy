@@ -17,7 +17,7 @@ class ParfumController extends Controller
         Update::create([
             'user_id' => Auth::id(),
             'type' => 'insert',
-            'id' => $parfum->id,
+            'affected_id' => $parfum->id,
         ]);
 
         return redirect()->intended('data-parfum');
@@ -29,7 +29,7 @@ class ParfumController extends Controller
         Update::create([
             'user_id' => Auth::id(),
             'type' => 'delete',
-            'id' => $id,
+            'affected_id' => $id,
         ]);
 
         return redirect()->intended('data-parfum');

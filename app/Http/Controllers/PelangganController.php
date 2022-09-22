@@ -17,7 +17,7 @@ class PelangganController extends Controller
         Update::create([
             'user_id' => Auth::id(),
             'type' => 'insert',
-            'id' => $pelanggan->id,
+            'affected_id' => $pelanggan->id,
         ]);
 
         return redirect()->intended('data-pelanggan');
@@ -29,7 +29,7 @@ class PelangganController extends Controller
         Update::create([
             'user_id' => Auth::id(),
             'type' => 'delete',
-            'id' => $id,
+            'affected_id' => $id,
         ]);
 
         return redirect()->intended('data-parfum');

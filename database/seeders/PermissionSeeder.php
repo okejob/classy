@@ -35,7 +35,7 @@ class PermissionSeeder extends Seeder
         //Pelanggan
         Permission::create(['name' => 'menu_pelanggan']);
         Permission::create(['name' => 'insert_pelanggan']);
-        Permission::create(['nama' => 'delete_pelanggan']);
+        Permission::create(['name' => 'delete_pelanggan']);
 
         //Kategori
         Permission::create(['name' => 'menu_kategori']);

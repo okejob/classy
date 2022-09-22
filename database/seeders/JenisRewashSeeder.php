@@ -16,13 +16,17 @@ class JenisRewashSeeder extends Seeder
     public function run()
     {
         JenisRewash::create([
-            'keterangan' => 'Masih Kotor'
+            'keterangan' => 'Masih Kotor',
+            'user_id' => 1
         ], [
-            'keterangan' => 'Kurang Wangi'
+            'keterangan' => 'Kurang Wangi',
+            'user_id' => 1
         ], [
-            'keterangan' => 'Masih Setengah Kering'
+            'keterangan' => 'Masih Setengah Kering',
+            'user_id' => 1
         ], [
-            'keterangan' => 'Salah Parfum'
+            'keterangan' => 'Salah Parfum',
+            'user_id' => 1
         ]);
     }
 }

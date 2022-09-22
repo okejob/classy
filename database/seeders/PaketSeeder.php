@@ -23,6 +23,7 @@ class PaketSeeder extends Seeder
             'harga_per_bobot' => 6000,
             'jumlah_bobot' => 5,
             'status' => 'A',
+            'user_id' => 1
         ]);
 
         PaketCuci::create([
@@ -32,6 +33,7 @@ class PaketSeeder extends Seeder
             'harga_per_bobot' => 5000,
             'jumlah_bobot' => 10,
             'status' => 'A',
+            'user_id' => 1
         ]);
 
         PaketCuci::create([
@@ -41,6 +43,7 @@ class PaketSeeder extends Seeder
             'harga_per_bobot' => 6000,
             'jumlah_bobot' => 15,
             'status' => 'A',
+            'user_id' => 1
         ]);
 
         PaketCuci::create([
@@ -50,6 +53,7 @@ class PaketSeeder extends Seeder
             'harga_per_bobot' => 5000,
             'jumlah_bobot' => 5,
             'status' => 'A',
+            'user_id' => 1
         ]);
 
         PaketCuci::create([
@@ -59,6 +63,7 @@ class PaketSeeder extends Seeder
             'harga_per_bobot' => 2500,
             'jumlah_bobot' => 15,
             'status' => 'A',
+            'user_id' => 1
         ]);
 
         PaketDeposit::create([
@@ -67,6 +72,7 @@ class PaketSeeder extends Seeder
             'nominal' => 550000,
             'harga' => 500000,
             'status' => 'A',
+            'user_id' => 1
         ]);
 
         PaketDeposit::create([
@@ -75,6 +81,7 @@ class PaketSeeder extends Seeder
             'nominal' => 100000,
             'harga' => 95000,
             'status' => 'A',
+            'user_id' => 1
         ]);
     }
 }

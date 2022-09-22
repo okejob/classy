@@ -20,6 +20,7 @@ class ParfumSeeder extends Seeder
             'deskripsi' => 'Aroma Lily Manis',
             'jenis' => 'Medium',
             'status' => 'A',
+            'user_id' => 1
         ]);
 
         Parfum::create([
@@ -27,6 +28,7 @@ class ParfumSeeder extends Seeder
             'deskripsi' => 'Aroma Apel Segar',
             'jenis' => 'Soft',
             'status' => 'A',
+            'user_id' => 1
         ]);
 
         Parfum::create([
@@ -34,6 +36,7 @@ class ParfumSeeder extends Seeder
             'deskripsi' => 'Aroma Segar',
             'jenis' => 'Soft',
             'status' => 'A',
+            'user_id' => 1
         ]);
 
         Parfum::create([
@@ -41,6 +44,7 @@ class ParfumSeeder extends Seeder
             'deskripsi' => 'Aroma Apel Manis',
             'jenis' => 'Soft',
             'status' => 'A',
+            'user_id' => 1
         ]);
 
         Parfum::create([
@@ -48,6 +52,7 @@ class ParfumSeeder extends Seeder
             'deskripsi' => 'Tidak Menggunakan Parfum (Netral)',
             'jenis' => 'Netral',
             'status' => 'A',
+            'user_id' => 1
         ]);
 
         Parfum::create([
@@ -55,6 +60,7 @@ class ParfumSeeder extends Seeder
             'deskripsi' => 'Aroma Molto Pink',
             'jenis' => 'Hard',
             'status' => 'A',
+            'user_id' => 1
         ]);
     }
 }

@@ -17,7 +17,7 @@ class KategoriController extends Controller
         Update::create([
             'user_id' => Auth::id(),
             'type' => 'insert',
-            'id' => $kategori->id,
+            'affected_id' => $kategori->id,
         ]);
 
         return redirect()->intended('data-kategori');
@@ -29,7 +29,7 @@ class KategoriController extends Controller
         Update::create([
             'user_id' => Auth::id(),
             'type' => 'delete',
-            'id' => $id,
+            'affected_id' => $id,
         ]);
 
         return redirect()->intended('data-kategori');
