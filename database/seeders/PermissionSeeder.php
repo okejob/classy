@@ -19,7 +19,6 @@ class PermissionSeeder extends Seeder
 
         //Menu
         Permission::create(['name' => 'menu_item']);
-        Permission::create(['name' => 'menu_kategori']);
         Permission::create(['name' => 'menu_pengeluaran']);
         Permission::create(['name' => 'menu_rewash']);
 
@@ -37,5 +36,10 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'menu_pelanggan']);
         Permission::create(['name' => 'insert_pelanggan']);
         Permission::create(['nama' => 'delete_pelanggan']);
+
+        //Kategori
+        Permission::create(['name' => 'menu_kategori']);
+        Permission::create(['name' => 'insert_kategori']);
+        Permission::create(['name' => 'delete_kategori']);
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ParfumController;
 use App\Http\Controllers\PelangganController;
@@ -30,7 +31,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
     Route::get('/data/item', [PageController::class, 'item'])->name('data-item')->middleware('permission:menu_item');
-    Route::get('/data/kategori', [PageController::class, 'kategori'])->name('data-kategori')->middleware('permission:menu_kategori');
     Route::get('/data/pengeluaran', [PageController::class, 'pengeluaran'])->name('data-pengeluaran')->middleware('permission:menu_pengeluaran');
     Route::get('/data/rewash', [PageController::class, 'rewash'])->name('data-rewash')->middleware('permission:menu_rewash');
 
@@ -39,10 +39,17 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/setting/outlet', [PageController::class, 'outlet'])->name('setting-outlet')->middleware('permission:setting_outlet');
     Route::get('/setting/paket', [PageController::class, 'paket'])->name('setting-paket')->middleware('permission:setting_paket');
 
+    //kategori
+    Route::get('/data/kategori', [PageController::class, 'kategori'])->name('data-kategori')->middleware('permission:menu_kategori');
+    Route::post('/data/kategori', [KategoriController::class, 'insert'])->middleware('permission:insert_kategori');
+    Route::get('/data/kategori/delete/{id}', [KategoriController::class, 'delete'])->middleware('permission:delete_kategori');
+
+
     //parfum
     Route::get('/data/parfum', [PageController::class, 'parfum'])->name('data-parfum')->middleware('permission:menu_parfum');
     Route::post('/data/parfum', [ParfumController::class, 'insert'])->middleware('permission:insert_parfum');
     Route::get('data/parfum/delete/{id}', [ParfumController::class, 'delete'])->middleware('permission:delete_parfum');
+
     //Pelanggan
     Route::get('/data/pelanggan', [PageController::class, 'item'])->name('data-pelanggan')->middleware('permission:menu_pelanggan');
     Route::post('/data/pelanggan', [PelangganController::class, 'insert'])->middleware('permission:insert_pelanggan');

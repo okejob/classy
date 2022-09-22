@@ -18,13 +18,16 @@ class RoleSeeder extends Seeder
         $admin = Role::create(['name' => 'administrator']);
         $admin->givePermissionTo([
             'menu_item',
-            'menu_kategori',
             'menu_pengeluaran',
             'menu_rewash',
 
             'setting_karyawan',
             'setting_outlet',
             'setting_paket',
+
+            'menu_kategori',
+            'insert_kategori',
+            'delete_kategori',
 
             'menu_parfum',
             'insert_parfum',
