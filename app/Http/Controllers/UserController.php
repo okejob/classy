@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserLoginRequest;
 use App\Http\Services\UserService;
+use App\Models\Update;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -44,8 +45,13 @@ class UserController extends Controller
      */
     public function store(UserCreateRequest $request)
     {
-        //$validated = $request->safe()->merge(['status' => 'A']);
-        User::create($request);
+        $user = User::create($request);
+        Update::create([
+            'user_id' => Auth::id(),
+            'type' => 'insert',
+            'table' => 'user',
+            'affected_id' => $user->id,
+        ]);
         //need dashboard page
         return redirect()->intended('reset-password');
     }

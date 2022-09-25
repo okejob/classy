@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\OutletController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ParfumController;
 use App\Http\Controllers\PelangganController;
@@ -35,9 +36,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/data/rewash', [PageController::class, 'rewash'])->name('menu-rewash')->middleware('permission:menu_rewash');
 
     //Setting
-    Route::get('/setting/karyawan', [PageController::class, 'karyawan'])->name('setting-karyawan')->middleware('permission:setting_karyawan');
-    Route::get('/setting/outlet', [PageController::class, 'outlet'])->name('setting-outlet')->middleware('permission:setting_outlet');
-    Route::get('/setting/paket', [PageController::class, 'paket'])->name('setting-paket')->middleware('permission:setting_paket');
+    Route::get('/setting/karyawan', [PageController::class, 'karyawan'])->name('menu-karyawan')->middleware('permission:menu_karyawan');
+    Route::get('/setting/paket', [PageController::class, 'paket'])->name('menu-paket')->middleware('permission:setting_paket');
+
+    //outlet
+    Route::get('/setting/outlet', [PageController::class, 'outlet'])->name('menu-outlet')->middleware('permission:menu_outlet');
+    Route::post('/setting/outlet', [OutletController::class, 'insert'])->middleware('permission::insert_outlet');
+    Route::get('/setting/outlet/delete/{id}', [OutletController::class, 'delete'])->middleware('permission::delete_outlet');
 
     //kategori
     Route::get('/data/kategori', [PageController::class, 'kategori'])->name('menu-kategori')->middleware('permission:menu_kategori');

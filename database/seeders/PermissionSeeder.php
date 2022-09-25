@@ -22,9 +22,14 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'menu_rewash']);
 
         //setting
-        Permission::create(['name' => 'setting_karyawan']);
-        Permission::create(['name' => 'setting_outlet']);
-        Permission::create(['name' => 'setting_paket']);
+        Permission::create(['name' => 'menu_karyawan']);
+        Permission::create(['name' => 'menu_paket']);
+
+        //outlet
+        Permission::create(['name' => 'menu_outlet']);
+        Permission::create(['name' => 'insert_outlet']);
+        Permission::create(['name' => 'delete_outlet']);
+
 
         //Parfum
         Permission::create(['name' => 'menu_parfum']);

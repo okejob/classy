@@ -17,6 +17,7 @@ class ParfumController extends Controller
         Update::create([
             'user_id' => Auth::id(),
             'type' => 'insert',
+            'table' => 'parfum',
             'affected_id' => $parfum->id,
         ]);
 
@@ -29,6 +30,7 @@ class ParfumController extends Controller
         Update::create([
             'user_id' => Auth::id(),
             'type' => 'delete',
+            'table' => 'parfum',
             'affected_id' => $id,
         ]);
 
