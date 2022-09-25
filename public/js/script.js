@@ -33,22 +33,38 @@ $(document).ready(function() {
 
     if (getCookie('submenu-Data') != '') {
         $('#nav-menu-data .nav-items').show();
+        $('#nav-menu-data .menu-header .fa-angle-down').addClass('fa-rotate-180');
     }
     if (getCookie('submenu-Transaksi') != '') {
         $('#nav-menu-transaksi .nav-items').show();
+        $('#nav-menu-transaksi .menu-header .fa-angle-down').addClass('fa-rotate-180');
     }
-    if (getCookie('submenu-Pengaturan') != '') {
-        $('#nav-menu-pengaturan .nav-items').show();
+    if (getCookie('submenu-Setting') != '') {
+        $('#nav-menu-setting .nav-items').show();
+        $('#nav-menu-setting .menu-header .fa-angle-down').addClass('fa-rotate-180');
     }
 
     $('#side-nav .menu-header').on('click', function() {
         let submenu = $(this).find('p').text();
         let state = '';
+        $(this).find('.fa-angle-down').removeClass('fa-rotate-180');
         if ($(this).next().css('display') == 'none') {
             state = 'open';
+            $(this).find('.fa-angle-down').addClass('fa-rotate-180');
         }
         $(this).next().toggle('fast', null);
         setCookie('submenu-' + submenu, state, 1);
+    });
+
+    if (getCookie('current-menu') != '') {
+        let menu = getCookie('current-menu').split('/');
+        menu.shift();
+
+        $('#nav-menu-' + menu[0] + ' #nav-' + menu[0] + '-' + menu[1] + ' .menu-item').addClass('active color-sub');
+    }
+
+    $('#side-nav .nav-items div').on('click', function() {
+        setCookie('current-menu', $(this).children().attr('href'), 1);
     });
 
     var flag = false;

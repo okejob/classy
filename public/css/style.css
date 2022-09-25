@@ -13,13 +13,6 @@ section.bg-clean form {
   box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
 }
 
-section .illustration {
-  text-align: center;
-  padding: 0 0 20px;
-  font-size: 100px;
-  color: rgb(244,71,107);
-}
-
 section.bg-clean form .form-container {
   background: #f7f9fc;
   border: none;
@@ -83,17 +76,12 @@ section.bg-clean form .form-container .form-control {
 }
 
 section.bg-clean form .btn-primary {
-  background: #f4476b;
   border: none;
   border-radius: 4px;
   padding: 11px;
   box-shadow: none;
   text-shadow: none;
   outline: none !important;
-}
-
-section.bg-clean form .btn-primary:hover, section.bg-clean form .btn-primary:active {
-  background: #eb3b60;
 }
 
 section.bg-clean form .btn-primary:active, section.bg-clean form .form-container input {
@@ -112,6 +100,22 @@ section.bg-clean form .btn-primary:active, section.bg-clean form .form-container
 .bg-clean form .forgot:hover, .bg-clean form .forgot:active {
   opacity: 1;
   text-decoration: none;
+}
+
+.bg-main {
+    background-color: #222F64!important;
+}
+
+.color-main {
+    background-color: #53A6D0!important;
+}
+
+.bg-sub {
+    color: #222F64!important;
+}
+
+.color-sub {
+    color: #53A6D0!important;
 }
 
 p {
@@ -143,7 +147,7 @@ section#pengaturan-karyawan table th {
 a {
   color: inherit!important;
   text-decoration: none!important;
-  font-weight: 600;
+  font-weight: initial!important;
 }
 
 #list-action li:hover {
@@ -186,7 +190,6 @@ p, .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
 
 #header {
     height: 60px;
-    background-color: #3C1361;
 }
 
 #side-nav {

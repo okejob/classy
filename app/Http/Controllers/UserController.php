@@ -40,7 +40,7 @@ class UserController extends Controller
      * Store New User
      *
      * @param UserCreateRequest $request
-     * @return View dashboard 
+     * @return View dashboard
      */
     public function store(UserCreateRequest $request)
     {
@@ -55,6 +55,6 @@ class UserController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        return redirect('/login');
     }
 }
