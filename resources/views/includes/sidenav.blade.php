@@ -96,14 +96,14 @@
             <div class="nav-items" style="display: none;">
                 <div id="nav-setting-outlet">
                     <a href="/setting/outlet" class="menu-item menu-setting ps-5 pe-3 py-1 d-flex align-items-center">
-                        <i class="fas fa-user-friends"></i>
-                        <p class="ms-3">Karyawan</p>
+                        <i class="fas fa-building"></i>
+                        <p class="ms-3">Outlet</p>
                     </a>
                 </div>
                 <div id="nav-setting-karyawan">
                     <a href="/setting/karyawan" class="menu-item menu-setting ps-5 pe-3 py-1 d-flex align-items-center">
-                        <i class="fas fa-building"></i>
-                        <p class="ms-3">Outlet</p>
+                        <i class="fas fa-user-friends"></i>
+                        <p class="ms-3">Karyawan</p>
                     </a>
                 </div>
                 <div id="nav-setting-paket">
