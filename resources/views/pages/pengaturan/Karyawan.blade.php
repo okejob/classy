@@ -250,4 +250,5 @@
     </section>
 </div>
 
+<script src="{{ asset('js/pengaturan/karyawan.js') }}"></script>
 @endsection

@@ -19,21 +19,28 @@
                         <div class="col-12">
                             <h5>Alamat lengkap</h5><input class="form-control" type="text" name="alamat">
                         </div>
-                        <div class="col-12 col-sm-6 col-md-4">
+                        <div class="col-12 col-sm-6 col-lg-3">
                             <h5>Telepon 1</h5><input class="form-control" type="text" name="telepon_1">
                         </div>
-                        <div class="col-12 col-sm-6 col-md-4">
+                        <div class="col-12 col-sm-6 col-lg-3">
                             <h5>Telepon 2</h5><input class="form-control" type="text" name="telepon_2">
                         </div>
-                        <div class="col-12 col-sm-6 col-md-4">
+                        <div class="col-12 col-sm-6 col-lg-3">
                             <h5>Nomor Fax</h5><input class="form-control" type="text" name="nomor_fax">
                         </div>
-                        <div class="col-12">
-                            <h5>Slogan</h5><input class="form-control" type="text" name="slogan">
+                        <div class="col-12 col-sm-6 col-lg-3">
+                        <h5>Status</h5>
+                        <div class="form-control d-flex justify-content-around" style="height: 38px;">
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" id="radio-status-aktif" />
+                                <label class="form-check-label" for="radio-status-aktif">Aktif</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" id="radio-status-nonaktif" />
+                                <label class="form-check-label" for="radio-status-nonaktif">Non-aktif</label>
+                            </div>
                         </div>
-                        <div class="col-12">
-                            <h5>Logo Outlet</h5><input class="form-control" type="file" name="logo_outlet">
-                        </div>
+                    </div>
                     </div><button class="btn btn-primary float-end" type="submit"><i class="fas fa-save"></i>&nbsp;Simpan</button>
                 </form>
             </div>
