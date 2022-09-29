@@ -23,7 +23,6 @@ class AdminSeeder extends Seeder
             'phone' => '081239687792',
             'address' => 'surabaya',
             'email' => 'vincentiusmandala@gmail.com',
-            'status' => 'A',
         ])->assignRole('administrator');
 
         User::create([
@@ -33,7 +32,6 @@ class AdminSeeder extends Seeder
             'phone' => '0888888888',
             'address' => 'surabaya',
             'email' => 'mitchel@gmail.com',
-            'status' => 'A',
         ])->assignRole('administrator');
     }
 }

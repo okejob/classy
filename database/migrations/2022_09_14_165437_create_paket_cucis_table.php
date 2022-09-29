@@ -20,8 +20,10 @@ return new class extends Migration
             $table->integer('harga_paket');
             $table->integer('harga_per_bobot');
             $table->integer('jumlah_bobot');
-            $table->string('status')->default('A');
-            $table->foreignId('user_id');
+            $table->boolean('status')->default(true);
+            $table->foreignId('user_id')
+                ->constrained()
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }

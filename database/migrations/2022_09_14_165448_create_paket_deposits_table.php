@@ -19,8 +19,10 @@ return new class extends Migration
             $table->string('deskripsi')->nullable();
             $table->integer('nominal');
             $table->integer('harga');
-            $table->string('status')->default('A');
-            $table->foreignId('user_id');
+            $table->boolean('status')->default(true);
+            $table->foreignId('user_id')
+                ->constrained()
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -18,7 +18,6 @@ class PermissionSeeder extends Seeder
     {
 
         //Menu
-        Permission::create(['name' => 'menu_item']);
         Permission::create(['name' => 'menu_rewash']);
 
         //setting
@@ -30,6 +29,10 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'insert_outlet']);
         Permission::create(['name' => 'delete_outlet']);
 
+        //Item
+        Permission::create(['name' => 'menu_item']);
+        Permission::create(['name' => 'insert_item']);
+        Permission::create(['name' => 'delete_item']);
 
         //Parfum
         Permission::create(['name' => 'menu_parfum']);

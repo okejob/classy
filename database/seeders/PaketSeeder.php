@@ -22,7 +22,6 @@ class PaketSeeder extends Seeder
             'harga_paket' => 30000,
             'harga_per_bobot' => 6000,
             'jumlah_bobot' => 5,
-            'status' => 'A',
             'user_id' => 1
         ]);
 
@@ -32,7 +31,6 @@ class PaketSeeder extends Seeder
             'harga_paket' => 50000,
             'harga_per_bobot' => 5000,
             'jumlah_bobot' => 10,
-            'status' => 'A',
             'user_id' => 1
         ]);
 
@@ -42,7 +40,6 @@ class PaketSeeder extends Seeder
             'harga_paket' => 90000,
             'harga_per_bobot' => 6000,
             'jumlah_bobot' => 15,
-            'status' => 'A',
             'user_id' => 1
         ]);
 
@@ -52,7 +49,6 @@ class PaketSeeder extends Seeder
             'harga_paket' => 25000,
             'harga_per_bobot' => 5000,
             'jumlah_bobot' => 5,
-            'status' => 'A',
             'user_id' => 1
         ]);
 
@@ -62,7 +58,6 @@ class PaketSeeder extends Seeder
             'harga_paket' => 45000,
             'harga_per_bobot' => 2500,
             'jumlah_bobot' => 15,
-            'status' => 'A',
             'user_id' => 1
         ]);
 
@@ -71,7 +66,6 @@ class PaketSeeder extends Seeder
             'deskripsi' => 'DEPOSIT 500K FREE DEPOSIT 50K',
             'nominal' => 550000,
             'harga' => 500000,
-            'status' => 'A',
             'user_id' => 1
         ]);
 
@@ -80,7 +74,6 @@ class PaketSeeder extends Seeder
             'deskripsi' => 'PENGISIAN DEPOSIT 100K',
             'nominal' => 100000,
             'harga' => 95000,
-            'status' => 'A',
             'user_id' => 1
         ]);
     }

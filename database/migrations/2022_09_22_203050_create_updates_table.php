@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('updates', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')
+                ->constrained()
+                ->cascadeOnDelete();
             $table->string('type');
             $table->string('table');
             $table->string('affected_id');

@@ -19,7 +19,6 @@ class ParfumSeeder extends Seeder
             'nama' => 'Lily Sweet',
             'deskripsi' => 'Aroma Lily Manis',
             'jenis' => 'Medium',
-            'status' => 'A',
             'user_id' => 1
         ]);
 
@@ -27,7 +26,6 @@ class ParfumSeeder extends Seeder
             'nama' => 'Apel Fresh',
             'deskripsi' => 'Aroma Apel Segar',
             'jenis' => 'Soft',
-            'status' => 'A',
             'user_id' => 1
         ]);
 
@@ -35,7 +33,6 @@ class ParfumSeeder extends Seeder
             'nama' => 'Polo Sport',
             'deskripsi' => 'Aroma Segar',
             'jenis' => 'Soft',
-            'status' => 'A',
             'user_id' => 1
         ]);
 
@@ -43,7 +40,6 @@ class ParfumSeeder extends Seeder
             'nama' => 'Apel Sweet',
             'deskripsi' => 'Aroma Apel Manis',
             'jenis' => 'Soft',
-            'status' => 'A',
             'user_id' => 1
         ]);
 
@@ -51,7 +47,6 @@ class ParfumSeeder extends Seeder
             'nama' => 'No Parfum',
             'deskripsi' => 'Tidak Menggunakan Parfum (Netral)',
             'jenis' => 'Netral',
-            'status' => 'A',
             'user_id' => 1
         ]);
 
@@ -59,7 +54,6 @@ class ParfumSeeder extends Seeder
             'nama' => 'Molto Pink',
             'deskripsi' => 'Aroma Molto Pink',
             'jenis' => 'Hard',
-            'status' => 'A',
             'user_id' => 1
         ]);
     }

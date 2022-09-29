@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\PageController;
@@ -21,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 })->name('welcome');
 
 Route::get('/login', [PageController::class, 'login'])->name('login')->middleware('guest');
@@ -32,7 +33,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/reset-password', [PageController::class, 'resetPassword'])->name('reset_password');
 
     Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
-    Route::get('/data/item', [PageController::class, 'item'])->name('menu-item')->middleware('permission:menu_item');
     Route::get('/data/rewash', [PageController::class, 'rewash'])->name('menu-rewash')->middleware('permission:menu_rewash');
 
     //Setting
@@ -43,6 +43,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/setting/outlet', [PageController::class, 'outlet'])->name('menu-outlet')->middleware('permission:menu_outlet');
     Route::post('/setting/outlet', [OutletController::class, 'insert'])->middleware('permission::insert_outlet');
     Route::get('/setting/outlet/delete/{id}', [OutletController::class, 'delete'])->middleware('permission::delete_outlet');
+
+    //item
+    Route::get('/data/item', [PageController::class, 'item'])->name('menu-item')->middleware('permission:menu_item');
+    Route::post('/data/item', [ItemController::class, 'insert'])->middleware('permission:insert_item');
+    Route::get('/data/item/delete/{id}', [ItemController::class, 'delete'])->middleware('permission:delete_item');
 
     //kategori
     Route::get('/data/kategori', [PageController::class, 'kategori'])->name('menu-kategori')->middleware('permission:menu_kategori');

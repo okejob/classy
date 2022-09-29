@@ -23,8 +23,10 @@ return new class extends Migration
             $table->string('jenis_id')->nullable();
             $table->string('telephone')->nullable();
             $table->string('email')->nullable();
-            $table->string('status')->default('A');
-            $table->string('user_id');
+            $table->boolean('status')->default(true);
+            $table->string('user_id')
+                ->constrained()
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }
