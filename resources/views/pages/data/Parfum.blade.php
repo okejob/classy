@@ -4,7 +4,7 @@
 @include('includes.datatables')
 <div class="container">
     <header class="d-flex align-items-center my-3" style="color: var(--bs-gray);"><a>Master Data</a><i class="fas fa-angle-right mx-2"></i><a>Data Parfum</a></header>
-    <section id="data-kategori">
+    <section id="data-parfum">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Data Parfum</h4>
@@ -16,25 +16,28 @@
                                 <th>Nama Parfum</th>
                                 <th>Deskripsi</th>
                                 <th>Jenis</th>
+                                <th>Status</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($data1 as $parfum)
                             <tr>
-                                <td>No Parfum</td>
-                                <td>-</td>
-                                <td>Netral</td>
+                                <td>{{ $parfum->nama }}</td>
+                                <td>{{ $parfum->deskripsi }}</td>
+                                <td>{{ $parfum->jenis }}</td>
+                                @if ($parfum->status)
+                                    <td>Aktif</td>
+                                @else
+                                    <td>Non-aktif</td>
+                                @endif
                                 <td class="cell-action"><button class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button></td>
                             </tr>
-                            <tr>
-                                <td>Parfum A</td>
-                                <td>-</td>
-                                <td>Wangi</td>
-                                <td class="cell-action"><button class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button></td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
-                </div><button class="btn btn-primary btn-tambah" type="button">
+                </div>
+                <button class="btn btn-primary btn-tambah" type="button">
                     <i class="fas fa-plus-circle"></i>
                     &nbsp;Tambah
                 </button>
@@ -61,8 +64,9 @@
                                 </div>
                                 <div class="col-12">
                                     <h5>Jenis Parfum</h5><select class="form-select" id="input-jenis">
-                                        <option value="netral" selected="">Netral</option>
-                                        <option value="wangi">Wangi</option>
+                                        @foreach ($data2 as $parfum)
+                                            <option value={{ $parfum->jenis }}>{{ $parfum->jenis }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
