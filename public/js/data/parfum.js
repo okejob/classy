@@ -15,9 +15,9 @@ $(document).ready(function() {
     });
 
     $('#data-parfum #action-update').on('click', function() {
-        $('#update-nama-parfum').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(1)').html());
-        $('#update-deskripsi').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(2)').html());
-        $('#update-jenis').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(3)').html().toLowerCase());
+        $('#input-nama-parfum').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(1)').html());
+        $('#input-deskripsi').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(2)').html());
+        $('#input-jenis').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(3)').html());
 
         $('#modal-update').modal('show');
     });

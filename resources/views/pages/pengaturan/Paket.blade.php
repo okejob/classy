@@ -47,7 +47,8 @@
                             </tr>
                         </tbody>
                     </table>
-                </div><button class="btn btn-primary" type="button"><i class="fas fa-plus-circle"></i> Tambah</button>
+                </div>
+                <button class="btn btn-primary" type="button"><i class="fas fa-plus-circle"></i> Tambah</button>
                 <ul class="list-unstyled form-control" id="list-action">
                     <li id="action-update">Rubah data</li>
                     <li id="action-change-status">Rubah status</li>

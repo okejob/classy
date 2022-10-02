@@ -65,7 +65,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('data/parfum/delete/{id}', [ParfumController::class, 'delete'])->middleware('permission:delete_parfum');
 
     //Pelanggan
-    Route::get('/data/pelanggan', [PageController::class, 'item'])->name('menu-pelanggan')->middleware('permission:menu_pelanggan');
+    Route::get('/data/pelanggan', [PageController::class, 'pelanggan'])->name('menu-pelanggan')->middleware('permission:menu_pelanggan');
     Route::post('/data/pelanggan', [PelangganController::class, 'insert'])->middleware('permission:insert_pelanggan');
     Route::get('/data/pelanggan/delete/{id}', [PelangganController::class, 'delete'])->middleware('permission:delete_pelanggan');
 });

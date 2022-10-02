@@ -20,18 +20,18 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($data as $kategori)
                             <tr>
-                                <td>Kaos</td>
-                                <td>-</td>
-                                <td>Aktif</td>
+                                <td>{{ $kategori->nama }}</td>
+                                <td>{{ $kategori->deskripsi }}</td>
+                                @if ($kategori->status)
+                                    <td>Aktif</td>
+                                @else
+                                    <td>Non-aktif</td>
+                                @endif
                                 <td class="cell-action"><button class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button></td>
                             </tr>
-                            <tr>
-                                <td>Celana</td>
-                                <td>-</td>
-                                <td>Aktif</td>
-                                <td class="cell-action"><button class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button></td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

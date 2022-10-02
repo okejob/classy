@@ -55,7 +55,10 @@ class PageController extends Controller
     {
         return view(
             'pages.data.Parfum',
-            ['data' => Parfum::paginate(5)]
+            [
+                'data1' => Parfum::paginate(5),
+                'data2' => Parfum::select('jenis')->distinct()->get()
+            ]
         );
     }
 
