@@ -109,5 +109,5 @@
     </section>
 </div>
 
-<script src="{{ asset('js/data/item.js') }}"></script>
+<script src="{{ asset('js/data/jenis-item.js') }}"></script>
 @endsection

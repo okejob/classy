@@ -17,7 +17,7 @@ class PengeluaranController extends Controller
         Update::create([
             'user_id' => Auth::id(),
             'type' => 'insert',
-            'table' => 'pengeluaran',
+            'table' => 'pengeluarans',
             'affected_id' => $pengeluaran->id,
         ]);
 
@@ -30,7 +30,7 @@ class PengeluaranController extends Controller
         Update::create([
             'user_id' => Auth::id(),
             'type' => 'delete',
-            'table' => 'pengeluaran',
+            'table' => 'pengeluarans',
             'affected_id' => $id,
         ]);
 

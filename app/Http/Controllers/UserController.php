@@ -49,7 +49,7 @@ class UserController extends Controller
         Update::create([
             'user_id' => Auth::id(),
             'type' => 'insert',
-            'table' => 'user',
+            'table' => 'users',
             'affected_id' => $user->id,
         ]);
         //need dashboard page

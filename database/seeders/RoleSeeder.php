@@ -24,9 +24,9 @@ class RoleSeeder extends Seeder
             'menu_karyawan',
             'menu_paket',
 
-            'menu_item',
-            'insert_item',
-            'delete_item',
+            'menu_jenis_item',
+            'insert_jenis_item',
+            'delete_jenis_item',
 
             'menu_outlet',
             'insert_outlet',

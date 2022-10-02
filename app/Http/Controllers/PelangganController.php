@@ -17,7 +17,7 @@ class PelangganController extends Controller
         Update::create([
             'user_id' => Auth::id(),
             'type' => 'insert',
-            'table' => 'pelanggan',
+            'table' => 'pelanggans',
             'affected_id' => $pelanggan->id,
         ]);
 
@@ -30,7 +30,7 @@ class PelangganController extends Controller
         Update::create([
             'user_id' => Auth::id(),
             'type' => 'delete',
-            'table' => 'pelanggan',
+            'table' => 'pelanggans',
             'affected_id' => $id,
         ]);
 

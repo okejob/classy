@@ -17,7 +17,7 @@ class OutletController extends Controller
         Update::create([
             'user_id' => Auth::id(),
             'type' => 'insert',
-            'table' => 'outlet',
+            'table' => 'outlets',
             'affected_id' => $outlet->id,
         ]);
 
@@ -30,7 +30,7 @@ class OutletController extends Controller
         Update::create([
             'user_id' => Auth::id(),
             'type' => 'delete',
-            'table' => 'outlet',
+            'table' => 'outlets',
             'affected_id' => $id,
         ]);
 

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ItemController;
+use App\Http\Controllers\JenisItemController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\PageController;
@@ -37,7 +37,7 @@ Route::middleware(['auth'])->group(function () {
 
     //Setting
     Route::get('/setting/karyawan', [PageController::class, 'karyawan'])->name('menu-karyawan')->middleware('permission:menu_karyawan');
-    Route::get('/setting/paket', [PageController::class, 'paket'])->name('menu-paket')->middleware('permission:setting_paket');
+    Route::get('/setting/paket', [PageController::class, 'paket'])->name('menu-paket')->middleware('permission:menu_paket');
 
     //outlet
     Route::get('/setting/outlet', [PageController::class, 'outlet'])->name('menu-outlet')->middleware('permission:menu_outlet');
@@ -45,9 +45,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/setting/outlet/delete/{id}', [OutletController::class, 'delete'])->middleware('permission::delete_outlet');
 
     //item
-    Route::get('/data/item', [PageController::class, 'item'])->name('menu-item')->middleware('permission:menu_item');
-    Route::post('/data/item', [ItemController::class, 'insert'])->middleware('permission:insert_item');
-    Route::get('/data/item/delete/{id}', [ItemController::class, 'delete'])->middleware('permission:delete_item');
+    Route::get('/data/jenis-item', [PageController::class, 'jenisItem'])->name('menu-jenis-item')->middleware('permission:menu_jenis_item');
+    Route::post('/data/jenis-item', [JenisItemController::class, 'insert'])->middleware('permission:insert_jenis_item');
+    Route::get('/data/jenis-item/delete/{id}', [JenisItemController::class, 'delete'])->middleware('permission:delete_jenis_item');
 
     //kategori
     Route::get('/data/kategori', [PageController::class, 'kategori'])->name('menu-kategori')->middleware('permission:menu_kategori');
@@ -65,7 +65,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('data/parfum/delete/{id}', [ParfumController::class, 'delete'])->middleware('permission:delete_parfum');
 
     //Pelanggan
-    Route::get('/data/pelanggan', [PageController::class, 'item'])->name('menu-pelanggan')->middleware('permission:menu_pelanggan');
+    Route::get('/data/pelanggan', [PageController::class, 'pelanggan'])->name('menu-pelanggan')->middleware('permission:menu_pelanggan');
     Route::post('/data/pelanggan', [PelangganController::class, 'insert'])->middleware('permission:insert_pelanggan');
     Route::get('/data/pelanggan/delete/{id}', [PelangganController::class, 'delete'])->middleware('permission:delete_pelanggan');
 });

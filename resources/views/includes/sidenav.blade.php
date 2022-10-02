@@ -15,7 +15,7 @@
                     </a>
                 </div>
                 <div id="nav-data-item">
-                    <a href="/data/item" class="menu-item menu-data ps-5 pe-3 py-1 d-flex align-items-center">
+                    <a href="/data/jenis-item" class="menu-item menu-data ps-5 pe-3 py-1 d-flex align-items-center">
                         <i class="fas fa-box"></i>
                         <p class="ms-3">Item</p>
                     </a>

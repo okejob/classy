@@ -38,7 +38,7 @@ class PageController extends Controller
         return view('pages.session.home');
     }
 
-    public function item()
+    public function jenisItem()
     {
         return view('pages.data.Item');
     }

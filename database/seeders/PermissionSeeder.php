@@ -30,9 +30,9 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'delete_outlet']);
 
         //Item
-        Permission::create(['name' => 'menu_item']);
-        Permission::create(['name' => 'insert_item']);
-        Permission::create(['name' => 'delete_item']);
+        Permission::create(['name' => 'menu_jenis_item']);
+        Permission::create(['name' => 'insert_jenis_item']);
+        Permission::create(['name' => 'delete_jenis_item']);
 
         //Parfum
         Permission::create(['name' => 'menu_parfum']);

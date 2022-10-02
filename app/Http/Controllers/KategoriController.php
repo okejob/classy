@@ -17,7 +17,7 @@ class KategoriController extends Controller
         Update::create([
             'user_id' => Auth::id(),
             'type' => 'insert',
-            'table' => 'kategori',
+            'table' => 'kategoris',
             'affected_id' => $kategori->id,
         ]);
 
@@ -30,7 +30,7 @@ class KategoriController extends Controller
         Update::create([
             'user_id' => Auth::id(),
             'type' => 'delete',
-            'table' => 'kategori',
+            'table' => 'kategoris',
             'affected_id' => $id,
         ]);
 
