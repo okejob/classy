@@ -13,16 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('item_transaksis', function (Blueprint $table) {
+        Schema::create('pickup_deliveries', function (Blueprint $table) {
             $table->id();
             $table->foreignId('transaksi_id');
-            $table->foreignId('jenis_item_id');
-            $table->boolean('express')->default(false);
-            $table->boolean('setrika')->default(true);
-            $table->string('status_proses');
-            $table->foreignId('updated_by')
-                ->constrained('users', 'id')
-                ->cascadeOnDelete();
+            $table->boolean('ambil')->default(false);
+            $table->text('alamat_ambil');
+            $table->boolean('antar')->default(false);
+            $table->text('alamat_antar');
+            $table->boolean('terambil')->default(false);
+            $table->boolean('terantar')->default(false);
             $table->timestamps();
         });
     }
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('item_transaksis');
+        Schema::dropIfExists('pickup_deliveries');
     }
 };
