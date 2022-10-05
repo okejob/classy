@@ -18,3 +18,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/setting/outlet', [OutletController::class, 'insert']);
+Route::post('/data/jenis-item', [JenisItemController::class, 'insert']);
+Route::post('/data/pengeluaran', [PengeluaranController::class, 'insert']);
+Route::post('/data/parfum', [ParfumController::class, 'insert']);
+Route::post('/data/pelanggan', [PelangganController::class, 'insert']);
+
