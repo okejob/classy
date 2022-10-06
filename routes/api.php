@@ -25,10 +25,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware(['guest'])->group(function () {
     //outlet
-    Route::get('/outlet', [OutletController::class, 'APIshow']);
-    Route::post('/outlet', [OutletController::class, 'APIinsert']);
-    Route::post('/outlet/{id}', [OutletController::class, 'APIupdate']);
-    Route::get('/outlet/delete/{id}', [OutletController::class, 'APIdelete']);
+    Route::get('/setting/outlet', [OutletController::class, 'APIshow']);
+    Route::post('/setting/outlet', [OutletController::class, 'APIinsert']);
+    Route::post('/setting/outlet/{id}', [OutletController::class, 'APIupdate']);
+    Route::get('/setting/outlet/delete/{id}', [OutletController::class, 'APIdelete']);
 
     //jenis_item
     Route::get('/data/jenis-item', [JenisItemController::class, 'APIshow']);
