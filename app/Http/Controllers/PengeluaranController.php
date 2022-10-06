@@ -36,4 +36,35 @@ class PengeluaranController extends Controller
 
         return redirect()->intended('menu-pengeluaran');
     }
+
+    //API
+    public function APIinsert(InsertPengeluaranRequest $request)
+    {
+        $merged = $request->safe()->merge(['user_id' => 1]);
+        $pengeluaran = Pengeluaran::create($merged);
+
+        return response()->json([
+            'message' => 'Success',
+            'pengeluaran' => $pengeluaran,
+        ], 200);
+    }
+
+    public function APIupdate(InsertPengeluaranRequest $request, $id)
+    {
+        $pengeluaran = Pengeluaran::find($id)->update($request);
+        return response()->json([
+            'message' => 'Success',
+            'pengeluaran' => $pengeluaran,
+        ], 200);
+    }
+
+    public function APIdelete($id)
+    {
+        $pengeluaran = Pengeluaran::find($id);
+        Pengeluaran::destroy($id);
+        return response()->json([
+            'message' => 'Success',
+            'pengeluaran' => $pengeluaran,
+        ], 200);
+    }
 }

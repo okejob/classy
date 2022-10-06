@@ -36,4 +36,35 @@ class ParfumController extends Controller
 
         return redirect()->intended('menu-parfum');
     }
+
+    //API
+    public function APIinsert(InsertParfumRequest $request)
+    {
+        $merged = $request->safe()->merge(['user_id' => 1]);
+        $parfum = Parfum::create($merged);
+
+        return response()->json([
+            'message' => 'Success',
+            'parfum' => $parfum,
+        ], 200);
+    }
+
+    public function APIupdate(InsertParfumRequest $request, $id)
+    {
+        $parfum = Parfum::find($id)->update($request);
+        return response()->json([
+            'message' => 'Success',
+            'parfum' => $parfum,
+        ], 200);
+    }
+
+    public function APIdelete($id)
+    {
+        $parfum = Parfum::find($id);
+        Parfum::destroy($id);
+        return response()->json([
+            'message' => 'Success',
+            'parfum' => $parfum,
+        ], 200);
+    }
 }
