@@ -60,7 +60,7 @@ class OutletController extends Controller
 
     public function APIupdate(InsertOutletRequest $request, $id)
     {
-        $outlet = Outlet::find($id)->update($request);
+        $outlet = Outlet::find($id)->update($request->toArray());
         return response()->json([
             'message' => 'Success',
             'outlet' => $outlet,
