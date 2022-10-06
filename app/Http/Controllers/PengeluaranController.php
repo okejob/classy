@@ -38,6 +38,15 @@ class PengeluaranController extends Controller
     }
 
     //API
+    public function APIshow()
+    {
+        $pengeluaran = Pengeluaran::get();
+        return response()->json([
+            'message' => 'Success',
+            'pengeluaran' => $pengeluaran,
+        ], 200);
+    }
+
     public function APIinsert(InsertPengeluaranRequest $request)
     {
         $merged = $request->safe()->merge(['user_id' => 1]);

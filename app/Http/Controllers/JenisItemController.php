@@ -38,6 +38,15 @@ class JenisItemController extends Controller
     }
 
     //API
+    public function APIshow()
+    {
+        $jenisItem = JenisItem::get();
+        return response()->json([
+            'message' => 'Success',
+            'jenis_item' => $jenisItem,
+        ], 200);
+    }
+
     public function APIinsert(InsertJenisItemRequest $request)
     {
         $merged = $request->safe()->merge(['user_id' => 1]);

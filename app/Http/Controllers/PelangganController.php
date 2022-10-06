@@ -38,6 +38,14 @@ class PelangganController extends Controller
     }
 
     //API
+    public function APIshow()
+    {
+        $pelanggan = Pelanggan::get();
+        return response()->json([
+            'message' => 'Success',
+            'pelanggan' => $pelanggan,
+        ], 200);
+    }
     public function APIinsert(InsertPelangganRequest $request)
     {
         $merged = $request->safe()->merge(['user_id' => 1]);

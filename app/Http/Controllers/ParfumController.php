@@ -38,6 +38,15 @@ class ParfumController extends Controller
     }
 
     //API
+    public function APIshow()
+    {
+        $parfum = Parfum::get();
+        return response()->json([
+            'message' => 'Success',
+            'parfum' => $parfum,
+        ], 200);
+    }
+
     public function APIinsert(InsertParfumRequest $request)
     {
         $merged = $request->safe()->merge(['user_id' => 1]);

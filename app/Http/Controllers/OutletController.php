@@ -38,6 +38,15 @@ class OutletController extends Controller
     }
 
     //API
+    public function APIshow()
+    {
+        $outlet = Outlet::get();
+        return response()->json([
+            'message' => 'Success',
+            'outlet' => $outlet,
+        ], 200);
+    }
+
     public function APIinsert(InsertOutletRequest $request)
     {
         $merged = $request->safe()->merge(['user_id' => 1]);
