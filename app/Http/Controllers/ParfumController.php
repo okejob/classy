@@ -49,7 +49,7 @@ class ParfumController extends Controller
 
     public function APIinsert(InsertParfumRequest $request)
     {
-        $merged = $request->safe()->merge(['user_id' => 1]);
+        $merged = $request->safe()->merge(['user_id' => 1])->toArray();
         $parfum = Parfum::create($merged);
 
         return response()->json([

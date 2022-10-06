@@ -49,7 +49,7 @@ class JenisItemController extends Controller
 
     public function APIinsert(InsertJenisItemRequest $request)
     {
-        $merged = $request->safe()->merge(['user_id' => 1]);
+        $merged = $request->safe()->merge(['user_id' => 1])->toArray();
         $jenisItem = JenisItem::create($merged);
 
         return response()->json([

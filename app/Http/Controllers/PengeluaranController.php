@@ -49,7 +49,7 @@ class PengeluaranController extends Controller
 
     public function APIinsert(InsertPengeluaranRequest $request)
     {
-        $merged = $request->safe()->merge(['user_id' => 1]);
+        $merged = $request->safe()->merge(['user_id' => 1])->toArray();
         $pengeluaran = Pengeluaran::create($merged);
 
         return response()->json([

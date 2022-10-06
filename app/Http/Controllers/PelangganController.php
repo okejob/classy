@@ -48,7 +48,7 @@ class PelangganController extends Controller
     }
     public function APIinsert(InsertPelangganRequest $request)
     {
-        $merged = $request->safe()->merge(['user_id' => 1]);
+        $merged = $request->safe()->merge(['user_id' => 1])->toArray();
         $pelanggan = Pelanggan::create($merged);
 
         return response()->json([

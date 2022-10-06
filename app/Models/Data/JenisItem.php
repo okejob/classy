@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class JenisItem extends Model
 {
     use HasFactory;
+    protected $guarded = ['id'];
 }
