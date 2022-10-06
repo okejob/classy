@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\JenisItemController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\ParfumController;
 use App\Http\Controllers\PelangganController;
@@ -53,4 +54,7 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/data/pelanggan', [PelangganController::class, 'APIinsert']);
     Route::post('/data/pelanggan/{id}', [PelangganController::class, 'APIupdate']);
     Route::get('/data/pelanggan/delete/{id}', [PelangganController::class, 'APIdelete']);
+
+    //kategori
+    Route::get('/data/kategori', [KategoriController::class, 'APIshow']);
 });

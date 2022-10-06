@@ -36,4 +36,13 @@ class KategoriController extends Controller
 
         return redirect()->intended('menu-kategori');
     }
+
+    //API
+    public function APIshow()
+    {
+        $kategori = Kategori::get();
+        return response()->json([
+            'kategori' => $kategori,
+        ], 200);
+    }
 }

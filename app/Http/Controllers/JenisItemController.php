@@ -12,7 +12,7 @@ class JenisItemController extends Controller
 {
     public function insert(InsertJenisItemRequest $request)
     {
-        $merged = $request->safe()->merge(['user_id' => Auth::id()]);
+        $merged = $request->safe()->merge(['user_id' => Auth::id()])->toArray();
         $item = JenisItem::create($merged);
         Update::create([
             'user_id' => Auth::id(),
@@ -35,6 +35,12 @@ class JenisItemController extends Controller
         ]);
 
         return redirect()->intended('menu-jenis-item');
+    }
+
+    public function kategori()
+    {
+        $jenisItem = JenisItem::find(1);
+        $kategori = $jenisItem->kategori->nama;
     }
 
     //API
