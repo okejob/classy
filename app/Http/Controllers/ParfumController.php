@@ -60,7 +60,7 @@ class ParfumController extends Controller
 
     public function APIupdate(InsertParfumRequest $request, $id)
     {
-        $parfum = Parfum::find($id)->update($request);
+        $parfum = Parfum::find($id)->update($request->toArray());
         return response()->json([
             'message' => 'Success',
             'parfum' => $parfum,
