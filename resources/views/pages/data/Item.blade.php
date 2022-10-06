@@ -17,39 +17,49 @@
                                 <th>Nama Item</th>
                                 <th>Unit</th>
                                 <th>Bobot Bucket</th>
+                                <th>Harga Kilo</th>
+                                <th>Harga Bucket</th>
                                 <th>Harga Premium</th>
-                                <th>Status Bucket</th>
                                 <th>Status Kilo</th>
-                                <th>Beban Produksi</th>
+                                <th>Status Bucket</th>
+                                <th>Status Premium</th>
                                 <th>Status</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($data1 as $item)
                             <tr>
-                                <td>Bed Sheet</td>
-                                <td>Sprei Besar</td>
-                                <td>PCS</td>
-                                <td>5.0</td>
-                                <td>20.000</td>
-                                <td>Aktif</td>
-                                <td>Aktif</td>
-                                <td>5.0</td>
-                                <td>Aktif</td>
+                                <td>{{ $item->kategori }}</td>
+                                <td>{{ $item->nama }}</td>
+                                <td>{{ $item->unit }}</td>
+                                <td>{{ $item->bobot_bucket }}</td>
+                                <td>{{ $item->harga_kilo }}</td>
+                                <td>{{ $item->harga_bucket }}</td>
+                                <td>{{ $item->harga_premium }}</td>
+                                @if ($item->status_kilo)
+                                    <td>Aktif</td>
+                                @else
+                                    <td>Non-aktif</td>
+                                @endif
+                                @if ($item->status_bucket)
+                                    <td>Aktif</td>
+                                @else
+                                    <td>Non-aktif</td>
+                                @endif
+                                @if ($item->status_premium)
+                                    <td>Aktif</td>
+                                @else
+                                    <td>Non-aktif</td>
+                                @endif
+                                @if ($item->status_item)
+                                    <td>Aktif</td>
+                                @else
+                                    <td>Non-aktif</td>
+                                @endif
                                 <td class="cell-action"><button class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button></td>
                             </tr>
-                            <tr>
-                                <td>Celana</td>
-                                <td>Celana Jeans</td>
-                                <td>PCS</td>
-                                <td>2.0</td>
-                                <td>85.000</td>
-                                <td>Tidak Akfif</td>
-                                <td>Tidak Aktif</td>
-                                <td>5.0</td>
-                                <td>Aktif</td>
-                                <td class="cell-action"><button class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button></td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -59,7 +69,10 @@
                 </button>
                 <ul class="list-unstyled form-control" id="list-action">
                     <li id="action-update">Rubah data</li>
-                    <li id="action-change-status">Rubah status</li>
+                    <li id="action-change-status-kilo">Rubah status kilo</li>
+                    <li id="action-change-status-bucket">Rubah status bucket</li>
+                    <li id="action-change-status-premium">Rubah status premium</li>
+                    <li id="action-change-status">Rubah status item</li>
                 </ul>
             </div>
         </div>
@@ -73,31 +86,33 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-12">
-                                    <h5>Kategori</h5><select class="form-select" id="update-kategori">
-                                        <option value="bed_sheet">Bed Sheet</option>
-                                        <option value="celana">Celana</option>
+                                    <h5>Kategori</h5>
+                                    <select class="form-select" id="input-kategori">
+                                        @foreach ($data2 as $kategori)
+                                            <option value={{ $kategori->id }}>{{ $kategori->nama }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="col-12">
-                                    <h5>Nama Item</h5><input class="form-control" type="text" id="update-nama-item">
+                                    <h5>Nama Item</h5><input class="form-control" type="text" id="input-nama-item">
                                 </div>
                                 <div class="col-12">
-                                    <h5>Unit</h5><select class="form-select" id="update-unit">
+                                    <h5>Unit</h5><select class="form-select" id="input-unit">
                                         <option value="pcs">PCS</option>
                                         <option value="kg">KG</option>
                                     </select>
                                 </div>
-                                <div class="col-12 col-sm-6 col-md-4">
-                                    <h5>Bobot Bucket</h5><input class="form-control" type="number" id="update-bobot-bucket">
+                                <div class="col-12 col-sm-6">
+                                    <h5>Bobot Bucket</h5><input class="form-control" type="number" id="input-bobot-bucket">
                                 </div>
-                                <div class="col-12 col-sm-6 col-md-4">
-                                    <h5>Harga Premium</h5><input class="form-control" type="number" id="update-harga-premium">
+                                <div class="col-12 col-sm-6">
+                                    <h5>Harga Kilo</h5><input class="form-control" type="number" id="input-harga-kilo">
                                 </div>
-                                <div class="col-12 col-sm-6 col-md-4">
-                                    <h5>Beban Produksi</h5><input class="form-control" type="number" id="update-bobot-bucket-1">
+                                <div class="col-12 col-sm-6">
+                                    <h5>Harga Bucket</h5><input class="form-control" type="number" id="input-harga-bucket">
                                 </div>
-                                <div class="col-12">
-                                    <h5>Deskripsi</h5><textarea class="form-control" id="update-deskripsi" style="resize: none;"></textarea>
+                                <div class="col-12 col-sm-6">
+                                    <h5>Harga Premium</h5><input class="form-control" type="number" id="input-harga-premium">
                                 </div>
                             </div>
                         </div>
@@ -109,5 +124,5 @@
     </section>
 </div>
 
-<script src="{{ asset('js/data/jenis-item.js') }}"></script>
+<script src="{{ asset('js/data/item.js') }}"></script>
 @endsection

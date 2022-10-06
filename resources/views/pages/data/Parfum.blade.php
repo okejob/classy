@@ -63,7 +63,8 @@
                                     <h5>Deskripsi</h5><textarea class="form-control" id="input-deskripsi" style="resize: none;"></textarea>
                                 </div>
                                 <div class="col-12">
-                                    <h5>Jenis Parfum</h5><select class="form-select" id="input-jenis">
+                                    <h5>Jenis Parfum</h5>
+                                    <select class="form-select" id="input-jenis">
                                         @foreach ($data2 as $parfum)
                                             <option value={{ $parfum->jenis }}>{{ $parfum->jenis }}</option>
                                         @endforeach

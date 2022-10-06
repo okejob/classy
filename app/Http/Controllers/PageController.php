@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Data\JenisItem;
 use App\Models\Data\Kategori;
 use App\Models\Data\Parfum;
 use App\Models\Data\Pelanggan;
 use App\Models\Data\Pengeluaran;
 use App\Models\Outlet;
 use App\Models\Paket\PaketCuci;
+use App\Models\Paket\PaketDeposit;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -40,7 +42,13 @@ class PageController extends Controller
 
     public function jenisItem()
     {
-        return view('pages.data.Item');
+        return view(
+            'pages.data.Item',
+            [
+                'data1' => JenisItem::paginate(5),
+                'data2' => Kategori::all()
+            ]
+        );
     }
 
     public function kategori()
@@ -105,7 +113,10 @@ class PageController extends Controller
     {
         return view(
             'pages.pengaturan.Paket',
-            ['data' => PaketCuci::paginate()]
+            [
+                'data1' => PaketCuci::paginate(),
+                'data2' => PaketDeposit::paginate()
+            ]
         );
     }
 }

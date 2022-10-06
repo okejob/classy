@@ -16,26 +16,34 @@
                                 <th>Outlet</th>
                                 <th>Member</th>
                                 <th>Nama<br>Lengkap</th>
+                                <th>Tanggal Lahir</th>
                                 <th>Alamat</th>
-                                <th>Telp 1</th>
-                                <th>Telp 2</th>
+                                <th>Telphone</th>
                                 <th>E-mail</th>
                                 <th>Status</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($data as $pelanggan)
                             <tr>
-                                <td>CLD</td>
-                                <td>Member A</td>
-                                <td>Herman Sentosa</td>
-                                <td>Jl. Teratai 1 Surabaya</td>
-                                <td>08123456789</td>
-                                <td>-</td>
-                                <td>herman@gmail.com</td>
-                                <td>Aktif</td>
+                                <td>Outlet Pelanggan</td>
+                                <td>{{ $pelanggan->member }}</td>
+                                <td>{{ $pelanggan->nama }}</td>
+                                <td>{{ $pelanggan->tanggal_lahir }}</td>
+                                <td>{{ $pelanggan->alamat }}</td>
+                                <td>{{ $pelanggan->no_id }}</td>
+                                <td>{{ $pelanggan->jenis_id }}</td>
+                                <td>{{ $pelanggan->telephone }}</td>
+                                <td>{{ $pelanggan->email }}</td>
+                                @if ($pelanggan->status)
+                                    <td>Aktif</td>
+                                @else
+                                    <td>Non-aktif</td>
+                                @endif
                                 <td class="cell-action"><button class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button></td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -59,40 +67,42 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-12">
-                                    <h5>ID Member</h5><input class="form-control" type="text" id="input-memberID">
-                                </div>
-                                <div class="col-12">
-                                    <h5>Nama Lengkap</h5><input class="form-control" type="text" id="input-nama-pelanggan" name="username">
-                                </div>
-                                <div class="col-12">
-                                    <h5>Alamat</h5><input class="form-control" type="text" id="input-alamat">
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <h5>Telepon 1</h5><input class="form-control" type="text" id="input-telepon1">
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <h5>Telepon 2</h5><input class="form-control" type="text" id="input-telepon2">
-                                </div>
-                                <div class="col-12">
-                                    <h5>E-mail</h5><input class="form-control" type="text" id="input-email">
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-4">
-                                    <h5>Parfum Favorit</h5><select class="form-select" id="input-parfum">
-                                        <option value="parfum_a">Parfum A</option>
-                                        <option value="parfum_b">Parfum B</option>
+                                    <h5>Tipe Member</h5>
+                                    <select class="form-select" id="input-tipe-member">
+                                        <option value="membership-A">Membership A</option>
+                                        <option value="membership-B">Membership B</option>
                                     </select>
                                 </div>
-                                <div class="col-12 col-sm-6 col-md-4">
-                                    <h5>Jenis Identitas</h5><select class="form-select" id="input-jenis-identitas">
-                                        <option value="identitas_a">Identitas A</option>
-                                        <option value="identitas_b">Identitas B</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-4">
-                                    <h5>Nomor Identitas</h5><input class="form-control" type="text" id="input-nomor-identitas">
+                                <div class="col-12">
+                                    <h5>Nama Lengkap</h5>
+                                    <input class="form-control" type="text" id="input-nama-pelanggan" name="username">
                                 </div>
                                 <div class="col-12">
-                                    <h5>Tanggal Lahir</h5><input class="form-control" id="input-tanggal-lahir" type="date">
+                                    <h5>Tanggal Lahir</h5>
+                                    <input class="form-control" id="input-tanggal-lahir" type="date">
+                                </div>
+                                <div class="col-12">
+                                    <h5>Alamat</h5>
+                                    <input class="form-control" type="text" id="input-alamat">
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <h5>Nomor Identitas</h5>
+                                    <input class="form-control" type="text" id="input-nomor-identitas">
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <h5>Jenis Identitas</h5>
+                                    <select class="form-select" id="input-jenis-identitas">
+                                        <option value="ktp">KTP</option>
+                                        <option value="sim">SIM</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <h5>Telephone</h5>
+                                    <input class="form-control" type="text" id="input-telepon">
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <h5>E-mail</h5>
+                                    <input class="form-control" type="text" id="input-email">
                                 </div>
                             </div>
                         </div>

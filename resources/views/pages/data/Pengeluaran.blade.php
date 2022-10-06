@@ -15,23 +15,26 @@
                             <tr>
                                 <th>Nama Pengeluaran</th>
                                 <th>Deskripsi</th>
+                                <th>Nominal</th>
                                 <th>Status</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($data as $pengeluaran)
                             <tr>
-                                <td>Pembayaran PLN</td>
-                                <td>Segala macam jenis pembayaran ke PLN (Token, Pasca bayar &amp; dll)</td>
-                                <td>Aktif</td>
+                                <td>Outlet Pelanggan</td>
+                                <td>{{ $pengeluaran->nama }}</td>
+                                <td>{{ $pengeluaran->deskripsi }}</td>
+                                <td>{{ $pengeluaran->nominal }}</td>
+                                @if ($pengeluaran->status)
+                                    <td>Aktif</td>
+                                @else
+                                    <td>Non-aktif</td>
+                                @endif
                                 <td class="cell-action"><button class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button></td>
                             </tr>
-                            <tr>
-                                <td>Pembelian LPG</td>
-                                <td>Segala macam jenis pembelian LPG</td>
-                                <td>Aktif</td>
-                                <td class="cell-action"><button class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button></td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -55,10 +58,16 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-12">
-                                    <h5>Nama Pengeluaran</h5><input class="form-control" type="text" id="input-nama-pengeluaran" name="username">
+                                    <h5>Nama Pengeluaran</h5>
+                                    <input class="form-control" type="text" id="input-nama-pengeluaran" name="username">
                                 </div>
                                 <div class="col-12">
-                                    <h5>Deskripsi</h5><textarea class="form-control" id="input-deskripsi" style="resize: none;"></textarea>
+                                    <h5>Deskripsi</h5>
+                                    <textarea class="form-control" id="input-deskripsi" style="resize: none;"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <h5>Nominal</h5>
+                                    <input class="form-control" type="text" id="input-nominal">
                                 </div>
                             </div>
                         </div>

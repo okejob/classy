@@ -17,34 +17,28 @@
                                 <th>Nama Paket</th>
                                 <th>Deskripsi</th>
                                 <th>Harga</th>
-                                <th>Harga/kg</th>
-                                <th>Bobot</th>
-                                <th>Username</th>
+                                <th>Harga / bobot</th>
+                                <th>Jumlah bobot</th>
                                 <th>Status</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($data1 as $paket_cuci)
                             <tr>
-                                <td>Setrika 5 kg</td>
-                                <td>Melayani setrika 5 kg</td>
-                                <td>30.000</td>
-                                <td>6.000</td>
-                                <td>5</td>
-                                <td>Freddy</td>
-                                <td>Aktif</td>
+                                <td>{{ $paket_cuci->nama_paket }}</td>
+                                <td>{{ $paket_cuci->deskripsi }}</td>
+                                <td>{{ $paket_cuci->harga_paket }}</td>
+                                <td>{{ $paket_cuci->harga_per_bobot }}</td>
+                                <td>{{ $paket_cuci->jumlah_bobot }}</td>
+                                @if ($paket_cuci->status)
+                                    <td>Aktif</td>
+                                @else
+                                    <td>Non-aktif</td>
+                                @endif
                                 <td class="cell-action"><button class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button></td>
                             </tr>
-                            <tr>
-                                <td>Cuci Setrika 5 kg</td>
-                                <td>Melayani cuci &amp; setrika 5 kg</td>
-                                <td>50.000</td>
-                                <td>5.000</td>
-                                <td>10</td>
-                                <td>Freddy</td>
-                                <td>Aktif</td>
-                                <td class="cell-action"><button class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button></td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -65,16 +59,20 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-12">
-                                    <h5>Nama Paket</h5><input type="text" class="form-control" id="input-nama-paket" name="username" />
+                                    <h5>Nama Paket</h5>
+                                    <input type="text" class="form-control" id="input-nama-paket" name="username" />
                                 </div>
                                 <div class="col-12 col-lg-6">
-                                    <h5>Harga Paket</h5><input type="number" class="form-control" id="input-harga-paket" step="100" />
+                                    <h5>Harga Paket</h5>
+                                    <input type="number" class="form-control" id="input-harga-paket" step="100" />
                                 </div>
                                 <div class="col-12 col-lg-6">
-                                    <h5>Bobot</h5><input type="number" class="form-control" id="input-bobot-paket" />
+                                    <h5>Bobot</h5>
+                                    <input type="number" class="form-control" id="input-bobot-paket" />
                                 </div>
                                 <div class="col-12">
-                                    <h5>Deskripsi Paket</h5><textarea class="form-control" id="input-deskripsi"></textarea>
+                                    <h5>Deskripsi Paket</h5>
+                                    <textarea class="form-control" id="input-deskripsi"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -95,32 +93,27 @@
                             <tr>
                                 <th>Nama Paket</th>
                                 <th>Deskripsi</th>
-                                <th>Harga</th>
                                 <th>Nominal</th>
-                                <th>Username</th>
+                                <th>Harga</th>
                                 <th>Status</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($data2 as $paket_deposit)
                             <tr>
-                                <td>Deposit 500K</td>
-                                <td>Deposit 500K bonus 50K</td>
-                                <td>500.000</td>
-                                <td>550.000</td>
-                                <td>Freddy</td>
-                                <td>Aktif</td>
+                                <td>{{ $paket_deposit->nama }}</td>
+                                <td>{{ $paket_deposit->deskripsi }}</td>
+                                <td>{{ $paket_deposit->nominal }}</td>
+                                <td>{{ $paket_deposit->harga }}</td>
+                                @if ($paket_deposit->status)
+                                    <td>Aktif</td>
+                                @else
+                                    <td>Non-aktif</td>
+                                @endif
                                 <td class="cell-action"><button class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button></td>
                             </tr>
-                            <tr>
-                                <td>Deposit 100K</td>
-                                <td>Pengisian deposit 100K</td>
-                                <td>95.000</td>
-                                <td>100.000</td>
-                                <td>Freddy</td>
-                                <td>Aktif</td>
-                                <td class="cell-action"><button class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button></td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div><button class="btn btn-primary" type="button"><i class="fas fa-plus-circle"></i> Tambah</button>
