@@ -60,7 +60,7 @@ class PengeluaranController extends Controller
 
     public function APIupdate(InsertPengeluaranRequest $request, $id)
     {
-        $pengeluaran = Pengeluaran::find($id)->update($request);
+        $pengeluaran = Pengeluaran::find($id)->update($request->toArray());
         return response()->json([
             'message' => 'Success',
             'pengeluaran' => $pengeluaran,

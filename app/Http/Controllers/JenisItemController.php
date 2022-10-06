@@ -60,7 +60,7 @@ class JenisItemController extends Controller
 
     public function APIupdate(InsertJenisItemRequest $request, $id)
     {
-        $jenisItem = JenisItem::find($id)->update($request);
+        $jenisItem = JenisItem::find($id)->update($request->toArray());
         return response()->json([
             'message' => 'Success',
             'jenis_item' => $jenisItem,

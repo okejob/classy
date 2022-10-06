@@ -59,7 +59,7 @@ class PelangganController extends Controller
 
     public function APIupdate(InsertPelangganRequest $request, $id)
     {
-        $pelanggan = Pelanggan::find($id)->update($request);
+        $pelanggan = Pelanggan::find($id)->update($request->toArray());
         return response()->json([
             'message' => 'Success',
             'pelanggan' => $pelanggan,
