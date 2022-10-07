@@ -5,6 +5,7 @@ namespace App\Models\Data;
 use App\Models\Transaksi\ItemTransaksi;
 use App\Models\User;
 use App\Observers\UserActionObserver;
+use Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,11 +14,18 @@ class JenisItem extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $appends = ['nama_kategori'];
 
     public static function boot()
     {
         parent::boot();
         User::observe(new UserActionObserver);
+    }
+
+    public function getNamaKategori()
+    {
+        $kategori = Kategori::find($this->kategori_id);
+        return $kategori->nama;
     }
 
     public function kategori()
