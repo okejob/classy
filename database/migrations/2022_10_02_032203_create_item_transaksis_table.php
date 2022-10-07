@@ -20,7 +20,10 @@ return new class extends Migration
             $table->boolean('express')->default(false);
             $table->boolean('setrika')->default(true);
             $table->string('status_proses');
-            $table->foreignId('updated_by')
+            $table->foreignId('pencuci')
+                ->constrained('users', 'id')
+                ->cascadeOnDelete();
+            $table->foreignId('penyetrika')
                 ->constrained('users', 'id')
                 ->cascadeOnDelete();
             $table->timestamps();

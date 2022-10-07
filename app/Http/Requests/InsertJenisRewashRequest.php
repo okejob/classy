@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class InsertParfumRequest extends FormRequest
+class InsertJenisRewashRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,7 @@ class InsertParfumRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => 'required|string',
-            'deskripsi' => 'string',
-            'jenis' => 'required|string',
-            'status' => 'boolean'
+            'keterangan' => 'required|string'
         ];
     }
 }

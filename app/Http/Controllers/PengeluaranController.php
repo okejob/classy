@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\InsertPengeluaranRequest;
 use App\Models\Data\Pengeluaran;
-use App\Models\Update;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,12 +13,13 @@ class PengeluaranController extends Controller
     {
         $merged = $request->safe()->merge(['user_id' => Auth::id()]);
         $pengeluaran = Pengeluaran::create($merged);
-        Update::create([
-            'user_id' => Auth::id(),
-            'type' => 'insert',
-            'table' => 'pengeluarans',
-            'affected_id' => $pengeluaran->id,
-        ]);
+
+        return redirect()->intended('menu-pengeluaran');
+    }
+
+    public function update(InsertPengeluaranRequest $request, $id)
+    {
+        $pengeluaran = Pengeluaran::find($id)->update($request->toArray());
 
         return redirect()->intended('menu-pengeluaran');
     }
@@ -27,12 +27,6 @@ class PengeluaranController extends Controller
     public function delete($id)
     {
         Pengeluaran::destroy($id);
-        Update::create([
-            'user_id' => Auth::id(),
-            'type' => 'delete',
-            'table' => 'pengeluarans',
-            'affected_id' => $id,
-        ]);
 
         return redirect()->intended('menu-pengeluaran');
     }

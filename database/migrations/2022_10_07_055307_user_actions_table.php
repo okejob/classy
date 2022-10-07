@@ -13,15 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('updates', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')
-                ->constrained()
-                ->cascadeOnDelete();
-            $table->string('type');
-            $table->string('table');
-            $table->string('affected_id');
-            $table->string('column')->nullable();
+        Schema::create('user_actions', function (Blueprint $table) {
+            $table->increments('id');
+            $table->foreignId('user_id');
+            $table->string('action');  // created / updated / deleted
+            $table->string('action_model')->nullable();
+            $table->integer('action_id')->nullable();  // CRUD entry ID    
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('updates');
+        Schema::dropIfExists('user_actions');
     }
 };

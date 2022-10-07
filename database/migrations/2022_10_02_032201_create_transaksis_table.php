@@ -19,6 +19,10 @@ return new class extends Migration
             $table->foreignId('driver_id')
                 ->constrained('users', 'id')
                 ->cascadeOnDelete();
+            $table->foreignId('outlet_id');
+            $table->foreignId('cashier_id')
+                ->constrained('users', 'id')
+                ->cascadeOnDelete();
             $table->foreignId('parfum_id');
             $table->integer('total_bobot');
             $table->integer('jumlah_bucket');
@@ -28,9 +32,6 @@ return new class extends Migration
             $table->boolean('lunas');
             $table->integer('total_terbayar');
             $table->string('status');
-            $table->foreignId('updated_by')
-                ->constrained('users', 'id')
-                ->cascadeOnDelete();
             $table->timestamps();
         });
     }
