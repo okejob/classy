@@ -1,8 +1,6 @@
 @extends('layouts.users')
 
 @section('content')
-@include('includes.datatables')
-
 <div class="container">
     <header class="d-flex align-items-center my-3" style="color: var(--bs-gray);"><a>Pengaturan</a><i class="fas fa-angle-right mx-2"></i><a>Pengaturan Paket</a></header>
     <section id="pengaturan-paket-cuci" class="mb-5">

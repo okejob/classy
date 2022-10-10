@@ -12,6 +12,7 @@ use App\Models\Paket\PaketCuci;
 use App\Models\Paket\PaketDeposit;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class PageController extends Controller
 {
@@ -51,11 +52,15 @@ class PageController extends Controller
         );
     }
 
-    public function kategori()
+    public function kategori(Request $request)
     {
         return view(
             'pages.data.Kategori',
-            ['data' => Kategori::paginate(5)]
+            [
+                'data' => Kategori::when($request->has("search"),function($q)use($request){
+                    return $q->where("nama","like","%".$request->get("search")."%");
+                })->paginate(5)
+            ]
         );
     }
 

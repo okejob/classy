@@ -14,21 +14,21 @@ class JenisItemController extends Controller
         $merged = $request->safe()->merge(['user_id' => Auth::id()])->toArray();
         $jenisItem = JenisItem::create($merged);
 
-        return redirect()->intended('menu-jenis-item');
+        return redirect()->intended(route('menu-jenis-item'));
     }
 
     public function update(InsertJenisItemRequest $request, $id)
     {
         $jenisItem = JenisItem::find($id)->update($request->toArray());
 
-        return redirect()->intended('menu-jenis-item');
+        return redirect()->intended(route('menu-jenis-item'));
     }
 
     public function delete($id)
     {
         JenisItem::destroy($id);
 
-        return redirect()->intended('menu-jenis-item');
+        return redirect()->intended(route('menu-jenis-item'));
     }
 
     //API

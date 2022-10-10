@@ -11,3 +11,5 @@
 <script src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/script.js') }}"></script>
+
+<meta name="csrf-token" content="{{ csrf_token() }}">

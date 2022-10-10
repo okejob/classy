@@ -1,7 +1,6 @@
 @extends('layouts.users')
 
 @section('content')
-@include('includes.datatables')
 <div class="container">
     <header class="d-flex align-items-center my-3" style="color: var(--bs-gray);"><a>Master Data</a><i class="fas fa-angle-right mx-2"></i><a>Data Item</a></header>
     <section id="data-item">
@@ -9,8 +8,14 @@
             <div class="card-body">
                 <h4 class="card-title">Data Item</h4>
                 <hr>
-                <div class="table-responsive">
-                    <table class="table" id="table-item">
+                <div class="d-flex justify-content-end">
+                    <form method="GET" action="/data/jenis-item" class="d-flex align-items-center">
+                        Search :
+                        <input class="form-control mx-1" type="search" name="search" style="max-width: 200px;">
+                    </form>
+                </div>
+                <div class="table-responsive mb-2">
+                    <table class="table table-striped" id="table-item">
                         <thead>
                             <tr>
                                 <th>Kategori</th>
@@ -57,13 +62,16 @@
                                 @else
                                     <td>Non-aktif</td>
                                 @endif
-                                <td class="cell-action"><button class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button></td>
+                                <td class="cell-action">
+                                    <button id="btn-{{ $item->id }}" class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
-                <button class="btn btn-primary btn-tambah" type="button">
+                {{ $data1->links() }}
+                <button class="btn btn-primary btn-tambah mt-2" type="button">
                     <i class="fas fa-plus-circle"></i>
                     &nbsp;Tambah
                 </button>
@@ -77,46 +85,56 @@
             </div>
         </div>
         <div class="modal fade" role="dialog" tabindex="-1" id="modal-update">
-            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Rubah Data</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form>
+                    <form id="modal-form" action="/data/jenis-item" method="POST">
+                        @csrf
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-12">
                                     <h5>Kategori</h5>
-                                    <select class="form-select" id="input-kategori">
+                                    <select class="form-select" id="input-kategori" name="kategori_id">
+                                        <option value='' disabled selected hidden>-</option>
                                         @foreach ($data2 as $kategori)
                                             <option value={{ $kategori->id }}>{{ $kategori->nama }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="col-12">
-                                    <h5>Nama Item</h5><input class="form-control" type="text" id="input-nama-item">
+                                    <h5>Nama Item</h5>
+                                    <input class="form-control" type="text" id="input-nama-item" name="nama">
                                 </div>
                                 <div class="col-12">
-                                    <h5>Unit</h5><select class="form-select" id="input-unit">
+                                    <h5>Unit</h5>
+                                    <select class="form-select" id="input-unit" name="unit">
                                         <option value="pcs">PCS</option>
                                         <option value="kg">KG</option>
                                     </select>
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <h5>Bobot Bucket</h5><input class="form-control" type="number" id="input-bobot-bucket">
+                                    <h5>Bobot Bucket</h5>
+                                    <input class="form-control" type="number" id="input-bobot-bucket" name="bobot_bucket">
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <h5>Harga Kilo</h5><input class="form-control" type="number" id="input-harga-kilo">
+                                    <h5>Harga Kilo</h5>
+                                    <input class="form-control" type="number" id="input-harga-kilo" name="harga_kilo">
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <h5>Harga Bucket</h5><input class="form-control" type="number" id="input-harga-bucket">
+                                    <h5>Harga Bucket</h5>
+                                    <input class="form-control" type="number" id="input-harga-bucket" name="harga_bucket">
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <h5>Harga Premium</h5><input class="form-control" type="number" id="input-harga-premium">
+                                    <h5>Harga Premium</h5>
+                                    <input class="form-control" type="number" id="input-harga-premium" name="harga_premium">
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-primary" type="submit">Simpan</button></div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="submit">Simpan</button>
+                        </div>
                     </form>
                 </div>
             </div>

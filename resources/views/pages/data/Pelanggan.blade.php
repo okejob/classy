@@ -1,7 +1,6 @@
 @extends('layouts.users')
 
 @section('content')
-@include('includes.datatables')
 <div class="container">
     <header class="d-flex align-items-center my-3" style="color: var(--bs-gray);"><a>Master Data</a><i class="fas fa-angle-right mx-2"></i><a>Data Pelanggan</a></header>
     <section id="data-pelanggan">
