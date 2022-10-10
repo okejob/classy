@@ -32,6 +32,7 @@ return new class extends Migration
             $table->boolean('lunas');
             $table->integer('total_terbayar');
             $table->string('status');
+            $table->text('catatan');
             $table->timestamps();
         });
     }

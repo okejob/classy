@@ -5,7 +5,6 @@ namespace App\Models\Data;
 use App\Models\Transaksi\ItemTransaksi;
 use App\Models\User;
 use App\Observers\UserActionObserver;
-use Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

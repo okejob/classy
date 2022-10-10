@@ -11,24 +11,24 @@ class ParfumController extends Controller
 {
     public function insert(InsertParfumRequest $request)
     {
-        $merged = $request->safe()->merge(['user_id' => Auth::id()]);
+        $merged = $request->safe()->merge(['user_id' => Auth::id()])->toArray();
         $parfum = Parfum::create([$merged]);
 
-        return redirect()->intended('menu-parfum');
+        return redirect()->intended(route('menu-parfum'));
     }
 
     public function update(InsertParfumRequest $request, $id)
     {
         $parfum = Parfum::find($id)->update($request->toArray());
 
-        return redirect()->intended('menu-parfum');
+        return redirect()->intended(route('menu-parfum'));
     }
 
     public function delete($id)
     {
         Parfum::destroy($id);
 
-        return redirect()->intended('menu-parfum');
+        return redirect()->intended(route('menu-parfum'));
     }
 
     //API

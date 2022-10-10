@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('jenis_item_id');
             $table->boolean('express')->default(false);
             $table->boolean('setrika')->default(true);
+            $table->integer('harga_premium')->default(0);
             $table->string('status_proses');
             $table->foreignId('pencuci')
                 ->constrained('users', 'id')

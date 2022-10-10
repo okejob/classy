@@ -11,24 +11,24 @@ class PengeluaranController extends Controller
 {
     public function insert(InsertPengeluaranRequest $request)
     {
-        $merged = $request->safe()->merge(['user_id' => Auth::id()]);
+        $merged = $request->safe()->merge(['user_id' => Auth::id()])->toArray();
         $pengeluaran = Pengeluaran::create($merged);
 
-        return redirect()->intended('menu-pengeluaran');
+        return redirect()->intended(route('menu-pengeluaran'));
     }
 
     public function update(InsertPengeluaranRequest $request, $id)
     {
         $pengeluaran = Pengeluaran::find($id)->update($request->toArray());
 
-        return redirect()->intended('menu-pengeluaran');
+        return redirect()->intended(route('menu-pengeluaran'));
     }
 
     public function delete($id)
     {
         Pengeluaran::destroy($id);
 
-        return redirect()->intended('menu-pengeluaran');
+        return redirect()->intended(route('menu-pengeluaran'));
     }
 
     //API

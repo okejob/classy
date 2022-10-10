@@ -11,24 +11,24 @@ class OutletController extends Controller
 {
     public function insert(InsertOutletRequest $request)
     {
-        $merged = $request->safe()->merge(['user_id' => Auth::id()]);
+        $merged = $request->safe()->merge(['user_id' => Auth::id()])->toArray();
         $outlet = Outlet::create($merged);
 
-        return redirect()->intended('setting-outlet');
+        return redirect()->intended(route('setting-outlet'));
     }
 
     public function update(InsertOutletRequest $request, $id)
     {
         $outlet = Outlet::find($id)->update($request->toArray());
 
-        return redirect()->intended('setting-outlet');
+        return redirect()->intended(route('setting-outlet'));
     }
 
     public function delete($id)
     {
         Outlet::destroy($id);
 
-        return redirect()->intended('setting-outlet');
+        return redirect()->intended(route('setting-outlet'));
     }
 
     //API

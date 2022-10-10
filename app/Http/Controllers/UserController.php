@@ -29,8 +29,11 @@ class UserController extends Controller
         if ($auth) {
             $request->session()->regenerate();
             Session::put('user_id', $user->id);
+            $roles = $user->getRoleNames();
+            $role = $roles[0];
+            Session::put('role', $role);
             //need dashboard page
-            return redirect()->intended('dashboard');
+            return redirect()->intended(route('dashboard'));
         }
         return back()->withErrors([
             'password' => 'Password tidak cocok.'
@@ -46,12 +49,6 @@ class UserController extends Controller
     public function store(UserCreateRequest $request)
     {
         $user = User::create($request);
-        Update::create([
-            'user_id' => Auth::id(),
-            'type' => 'insert',
-            'table' => 'users',
-            'affected_id' => $user->id,
-        ]);
         //need dashboard page
         return redirect()->intended('reset-password');
     }
