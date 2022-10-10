@@ -98,4 +98,45 @@ $(document).ready(function() {
         }, 10);
     });
 
+    var sideNav_opened = false;
+    if (getCookie("nav_open") == "true") {
+        sideNav_opened = true;
+        stateNav(true, false);
+    }
+
+    function stateNav(bool, animate) {
+        if (bool) {
+            if (animate) {
+                $('#side-nav').animate({width: '200px'});
+                $('#content').animate({width: $(window).width() - 200 + 'px'});
+            } else {
+                $('#side-nav').css('width', '200px');
+                $('#content').css('width', 'calc(100vw - 200px)');
+            }
+            $('#side-icon').removeClass('fa-chevron-right');
+            $('#side-icon').addClass('fa-bars');
+            setCookie("nav_open", true, 1);
+        } else {
+            if (animate) {
+                $('#side-nav').animate({width: '0px'});
+                $('#content').animate({width: $(window).width() + 'px'});
+            } else {
+                $('#side-nav').css('width', '0px');
+                $('#content').css('width', '100vw');
+            }
+            $('#side-icon').removeClass('fa-bars');
+            $('#side-icon').addClass('fa-chevron-right');
+            setCookie("nav_open", false, 1);
+        }
+    }
+
+    $('#side-icon').on('click', function(){
+        sideNav_opened = !sideNav_opened;
+        console.log(sideNav_opened);
+        if (sideNav_opened) {
+            stateNav(true, true);
+        } else {
+            stateNav(false, true);
+        }
+    });
 });

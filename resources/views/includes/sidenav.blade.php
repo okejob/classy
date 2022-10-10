@@ -1,4 +1,4 @@
-<div id="side-nav">
+<div id="side-nav" style="width: 0px;">
     <div class="menu-section my-1">
         <div id="nav-menu-data" class="nav-menu">
             <div class="menu-header px-3 py-1 d-flex align-items-center justify-content-between">
@@ -14,7 +14,7 @@
                         <p class="ms-3">Kategori</p>
                     </a>
                 </div>
-                <div id="nav-data-item">
+                <div id="nav-data-jenis-item">
                     <a href="/data/jenis-item" class="menu-item menu-data ps-5 pe-3 py-1 d-flex align-items-center">
                         <i class="fas fa-box"></i>
                         <p class="ms-3">Item</p>

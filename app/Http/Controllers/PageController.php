@@ -12,6 +12,7 @@ use App\Models\Paket\PaketCuci;
 use App\Models\Paket\PaketDeposit;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class PageController extends Controller
 {

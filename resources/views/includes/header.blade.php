@@ -1,6 +1,6 @@
 <header id="header" class="bg-main d-flex align-items-center justify-content-between px-2">
     <button class="btn" type="button">
-        <i class="fas fa-bars"></i>
+        <i id="side-icon" class="fas fa-chevron-right"></i>
     </button>
     <div>
         <div class="dropdown">
