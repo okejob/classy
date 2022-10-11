@@ -113,8 +113,6 @@ $(document).ready(function() {
                 $('#side-nav').css('width', '200px');
                 $('#content').css('width', 'calc(100vw - 200px)');
             }
-            $('#side-icon').removeClass('fa-chevron-right');
-            $('#side-icon').addClass('fa-bars');
             setCookie("nav_open", true, 1);
         } else {
             if (animate) {
@@ -124,8 +122,6 @@ $(document).ready(function() {
                 $('#side-nav').css('width', '0px');
                 $('#content').css('width', '100vw');
             }
-            $('#side-icon').removeClass('fa-bars');
-            $('#side-icon').addClass('fa-chevron-right');
             setCookie("nav_open", false, 1);
         }
     }
