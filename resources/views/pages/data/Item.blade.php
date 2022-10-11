@@ -35,7 +35,7 @@
                         <tbody>
                             @foreach ($data1 as $item)
                             <tr>
-                                <td>{{ $item->kategori }}</td>
+                                <td>{{ $item->kategori->nama }}</td>
                                 <td>{{ $item->nama }}</td>
                                 <td>{{ $item->unit }}</td>
                                 <td>{{ $item->bobot_bucket }}</td>
