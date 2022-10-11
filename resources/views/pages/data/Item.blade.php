@@ -145,11 +145,11 @@
                                     <h5>Status Bucket</h5>
                                     <div class="form-control d-flex align-items-center justify-content-around">
                                         <div class="form-check">
-                                            <input type="radio" class="form-check-input" id="formCheck-bukcet-aktif" name="status_bukcet" value=1 />
+                                            <input type="radio" class="form-check-input" id="formCheck-bukcet-aktif" name="status_bucket" value=1 />
                                             <label class="form-check-label" for="formCheck-bukcet-aktif">Aktif</label>
                                         </div>
                                         <div class="form-check">
-                                            <input type="radio" class="form-check-input" id="formCheck-bukcet-tidakAktif" name="status_bukcet" value=0 />
+                                            <input type="radio" class="form-check-input" id="formCheck-bukcet-tidakAktif" name="status_bucket" value=0 />
                                             <label class="form-check-label" for="formCheck-bukcet-tidakAktif">Tidak aktif</label>
                                         </div>
                                     </div>
