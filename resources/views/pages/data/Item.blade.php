@@ -77,10 +77,6 @@
                 </button>
                 <ul class="list-unstyled form-control" id="list-action">
                     <li id="action-update">Rubah data</li>
-                    <li id="action-change-status-kilo">Rubah status kilo</li>
-                    <li id="action-change-status-bucket">Rubah status bucket</li>
-                    <li id="action-change-status-premium">Rubah status premium</li>
-                    <li id="action-change-status">Rubah status item</li>
                 </ul>
             </div>
         </div>
@@ -129,6 +125,58 @@
                                 <div class="col-12 col-sm-6">
                                     <h5>Harga Premium</h5>
                                     <input class="form-control" type="number" id="input-harga-premium" name="harga_premium">
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                    <h5>Status Kilo</h5>
+                                    <div class="form-control d-flex align-items-center justify-content-around">
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="formCheck-aktif" name="status" value=1 />
+                                            <label class="form-check-label" for="formCheck-aktif">Aktif</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="formCheck-tidakAktif" name="status" value=0 />
+                                            <label class="form-check-label" for="formCheck-tidakAktif">Tidak aktif</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                    <h5>Status Bucket</h5>
+                                    <div class="form-control d-flex align-items-center justify-content-around">
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="formCheck-aktif" name="status" value=1 />
+                                            <label class="form-check-label" for="formCheck-aktif">Aktif</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="formCheck-tidakAktif" name="status" value=0 />
+                                            <label class="form-check-label" for="formCheck-tidakAktif">Tidak aktif</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                    <h5>Status Premium</h5>
+                                    <div class="form-control d-flex align-items-center justify-content-around">
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="formCheck-aktif" name="status" value=1 />
+                                            <label class="form-check-label" for="formCheck-aktif">Aktif</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="formCheck-tidakAktif" name="status" value=0 />
+                                            <label class="form-check-label" for="formCheck-tidakAktif">Tidak aktif</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                    <h5>Status Item</h5>
+                                    <div class="form-control d-flex align-items-center justify-content-around">
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="formCheck-aktif" name="status" value=1 />
+                                            <label class="form-check-label" for="formCheck-aktif">Aktif</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="formCheck-tidakAktif" name="status" value=0 />
+                                            <label class="form-check-label" for="formCheck-tidakAktif">Tidak aktif</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

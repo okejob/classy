@@ -27,7 +27,6 @@
                         <tbody>
                             @foreach ($data as $kategori)
                             <tr>
-
                                 <td>{{ $kategori->nama }}</td>
                                 <td>{{ $kategori->deskripsi }}</td>
                                 @if ($kategori->status)
