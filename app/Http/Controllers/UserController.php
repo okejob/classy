@@ -50,7 +50,7 @@ class UserController extends Controller
     {
         $user = User::create($request);
         //need dashboard page
-        return redirect()->intended('reset-password');
+        return redirect()->intended(route('menu-karyawan'));
     }
 
     public function logout(Request $request)

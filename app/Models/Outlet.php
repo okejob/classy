@@ -17,7 +17,7 @@ class Outlet extends Model
     public static function boot()
     {
         parent::boot();
-        User::observe(new UserActionObserver);
+        Outlet::observe(new UserActionObserver);
     }
 
     public function transaksi()

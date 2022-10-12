@@ -16,7 +16,7 @@ class Kategori extends Model
     public static function boot()
     {
         parent::boot();
-        User::observe(new UserActionObserver);
+        Kategori::observe(new UserActionObserver);
     }
 
     public function jenis_item()

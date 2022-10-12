@@ -17,7 +17,7 @@ class ItemTransaksi extends Model
     public static function boot()
     {
         parent::boot();
-        User::observe(new UserActionObserver);
+        ItemTransaksi::observe(new UserActionObserver);
     }
 
     public function jenis_item()

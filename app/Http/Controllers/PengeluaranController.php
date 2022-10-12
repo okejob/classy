@@ -31,43 +31,4 @@ class PengeluaranController extends Controller
         return redirect()->intended(route('menu-pengeluaran'));
     }
 
-    //API
-    public function APIshow()
-    {
-        $pengeluaran = Pengeluaran::get();
-        return response()->json([
-            'message' => 'Success',
-            'pengeluaran' => $pengeluaran,
-        ], 200);
-    }
-
-    public function APIinsert(InsertPengeluaranRequest $request)
-    {
-        $merged = $request->safe()->merge(['user_id' => 1])->toArray();
-        $pengeluaran = Pengeluaran::create($merged);
-
-        return response()->json([
-            'message' => 'Success',
-            'pengeluaran' => $pengeluaran,
-        ], 200);
-    }
-
-    public function APIupdate(InsertPengeluaranRequest $request, $id)
-    {
-        $pengeluaran = Pengeluaran::find($id)->update($request->toArray());
-        return response()->json([
-            'message' => 'Success',
-            'pengeluaran' => $pengeluaran,
-        ], 200);
-    }
-
-    public function APIdelete($id)
-    {
-        $pengeluaran = Pengeluaran::find($id);
-        Pengeluaran::destroy($id);
-        return response()->json([
-            'message' => 'Success',
-            'pengeluaran' => $pengeluaran,
-        ], 200);
-    }
 }

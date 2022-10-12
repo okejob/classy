@@ -16,6 +16,6 @@ class PaketDeposit extends Model
     public static function boot()
     {
         parent::boot();
-        User::observe(new UserActionObserver);
+        PaketDeposit::observe(new UserActionObserver);
     }
 }

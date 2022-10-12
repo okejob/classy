@@ -16,6 +16,6 @@ class PaketCuci extends Model
     public static function boot()
     {
         parent::boot();
-        User::observe(new UserActionObserver);
+        PaketCuci::observe(new UserActionObserver);
     }
 }

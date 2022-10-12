@@ -16,7 +16,7 @@ class PickupDelivery extends Model
     public static function boot()
     {
         parent::boot();
-        User::observe(new UserActionObserver);
+        PickupDelivery::observe(new UserActionObserver);
     }
 
     public function transaksi()

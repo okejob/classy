@@ -31,43 +31,4 @@ class JenisItemController extends Controller
         return redirect()->intended(route('menu-jenis-item'));
     }
 
-    //API
-    public function APIshow()
-    {
-        $jenisItem = JenisItem::get();
-        return response()->json([
-            'message' => 'Success',
-            'jenis_item' => $jenisItem,
-        ], 200);
-    }
-
-    public function APIinsert(InsertJenisItemRequest $request)
-    {
-        $merged = $request->safe()->merge(['user_id' => 1])->toArray();
-        $jenisItem = JenisItem::create($merged);
-
-        return response()->json([
-            'message' => 'Success',
-            'jenis_item' => $jenisItem,
-        ], 200);
-    }
-
-    public function APIupdate(InsertJenisItemRequest $request, $id)
-    {
-        $jenisItem = JenisItem::find($id)->update($request->toArray());
-        return response()->json([
-            'message' => 'Success',
-            'jenis_item' => $jenisItem,
-        ], 200);
-    }
-
-    public function APIdelete($id)
-    {
-        $jenisItem = JenisItem::find($id);
-        JenisItem::destroy($id);
-        return response()->json([
-            'message' => 'Success',
-            'jenis_item' => $jenisItem,
-        ], 200);
-    }
 }

@@ -16,6 +16,6 @@ class JenisRewash extends Model
     public static function boot()
     {
         parent::boot();
-        User::observe(new UserActionObserver);
+        JenisRewash::observe(new UserActionObserver);
     }
 }

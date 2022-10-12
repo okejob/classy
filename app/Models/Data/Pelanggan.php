@@ -16,6 +16,6 @@ class Pelanggan extends Model
     public static function boot()
     {
         parent::boot();
-        User::observe(new UserActionObserver);
+        Pelanggan::observe(new UserActionObserver);
     }
 }

@@ -18,7 +18,7 @@ class JenisItem extends Model
     public static function boot()
     {
         parent::boot();
-        User::observe(new UserActionObserver);
+        JenisItem::observe(new UserActionObserver);
     }
 
     public function getNamaKategori()

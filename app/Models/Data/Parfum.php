@@ -16,6 +16,6 @@ class Parfum extends Model
     public static function boot()
     {
         parent::boot();
-        User::observe(new UserActionObserver);
+        Parfum::observe(new UserActionObserver);
     }
 }
