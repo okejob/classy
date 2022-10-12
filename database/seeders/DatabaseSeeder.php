@@ -28,5 +28,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ParfumSeeder::class);
         $this->call(KategoriSeeder::class);
         $this->call(JenisRewashSeeder::class);
+        $this->call(PelangganSeeder::class);
     }
 }
