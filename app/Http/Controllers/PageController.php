@@ -12,7 +12,6 @@ use App\Models\Paket\PaketCuci;
 use App\Models\Paket\PaketDeposit;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cookie;
 
 class PageController extends Controller
 {
@@ -48,9 +47,8 @@ class PageController extends Controller
             [
                 'data1' => JenisItem::when($request->has("search"), function ($q) use ($request) {
                     return $q->where("nama", "like", "%" . $request->get("search") . "%")
-                        ->orWhere("unit", $request->get("search"))
-                        ->orderBy("nama", "asc");
-                })->paginate(5),
+                        ->orWhere("unit", $request->get("search"));
+                })->orderBy("nama", "asc")->paginate(5),
                 'data2' => Kategori::all()
             ]
         );
@@ -63,9 +61,9 @@ class PageController extends Controller
             [
                 'data' => Kategori::when($request->has("search"), function ($q) use ($request) {
                     return $q->where("nama", "like", "%" . $request->get("search") . "%")
-                        ->orWhere("deskripsi", "like", "%" . $request->get("search") . "%")
-                        ->orderBy("nama", "asc");
-                })->paginate(5)
+                        ->orWhere("deskripsi", "like", "%" . $request->get("search") . "%");
+
+                })->orderBy("nama", "asc")->paginate(5)
             ]
         );
     }

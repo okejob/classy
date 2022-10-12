@@ -35,7 +35,7 @@
                         <tbody>
                             @foreach ($data1 as $item)
                             <tr>
-                                <td>{{ $item->kategori }}</td>
+                                <td>{{ $item->kategori->nama }}</td>
                                 <td>{{ $item->nama }}</td>
                                 <td>{{ $item->unit }}</td>
                                 <td>{{ $item->bobot_bucket }}</td>
@@ -45,25 +45,27 @@
                                 @if ($item->status_kilo)
                                     <td>Aktif</td>
                                 @else
-                                    <td>Non-aktif</td>
+                                    <td>Tidak aktif</td>
                                 @endif
                                 @if ($item->status_bucket)
                                     <td>Aktif</td>
                                 @else
-                                    <td>Non-aktif</td>
+                                    <td>Tidak aktif</td>
                                 @endif
                                 @if ($item->status_premium)
                                     <td>Aktif</td>
                                 @else
-                                    <td>Non-aktif</td>
+                                    <td>Tidak aktif</td>
                                 @endif
                                 @if ($item->status_item)
                                     <td>Aktif</td>
                                 @else
-                                    <td>Non-aktif</td>
+                                    <td>Tidak aktif</td>
                                 @endif
                                 <td class="cell-action">
-                                    <button id="btn-{{ $item->id }}" class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button>
+                                    <button id="btn-{{ $item->id }}" class="btn btn-primary btn-sm btn-show-action" type="button">
+                                        <i class="fas fa-bars"></i>
+                                    </button>
                                 </td>
                             </tr>
                             @endforeach
@@ -77,10 +79,6 @@
                 </button>
                 <ul class="list-unstyled form-control" id="list-action">
                     <li id="action-update">Rubah data</li>
-                    <li id="action-change-status-kilo">Rubah status kilo</li>
-                    <li id="action-change-status-bucket">Rubah status bucket</li>
-                    <li id="action-change-status-premium">Rubah status premium</li>
-                    <li id="action-change-status">Rubah status item</li>
                 </ul>
             </div>
         </div>
@@ -129,6 +127,58 @@
                                 <div class="col-12 col-sm-6">
                                     <h5>Harga Premium</h5>
                                     <input class="form-control" type="number" id="input-harga-premium" name="harga_premium">
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <h5>Status Kilo</h5>
+                                    <div class="form-control d-flex align-items-center justify-content-around">
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="formCheck-kilo-aktif" name="status_kilo" value=1 />
+                                            <label class="form-check-label" for="formCheck-kilo-aktif">Aktif</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="formCheck-kilo-tidakAktif" name="status_kilo" value=0 />
+                                            <label class="form-check-label" for="formCheck-kilo-tidakAktif">Tidak aktif</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <h5>Status Bucket</h5>
+                                    <div class="form-control d-flex align-items-center justify-content-around">
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="formCheck-bukcet-aktif" name="status_bucket" value=1 />
+                                            <label class="form-check-label" for="formCheck-bukcet-aktif">Aktif</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="formCheck-bukcet-tidakAktif" name="status_bucket" value=0 />
+                                            <label class="form-check-label" for="formCheck-bukcet-tidakAktif">Tidak aktif</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <h5>Status Premium</h5>
+                                    <div class="form-control d-flex align-items-center justify-content-around">
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="formCheck-premium-aktif" name="status_premium" value=1 />
+                                            <label class="form-check-label" for="formCheck-premium-aktif">Aktif</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="formCheck-premium-tidakAktif" name="status_premium" value=0 />
+                                            <label class="form-check-label" for="formCheck-premium-tidakAktif">Tidak aktif</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <h5>Status Item</h5>
+                                    <div class="form-control d-flex align-items-center justify-content-around">
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="formCheck-item-aktif" name="status_item" value=1 />
+                                            <label class="form-check-label" for="formCheck-item-aktif">Aktif</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="formCheck-item-tidakAktif" name="status_item" value=0 />
+                                            <label class="form-check-label" for="formCheck-item-tidakAktif">Tidak aktif</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
