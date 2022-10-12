@@ -6,5 +6,8 @@ use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
 {
-    
+    public function insert(Request $request)
+    {
+        
+    }
 }
