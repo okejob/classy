@@ -12,12 +12,73 @@ $(document).ready(function() {
     $('#data-item .btn-tambah').on('click', function() {
         btnIndex = -1;
         $('#modal-form').attr('action', "/data/jenis-item");
+        $('#modal-title').text('Tambah jenis item');
+
+        $('#input-kategori').val('');
+        $('#input-nama-item').val('');
+        $('#input-unit').val('pcs');
+        $('#input-bobot-bucket').val(0);
+        $('#input-harga-kilo').val(0);
+        $('#input-harga-bucket').val(0);
+        $('#input-harga-premium').val(0);
+        $('#formCheck-kilo-aktif').attr('checked', true);
+        $('#formCheck-kilo-tidakAktif').attr('checked', false);
+        $('#formCheck-bucket-aktif').attr('checked', true);
+        $('#formCheck-bucket-tidakAktif').attr('checked', false);
+        $('#formCheck-premium-aktif').attr('checked', true);
+        $('#formCheck-premium-tidakAktif').attr('checked', false);
+        $('#formCheck-item-aktif').attr('checked', true);
+        $('#formCheck-item-tidakAktif').attr('checked', false);
+        $('#modal-form .modal-body .row .col-12:nth-child(8)').removeClass('col-sm-6');
+        $('#modal-form .modal-body .row .col-12:nth-child(9)').removeClass('col-sm-6');
+        $('#modal-form .modal-body .row .col-12:nth-child(10)').removeClass('col-sm-6');
+        $('#modal-form .modal-body .row .col-12:nth-child(8)').addClass('col-sm-4');
+        $('#modal-form .modal-body .row .col-12:nth-child(9)').addClass('col-sm-4');
+        $('#modal-form .modal-body .row .col-12:nth-child(10)').addClass('col-sm-4');
+        $('#modal-form .modal-body .row .col-12:nth-child(11)').hide();
 
         $('#modal-update').modal('show');
     });
 
     $('#data-item #action-update').on('click', function() {
-        // get data
+        $('#modal-form').attr('action', "/data/jenis-item/" + btnId);
+        $('#modal-title').text('Rubah jenis item');
+
+        $('#input-kategori').val($('#input-kategori option:contains(' + $('tbody tr:nth-child(' + btnIndex + ') td:nth-child(1)').html() + ')').val());
+        $('#input-nama-item').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(2)').html());
+        $('#input-unit').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(3)').html());
+        $('#input-bobot-bucket').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(4)').html());
+        $('#input-harga-kilo').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(5)').html());
+        $('#input-harga-bucket').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(6)').html());
+        $('#input-harga-premium').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(7)').html());
+
+        if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(8)').html() == "Aktif") {
+            $('#formCheck-kilo-aktif').attr('checked', true);
+        } else if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(8)').html() == "Tidak aktif") {
+            $('#formCheck-kilo-tidakAktif').attr('checked', true);
+        }
+        if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(9)').html() == "Aktif") {
+            $('#formCheck-bucket-aktif').attr('checked', true);
+        } else if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(9)').html() == "Tidak aktif") {
+            $('#formCheck-bucket-tidakAktif').attr('checked', true);
+        }
+        if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(10)').html() == "Aktif") {
+            $('#formCheck-premium-aktif').attr('checked', true);
+        } else if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(10)').html() == "Tidak aktif") {
+            $('#formCheck-premium-tidakAktif').attr('checked', true);
+        }
+        if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(11)').html() == "Aktif") {
+            $('#formCheck-item-aktif').attr('checked', true);
+        } else if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(11)').html() == "Tidak aktif") {
+            $('#formCheck-item-tidakAktif').attr('checked', true);
+        }
+        $('#modal-form .modal-body .row .col-12:nth-child(8)').removeClass('col-sm-4');
+        $('#modal-form .modal-body .row .col-12:nth-child(9)').removeClass('col-sm-4');
+        $('#modal-form .modal-body .row .col-12:nth-child(10)').removeClass('col-sm-4');
+        $('#modal-form .modal-body .row .col-12:nth-child(8)').addClass('col-sm-6');
+        $('#modal-form .modal-body .row .col-12:nth-child(9)').addClass('col-sm-6');
+        $('#modal-form .modal-body .row .col-12:nth-child(10)').addClass('col-sm-6');
+        $('#modal-form .modal-body .row .col-12:nth-child(11)').show();
 
         $('#modal-update').modal('show');
     });

@@ -83,10 +83,11 @@
             </div>
         </div>
         <div class="modal fade" role="dialog" tabindex="-1" id="modal-update">
-            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-fullscreen-lg-down" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Rubah Data</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="modal-title">Rubah Data</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form id="modal-form" action="/data/jenis-item" method="POST">
                         @csrf
@@ -145,12 +146,12 @@
                                     <h5>Status Bucket</h5>
                                     <div class="form-control d-flex align-items-center justify-content-around">
                                         <div class="form-check">
-                                            <input type="radio" class="form-check-input" id="formCheck-bukcet-aktif" name="status_bucket" value=1 />
-                                            <label class="form-check-label" for="formCheck-bukcet-aktif">Aktif</label>
+                                            <input type="radio" class="form-check-input" id="formCheck-bucket-aktif" name="status_bucket" value=1 />
+                                            <label class="form-check-label" for="formCheck-bucket-aktif">Aktif</label>
                                         </div>
                                         <div class="form-check">
-                                            <input type="radio" class="form-check-input" id="formCheck-bukcet-tidakAktif" name="status_bucket" value=0 />
-                                            <label class="form-check-label" for="formCheck-bukcet-tidakAktif">Tidak aktif</label>
+                                            <input type="radio" class="form-check-input" id="formCheck-bucket-tidakAktif" name="status_bucket" value=0 />
+                                            <label class="form-check-label" for="formCheck-bucket-tidakAktif">Tidak aktif</label>
                                         </div>
                                     </div>
                                 </div>

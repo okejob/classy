@@ -62,7 +62,6 @@ class PageController extends Controller
                 'data' => Kategori::when($request->has("search"), function ($q) use ($request) {
                     return $q->where("nama", "like", "%" . $request->get("search") . "%")
                         ->orWhere("deskripsi", "like", "%" . $request->get("search") . "%");
-
                 })->orderBy("nama", "asc")->paginate(5)
             ]
         );
@@ -75,10 +74,9 @@ class PageController extends Controller
             [
                 'data1' => Parfum::when($request->has("search"), function ($q) use ($request) {
                     return $q->where("nama", "like", "%" . $request->get("search") . "%")
-                        ->orWhere("deskripsi", "like", "%" . $request->get("search") . "%")
-                        ;
+                        ->orWhere("deskripsi", "like", "%" . $request->get("search") . "%");
                 })->orderBy("nama", "asc")->paginate(5),
-                'data2' => Parfum::select('jenis')->distinct()->get()
+                'data2' => Parfum::select('jenis')->orderBy("jenis", "asc")->distinct()->get()
             ]
         );
     }
@@ -88,13 +86,13 @@ class PageController extends Controller
         return view(
             'pages.data.Pelanggan',
             [
-                'data' => Pelanggan::when($request->has("search"), function ($q) use ($request) {
+                'data1' => Pelanggan::when($request->has("search"), function ($q) use ($request) {
                     return $q->where("nama", "like", "%" . $request->get("search") . "%")
                         ->orWhere("no_id", "like", "%" . $request->get("search") . "%")
                         ->orWhere("telephone", "like", "%" . $request->get("search") . "%")
-                        ->orWhere("email", "like", "%" . $request->get("search") . "%")
-                        ;
-                })->orderBy("nama", "asc")->paginate(5)
+                        ->orWhere("email", "like", "%" . $request->get("search") . "%");
+                })->orderBy("nama", "asc")->paginate(5),
+                'data2' => Pelanggan::select('member')->orderBy("member", "asc")->distinct()->get()
             ]
         );
     }
@@ -106,8 +104,7 @@ class PageController extends Controller
             [
                 'data' => Pengeluaran::when($request->has("search"), function ($q) use ($request) {
                     return $q->where("nama", "like", "%" . $request->get("search") . "%")
-                        ->orWhere("deskripsi", "like", "%" . $request->get("search") . "%")
-                        ;
+                        ->orWhere("deskripsi", "like", "%" . $request->get("search") . "%");
                 })->orderBy("nama", "asc")->paginate(5)
             ]
         );
@@ -136,8 +133,7 @@ class PageController extends Controller
                 'data' => Outlet::when($request->has("search"), function ($q) use ($request) {
                     return $q->where("kode", "like", "%" . $request->get("search") . "%")
                         ->orWhere("nama", "like", "%" . $request->get("search") . "%")
-                        ->orWhere("alamat", "like", "%" . $request->get("search") . "%")
-                        ;
+                        ->orWhere("alamat", "like", "%" . $request->get("search") . "%");
                 })->orderBy("nama", "asc")->paginate(5)
             ]
         );

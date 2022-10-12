@@ -1,4 +1,8 @@
 $(document).ready(function() {
+    if ($('#table-kategori tbody').children().length == 0) {
+        $('#table-kategori tbody').append('<tr><td colspan=4 class="text-center">Data masih kosong</td></tr>');
+    }
+
     var btnIndex = -1, btnId = 0;
     $('.btn-show-action').on('click', function() {
         btnIndex = $(this).index('.btn-show-action') + 1;
@@ -8,10 +12,11 @@ $(document).ready(function() {
     $('#data-kategori .btn-tambah').on('click', function() {
         btnIndex = -1;
         $('#modal-form').attr('action', "/data/kategori");
+        $('#modal-title').text('Tambah kategori');
+
         $('#input-nama-kategori').val('');
         $('#input-deskripsi').val('');
-        console.log($('#modal-form .modal-body .row .col-12:nth-child(3)'));
-        $('#formCheck-aktif').attr('checked', false);
+        $('#formCheck-aktif').attr('checked', true);
         $('#formCheck-tidakAktif').attr('checked', false);
         $('#modal-form .modal-body .row .col-12:nth-child(3)').hide();
 
@@ -20,6 +25,8 @@ $(document).ready(function() {
 
     $('#data-kategori #action-update').on('click', function() {
         $('#modal-form').attr('action', "/data/kategori/" + btnId);
+        $('#modal-title').text('Rubah kategori');
+
         $('#input-nama-kategori').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(1)').html());
         $('#input-deskripsi').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(2)').html());
         if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(3)').html() == "Aktif") {

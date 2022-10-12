@@ -8,8 +8,14 @@
             <div class="card-body">
                 <h4 class="card-title">Data Parfum</h4>
                 <hr>
-                <div class="table-responsive">
-                    <table class="table" id="table-parfum">
+                <div class="d-flex justify-content-end">
+                    <form method="GET" action="/data/parfum" class="d-flex align-items-center">
+                        Search :
+                        <input class="form-control mx-1" type="search" name="search" style="max-width: 200px;">
+                    </form>
+                </div>
+                <div class="table-responsive mb-2">
+                    <table class="table table-striped" id="table-parfum">
                         <thead>
                             <tr>
                                 <th>Nama Parfum</th>
@@ -30,48 +36,71 @@
                                 @else
                                     <td>Non-aktif</td>
                                 @endif
-                                <td class="cell-action"><button class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button></td>
+                                <td class="cell-action">
+                                    <button id="btn-{{ $parfum->id }}" class="btn btn-primary btn-sm btn-show-action" type="button">
+                                        <i class="fas fa-bars"></i>
+                                    </button>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
-                <button class="btn btn-primary btn-tambah" type="button">
+                {{ $data1->links() }}
+                <button class="btn btn-primary btn-tambah mt-2" type="button">
                     <i class="fas fa-plus-circle"></i>
                     &nbsp;Tambah
                 </button>
                 <ul class="list-unstyled form-control" id="list-action">
                     <li id="action-update">Rubah data</li>
-                    <li id="action-change-status">Rubah status</li>
                 </ul>
             </div>
         </div>
         <div class="modal fade" role="dialog" tabindex="-1" id="modal-update">
-            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Rubah Data</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form>
+                    <form id="modal-form" action="/data/parfum" method="POST">
+                        @csrf
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-12">
-                                    <h5>Nama Parfum</h5><input class="form-control" type="text" id="input-nama-parfum" name="username">
+                                    <h5>Nama Parfum</h5>
+                                    <input class="form-control" type="text" id="input-nama-parfum" name="nama">
                                 </div>
                                 <div class="col-12">
-                                    <h5>Deskripsi</h5><textarea class="form-control" id="input-deskripsi" style="resize: none;"></textarea>
+                                    <h5>Deskripsi</h5>
+                                    <textarea class="form-control" id="input-deskripsi" style="resize: none;" name="deskripsi"></textarea>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-12 col-sm-6">
                                     <h5>Jenis Parfum</h5>
-                                    <select class="form-select" id="input-jenis">
+                                    <select class="form-select" id="input-jenis" name="jenis">
+                                        <option value='' disabled selected hidden>-</option>
                                         @foreach ($data2 as $parfum)
                                             <option value={{ $parfum->jenis }}>{{ $parfum->jenis }}</option>
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="col-12 col-sm-6">
+                                    <h5>Status Item</h5>
+                                    <div class="form-control d-flex align-items-center justify-content-around">
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="formCheck-aktif" name="status" value=1 />
+                                            <label class="form-check-label" for="formCheck-aktif">Aktif</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="formCheck-tidakAktif" name="status" value=0 />
+                                            <label class="form-check-label" for="formCheck-tidakAktif">Tidak aktif</label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-primary" type="submit">Simpan</button></div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="submit">Simpan</button>
+                        </div>
                     </form>
                 </div>
             </div>
