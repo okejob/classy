@@ -66,6 +66,7 @@
                         @csrf
                         <div class="modal-body">
                             <div class="row">
+                                <div class="col-12">
                                     <h5>Nama Parfum</h5>
                                     <input class="form-control" type="text" id="input-nama-parfum" name="nama">
                                 </div>
