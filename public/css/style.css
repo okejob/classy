@@ -171,7 +171,7 @@ a {
 }
 
 .cell-action {
-    text-align: center;
+    text-align: end;
 }
 
 p, .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
@@ -206,4 +206,13 @@ p, .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
 
 ul {
     margin-bottom: 0px;
+}
+
+div.form-control input[type='text'], div.form-control input[type='number'] {
+    outline: none;
+    border: none;
+}
+
+thead tr {
+    text-align: center;
 }

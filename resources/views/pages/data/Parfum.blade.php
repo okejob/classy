@@ -30,11 +30,11 @@
                             <tr>
                                 <td>{{ $parfum->nama }}</td>
                                 <td>{{ $parfum->deskripsi }}</td>
-                                <td>{{ $parfum->jenis }}</td>
+                                <td class="text-center">{{ $parfum->jenis }}</td>
                                 @if ($parfum->status)
-                                    <td>Aktif</td>
+                                    <td class="text-center">Aktif</td>
                                 @else
-                                    <td>Non-aktif</td>
+                                    <td class="text-center">Tidak aktif</td>
                                 @endif
                                 <td class="cell-action">
                                     <button id="btn-{{ $parfum->id }}" class="btn btn-primary btn-sm btn-show-action" type="button">
@@ -66,7 +66,6 @@
                         @csrf
                         <div class="modal-body">
                             <div class="row">
-                                <div class="col-12">
                                     <h5>Nama Parfum</h5>
                                     <input class="form-control" type="text" id="input-nama-parfum" name="nama">
                                 </div>

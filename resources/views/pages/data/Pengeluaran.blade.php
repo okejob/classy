@@ -24,7 +24,7 @@
                                 <th>Nama Pengeluaran</th>
                                 <th>Deskripsi</th>
                                 <th>Tanggal</th>
-                                <th>Nominal</th>
+                                <th colspan="2">Nominal</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -33,8 +33,9 @@
                             <tr>
                                 <td>{{ $pengeluaran->nama }}</td>
                                 <td>{{ $pengeluaran->deskripsi }}</td>
-                                <td>{{ $pengeluaran->created_at }}</td>
-                                <td>{{ $pengeluaran->nominal }}</td>
+                                <td class="text-center">{{ $pengeluaran->created_at }}</td>
+                                <td>Rp</td>
+                                <td class="text-end thousand-separator">{{ $pengeluaran->nominal }}</td>
                                 <td class="cell-action">
                                     <button id="btn-{{ $pengeluaran->id }}" class="btn btn-primary btn-sm btn-show-action" type="button">
                                         <i class="fas fa-bars"></i>
@@ -56,7 +57,7 @@
             </div>
         </div>
         <div class="modal fade" role="dialog" tabindex="-1" id="modal-update">
-            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Rubah Data</h4>
@@ -76,7 +77,10 @@
                                 </div>
                                 <div class="col-12">
                                     <h5>Nominal</h5>
-                                    <input class="form-control" type="number" id="input-nominal" name="nominal">
+                                    <div class="form-control d-flex">
+                                        <p>Rp</p>
+                                        <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-nominal" name="nominal">
+                                    </div>
                                 </div>
                             </div>
                         </div>

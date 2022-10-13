@@ -135,4 +135,58 @@ $(document).ready(function() {
             stateNav(false, true);
         }
     });
+
+    var separatorInterval = setInterval(setThousandSeparator, 10);
+
+    function setThousandSeparator () {
+        let length = $('.thousand-separator').length;
+        if (length != 0) {
+            $('.thousand-separator').each(function(index, element) {
+                let val = $(element).text();
+                if (val != '') {
+                    while(val.indexOf('.') != -1) {
+                        val = val.replace('.', '');
+                    }
+                    let number = parseInt(val);
+                    $(element).text(number.toLocaleString(['ban', 'id']));
+                }
+            });
+            clearInterval(separatorInterval);
+        }
+    };
+
+    $('.input-thousand-separator').focus(function() {
+        let val = $(this).val();
+        $(this).attr('type', 'number');
+        if (val != '') {
+            while(val.indexOf('.') != -1) {
+                val = val.replace('.', '');
+            }
+            let number = parseInt(val);
+            $(this).val(number);
+        }
+    });
+
+    $('.input-thousand-separator').blur(function() {
+        let val = $(this).val();
+        $(this).attr('type', 'text');
+        let number = parseInt(val);
+        $(this).val(number.toLocaleString(['ban', 'id']));
+    });
+
+    $('#modal-form').on('submit', function(e) {
+        $('.input-thousand-separator').each(function() {
+            let val = $(this).val();
+            $(this).attr('type', 'number');
+            if (val != '') {
+                while(val.indexOf('.') != -1) {
+                    val = val.replace('.', '');
+                }
+                let number = parseInt(val);
+                $(this).val(number);
+            }
+        });
+
+        $(this).submit();
+    });
 });

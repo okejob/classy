@@ -1,6 +1,6 @@
 $(document).ready(function() {
     if ($('#table-item tbody').children().length == 0) {
-        $('#table-item tbody').append('<tr><td colspan=12 class="text-center">Data masih kosong</td></tr>');
+        $('#table-item tbody').append('<tr><td colspan=16 class="text-center">Data masih kosong</td></tr>');
     }
 
     var btnIndex = -1, btnId = 0;
@@ -48,28 +48,28 @@ $(document).ready(function() {
         $('#input-nama-item').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(2)').html());
         $('#input-unit').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(3)').html());
         $('#input-bobot-bucket').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(4)').html());
-        $('#input-harga-kilo').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(5)').html());
-        $('#input-harga-bucket').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(6)').html());
-        $('#input-harga-premium').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(7)').html());
+        $('#input-harga-kilo').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(7)').html());
+        $('#input-harga-bucket').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(9)').html());
+        $('#input-harga-premium').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(11)').html());
 
-        if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(8)').html() == "Aktif") {
+        if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(12)').html() == "Aktif") {
             $('#formCheck-kilo-aktif').attr('checked', true);
-        } else if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(8)').html() == "Tidak aktif") {
+        } else if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(12)').html() == "Tidak aktif") {
             $('#formCheck-kilo-tidakAktif').attr('checked', true);
         }
-        if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(9)').html() == "Aktif") {
+        if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(13)').html() == "Aktif") {
             $('#formCheck-bucket-aktif').attr('checked', true);
-        } else if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(9)').html() == "Tidak aktif") {
+        } else if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(13)').html() == "Tidak aktif") {
             $('#formCheck-bucket-tidakAktif').attr('checked', true);
         }
-        if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(10)').html() == "Aktif") {
+        if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(14)').html() == "Aktif") {
             $('#formCheck-premium-aktif').attr('checked', true);
-        } else if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(10)').html() == "Tidak aktif") {
+        } else if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(14)').html() == "Tidak aktif") {
             $('#formCheck-premium-tidakAktif').attr('checked', true);
         }
-        if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(11)').html() == "Aktif") {
+        if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(15)').html() == "Aktif") {
             $('#formCheck-item-aktif').attr('checked', true);
-        } else if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(11)').html() == "Tidak aktif") {
+        } else if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(15)').html() == "Tidak aktif") {
             $('#formCheck-item-tidakAktif').attr('checked', true);
         }
         $('#modal-form .modal-body .row .col-12:nth-child(8)').removeClass('col-sm-4');
@@ -82,4 +82,6 @@ $(document).ready(function() {
 
         $('#modal-update').modal('show');
     });
+
+
 });

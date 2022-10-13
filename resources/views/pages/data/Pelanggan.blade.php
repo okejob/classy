@@ -36,21 +36,21 @@
                             <tr>
                                 <td>Outlet Pelanggan</td>
                                 @if ($pelanggan->member)
-                                    <td>Member</td>
+                                    <td class="text-center">Member</td>
                                 @else
-                                    <td>Bukan member</td>
+                                    <td class="text-center">Bukan member</td>
                                 @endif
                                 <td>{{ $pelanggan->nama }}</td>
-                                <td>{{ $pelanggan->tanggal_lahir }}</td>
+                                <td class="text-center">{{ $pelanggan->tanggal_lahir }}</td>
                                 <td>{{ $pelanggan->alamat }}</td>
-                                <td>{{ $pelanggan->jenis_id }}</td>
-                                <td>{{ $pelanggan->no_id }}</td>
+                                <td class="text-center">{{ $pelanggan->jenis_id }}</td>
+                                <td class="text-center">{{ $pelanggan->no_id }}</td>
                                 <td>{{ $pelanggan->telephone }}</td>
                                 <td>{{ $pelanggan->email }}</td>
                                 @if ($pelanggan->status)
-                                    <td>Aktif</td>
+                                    <td class="text-center">Aktif</td>
                                 @else
-                                    <td>Tidak aktif</td>
+                                    <td class="text-center">Tidak aktif</td>
                                 @endif
                                 <td class="cell-action">
                                     <button id="btn-{{ $pelanggan->id }}" class="btn btn-primary btn-sm btn-show-action" type="button">

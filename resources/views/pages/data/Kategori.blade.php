@@ -30,9 +30,9 @@
                                 <td>{{ $kategori->nama }}</td>
                                 <td>{{ $kategori->deskripsi }}</td>
                                 @if ($kategori->status)
-                                    <td>Aktif</td>
+                                    <td class="text-center">Aktif</td>
                                 @else
-                                    <td>Tidak aktif</td>
+                                    <td class="text-center">Tidak aktif</td>
                                 @endif
                                 <td class="cell-action">
                                     <button id="btn-{{ $kategori->id }}" class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button>

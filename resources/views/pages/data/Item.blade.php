@@ -24,10 +24,10 @@
                                 <th>Kategori</th>
                                 <th>Nama Item</th>
                                 <th>Unit</th>
-                                <th>Bobot Bucket</th>
-                                <th>Harga Kilo</th>
-                                <th>Harga Bucket</th>
-                                <th>Harga Premium</th>
+                                <th colspan="2">Bobot Bucket</th>
+                                <th colspan="2">Harga Kilo</th>
+                                <th colspan="2">Harga Bucket</th>
+                                <th colspan="2">Harga Premium</th>
                                 <th>Status Kilo</th>
                                 <th>Status Bucket</th>
                                 <th>Status Premium</th>
@@ -40,30 +40,34 @@
                             <tr>
                                 <td>{{ $item->kategori->nama }}</td>
                                 <td>{{ $item->nama }}</td>
-                                <td>{{ $item->unit }}</td>
-                                <td>{{ $item->bobot_bucket }}</td>
-                                <td>{{ $item->harga_kilo }}</td>
-                                <td>{{ $item->harga_bucket }}</td>
-                                <td>{{ $item->harga_premium }}</td>
+                                <td class="text-center">{{ $item->unit }}</td>
+                                <td class="text-end">{{ $item->bobot_bucket }}</td>
+                                <td>kg</td>
+                                <td>Rp</td>
+                                <td class="text-end thousand-separator">{{ $item->harga_kilo }}</td>
+                                <td>Rp</td>
+                                <td class="text-end thousand-separator">{{ $item->harga_bucket }}</td>
+                                <td>Rp</td>
+                                <td class="text-end thousand-separator">{{ $item->harga_premium }}</td>
                                 @if ($item->status_kilo)
-                                    <td>Aktif</td>
+                                    <td class="text-center">Aktif</td>
                                 @else
-                                    <td>Tidak aktif</td>
+                                    <td class="text-center">Tidak aktif</td>
                                 @endif
                                 @if ($item->status_bucket)
-                                    <td>Aktif</td>
+                                    <td class="text-center">Aktif</td>
                                 @else
-                                    <td>Tidak aktif</td>
+                                    <td class="text-center">Tidak aktif</td>
                                 @endif
                                 @if ($item->status_premium)
-                                    <td>Aktif</td>
+                                    <td class="text-center">Aktif</td>
                                 @else
-                                    <td>Tidak aktif</td>
+                                    <td class="text-center">Tidak aktif</td>
                                 @endif
                                 @if ($item->status_item)
-                                    <td>Aktif</td>
+                                    <td class="text-center">Aktif</td>
                                 @else
-                                    <td>Tidak aktif</td>
+                                    <td class="text-center">Tidak aktif</td>
                                 @endif
                                 <td class="cell-action">
                                     <button id="btn-{{ $item->id }}" class="btn btn-primary btn-sm btn-show-action" type="button">
@@ -118,19 +122,31 @@
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <h5>Bobot Bucket</h5>
-                                    <input class="form-control" type="number" id="input-bobot-bucket" name="bobot_bucket">
+                                    <div class="form-control d-flex">
+                                        <input class="w-100 me-2" type="number" id="input-bobot-bucket" name="bobot_bucket">
+                                        <p>Kg</p>
+                                    </div>
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <h5>Harga Kilo</h5>
-                                    <input class="form-control" type="number" id="input-harga-kilo" name="harga_kilo">
+                                    <div class="form-control d-flex">
+                                        <p>Rp</p>
+                                        <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-harga-kilo" name="harga_kilo">
+                                    </div>
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <h5>Harga Bucket</h5>
-                                    <input class="form-control" type="number" id="input-harga-bucket" name="harga_bucket">
+                                    <div class="form-control d-flex">
+                                        <p>Rp</p>
+                                        <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-harga-bucket" name="harga_bucket">
+                                    </div>
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <h5>Harga Premium</h5>
-                                    <input class="form-control" type="number" id="input-harga-premium" name="harga_premium">
+                                    <div class="form-control d-flex">
+                                        <p>Rp</p>
+                                        <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-harga-premium" name="harga_premium">
+                                    </div>
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <h5>Status Kilo</h5>
