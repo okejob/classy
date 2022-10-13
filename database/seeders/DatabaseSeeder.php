@@ -31,6 +31,6 @@ class DatabaseSeeder extends Seeder
         $this->call(KategoriSeeder::class);
         $this->call(JenisRewashSeeder::class);
         $this->call(PelangganSeeder::class);
-        $this->call(SettingUmum::class);
+        $this->call(SettingUmumSeeder::class);
     }
 }
