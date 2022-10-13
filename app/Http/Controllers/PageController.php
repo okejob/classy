@@ -10,6 +10,8 @@ use App\Models\Data\Pengeluaran;
 use App\Models\Outlet;
 use App\Models\Paket\PaketCuci;
 use App\Models\Paket\PaketDeposit;
+use App\Models\Transaksi\PickupDelivery;
+use App\Models\Transaksi\Transaksi;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -148,5 +150,21 @@ class PageController extends Controller
                 'data2' => PaketDeposit::paginate()
             ]
         );
+    }
+
+    public function pickupDelivery()
+    {
+        # code...
+    }
+
+    public function transaksi()
+    {
+        $data = [];
+        $data['transaksi_id'] = Transaksi::latest()->first()->id;
+        $data['pelanggan'] = Pelanggan::get();
+        $data['cashier'] = User::role('operator');
+        $data['outlet'] = Outlet::get();
+        $data['pickup_delivery'] = PickupDelivery::where('terantar', false)->get();
+
     }
 }

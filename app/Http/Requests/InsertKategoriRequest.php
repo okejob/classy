@@ -25,7 +25,7 @@ class InsertKategoriRequest extends FormRequest
     {
         return [
             'nama' => 'required|string',
-            'deskripsi' => 'string',
+            'deskripsi' => 'nullable|string',
         ];
     }
 }

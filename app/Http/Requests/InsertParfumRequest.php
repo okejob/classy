@@ -25,7 +25,7 @@ class InsertParfumRequest extends FormRequest
     {
         return [
             'nama' => 'required|string',
-            'deskripsi' => 'string',
+            'deskripsi' => 'nullable|string',
             'jenis' => 'required|string',
             'status' => 'boolean'
         ];

@@ -12,14 +12,15 @@ class JenisItemController extends Controller
     public function insert(InsertJenisItemRequest $request)
     {
         $merged = $request->safe()->merge(['user_id' => Auth::id()])->toArray();
-        $jenisItem = JenisItem::create($merged);
+        JenisItem::create($merged);
 
         return redirect()->intended(route('menu-jenis-item'));
     }
 
     public function update(InsertJenisItemRequest $request, $id)
     {
-        $jenisItem = JenisItem::find($id)->update($request->toArray());
+        $merged = $request->safe()->merge(['user_id' => Auth::id()])->toArray();
+        JenisItem::find($id)->update($merged);
 
         return redirect()->intended(route('menu-jenis-item'));
     }
@@ -30,5 +31,4 @@ class JenisItemController extends Controller
 
         return redirect()->intended(route('menu-jenis-item'));
     }
-
 }

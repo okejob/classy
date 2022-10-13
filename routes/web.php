@@ -8,6 +8,7 @@ use App\Http\Controllers\ParfumController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\UserController;
+use App\Models\Transaksi\PickupDelivery;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -74,4 +75,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/data/pelanggan', [PelangganController::class, 'insert'])->middleware('permission:insert_pelanggan');
     Route::post('/data/pelanggan/{id}', [PelangganController::class, 'update'])->middleware('permission:update_pelanggan');
     Route::get('/data/pelanggan/delete/{id}', [PelangganController::class, 'delete'])->middleware('permission:delete_pelanggan');
+
+    //Pickup & Delivery
+    Route::get('/transaksi/pickup-delivery', [PageController::class, 'pickupDelivery'])->name('pickup-delivery')->middleware('permission:menu_pickup_delivery');
+    Route::post('/transaksi/pickup-delivery', [PickupDelivery::class, 'insert'])->middleware('permission:insert_pickup_delivery');
+    Route::post('/transaksi/pickup-delivery/{id}', [PickupDelivery::class, 'update'])->middleware('permission:update_pickup_delivery');
+    Route::get('/transaksi/pickup-delivery/delete/{id}', [PickupDelivery::class, 'delete'])->middleware('permission:delete_pickup_delivery');
 });

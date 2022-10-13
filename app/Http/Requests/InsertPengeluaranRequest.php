@@ -25,7 +25,7 @@ class InsertPengeluaranRequest extends FormRequest
     {
         return [
             'nama' => 'required|string',
-            'deskripsi' => 'string',
+            'deskripsi' => 'nullable|string',
             'nominal' => 'required|numeric',
         ];
     }
