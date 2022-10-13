@@ -2,7 +2,10 @@
 
 @section('content')
 <div class="container">
-    <header class="d-flex align-items-center my-3" style="color: var(--bs-gray);"><a>Master Data</a><i class="fas fa-angle-right mx-2"></i><a>Data Item</a></header>
+    <header class="d-flex align-items-center my-3" style="color: var(--bs-gray);"><a>Master Data</a>
+        <i class="fas fa-angle-right mx-2"></i>
+        <a>Data Item</a>
+    </header>
     <section id="data-item">
         <div class="card">
             <div class="card-body">
