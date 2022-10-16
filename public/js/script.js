@@ -98,10 +98,10 @@ $(document).ready(function() {
         }, 10);
     });
 
-    var sideNav_opened = false;
-    if (getCookie("nav_open") == "true") {
-        sideNav_opened = true;
-        stateNav(true, false);
+    var sideNav_opened = true;
+    if (getCookie("nav_open") == "false") {
+        sideNav_opened = false;
+        stateNav(false, false);
     }
 
     function stateNav(bool, animate) {
@@ -170,8 +170,10 @@ $(document).ready(function() {
     $('.input-thousand-separator').blur(function() {
         let val = $(this).val();
         $(this).attr('type', 'text');
-        let number = parseInt(val);
-        $(this).val(number.toLocaleString(['ban', 'id']));
+        if (val != '') {
+            let number = parseInt(val);
+            $(this).val(number.toLocaleString(['ban', 'id']));
+        }
     });
 
     $('#modal-form').on('submit', function(e) {

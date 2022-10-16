@@ -69,7 +69,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <h5>Nama Pengeluaran</h5>
-                                    <input class="form-control" type="text" id="input-nama-pengeluaran" name="nama">
+                                    <input class="form-control" type="text" id="input-nama-pengeluaran" name="nama" required>
                                 </div>
                                 <div class="col-12">
                                     <h5>Deskripsi</h5>
@@ -79,7 +79,7 @@
                                     <h5>Nominal</h5>
                                     <div class="form-control d-flex">
                                         <p>Rp</p>
-                                        <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-nominal" name="nominal">
+                                        <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-nominal" name="nominal" required>
                                     </div>
                                 </div>
                             </div>

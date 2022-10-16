@@ -102,7 +102,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <h5>Kategori</h5>
-                                    <select class="form-select" id="input-kategori" name="kategori_id">
+                                    <select class="form-select" id="input-kategori" name="kategori_id" required>
                                         <option value='' disabled selected hidden>-</option>
                                         @foreach ($data2 as $kategori)
                                             <option value={{ $kategori->id }}>{{ $kategori->nama }}</option>
@@ -111,7 +111,7 @@
                                 </div>
                                 <div class="col-12">
                                     <h5>Nama Item</h5>
-                                    <input class="form-control" type="text" id="input-nama-item" name="nama">
+                                    <input class="form-control" type="text" id="input-nama-item" name="nama" required>
                                 </div>
                                 <div class="col-12">
                                     <h5>Unit</h5>
@@ -123,7 +123,7 @@
                                 <div class="col-12 col-sm-6">
                                     <h5>Bobot Bucket</h5>
                                     <div class="form-control d-flex">
-                                        <input class="w-100 me-2" type="number" id="input-bobot-bucket" name="bobot_bucket">
+                                        <input class="w-100 me-2" type="number" id="input-bobot-bucket" name="bobot_bucket" required>
                                         <p>Kg</p>
                                     </div>
                                 </div>
@@ -131,21 +131,21 @@
                                     <h5>Harga Kilo</h5>
                                     <div class="form-control d-flex">
                                         <p>Rp</p>
-                                        <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-harga-kilo" name="harga_kilo">
+                                        <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-harga-kilo" name="harga_kilo" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <h5>Harga Bucket</h5>
                                     <div class="form-control d-flex">
                                         <p>Rp</p>
-                                        <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-harga-bucket" name="harga_bucket">
+                                        <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-harga-bucket" name="harga_bucket" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <h5>Harga Premium</h5>
                                     <div class="form-control d-flex">
                                         <p>Rp</p>
-                                        <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-harga-premium" name="harga_premium">
+                                        <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-harga-premium" name="harga_premium" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6">
