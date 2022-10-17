@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('item_notes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('item_transaksi_id');
+            $table->foreignId('item_transaksi_id')
+                ->constrained()
+                ->cascadeOnDelete();
             $table->text('catatan');
             $table->string('image_path')->nullable();
             $table->timestamps();

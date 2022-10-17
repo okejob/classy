@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('pickup_deliveries', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pelanggan_id');
+            $table->foreignId('pelanggan_id')
+                ->constrained()
+                ->cascadeOnDelete();
             $table->foreignId('driver_ambil_id')
                 ->nullable()
                 ->constrained('users', 'id')

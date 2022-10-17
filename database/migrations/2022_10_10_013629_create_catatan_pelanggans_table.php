@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('catatan_pelanggans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pelanggan_id');
+            $table->foreignId('pelanggan_id')
+                ->constrained()
+                ->cascadeOnDelete();
             $table->text('catatan_cuci')->nullable();
             $table->text('catatan_khusus')->nullable();
             $table->timestamps();

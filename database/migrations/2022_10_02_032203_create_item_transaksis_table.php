@@ -15,8 +15,12 @@ return new class extends Migration
     {
         Schema::create('item_transaksis', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('transaksi_id');
-            $table->foreignId('jenis_item_id');
+            $table->foreignId('transaksi_id')
+                ->constrained()
+                ->cascadeOnDelete();
+            $table->foreignId('jenis_item_id')
+                ->constrained()
+                ->cascadeOnDelete();
             $table->boolean('express')->default(false);
             $table->boolean('setrika')->default(true);
             $table->integer('harga_premium')->default(0);
