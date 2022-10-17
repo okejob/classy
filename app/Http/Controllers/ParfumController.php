@@ -17,6 +17,15 @@ class ParfumController extends Controller
         return redirect()->intended(route('menu-parfum'));
     }
 
+    public function show($id)
+    {
+        $parfum = Parfum::find($id);
+        return [
+            'status' => 200,
+            $parfum,
+        ];
+    }
+
     public function update(InsertParfumRequest $request, $id)
     {
         $merged = $request->safe()->merge(['user_id' => Auth::id()])->toArray();

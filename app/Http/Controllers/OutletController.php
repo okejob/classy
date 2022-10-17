@@ -17,6 +17,15 @@ class OutletController extends Controller
         return redirect()->intended(route('setting-outlet'));
     }
 
+    public function show($id)
+    {
+        $outlet = Outlet::find($id);
+        return [
+            'status' => 200,
+            $outlet,
+        ];
+    }
+
     public function update(InsertOutletRequest $request, $id)
     {
         $merged = $request->safe()->merge(['user_id' => Auth::id()])->toArray();

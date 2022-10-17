@@ -17,6 +17,15 @@ class PelangganController extends Controller
         return redirect()->intended(route('menu-pelanggan'));
     }
 
+    public function show($id)
+    {
+        $pelanggan = Pelanggan::find($id);
+        return [
+            'status' => 200,
+            $pelanggan,
+        ];
+    }
+
     public function update(InsertPelangganRequest $request, $id)
     {
         $merged = $request->safe()->merge(['user_id' => Auth::id()])->toArray();

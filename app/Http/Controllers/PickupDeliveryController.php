@@ -17,6 +17,15 @@ class PickupDeliveryController extends Controller
         //return redirect()->intended(route(''));
     }
 
+    public function show($id)
+    {
+        $pickup_delivery = PickupDelivery::find($id);
+        return [
+            'status' => 200,
+            $pickup_delivery,
+        ];
+    }
+
     public function update(InsertPickupDeliveryRequest $request, $id)
     {
         $merged = $request->safe()->merge(['user_id' => Auth::id()])->toArray();
