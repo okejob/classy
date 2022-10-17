@@ -13,11 +13,8 @@
                         <thead>
                             <tr>
                                 <th>ID Cuci</th>
+                                <th>Jenis Rewash</th>
                                 <th>Alasan Rewash</th>
-                                <th>Created At</th>
-                                <th>Created By</th>
-                                <th>Modified At</th>
-                                <th>Modified By</th>
                                 <th>Status</th>
                                 <th></th>
                             </tr>
