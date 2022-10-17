@@ -107,11 +107,11 @@ $(document).ready(function() {
     function stateNav(bool, animate) {
         if (bool) {
             if (animate) {
-                $('#side-nav').animate({width: '200px'});
-                $('#content').animate({width: $(window).width() - 200 + 'px'});
+                $('#side-nav').animate({width: '205px'});
+                $('#content').animate({width: $(window).width() - 205 + 'px'});
             } else {
-                $('#side-nav').css('width', '200px');
-                $('#content').css('width', 'calc(100vw - 200px)');
+                $('#side-nav').css('width', '205px');
+                $('#content').css('width', 'calc(100vw - 205px)');
             }
             setCookie("nav_open", true, 1);
         } else {
