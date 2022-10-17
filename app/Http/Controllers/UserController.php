@@ -48,7 +48,7 @@ class UserController extends Controller
      */
     public function store(UserCreateRequest $request)
     {
-        $user = User::create($request);
+        User::create($request);
         //need dashboard page
         return redirect()->intended(route('menu-karyawan'));
     }

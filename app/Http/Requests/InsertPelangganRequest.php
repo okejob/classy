@@ -28,10 +28,10 @@ class InsertPelangganRequest extends FormRequest
             'tanggal_lahir' => 'date',
             'alamat' => 'required|string',
             'member' => 'required|boolean',
-            'no_id' => 'string',
-            'jenis_id' => 'string',
-            'telephone' => 'string',
-            'email' => 'string',
+            'no_id' => 'nullable|string',
+            'jenis_id' => 'nullable|string',
+            'telephone' => 'nullable|string',
+            'email' => 'nullable|string',
         ];
     }
 }

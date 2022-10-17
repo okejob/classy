@@ -13,7 +13,7 @@ class InsertPaketCuciRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,8 +25,8 @@ class InsertPaketCuciRequest extends FormRequest
     {
         return [
             'nama_paket' => 'required|string',
-            'deskripsi' => 'string',
-            'harga_paket' => 'numeric',
+            'deskripsi' => 'nullable|string',
+            'harga_paket' => 'nullable|numeric',
             'status' => 'boolean',
         ];
     }

@@ -65,7 +65,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <h5>Nama Kategori</h5>
-                                    <input class="form-control" type="text" id="input-nama-kategori" name="nama">
+                                    <input class="form-control" type="text" id="input-nama-kategori" name="nama" required>
                                 </div>
                                 <div class="col-12">
                                     <h5>Deskripsi</h5>

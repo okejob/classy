@@ -33,5 +33,14 @@ class AdminSeeder extends Seeder
             'address' => 'surabaya',
             'email' => 'mitchel@gmail.com',
         ])->assignRole('administrator');
+
+        User::create([
+            'username' => 'admin',
+            'password' => Hash::make('admin1234'),
+            'name' => 'Admin',
+            'phone' => '0888888888',
+            'address' => 'surabaya',
+            'email' => 'admin@admin.com',
+        ])->assignRole('administrator');
     }
 }

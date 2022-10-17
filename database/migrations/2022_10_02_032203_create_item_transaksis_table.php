@@ -22,11 +22,14 @@ return new class extends Migration
             $table->integer('harga_premium')->default(0);
             $table->string('status_proses');
             $table->foreignId('pencuci')
+                ->nullable()
                 ->constrained('users', 'id')
                 ->cascadeOnDelete();
             $table->foreignId('penyetrika')
+                ->nullable()
                 ->constrained('users', 'id')
                 ->cascadeOnDelete();
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }

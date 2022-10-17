@@ -10,8 +10,11 @@ use App\Models\Data\Pengeluaran;
 use App\Models\Outlet;
 use App\Models\Paket\PaketCuci;
 use App\Models\Paket\PaketDeposit;
+use App\Models\Transaksi\PickupDelivery;
+use App\Models\Transaksi\Transaksi;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Intervention\Image\Gd\Driver;
 
 class PageController extends Controller
 {
@@ -148,5 +151,19 @@ class PageController extends Controller
                 'data2' => PaketDeposit::paginate()
             ]
         );
+    }
+
+    public function pickupDelivery()
+    {
+        # code...
+    }
+
+    public function transaksi()
+    {
+        $data = [];
+        $data['transaksi_id'] = Transaksi::latest()->first()->id + 1;
+        $data['last_transaksi'] = Transaksi::latest()->take(5)->get();
+        $data['driver'] = User::role('delivery')->get();
+        $data['parfum'] = Parfum::get();
     }
 }

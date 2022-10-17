@@ -1,4 +1,4 @@
-<div id="side-nav" style="width: 0px;">
+<div id="side-nav" style="width: 200px;">
     <div class="menu-section my-1">
         <div id="nav-menu-data" class="nav-menu">
             <div class="menu-header px-3 py-1 d-flex align-items-center justify-content-between">

@@ -68,7 +68,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <h5>Nama Parfum</h5>
-                                    <input class="form-control" type="text" id="input-nama-parfum" name="nama">
+                                    <input class="form-control" type="text" id="input-nama-parfum" name="nama" required>
                                 </div>
                                 <div class="col-12">
                                     <h5>Deskripsi</h5>
@@ -76,7 +76,7 @@
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <h5>Jenis Parfum</h5>
-                                    <select class="form-select" id="input-jenis" name="jenis">
+                                    <select class="form-select" id="input-jenis" name="jenis" required>
                                         <option value='' disabled selected hidden>-</option>
                                         @foreach ($data2 as $parfum)
                                             <option value={{ $parfum->jenis }}>{{ $parfum->jenis }}</option>

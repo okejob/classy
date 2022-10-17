@@ -84,15 +84,15 @@
                             <div class="row">
                                 <div class="col-12">
                                     <h5>Nama Lengkap</h5>
-                                    <input class="form-control" type="text" id="input-nama-pelanggan" name="nama">
+                                    <input class="form-control" type="text" id="input-nama-pelanggan" name="nama" required>
                                 </div>
                                 <div class="col-12">
                                     <h5>Alamat</h5>
-                                    <input class="form-control" type="text" id="input-alamat" name="alamat">
+                                    <input class="form-control" type="text" id="input-alamat" name="alamat" required>
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <h5>Tanggal Lahir</h5>
-                                    <input class="form-control" id="input-tanggal-lahir" type="date" name="tanggal_lahir">
+                                    <input class="form-control" id="input-tanggal-lahir" type="date" name="tanggal_lahir" required>
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <h5>Tipe Member</h5>
@@ -108,8 +108,12 @@
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6">
+                                    <h5>Nomor Identitas</h5>
+                                    <input class="form-control" type="text" id="input-nomor-identitas" name="no_id" required>
+                                </div>
+                                <div class="col-12 col-sm-6">
                                     <h5>Jenis Identitas</h5>
-                                    <select class="form-select" id="input-jenis-identitas" name="jenis_id">
+                                    <select class="form-select" id="input-jenis-identitas" name="jenis_id" required>
                                         <option value='' disabled selected hidden>-</option>
                                         <option value="ktp">KTP</option>
                                         <option value="sim">SIM</option>
@@ -121,11 +125,11 @@
                                 </div>
                                 <div class="col-12 col-sm-4">
                                     <h5>Telephone</h5>
-                                    <input class="form-control" type="text" id="input-telepon" name="telephone">
+                                    <input class="form-control" type="text" id="input-telepon" name="telephone" required>
                                 </div>
                                 <div class="col-12 col-sm-4">
                                     <h5>E-mail</h5>
-                                    <input class="form-control" type="text" id="input-email" name="email">
+                                    <input class="form-control" type="text" id="input-email" name="email" required>
                                 </div>
                                 <div class="col-12 col-sm-4">
                                     <h5>Status</h5>

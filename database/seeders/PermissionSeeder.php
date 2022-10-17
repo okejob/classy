@@ -59,5 +59,16 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'insert_kategori']);
         Permission::create(['name' => 'update_kategori']);
         Permission::create(['name' => 'delete_kategori']);
+
+        //Pickup Delivery
+        Permission::create(['name' => 'menu_pickup_delivery']);
+        Permission::create(['name' => 'insert_pickup_delivery']);
+        Permission::create(['name' => 'update_pickup_delivery']);
+        Permission::create(['name' => 'delete_pickup_delivery']);
+
+        //Item Transaksi
+        Permission::create(['name' => 'insert_item_transaksi']);
+        Permission::create(['name' => 'update_item_transaksi']);
+        Permission::create(['name' => 'delete_item_transaksi']);
     }
 }
