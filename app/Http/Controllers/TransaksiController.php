@@ -14,7 +14,10 @@ class TransaksiController extends Controller
 
     public function getTransaksi($id)
     {
-        $transaksi = Transaksi::details()->find($id);
-        return $transaksi;
+        $transaksi = Transaksi::detail()->find($id);
+        return [
+            'status' => 200,
+            $transaksi,
+        ];
     }
 }

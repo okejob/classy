@@ -8,6 +8,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ParfumController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PengeluaranController;
+use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
 use App\Models\Transaksi\PickupDelivery;
 use Illuminate\Support\Facades\Route;
@@ -89,4 +90,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transaksi/item-transaksi/delete/{id}', [ItemTransaksiController::class, 'delete'])->middleware('permission:delete_item_transaksi');
 
     Route::get('/transaksi/bucket', [PageController::class, 'bucket']);
+    Route::get('/transaksi/getTrans/{id}', [TransaksiController::class, 'getTransaksi']);
+
 });

@@ -171,8 +171,10 @@ class PageController extends Controller
     {
         $data['transaksi_id'] = Transaksi::latest()->first()->id + 1;
         $data['last_transaksi'] = Transaksi::latest()->take(5)->get();
+        $data['pelanggan'] = Pelanggan::latest()->take(5)->get();
         $data['driver'] = User::role('delivery')->get();
         $data['parfum'] = Parfum::get();
+        $data['outlet'] = Outlet::get();
 
         return view(
             'pages.transaksi.Bucket',

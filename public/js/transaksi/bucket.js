@@ -5,10 +5,22 @@ $(document).ready(function() {
         $('#modal-opsi-trans').modal('show');
     });
 
-    $('#table-list-trans tbody tr').on('dblclick', function() {
-        alert("reset isi halaman, get data & fill data trans");
+    $('#table-list-trans tbody tr').on('click', function() {
+        //alert("reset isi halaman, get data & fill data trans");
         let id = $(this).children().eq(0).html();
-        alert("Selected id: " + id);
+
+        $.ajax({
+            url: "/transaksi/getTrans/" + id,
+        }).done(function(data) {
+            $('#id-trans').text(data[0].id);
+            $('#id-trans').show();
+        });
+
+        $.ajax({
+            url: "/transaksi/getTrans/" + id,
+        }).done(function(data) {
+            
+        });
 
         $('#modal-opsi-trans').modal('hide');
     });
