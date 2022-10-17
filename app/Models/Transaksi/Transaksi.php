@@ -20,6 +20,11 @@ class Transaksi extends Model
         User::observe(new UserActionObserver);
     }
 
+    public function scopeDetail($query)
+    {
+        return $query->with('item_transaksi', 'pickup_delivery', 'outlet');
+    }
+
     public function item_transaksi()
     {
         return $this->hasMany(ItemTransaksi::class);
