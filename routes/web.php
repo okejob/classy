@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ItemTransaksiController;
 use App\Http\Controllers\JenisItemController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\OutletController;
@@ -81,4 +82,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/transaksi/pickup-delivery', [PickupDelivery::class, 'insert'])->middleware('permission:insert_pickup_delivery');
     Route::post('/transaksi/pickup-delivery/{id}', [PickupDelivery::class, 'update'])->middleware('permission:update_pickup_delivery');
     Route::get('/transaksi/pickup-delivery/delete/{id}', [PickupDelivery::class, 'delete'])->middleware('permission:delete_pickup_delivery');
+
+    //ItemTransaksi
+    Route::post('/transaksi/item-transaksi', [ItemTransaksiController::class, 'insert'])->middleware('permission:insert_item_transaksi');
+    Route::post('/transaksi/item-transaksi/{id}', [ItemTransaksiController::class, 'update'])->middleware('permission:update_item_transaksi');
+    Route::get('/transaksi/item-transaksi/delete/{id}', [ItemTransaksiController::class, 'delete'])->middleware('permission:delete_item_transaksi');
 });

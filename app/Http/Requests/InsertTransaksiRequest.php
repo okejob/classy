@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class InsertPickupDeliveryRequest extends FormRequest
+class InsertTransaksiRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,14 +25,10 @@ class InsertPickupDeliveryRequest extends FormRequest
     {
         return [
             'pelanggan_id' => 'required|exists:pelanggans,id',
-            'ambil' => 'boolean',
-            'alamat_ambil' => 'nullable|string',
-            'driver_ambil_id' => 'nullable|exists:users,id',
-            'antar' => 'boolean',
-            'alamat_antar' => 'nullable|string',
-            'driver_antar_id' => 'nullable|exists:users,id',
-            'terambil' => 'boolean',
-            'terantar' => 'boolean',
+            'outlet_input_id' => 'exists:outlets,id',
+            'cashier_id' => 'exists:users,id',
+            'pickup_delivery_id' => 'exists:pickup_deliveries,id',
+            'parfum_id' => 'exists:parfums,id',
         ];
     }
 }

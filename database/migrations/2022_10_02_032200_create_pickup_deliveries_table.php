@@ -28,8 +28,16 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $table->boolean('antar')->default(false);
             $table->text('alamat_antar')->nullable();
+            $table->boolean('ambil_di_outlet')->default(true);
+            $table->foreignId('outlet_ambil_id')
+                ->nullable()
+                ->constrained('outlets', 'id')
+                ->cascadeOnDelete();
+            $table->date('tanggal_ambil')->nullable();
             $table->boolean('terambil')->default(false);
             $table->boolean('terantar')->default(false);
+            $table->string('penerima')->nullable();
+            $table->string('foto_penerima')->nullable();
             $table->foreignId('user_id')
                 ->constrained()
                 ->cascadeOnDelete();

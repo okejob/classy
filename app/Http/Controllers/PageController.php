@@ -14,6 +14,7 @@ use App\Models\Transaksi\PickupDelivery;
 use App\Models\Transaksi\Transaksi;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Intervention\Image\Gd\Driver;
 
 class PageController extends Controller
 {
@@ -160,11 +161,9 @@ class PageController extends Controller
     public function transaksi()
     {
         $data = [];
-        $data['transaksi_id'] = Transaksi::latest()->first()->id;
-        $data['pelanggan'] = Pelanggan::get();
-        $data['cashier'] = User::role('operator');
-        $data['outlet'] = Outlet::get();
-        $data['pickup_delivery'] = PickupDelivery::where('terantar', false)->get();
-
+        $data['transaksi_id'] = Transaksi::latest()->first()->id + 1;
+        $data['last_transaksi'] = Transaksi::latest()->take(5)->get();
+        $data['driver'] = User::role('delivery')->get();
+        $data['parfum'] = Parfum::get();
     }
 }

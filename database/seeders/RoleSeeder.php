@@ -58,6 +58,10 @@ class RoleSeeder extends Seeder
             'insert_pickup_delivery',
             'update_pickup_delivery',
             'delete_pickup_delivery',
+
+            'insert_item_transaksi',
+            'update_item_transaksi',
+            'delete_item_transaksi',
         ]);
         Role::create(['name' => 'supervisor']);
         Role::create(['name' => 'operator']);
