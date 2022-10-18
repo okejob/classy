@@ -17,6 +17,15 @@ class JenisItemController extends Controller
         return redirect()->intended(route('menu-jenis-item'));
     }
 
+    public function show($id)
+    {
+        $jenis_item = JenisItem::find($id);
+        return [
+            'status' => 200,
+            $jenis_item,
+        ];
+    }
+
     public function update(InsertJenisItemRequest $request, $id)
     {
         $merged = $request->safe()->merge(['user_id' => Auth::id()])->toArray();

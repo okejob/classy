@@ -17,6 +17,15 @@ class PengeluaranController extends Controller
         return redirect()->intended(route('menu-pengeluaran'));
     }
 
+    public function show($id)
+    {
+        $pengeluaran = Pengeluaran::find($id);
+        return [
+            'status' => 200,
+            $pengeluaran,
+        ];
+    }
+
     public function update(InsertPengeluaranRequest $request, $id)
     {
         $merged = $request->safe()->merge(['user_id' => Auth::id()])->toArray();

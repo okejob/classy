@@ -17,6 +17,15 @@ class JenisRewashController extends Controller
         //return redirect()->intended(route(''));
     }
 
+    public function show($id)
+    {
+        $jenis_rewash = JenisRewash::find($id);
+        return [
+            'status' => 200,
+            $jenis_rewash,
+        ];
+    }
+
     public function update(InsertJenisRewashRequest $request, $id)
     {
         $merged = $request->safe()->merge(['user_id' => Auth::id()])->toArray();

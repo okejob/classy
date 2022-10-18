@@ -17,6 +17,15 @@ class ItemTransaksiController extends Controller
         return redirect()->intended(route(''));
     }
 
+    public function show($id)
+    {
+        $item_transaksi = ItemTransaksi::find($id);
+        return [
+            'status' => 200,
+            $item_transaksi,
+        ];
+    }
+
     public function update(InsertItemTransaksiRequest $request, $id)
     {
         $merged = $request->safe()->merge(['user_id' => Auth::id()])->toArray();

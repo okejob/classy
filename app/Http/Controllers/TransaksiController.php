@@ -8,8 +8,10 @@ use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
 {
-    public function createTransaksi(InsertTransaksiRequest $request)
+
+    public function insert(InsertTransaksiRequest $request)
     {
+        
     }
 
     public function getTransaksi($id)

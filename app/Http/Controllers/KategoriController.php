@@ -17,6 +17,15 @@ class KategoriController extends Controller
         return redirect()->intended(route('menu-kategori'));
     }
 
+    public function show($id)
+    {
+        $kategori = Kategori::find($id);
+        return [
+            'status' => 200,
+            $kategori,
+        ];
+    }
+
     public function update(InsertKategoriRequest $request, $id)
     {
         $merged = $request->safe()->merge(['user_id' => Auth::id()])->toArray();
