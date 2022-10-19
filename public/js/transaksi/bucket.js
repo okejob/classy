@@ -1,28 +1,63 @@
 $(document).ready(function() {
+    $('#modal-opsi-trans').modal({
+        backdrop: 'static',
+        keyboard: false
+    });
+
     $('#modal-opsi-trans').modal('show');
 
     $('#show-option').on('click', function() {
         $('#modal-opsi-trans').modal('show');
     });
 
+    let transState = true; // 1 -> look for trans, 0 -> create trans
+    var trans = [], pelanggan = [], outlet = [];
     $('#table-list-trans tbody tr').on('click', function() {
-        //alert("reset isi halaman, get data & fill data trans");
         let id = $(this).children().eq(0).html();
 
         $.ajax({
             url: "/transaksi/getTrans/" + id,
         }).done(function(data) {
-            $('#id-trans').text(data[0].id);
+            trans = data[0];
+            $('#id-trans').text(trans.id);
             $('#id-trans').show();
+
+            $('#input-parfum').val(trans.parfum_id);
+
+            console.log(trans);
+
+            $.ajax({
+                url: "/data/pelanggan/" + trans.pelanggan_id,
+            }).done(function(data) {
+                pelanggan = data[0];
+
+                $('#input-nama').val(pelanggan.nama);
+                $('#input-telepon').val(pelanggan.telephone);
+                $('#input-alamat').val(pelanggan.alamat);
+                $('#input-email').val(pelanggan.email);
+                $('#input-tanggal-lahir').val(pelanggan.tanggal_lahir);
+
+                $('#search-pelanggan').hide();
+                $('#data-pelanggan').show();
+
+                $.ajax({
+                    url: "/setting/outlet/" + trans.outlet_id,
+                }).done(function(data) {
+                    outlet = data[0];
+
+                    $('#select-outlet').attr('disabled', true);
+                    $('#select-outlet').val(trans.outlet_id);
+                    $('#input-alamat-outlet').val(outlet.alamat);
+
+
+                    $('#show-data-pelanggan').trigger('click');
+                    $('#show-data-outlet').trigger('click');
+                    $('#modal-opsi-trans').modal('hide');
+                    $('#section-transaksi-cuci').children('.row').show();
+                });
+            });
         });
 
-        $.ajax({
-            url: "/transaksi/getTrans/" + id,
-        }).done(function(data) {
-            
-        });
-
-        $('#modal-opsi-trans').modal('hide');
     });
 
     $('#search-id-trans').on('click', function() {
@@ -30,7 +65,46 @@ $(document).ready(function() {
     });
 
     $('#add-new-trans').on('click', function() {
-        alert("generate trans id baru & reset isi halaman");
+        transState = 0;
+        trans = [], pelanggan = [], outlet = [];
+
+        // $('#id-trans').val(id); perlu ajax ambil id baru
+
+        let rowAdd = $('#table-trans-item tbody').children().last().detach();
+        $('#table-trans-item tbody').empty();
+        $('#table-trans-item tbody').append(rowAdd);
+
+        $('#input-pafrum').val('');
+
+        // reset pelanggan
+        $('#input-nama').val('');
+        $('#input-telepon').val('');
+        $('#input-alamat').val('');
+        $('#input-email').val('');
+        $('#input-tanggal-lahir').val('');
+
+        // reset outlet
+        $('#select-outlet').attr('disabled', false);
+        $('#select-outlet').val('');
+        $('#input-alamat-outlet').val('');
+
+        $('#search-pelanggan').show();
+        $('#modal-opsi-trans').modal('hide');
+        $('#section-transaksi-cuci').children('.row').show();
+    });
+
+    $('#select-outlet').on('change', function() {
+        if ($(this).val() && !transState) {
+            $.ajax({
+                url: "/setting/outlet/" + $(this).val(),
+            }).done(function(data) {
+                outlet = data[0];
+
+                $('#input-alamat-outlet').val(outlet.alamat);
+
+                // console.log(outlet);
+            });
+        }
     });
 
     // bagian kanan
@@ -53,10 +127,22 @@ $(document).ready(function() {
         $('#modal-list-pelanggan').modal('show');
     });
 
-    $('#table-list-pelanggan tbody tr').on('dblclick', function() {
-        alert("reset isi data pelanggan, get data & fill data pelanggan");
-        let nama = $(this).children().eq(0).html();
-        alert("Selected nama pelanggan: " + nama);
+    $('#table-list-pelanggan tbody tr').on('click', function() {
+        let id = $(this).attr('id').substring($(this).attr('id').indexOf('row-') + 4);
+
+        $.ajax({
+            url: "/data/pelanggan/" + id,
+        }).done(function(data) {
+            pelanggan = data[0];
+
+            $('#input-nama').val(pelanggan.nama);
+            $('#input-telepon').val(pelanggan.telephone);
+            $('#input-alamat').val(pelanggan.alamat);
+            $('#input-email').val(pelanggan.email);
+            $('#input-tanggal-lahir').val(pelanggan.tanggal_lahir);
+
+            // console.log(pelanggan);
+        });
 
         $('#search-pelanggan').text('Ganti pelanggan');
         $('#data-pelanggan').show();
