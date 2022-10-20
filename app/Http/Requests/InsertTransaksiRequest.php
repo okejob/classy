@@ -29,6 +29,9 @@ class InsertTransaksiRequest extends FormRequest
             'cashier_id' => 'exists:users,id',
             'pickup_delivery_id' => 'exists:pickup_deliveries,id',
             'parfum_id' => 'exists:parfums,id',
+            'express' => 'boolean',
+            'setrika_only' => 'boolean',
+            'item_transaksi' => 'array',
         ];
     }
 }

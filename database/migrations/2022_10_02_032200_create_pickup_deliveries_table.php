@@ -35,7 +35,7 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('outlets', 'id')
                 ->cascadeOnDelete();
-            $table->date('tanggal_ambil')->nullable();
+            $table->date('tanggal_ambil_di_outlet')->nullable();
             $table->boolean('terambil')->default(false);
             $table->boolean('terantar')->default(false);
             $table->string('penerima')->nullable();

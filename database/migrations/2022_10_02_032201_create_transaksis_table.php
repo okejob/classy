@@ -28,6 +28,8 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $table->foreignId('pickup_delivery_id')->nullable();
             $table->foreignId('parfum_id')->nullable();
+            $table->boolean('express')->default(false);
+            $table->boolean('setrika_only')->default(false);
             $table->integer('total_bobot')->default(0);
             $table->integer('jumlah_bucket')->default(0);
             $table->integer('subtotal')->default(0);

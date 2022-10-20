@@ -31,8 +31,12 @@ class InsertPickupDeliveryRequest extends FormRequest
             'antar' => 'boolean',
             'alamat_antar' => 'nullable|string',
             'driver_antar_id' => 'nullable|exists:users,id',
+            'ambil_di_outlet' => 'boolean',
+            'outlet_ambil_id' => 'nullable|exists:outlets,id',
             'terambil' => 'boolean',
             'terantar' => 'boolean',
+            'penerima' => 'nullable|string',
+            'foto_penerima' => 'nullable|image'
         ];
     }
 }

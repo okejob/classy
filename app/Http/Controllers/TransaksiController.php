@@ -11,7 +11,6 @@ class TransaksiController extends Controller
 
     public function insert(InsertTransaksiRequest $request)
     {
-        
     }
 
     public function getTransaksi($id)
