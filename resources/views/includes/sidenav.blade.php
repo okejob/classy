@@ -53,13 +53,13 @@
                 </div>
                 <i class="fas fa-angle-down"></i>
             </div>
-            <div id="nav-transaksi-bucket">
-                <a href="/transaksi/bucket" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
-                    <i class="fab fa-bitbucket"></i>
-                    <p class="ms-3">Bucket</p>
-                </a>
-            </div>
             <div class="nav-items" style="display: none;">
+                <div id="nav-transaksi-bucket">
+                    <a href="/transaksi/bucket" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
+                        <i class="fab fa-bitbucket"></i>
+                        <p class="ms-3">Bucket</p>
+                    </a>
+                </div>
                 <div id="nav-transaksi-premium">
                     <a href="/transaksi/premium" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fas fa-comment-dollar"></i>

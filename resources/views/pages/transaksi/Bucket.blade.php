@@ -42,7 +42,7 @@
                                         <th>Lunas</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody style="cursor: pointer">
                                     @foreach ($data['last_transaksi'] as $trans)
                                     <tr data-bs-toggle="tooltip" data-bss-tooltip="" title="Double klik untuk memilih">
                                         <td>{{ $trans->id }}</td>
@@ -67,7 +67,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="display: none">
             <div class="col-8">
                 <div class="card">
                     <div class="card-body">
@@ -142,7 +142,7 @@
                         <div class="row">
                             <div class="col-4 p-2">
                                 <h5>Parfum</h5>
-                                <select class="form-select-sm form-control" style="max-width: 200px;">
+                                <select class="form-select-sm form-control" id="input-parfum" style="max-width: 200px;">
                                     <option value="" selected hidden>-</option>
                                     @foreach ($data['parfum'] as $parfum)
                                         <option value="{{ $parfum->id }}">{{ $parfum->nama }}</option>
@@ -191,18 +191,34 @@
                     <div class="card-body">
                         <section id="section-info-pelanggan">
                             <header class="d-flex justify-content-between align-items-center">
-                                <h5>Pelanggan</h5><button class="btn show-data" id="show-data-pelanggan" type="button"><i class="fas fa-chevron-down large"></i></button>
+                                <h5>Pelanggan</h5>
+                                <button class="btn show-data" id="show-data-pelanggan" type="button">
+                                    <i class="fas fa-chevron-down large"></i>
+                                </button>
                             </header>
-                            <div id="info-pelanggan" class="mt-2" style="display: none;"><button class="btn btn-primary mb-2" id="search-pelanggan" type="button"><i class="fas fa-search"></i>&nbsp;Cari Pelanggan</button>
+                            <div id="info-pelanggan" class="mt-2" style="display: none;">
+                                <button class="btn btn-primary mb-2" id="search-pelanggan" type="button">
+                                    <i class="fas fa-search"></i>
+                                    &nbsp;Cari Pelanggan
+                                </button>
                                 <div class="modal fade" role="dialog" tabindex="-1" id="modal-list-pelanggan">
                                     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 class="modal-title">Cari Pelanggan</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                <h4 class="modal-title">Cari Pelanggan</h4>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
                                                 <form class="mb-3">
-                                                    <div class="d-flex"><input class="form-control" type="search" id="input-nama-pelanggan" placeholder="Nama Pelanggan"><button class="btn btn-primary mx-3" data-bs-toggle="tooltip" data-bss-tooltip="" id="search-nama-pelanggan" type="button" title="Cari transaksi"><i class="fas fa-search"></i></button><button class="btn btn-primary" data-bs-toggle="tooltip" data-bss-tooltip="" id="add-new-pelanggan" type="button" title="Buat transaksi baru"><i class="fas fa-plus"></i></button></div>
+                                                    <div class="d-flex">
+                                                        <input class="form-control" type="search" id="input-nama-pelanggan" placeholder="Nama Pelanggan">
+                                                        <button class="btn btn-primary mx-3" data-bs-toggle="tooltip" data-bss-tooltip="" id="search-nama-pelanggan" type="button" title="Cari transaksi">
+                                                            <i class="fas fa-search"></i>
+                                                        </button>
+                                                        <button class="btn btn-primary" data-bs-toggle="tooltip" data-bss-tooltip="" id="add-new-pelanggan" type="button" title="Buat transaksi baru">
+                                                            <i class="fas fa-plus"></i>
+                                                        </button>
+                                                    </div>
                                                 </form>
                                                 <div class="table-responsive">
                                                     <table class="table table-striped table-hover" id="table-list-pelanggan">
@@ -214,9 +230,9 @@
                                                                 <th>Membership</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody>
+                                                        <tbody style="cursor: pointer">
                                                             @foreach ($data['pelanggan'] as $pelanggan)
-                                                            <tr data-bs-toggle="tooltip" data-bss-tooltip="" title="Double klik untuk memilih">
+                                                            <tr id="row-{{ $pelanggan->id }}" data-bs-toggle="tooltip" data-bss-tooltip="" title="Double klik untuk memilih">
                                                                 <td>{{ $pelanggan->nama }}</td>
                                                                 <td class="text-center">{{ $pelanggan->tanggal_lahir }}</td>
                                                                 <td>{{ $pelanggan->alamat }}</td>
@@ -239,28 +255,28 @@
                                 <form id="data-pelanggan" style="display: none;">
                                     <div class="row">
                                         <div class="col-12 mb-2">
-                                            <h5>Nama</h5>
-                                            <input class="form-control" type="text" id="input-nama-pelanggan-1" name="username" readonly="">
+                                            <h6>Nama</h6>
+                                            <input class="form-control" type="text" id="input-nama" name="username" readonly="" value="temp">
                                         </div>
                                         <div class="col-12 mb-2">
-                                            <h5>Alamat</h5>
+                                            <h6>Alamat</h6>
                                             <input class="form-control" type="text" id="input-alamat" readonly="">
                                         </div>
                                         <div class="col-12 mb-2">
-                                            <h5>Telepon</h5>
-                                            <input class="form-control" type="text" id="input-telepon1" readonly="">
+                                            <h6>Telepon</h6>
+                                            <input class="form-control" type="text" id="input-telepon" readonly="">
                                         </div>
                                         <div class="col-12 mb-2">
-                                            <h5>E-mail</h5>
+                                            <h6>E-mail</h6>
                                             <input class="form-control" type="text" id="input-email" readonly="">
                                         </div>
                                         <div class="col-12 mb-2">
-                                            <h5>Tanggal Lahir</h5>
+                                            <h6>Tanggal Lahir</h6>
                                             <input class="form-control" id="input-tanggal-lahir" type="date" readonly="">
                                         </div>
                                         <div class="col-12">
-                                            <h5>Catatan Pelanggan</h5>
-                                            <textarea class="form-control" style="resize: none;"></textarea>
+                                            <h6>Catatan Pelanggan</h6>
+                                            <textarea class="form-control" style="resize: none;" id="input-catatan-pelanggan"></textarea>
                                         </div>
                                     </div>
                                 </form>
@@ -269,52 +285,62 @@
                         <hr style="margin: 1rem -1rem;">
                         <section id="section-info-outlet">
                             <header>
-                                <h5 class="d-flex justify-content-between align-items-center">Outlet<button class="btn show-data" id="show-data-outlet" type="button"><i class="fas fa-chevron-down large"></i></button></h5>
+                                <h5 class="d-flex justify-content-between align-items-center">
+                                    Outlet
+                                    <button class="btn show-data" id="show-data-outlet" type="button">
+                                        <i class="fas fa-chevron-down large"></i>
+                                    </button>
+                                </h5>
                             </header>
                             <div id="info-outlet" class="position-relative mt-2" style="display: none;">
-                                <h5>Outlet input</h5><select class="form-control">
-                                    <option value="">-</option>
+                                <h6>Outlet input</h6>
+                                <select class="form-control" id="select-outlet">
+                                    <option value="" selected hidden>-</option>
                                     @foreach ($data['outlet'] as $outlet)
                                         <option value="{{ $outlet->id }}">{{ $outlet->nama }}</option>
                                     @endforeach
                                 </select>
-                                <h5 class="mt-2">Alamat Outlet</h5><input type="text" class="form-control" readonly="">
+                                <h6 class="mt-2">Alamat Outlet</h6>
+                                <input type="text" id="input-alamat-outlet" class="form-control" readonly="">
                             </div>
                         </section>
                         <hr style="margin: 1rem -1rem;">
                         <section id="section-info-pickup-delivery">
                             <header class="d-flex justify-content-between align-items-center">
-                                <h5 class="d-flex justify-content-between align-items-center">Pickup &amp; Delivery</h5><button class="btn show-data" id="show-data-pickup-delivery" type="button"><i class="fas fa-chevron-down large"></i></button>
+                                <h5 class="d-flex justify-content-between align-items-center">Pickup &amp; Delivery</h5>
+                                <button class="btn show-data" id="show-data-pickup-delivery" type="button">
+                                    <i class="fas fa-chevron-down large"></i>
+                                </button>
                             </header>
                             <div id="info-pickup-delivery" class="mt-2" style="display: none;">
                                 <div class="form-check" id="check-pickup" style="margin-bottom: .5rem;"><input class="form-check-input" type="checkbox" id="formCheck-delivery"><label class="form-check-label" for="formCheck-delivery">Pickup</label></div>
                                 <div id="container-pickup" class="position-relative mb-2" style="display: none;">
-                                    <h5>Nama driver</h5><select class="form-control">
+                                    <h6>Nama driver</h6><select class="form-control">
                                         <option value="">-</option>
                                         @foreach ($data['driver'] as $driver)
                                             <option value="{{ $driver->id }}">{{ $driver->nama }}</option>
                                         @endforeach
                                     </select>
-                                    <h5 class="mt-2">Alamat ambil</h5><input type="text" class="form-control">
+                                    <h6 class="mt-2">Alamat ambil</h6><input type="text" class="form-control">
                                 </div>
                                 <div class="form-check" id="check-delivery" style="margin-bottom: .5rem;"><input class="form-check-input" type="checkbox" id="formCheck-delivery"><label class="form-check-label" for="formCheck-delivery">Delivery</label></div>
                                 <div id="container-delivery" class="position-relative mb-2" style="display: none;">
-                                    <h5>Nama driver</h5><select class="form-control">
+                                    <h6>Nama driver</h6><select class="form-control">
                                         <option value="">-</option>
                                         @foreach ($data['driver'] as $driver)
                                             <option value="{{ $driver->id }}">{{ $driver->nama }}</option>
                                         @endforeach
                                     </select>
-                                    <h5 class="mt-2">Alamat antar</h5><input type="text" class="form-control">
+                                    <h6 class="mt-2">Alamat antar</h6><input type="text" class="form-control">
                                 </div>
                                 <hr>
-                                <h5 class="mt-2">Outlet Ambil</h5><select class="form-control">
+                                <h6 class="mt-2">Outlet Ambil</h6><select class="form-control">
                                     <option value="">-</option>
                                     @foreach ($data['outlet'] as $outlet)
                                         <option value="{{ $outlet->id }}">{{ $outlet->nama }}</option>
                                     @endforeach
                                 </select>
-                                <h5 class="mt-2">Alamat Outlet</h5><input type="text" class="form-control" readonly="">
+                                <h6 class="mt-2">Alamat Outlet</h6><input type="text" class="form-control" readonly="">
                             </div>
                         </section>
                     </div>
