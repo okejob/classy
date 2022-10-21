@@ -161,7 +161,7 @@ class PageController extends Controller
     public function transaksi()
     {
         $data = [];
-        $data['transaksi_id'] = Transaksi::latest()->first()->id + 1;
+        $data['transaksi_id'] = Transaksi::latest()->first()->id == null ? 1 : Transaksi::latest()->first()->id + 1;
         $data['last_transaksi'] = Transaksi::latest()->take(5)->get();
         $data['driver'] = User::role('delivery')->get();
         $data['parfum'] = Parfum::get();

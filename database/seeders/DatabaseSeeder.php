@@ -32,5 +32,7 @@ class DatabaseSeeder extends Seeder
         $this->call(JenisRewashSeeder::class);
         $this->call(PelangganSeeder::class);
         $this->call(SettingUmumSeeder::class);
+        $this->call(OutletSeeder::class);
+        $this->call(DriverSeeder::class);
     }
 }
