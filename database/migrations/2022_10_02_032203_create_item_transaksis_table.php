@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreignId('jenis_item_id')
                 ->constrained()
                 ->cascadeOnDelete();
-            
+            $table->integer('bobot_bucket')->default(0);
             $table->integer('harga_premium')->default(0);
             $table->string('status_proses');
             $table->foreignId('pencuci')

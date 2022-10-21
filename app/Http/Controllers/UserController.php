@@ -28,7 +28,7 @@ class UserController extends Controller
 
         if ($auth) {
             $request->session()->regenerate();
-            Session::put('user_id', $user->id);
+            Session::put('user', $user);
             $roles = $user->getRoleNames();
             $role = $roles[0];
             Session::put('role', $role);

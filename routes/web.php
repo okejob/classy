@@ -80,7 +80,7 @@ Route::middleware(['auth'])->group(function () {
 
     //Pelanggan
     Route::get('/data/pelanggan', [PageController::class, 'pelanggan'])->name('menu-pelanggan')->middleware('permission:menu_pelanggan');
-    // Route::get('/data/pelanggan/{id}', [PageController::class, 'show'])->middleware('permission:show_pelanggan');
+    // Route::get('/data/pelanggan/{id}', [PelangganController::class, 'show'])->middleware('permission:show_pelanggan');
     Route::get('/data/pelanggan/{id}', [PelangganController::class, 'show']);
     Route::post('/data/pelanggan', [PelangganController::class, 'insert'])->middleware('permission:insert_pelanggan');
     Route::post('/data/pelanggan/{id}', [PelangganController::class, 'update'])->middleware('permission:update_pelanggan');

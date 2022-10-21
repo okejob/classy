@@ -38,7 +38,7 @@ return new class extends Migration
             $table->integer('grand_total')->default(0);
             $table->boolean('lunas')->default(false);
             $table->integer('total_terbayar')->default(0);
-            $table->string('status')->default('cashier');
+            $table->string('status')->default('operator');
             $table->text('catatan')->nullable();
             $table->timestamps();
         });
