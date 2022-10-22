@@ -100,9 +100,9 @@
                                         <td>Si mbah</td>
                                         <td>Sedang setrika</td>
                                         <td class="text-center" style="padding-top: 4px;padding-bottom: 4px;">
-                                            <button class="btn btn-primary btn-sm" type="button">Catatan</button>
+                                            <button id="btn-catatan-item-1" class="btn btn-primary btn-sm show-catatan-item" type="button">Catatan</button>
                                         </td>
-                                        <td>5</td>
+                                        <td class="text-center">5</td>
                                     </tr>
                                     <tr>
                                         <td>Item 2</td>
@@ -111,9 +111,9 @@
                                         <td>Si mbah</td>
                                         <td>Sedang cuci</td>
                                         <td class="text-center" style="padding-top: 4px;padding-bottom: 4px;">
-                                            <button class="btn btn-primary btn-sm" type="button">Catatan</button>
+                                            <button id="btn-catatan-item-2" class="btn btn-primary btn-sm show-catatan-item" type="button">Catatan</button>
                                         </td>
-                                        <td>10</td>
+                                        <td class="text-center">10</td>
                                     </tr>
                                     <tr>
                                         <td class="text-center" colspan="7" style="padding-top: 4px;padding-bottom: 4px;">
@@ -165,9 +165,10 @@
                                 <div class="d-flex justify-content-end align-items-center h-100"><button class="btn btn-primary" type="button" style="width: 200px;">Informasi Pengambilan</button></div>
                             </div>
                             <div class="col-6 p-2 d-flex align-items-center">
-                                <div class="position-relative w-100"><button class="btn btn-primary" id="show-catatan-trans" type="button" style="width: 200px;">Catatan Transaksi</button>
+                                <div class="position-relative w-100">
+                                    <button class="btn btn-primary" id="show-catatan-trans" type="button" style="width: 200px;">Catatan Transaksi</button>
                                     <div class="position-absolute mt-1 w-100 card p-2" style="z-index: 1;display: none;">
-                                        <textarea class="form-control"></textarea>
+                                        <textarea class="form-control" id="input-catatan-trans"></textarea>
                                         <button class="btn btn-primary" id="save-catatan-trans" type="button">Simpan Catatan</button>
                                     </div>
                                 </div>
@@ -180,6 +181,115 @@
                             <div class="col-3 p-2 d-flex align-items-center">
                                 <div class="position-relative text-end w-100">
                                     <button id="save-trans" class="btn btn-primary" type="button">Simpan Transaksi</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="dialog" tabindex="-1" class="modal fade" id="modal-add-item">
+                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Pilih Item</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>Nama Item</th>
+                                                        <th>Kategori</th>
+                                                        <th>Harga</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><input type="checkbox" /></td>
+                                                        <td>Item 1</td>
+                                                        <td>Kategori 1</td>
+                                                        <td>Cell 4</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><input type="checkbox" /></td>
+                                                        <td>Item 2</td>
+                                                        <td>Kategori 1</td>
+                                                        <td>Cell 4</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer"><button class="btn btn-primary" type="button">Add</button></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="dialog" tabindex="-1" class="modal fade" id="modal-catatan-item">
+                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Catatan Item <span class="catatan-item-name">nama item</span></h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <div class="mb-2">
+                                                    <h5>Noted by</h5>
+                                                    <input type="text" class="form-control" />
+                                                </div>
+                                                <div class="h-100">
+                                                    <h5>Notes</h5>
+                                                    <textarea class="form-control h-100"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-8">
+                                                <div>
+                                                    <ul role="tablist" class="nav nav-tabs">
+                                                        <li role="presentation" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link active" href="#tab-foto">Foto</a></li>
+                                                        <li role="presentation" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link" href="#tab-noda">Tandai Noda</a></li>
+                                                    </ul>
+                                                    <div class="tab-content card" style="border-top: none;border-radius: 0;height: 513px;">
+                                                        <div role="tabpanel" class="tab-pane active p-2" id="tab-foto">
+                                                            <img id="container-image-item" class="w-100 mb-2" style="object-fit: contain;max-height: 450px;height: 450px;" />
+                                                            <div class="text-end">
+                                                                <input type="file" class="form-control" id="input-foto-item" accept="image/*" onchange="document.getElementById('container-image-item').src = window.URL.createObjectURL(this.files[0])"/>
+                                                            </div>
+                                                        </div>
+                                                        <div role="tabpanel" class="tab-pane p-2" id="tab-noda">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <h5>Tampak Depan</h5>
+                                                                    <div id="tampak-depan" class="position-relative">
+                                                                        <div class="card p-2" style="height: 230px;">
+                                                                            <div class="w-100 h-100" style="background-image: url({{asset('image/tshirt-front.jpg')}});background-size: cover;"></div>
+                                                                        </div>
+                                                                        <div id="td-kiri-atas" class="position-absolute w-50 h-50 card stain-selection" style="top: 0;left: 0;"></div>
+                                                                        <div id="td-kanan-atas" class="position-absolute w-50 h-50 card stain-selection" style="top: 0;left: 50%;"></div>
+                                                                        <div id="td-kiri-bawah" class="position-absolute w-50 h-50 card stain-selection" style="top: 50%;left: 0;"></div>
+                                                                        <div id="td-kanan-bawah" class="position-absolute w-50 h-50 card stain-selection" style="top: 50%;left: 50%;"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <h5>Tampak Belakang</h5>
+                                                                    <div id="tampak-belakang" class="position-relative">
+                                                                        <div class="card p-2" style="height: 230px;">
+                                                                            <div class="w-100 h-100" style="background-image: url({{asset('image/tshirt-back.jpg')}});background-size: cover;"></div>
+                                                                        </div>
+                                                                        <div id="tb-kiri-atas" class="position-absolute w-50 h-50 card stain-selection" style="top: 0;left: 0;"></div>
+                                                                        <div id="tb-kanan-atas" class="position-absolute w-50 h-50 card stain-selection" style="top: 0;left: 50%;"></div>
+                                                                        <div id="tb-kiri-bawah" class="position-absolute w-50 h-50 card stain-selection" style="top: 50%;left: 0;"></div>
+                                                                        <div id="tb-kanan-bawah" class="position-absolute w-50 h-50 card stain-selection" style="top: 50%;left: 50%;"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary" type="button">Simpan</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -256,23 +366,23 @@
                                     <div class="row">
                                         <div class="col-12 mb-2">
                                             <h6>Nama</h6>
-                                            <input class="form-control" type="text" id="input-nama" name="username" readonly="" value="temp">
+                                            <input class="form-control disabled" type="text" id="input-nama" name="username" value="temp">
                                         </div>
                                         <div class="col-12 mb-2">
                                             <h6>Alamat</h6>
-                                            <input class="form-control" type="text" id="input-alamat" readonly="">
+                                            <input class="form-control disabled" type="text" id="input-alamat">
                                         </div>
                                         <div class="col-12 mb-2">
                                             <h6>Telepon</h6>
-                                            <input class="form-control" type="text" id="input-telepon" readonly="">
+                                            <input class="form-control disabled" type="text" id="input-telepon">
                                         </div>
                                         <div class="col-12 mb-2">
                                             <h6>E-mail</h6>
-                                            <input class="form-control" type="text" id="input-email" readonly="">
+                                            <input class="form-control disabled" type="text" id="input-email">
                                         </div>
                                         <div class="col-12 mb-2">
                                             <h6>Tanggal Lahir</h6>
-                                            <input class="form-control" id="input-tanggal-lahir" type="date" readonly="">
+                                            <input class="form-control disabled" id="input-tanggal-lahir" type="date">
                                         </div>
                                         <div class="col-12">
                                             <h6>Catatan Pelanggan</h6>
@@ -300,8 +410,6 @@
                                         <option value="{{ $outlet->id }}">{{ $outlet->nama }}</option>
                                     @endforeach
                                 </select>
-                                <h6 class="mt-2">Alamat Outlet</h6>
-                                <input type="text" id="input-alamat-outlet" class="form-control" readonly="">
                             </div>
                         </section>
                         <hr style="margin: 1rem -1rem;">
@@ -313,34 +421,51 @@
                                 </button>
                             </header>
                             <div id="info-pickup-delivery" class="mt-2" style="display: none;">
-                                <div class="form-check" id="check-pickup" style="margin-bottom: .5rem;"><input class="form-check-input" type="checkbox" id="formCheck-delivery"><label class="form-check-label" for="formCheck-delivery">Pickup</label></div>
+                                <div class="form-check" id="check-pickup" style="margin-bottom: .5rem;">
+                                    <input class="form-check-input" type="checkbox" id="formCheck-pickup">
+                                    <label class="form-check-label" for="formCheck-pickup">Pickup</label>
+                                </div>
                                 <div id="container-pickup" class="position-relative mb-2" style="display: none;">
-                                    <h6>Nama driver</h6><select class="form-control">
-                                        <option value="">-</option>
+                                    <h6>Nama driver</h6>
+                                    <select class="form-control" id="select-driver-pickup">
+                                        <option value="" selected hidden>-</option>
                                         @foreach ($data['driver'] as $driver)
-                                            <option value="{{ $driver->id }}">{{ $driver->nama }}</option>
+                                            <option value="{{ $driver->id }}">{{ $driver->username }}</option>
                                         @endforeach
                                     </select>
-                                    <h6 class="mt-2">Alamat ambil</h6><input type="text" class="form-control">
+                                    <h6 class="mt-2">Alamat ambil</h6>
+                                    <input type="text" class="form-control" id="input-alamat-ambil">
                                 </div>
-                                <div class="form-check" id="check-delivery" style="margin-bottom: .5rem;"><input class="form-check-input" type="checkbox" id="formCheck-delivery"><label class="form-check-label" for="formCheck-delivery">Delivery</label></div>
+                                <div class="d-flex justify-content-around" style="margin-bottom: .5rem;">
+                                    <div class="form-check w-50" id="check-delivery">
+                                        <input type="radio" class="form-check-input" name="tipe-delivery" id="formCheck-delivery" />
+                                        <label class="form-check-label" for="formCheck-delivery">Delivery</label>
+                                    </div>
+                                    <div class="form-check w-50" id="check-ambil-outlet">
+                                        <input type="radio" class="form-check-input" name="tipe-delivery" id="formCheck-ambil-outlet" />
+                                        <label class="form-check-label" for="formCheck-ambil-outlet">Ambil di outlet</label>
+                                    </div>
+                                </div>
                                 <div id="container-delivery" class="position-relative mb-2" style="display: none;">
-                                    <h6>Nama driver</h6><select class="form-control">
-                                        <option value="">-</option>
+                                    <h6>Nama driver</h6>
+                                    <select class="form-control" id="select-driver-delivery">
+                                        <option value="" selected hidden>-</option>
                                         @foreach ($data['driver'] as $driver)
-                                            <option value="{{ $driver->id }}">{{ $driver->nama }}</option>
+                                            <option value="{{ $driver->id }}">{{ $driver->username }}</option>
                                         @endforeach
                                     </select>
-                                    <h6 class="mt-2">Alamat antar</h6><input type="text" class="form-control">
+                                    <h6 class="mt-2">Alamat antar</h6>
+                                    <input type="text" class="form-control" id="input-alamat-antar">
                                 </div>
-                                <hr>
-                                <h6 class="mt-2">Outlet Ambil</h6><select class="form-control">
-                                    <option value="">-</option>
-                                    @foreach ($data['outlet'] as $outlet)
-                                        <option value="{{ $outlet->id }}">{{ $outlet->nama }}</option>
-                                    @endforeach
-                                </select>
-                                <h6 class="mt-2">Alamat Outlet</h6><input type="text" class="form-control" readonly="">
+                                <div id="container-ambil-outlet" class="position-relative mb-2" style="display: none;">
+                                    <h6 class="mt-2">Outlet Ambil</h6>
+                                    <select class="form-control" id="select-outlet-ambil">
+                                        <option value="">-</option>
+                                        @foreach ($data['outlet'] as $outlet)
+                                            <option value="{{ $outlet->id }}">{{ $outlet->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                         </section>
                     </div>

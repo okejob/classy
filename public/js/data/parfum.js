@@ -44,4 +44,14 @@ $(document).ready(function() {
 
         $('#modal-update').modal('show');
     });
+
+    $('#action-delete').on('click', function() {
+        if (confirm('Yakin menghapus data ?')) {
+            $.ajax({
+                url: "/data/parfum/delete/" + btnId,
+            }).done(function() {
+                location.reload();
+            });
+        }
+    });
 });

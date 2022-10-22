@@ -8,6 +8,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ParfumController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PengeluaranController;
+use App\Http\Controllers\PickupDeliveryController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
 use App\Models\Transaksi\PickupDelivery;
@@ -44,8 +45,7 @@ Route::middleware(['auth'])->group(function () {
 
     //outlet
     Route::get('/setting/outlet', [PageController::class, 'outlet'])->name('menu-outlet')->middleware('permission:menu_outlet');
-    // Route::get('/setting/outlet/{id}', [OutletController::class, 'show'])->middleware('permission:show_outlet');
-    Route::get('/setting/outlet/{id}', [OutletController::class, 'show']);
+    Route::get('/setting/outlet/{id}', [OutletController::class, 'show'])->middleware('permission:show_outlet');
     Route::post('/setting/outlet', [OutletController::class, 'insert'])->middleware('permission:insert_outlet');
     Route::post('/setting/outlet/{id}', [OutletController::class, 'update'])->middleware('permission:update_outlet');
     Route::get('/setting/outlet/delete/{id}', [OutletController::class, 'delete'])->middleware('permission:delete_outlet');
@@ -81,18 +81,17 @@ Route::middleware(['auth'])->group(function () {
 
     //Pelanggan
     Route::get('/data/pelanggan', [PageController::class, 'pelanggan'])->name('menu-pelanggan')->middleware('permission:menu_pelanggan');
-    // Route::get('/data/pelanggan/{id}', [PelangganController::class, 'show'])->middleware('permission:show_pelanggan');
-    Route::get('/data/pelanggan/{id}', [PelangganController::class, 'show']);
+    Route::get('/data/pelanggan/{id}', [PelangganController::class, 'show'])->middleware('permission:show_pelanggan');
     Route::post('/data/pelanggan', [PelangganController::class, 'insert'])->middleware('permission:insert_pelanggan');
     Route::post('/data/pelanggan/{id}', [PelangganController::class, 'update'])->middleware('permission:update_pelanggan');
     Route::get('/data/pelanggan/delete/{id}', [PelangganController::class, 'delete'])->middleware('permission:delete_pelanggan');
 
     //Pickup & Delivery
     Route::get('/transaksi/pickup-delivery', [PageController::class, 'pickupDelivery'])->name('pickup-delivery')->middleware('permission:menu_pickup_delivery');
-    Route::get('/transaksi/pickup-delivery', [PickupDelivery::class, 'show'])->middleware('permission:show_pickup_delivery');
-    Route::post('/transaksi/pickup-delivery', [PickupDelivery::class, 'insert'])->middleware('permission:insert_pickup_delivery');
-    Route::post('/transaksi/pickup-delivery/{id}', [PickupDelivery::class, 'update'])->middleware('permission:update_pickup_delivery');
-    Route::get('/transaksi/pickup-delivery/delete/{id}', [PickupDelivery::class, 'delete'])->middleware('permission:delete_pickup_delivery');
+    Route::get('/transaksi/pickup-delivery/{id}', [PickupDeliveryController::class, 'show'])->middleware('permission:show_pickup_delivery');
+    Route::post('/transaksi/pickup-delivery', [PickupDeliveryController::class, 'insert'])->middleware('permission:insert_pickup_delivery');
+    Route::post('/transaksi/pickup-delivery/{id}', [PickupDeliveryController::class, 'update'])->middleware('permission:update_pickup_delivery');
+    Route::get('/transaksi/pickup-delivery/delete/{id}', [PickupDeliveryController::class, 'delete'])->middleware('permission:delete_pickup_delivery');
 
     //ItemTransaksi
     Route::get('/transaksi/item-transaksi/{id}', [ItemTransaksiController::class, 'show'])->middleware('permission:show_item_transaksi');
@@ -100,7 +99,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/transaksi/item-transaksi/{id}', [ItemTransaksiController::class, 'update'])->middleware('permission:update_item_transaksi');
     Route::get('/transaksi/item-transaksi/delete/{id}', [ItemTransaksiController::class, 'delete'])->middleware('permission:delete_item_transaksi');
 
-    // Route::get('/transaksi/bucket', [PageController::class, 'bucket'])->name('transaksi-bucket')->middleware('permission:menu_transaksi_bucket');
-    Route::get('/transaksi/bucket', [PageController::class, 'bucket'])->name('transaksi-bucket');
+    Route::get('/transaksi/bucket', [PageController::class, 'bucket'])->name('transaksi-bucket')->middleware('permission:menu_transaksi_bucket');
     Route::get('/transaksi/getTrans/{id}', [TransaksiController::class, 'getTransaksi']);
 });

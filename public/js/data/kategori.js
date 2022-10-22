@@ -40,4 +40,14 @@ $(document).ready(function() {
 
         $('#modal-update').modal('show');
     });
+
+    $('#action-delete').on('click', function() {
+        if (confirm('Yakin menghapus data ?')) {
+            $.ajax({
+                url: "/data/kategori/delete/" + btnId,
+            }).done(function() {
+                location.reload();
+            });
+        }
+    });
 });

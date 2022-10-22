@@ -63,4 +63,14 @@ $(document).ready(function() {
 
         $('#modal-update').modal('show');
     });
+
+    $('#action-delete').on('click', function() {
+        if (confirm('Yakin menghapus data ?')) {
+            $.ajax({
+                url: "/data/pelanggan/delete/" + btnId,
+            }).done(function() {
+                location.reload();
+            });
+        }
+    });
 });

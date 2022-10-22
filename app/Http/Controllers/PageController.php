@@ -169,12 +169,14 @@ class PageController extends Controller
 
     public function bucket()
     {
-        $data['transaksi_id'] = Transaksi::latest()->first()->id + 1;
+        $data['transaksi_id'] = Transaksi::latest()->first()->id == null ? 1 : Transaksi::latest()->first()->id + 1;
         $data['last_transaksi'] = Transaksi::latest()->take(5)->get();
         $data['pelanggan'] = Pelanggan::latest()->take(5)->get();
         $data['driver'] = User::role('delivery')->get();
         $data['parfum'] = Parfum::get();
         $data['outlet'] = Outlet::get();
+
+        // dd($data['driver']);
 
         return view(
             'pages.transaksi.Bucket',

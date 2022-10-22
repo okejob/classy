@@ -69,6 +69,7 @@
                 </button>
                 <ul class="list-unstyled form-control" id="list-action">
                     <li id="action-update">Rubah data</li>
+                    <li id="action-delete">Hapus data</li>
                 </ul>
             </div>
         </div>
