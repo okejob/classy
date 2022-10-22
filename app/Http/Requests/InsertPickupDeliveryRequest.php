@@ -24,7 +24,6 @@ class InsertPickupDeliveryRequest extends FormRequest
     public function rules()
     {
         return [
-            'pelanggan_id' => 'required|exists:pelanggans,id',
             'ambil' => 'boolean',
             'alamat_ambil' => 'nullable|string',
             'driver_ambil_id' => 'nullable|exists:users,id',

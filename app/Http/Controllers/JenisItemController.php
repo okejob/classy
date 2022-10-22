@@ -9,6 +9,21 @@ use Illuminate\Support\Facades\Auth;
 
 class JenisItemController extends Controller
 {
+
+    public function find(Request $request)
+    {
+        $jenis_item = JenisItem::whereHas('kategori', function ($q) use ($request) {
+            $q->where('nama', 'like', '%' . $request->key . '%');
+        })
+            ->orWhere('nama', 'like', '%' . $request->key . '%')
+            ->get();
+
+        return [
+            'status' => 200,
+            $jenis_item
+        ];
+    }
+
     public function insert(InsertJenisItemRequest $request)
     {
         $merged = $request->safe()->merge(['user_id' => Auth::id()])->toArray();

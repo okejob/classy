@@ -21,7 +21,7 @@ class JenisItem extends Model
         JenisItem::observe(new UserActionObserver);
     }
 
-    public function getNamaKategori()
+    public function getNamaKategoriAttribute()
     {
         $kategori = Kategori::find($this->kategori_id);
         return $kategori->nama;

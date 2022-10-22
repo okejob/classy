@@ -52,6 +52,7 @@ Route::middleware(['auth'])->group(function () {
 
     //item
     Route::get('/data/jenis-item', [PageController::class, 'jenisItem'])->name('menu-jenis-item')->middleware('permission:menu_jenis_item');
+    Route::get('/data/jenis-item/find', [JenisItemController::class, 'find']);
     Route::get('/data/jenis-item/{id}', [JenisItemController::class, 'show'])->middleware('permission:show_jenis_item');
     Route::post('/data/jenis-item', [JenisItemController::class, 'insert'])->middleware('permission:insert_jenis_item');
     Route::post('/data/jenis-item/{id}', [JenisItemController::class, 'update'])->middleware('permission:update_jenis_item');
