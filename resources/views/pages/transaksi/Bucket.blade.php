@@ -183,7 +183,7 @@
                                     <div class="modal-body">
                                         <div class="d-flex mb-3">
                                             <input class="form-control" type="search" id="input-nama-item" placeholder="Nama Item">
-                                            <button class="btn btn-primary mx-3" data-bs-toggle="tooltip" data-bss-tooltip="" id="search-id-trans" type="button" title="Cari Item">
+                                            <button class="btn btn-primary mx-3" data-bs-toggle="tooltip" data-bss-tooltip="" id="search-id-item" type="button" title="Cari Item">
                                                 <i class="fas fa-search"></i>
                                             </button>
                                         </div>
