@@ -40,6 +40,7 @@ return new class extends Migration
             $table->integer('total_terbayar')->default(0);
             $table->string('status')->default('operator');
             $table->text('catatan')->nullable();
+            
             $table->timestamps();
         });
     }

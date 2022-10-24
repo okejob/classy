@@ -19,6 +19,14 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete();
             $table->text('catatan');
+            $table->boolean('front_top_left')->default(0);
+            $table->boolean('front_top_right')->default(0);
+            $table->boolean('front_bottom_left')->default(0);
+            $table->boolean('front_bottom_right')->default(0);
+            $table->boolean('back_top_left')->default(0);
+            $table->boolean('back_top_right')->default(0);
+            $table->boolean('back_bottom_left')->default(0);
+            $table->boolean('back_bottom_right')->default(0);
             $table->string('image_path')->nullable();
             $table->timestamps();
         });
