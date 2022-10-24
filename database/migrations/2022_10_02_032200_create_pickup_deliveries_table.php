@@ -22,6 +22,7 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $table->string('action');
             $table->boolean('is_done')->default(false);
+            $table->text('alamat');
             $table->foreignId('user_id')
                 ->constrained()
                 ->cascadeOnDelete();

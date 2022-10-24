@@ -26,7 +26,6 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('users', 'id')
                 ->cascadeOnDelete();
-            $table->foreignId('pickup_delivery_id')->nullable();
             $table->foreignId('parfum_id')->nullable();
             $table->boolean('express')->default(false);
             $table->boolean('setrika_only')->default(false);
