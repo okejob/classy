@@ -10,6 +10,7 @@ use App\Models\Data\Pengeluaran;
 use App\Models\Outlet;
 use App\Models\Paket\PaketCuci;
 use App\Models\Paket\PaketDeposit;
+use App\Models\Transaksi\Penerima;
 use App\Models\Transaksi\PickupDelivery;
 use App\Models\Transaksi\Transaksi;
 use App\Models\User;
@@ -155,13 +156,20 @@ class PageController extends Controller
 
     public function pickupDelivery()
     {
-        # code...
+        return view(
+            'pages.transaksi.PickupDelivery',
+            [
+                'data1' => PickupDelivery::where('action', 'pickup')->paginate(5),
+                'data2' => PickupDelivery::where('action', 'delivery')->paginate(5),
+                'data3' => Penerima::where('ambil_di_outlet', 1)->paginate(5),
+            ]
+        );
     }
 
     public function transaksi()
     {
         $data = [];
-        $data['transaksi_id'] = Transaksi::latest()->first()->id == null ? 1 : Transaksi::latest()->first()->id + 1;
+        $data['transaksi_id'] = Transaksi::latest()->first()->count == null ? 1 : Transaksi::latest()->first()->id + 1;
         $data['last_transaksi'] = Transaksi::latest()->take(5)->get();
         $data['driver'] = User::role('delivery')->get();
         $data['parfum'] = Parfum::get();
@@ -169,7 +177,7 @@ class PageController extends Controller
 
     public function bucket()
     {
-        $data['transaksi_id'] = Transaksi::latest()->first()->id == null ? 1 : Transaksi::latest()->first()->id + 1;
+        $data['transaksi_id'] = Transaksi::count() == 0 ? 1 : Transaksi::latest()->first()->id + 1;
         $data['last_transaksi'] = Transaksi::latest()->take(5)->get();
         $data['pelanggan'] = Pelanggan::latest()->take(5)->get();
         $data['driver'] = User::role('delivery')->get();

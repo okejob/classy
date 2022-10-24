@@ -124,7 +124,7 @@ class TransaksiController extends Controller
 
     public function getID()
     {
-        $id = Transaksi::latest()->first()->id == null ? 1 : Transaksi::latest()->first()->id + 1;
+        $id = Transaksi::count() == 0 ? 1 : Transaksi::latest()->first()->id + 1;
         return [
             'status' => 200,
             $id,
