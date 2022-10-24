@@ -24,18 +24,10 @@ class InsertPickupDeliveryRequest extends FormRequest
     public function rules()
     {
         return [
-            'ambil' => 'boolean',
-            'alamat_ambil' => 'nullable|string',
-            'driver_ambil_id' => 'nullable|exists:users,id',
-            'antar' => 'boolean',
-            'alamat_antar' => 'nullable|string',
-            'driver_antar_id' => 'nullable|exists:users,id',
-            'ambil_di_outlet' => 'boolean',
-            'outlet_ambil_id' => 'nullable|exists:outlets,id',
-            'terambil' => 'boolean',
-            'terantar' => 'boolean',
-            'penerima' => 'nullable|string',
-            'foto_penerima' => 'nullable|image'
+            'pelanggan_id' => 'exists:pelanggans,id',
+            'driver_id' => 'exists:users,id',
+            'action' => 'string',
+            'alamat' => 'string',
         ];
     }
 }

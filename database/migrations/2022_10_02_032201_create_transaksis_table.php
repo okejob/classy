@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
+            $table->string('kode');
             $table->foreignId('pelanggan_id')
                 ->constrained()
                 ->cascadeOnDelete();
@@ -39,7 +40,10 @@ return new class extends Migration
             $table->integer('total_terbayar')->default(0);
             $table->string('status')->default('draft');
             $table->text('catatan')->nullable();
-
+            $table->foreignId('modified_by')
+                ->nullable()
+                ->constrained('users', 'id')
+                ->cascadeOnUpdate();
             $table->timestamps();
         });
     }
