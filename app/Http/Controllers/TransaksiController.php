@@ -33,7 +33,7 @@ class TransaksiController extends Controller
 
     public function bucketPrice($total_bobot)
     {
-        $paket_bucket = PaketCuci::where('nama_paket', 'BUCKET')->get();
+        $paket_bucket = PaketCuci::where('nama_paket', 'BUCKET')->first();
         $total_harga = $total_bobot * $paket_bucket->harga_paket;
 
         return round($total_harga, 2);
@@ -41,7 +41,7 @@ class TransaksiController extends Controller
 
     public function checkHarga(Request $request)
     {
-        $paket_bucket = PaketCuci::where('nama_paket', 'BUCKET')->get();
+        $paket_bucket = PaketCuci::where('nama_paket', 'BUCKET')->first();
         $subtotal = $request->total_bobot * $paket_bucket->harga_paket;
         $diskon = 0;
         $diskon_member = $request->member == 0 ? 0 : 10;
