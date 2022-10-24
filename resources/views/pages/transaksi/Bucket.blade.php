@@ -94,17 +94,6 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Item 1</td>
-                                        <td>Kategori 1</td>
-                                        <td>Si mbah</td>
-                                        <td>Si mbah</td>
-                                        <td>Sedang setrika</td>
-                                        <td class="text-center" style="padding-top: 4px;padding-bottom: 4px;">
-                                            <button id="btn-catatan-item-1" class="btn btn-primary btn-sm show-catatan-item" type="button">Catatan</button>
-                                        </td>
-                                        <td class="text-center">5</td>
-                                    </tr>
-                                    <tr>
                                         <td>Item 2</td>
                                         <td>Kategori 1</td>
                                         <td>Si mbah</td>
@@ -117,7 +106,7 @@
                                     </tr>
                                     <tr>
                                         <td class="text-center" colspan="7" style="padding-top: 4px;padding-bottom: 4px;">
-                                            <button class="btn btn-primary btn-sm" type="button">
+                                            <button class="btn btn-primary btn-sm" id="add-item" type="button">
                                                 <i class="fas fa-plus"></i>
                                             </button>
                                         </td>
@@ -126,15 +115,15 @@
                                 <tfoot>
                                     <tr>
                                         <td class="text-end" colspan="6">Sub Total</td>
-                                        <td>60000</td>
+                                        <td id="sub-total"></td>
                                     </tr>
                                     <tr>
                                         <td class="text-end" colspan="6">Diskon</td>
-                                        <td>5000</td>
+                                        <td id="diskon"></td>
                                     </tr>
                                     <tr>
                                         <td class="text-end" colspan="6">Grand Total</td>
-                                        <td>55000</td>
+                                        <td id="grand-total"></td>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -188,11 +177,18 @@
                             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h4 class="modal-title">Pilih Item</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <h4 class="modal-title">Pilih Item</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
+                                        <div class="d-flex mb-3">
+                                            <input class="form-control" type="search" id="input-nama-item" placeholder="Nama Item">
+                                            <button class="btn btn-primary mx-3" data-bs-toggle="tooltip" data-bss-tooltip="" id="search-id-trans" type="button" title="Cari Item">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                        </div>
                                         <div class="table-responsive">
-                                            <table class="table">
+                                            <table class="table" id="table-items">
                                                 <thead>
                                                     <tr>
                                                         <th></th>
@@ -202,23 +198,13 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td><input type="checkbox" /></td>
-                                                        <td>Item 1</td>
-                                                        <td>Kategori 1</td>
-                                                        <td>Cell 4</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><input type="checkbox" /></td>
-                                                        <td>Item 2</td>
-                                                        <td>Kategori 1</td>
-                                                        <td>Cell 4</td>
-                                                    </tr>
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
-                                    <div class="modal-footer"><button class="btn btn-primary" type="button">Add</button></div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary" id="add-item-to-table" type="button">Add</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -238,7 +224,7 @@
                                                 </div>
                                                 <div class="h-100">
                                                     <h5>Notes</h5>
-                                                    <textarea class="form-control h-100"></textarea>
+                                                    <textarea class="form-control"></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-8">

@@ -16,7 +16,7 @@ class JenisItemController extends Controller
             $q->where('nama', 'like', '%' . $request->key . '%');
         })
             ->orWhere('nama', 'like', '%' . $request->key . '%')
-            ->get();
+            ->take(5)->get();
 
         return [
             'status' => 200,

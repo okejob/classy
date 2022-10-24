@@ -249,6 +249,45 @@ $(document).ready(function() {
     });
 
     // bagian kiri
+    $('#add-item').on('click', function() {
+        $.ajax({
+            url: "/data/jenis-item/find",
+        }).done(function(data) {
+            let items = data[0];
+            items.forEach(item => {
+                $.ajax({
+                    url: "/data/kategori/" + item.kategori_id,
+                }).done(function(data) {
+                    let kategori = data[0];
+                    $('#table-items tbody').append("<tr id='item-" + item.id + "'><td><input class='checked-items' type='checkbox' /></td><td>" + item.nama + "</td><td>" + kategori.nama + "</td><td>" + item.harga_bucket + "</td></tr>");
+
+                    $('#modal-add-item').modal('show');
+                });
+            });
+        });
+    });
+
+    $('#add-item-to-table').on('click', function() {
+        $('.checked-items:checked').each(function() {
+            let id = $(this).parent().parent().attr('id');
+            id = id.substr(5);
+
+            $.ajax({
+                url: "/data/jenis-item/" + id,
+            }).done(function(data) {
+                let item = data[0];
+                $.ajax({
+                    url: "/data/kategori/" + item.kategori_id,
+                }).done(function(data) {
+                    let kategori = data[0];
+                    $('#table-trans-item tbody').prepend("<tr><td>" + item.nama + "</td><td>" + kategori.nama + "</td><td></td><td></td><td></td><td class='text-center' style='padding-top: 4px;padding-bottom: 4px;'><button id='btn-catatan-item-" + item.id + "' class='btn btn-primary btn-sm show-catatan-item' type='button'>Catatan</button></td><td class='text-center'>" + item.bobot_bucket + "</td></tr>");
+
+                });
+            });
+        });
+        $('#modal-add-item').modal('hide');
+    });
+
     $('#show-catatan-trans').on('click', function() {
         $(this).next().toggle();
     });
@@ -258,7 +297,7 @@ $(document).ready(function() {
         $(this).closest('div').hide();
     });
 
-    $('.show-catatan-item').on('click', function() {
+    $('#table-trans-item tbody').on('click', '.show-catatan-item', function() {
         $('#modal-catatan-item').modal('show');
     });
 
