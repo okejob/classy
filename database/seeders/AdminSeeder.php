@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Outlet;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -23,6 +24,7 @@ class AdminSeeder extends Seeder
             'phone' => '081239687792',
             'address' => 'surabaya',
             'email' => 'vincentiusmandala@gmail.com',
+            'outlet_id' => 1,
         ])->assignRole('administrator');
 
         User::create([
@@ -32,6 +34,7 @@ class AdminSeeder extends Seeder
             'phone' => '0888888888',
             'address' => 'surabaya',
             'email' => 'mitchel@gmail.com',
+            'outlet_id' => 1,
         ])->assignRole('administrator');
 
         User::create([
@@ -41,6 +44,23 @@ class AdminSeeder extends Seeder
             'phone' => '0888888888',
             'address' => 'surabaya',
             'email' => 'admin@admin.com',
+            'outlet_id' => 1,
         ])->assignRole('administrator');
+
+        Outlet::find(1)->update([
+            'user_id' => 1
+        ]);
+        Outlet::find(2)->update([
+            'user_id' => 1
+        ]);
+        Outlet::find(3)->update([
+            'user_id' => 1
+        ]);
+        Outlet::find(4)->update([
+            'user_id' => 1
+        ]);
+        Outlet::find(5)->update([
+            'user_id' => 1
+        ]);
     }
 }

@@ -21,7 +21,6 @@ class OutletFactory extends Factory
             'nama' => fake()->city(),
             'alamat' => fake()->address(),
             'telp_1' => fake()->phoneNumber(),
-            'user_id' => 1
         ];
     }
 }

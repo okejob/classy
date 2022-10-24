@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(PermissionSeeder::class);
         $this->call(RoleSeeder::class);
+        $this->call(OutletSeeder::class);
         $this->call(AdminSeeder::class);
         $this->call(PaketSeeder::class);
         $this->call(ParfumSeeder::class);
@@ -32,7 +33,6 @@ class DatabaseSeeder extends Seeder
         $this->call(JenisRewashSeeder::class);
         $this->call(PelangganSeeder::class);
         $this->call(SettingUmumSeeder::class);
-        $this->call(OutletSeeder::class);
         $this->call(DriverSeeder::class);
         $this->call(JenisItemSeeder::class);
     }

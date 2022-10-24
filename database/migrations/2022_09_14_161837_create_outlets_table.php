@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('fax')->nullable();
             $table->boolean('status')->default(true);
             $table->foreignId('user_id')
+                ->nullable()
                 ->constrained()
                 ->cascadeOnDelete();
             $table->timestamps();

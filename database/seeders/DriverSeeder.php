@@ -23,6 +23,7 @@ class DriverSeeder extends Seeder
             'phone' => '0888888888',
             'address' => 'surabaya',
             'email' => 'joko@admin.com',
+            'outlet_id' => 1,
         ])->assignRole('delivery');
 
         User::create([
@@ -32,6 +33,7 @@ class DriverSeeder extends Seeder
             'phone' => '0888888888',
             'address' => 'surabaya',
             'email' => 'wawan@admin.com',
+            'outlet_id' => 1,
         ])->assignRole('delivery');
     }
 }

@@ -19,6 +19,7 @@ class PickupDeliveryController extends Controller
         if ($action == "pickup") {
             $transaksi = Transaksi::create([
                 'pelanggan_id' => $request->pelanggan_id,
+                'outlet_id' => Auth::user()->outlet_id,
                 'status' => 'draft',
             ]);
 
