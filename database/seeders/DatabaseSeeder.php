@@ -23,17 +23,17 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        $this->call(PermissionSeeder::class);
-        $this->call(RoleSeeder::class);
-        $this->call(AdminSeeder::class);
-        $this->call(PaketSeeder::class);
-        $this->call(ParfumSeeder::class);
-        $this->call(KategoriSeeder::class);
-        $this->call(JenisRewashSeeder::class);
-        $this->call(PelangganSeeder::class);
-        $this->call(SettingUmumSeeder::class);
-        $this->call(OutletSeeder::class);
-        $this->call(DriverSeeder::class);
+        //$this->call(PermissionSeeder::class);
+        //$this->call(RoleSeeder::class);
+        //$this->call(AdminSeeder::class);
+        //$this->call(PaketSeeder::class);
+        //$this->call(ParfumSeeder::class);
+        //$this->call(KategoriSeeder::class);
+        //$this->call(JenisRewashSeeder::class);
+        //$this->call(PelangganSeeder::class);
+        //$this->call(SettingUmumSeeder::class);
+        //$this->call(OutletSeeder::class);
+        //$this->call(DriverSeeder::class);
         $this->call(JenisItemSeeder::class);
     }
 }

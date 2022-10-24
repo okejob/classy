@@ -27,7 +27,8 @@ class JenisItemFactory extends Factory
             'harga_premium' => fake()->randomNumber(5, true),
             'status_bucket' => fake()->boolean(),
             'status_kilo' => fake()->boolean(),
-            'status_premium' => fake()->boolean()
+            'status_premium' => fake()->boolean(),
+            'beban_produksi' => fake()->randomFloat(1, 0, 5, 20),
         ];
     }
 }

@@ -28,6 +28,7 @@ return new class extends Migration
             $table->boolean('status_bucket')->default(false);
             $table->boolean('status_premium')->default(false);
             $table->boolean('status_item')->default(true);
+            $table->float('beban_produksi');
             $table->timestamps();
         });
     }
