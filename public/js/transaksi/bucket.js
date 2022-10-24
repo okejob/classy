@@ -148,8 +148,17 @@ $(document).ready(function() {
         $('#container-ambil-outlet').hide();
 
         $('#search-pelanggan').show();
-        $('#modal-opsi-trans').modal('hide');
-        $('#section-transaksi-cuci').children('.row').show();
+
+        $.ajax({
+            url: "/transaksi/newID",
+        }).done(function(data) {
+            let id = data[0];
+
+            $('#id-trans').text(id);
+            $('#id-trans').show();
+            $('#modal-opsi-trans').modal('hide');
+            $('#section-transaksi-cuci').children('.row').show();
+        });
     });
 
     // bagian kanan
@@ -250,20 +259,25 @@ $(document).ready(function() {
 
     // bagian kiri
     $('#add-item').on('click', function() {
+        $('#table-items tbody').empty();
+
         $.ajax({
             url: "/data/jenis-item/find",
         }).done(function(data) {
             let items = data[0];
             items.forEach(item => {
-                $.ajax({
-                    url: "/data/kategori/" + item.kategori_id,
-                }).done(function(data) {
-                    let kategori = data[0];
-                    $('#table-items tbody').append("<tr id='item-" + item.id + "'><td><input class='checked-items' type='checkbox' /></td><td>" + item.nama + "</td><td>" + kategori.nama + "</td><td>" + item.harga_bucket + "</td></tr>");
-
-                    $('#modal-add-item').modal('show');
-                });
+                $('#table-items tbody').append("<tr id='item-" + item.id + "'><td><input class='checked-items' type='checkbox' /></td><td>" + item.nama + "</td><td>" + item.nama_kategori + "</td><td>" + item.harga_bucket + "</td></tr>");
             });
+            $('#modal-add-item').modal('show');
+        });
+    });
+
+    $('#search-id-item').on('click', function() {
+        $.ajax({
+            url: "/data/transaksi/newID",
+        }).done(function(data) {
+            let id = data[0];
+
         });
     });
 
@@ -276,16 +290,12 @@ $(document).ready(function() {
                 url: "/data/jenis-item/" + id,
             }).done(function(data) {
                 let item = data[0];
-                $.ajax({
-                    url: "/data/kategori/" + item.kategori_id,
-                }).done(function(data) {
-                    let kategori = data[0];
-                    $('#table-trans-item tbody').prepend("<tr><td>" + item.nama + "</td><td>" + kategori.nama + "</td><td></td><td></td><td></td><td class='text-center' style='padding-top: 4px;padding-bottom: 4px;'><button id='btn-catatan-item-" + item.id + "' class='btn btn-primary btn-sm show-catatan-item' type='button'>Catatan</button></td><td class='text-center'>" + item.bobot_bucket + "</td></tr>");
 
-                });
+                $('#table-trans-item tbody').prepend("<tr><td>" + item.nama + "</td><td>" + item.nama_kategori + "</td><td></td><td></td><td></td><td class='text-center' style='padding-top: 4px;padding-bottom: 4px;'><button id='btn-catatan-item-" + item.id + "' class='btn btn-primary btn-sm show-catatan-item' type='button'>Catatan</button></td><td class='text-center'>" + item.bobot_bucket + "</td></tr>");
             });
+        }).promise().done( function() {
+            $('#modal-add-item').modal('hide');
         });
-        $('#modal-add-item').modal('hide');
     });
 
     $('#show-catatan-trans').on('click', function() {
