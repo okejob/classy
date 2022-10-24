@@ -39,6 +39,22 @@ class TransaksiController extends Controller
         return round($total_harga, 2);
     }
 
+    public function checkHarga(Request $request)
+    {
+        $paket_bucket = PaketCuci::where('nama_paket', 'BUCKET')->get();
+        $subtotal = $request->total_bobot * $paket_bucket->harga_paket;
+        $diskon = 0;
+        $diskon_member = $request->member == 0 ? 0 : 10;
+        $grand_total = $subtotal * ((100 - ($diskon + $diskon_member)) / 100);
+
+        return [
+            'status' => 200,
+            'subtotal' => $subtotal,
+            'diskon' => $diskon,
+            'grand_total' => $grand_total,
+        ];
+    }
+
     public function insert(InsertTransaksiRequest $request)
     {
         $validated = $request->validated();
