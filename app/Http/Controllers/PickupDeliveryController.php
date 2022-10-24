@@ -18,7 +18,7 @@ class PickupDeliveryController extends Controller
         $action = $request->action;
         if ($action == "pickup") {
             $transaksi = Transaksi::create([
-                'pelanggan_id' => $request->safe()->only('pelanggan_id'),
+                'pelanggan_id' => $request->pelanggan_id,
                 'status' => 'draft',
             ]);
 
