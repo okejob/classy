@@ -15,8 +15,8 @@ class PickupDeliveryController extends Controller
     {
         $merged = $request->safe()->merge(['user_id' => Auth::id()])->toArray();
         $pickup_delivery = PickupDelivery::create($merged);
-        $action = $request->safe()->only('action');
-        if ($action == 'pickup') {
+        $action = $request->action;
+        if ($action == "pickup") {
             $transaksi = Transaksi::create([
                 'pelanggan_id' => $request->safe()->only('pelanggan_id'),
                 'status' => 'draft',
@@ -27,7 +27,7 @@ class PickupDeliveryController extends Controller
                 'pickup_delivery_id' => $pickup_delivery->id,
             ]);
         }
-        //return redirect()->intended(route(''));
+        return redirect()->intended(route('pickup-delivery'));
     }
 
     public function show($id)

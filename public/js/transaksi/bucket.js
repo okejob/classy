@@ -282,6 +282,14 @@ $(document).ready(function() {
         }
     });
 
+    $('#simpan-info-trans').on('click', function() {
+        $.ajax({
+            url: "/setting/outlet/" + $(this).val(),
+        }).done(function(data) {
+            
+        });
+    });
+
     // bagian kiri
     $('#add-item').on('click', function() {
         $('#table-items tbody').empty();
@@ -326,7 +334,7 @@ $(document).ready(function() {
 
             let rowAdd = $('#table-trans-item tbody').children().last().detach();
             let total_bobot = 0;
-            $('#table-trans-item tbody tr').each(function() {
+            $('#table-trans- item tbody tr').each(function() {
                 total_bobot += parseFloat($(this).children().eq(6).html());
             });
             $('#table-trans-item tbody').append(rowAdd);
@@ -339,8 +347,14 @@ $(document).ready(function() {
                 $('#grand-total').html(data.grand_total);
 
                 setThousandSeparator();
+                $('#modal-add-item').modal('hide');
             });
-            $('#modal-add-item').modal('hide');
+        }).promise().done( function() {
+            $.ajax({
+                // url: ,
+            }).done(function(data) {
+
+            });
         });
     });
 
@@ -364,6 +378,6 @@ $(document).ready(function() {
     $('#save-trans').on('click', function() {
         // get semua item
 
-        // 
+        //
     });
 });

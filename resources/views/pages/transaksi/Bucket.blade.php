@@ -445,6 +445,10 @@
                                 <button class="btn btn-primary" id="to-pickup-delivery">Edit data pickup & delivery</button>
                             </div>
                         </section>
+                        <hr style="margin: 1rem -1rem;">
+                        <div>
+                            <button class="btn btn-primary w-100" id="simpan-info-trans">Simpan Informasi Transaksi</button>
+                        </div>
                     </div>
                 </div>
             </div>
