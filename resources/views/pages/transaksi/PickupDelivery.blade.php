@@ -80,8 +80,8 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Pelanggan</th>
-                                <th>Driver</th>
-                                <th>Alamat</th>
+                                <th>Outlet</th>
+                                <th>Tanggal Ambil</th>
                             </tr>
                         </thead>
                         <tbody>

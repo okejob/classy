@@ -41,7 +41,7 @@ class TransaksiController extends Controller
 
     public function checkHarga(Request $request)
     {
-        $paket_bucket = PaketCuci::where('nama_paket', 'BUCKET')->get();
+        $paket_bucket = PaketCuci::where('nama_paket', 'BUCKET')->first();
         $subtotal = $request->total_bobot * $paket_bucket->harga_paket;
         $diskon = 0;
         $diskon_member = $request->member == 0 ? 0 : 10;
@@ -124,7 +124,7 @@ class TransaksiController extends Controller
 
     public function getID()
     {
-        $id = Transaksi::latest()->first()->id == null ? 1 : Transaksi::latest()->first()->id + 1;
+        $id = Transaksi::count() == 0 ? 1 : Transaksi::latest()->first()->id + 1;
         return [
             'status' => 200,
             $id,

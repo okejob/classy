@@ -89,23 +89,12 @@
                                         <th>Penyetrika</th>
                                         <th>Proses</th>
                                         <th>Catatan</th>
-                                        <th>Bobot</th>
+                                        <th colspan="2">Bobot</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Item 2</td>
-                                        <td>Kategori 1</td>
-                                        <td>Si mbah</td>
-                                        <td>Si mbah</td>
-                                        <td>Sedang cuci</td>
-                                        <td class="text-center" style="padding-top: 4px;padding-bottom: 4px;">
-                                            <button id="btn-catatan-item-2" class="btn btn-primary btn-sm show-catatan-item" type="button">Catatan</button>
-                                        </td>
-                                        <td class="text-center">10</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center" colspan="7" style="padding-top: 4px;padding-bottom: 4px;">
+                                        <td class="text-center" colspan="8" style="padding-top: 4px;padding-bottom: 4px;">
                                             <button class="btn btn-primary btn-sm" id="add-item" type="button">
                                                 <i class="fas fa-plus"></i>
                                             </button>
@@ -115,15 +104,18 @@
                                 <tfoot>
                                     <tr>
                                         <td class="text-end" colspan="6">Sub Total</td>
-                                        <td id="sub-total"></td>
+                                        <td>Rp</td>
+                                        <td class="text-end thousand-separator" id="sub-total"></td>
                                     </tr>
                                     <tr>
                                         <td class="text-end" colspan="6">Diskon</td>
-                                        <td id="diskon"></td>
+                                        <td>Rp</td>
+                                        <td class="text-end thousand-separator" id="diskon"></td>
                                     </tr>
                                     <tr>
                                         <td class="text-end" colspan="6">Grand Total</td>
-                                        <td id="grand-total"></td>
+                                        <td>Rp</td>
+                                        <td class="text-end thousand-separator" id="grand-total"></td>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -183,27 +175,23 @@
                                     <div class="modal-body">
                                         <div class="d-flex mb-3">
                                             <input class="form-control" type="search" id="input-nama-item" placeholder="Nama Item">
-                                            <button class="btn btn-primary mx-3" data-bs-toggle="tooltip" data-bss-tooltip="" id="search-id-item" type="button" title="Cari Item">
+                                            <button class="btn btn-primary mx-3" data-bs-toggle="tooltip" data-bss-tooltip="" id="search-item" type="button" title="Cari Item">
                                                 <i class="fas fa-search"></i>
                                             </button>
                                         </div>
                                         <div class="table-responsive">
-                                            <table class="table" id="table-items">
+                                            <table class="table table-striped table-hover" id="table-items">
                                                 <thead>
                                                     <tr>
-                                                        <th></th>
                                                         <th>Nama Item</th>
                                                         <th>Kategori</th>
-                                                        <th>Harga</th>
+                                                        <th>Bobot</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                 </tbody>
                                             </table>
                                         </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-primary" id="add-item-to-table" type="button">Add</button>
                                     </div>
                                 </div>
                             </div>
@@ -452,6 +440,9 @@
                                         @endforeach
                                     </select>
                                 </div>
+                            </div>
+                            <div class="mt-2 text-end" style="display: none;">
+                                <button class="btn btn-primary" id="to-pickup-delivery">Edit data pickup & delivery</button>
                             </div>
                         </section>
                     </div>

@@ -82,13 +82,14 @@ $(document).ready(function() {
                     $('#show-data-pelanggan').trigger('click');
                     $('#show-data-outlet').trigger('click');
                     $('#show-data-pickup-delivery').trigger('click');
+                    $('#to-pickup-delivery').parent().show();
+
                     $('#modal-opsi-trans').modal('hide');
                     $(this).parent().css('pointer-events', 'initial');
                     $('#section-transaksi-cuci').children('.row').show();
                 });
             });
         });
-
     });
 
     $('#search-id-trans').on('click', function() {
@@ -148,6 +149,7 @@ $(document).ready(function() {
         $('#container-ambil-outlet').hide();
 
         $('#search-pelanggan').show();
+        $('#to-pickup-delivery').parent().hide();
 
         $.ajax({
             url: "/transaksi/newID",
@@ -160,6 +162,24 @@ $(document).ready(function() {
             $('#section-transaksi-cuci').children('.row').show();
         });
     });
+
+    var separatorInterval = setInterval(setThousandSeparator, 10);
+    function setThousandSeparator () {
+        let length = $('.thousand-separator').length;
+        if (length != 0) {
+            $('.thousand-separator').each(function(index, element) {
+                let val = $(element).text();
+                if (val != '') {
+                    while(val.indexOf('.') != -1) {
+                        val = val.replace('.', '');
+                    }
+                    let number = parseInt(val);
+                    $(element).text(number.toLocaleString(['ban', 'id']));
+                }
+            });
+            clearInterval(separatorInterval);
+        }
+    };
 
     // bagian kanan
     $('.show-data').on('click', function() {
@@ -231,6 +251,11 @@ $(document).ready(function() {
         $('#container-delivery').hide();
     });
 
+    $('#to-pickup-delivery').on('click', function() {
+        let transID = $('#id-trans').text();
+        window.location = "/transaksi/pickup-delivery/";
+    });
+
     let expandState = false;
     const leftCol = $('#expand-table').closest('.row').children().eq(0);
     const rightCol = $('#expand-table').closest('.row').children().eq(1);
@@ -265,35 +290,56 @@ $(document).ready(function() {
             url: "/data/jenis-item/find",
         }).done(function(data) {
             let items = data[0];
+
             items.forEach(item => {
-                $('#table-items tbody').append("<tr id='item-" + item.id + "'><td><input class='checked-items' type='checkbox' /></td><td>" + item.nama + "</td><td>" + item.nama_kategori + "</td><td>" + item.harga_bucket + "</td></tr>");
+                $('#table-items tbody').append("<tr id='item-" + item.id + "'><td>" + item.nama + "</td><td>" + item.nama_kategori + "</td><td>" + item.bobot_bucket + "</td></tr>");
             });
             $('#modal-add-item').modal('show');
         });
     });
 
-    $('#search-id-item').on('click', function() {
-        $.ajax({
-            url: "/data/transaksi/newID",
-        }).done(function(data) {
-            let id = data[0];
+    $('#search-item').on('click', function() {
+        $('#table-items tbody').empty();
+        let key = $('#search-item').val();
 
+        $.ajax({
+            url: "/data/jenis-item/find?key=" + key,
+        }).done(function(data) {
+            let items = data[0];
+
+            items.forEach(item => {
+                $('#table-items tbody').append("<tr id='item-" + item.id + "'><td>" + item.nama + "</td><td>" + item.nama_kategori + "</td><td>" + item.bobot_bucket + "</td></tr>");
+            });
         });
     });
 
-    $('#add-item-to-table').on('click', function() {
-        $('.checked-items:checked').each(function() {
-            let id = $(this).parent().parent().attr('id');
-            id = id.substr(5);
+    $('#table-items tbody').on('dblclick', 'tr', function() {
+        let id = $(this).attr('id');
+        id = id.substr(5);
+
+        $.ajax({
+            url: "/data/jenis-item/" + id,
+        }).done(function(data) {
+            let item = data[0];
+
+            $('#table-trans-item tbody').prepend("<tr><td>" + item.nama + "</td><td>" + item.nama_kategori + "</td><td></td><td></td><td></td><td class='text-center' style='padding-top: 4px;padding-bottom: 4px;'><button id='btn-catatan-item-" + item.id + "' class='btn btn-primary btn-sm show-catatan-item' type='button'>Catatan</button></td><td class='text-center' colspan='2'>" + item.bobot_bucket + "</td></tr>");
+
+            let rowAdd = $('#table-trans-item tbody').children().last().detach();
+            let total_bobot = 0;
+            $('#table-trans-item tbody tr').each(function() {
+                total_bobot += parseFloat($(this).children().eq(6).html());
+            });
+            $('#table-trans-item tbody').append(rowAdd);
 
             $.ajax({
-                url: "/data/jenis-item/" + id,
+                url: "/transaksi/getTotal/?total_bobot=" + total_bobot + "&member=" + 0,
             }).done(function(data) {
-                let item = data[0];
+                $('#sub-total').html(data.subtotal);
+                $('#diskon').html(data.diskon);
+                $('#grand-total').html(data.grand_total);
 
-                $('#table-trans-item tbody').prepend("<tr><td>" + item.nama + "</td><td>" + item.nama_kategori + "</td><td></td><td></td><td></td><td class='text-center' style='padding-top: 4px;padding-bottom: 4px;'><button id='btn-catatan-item-" + item.id + "' class='btn btn-primary btn-sm show-catatan-item' type='button'>Catatan</button></td><td class='text-center'>" + item.bobot_bucket + "</td></tr>");
+                setThousandSeparator();
             });
-        }).promise().done( function() {
             $('#modal-add-item').modal('hide');
         });
     });
@@ -313,5 +359,11 @@ $(document).ready(function() {
 
     $('.stain-selection').on('click', function() {
         $(this).toggleClass('selected');
+    });
+
+    $('#save-trans').on('click', function() {
+        // get semua item
+
+        // 
     });
 });
