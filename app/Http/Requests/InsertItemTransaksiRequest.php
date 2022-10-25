@@ -26,12 +26,11 @@ class InsertItemTransaksiRequest extends FormRequest
         return [
             'transaksi_id' => 'required|exists:transaksis,id',
             'jenis_item_id' => 'required|exists:jenis_items,id',
-            'express' => 'boolean',
-            'setrika' => 'boolean',
+            'bobot_bucket' => 'numeric',
             'harga_premium' => 'numeric',
             'status_proses' => 'string',
-            'pencuci' => 'exists:users,id',
-            'penyetrika' => 'exists:users,id',
+            'pencuci' => 'nullable|exists:users,id',
+            'penyetrika' => 'nullable|exists:users,id',
         ];
     }
 }
