@@ -114,28 +114,6 @@
                     </div>
                     <div class="col-4 position-relative">
                         <div class="vr position-absolute" style="height: calc(100% + 2rem); margin: -1rem 0; border-left: 1px solid rgba(0,0,0,.125); top: 0; left: 0;"></div>
-                        <section id="section-info-outlet">
-                            <header>
-                                <h5 class="d-flex justify-content-between align-items-center">
-                                    Outlet
-                                    <button class="btn show-data" id="show-data-outlet" type="button">
-                                        <i class="fas fa-chevron-down large"></i>
-                                    </button>
-                                </h5>
-                            </header>
-                            <div id="info-outlet" class="position-relative mt-2" style="display: none;">
-                                <h6>Outlet input</h6>
-                                <select class="form-control" id="select-outlet">
-                                    <option value="" selected hidden>-</option>
-                                    @foreach ($data['outlet'] as $outlet)
-                                        <option value="{{ $outlet->id }}">{{ $outlet->nama }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </section>
-                    </div>
-                    <div class="col-4 position-relative">
-                        <div class="vr position-absolute" style="height: calc(100% + 2rem); margin: -1rem 0; border-left: 1px solid rgba(0,0,0,.125); top: 0; left: 0;"></div>
                         <section id="section-info-pickup-delivery">
                             <header class="d-flex justify-content-between align-items-center">
                                 <h5 class="d-flex justify-content-between align-items-center">Pickup &amp; Delivery</h5>
@@ -195,16 +173,38 @@
                             </div>
                         </section>
                     </div>
+                    <div class="col-4 position-relative">
+                        <div class="vr position-absolute" style="height: calc(100% + 2rem); margin: -1rem 0; border-left: 1px solid rgba(0,0,0,.125); top: 0; left: 0;"></div>
+                        <section id="section-info-outlet">
+                            <header>
+                                <h5 class="d-flex justify-content-between align-items-center">
+                                    Outlet
+                                    <button class="btn show-data" id="show-data-outlet" type="button">
+                                        <i class="fas fa-chevron-down large"></i>
+                                    </button>
+                                </h5>
+                            </header>
+                            <div id="info-outlet" class="position-relative mt-2" style="display: none;">
+                                <h6>Outlet input</h6>
+                                <select class="form-control" id="select-outlet">
+                                    <option value="" selected hidden>-</option>
+                                    @foreach ($data['outlet'] as $outlet)
+                                        <option value="{{ $outlet->id }}">{{ $outlet->nama }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </section>
+                        <div class="mt-2 text-end">
+                            <button class="btn btn-primary" id="simpan-info-trans">Simpan Informasi Transaksi</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="text-end mb-4   ">
-            <button class="btn btn-primary" id="simpan-info-trans">Simpan Informasi Transaksi</button>
         </div>
     </section>
     <section id="section-transaksi-cuci">
         <div class="modal fade" role="dialog" tabindex="-1" id="modal-opsi-trans">
-            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Opsi Transaksi</h4>

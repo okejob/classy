@@ -28,7 +28,7 @@ return new class extends Migration
             $table->boolean('is_done')->default(false);
             $table->text('alamat');
             $table->foreignId('modified_by')
-                ->constrained()
+                ->constrained('users', 'id')
                 ->cascadeOnDelete();
             $table->timestamps();
         });

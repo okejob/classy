@@ -18,4 +18,9 @@ class Pelanggan extends Model
         parent::boot();
         Pelanggan::observe(new UserActionObserver);
     }
+
+    public function catatan_pelanggan()
+    {
+        return $this->hasOne(CatatanPelanggan::class);
+    }
 }

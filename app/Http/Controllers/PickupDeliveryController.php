@@ -23,11 +23,10 @@ class PickupDeliveryController extends Controller
                 'status' => 'draft',
             ]);
 
-            $transaksi_pickup_delivery = TransaksiPickupDelivery::create([
-                'transaksi_id' => $transaksi->id,
-                'pickup_delivery_id' => $pickup_delivery->id,
-            ]);
+            $pickup_delivery->transaksi_id = $transaksi->id;
+            $pickup_delivery->save();
         }
+
         return redirect()->intended(route('pickup-delivery'));
     }
 

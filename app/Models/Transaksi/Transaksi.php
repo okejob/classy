@@ -2,6 +2,7 @@
 
 namespace App\Models\Transaksi;
 
+use App\Models\Data\CatatanPelanggan;
 use App\Models\Data\Pelanggan;
 use App\Models\Outlet;
 use App\Models\Data\Parfum;
@@ -52,7 +53,7 @@ class Transaksi extends Model
 
     public function scopeDetail($query)
     {
-        return $query->with('item_transaksi', 'pickup_delivery', 'outlet', 'parfum');
+        return $query->with('item_transaksi', 'pickup_delivery', 'outlet', 'parfum', 'pelanggan', 'penerima', 'pelanggan.catatan_pelanggan');
     }
 
     public function item_transaksi()
@@ -78,5 +79,10 @@ class Transaksi extends Model
     public function pelanggan()
     {
         return $this->belongsTo(Pelanggan::class);
+    }
+
+    public function penerima()
+    {
+        return $this->hasOne(Penerima::class);
     }
 }
