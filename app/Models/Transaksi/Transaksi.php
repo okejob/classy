@@ -4,6 +4,7 @@ namespace App\Models\Transaksi;
 
 use App\Models\Data\Pelanggan;
 use App\Models\Outlet;
+use App\Models\Paket\PaketCuci;
 use App\Models\User;
 use App\Observers\UserActionObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,6 +20,33 @@ class Transaksi extends Model
     {
         parent::boot();
         User::observe(new UserActionObserver);
+    }
+
+    public function recalculate()
+    {
+        $pelanggan = Pelanggan::find($this->pelanggan_id);
+
+        $subtotal = 0;
+        $diskon = $this->diskon;
+        $diskon_member = $pelanggan->member ? 10 : 0;
+        $grand_total = 0;
+
+        $sum_bobot = ItemTransaksi::where('transaksi_id', $this->id)->sum('bobot_bucket');
+        $sum_harga_premium = ItemTransaksi::where('transaksi_id', $this->id)->sum('harga_premium');
+
+        $paket_bucket = PaketCuci::where('nama_paket', 'BUCKET')->first();
+        $jumlah_bucket = ceil($sum_bobot / $paket_bucket->jumlah_bobot);
+        $total_harga_bucket = $jumlah_bucket * $paket_bucket->harga_paket;
+
+        $subtotal = $sum_harga_premium + $total_harga_bucket;
+        $grand_total = $subtotal * ((100 - ($diskon + $diskon_member)) / 100);
+
+        $this->total_bobot = $sum_bobot;
+        $this->jumlah_bucket = $jumlah_bucket;
+        $this->subtotal = $subtotal;
+        $this->grand_total = $grand_total;
+        $this->save();
+        return $this;
     }
 
     public function scopeDetail($query)

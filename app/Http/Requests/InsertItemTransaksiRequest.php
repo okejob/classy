@@ -26,9 +26,7 @@ class InsertItemTransaksiRequest extends FormRequest
         return [
             'transaksi_id' => 'required|exists:transaksis,id',
             'jenis_item_id' => 'required|exists:jenis_items,id',
-            'bobot_bucket' => 'numeric',
-            'harga_premium' => 'numeric',
-            'status_proses' => 'string',
+            'status_proses' => 'nullable|string',
             'pencuci' => 'nullable|exists:users,id',
             'penyetrika' => 'nullable|exists:users,id',
         ];

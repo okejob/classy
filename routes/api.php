@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ItemTransaksiController;
 use App\Http\Controllers\JenisItemController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\OutletController;

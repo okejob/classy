@@ -50,4 +50,12 @@ class User extends Authenticatable
         parent::boot();
         User::observe(new UserActionObserver);
     }
+
+    public function getRole($id)
+    {
+        $user = User::find($id);
+        $roles = $user->getRoleNames();
+        $role = $roles[0];
+        return $role;
+    }
 }

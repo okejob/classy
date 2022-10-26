@@ -14,23 +14,6 @@ use App\Models\User;
 class TransaksiController extends Controller
 {
 
-    public function checkRole($id)
-    {
-        $user = User::find($id);
-        $roles = $user->getRoleNames();
-        $role = $roles[0];
-        return $role;
-    }
-
-    public function diskonMember($id)
-    {
-        $isMember = Pelanggan::find($id)->isMember();
-        if ($isMember) {
-            return 10;
-        }
-        return 0;
-    }
-
     public function bucketPrice($total_bobot)
     {
         $paket_bucket = PaketCuci::where('nama_paket', 'BUCKET')->first();
@@ -71,44 +54,9 @@ class TransaksiController extends Controller
             'catatan' => $validated['catatan'],
         ]);
 
-        $total_bobot = 0;
-        $jumlah_bucket = 0;
-        $subtotal = 0;
-        $diskon = 0;
-        $diskon_member = $this->diskonMember($validated['pelanggan_id']);
-        $grand_total = 0;
+        $transaksi = Transaksi::find($transaksi->id)->recalculate();
 
-        $status = $this->checkRole(Auth::id());
-
-
-        $item_transaksis = $request->safe()->only('item_transaksi');
-        foreach ($item_transaksis as $item) {
-            $item = ItemTransaksi::create([
-                'transaksi_id' => $transaksi->id,
-                'jenis_item_id' => $item['jenis_item_id'],
-                'bobot_bucket' => (float)$item['bobot_bucket'],
-                'harga_premium' => $item['harga_premium'],
-            ]);
-
-            if ($tipe_transaksi == 'bucket') {
-                $total_bobot +=  (float)$item['bobot_bucket'];
-            } else {
-                $subtotal += $item['harga_premium'];
-            }
-        }
-
-        if ($tipe_transaksi == 'bucket') {
-            $subtotal = $this->bucketPrice($total_bobot);
-        }
-
-        $grand_total = $subtotal * ((100 - ($diskon + $diskon_member)) / 100);
-
-        $transaksi->total_bobot = $total_bobot;
-        $transaksi->jumlah_bucket = $jumlah_bucket;
-        $transaksi->subtotal = $subtotal;
-        $transaksi->diskon = $diskon;
-        $transaksi->diskon_member = $diskon_member;
-        $transaksi->grand_total = $grand_total;
+        $status = User::getRole(Auth::id());
         $transaksi->status = $status;
         $transaksi->save();
     }

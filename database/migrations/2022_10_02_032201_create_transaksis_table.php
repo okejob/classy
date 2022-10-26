@@ -27,7 +27,10 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('users', 'id')
                 ->cascadeOnDelete();
-            $table->foreignId('parfum_id')->nullable();
+            $table->foreignId('parfum_id')
+                ->nullable()
+                ->constrained('parfums', 'id')
+                ->cascadeOnDelete();
             $table->boolean('express')->default(false);
             $table->boolean('setrika_only')->default(false);
             $table->integer('total_bobot')->default(0);

@@ -3,12 +3,36 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\InsertItemTransaksiRequest;
+use App\Models\Data\JenisItem;
 use App\Models\Transaksi\ItemTransaksi;
+use App\Models\Transaksi\Transaksi;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ItemTransaksiController extends Controller
 {
+
+
+
+    public function addItemToTransaksi(InsertItemTransaksiRequest $request)
+    {
+
+        $validated = $request->safe();
+        $validated->user_id = Auth::id();
+        $role = User::getRole(Auth::id());
+        $jenis_item = JenisItem::find($request->jenis_item_id);
+        $validated->bobot_bucket = $jenis_item->bobot_bucket;
+        $validated->harga_premium = $jenis_item->harga_premium;
+        $validated->status_proses = $role;
+        $item_transaksi = ItemTransaksi::create($request->toArray());
+
+        $transaksi = Transaksi::find($request->transaksi_id)->recalculate();
+        $transaksi->modified_by = Auth::id();
+        $transaksi->save();
+        return $transaksi;
+    }
+
     public function insert(InsertItemTransaksiRequest $request)
     {
         $merged = $request->safe()->merge(['user_id' => Auth::id()])->toArray();

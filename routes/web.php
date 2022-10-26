@@ -103,6 +103,4 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transaksi/getTrans/{id}', [TransaksiController::class, 'getTransaksi']);
     Route::get('/transaksi/newID', [TransaksiController::class, 'getID']);
     Route::get('/transaksi/getTotal', [TransaksiController::class, 'checkHarga']);
-
-    
 });
