@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\SettingUmum;
+use App\Models\Transaksi\PickupDelivery;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -36,5 +37,6 @@ class DatabaseSeeder extends Seeder
         $this->call(DriverSeeder::class);
         $this->call(JenisItemSeeder::class);
         $this->call(TransaksiSeeder::class);
+        $this->call(PickupDeliverySeeder::class);
     }
 }

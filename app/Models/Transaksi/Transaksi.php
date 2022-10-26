@@ -4,6 +4,7 @@ namespace App\Models\Transaksi;
 
 use App\Models\Data\Pelanggan;
 use App\Models\Outlet;
+use App\Models\Data\Parfum;
 use App\Models\Paket\PaketCuci;
 use App\Models\User;
 use App\Observers\UserActionObserver;
@@ -71,7 +72,7 @@ class Transaksi extends Model
 
     public function parfum()
     {
-        return $this->hasOne(Parfum::class);
+        return $this->belongsTo(Parfum::class);
     }
 
     public function pelanggan()

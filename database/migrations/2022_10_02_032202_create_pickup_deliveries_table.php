@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('action');
             $table->boolean('is_done')->default(false);
             $table->text('alamat');
-            $table->foreignId('user_id')
+            $table->foreignId('modified_by')
                 ->constrained()
                 ->cascadeOnDelete();
             $table->timestamps();

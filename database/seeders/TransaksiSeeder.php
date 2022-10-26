@@ -24,5 +24,6 @@ class TransaksiSeeder extends Seeder
             'status' => 'draft',
             'modified_by' => 1,
         ]);
+        
     }
 }
