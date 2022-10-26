@@ -3,6 +3,7 @@
 namespace App\Models\Transaksi;
 
 use App\Models\Data\JenisItem;
+use App\Models\Data\Kategori;
 use App\Models\User;
 use App\Observers\UserActionObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,11 +14,28 @@ class ItemTransaksi extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $appends = [
+        'nama_jenis_item',
+        'nama_kategori'
+    ];
 
     public static function boot()
     {
         parent::boot();
         ItemTransaksi::observe(new UserActionObserver);
+    }
+
+    public function getNamaJenisItemAttribute()
+    {
+        $jenis_item = JenisItem::find($this->jenis_item_id);
+        return $jenis_item->nama;
+    }
+
+    public function getNamaKategoriAttribute()
+    {
+        $jenis_item = JenisItem::find($this->jenis_item_id);
+        $kategori = Kategori::find($jenis_item->kategori_id);
+        return $kategori->nama;
     }
 
     public function jenis_item()
