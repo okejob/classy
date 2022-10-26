@@ -35,5 +35,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SettingUmumSeeder::class);
         $this->call(DriverSeeder::class);
         $this->call(JenisItemSeeder::class);
+        $this->call(TransaksiSeeder::class);
     }
 }

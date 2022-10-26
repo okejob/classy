@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('pickup_deliveries', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('transaksi_id')
+                ->nullable()
+                ->constrained('transaksis', 'id')
+                ->cascadeOnDelete();
             $table->foreignId('pelanggan_id');
             $table->foreignId('driver_id')
                 ->nullable()

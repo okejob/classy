@@ -51,7 +51,7 @@ class Transaksi extends Model
 
     public function scopeDetail($query)
     {
-        return $query->with('item_transaksi');
+        return $query->with('item_transaksi', 'pickup_delivery', 'outlet', 'parfum');
     }
 
     public function item_transaksi()
@@ -61,7 +61,7 @@ class Transaksi extends Model
 
     public function pickup_delivery()
     {
-        return $this->hasOne(PickupDelivery::class);
+        return $this->hasMany(PickupDelivery::class);
     }
 
     public function outlet()
