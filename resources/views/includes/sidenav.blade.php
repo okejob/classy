@@ -7,7 +7,7 @@
                 </div>
                 <i class="fas fa-angle-down"></i>
             </div>
-            <div class="nav-items" style="display: none;">
+            <div class="nav-items">
                 <div id="nav-data-kategori">
                     <a href="/data/kategori" class="menu-item menu-data pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fas fa-boxes"></i>
@@ -53,7 +53,7 @@
                 </div>
                 <i class="fas fa-angle-down"></i>
             </div>
-            <div class="nav-items" style="display: none;">
+            <div class="nav-items">
                 <div id="nav-transaksi-bucket">
                     <a href="/transaksi/bucket" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fab fa-bitbucket"></i>
@@ -93,7 +93,7 @@
                 </div>
                 <i class="fas fa-angle-down"></i>
             </div>
-            <div class="nav-items" style="display: none;">
+            <div class="nav-items">
                 <div id="nav-setting-outlet">
                     <a href="/setting/outlet" class="menu-item menu-setting pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fas fa-building"></i>

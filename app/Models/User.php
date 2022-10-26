@@ -51,7 +51,7 @@ class User extends Authenticatable
         User::observe(new UserActionObserver);
     }
 
-    public function getRole($id)
+    public static function getRole($id)
     {
         $user = User::find($id);
         $roles = $user->getRoleNames();

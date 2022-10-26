@@ -31,17 +31,14 @@ $(document).ready(function() {
         return "";
     }
 
-    if (getCookie('submenu-Data') != '') {
-        $('#nav-menu-data .nav-items').show();
-        $('#nav-menu-data .menu-header .fa-angle-down').addClass('fa-rotate-180');
+    if (getCookie('submenu-Data') == '') {
+        $('#nav-menu-data .nav-items').hide();
     }
-    if (getCookie('submenu-Transaksi') != '') {
-        $('#nav-menu-transaksi .nav-items').show();
-        $('#nav-menu-transaksi .menu-header .fa-angle-down').addClass('fa-rotate-180');
+    if (getCookie('submenu-Transaksi') == '') {
+        $('#nav-menu-transaksi .nav-items').hide();
     }
-    if (getCookie('submenu-Setting') != '') {
-        $('#nav-menu-setting .nav-items').show();
-        $('#nav-menu-setting .menu-header .fa-angle-down').addClass('fa-rotate-180');
+    if (getCookie('submenu-Setting') == '') {
+        $('#nav-menu-setting .nav-items').hide();
     }
 
     $('#side-nav .menu-header').on('click', function() {

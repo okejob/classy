@@ -50,44 +50,45 @@ $(document).ready(function() {
                 $('#select-outlet').addClass('disabled');
                 $('#select-outlet').val(trans.outlet_id);
 
-                $.ajax({
-                    url: "/transaksi/pickup-delivery/" + trans.pickup_delivery_id,
-                }).done(function(data) {
-                    let pickup_delivery = data[0];
+                // $.ajax({
+                //     url: "/transaksi/pickup-delivery/" + trans.pickup_delivery_id,
+                // }).done(function(data) {
+                //     let pickup_delivery = data[0];
 
-                    if (pickup_delivery.ambil) {
-                        $('#select-driver-pickup').val(pickup_delivery.driver_ambil_id);
-                        $('#select-driver-pickup').addClass('disabled');
-                        $('#input-alamat-ambil').val(pickup_delivery.alamat_ambil);
-                        $('#input-alamat-ambil').addClass('disabled');
-                        $('#formCheck-pickup').trigger('click');
-                    }
+                //     if (pickup_delivery.ambil) {
+                //         $('#select-driver-pickup').val(pickup_delivery.driver_ambil_id);
+                //         $('#select-driver-pickup').addClass('disabled');
+                //         $('#input-alamat-ambil').val(pickup_delivery.alamat_ambil);
+                //         $('#input-alamat-ambil').addClass('disabled');
+                //         $('#formCheck-pickup').trigger('click');
+                //     }
 
-                    if (pickup_delivery.antar) {
-                        $('#select-driver-delivery').val(pickup_delivery.driver_antar_id);
-                        $('#select-driver-delivery').addClass('disabled');
-                        $('#input-alamat-antar').val(pickup_delivery.alamat_antar);
-                        $('#input-alamat-antar').addClass('disabled');
-                        $('#formCheck-delivery').trigger('click');
-                    }
+                //     if (pickup_delivery.antar) {
+                //         $('#select-driver-delivery').val(pickup_delivery.driver_antar_id);
+                //         $('#select-driver-delivery').addClass('disabled');
+                //         $('#input-alamat-antar').val(pickup_delivery.alamat_antar);
+                //         $('#input-alamat-antar').addClass('disabled');
+                //         $('#formCheck-delivery').trigger('click');
+                //     }
 
-                    if (pickup_delivery.ambil_di_outlet) {
-                        $('#select-outlet-ambil').val(pickup_delivery.outlet_ambil_id);
-                        $('#select-outlet-ambil').addClass('disabled');
-                        $('#formCheck-ambil-outlet').trigger('click');
-                    }
+                //     if (pickup_delivery.ambil_di_outlet) {
+                //         $('#select-outlet-ambil').val(pickup_delivery.outlet_ambil_id);
+                //         $('#select-outlet-ambil').addClass('disabled');
+                //         $('#formCheck-ambil-outlet').trigger('click');
+                //     }
 
-                    // console.log(pickup_delivery);
+                //     // console.log(pickup_delivery);
 
-                    $('#show-data-pelanggan').trigger('click');
-                    $('#show-data-outlet').trigger('click');
-                    $('#show-data-pickup-delivery').trigger('click');
-                    $('#to-pickup-delivery').parent().show();
+                // });
 
-                    $('#modal-opsi-trans').modal('hide');
-                    $(this).parent().css('pointer-events', 'initial');
-                    $('#section-transaksi-cuci').children('.row').show();
-                });
+                $('#show-data-pelanggan').trigger('click');
+                $('#show-data-outlet').trigger('click');
+                $('#show-data-pickup-delivery').trigger('click');
+                $('#to-pickup-delivery').parent().show();
+
+                $('#modal-opsi-trans').modal('hide');
+                $(this).parent().css('pointer-events', 'initial');
+                $('#section-transaksi-cuci').children('.row').show();
             });
         });
     });
@@ -256,41 +257,15 @@ $(document).ready(function() {
         window.location = "/transaksi/pickup-delivery/";
     });
 
-    let expandState = false;
-    const leftCol = $('#expand-table').closest('.row').children().eq(0);
-    const rightCol = $('#expand-table').closest('.row').children().eq(1);
-    $('#expand-table').on('click', function() {
-        expandState = !expandState;
-        if (expandState) {
-            $(this).children().removeClass('fa-expand-alt');
-            $(this).children().addClass('fa-compress-alt');
-
-            leftCol.removeClass('col-8');
-            leftCol.addClass('col-12');
-
-            rightCol.removeClass('col-4');
-            rightCol.addClass('d-none');
-        } else {
-            $(this).children().removeClass('fa-compress-alt');
-            $(this).children().addClass('fa-expand-alt');
-
-            leftCol.removeClass('col-12');
-            leftCol.addClass('col-8');
-
-            rightCol.removeClass('d-none');
-            rightCol.addClass('col-4');
-        }
-    });
-
     $('#simpan-info-trans').on('click', function() {
         $.ajax({
             url: "/setting/outlet/" + $(this).val(),
         }).done(function(data) {
-            
+
         });
     });
 
-    // bagian kiri
+    // bottom
     $('#add-item').on('click', function() {
         $('#table-items tbody').empty();
 
@@ -321,7 +296,7 @@ $(document).ready(function() {
         });
     });
 
-    $('#table-items tbody').on('dblclick', 'tr', function() {
+    $('#table-items tbody').on('click', 'tr', function() {
         let id = $(this).attr('id');
         id = id.substr(5);
 
@@ -340,22 +315,25 @@ $(document).ready(function() {
             $('#table-trans-item tbody').append(rowAdd);
 
             $.ajax({
-                url: "/transaksi/getTotal/?total_bobot=" + total_bobot + "&member=" + 0,
+                url: "/transaksi/addItem?jenis_item_id=" + item.id + "&transaksi_id=" + $('#id-trans').text(),
             }).done(function(data) {
-                $('#sub-total').html(data.subtotal);
-                $('#diskon').html(data.diskon);
-                $('#grand-total').html(data.grand_total);
+                let harga = data[0];
+                $('#sub-total').html(harga.subtotal);
+                $('#diskon').html(harga.diskon);
+                $('#diskon-member').html(harga.diskon_member);
+                $('#grand-total').html(harga.grand_total);
 
                 setThousandSeparator();
                 $('#modal-add-item').modal('hide');
             });
-        }).promise().done( function() {
-            $.ajax({
-                // url: ,
-            }).done(function(data) {
-
-            });
         });
+        // .promise().done( function() {
+        //     $.ajax({
+        //         // url: ,
+        //     }).done(function(data) {
+
+        //     });
+        // });
     });
 
     $('#show-catatan-trans').on('click', function() {
