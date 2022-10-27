@@ -120,10 +120,6 @@
                                         <option value="sim">SIM</option>
                                     </select>
                                 </div>
-                                <div class="col-12 col-sm-6">
-                                    <h5>Nomor Identitas</h5>
-                                    <input class="form-control" type="text" id="input-nomor-identitas" name="no_id">
-                                </div>
                                 <div class="col-12 col-sm-4">
                                     <h5>Telephone</h5>
                                     <input class="form-control" type="text" id="input-telepon" name="telephone" required>
