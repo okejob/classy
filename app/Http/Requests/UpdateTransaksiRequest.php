@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class InsertTransaksiRequest extends FormRequest
+class UpdateTransaksiRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class InsertTransaksiRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,15 +24,10 @@ class InsertTransaksiRequest extends FormRequest
     public function rules()
     {
         return [
-            'pelanggan_id' => 'required|exists:pelanggans,id',
-            'outlet_input_id' => 'nullable|exists:outlets,id',
-            'cashier_id' => 'nullable|exists:users,id',
-            'pickup_delivery_id' => 'nullable|exists:pickup_deliveries,id',
-            'parfum_id' => 'nullable|exists:parfums,id',
+            'parfum_id' => 'exists:parfums,id',
             'express' => 'boolean',
             'setrika_only' => 'boolean',
-            'item_transaksi' => 'nullable|array',
-            'catatan' => 'nullable|string',
+            'catatan' => 'string|nullable',
         ];
     }
 }

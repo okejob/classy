@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\InsertTransaksiRequest;
+use App\Http\Requests\UpdateTransaksiRequest;
 use App\Models\Data\Pelanggan;
 use App\Models\Paket\PaketCuci;
 use App\Models\Transaksi\ItemTransaksi;
@@ -60,11 +61,13 @@ class TransaksiController extends Controller
         $transaksi->save();
     }
 
-    public function update(InsertTransaksiRequest $request, $id)
+    public function update(UpdateTransaksiRequest $request, $id)
     {
         $merged = $request->safe()->merge(['modified_by' => Auth::id()])->toArray();
-        Transaksi::find($id)->update($merged);
-
+        $transaksi = Transaksi::find($id);
+        $transaksi->update($merged);
+        if (!empty($transaksi->kode)) {
+        }
         return redirect()->intended(route('transaksi-bucket'));
     }
 
