@@ -25,14 +25,7 @@ class InsertTransaksiRequest extends FormRequest
     {
         return [
             'pelanggan_id' => 'required|exists:pelanggans,id',
-            'outlet_input_id' => 'nullable|exists:outlets,id',
-            'cashier_id' => 'nullable|exists:users,id',
-            'pickup_delivery_id' => 'nullable|exists:pickup_deliveries,id',
-            'parfum_id' => 'nullable|exists:parfums,id',
-            'express' => 'boolean',
-            'setrika_only' => 'boolean',
-            'item_transaksi' => 'nullable|array',
-            'catatan' => 'nullable|string',
+            'outlet_id' => 'exists:outlets,id',
         ];
     }
 }

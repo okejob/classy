@@ -41,32 +41,30 @@ class TransaksiController extends Controller
 
     public function insert(InsertTransaksiRequest $request)
     {
-        $validated = $request->validated();
-
-        $transaksi = Transaksi::create([
-            'pelanggan_id' => $validated['pelanggan_id'],
-            'outlet_input_id' => $validated['outlet_input_id'],
-            'cashier_id' => $validated['cashier_id'],
-            'pickup_delivery_id' => $validated['pickup_delivery_id'],
-            'parfum_id' => $validated['parfum_id'],
-            'express' => $validated['express'],
-            'setrika_only' => $validated['setrika_only'],
-            'catatan' => $validated['catatan'],
-        ]);
-
-        $transaksi = Transaksi::find($transaksi->id)->recalculate();
-
-        $status = User::getRole(Auth::id());
-        $transaksi->status = $status;
-        $transaksi->save();
+        $merged = $request->safe()->merge([
+            'modified_by' => Auth::id(),
+            'status' => "draft"
+        ])->toArray();
+        $transaksi = Transaksi::create($merged);
+        return [
+            'status' => 200,
+            $transaksi
+        ];
     }
 
     public function update(UpdateTransaksiRequest $request, $id)
     {
-        $merged = $request->safe()->merge(['modified_by' => Auth::id()])->toArray();
+        $merged = $request->safe()->merge([
+            'modified_by' => Auth::id(),
+            'status' => User::getRole(Auth::id())
+        ])->toArray();
         $transaksi = Transaksi::find($id);
         $transaksi->update($merged);
-        if (!empty($transaksi->kode)) {
+        if (!empty($transaksi->kode) && $transaksi->status != "draft") {
+            $count = Transaksi::where('status', '!=', 'draft')->count();
+            $paded = str_pad($count, 6, '0', STR_PAD_LEFT);
+            $transaksi->kode = 'TRANS-' . $paded;
+            $transaksi->save();
         }
         return redirect()->intended(route('transaksi-bucket'));
     }
