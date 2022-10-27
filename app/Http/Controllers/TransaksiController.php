@@ -41,7 +41,6 @@ class TransaksiController extends Controller
     public function insert(InsertTransaksiRequest $request)
     {
         $validated = $request->validated();
-        $tipe_transaksi = $validated['tipe_transaksi'];
 
         $transaksi = Transaksi::create([
             'pelanggan_id' => $validated['pelanggan_id'],
@@ -59,6 +58,14 @@ class TransaksiController extends Controller
         $status = User::getRole(Auth::id());
         $transaksi->status = $status;
         $transaksi->save();
+    }
+
+    public function update(InsertTransaksiRequest $request, $id)
+    {
+        $merged = $request->safe()->merge(['modified_by' => Auth::id()])->toArray();
+        Transaksi::find($id)->update($merged);
+
+        return redirect()->intended(route('transaksi-bucket'));
     }
 
     public function getTransaksi($id)

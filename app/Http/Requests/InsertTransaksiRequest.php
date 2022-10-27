@@ -29,11 +29,11 @@ class InsertTransaksiRequest extends FormRequest
             'outlet_input_id' => 'nullable|exists:outlets,id',
             'cashier_id' => 'nullable|exists:users,id',
             'pickup_delivery_id' => 'nullable|exists:pickup_deliveries,id',
-            'parfum_id' => 'exists:parfums,id',
+            'parfum_id' => 'nullable|exists:parfums,id',
             'express' => 'boolean',
             'setrika_only' => 'boolean',
-            'item_transaksi' => 'array',
-            'catatan' => 'string',
+            'item_transaksi' => 'nullable|array',
+            'catatan' => 'nulllable|string',
         ];
     }
 }

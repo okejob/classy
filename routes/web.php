@@ -99,8 +99,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/transaksi/item-transaksi/{id}', [ItemTransaksiController::class, 'update'])->middleware('permission:update_item_transaksi');
     Route::get('/transaksi/item-transaksi/delete/{id}', [ItemTransaksiController::class, 'delete'])->middleware('permission:delete_item_transaksi');
 
+    //Transaksi
     Route::get('/transaksi/bucket', [PageController::class, 'bucket'])->name('transaksi-bucket')->middleware('permission:menu_transaksi_bucket');
     Route::get('/transaksi/getTrans/{id}', [TransaksiController::class, 'getTransaksi']);
     Route::get('/transaksi/newID', [TransaksiController::class, 'getID']);
     Route::get('/transaksi/addItem', [ItemTransaksiController::class, 'addItemToTransaksi']);
+    Route::post('transaksi/update/{id}', [TransaksiController::class, 'update']);
 });

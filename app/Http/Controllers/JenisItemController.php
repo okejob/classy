@@ -12,11 +12,22 @@ class JenisItemController extends Controller
 
     public function find(Request $request)
     {
-        $jenis_item = JenisItem::whereHas('kategori', function ($q) use ($request) {
-            $q->where('nama', 'like', '%' . $request->key . '%');
-        })
-            ->orWhere('nama', 'like', '%' . $request->key . '%')
-            ->take(5)->get();
+        $jenis_item = [];
+        if ($request->tipe_transaksi == "bucket") {
+            $jenis_item = JenisItem::where('status_bucket', 1)
+                ->where('nama', 'like', '%' . $request->key . '%')
+                ->orWhereHas('kategori', function ($q) use ($request) {
+                    $q->where('nama', 'like', '%' . $request->key . '%');
+                })
+                ->take(5)->get();
+        } else if ($request->tipe_transaksi == "premium") {
+            $jenis_item = JenisItem::where('status_premium', 1)
+                ->where('nama', 'like', '%' . $request->key . '%')
+                ->orWhereHas('kategori', function ($q) use ($request) {
+                    $q->where('nama', 'like', '%' . $request->key . '%');
+                })
+                ->take(5)->get();
+        }
 
         return [
             'status' => 200,
