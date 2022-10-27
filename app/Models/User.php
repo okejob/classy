@@ -58,4 +58,9 @@ class User extends Authenticatable
         $role = $roles[0];
         return $role;
     }
+
+    public function outlet()
+    {
+        return $this->belongsTo(Outlet::class);
+    }
 }

@@ -42,6 +42,7 @@ class TransaksiController extends Controller
     public function insert(InsertTransaksiRequest $request)
     {
         $merged = $request->safe()->merge([
+            'outlet_id' => Auth::user()->outlet->id,
             'modified_by' => Auth::id(),
             'status' => "draft"
         ])->toArray();
