@@ -15,7 +15,7 @@ class ItemTransaksi extends Model
 
     protected $guarded = ['id'];
     protected $appends = [
-        'nama_jenis_item',
+        'nama',
         'nama_kategori'
     ];
 
@@ -25,7 +25,7 @@ class ItemTransaksi extends Model
         ItemTransaksi::observe(new UserActionObserver);
     }
 
-    public function getNamaJenisItemAttribute()
+    public function getNamaAttribute()
     {
         $jenis_item = JenisItem::find($this->jenis_item_id);
         return $jenis_item->nama;

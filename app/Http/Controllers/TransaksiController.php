@@ -47,9 +47,10 @@ class TransaksiController extends Controller
             'status' => "draft"
         ])->toArray();
         $transaksi = Transaksi::create($merged);
+        $transaksi = Transaksi::detail()->find($transaksi->id);
         return [
             'status' => 200,
-            $transaksi
+            $transaksi,
         ];
     }
 
