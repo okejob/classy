@@ -110,7 +110,7 @@
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <h5>Nomor Identitas</h5>
-                                    <input class="form-control" type="text" id="input-nomor-identitas" name="no_id" required>
+                                    <input class="form-control" type="text" id="input-nomor-identitas" name="no_id" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <h5>Jenis Identitas</h5>
@@ -122,7 +122,7 @@
                                 </div>
                                 <div class="col-12 col-sm-4">
                                     <h5>Telephone</h5>
-                                    <input class="form-control" type="text" id="input-telepon" name="telephone" required>
+                                    <input class="form-control" type="text" id="input-telepon" name="telephone" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                                 </div>
                                 <div class="col-12 col-sm-4">
                                     <h5>E-mail</h5>
