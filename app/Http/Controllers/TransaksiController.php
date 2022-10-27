@@ -54,9 +54,19 @@ class TransaksiController extends Controller
 
     public function update(UpdateTransaksiRequest $request, $id)
     {
+        $express = false;
+        if ($request->express == "1") {
+            $express = true;
+        }
+        $setrika_only = false;
+        if ($request->setrika_only == "1") {
+            $setrika_only = true;
+        }
         $merged = $request->safe()->merge([
             'modified_by' => Auth::id(),
-            'status' => User::getRole(Auth::id())
+            'status' => User::getRole(Auth::id()),
+            'express' => $express,
+            'setrika_only' => $setrika_only,
         ])->toArray();
         $transaksi = Transaksi::find($id);
         $transaksi->update($merged);
