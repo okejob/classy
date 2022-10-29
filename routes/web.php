@@ -106,4 +106,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transaksi/newID', [TransaksiController::class, 'getID']);
     Route::get('/transaksi/addItem', [ItemTransaksiController::class, 'addItemToTransaksi']);
     Route::post('transaksi/update/{id}', [TransaksiController::class, 'update']);
+
+    //Catatan Item Transaksi
+    
 });

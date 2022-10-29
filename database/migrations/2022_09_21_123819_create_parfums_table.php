@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('deskripsi')->nullable();
             $table->string('jenis');
             $table->boolean('status')->default(true);
-            $table->foreignId('user_id')
-                ->constrained()
+            $table->foreignId('modified_by')
+                ->constrained('users', 'id')
                 ->cascadeOnDelete();
             $table->timestamps();
         });

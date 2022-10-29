@@ -14,7 +14,7 @@ class ItemTransaksiController extends Controller
 {
     public function addItemToTransaksi(Request $request)
     {
-        $request['user_id'] = Auth::id();
+        $request['modified_by'] = Auth::id();
         $role = User::getRole(Auth::id());
         $jenis_item = JenisItem::find($request['jenis_item_id']);
         $request['bobot_bucket'] = $jenis_item->bobot_bucket;
@@ -33,7 +33,7 @@ class ItemTransaksiController extends Controller
 
     public function insert(InsertItemTransaksiRequest $request)
     {
-        $merged = $request->safe()->merge(['user_id' => Auth::id()])->toArray();
+        $merged = $request->safe()->merge(['modified_by' => Auth::id()])->toArray();
         ItemTransaksi::create($merged);
 
         return redirect()->intended(route(''));
@@ -50,7 +50,7 @@ class ItemTransaksiController extends Controller
 
     public function update(InsertItemTransaksiRequest $request, $id)
     {
-        $merged = $request->safe()->merge(['user_id' => Auth::id()])->toArray();
+        $merged = $request->safe()->merge(['modified_by' => Auth::id()])->toArray();
         ItemTransaksi::find($id)->update($merged);
 
         return redirect()->intended(route(''));

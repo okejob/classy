@@ -22,9 +22,9 @@ return new class extends Migration
             $table->string('telp_2')->nullable();
             $table->string('fax')->nullable();
             $table->boolean('status')->default(true);
-            $table->foreignId('user_id')
+            $table->foreignId('modified_by')
                 ->nullable()
-                ->constrained()
+                ->constrained('users', 'id')
                 ->cascadeOnDelete();
             $table->timestamps();
         });

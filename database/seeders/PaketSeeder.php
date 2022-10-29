@@ -22,7 +22,7 @@ class PaketSeeder extends Seeder
             'harga_paket' => 30000,
             'harga_per_bobot' => 6000,
             'jumlah_bobot' => 5,
-            'user_id' => 1
+            'modified_by' => 1
         ]);
 
         PaketCuci::create([
@@ -31,7 +31,7 @@ class PaketSeeder extends Seeder
             'harga_paket' => 50000,
             'harga_per_bobot' => 5000,
             'jumlah_bobot' => 10,
-            'user_id' => 1
+            'modified_by' => 1
         ]);
 
         PaketCuci::create([
@@ -40,7 +40,7 @@ class PaketSeeder extends Seeder
             'harga_paket' => 90000,
             'harga_per_bobot' => 6000,
             'jumlah_bobot' => 15,
-            'user_id' => 1
+            'modified_by' => 1
         ]);
 
         PaketCuci::create([
@@ -49,7 +49,7 @@ class PaketSeeder extends Seeder
             'harga_paket' => 25000,
             'harga_per_bobot' => 5000,
             'jumlah_bobot' => 5,
-            'user_id' => 1
+            'modified_by' => 1
         ]);
 
         PaketCuci::create([
@@ -58,7 +58,7 @@ class PaketSeeder extends Seeder
             'harga_paket' => 45000,
             'harga_per_bobot' => 2500,
             'jumlah_bobot' => 15,
-            'user_id' => 1
+            'modified_by' => 1
         ]);
 
         PaketDeposit::create([
@@ -66,7 +66,7 @@ class PaketSeeder extends Seeder
             'deskripsi' => 'DEPOSIT 500K FREE DEPOSIT 50K',
             'nominal' => 550000,
             'harga' => 500000,
-            'user_id' => 1
+            'modified_by' => 1
         ]);
 
         PaketDeposit::create([
@@ -74,7 +74,7 @@ class PaketSeeder extends Seeder
             'deskripsi' => 'PENGISIAN DEPOSIT 100K',
             'nominal' => 100000,
             'harga' => 95000,
-            'user_id' => 1
+            'modified_by' => 1
         ]);
     }
 }

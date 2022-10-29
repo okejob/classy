@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string('telephone')->nullable();
             $table->string('email')->nullable();
             $table->boolean('status')->default(true);
-            $table->string('user_id')
-                ->constrained()
+            $table->string('modified_by')
+                ->constrained('users', 'id')
                 ->cascadeOnDelete();
             $table->timestamps();
         });

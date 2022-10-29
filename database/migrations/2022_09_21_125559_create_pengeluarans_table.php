@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('nama');
             $table->text('deskripsi')->nullable();
             $table->integer('nominal');
-            $table->foreignId('user_id')
-                ->constrained()
+            $table->foreignId('modified_by')
+                ->constrained('users', 'id')
                 ->cascadeOnDelete();
             $table->timestamps();
         });

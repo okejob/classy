@@ -48,19 +48,19 @@ class AdminSeeder extends Seeder
         ])->assignRole('administrator');
 
         Outlet::find(1)->update([
-            'user_id' => 1
+            'modified_by' => 1
         ]);
         Outlet::find(2)->update([
-            'user_id' => 1
+            'modified_by' => 1
         ]);
         Outlet::find(3)->update([
-            'user_id' => 1
+            'modified_by' => 1
         ]);
         Outlet::find(4)->update([
-            'user_id' => 1
+            'modified_by' => 1
         ]);
         Outlet::find(5)->update([
-            'user_id' => 1
+            'modified_by' => 1
         ]);
     }
 }

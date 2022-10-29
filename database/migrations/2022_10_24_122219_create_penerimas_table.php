@@ -17,13 +17,16 @@ return new class extends Migration
             $table->id();
             $table->foreignId('transaksi_id');
             $table->boolean('ambil_di_outlet')->default(true);
-            $table->foreignId('outlet_ambil_id')
+            $table->foreignId('outlet_id')
                 ->nullable()
                 ->constrained('outlets', 'id')
                 ->cascadeOnDelete();
-            $table->date('tanggal_ambil_di_outlet')->nullable();
+            $table->date('tanggal_penerimaan')->nullable();
             $table->string('penerima')->nullable();
             $table->string('foto_penerima')->nullable();
+            $table->foreignId('modified_by')
+                ->constrained('users', 'id')
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }

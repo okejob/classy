@@ -13,7 +13,7 @@ class PickupDeliveryController extends Controller
 {
     public function insert(InsertPickupDeliveryRequest $request)
     {
-        $merged = $request->safe()->merge(['user_id' => Auth::id()])->toArray();
+        $merged = $request->safe()->merge(['modified_by' => Auth::id()])->toArray();
         $pickup_delivery = PickupDelivery::create($merged);
         $action = $request->action;
         if ($action == "pickup") {
@@ -41,7 +41,7 @@ class PickupDeliveryController extends Controller
 
     public function update(InsertPickupDeliveryRequest $request, $id)
     {
-        $merged = $request->safe()->merge(['user_id' => Auth::id()])->toArray();
+        $merged = $request->safe()->merge(['modified_by' => Auth::id()])->toArray();
         PickupDelivery::find($id)->update($merged);
 
         //return redirect()->intended(route(''));

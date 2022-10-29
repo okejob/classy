@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('jenis_rewashes', function (Blueprint $table) {
             $table->id();
             $table->string('keterangan');
-            $table->foreignId('user_id')
-                ->constrained()
+            $table->foreignId('modified_by')
+                ->constrained('users', 'id')
                 ->cascadeOnDelete();
             $table->timestamps();
         });

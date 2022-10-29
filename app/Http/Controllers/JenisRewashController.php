@@ -11,7 +11,7 @@ class JenisRewashController extends Controller
 {
     public function insert(InsertJenisRewashRequest $request)
     {
-        $merged = $request->safe()->merge(['user_id' => Auth::id()])->toArray();
+        $merged = $request->safe()->merge(['modified_by' => Auth::id()])->toArray();
         JenisRewash::create($merged);
 
         //return redirect()->intended(route(''));
@@ -28,7 +28,7 @@ class JenisRewashController extends Controller
 
     public function update(InsertJenisRewashRequest $request, $id)
     {
-        $merged = $request->safe()->merge(['user_id' => Auth::id()])->toArray();
+        $merged = $request->safe()->merge(['modified_by' => Auth::id()])->toArray();
         JenisRewash::find($id)->update($merged);
 
         //return redirect()->intended(route(''));

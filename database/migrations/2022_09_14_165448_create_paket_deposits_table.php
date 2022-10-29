@@ -20,8 +20,8 @@ return new class extends Migration
             $table->integer('nominal');
             $table->integer('harga');
             $table->boolean('status')->default(true);
-            $table->foreignId('user_id')
-                ->constrained()
+            $table->foreignId('modified_by')
+                ->constrained('users', 'id')
                 ->cascadeOnDelete();
             $table->timestamps();
         });
