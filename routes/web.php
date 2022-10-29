@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ItemNoteController;
 use App\Http\Controllers\ItemTransaksiController;
 use App\Http\Controllers\JenisItemController;
 use App\Http\Controllers\KategoriController;
@@ -99,6 +100,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/transaksi/item-transaksi', [ItemTransaksiController::class, 'insert'])->middleware('permission:insert_item_transaksi');
     Route::post('/transaksi/item-transaksi/{id}', [ItemTransaksiController::class, 'update'])->middleware('permission:update_item_transaksi');
     Route::get('/transaksi/item-transaksi/delete/{id}', [ItemTransaksiController::class, 'delete'])->middleware('permission:delete_item_transaksi');
+
+    //ItemNote
+    Route::get('/transaksi/item/note/list', [ItemNoteController::class, 'list']);
+    Route::post('/transaksi/item/note/add', [ItemNoteController::class, 'insert']);
 
     //Transaksi
     Route::get('/transaksi/bucket', [PageController::class, 'bucket'])->name('transaksi-bucket')->middleware('permission:menu_transaksi_bucket');

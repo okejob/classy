@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class ItemNote extends Model
 {
     use HasFactory;
+    protected $guarded = ['id'];
 
     public static function boot()
     {

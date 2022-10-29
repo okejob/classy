@@ -28,6 +28,9 @@ return new class extends Migration
             $table->boolean('back_bottom_left')->default(0);
             $table->boolean('back_bottom_right')->default(0);
             $table->string('image_path')->nullable();
+            $table->foreignId('modified_by')
+                ->constrained('users', 'id')
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }

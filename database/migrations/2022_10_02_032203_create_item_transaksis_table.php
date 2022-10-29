@@ -32,7 +32,7 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('users', 'id')
                 ->cascadeOnDelete();
-            $table->foreignId('modified_bye')
+            $table->foreignId('modified_by')
                 ->constrained('users', 'id')
                 ->cascadeOnDelete();
             $table->timestamps();

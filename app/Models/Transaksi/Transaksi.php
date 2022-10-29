@@ -53,7 +53,7 @@ class Transaksi extends Model
 
     public function scopeDetail($query)
     {
-        return $query->with('item_transaksi', 'pickup_delivery', 'outlet', 'parfum', 'pelanggan', 'penerima', 'pelanggan.catatan_pelanggan');
+        return $query->with('item_transaksi', 'pickup_delivery', 'outlet', 'parfum', 'pelanggan', 'penerima', 'pelanggan.catatan_pelanggan', 'penerima');
     }
 
     public function item_transaksi()
