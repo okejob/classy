@@ -3,15 +3,20 @@
 namespace App\Http\Traits;
 
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 trait UploadTrait
 {
-    public function upload(Request $request, $path, $key = 'image', $file_name = null)
+    public function upload(Request $request, $path)
     {
-        $default_path = 'images/' . $path;
-        $image = empty($file_name)
-            ? time() . '-' . $key . '.' . $request->file($key)->extension()
-            : $file_name;
-        $request->file($key)->move($default_path, $image);
+        $quality = 1;
+        $default_path = 'images/' . $path . '/';
+        $file = $request->file('image');
+        $file_name = time() . '_' . $file->getClientOriginalExtension();
+        $final_path = $default_path . $file_name;
+        $img = Image::make($file);
+        $img->save(public_path($final_path), $quality);
+
+        return $final_path;
     }
 }

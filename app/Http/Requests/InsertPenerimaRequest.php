@@ -30,7 +30,7 @@ class InsertPenerimaRequest extends FormRequest
             'outlet_id' => 'nullable|exists:outlets,id',
             'tanggal_penerimaan' => 'nullable|date',
             'penerima' => 'nullable|string',
-            'foto_penerima_file' => 'nullable|image',
+            'image' => 'nullable|image',
         ];
     }
 }
