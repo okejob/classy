@@ -44,13 +44,11 @@ $(document).ready(function() {
             $('#input-tanggal-lahir').val(pelanggan.tanggal_lahir);
             if (pelanggan.catatan_pelanggan != null) {
                 $('#input-catatan-pelanggan').val(pelanggan.catatan_pelanggan.catatan_cuci);
-                $('#input-catatan-pelanggan').addClass('disabled');
             }
 
             $('#search-pelanggan').hide();
             $('#data-pelanggan').show();
 
-            $('#select-outlet').addClass('disabled');
             $('#select-outlet').val(trans.outlet_id);
 
             let pickup = trans.pickup_delivery[0];
@@ -60,30 +58,25 @@ $(document).ready(function() {
             $('#check-pickup').show();
             if (pickup != null) {
                 $('#select-driver-pickup').val(pickup.driver_id);
-                $('#select-driver-pickup').addClass('disabled');
                 $('#input-alamat-ambil').val(pickup.alamat);
-                $('#input-alamat-ambil').addClass('disabled');
                 $('#formCheck-pickup').trigger('click');
             }
 
             if (delivery != null) {
                 $('#select-driver-delivery').val(delivery.driver_id);
-                $('#select-driver-delivery').addClass('disabled');
                 $('#input-alamat-antar').val(delivery.alamat);
-                $('#input-alamat-antar').addClass('disabled');
                 $('#formCheck-delivery').trigger('click');
             }
 
             if (penerima != null) {
                 $('#select-outlet-ambil').val(penerima.outlet_ambil_id);
                 $('#select-outlet-ambil').addClass('disabled');
-                // $('#formCheck-ambil-outlet').trigger('click');
             }
 
-            $('#show-data-pelanggan').trigger('click');
-            $('#show-data-outlet').trigger('click');
-            $('#show-data-pickup-delivery').trigger('click');
-            $('#to-pickup-delivery').parent().show();
+            $('#info-pelanggan').show();
+            $('#info-pickup-delivery').show();
+            $('#info-outlet').show();
+            $('#info-penerimaan').show();
             $('#section-info').show();
 
             let rowAdd = $('#table-trans-item tbody').children().last().detach();
@@ -168,17 +161,13 @@ $(document).ready(function() {
         $('#search-pelanggan').show();
         $('#to-pickup-delivery').parent().hide();
 
-        if($('#show-data-pelanggan').hasClass('show')) {
-            $('#show-data-pelanggan').trigger('click');
+        $('#show-data-pelanggan').show();
+        if ($('#show-data-pickup-delivery').hasClass('show')) {
+            $('#show-data-pickup-delivery').hide();
         }
-        if($('#show-data-pickup-delivery').hasClass('show')) {
-            $('#show-data-pickup-delivery').trigger('click');
-        }
-        if($('#show-data-outlet').hasClass('show')) {
-            $('#show-data-outlet').trigger('click');
-        }
-        if($('#show-data-pengambilan').hasClass('show')) {
-            $('#show-data-pengambilan').trigger('click');
+        $('#show-data-outlet').show();
+        if ($('#show-data-penerimaan').hasClass('show')) {
+            $('#show-data-penerimaan').hide();
         }
         $('#section-info').hide();
 
@@ -296,9 +285,18 @@ $(document).ready(function() {
                 // $('#formCheck-ambil-outlet').trigger('click');
             }
 
-            $('#show-data-pelanggan').trigger('click');
-            $('#show-data-outlet').trigger('click');
-            $('#show-data-pickup-delivery').trigger('click');
+            if ($('#show-data-pelanggan').hasClass('show')) {
+                $('#show-data-pelanggan').trigger('click');
+            }
+            if ($('#show-data-pickup-delivery').hasClass('show')) {
+                $('#show-data-pickup-delivery').trigger('click');
+            }
+            if ($('#show-data-outlet').hasClass('show')) {
+                $('#show-data-outlet').trigger('click');
+            }
+            if ($('#show-data-penerimaan').hasClass('show')) {
+                $('#show-data-penerimaan').trigger('click');
+            }
             $('#to-pickup-delivery').parent().show();
             $('#section-info').show();
 
@@ -338,6 +336,36 @@ $(document).ready(function() {
         }
     };
 
+    $('#simpan-info-penerimaan').on('click', function() {
+        let id_trans = $('#id-trans').text();
+        let id_outlet = $('#select-outlet-ambil').val();
+        let ambil_di_outlet = 0;
+        if (id_outlet) {
+            ambil_di_outlet = 1;
+        }
+
+        let formData = new FormData();
+        formData.append('transaksi_id', id_trans);
+        formData.append('ambil_di_outlet', ambil_di_outlet);
+        formData.append('outlet_id', id_outlet);
+        formData.append('tanggal_penerimaan', $('#input-date-penerimaan').val());
+        formData.append('penerima', $('#input-nama-penerima').val());
+        formData.append('image', $('#input-foto-penerima').prop("files")[0]);
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            },
+            url: "/transaksi/penerima",
+            method: "POST",
+            contentType: false,
+            processData: false,
+            data: formData,
+        }).done(function(data) {
+            // console.log(data);
+        });
+    });
+
     // bagian kanan
     $('.show-data').on('click', function() {
         let dataType = $(this).attr('id').substring($(this).attr('id').indexOf('data-') + 5);
@@ -358,6 +386,7 @@ $(document).ready(function() {
         $('#modal-list-pelanggan').modal('show');
     });
 
+    // select pelanggan
     $('#table-list-pelanggan tbody tr').on('click', function() {
         let id = $(this).attr('id').substring($(this).attr('id').indexOf('row-') + 4);
 
@@ -403,14 +432,6 @@ $(document).ready(function() {
         window.location = "/transaksi/pickup-delivery/";
     });
 
-    $('#simpan-info-trans').on('click', function() {
-        $.ajax({
-            url: "/setting/outlet/" + $(this).val(),
-        }).done(function(data) {
-
-        });
-    });
-
     // bottom
     $('#add-item').on('click', function() {
         $('#table-items tbody').empty();
@@ -443,6 +464,7 @@ $(document).ready(function() {
     });
 
     $('#table-items tbody').on('click', 'tr', function() {
+        $(this).parent().css('pointer-events', 'none');
         let id = $(this).attr('id');
         id = id.substr(5);
 
@@ -471,15 +493,9 @@ $(document).ready(function() {
 
                 setThousandSeparator();
                 $('#modal-add-item').modal('hide');
+                $(this).parent().css('pointer-events', 'initial');
             });
         });
-        // .promise().done( function() {
-        //     $.ajax({
-        //         // url: ,
-        //     }).done(function(data) {
-
-        //     });
-        // });
     });
 
     $('#show-catatan-trans').on('click', function() {

@@ -1,6 +1,7 @@
 @extends('layouts.users')
 
 @section('content')
+<input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 <div class="container">
     <header class="my-3 d-flex justify-content-between" style="color: var(--bs-gray);">
         <div class="d-flex align-items-center">
@@ -104,7 +105,7 @@
         <div class="card mb-2">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-3 position-relative">
                         <section id="section-info-pelanggan">
                             <header class="d-flex justify-content-between align-items-center">
                                 <h5>Pelanggan</h5>
@@ -192,7 +193,7 @@
                                         </div>
                                         <div class="col-12">
                                             <h6>Catatan Pelanggan</h6>
-                                            <textarea class="form-control" style="resize: none;" id="input-catatan-pelanggan"></textarea>
+                                            <textarea class="form-control disabled" style="resize: none;" id="input-catatan-pelanggan"></textarea>
                                         </div>
                                     </div>
                                 </form>
@@ -201,7 +202,7 @@
                     </div>
                     <div class="col-3 position-relative">
                         <div class="vr position-absolute" style="height: calc(100% + 2rem); margin: -1rem 0; border-left: 1px solid rgba(0,0,0,.125); top: 0; left: 0;"></div>
-                        <section id="section-info-pickup-delivery">
+                        <section id="section-info-pickup-delivery" class="h-100">
                             <header class="d-flex justify-content-between align-items-center">
                                 <h5 class="d-flex justify-content-between align-items-center">Pickup &amp; Delivery</h5>
                                 <button class="btn show-data" id="show-data-pickup-delivery" type="button">
@@ -209,39 +210,41 @@
                                 </button>
                             </header>
                             <div id="info-pickup-delivery" class="mt-2" style="display: none;">
-                                <div class="form-check" id="check-pickup" style="margin-bottom: .5rem;">
-                                    <input class="form-check-input" type="checkbox" id="formCheck-pickup">
-                                    <label class="form-check-label" for="formCheck-pickup">Pickup</label>
+                                <div class="mb-5 disabled">
+                                    <div class="form-check" id="check-pickup" style="margin-bottom: .5rem;">
+                                        <input class="form-check-input" type="checkbox" id="formCheck-pickup">
+                                        <label class="form-check-label" for="formCheck-pickup">Pickup</label>
+                                    </div>
+                                    <div id="container-pickup" class="position-relative mb-2" style="display: none;">
+                                        <h6>Nama driver</h6>
+                                        <select class="form-control" id="select-driver-pickup">
+                                            <option value="" selected hidden>-</option>
+                                            @foreach ($data['driver'] as $driver)
+                                                <option value="{{ $driver->id }}">{{ $driver->username }}</option>
+                                            @endforeach
+                                        </select>
+                                        <h6 class="mt-2">Alamat ambil</h6>
+                                        <input type="text" class="form-control" id="input-alamat-ambil">
+                                    </div>
+                                    <div class="form-check" id="check-delivery" style="margin-bottom: .5rem;">
+                                        <input class="form-check-input" type="checkbox" id="formCheck-delivery" />
+                                        <label class="form-check-label" for="formCheck-delivery">Delivery</label>
+                                    </div>
+                                    <div id="container-delivery" class="position-relative mb-2" style="display: none;">
+                                        <h6>Nama driver</h6>
+                                        <select class="form-control" id="select-driver-delivery">
+                                            <option value="" selected hidden>-</option>
+                                            @foreach ($data['driver'] as $driver)
+                                                <option value="{{ $driver->id }}">{{ $driver->username }}</option>
+                                            @endforeach
+                                        </select>
+                                        <h6 class="mt-2">Alamat antar</h6>
+                                        <input type="text" class="form-control" id="input-alamat-antar">
+                                    </div>
                                 </div>
-                                <div id="container-pickup" class="position-relative mb-2" style="display: none;">
-                                    <h6>Nama driver</h6>
-                                    <select class="form-control" id="select-driver-pickup">
-                                        <option value="" selected hidden>-</option>
-                                        @foreach ($data['driver'] as $driver)
-                                            <option value="{{ $driver->id }}">{{ $driver->username }}</option>
-                                        @endforeach
-                                    </select>
-                                    <h6 class="mt-2">Alamat ambil</h6>
-                                    <input type="text" class="form-control" id="input-alamat-ambil">
+                                <div class="position-absolute bottom-0" style="right: 0.75rem;">
+                                    <button class="btn btn-primary" id="to-pickup-delivery">Edit Pickup & Delivery</button>
                                 </div>
-                                <div class="form-check" id="check-delivery" style="margin-bottom: .5rem;">
-                                    <input class="form-check-input" type="checkbox" id="formCheck-delivery" />
-                                    <label class="form-check-label" for="formCheck-delivery">Delivery</label>
-                                </div>
-                                <div id="container-delivery" class="position-relative mb-2" style="display: none;">
-                                    <h6>Nama driver</h6>
-                                    <select class="form-control" id="select-driver-delivery">
-                                        <option value="" selected hidden>-</option>
-                                        @foreach ($data['driver'] as $driver)
-                                            <option value="{{ $driver->id }}">{{ $driver->username }}</option>
-                                        @endforeach
-                                    </select>
-                                    <h6 class="mt-2">Alamat antar</h6>
-                                    <input type="text" class="form-control" id="input-alamat-antar">
-                                </div>
-                            </div>
-                            <div class="mt-2 text-end" style="display: none;">
-                                <button class="btn btn-primary" id="to-pickup-delivery">Edit data pickup & delivery</button>
                             </div>
                         </section>
                     </div>
@@ -258,7 +261,7 @@
                             </header>
                             <div id="info-outlet" class="position-relative mt-2" style="display: none;">
                                 <h6>Outlet input</h6>
-                                <select class="form-control" id="select-outlet">
+                                <select class="form-control disabled" id="select-outlet">
                                     <option value="" selected hidden>-</option>
                                     @foreach ($data['outlet'] as $outlet)
                                         <option value="{{ $outlet->id }}">{{ $outlet->nama }}</option>
@@ -269,33 +272,39 @@
                     </div>
                     <div class="col-3 position-relative">
                         <div class="vr position-absolute" style="height: calc(100% + 2rem); margin: -1rem 0; border-left: 1px solid rgba(0,0,0,.125); top: 0; left: 0;"></div>
-                        <section id="section-info-pengambilan">
+                        <section id="section-info-penerimaan" class="h-100">
                             <header>
                                 <h5 class="d-flex justify-content-between align-items-center">
-                                    Pengambilan
+                                    penerimaan
                                     <button class="btn show-data" id="show-data-pengambilan" type="button">
                                         <i class="fas fa-chevron-down large"></i>
                                     </button>
                                 </h5>
                             </header>
-                            <div id="info-pengambilan" class="position-relative mt-2" style="display: none;">
-                                <h6 class="mt-2">Outlet Ambil</h6>
-                                <select class="form-control" id="select-outlet-ambil">
-                                    <option value="">-</option>
-                                    @foreach ($data['outlet'] as $outlet)
-                                        <option value="{{ $outlet->id }}">{{ $outlet->nama }}</option>
-                                    @endforeach
-                                </select>
-                                <h6 class="mt-2">Nama Penerima</h6>
-                                <input type="text" class="form-control" id="input-nama-penerima">
+                            <div id="info-penerimaan" class="mt-2" style="display: none;">
+                                <div class="mb-5">
+                                    <h6 class="mt-2">Outlet Ambil</h6>
+                                    <select class="form-control" id="select-outlet-ambil">
+                                        <option value="">-</option>
+                                        @foreach ($data['outlet'] as $outlet)
+                                            <option value="{{ $outlet->id }}">{{ $outlet->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                    <h6 class="mt-2">Nama Penerima</h6>
+                                    <input type="text" class="form-control" id="input-nama-penerima" name="penerima">
+                                    <h6 class="mt-2">Tanggal Penerimaan</h6>
+                                    <input type="date" class="form-control" id="input-date-penerimaan" name=tanggal_penerimaan>
+                                    <h6 class="mt-2">Foto Penerima</h6>
+                                    <input type="file" class="form-control" id="input-foto-penerima" name="image" accept="image/*">
+                                </div>
+                                <div class="position-absolute bottom-0" style="right: 0.75rem;">
+                                    <button class="btn btn-primary" id="simpan-info-penerimaan">Simpan Pengambilan</button>
+                                </div>
                             </div>
                         </section>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="mt-2 mb-4 text-end">
-            <button class="btn btn-primary" id="simpan-info-trans">Simpan Informasi Transaksi</button>
         </div>
     </section>
     <section id="section-transaksi-cuci">
@@ -430,10 +439,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-4 p-2">
-                                <div class="d-flex justify-content-end align-items-center h-100"><button class="btn btn-primary" type="button" style="width: 200px;">Informasi Pengambilan</button></div>
+                            <div class="col-4 p-2 d-flex align-items-center justify-content-end">
+                                <button class="btn btn-primary" type="button">Kode Promosi</button>
                             </div>
-                            <div class="col-6 p-2 d-flex align-items-center">
+                            <div class="col-9 p-2 d-flex align-items-center">
                                 <div class="position-relative w-100">
                                     <button class="btn btn-primary" id="show-catatan-trans" type="button" style="width: 200px;">Catatan Transaksi</button>
                                     <div class="position-absolute mt-1 w-100 card p-2" style="z-index: 1;display: none;">
@@ -442,15 +451,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-3 p-2 d-flex align-items-center">
-                                <div class="position-relative text-center w-100">
-                                    <button class="btn btn-primary" type="button">Kode Promosi</button>
-                                </div>
-                            </div>
-                            <div class="col-3 p-2 d-flex align-items-center">
-                                <div class="position-relative text-end w-100">
-                                    <button id="save-trans" class="btn btn-primary" type="submit">Simpan Transaksi</button>
-                                </div>
+                            <div class="col-3 p-2 d-flex align-items-center justify-content-end">
+                                <button id="save-trans" class="btn btn-primary" type="submit">Simpan Transaksi</button>
                             </div>
                         </div>
                     </form>
@@ -465,7 +467,7 @@
                                 <div class="modal-body">
                                     <div class="d-flex mb-3">
                                         <input class="form-control" type="search" id="input-nama-item" placeholder="Nama Item">
-                                        <button class="btn btn-primary mx-3" data-bs-toggle="tooltip" data-bss-tooltip="" id="search-item" type="button" title="Cari Item">
+                                        <button class="btn btn-primary ms-3" data-bs-toggle="tooltip" data-bss-tooltip="" id="search-item" type="button" title="Cari Item">
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </div>

@@ -7,6 +7,7 @@ use App\Http\Controllers\OutletController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ParfumController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\PenerimaController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\PickupDeliveryController;
 use App\Http\Controllers\TransaksiController;
@@ -105,8 +106,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transaksi/getTrans/{id}', [TransaksiController::class, 'getTransaksi']);
     Route::get('/transaksi/newID', [TransaksiController::class, 'getID']);
     Route::get('/transaksi/addItem', [ItemTransaksiController::class, 'addItemToTransaksi']);
-    Route::post('transaksi/update/{id}', [TransaksiController::class, 'update']);
+    Route::post('/transaksi/update/{id}', [TransaksiController::class, 'update']);
+    Route::post('/transaksi/penerima', [PenerimaController::class, 'insert']);
 
     //Catatan Item Transaksi
-    
+
 });

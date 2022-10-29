@@ -9,8 +9,8 @@ trait UploadTrait
 {
     public function upload(Request $request, $path)
     {
-        $quality = 1;
-        $default_path = 'images/' . $path . '/';
+        $quality = 0;
+        $default_path = 'image\\' . $path . '\\';
         $file = $request->file('image');
         $file_name = time() . '_' . $file->getClientOriginalExtension();
         $final_path = $default_path . $file_name;

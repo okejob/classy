@@ -24,7 +24,6 @@ class InsertPenerimaRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'nullable|exists:penerimas,id',
             'transaksi_id' => 'required|exists:transaksis,id',
             'ambil_di_outlet' => 'nullable|boolean',
             'outlet_id' => 'nullable|exists:outlets,id',
