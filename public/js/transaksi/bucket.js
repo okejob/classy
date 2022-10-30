@@ -4,25 +4,25 @@ $(document).ready(function() {
         keyboard: false
     });
 
-    // if tidak ada trans, close modal
     $('#modal-opsi-trans').modal('show');
 
     $('#show-option').on('click', function() {
         $('#modal-opsi-trans').modal('show');
     });
 
-    let transState = true; // 1 -> look for trans, 0 -> create trans
     $('#table-list-trans tbody tr').on('click', function() {
-        $(this).parent().css('pointer-events', 'none');
+        let parent = $(this).parent();
+        parent.addClass('disabled');
         let id = $(this).children().eq(0).html();
 
         $.ajax({
             url: "/transaksi/getTrans/" + id,
         }).done(function(data) {
+            // console.log(data[0]);
 
             let trans = data[0];
             $('#id-trans').text(trans.id);
-            $('#id-trans').show();
+            $('#kode-trans').text(trans.kode);
 
             $('#input-parfum').val(trans.parfum_id);
             $('#formCheck-express').prop('checked', trans.express);
@@ -55,29 +55,50 @@ $(document).ready(function() {
             let delivery = trans.pickup_delivery[1];
             let penerima = trans.penerima;
 
-            $('#check-pickup').show();
-            if (pickup != null) {
+            if (typeof pickup !== "undefined") {
                 $('#select-driver-pickup').val(pickup.driver_id);
                 $('#input-alamat-ambil').val(pickup.alamat);
-                $('#formCheck-pickup').trigger('click');
+                $('#formCheck-pickup').parent().next().show();
+                $('#formCheck-pickup').prop('checked', true);
+            } else {
+                $('#formCheck-pickup').parent().next().hide();
+                $('#formCheck-pickup').prop('checked', false);
+                $('#select-driver-pickup').val('');
+                $('#input-alamat-ambil').val('');
             }
 
-            if (delivery != null) {
+            if (typeof delivery !== "undefined") {
                 $('#select-driver-delivery').val(delivery.driver_id);
                 $('#input-alamat-antar').val(delivery.alamat);
-                $('#formCheck-delivery').trigger('click');
+                $('#formCheck-delivery').parent().next().show();
+                $('#formCheck-delivery').prop('checked', true);
+            }else {
+                $('#formCheck-delivery').parent().next().hide();
+                $('#formCheck-delivery').prop('checked', false);
+                $('#select-driver-delivery').val('');
+                $('#input-alamat-antar').val('');
             }
 
-            if (penerima != null) {
-                $('#select-outlet-ambil').val(penerima.outlet_ambil_id);
+            if (penerima) {
+                $('#select-outlet-ambil').val(penerima.outlet_id);
                 $('#select-outlet-ambil').addClass('disabled');
+            } else {
+                $('#select-outlet-ambil').removeClass('disabled');
+                $('#select-outlet-ambil').val('');
             }
 
-            $('#info-pelanggan').show();
-            $('#info-pickup-delivery').show();
-            $('#info-outlet').show();
-            $('#info-penerimaan').show();
-            $('#section-info').show();
+            if (!$('#show-data-pelanggan').hasClass('show')) {
+                $('#show-data-pelanggan').trigger('click');
+            }
+            if (!$('#show-data-pickup-delivery').hasClass('show')) {
+                $('#show-data-pickup-delivery').trigger('click');
+            }
+            if (!$('#show-data-outlet').hasClass('show')) {
+                $('#show-data-outlet').trigger('click');
+            }
+            if (!$('#show-data-penerimaan').hasClass('show')) {
+                $('#show-data-penerimaan').trigger('click');
+            }
 
             let rowAdd = $('#table-trans-item tbody').children().last().detach();
             $('#table-trans-item tbody').empty();
@@ -94,9 +115,8 @@ $(document).ready(function() {
             setThousandSeparator();
             $('#form-transaksi').attr('action', 'update/' + trans.id);
 
+            parent.removeClass('disabled');
             $('#modal-opsi-trans').modal('hide');
-            $('#table-list-trans tbody').css('pointer-events', 'initial');
-            $('#section-transaksi-cuci').children('.row').show();
         });
     });
 
@@ -105,14 +125,11 @@ $(document).ready(function() {
     });
 
     $('#add-new-trans').on('click', function() {
-        transState = 0;
-
-        // $('#id-trans').val(id); perlu ajax ambil id baru
-
         let rowAdd = $('#table-trans-item tbody').children().last().detach();
         $('#table-trans-item tbody').empty();
         $('#table-trans-item tbody').append(rowAdd);
 
+        // reset content
         $('#input-pafrum').val('');
         $('#formCheck-express').prop('checked', false);
         $('#formCheck-express').val(0);
@@ -126,50 +143,38 @@ $(document).ready(function() {
         $('#input-alamat').val('');
         $('#input-email').val('');
         $('#input-tanggal-lahir').val('');
-        $('#input-catatan-pelanggan').remove('disabled');
-
-        $('#search-pelanggan').show();
-        $('#data-pelanggan').hide();
-        $('#search-pelanggan').text('Cari pelanggan');
-
-        // reset outlet
-        $('#select-outlet').removeClass('disabled');
-        $('#select-outlet').val('');
+        $('#input-catatan-pelanggan').val('');
 
         // reset pickup delivery
-        $('#check-pickup').hide();
         $('#formCheck-pickup').prop('checked', false);
-        $('#select-driver-pickup').removeClass('disabled');
         $('#select-driver-pickup').val('');
-        $('#input-alamat-ambil').removeClass('disabled');
         $('#input-alamat-ambil').val('');
 
         $('#formCheck-delivery').prop('checked', false);
-        $('#select-driver-delivery').removeClass('disabled');
         $('#select-driver-delivery').val('');
-        $('#input-alamat-antar').removeClass('disabled');
         $('#input-alamat-antar').val('');
 
-        // $('#formCheck-ambil-outlet').prop('checked', false);
         $('#select-outlet-ambil').removeClass('disabled');
         $('#select-outlet-ambil').val('');
 
+        // reset outlet
+        $('#select-outlet').val('');
+
         $('#container-pickup').hide();
         $('#container-delivery').hide();
-        $('#container-ambil-outlet').hide();
 
-        $('#search-pelanggan').show();
-        $('#to-pickup-delivery').parent().hide();
-
-        $('#show-data-pelanggan').show();
+        if ($('#show-data-pelanggan').hasClass('show')) {
+            $('#show-data-pelanggan').trigger('click');
+        }
         if ($('#show-data-pickup-delivery').hasClass('show')) {
-            $('#show-data-pickup-delivery').hide();
+            $('#show-data-pickup-delivery').trigger('click');
         }
-        $('#show-data-outlet').show();
+        if ($('#show-data-outlet').hasClass('show')) {
+            $('#show-data-outlet').trigger('click');
+        }
         if ($('#show-data-penerimaan').hasClass('show')) {
-            $('#show-data-penerimaan').hide();
+            $('#show-data-penerimaan').trigger('click');
         }
-        $('#section-info').hide();
 
         $('#sub-total').html('');
         $('#diskon').html('');
@@ -183,10 +188,7 @@ $(document).ready(function() {
             let id = data[0];
 
             $('#id-trans').text(id);
-            $('#id-trans').show();
             $('#modal-opsi-trans').modal('hide');
-            $('#section-transaksi-cuci').children('.row').show();
-
             $('#modal-new-trans').modal('show');
         });
     });
@@ -196,7 +198,8 @@ $(document).ready(function() {
     });
 
     $('#table-list-pelanggan-2 tbody tr').on('click', function() {
-        $(this).parent().css('pointer-events', 'none');
+        let parent = $(this).parent();
+        parent.addClass('disabled');
         let id = $(this).attr('id').substring($(this).attr('id').indexOf('row-') + 4);
 
         $.ajax({
@@ -215,7 +218,7 @@ $(document).ready(function() {
 
         $('#search-pelanggan-2').text('Ganti pelanggan');
         $(this).closest('.card').hide();
-        $(this).parent().css('pointer-events', 'initial');
+        parent.removeClass('disabled');
     });
 
     $('#create-trans').on('click', function() {
@@ -223,11 +226,11 @@ $(document).ready(function() {
         $.ajax({
             url: "/transaksi/create?pelanggan_id=" + pelanggan_id,
         }).done(function(data) {
-            console.log(data);
+            // console.log(data);
 
             let trans = data[0];
             $('#id-trans').text(trans.id);
-            $('#id-trans').show();
+            $('#kode-trans').text(trans.kode);
 
             $('#input-parfum').val(trans.parfum_id);
             $('#formCheck-express').prop('checked', trans.express);
@@ -255,50 +258,14 @@ $(document).ready(function() {
             $('#search-pelanggan').hide();
             $('#data-pelanggan').show();
 
-            $('#select-outlet').addClass('disabled');
             $('#select-outlet').val(trans.outlet_id);
 
-            let pickup = trans.pickup_delivery[0];
-            let delivery = trans.pickup_delivery[1];
-            let penerima = trans.penerima;
-
-            $('#check-pickup').show();
-            if (pickup != null) {
-                $('#select-driver-pickup').val(pickup.driver_id);
-                $('#select-driver-pickup').addClass('disabled');
-                $('#input-alamat-ambil').val(pickup.alamat);
-                $('#input-alamat-ambil').addClass('disabled');
-                $('#formCheck-pickup').trigger('click');
-            }
-
-            if (delivery != null) {
-                $('#select-driver-delivery').val(delivery.driver_id);
-                $('#select-driver-delivery').addClass('disabled');
-                $('#input-alamat-antar').val(delivery.alamat);
-                $('#input-alamat-antar').addClass('disabled');
-                $('#formCheck-delivery').trigger('click');
-            }
-
-            if (penerima != null) {
-                $('#select-outlet-ambil').val(penerima.outlet_ambil_id);
-                $('#select-outlet-ambil').addClass('disabled');
-                // $('#formCheck-ambil-outlet').trigger('click');
-            }
-
-            if ($('#show-data-pelanggan').hasClass('show')) {
+            if (!$('#show-data-pelanggan').hasClass('show')) {
                 $('#show-data-pelanggan').trigger('click');
             }
-            if ($('#show-data-pickup-delivery').hasClass('show')) {
-                $('#show-data-pickup-delivery').trigger('click');
-            }
-            if ($('#show-data-outlet').hasClass('show')) {
+            if (!$('#show-data-outlet').hasClass('show')) {
                 $('#show-data-outlet').trigger('click');
             }
-            if ($('#show-data-penerimaan').hasClass('show')) {
-                $('#show-data-penerimaan').trigger('click');
-            }
-            $('#to-pickup-delivery').parent().show();
-            $('#section-info').show();
 
             let rowAdd = $('#table-trans-item tbody').children().last().detach();
             for (let i = 0; i < trans.item_transaksi.length; i++) {
@@ -318,8 +285,7 @@ $(document).ready(function() {
         });
     });
 
-    var separatorInterval = setInterval(setThousandSeparator, 10);
-    function setThousandSeparator () {
+    function setThousandSeparator() {
         let length = $('.thousand-separator').length;
         if (length != 0) {
             $('.thousand-separator').each(function(index, element) {
@@ -332,7 +298,6 @@ $(document).ready(function() {
                     $(element).text(number.toLocaleString(['ban', 'id']));
                 }
             });
-            clearInterval(separatorInterval);
         }
     };
 
@@ -361,8 +326,13 @@ $(document).ready(function() {
             contentType: false,
             processData: false,
             data: formData,
-        }).done(function(data) {
-            // console.log(data);
+            beforeSend: function() {
+
+            }
+        }).done(function() {
+
+        }).fail(function(message) {
+            alert(console.log(message));
         });
     });
 
@@ -409,24 +379,6 @@ $(document).ready(function() {
         $('#modal-list-pelanggan').modal('hide');
     });
 
-    $('#select-outlet').on('change', function() {
-        if ($(this).val() && !transState) {
-            $.ajax({
-                url: "/setting/outlet/" + $(this).val(),
-            }).done(function(data) {
-                outlet = data[0];
-
-                $('#input-alamat-outlet').val(outlet.alamat);
-
-                // console.log(outlet);
-            });
-        }
-    });
-
-    $('#info-pickup-delivery .form-check input').on('change', function() {
-        $(this).parent().next().toggle();
-    });
-
     $('#to-pickup-delivery').on('click', function() {
         let transID = $('#id-trans').text();
         window.location = "/transaksi/pickup-delivery/";
@@ -464,7 +416,8 @@ $(document).ready(function() {
     });
 
     $('#table-items tbody').on('click', 'tr', function() {
-        $(this).parent().css('pointer-events', 'none');
+        let parent = $(this).parent();
+        parent.addClass('disabled');
         let id = $(this).attr('id');
         id = id.substr(5);
 
@@ -492,8 +445,8 @@ $(document).ready(function() {
                 $('#grand-total').html(harga.grand_total);
 
                 setThousandSeparator();
+                parent.removeClass('disabled');
                 $('#modal-add-item').modal('hide');
-                $(this).parent().css('pointer-events', 'initial');
             });
         });
     });
@@ -508,7 +461,7 @@ $(document).ready(function() {
     });
 
     $('#table-trans-item tbody').on('click', '.show-catatan-item', function() {
-        $('#modal-catatan-item').modal('show');
+        $('#modal-list-catatan-item').modal('show');
     });
 
     $('.stain-selection').on('click', function() {
@@ -522,8 +475,4 @@ $(document).ready(function() {
             $(this).val(0);
         }
     });
-
-    // $("#form-transaksi").submit(function(event) {
-    //     event.preventDefault();
-    // });
 });

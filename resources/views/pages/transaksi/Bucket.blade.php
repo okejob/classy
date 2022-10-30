@@ -114,10 +114,6 @@
                                 </button>
                             </header>
                             <div id="info-pelanggan" class="mt-2" style="display: none;">
-                                <button class="btn btn-primary mb-2" id="search-pelanggan" type="button">
-                                    <i class="fas fa-search"></i>
-                                    &nbsp;Cari Pelanggan
-                                </button>
                                 <div class="modal fade" role="dialog" tabindex="-1" id="modal-list-pelanggan">
                                     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                                         <div class="modal-content">
@@ -169,7 +165,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <form id="data-pelanggan" style="display: none;">
+                                <form id="data-pelanggan">
                                     <div class="row">
                                         <div class="col-12 mb-2">
                                             <h6>Nama</h6>
@@ -275,8 +271,8 @@
                         <section id="section-info-penerimaan" class="h-100">
                             <header>
                                 <h5 class="d-flex justify-content-between align-items-center">
-                                    penerimaan
-                                    <button class="btn show-data" id="show-data-pengambilan" type="button">
+                                    Penerimaan
+                                    <button class="btn show-data" id="show-data-penerimaan" type="button">
                                         <i class="fas fa-chevron-down large"></i>
                                     </button>
                                 </h5>
@@ -298,7 +294,7 @@
                                     <input type="file" class="form-control" id="input-foto-penerima" name="image" accept="image/*">
                                 </div>
                                 <div class="position-absolute bottom-0" style="right: 0.75rem;">
-                                    <button class="btn btn-primary" id="simpan-info-penerimaan">Simpan Pengambilan</button>
+                                    <button class="btn btn-primary" id="simpan-info-penerimaan">Simpan Penerimaan</button>
                                 </div>
                             </div>
                         </section>
@@ -366,7 +362,7 @@
             <div class="card">
                 <div class="card-body">
                     <header>
-                        <h3>ID Transaksi : <span id="id-trans" style="display: none;">{{ $data['transaksi_id'] }}</span></h3>
+                        <h3>Kode Transaksi : <span id="kode-trans"></span><span id="id-trans" class="d-none"></span></h3>
                     </header>
                     <div class="table-responsive my-2">
                         <table class="table table-striped mb-0" id="table-trans-item">
@@ -482,6 +478,45 @@
                                             </thead>
                                             <tbody>
                                             </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="dialog" tabindex="-1" class="modal fade" id="modal-list-catatan-item">
+                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Catatan Item</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead class="text-center">
+                                                <tr>
+                                                    <th>Noted By</th>
+                                                    <th>Ringkasan</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Jovan</td>
+                                                    <td>bajunya sobek</td>
+                                                    <td class="text-end" style="padding: 4px 8px;"><button class="btn btn-primary btn-sm" type="button">Show</button></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Damar</td>
+                                                    <td>bajunya luntur</td>
+                                                    <td class="text-end" style="padding: 4px 8px;"><button class="btn btn-primary btn-sm" type="button">Show</button></td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td class="text-center" colspan="3"><button class="btn btn-primary btn-sm" type="button"><i class="fas fa-plus"></i></button></td>
+                                                </tr>
+                                            </tfoot>
                                         </table>
                                     </div>
                                 </div>
