@@ -2,6 +2,7 @@
 
 namespace App\Models\Transaksi;
 
+use App\Models\Data\Pelanggan;
 use App\Models\User;
 use App\Observers\UserActionObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,6 +13,9 @@ class PickupDelivery extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $appends = [
+        'nama_pelanggan'
+    ];
 
     public static function boot()
     {
@@ -19,8 +23,28 @@ class PickupDelivery extends Model
         PickupDelivery::observe(new UserActionObserver);
     }
 
+    public function getNamaDriverAttribute()
+    {
+        return $this->driver()->username;
+    }
+
+    public function getNamaPelangganAttribute()
+    {
+        return $this->pelanggan()->nama;
+    }
+
     public function transaksi()
     {
         return $this->belongsTo(Transaksi::class);
+    }
+
+    public function pelanggan()
+    {
+        return $this->belongsTo(Pelanggan::class);
+    }
+
+    public function driver()
+    {
+        return $this->belongsTo(User::class, 'driver_id', 'id');
     }
 }
