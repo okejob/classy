@@ -14,7 +14,8 @@ class PickupDelivery extends Model
 
     protected $guarded = ['id'];
     protected $appends = [
-        'nama_pelanggan'
+        'nama_pelanggan',
+        'nama_driver',
     ];
 
     public static function boot()
