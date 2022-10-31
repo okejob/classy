@@ -15,6 +15,20 @@ use App\Models\User;
 class TransaksiController extends Controller
 {
 
+    public function search($key)
+    {
+        $transaksi = Transaksi::detail()
+            ->where('id', $key)
+            ->orWhere('kode', 'ilike', '%' . $key . '%')
+            ->orWhereHas('pelanggan', function ($q) use ($key) {
+                $q->where('nama', 'ilike', '%' . $key . '%');
+            })->take(5)->get();
+        return [
+            'status' => 200,
+            $transaksi
+        ];
+    }
+
     public function bucketPrice($total_bobot)
     {
         $paket_bucket = PaketCuci::where('nama_paket', 'BUCKET')->first();
