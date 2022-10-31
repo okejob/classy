@@ -80,11 +80,21 @@ $(document).ready(function() {
             }
 
             if (penerima) {
+                $('#select-outlet-ambil').parent().addClass('disabled');
                 $('#select-outlet-ambil').val(penerima.outlet_id);
-                $('#select-outlet-ambil').addClass('disabled');
+                $('#input-nama-penerima').val(penerima.penerima);
+                $('#input-date-penerimaan').val(penerima.tanggal_penerimaan);
+                $('#input-foto-penerima').hide().prev().hide();
+
+                $('#simpan-info-penerimaan').hide();
             } else {
-                $('#select-outlet-ambil').removeClass('disabled');
+                $('#select-outlet-ambil').parent().removeClass('disabled');
                 $('#select-outlet-ambil').val('');
+                $('#input-nama-penerima').val('');
+                $('#input-date-penerimaan').val('');
+                $('#input-foto-penerima').show().prev().show();
+
+                $('#simpan-info-penerimaan').show();
             }
 
             if (!$('#show-data-pelanggan').hasClass('show')) {
@@ -120,8 +130,30 @@ $(document).ready(function() {
         });
     });
 
-    $('#search-id-trans').on('click', function() {
-        alert("ajax get trans list");
+    $('#search-key-trans').on('click', function() {
+        let key = $('#input-key-trans').val()
+        $.ajax({
+            url: "/transaksi/search/" + key,
+        }).done(function(data) {
+            console.log(data);
+            let transaksi = data[0];
+
+            $('#table-list-trans tbody').empty();
+            transaksi.forEach(trans => {
+                $('#table-list-trans tbody').append(
+                    "<tr data-bs-toggle='tooltip' data-bss-tooltip='' title='Double klik untuk memilih'>" +
+                    "<td>" + trans.id + "</td>" +
+                    "<td>" + trans.outlet.nama + "</td>" +
+                    "<td class='text-center'>" + trans.created_at + "</td>" +
+                    "<td>" + trans.pelanggan.nama + "</td>" +
+                    "<td>Rp</td>" +
+                    "<td class='text-end thousand-separator'>" + trans.grand_total + "</td>" +
+                    "<td class='text-center'>" + (trans.lunas) ? 'Lunas' : 'Belum Lunas' + "</td>" +
+                "</tr>"
+                );
+            });
+
+        });
     });
 
     $('#add-new-trans').on('click', function() {
@@ -162,6 +194,7 @@ $(document).ready(function() {
 
         $('#container-pickup').hide();
         $('#container-delivery').hide();
+        $('#simpan-info-penerimaan').show();
 
         if ($('#show-data-pelanggan').hasClass('show')) {
             $('#show-data-pelanggan').trigger('click');
@@ -182,15 +215,8 @@ $(document).ready(function() {
         $('#grand-total').html('');
         $('#input-parfum').val('');
 
-        $.ajax({
-            url: "/transaksi/newID",
-        }).done(function(data) {
-            let id = data[0];
-
-            $('#id-trans').text(id);
-            $('#modal-opsi-trans').modal('hide');
-            $('#modal-new-trans').modal('show');
-        });
+        $('#modal-opsi-trans').modal('hide');
+        $('#modal-new-trans').modal('show');
     });
 
     $('#search-pelanggan-2').on('click', function() {
@@ -302,6 +328,7 @@ $(document).ready(function() {
     };
 
     $('#simpan-info-penerimaan').on('click', function() {
+        $(this).addClass('disabled');
         let id_trans = $('#id-trans').text();
         let id_outlet = $('#select-outlet-ambil').val();
         let ambil_di_outlet = 0;
@@ -326,11 +353,9 @@ $(document).ready(function() {
             contentType: false,
             processData: false,
             data: formData,
-            beforeSend: function() {
-
-            }
         }).done(function() {
-
+            $('#simpan-info-penerimaan').removeClass('disabled');
+            $('#simpan-info-penerimaan').hide();
         }).fail(function(message) {
             alert(console.log(message));
         });

@@ -80,7 +80,7 @@
                                     <h5>Nominal</h5>
                                     <div class="form-control d-flex">
                                         <p>Rp</p>
-                                        <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-nominal" name="nominal" required>
+                                        <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-nominal" min=0 name="nominal" required>
                                     </div>
                                 </div>
                             </div>

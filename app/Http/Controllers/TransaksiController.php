@@ -19,9 +19,9 @@ class TransaksiController extends Controller
     {
         $transaksi = Transaksi::detail()
             ->where('id', $key)
-            ->orWhere('kode', 'ilike', '%' . $key . '%')
+            ->orWhere('kode', 'like', '%' . $key . '%')
             ->orWhereHas('pelanggan', function ($q) use ($key) {
-                $q->where('nama', 'ilike', '%' . $key . '%');
+                $q->where('nama', 'like', '%' . $key . '%');
             })->take(5)->get();
         return [
             'status' => 200,
@@ -93,23 +93,5 @@ class TransaksiController extends Controller
             $transaksi->save();
         }
         return redirect()->intended(route('transaksi-bucket'));
-    }
-
-    public function getTransaksi($id)
-    {
-        $transaksi = Transaksi::detail()->find($id);
-        return [
-            'status' => 200,
-            $transaksi,
-        ];
-    }
-
-    public function getID()
-    {
-        $id = Transaksi::count() == 0 ? 1 : Transaksi::latest()->first()->id + 1;
-        return [
-            'status' => 200,
-            $id,
-        ];
     }
 }

@@ -28,6 +28,7 @@
                                 <th colspan="2">Harga Kilo</th>
                                 <th colspan="2">Harga Bucket</th>
                                 <th colspan="2">Harga Premium</th>
+                                <th>Bobot Produksi</th>
                                 <th>Status Kilo</th>
                                 <th>Status Bucket</th>
                                 <th>Status Premium</th>
@@ -49,6 +50,7 @@
                                 <td class="text-end thousand-separator">{{ $item->harga_bucket }}</td>
                                 <td>Rp</td>
                                 <td class="text-end thousand-separator">{{ $item->harga_premium }}</td>
+                                <td class="text-center">{{ $item->beban_produksi }}</td>
                                 @if ($item->status_kilo)
                                     <td class="text-center">Aktif</td>
                                 @else
@@ -150,6 +152,12 @@
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6">
+                                    <h5>Beban Produksi</h5>
+                                    <div class="form-control d-flex">
+                                        <input class="w-100 ms-2" type="number" value="0.0" step="0.1" min="0" id="input-beban-produksi" name="beban_produksi" required>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
                                     <h5>Status Kilo</h5>
                                     <div class="form-control d-flex align-items-center justify-content-around">
                                         <div class="form-check">
@@ -188,7 +196,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-6">
+                                <div class="col-12">
                                     <h5>Status Item</h5>
                                     <div class="form-control d-flex align-items-center justify-content-around">
                                         <div class="form-check">

@@ -313,8 +313,8 @@
                     </div>
                     <div class="modal-body">
                         <div class="d-flex mb-3">
-                            <input class="form-control" type="search" id="input-id-trans" placeholder="ID Transaksi">
-                            <button class="btn btn-primary mx-3" data-bs-toggle="tooltip" data-bss-tooltip="" id="search-id-trans" type="button" title="Cari transaksi">
+                            <input class="form-control" type="search" id="input-key-trans" placeholder="Kata kunci">
+                            <button class="btn btn-primary mx-3" data-bs-toggle="tooltip" data-bss-tooltip="" id="search-key-trans" type="button" title="Cari transaksi">
                                 <i class="fas fa-search"></i>
                             </button>
                             <button class="btn btn-primary" data-bs-toggle="tooltip" data-bss-tooltip="" id="add-new-trans" type="button" title="Buat transaksi baru">
