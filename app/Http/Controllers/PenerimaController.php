@@ -14,12 +14,20 @@ class PenerimaController extends Controller
 
     public function insert(InsertPenerimaRequest $request)
     {
-        $path = $this->upload($request, 'penerima');
-        $merged = $request->safe()->merge([
-            'modified_by' => Auth::id(),
-            'foto_penerima' => $path,
+        $transaksi_id = $request->safe()->only('transaksi_id');
+        $penerima = Penerima::where('transaksi_id', $transaksi_id)->first();
+        if (!$penerima) {
+            $path = $this->upload($request, 'penerima');
+            $merged = $request->safe()->merge([
+                'modified_by' => Auth::id(),
+                'foto_penerima' => $path,
             ])->toArray();
-        $penerima = Penerima::create($merged);
+            $penerima = Penerima::create($merged);
+            return [
+                'status' => 200,
+                $penerima
+            ];
+        }
         return [
             'status' => 200,
             $penerima
