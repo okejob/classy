@@ -18,7 +18,7 @@ class TransaksiController extends Controller
     public function search($key)
     {
         $transaksi = Transaksi::detail()
-            ->where('id', 'like' , '%'.$key.'%')
+            ->where('id', 'like' , '%' . $key . '%')
             ->orWhere('kode', 'like', '%' . $key . '%')
             ->orWhereHas('pelanggan', function ($q) use ($key) {
                 $q->where('nama', 'like', '%' . $key . '%');

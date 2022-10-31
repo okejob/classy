@@ -23,18 +23,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Cell 2</td>
-                                <td>Cell 3</td>
-                                <td>Cell 4</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Cell 4</td>
-                                <td>Cell 3</td>
-                                <td>Cell 4</td>
-                            </tr>
+                            @foreach ($data1 as $pickup)
+                                <tr>
+                                    <td class="text-center">{{ $pickup->id }}</td>
+                                    <td class="text-center">{{ $pickup->pelanggan->nama }}</td>
+                                    <td class="text-center">{{ $pickup->nama_driver }}</td>
+                                    <td>{{ $pickup->alamat }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -57,18 +53,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Cell 2</td>
-                                <td>Cell 3</td>
-                                <td>Cell 4</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Cell 4</td>
-                                <td>Cell 3</td>
-                                <td>Cell 4</td>
-                            </tr>
+                            @foreach ($data2 as $delivery)
+                                <tr>
+                                    <td class="text-center">{{ $delivery->id }}</td>
+                                    <td class="text-center">{{ $delivery->pelanggan->nama }}</td>
+                                    <td class="text-center">{{ $delivery->nama_driver }}</td>
+                                    <td>{{ $delivery->alamat }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -85,24 +77,20 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Pelanggan</th>
+                                <th>Penerima</th>
                                 <th>Outlet</th>
                                 <th>Tanggal Ambil</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Cell 2</td>
-                                <td>Cell 3</td>
-                                <td>Cell 4</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Cell 4</td>
-                                <td>Cell 3</td>
-                                <td>Cell 4</td>
-                            </tr>
+                        <tbody class="text-center">
+                            @foreach ($data3 as $ambil_di_outlet)
+                                <tr>
+                                    <td>{{ $ambil_di_outlet->id }}</td>
+                                    <td>{{ $ambil_di_outlet->penerima }}</td>
+                                    <td>{{ $ambil_di_outlet->outlet->nama }}</td>
+                                    <td>{{ $ambil_di_outlet->tanggal_penerimaan }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -200,7 +188,7 @@
                     </div>
                     <input type="hidden" name="action" value="delivery">
                     <div class="modal-footer">
-                        <button class="btn btn-primary" type="button">Save</button>
+                        <button class="btn btn-primary" type="submit">Save</button>
                     </div>
                 </form>
             </div>

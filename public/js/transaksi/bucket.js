@@ -139,20 +139,21 @@ $(document).ready(function() {
             let transaksi = data[0];
 
             $('#table-list-trans tbody').empty();
-            transaksi.forEach(trans => {
-                $('#table-list-trans tbody').append(
-                    "<tr data-bs-toggle='tooltip' data-bss-tooltip='' title='Double klik untuk memilih'>" +
-                    "<td>" + trans.id + "</td>" +
-                    "<td>" + trans.outlet.nama + "</td>" +
-                    "<td class='text-center'>" + trans.created_at + "</td>" +
-                    "<td>" + trans.pelanggan.nama + "</td>" +
-                    "<td>Rp</td>" +
-                    "<td class='text-end thousand-separator'>" + trans.grand_total + "</td>" +
-                    "<td class='text-center'>" + (trans.lunas) ? 'Lunas' : 'Belum Lunas' + "</td>" +
-                "</tr>"
+            for (let i = 0; i < transaksi.length; i++) {
+                const trans = transaksi[i];
+                console.log(trans);
+                $('#table-list-trans tbody').prepend(
+                    "<tr>" +
+                        "<td>" + trans.id + "</td>" +
+                        "<td>" + trans.outlet.nama + "</td>" +
+                        "<td class='text-center'>" + trans.created_at + "</td>" +
+                        "<td>" + trans.pelanggan.nama + "</td>" +
+                        "<td>Rp</td>" +
+                        "<td class='text-end thousand-separator'>" + trans.grand_total + "</td>" +
+                        "<td class='text-center'>" + ((trans.lunas) ? 'Lunas' : 'Belum Lunas') + "</td>" +
+                    "</tr>"
                 );
-            });
-
+            }
         });
     });
 
