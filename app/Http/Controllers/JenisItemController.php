@@ -15,16 +15,16 @@ class JenisItemController extends Controller
         $jenis_item = [];
         if ($request->tipe_transaksi == "bucket") {
             $jenis_item = JenisItem::where('status_bucket', 1)
-                ->where('nama', 'like', '%' . $request->key . '%')
+                ->where('nama', 'ilike', '%' . $request->key . '%')
                 ->orWhereHas('kategori', function ($q) use ($request) {
-                    $q->where('nama', 'like', '%' . $request->key . '%');
+                    $q->where('nama', 'ilike', '%' . $request->key . '%');
                 })
                 ->take(5)->get();
         } else if ($request->tipe_transaksi == "premium") {
             $jenis_item = JenisItem::where('status_premium', 1)
-                ->where('nama', 'like', '%' . $request->key . '%')
+                ->where('nama', 'ilike', '%' . $request->key . '%')
                 ->orWhereHas('kategori', function ($q) use ($request) {
-                    $q->where('nama', 'like', '%' . $request->key . '%');
+                    $q->where('nama', 'ilike', '%' . $request->key . '%');
                 })
                 ->take(5)->get();
         }

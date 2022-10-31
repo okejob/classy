@@ -34,6 +34,7 @@ class InsertJenisItemRequest extends FormRequest
             'status_kilo' => 'required|boolean',
             'status_bucket' => 'required|boolean',
             'status_premium' => 'required|boolean',
+            'beban_produksi' => 'numeric',
         ];
     }
 }
