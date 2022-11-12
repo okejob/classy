@@ -16,11 +16,11 @@ $(document).ready(function() {
         let id = $(this).children().eq(0).html();
 
         $.ajax({
-            url: "/transaksi/getTrans/" + id,
+            url: "/transaksi/detail/" + id,
         }).done(function(data) {
             // console.log(data[0]);
 
-            let trans = data[0];
+            let trans = data;
             $('#id-trans').text(trans.id);
             $('#kode-trans').text(trans.kode);
 
@@ -36,7 +36,6 @@ $(document).ready(function() {
             $('#input-catatan-trans').val(trans.catatan);
 
             let pelanggan = trans.pelanggan;
-
             $('#input-nama').val(pelanggan.nama);
             $('#input-telepon').val(pelanggan.telephone);
             $('#input-alamat').val(pelanggan.alamat);
@@ -114,7 +113,7 @@ $(document).ready(function() {
             $('#table-trans-item tbody').empty();
             for (let i = 0; i < trans.item_transaksi.length; i++) {
                 const item = trans.item_transaksi[i];
-                $('#table-trans-item tbody').append("<tr><td>" + item.nama + "</td><td>" + item.nama_kategori + "</td><td></td><td></td><td></td><td class='text-center' style='padding-top: 4px;padding-bottom: 4px;'><button id='btn-catatan-item-" + item.id + "' class='btn btn-primary btn-sm show-catatan-item' type='button'>Catatan</button></td><td class='text-center' colspan='2'>" + item.bobot_bucket + "</td></tr>");
+                $('#table-trans-item tbody').append("<tr id='" + item.id + "'><td>" + item.nama + "</td><td>" + item.nama_kategori + "</td><td></td><td></td><td></td><td class='text-center' style='padding-top: 4px;padding-bottom: 4px;'><button id='btn-catatan-item-" + item.id + "' class='btn btn-primary btn-sm show-catatan-item' type='button'>Catatan</button></td><td class='text-center' colspan='2'>" + item.bobot_bucket + "</td></tr>");
             }
             $('#table-trans-item tbody').append(rowAdd);
 
@@ -158,70 +157,16 @@ $(document).ready(function() {
     });
 
     $('#add-new-trans').on('click', function() {
-        let rowAdd = $('#table-trans-item tbody').children().last().detach();
-        $('#table-trans-item tbody').empty();
-        $('#table-trans-item tbody').append(rowAdd);
-
-        // reset content
-        $('#input-pafrum').val('');
-        $('#formCheck-express').prop('checked', false);
-        $('#formCheck-express').val(0);
-        $('#formCheck-setrika').prop('checked', false);
-        $('#formCheck-setrika').val(0);
-        $('#input-catatan-trans').val('');
-
-        // reset pelanggan
-        $('#input-nama').val('');
-        $('#input-telepon').val('');
-        $('#input-alamat').val('');
-        $('#input-email').val('');
-        $('#input-tanggal-lahir').val('');
-        $('#input-catatan-pelanggan').val('');
-
-        // reset pickup delivery
-        $('#formCheck-pickup').prop('checked', false);
-        $('#select-driver-pickup').val('');
-        $('#input-alamat-ambil').val('');
-
-        $('#formCheck-delivery').prop('checked', false);
-        $('#select-driver-delivery').val('');
-        $('#input-alamat-antar').val('');
-
-        $('#select-outlet-ambil').removeClass('disabled');
-        $('#select-outlet-ambil').val('');
-
-        // reset outlet
-        $('#select-outlet').val('');
-
-        $('#container-pickup').hide();
-        $('#container-delivery').hide();
-        $('#simpan-info-penerimaan').show();
-
-        if ($('#show-data-pelanggan').hasClass('show')) {
-            $('#show-data-pelanggan').trigger('click');
-        }
-        if ($('#show-data-pickup-delivery').hasClass('show')) {
-            $('#show-data-pickup-delivery').trigger('click');
-        }
-        if ($('#show-data-outlet').hasClass('show')) {
-            $('#show-data-outlet').trigger('click');
-        }
-        if ($('#show-data-penerimaan').hasClass('show')) {
-            $('#show-data-penerimaan').trigger('click');
-        }
-
-        $('#sub-total').html('');
-        $('#diskon').html('');
-        $('#diskon-member').html('');
-        $('#grand-total').html('');
-        $('#input-parfum').val('');
-
         $('#modal-opsi-trans').modal('hide');
         $('#modal-new-trans').modal('show');
     });
 
+    $('#new-trans-back').on('click', function() {
+        $('#modal-opsi-trans').modal('show');
+    });
+
     $('#search-pelanggan-2').on('click', function() {
-        $(this).next().show();
+        $(this).next().toggle();
     });
 
     $('#table-list-pelanggan-2 tbody tr').on('click', function() {
@@ -253,62 +198,7 @@ $(document).ready(function() {
         $.ajax({
             url: "/transaksi/create?pelanggan_id=" + pelanggan_id,
         }).done(function(data) {
-            // console.log(data);
-
-            let trans = data[0];
-            $('#id-trans').text(trans.id);
-            $('#kode-trans').text(trans.kode);
-
-            $('#input-parfum').val(trans.parfum_id);
-            $('#formCheck-express').prop('checked', trans.express);
-            if (trans.express) {
-                $('#formCheck-express').val(1);
-            }
-            $('#formCheck-setrika').prop('checked', trans.setrika_only);
-            if (trans.setrika_only) {
-                $('#formCheck-setrika').val(1);
-            }
-            $('#input-catatan-trans').val(trans.catatan);
-
-            let pelanggan = trans.pelanggan;
-
-            $('#input-nama').val(pelanggan.nama);
-            $('#input-telepon').val(pelanggan.telephone);
-            $('#input-alamat').val(pelanggan.alamat);
-            $('#input-email').val(pelanggan.email);
-            $('#input-tanggal-lahir').val(pelanggan.tanggal_lahir);
-            if (pelanggan.catatan_pelanggan != null) {
-                $('#input-catatan-pelanggan').val(pelanggan.catatan_pelanggan.catatan_cuci);
-                $('#input-catatan-pelanggan').addClass('disabled');
-            }
-
-            $('#search-pelanggan').hide();
-            $('#data-pelanggan').show();
-
-            $('#select-outlet').val(trans.outlet_id);
-
-            if (!$('#show-data-pelanggan').hasClass('show')) {
-                $('#show-data-pelanggan').trigger('click');
-            }
-            if (!$('#show-data-outlet').hasClass('show')) {
-                $('#show-data-outlet').trigger('click');
-            }
-
-            let rowAdd = $('#table-trans-item tbody').children().last().detach();
-            for (let i = 0; i < trans.item_transaksi.length; i++) {
-                const item = trans.item_transaksi[i];
-                $('#table-trans-item tbody').append("<tr><td>" + item.nama + "</td><td>" + item.nama_kategori + "</td><td></td><td></td><td></td><td class='text-center' style='padding-top: 4px;padding-bottom: 4px;'><button id='btn-catatan-item-" + item.id + "' class='btn btn-primary btn-sm show-catatan-item' type='button'>Catatan</button></td><td class='text-center' colspan='2'>" + item.bobot_bucket + "</td></tr>");
-            }
-            $('#table-trans-item tbody').append(rowAdd);
-
-            $('#sub-total').html(trans.subtotal);
-            $('#diskon').html(trans.diskon);
-            $('#diskon-member').html(trans.diskon_member);
-            $('#grand-total').html(trans.grand_total);
-            setThousandSeparator();
-            $('#form-transaksi').attr('action', 'update/' + trans.id);
-
-            $('#modal-new-trans').modal('hide');
+            window.location = window.location;
         });
     });
 
@@ -441,6 +331,7 @@ $(document).ready(function() {
         });
     });
 
+    // tambah item
     $('#table-items tbody').on('click', 'tr', function() {
         let parent = $(this).parent();
         parent.addClass('disabled');
@@ -452,23 +343,23 @@ $(document).ready(function() {
         }).done(function(data) {
             let item = data[0];
 
-            $('#table-trans-item tbody').prepend("<tr><td>" + item.nama + "</td><td>" + item.nama_kategori + "</td><td></td><td></td><td></td><td class='text-center' style='padding-top: 4px;padding-bottom: 4px;'><button id='btn-catatan-item-" + item.id + "' class='btn btn-primary btn-sm show-catatan-item' type='button'>Catatan</button></td><td class='text-center' colspan='2'>" + item.bobot_bucket + "</td></tr>");
-
             let rowAdd = $('#table-trans-item tbody').children().last().detach();
             let total_bobot = 0;
             $('#table-trans- item tbody tr').each(function() {
                 total_bobot += parseFloat($(this).children().eq(6).html());
             });
-            $('#table-trans-item tbody').append(rowAdd);
 
             $.ajax({
                 url: "/transaksi/addItem?jenis_item_id=" + item.id + "&transaksi_id=" + $('#id-trans').text(),
             }).done(function(data) {
-                let harga = data[0];
-                $('#sub-total').html(harga.subtotal);
-                $('#diskon').html(harga.diskon);
-                $('#diskon-member').html(harga.diskon_member);
-                $('#grand-total').html(harga.grand_total);
+                let trans = data[0];
+                $('#sub-total').html(trans.subtotal);
+                $('#diskon').html(trans.diskon);
+                $('#diskon-member').html(trans.diskon_member);
+                $('#grand-total').html(trans.grand_total);
+
+                $('#table-trans-item tbody').append("<tr id='" + trans.item_transaksi[trans.item_transaksi.length - 1].id + "'><td>" + item.nama + "</td><td>" + item.nama_kategori + "</td><td></td><td></td><td></td><td class='text-center' style='padding-top: 4px;padding-bottom: 4px;'><button id='btn-catatan-item-" + item.id + "' class='btn btn-primary btn-sm show-catatan-item' type='button'>Catatan</button></td><td class='text-center' colspan='2'>" + item.bobot_bucket + "</td></tr>");
+                $('#table-trans-item tbody').append(rowAdd);
 
                 setThousandSeparator();
                 parent.removeClass('disabled');
@@ -482,12 +373,26 @@ $(document).ready(function() {
     });
 
     $('#save-catatan-trans').on('click', function() {
-        // ajax save catatan
         $(this).closest('div').hide();
     });
 
+    var currentlySelectedItemTransactionID = 0;
+    var currentlySelectedItemName = '';
     $('#table-trans-item tbody').on('click', '.show-catatan-item', function() {
-        $('#modal-list-catatan-item').modal('show');
+        currentlySelectedItemTransactionID = $(this).closest('tr').attr('id');
+        currentlySelectedItemName = $(this).closest('tr').children().eq(0).html();
+
+        $.ajax({
+            url: "/transaksi/item/note/list/" + currentlySelectedItemTransactionID,
+        }).done(function(data) {
+            let notes = data[0];
+
+            notes.forEach(note => {
+                $('#table-list-catatan tbody').append("<tr id='" + note.id + "'><td>" + note.nama_user + "</td><td>" + note.catatan + "</td><td class='text-end' style='padding: 4px 8px;'><button class='btn btn-primary btn-sm' type='button'>Show</button></td></tr>");
+            });
+
+            $('#modal-list-catatan-item').modal('show');
+        });
     });
 
     $('.stain-selection').on('click', function() {
@@ -500,5 +405,100 @@ $(document).ready(function() {
         } else {
             $(this).val(0);
         }
+    });
+
+    // show catatan item
+    $('#table-list-catatan tbody').on('click', '.btn', function() {
+        $('#catatan-item-name').text(currentlySelectedItemName);
+        $.ajax({
+            url: "/transaksi/item/note/" + $(this).closest('tr').attr('id'),
+        }).done(function(data) {
+            let transNote = data[0];
+
+            $('#penulis-catatan-item').val(transNote.nama_user);
+            $('#catatan-item').val(transNote.catatan);
+            $('#container-image-item').attr('src', transNote.image_path);
+
+            transNote.front_top_left == 1 ? $('#td-kiri-atas').addClass('selected') : null;
+            transNote.front_top_right == 1 ? $('#td-kanan-atas').addClass('selected') : null;
+            transNote.front_bottom_left == 1 ? $('#td-kiri-bawah').addClass('selected') : null;
+            transNote.front_bottom_right == 1 ? $('#td-kanan-bawah').addClass('selected') : null;
+            transNote.back_top_left == 1 ? $('#tb-kiri-atas').addClass('selected') : null;
+            transNote.back_top_right == 1 ? $('#tb-kanan-atas').addClass('selected') : null;
+            transNote.back_bottom_left == 1 ? $('#tb-kiri-bawah').addClass('selected') : null;
+            transNote.back_bottom_right == 1 ? $('#tb-kanan-bawah').addClass('selected') : null;
+
+            $('#penulis-catatan-item').addClass('disabled');
+            $('#catatan-item').addClass('disabled');
+            $('#input-foto-item').hide();
+            $('#tab-noda').addClass('disabled');
+
+            $('#modal-catatan-item .modal-footer').hide();
+            $('#modal-catatan-item').modal('show');
+        });
+    });
+
+    // add catatan item
+    $('#add-catatan-item').on('click', function() {
+        $('#catatan-item-name').text(currentlySelectedItemName);
+
+        $('#penulis-catatan-item').removeClass('disabled');
+        $('#catatan-item').removeClass('disabled');
+        $('#input-foto-item').show();
+        $('#tab-noda').removeClass('disabled');
+
+        // clear catatan
+        $('#penulis-catatan-item').val('');
+        $('#catatan-item').val('');
+        $('#container-image-item').prop('src', '');
+        $('#input-foto-item').val('');
+
+        $('#td-kiri-atas').addClass('selected').removeClass('selected');
+        $('#td-kanan-atas').addClass('selected').removeClass('selected');
+        $('#td-kiri-bawah').addClass('selected').removeClass('selected');
+        $('#td-kanan-bawah').addClass('selected').removeClass('selected');
+        $('#tb-kiri-atas').addClass('selected').removeClass('selected');
+        $('#tb-kanan-atas').addClass('selected').removeClass('selected');
+        $('#tb-kiri-bawah').addClass('selected').removeClass('selected');
+        $('#tb-kanan-bawah').addClass('selected').removeClass('selected');
+
+        $('#modal-catatan-item .modal-footer').show();
+        $('#modal-catatan-item').modal('show');
+    });
+
+    // save catatan item
+    $('#simpan-catatan-item').on('click', function() {
+        $(this).addClass('disabled');
+
+        let formData = new FormData();
+        formData.append('item_transaksi_id', currentlySelectedItemTransactionID);
+        formData.append('modified_by', $('#penulis-catatan-item').val());
+        formData.append('catatan', $('#catatan-item').val());
+        formData.append('image', $('#input-foto-item').prop("files")[0]);
+
+        formData.append('front_top_left', $('#td-kiri-atas').hasClass('selected') ? 1 : 0);
+        formData.append('front_top_right', $('#td-kanan-atas').hasClass('selected') ? 1 : 0);
+        formData.append('front_bottom_left', $('#td-kiri-bawah').hasClass('selected') ? 1 : 0);
+        formData.append('front_bottom_right', $('#td-kanan-bawah').hasClass('selected') ? 1 : 0);
+        formData.append('back_top_left', $('#tb-kiri-atas').hasClass('selected') ? 1 : 0);
+        formData.append('back_top_right', $('#tb-kanan-atas').hasClass('selected') ? 1 : 0);
+        formData.append('back_bottom_left', $('#tb-kiri-bawah').hasClass('selected') ? 1 : 0);
+        formData.append('back_bottom_right', $('#tb-kanan-bawah').hasClass('selected') ? 1 : 0);
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            },
+            url: "/transaksi/item/note/add",
+            method: "POST",
+            contentType: false,
+            processData: false,
+            data: formData,
+        }).done(function() {
+            $(this).removeClass('disabled');
+            $('#modal-catatan-item').hide();
+        }).fail(function(message) {
+            alert(console.log(message));
+        });
     });
 });

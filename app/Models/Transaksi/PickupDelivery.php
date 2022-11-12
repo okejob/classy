@@ -32,7 +32,7 @@ class PickupDelivery extends Model
 
     public function getNamaPelangganAttribute()
     {
-        return $this->pelanggan()->nama;
+        return $this->pelanggan->nama;
     }
 
     public function transaksi()

@@ -22,7 +22,7 @@ class ItemTransaksiController extends Controller
         $request['status_proses'] = $role;
         $item_transaksi = ItemTransaksi::create($request->toArray());
 
-        $transaksi = Transaksi::find($request['transaksi_id'])->recalculate();
+        $transaksi = Transaksi::detail()->find($request['transaksi_id'])->recalculate();
         $transaksi->modified_by = Auth::id();
         $transaksi->save();
         return  [

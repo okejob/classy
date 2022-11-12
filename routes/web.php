@@ -102,12 +102,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transaksi/item-transaksi/delete/{id}', [ItemTransaksiController::class, 'delete'])->middleware('permission:delete_item_transaksi');
 
     //ItemNote
-    Route::get('/transaksi/item/note/list', [ItemNoteController::class, 'list']);
+    Route::get('/transaksi/item/note/list/{item_transaksi_id}', [ItemNoteController::class, 'list']);
+    Route::get('/transaksi/item/note/{id}', [ItemNoteController::class, 'show']);
     Route::post('/transaksi/item/note/add', [ItemNoteController::class, 'insert']);
 
     //Transaksi
     Route::get('/transaksi/bucket', [PageController::class, 'bucket'])->name('transaksi-bucket')->middleware('permission:menu_transaksi_bucket');
     Route::get('/transaksi/create', [TransaksiController::class, 'insert']);
+    Route::get('/transaksi/detail/{id}', [TransaksiController::class, 'show']);
     Route::get('/transaksi/search/{key}', [TransaksiController::class, 'search']);
     Route::get('/transaksi/addItem', [ItemTransaksiController::class, 'addItemToTransaksi']);
     Route::post('/transaksi/update/{id}', [TransaksiController::class, 'update']);

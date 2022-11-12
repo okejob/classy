@@ -24,7 +24,7 @@ class Penerima extends Model
 
     public function getNamaOutletAttribute()
     {
-        return $this->outlet()->nama;
+        return $this->outlet->nama;
     }
 
     public function outlet()

@@ -14,11 +14,66 @@
         </button>
     </header>
 
+    <div class="modal fade" role="dialog" tabindex="-1" id="modal-opsi-trans">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Opsi Transaksi</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex mb-3">
+                        <input class="form-control" type="search" id="input-key-trans" placeholder="Kata kunci">
+                        <button class="btn btn-primary mx-3" data-bs-toggle="tooltip" data-bss-tooltip="" id="search-key-trans" type="button" title="Cari transaksi">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <button class="btn btn-primary" data-bs-toggle="tooltip" data-bss-tooltip="" id="add-new-trans" type="button" title="Buat transaksi baru">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover" id="table-list-trans">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>ID Transaksi</th>
+                                    <th>Outlet</th>
+                                    <th>Tanggal Transaksi</th>
+                                    <th>Nama Pelanggan</th>
+                                    <th colspan="2">Harga Total</th>
+                                    <th>Lunas</th>
+                                </tr>
+                            </thead>
+                            <tbody style="cursor: pointer">
+                                @foreach ($data['last_transaksi'] as $trans)
+                                <tr data-bs-toggle="tooltip" data-bss-tooltip="" title="Double klik untuk memilih">
+                                    <td>{{ $trans->id }}</td>
+                                    <td>{{ $trans->outlet->nama }}</td>
+                                    <td class="text-center">{{ $trans->created_at }}</td>
+                                    <td>{{ $trans->pelanggan->nama }}</td>
+                                    <td>Rp</td>
+                                    <td class="text-end thousand-separator">{{ $trans->grand_total }}</td>
+                                    <td class="text-center">
+                                    @if($trans->lunas)
+                                        Lunas
+                                    @else
+                                        Belum Lunas
+                                    @endif
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div role="dialog" id="modal-new-trans" tabindex="-1" class="modal fade">
         <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Transaksi Baru</h4>
+                    <button type="button" class="btn btn-sm btn-primary" id="new-trans-back" data-bs-dismiss="modal" aria-label="">Kembali</button>
                 </div>
                 <div class="modal-body">
                     <section id="section-info-pelanggan-2">
@@ -304,60 +359,6 @@
         </div>
     </section>
     <section id="section-transaksi-cuci">
-        <div class="modal fade" role="dialog" tabindex="-1" id="modal-opsi-trans">
-            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Opsi Transaksi</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="d-flex mb-3">
-                            <input class="form-control" type="search" id="input-key-trans" placeholder="Kata kunci">
-                            <button class="btn btn-primary mx-3" data-bs-toggle="tooltip" data-bss-tooltip="" id="search-key-trans" type="button" title="Cari transaksi">
-                                <i class="fas fa-search"></i>
-                            </button>
-                            <button class="btn btn-primary" data-bs-toggle="tooltip" data-bss-tooltip="" id="add-new-trans" type="button" title="Buat transaksi baru">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover" id="table-list-trans">
-                                <thead class="text-center">
-                                    <tr>
-                                        <th>ID Transaksi</th>
-                                        <th>Outlet</th>
-                                        <th>Tanggal Transaksi</th>
-                                        <th>Nama Pelanggan</th>
-                                        <th colspan="2">Harga Total</th>
-                                        <th>Lunas</th>
-                                    </tr>
-                                </thead>
-                                <tbody style="cursor: pointer">
-                                    @foreach ($data['last_transaksi'] as $trans)
-                                    <tr data-bs-toggle="tooltip" data-bss-tooltip="" title="Double klik untuk memilih">
-                                        <td>{{ $trans->id }}</td>
-                                        <td>{{ $trans->outlet->nama }}</td>
-                                        <td class="text-center">{{ $trans->created_at }}</td>
-                                        <td>{{ $trans->pelanggan->nama }}</td>
-                                        <td>Rp</td>
-                                        <td class="text-end thousand-separator">{{ $trans->grand_total }}</td>
-                                        <td class="text-center">
-                                        @if($trans->lunas)
-                                            Lunas
-                                        @else
-                                            Belum Lunas
-                                        @endif
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <section id="section-detail-transaksi">
             <div class="card">
                 <div class="card-body">
@@ -484,6 +485,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div role="dialog" tabindex="-1" class="modal fade" id="modal-list-catatan-item">
                         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                             <div class="modal-content">
@@ -492,29 +494,19 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="table-responsive">
-                                        <table class="table">
+                                        <table class="table" id="table-list-catatan">
                                             <thead class="text-center">
                                                 <tr>
                                                     <th>Noted By</th>
-                                                    <th>Ringkasan</th>
+                                                    <th>Catatan</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>Jovan</td>
-                                                    <td>bajunya sobek</td>
-                                                    <td class="text-end" style="padding: 4px 8px;"><button class="btn btn-primary btn-sm" type="button">Show</button></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Damar</td>
-                                                    <td>bajunya luntur</td>
-                                                    <td class="text-end" style="padding: 4px 8px;"><button class="btn btn-primary btn-sm" type="button">Show</button></td>
-                                                </tr>
                                             </tbody>
                                             <tfoot>
                                                 <tr>
-                                                    <td class="text-center" colspan="3"><button class="btn btn-primary btn-sm" type="button"><i class="fas fa-plus"></i></button></td>
+                                                    <td class="text-center" colspan="3"><button class="btn btn-primary btn-sm" type="button" id="add-catatan-item"><i class="fas fa-plus"></i></button></td>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -523,11 +515,12 @@
                             </div>
                         </div>
                     </div>
+
                     <div role="dialog" tabindex="-1" class="modal fade" id="modal-catatan-item">
                         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Catatan Item <span class="catatan-item-name">nama item</span></h4>
+                                    <h4 class="modal-title">Catatan Item <span id="catatan-item-name">nama item</span></h4>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
@@ -535,11 +528,11 @@
                                         <div class="col-4">
                                             <div class="mb-2">
                                                 <h5>Noted by</h5>
-                                                <input type="text" class="form-control" />
+                                                <input type="text" class="form-control" id="penulis-catatan-item" />
                                             </div>
                                             <div class="h-100">
                                                 <h5>Notes</h5>
-                                                <textarea class="form-control"></textarea>
+                                                <textarea class="form-control" id="catatan-item"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-8">
@@ -589,7 +582,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button class="btn btn-primary" type="button">Simpan</button>
+                                    <button class="btn btn-primary" type="button" id="simpan-catatan-item">Simpan</button>
                                 </div>
                             </div>
                         </div>

@@ -15,6 +15,11 @@ use App\Models\User;
 class TransaksiController extends Controller
 {
 
+    public function show($id)
+    {
+        return Transaksi::detail()->find($id);
+    }
+
     public function search($key)
     {
         $transaksi = Transaksi::detail()
