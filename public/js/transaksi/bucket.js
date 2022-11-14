@@ -248,7 +248,8 @@ $(document).ready(function() {
             $('#simpan-info-penerimaan').removeClass('disabled');
             $('#simpan-info-penerimaan').hide();
         }).fail(function(message) {
-            alert(console.log(message));
+            alert('error');
+            console.log(message);
         });
     });
 
@@ -496,9 +497,10 @@ $(document).ready(function() {
             data: formData,
         }).done(function() {
             $(this).removeClass('disabled');
-            $('#modal-catatan-item').hide();
+            $('#modal-catatan-item').modal('hide');
         }).fail(function(message) {
-            alert(console.log(message));
+            alert(error);
+            console.log(message);
         });
     });
 });
