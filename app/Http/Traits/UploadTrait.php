@@ -13,7 +13,7 @@ trait UploadTrait
         $default_path = 'image\\' . $path . '\\';
         $file = $request->file('image');
         if ($file) {
-            $file_name = time() . '_' . $file->getClientOriginalExtension();
+            $file_name = time() . '.' . $file->getClientOriginalExtension();
             $final_path = $default_path . $file_name;
             $img = Image::make($file);
             $img->save(public_path($final_path), $quality);
