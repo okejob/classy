@@ -20,7 +20,7 @@ class PenerimaController extends Controller
             $path = $this->upload($request, 'penerima');
             $merged = $request->safe()->merge([
                 'modified_by' => Auth::id(),
-                'foto_penerima' => url($path),
+                'foto_penerima' => $path,
             ])->toArray();
             $penerima = Penerima::create($merged);
             return [

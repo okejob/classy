@@ -35,7 +35,7 @@ class ItemNoteController extends Controller
         $path = $this->upload($request, 'item_notes');
         $merged = $request->safe()->merge([
             'modified_by' => Auth::id(),
-            'image_path' => url($path),
+            'image_path' => $path,
         ])->toArray();
         $item_notes = ItemNote::create($merged);
         return [
