@@ -15,7 +15,7 @@
     </header>
 
     <div class="modal fade" role="dialog" tabindex="-1" id="modal-opsi-trans">
-        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-fullscreen-sm-down" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Opsi Transaksi</h4>
@@ -36,7 +36,7 @@
                                 <tr>
                                     <th>ID Transaksi</th>
                                     <th>Outlet</th>
-                                    <th>Tanggal Transaksi</th>
+                                    <th class="d-none d-lg-block">Tanggal Transaksi</th>
                                     <th>Nama Pelanggan</th>
                                     <th colspan="2">Harga Total</th>
                                     <th>Lunas</th>
@@ -47,11 +47,11 @@
                                 <tr data-bs-toggle="tooltip" data-bss-tooltip="" title="Double klik untuk memilih">
                                     <td>{{ $trans->id }}</td>
                                     <td>{{ $trans->outlet->nama }}</td>
-                                    <td class="text-center">{{ $trans->created_at }}</td>
+                                    <td class="d-none d-lg-block text-center">{{ $trans->created_at }}</td>
                                     <td>{{ $trans->pelanggan->nama }}</td>
                                     <td>Rp</td>
                                     <td class="text-end thousand-separator">{{ $trans->grand_total }}</td>
-                                    <td class="text-center">
+                                    <td class="text-center" style="white-space: nowrap">
                                     @if($trans->lunas)
                                         Lunas
                                     @else
@@ -157,10 +157,10 @@
     </div>
 
     <section id="section-info">
-        <div class="card mb-2">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-3 position-relative">
+        <div class="row">
+            <div class="col-xl-3 col-md-6 col-12 position-relative mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
                         <section id="section-info-pelanggan">
                             <header class="d-flex justify-content-between align-items-center">
                                 <h5>Pelanggan</h5>
@@ -251,8 +251,12 @@
                             </div>
                         </section>
                     </div>
-                    <div class="col-3 position-relative">
-                        <div class="vr position-absolute" style="height: calc(100% + 2rem); margin: -1rem 0; border-left: 1px solid rgba(0,0,0,.125); top: 0; left: 0;"></div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 col-12 position-relative mb-3">
+                {{-- <div class="vr position-absolute" style="height: calc(100% + 2rem); margin: -1rem 0; border-left: 1px solid rgba(0,0,0,.125); top: 0; left: 0;"></div> --}}
+                <div class="card h-100">
+                    <div class="card-body">
                         <section id="section-info-pickup-delivery" class="h-100">
                             <header class="d-flex justify-content-between align-items-center">
                                 <h5 class="d-flex justify-content-between align-items-center">Pickup &amp; Delivery</h5>
@@ -293,14 +297,18 @@
                                         <input type="text" class="form-control" id="input-alamat-antar">
                                     </div>
                                 </div>
-                                <div class="position-absolute bottom-0" style="right: 0.75rem;">
-                                    <button class="btn btn-primary" id="to-pickup-delivery">Edit Pickup & Delivery</button>
+                                <div class="position-absolute" style="right: 1rem; bottom: 1rem;">
+                                    <button class="btn btn-primary d-flex full-when-small" id="to-pickup-delivery">Edit<span class="d-lg-block d-none">&nbsp;Pickup & Delivery</span></button>
                                 </div>
                             </div>
                         </section>
                     </div>
-                    <div class="col-3 position-relative">
-                        <div class="vr position-absolute" style="height: calc(100% + 2rem); margin: -1rem 0; border-left: 1px solid rgba(0,0,0,.125); top: 0; left: 0;"></div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 col-12 position-relative mb-3">
+                {{-- <div class="vr position-absolute" style="height: calc(100% + 2rem); margin: -1rem 0; border-left: 1px solid rgba(0,0,0,.125); top: 0; left: 0;"></div> --}}
+                <div class="card h-100">
+                    <div class="card-body">
                         <section id="section-info-outlet">
                             <header>
                                 <h5 class="d-flex justify-content-between align-items-center">
@@ -321,8 +329,12 @@
                             </div>
                         </section>
                     </div>
-                    <div class="col-3 position-relative">
-                        <div class="vr position-absolute" style="height: calc(100% + 2rem); margin: -1rem 0; border-left: 1px solid rgba(0,0,0,.125); top: 0; left: 0;"></div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 col-12 position-relative mb-3">
+                {{-- <div class="vr position-absolute" style="height: calc(100% + 2rem); margin: -1rem 0; border-left: 1px solid rgba(0,0,0,.125); top: 0; left: 0;"></div> --}}
+                <div class="card h-100">
+                    <div class="card-body">
                         <section id="section-info-penerimaan" class="h-100">
                             <header>
                                 <h5 class="d-flex justify-content-between align-items-center">
@@ -348,8 +360,8 @@
                                     <h6 class="mt-2">Foto Penerima</h6>
                                     <input type="file" class="form-control" id="input-foto-penerima" name="image" accept="image/*">
                                 </div>
-                                <div class="position-absolute bottom-0" style="right: 0.75rem;">
-                                    <button class="btn btn-primary" id="simpan-info-penerimaan">Simpan Penerimaan</button>
+                                <div class="position-absolute" style="right: 1rem; bottom: 1rem;">
+                                    <button class="btn btn-primary full-when-small" id="simpan-info-penerimaan">Simpan Penerimaan</button>
                                 </div>
                             </div>
                         </section>
@@ -415,17 +427,17 @@
                     <form method="POST" id="form-transaksi">
                         @csrf
                         <div class="row">
-                            <div class="col-4 p-2">
+                            <div class="col-md-4 col-12 p-2">
                                 <h5>Parfum</h5>
-                                <select class="form-select-sm form-control" id="input-parfum" name="parfum_id" style="max-width: 200px;">
+                                <select class="form-select-sm form-control" id="input-parfum" name="parfum_id">
                                     <option value="" selected hidden>-</option>
                                     @foreach ($data['parfum'] as $parfum)
                                         <option value="{{ $parfum->id }}">{{ $parfum->nama }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-4 p-2">
-                                <div class="d-flex justify-content-center align-items-center h-100">
+                            <div class="col-md-4 col-12 p-2">
+                                <div class="d-flex justify-content-center align-items-end h-100">
                                     <div class="form-check me-1">
                                         <input class="form-check-input" type="checkbox" id="formCheck-express" name="express" value=0>
                                         <label class="form-check-label" for="formCheck-express">Express</label>
@@ -436,20 +448,20 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-4 p-2 d-flex align-items-center justify-content-end">
-                                <button class="btn btn-primary" type="button">Kode Promosi</button>
+                            <div class="col-md-4 col-12 p-2 d-flex align-items-end justify-content-end">
+                                <button class="btn btn-primary full-when-small" type="button">Kode Promosi</button>
                             </div>
-                            <div class="col-9 p-2 d-flex align-items-center">
+                            <div class="col-md-9 col-12 p-2 d-flex align-items-center">
                                 <div class="position-relative w-100">
-                                    <button class="btn btn-primary" id="show-catatan-trans" type="button" style="width: 200px;">Catatan Transaksi</button>
-                                    <div class="position-absolute mt-1 w-100 card p-2" style="z-index: 1;display: none;">
-                                        <textarea class="form-control" id="input-catatan-trans" name="catatan"></textarea>
+                                    <button class="btn btn-primary full-when-small" id="show-catatan-trans" type="button" style="width: 200px;">Catatan Transaksi</button>
+                                    <div class="position-absolute w-100 card p-2" style="z-index: 1;display: none; box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
+                                        <textarea class="form-control" id="input-catatan-trans" name="catatan" style="height: 300px;"></textarea>
                                         <button class="btn btn-primary" id="save-catatan-trans" type="button">Simpan Catatan</button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-3 p-2 d-flex align-items-center justify-content-end">
-                                <button id="save-trans" class="btn btn-primary" type="submit">Simpan Transaksi</button>
+                            <div class="col-md-3 col-12 p-2 d-flex align-items-center justify-content-end">
+                                <button id="save-trans" class="btn btn-primary full-when-small" type="submit">Simpan Transaksi</button>
                             </div>
                         </div>
                     </form>

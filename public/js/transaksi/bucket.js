@@ -113,7 +113,7 @@ $(document).ready(function() {
             $('#table-trans-item tbody').empty();
             for (let i = 0; i < trans.item_transaksi.length; i++) {
                 const item = trans.item_transaksi[i];
-                $('#table-trans-item tbody').append("<tr id='" + item.id + "'><td>" + item.nama + "</td><td>" + item.nama_kategori + "</td><td></td><td></td><td></td><td class='text-center' style='padding-top: 4px;padding-bottom: 4px;'><button id='btn-catatan-item-" + item.id + "' class='btn btn-primary btn-sm show-catatan-item' type='button'>Catatan</button></td><td class='text-center' colspan='2'>" + item.bobot_bucket + "</td></tr>");
+                $('#table-trans-item tbody').append("<tr id='" + item.id + "'><td style='white-space: nowrap;'>" + item.nama + "</td><td>" + item.nama_kategori + "</td><td></td><td></td><td></td><td class='text-center' style='padding-top: 4px;padding-bottom: 4px;'><button id='btn-catatan-item-" + item.id + "' class='btn btn-primary btn-sm show-catatan-item' type='button'>Catatan</button></td><td class='text-center' colspan='2'>" + item.bobot_bucket + "</td></tr>");
             }
             $('#table-trans-item tbody').append(rowAdd);
 
@@ -259,11 +259,13 @@ $(document).ready(function() {
         if (!$(this).hasClass('show')) {
             $(this).addClass('show');
             $(this).children().addClass('fa-rotate-180');
+            $(this).closest('.card').addClass('h-100');
 
             $('#info-' + dataType).show();
         } else {
             $(this).removeClass('show');
             $(this).children().removeClass('fa-rotate-180');
+            $(this).closest('.card').removeClass('h-100');
 
             $('#info-' + dataType).hide();
         }
@@ -370,7 +372,11 @@ $(document).ready(function() {
     });
 
     $('#show-catatan-trans').on('click', function() {
-        $(this).next().toggle();
+        let containerCatatan = $(this).next();
+        console.log(containerCatatan.css('height'));
+        containerCatatan.css('top', 'calc(-' + containerCatatan.css('height') + ' - .75rem');
+        containerCatatan.toggle();
+
     });
 
     $('#save-catatan-trans').on('click', function() {
@@ -387,6 +393,7 @@ $(document).ready(function() {
             url: "/transaksi/item/note/list/" + currentlySelectedItemTransactionID,
         }).done(function(data) {
             let notes = data[0];
+            $('#table-list-catatan tbody').empty();
 
             notes.forEach(note => {
                 $('#table-list-catatan tbody').append("<tr id='" + note.id + "'><td>" + note.nama_user + "</td><td>" + note.catatan + "</td><td class='text-end' style='padding: 4px 8px;'><button class='btn btn-primary btn-sm' type='button'>Show</button></td></tr>");
@@ -498,6 +505,7 @@ $(document).ready(function() {
         }).done(function() {
             $(this).removeClass('disabled');
             $('#modal-catatan-item').modal('hide');
+            $('#modal-list-catatan-item').modal('hide');
         }).fail(function(message) {
             alert(error);
             console.log(message);

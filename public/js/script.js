@@ -133,6 +133,24 @@ $(document).ready(function() {
         }
     });
 
+    if ($(this).width() < 576) {
+        $('.full-when-small').addClass('active-fill');
+    } else {
+        $('.full-when-small').removeClass('active-fill');
+    }
+    $(window).on('resize', function() {
+        console.log($(this).width());
+        if ($(this).width() <= 900) {
+            sideNav_opened = false;
+        }
+        if ($(this).width() < 576) {
+            $('.full-when-small').addClass('active-fill');
+        } else {
+            $('.full-when-small').removeClass('active-fill');
+        }
+        stateNav(sideNav_opened, false);
+    })
+
     var separatorInterval = setInterval(setThousandSeparator, 10);
 
     function setThousandSeparator () {

@@ -236,3 +236,7 @@ thead tr {
 .stain-selection.selected {
     background-color: rgb(0, 255, 0, 0.30);
 }
+
+.full-when-small.active-fill {
+    width: 100%!important;
+}
