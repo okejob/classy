@@ -107,7 +107,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/transaksi/item/note/add', [ItemNoteController::class, 'insert']);
 
     //Transaksi
-    Route::get('/transaksi/bucket', [PageController::class, 'bucket'])->name('transaksi-bucket')->middleware('permission:menu_transaksi_bucket');
+    Route::get('/transaksi', [PageController::class, 'transaksi'])->name('transaksi');
     Route::get('/transaksi/create', [TransaksiController::class, 'insert']);
     Route::get('/transaksi/detail/{id}', [TransaksiController::class, 'show']);
     Route::get('/transaksi/search/{key}', [TransaksiController::class, 'search']);

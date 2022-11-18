@@ -126,7 +126,7 @@ $(document).ready(function() {
 
             parent.removeClass('disabled');
             $('#modal-opsi-trans').modal('hide');
-            if (getCookie('bucket-intro_trans') == '') {
+            if (getCookie('transaksi-intro_trans') == '') {
                 introDetailTransaksi();
             }
         });
@@ -538,7 +538,7 @@ $(document).ready(function() {
         return "";
     }
 
-    if (getCookie('bucket-intro_halaman') == '') {
+    if (getCookie('transaksi-intro_halaman') == '') {
         introHalaman();
     }
 
@@ -565,7 +565,7 @@ $(document).ready(function() {
                 },
             ]
         }).start();
-        setCookie('bucket-intro_halaman', 'done', 1);
+        setCookie('transaksi-intro_halaman', 'done', 1);
     }
 
     function introDetailTransaksi() {
@@ -611,6 +611,6 @@ $(document).ready(function() {
                 },
             ]
         }).start();
-        setCookie('bucket-intro_trans', 'done', 1);
+        setCookie('transaksi-intro_trans', 'done', 1);
     }
 });

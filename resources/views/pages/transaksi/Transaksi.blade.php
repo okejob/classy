@@ -6,8 +6,6 @@
     <header class="my-3 d-flex justify-content-between" style="color: var(--bs-gray);">
         <div class="d-flex align-items-center">
             <a>Transaksi</a>
-            <i class="fas fa-angle-right mx-2"></i>
-            <a>Cuci Bucket</a>
         </div>
         <button class="btn btn-primary btn-sm" data-bs-toggle="tooltip" data-bss-tooltip="" id="show-option" type="button" title="Show options">
             <i class="fas fa-cog"></i>
@@ -425,10 +423,10 @@
                     </table>
                 </div>
 
-                <form method="POST" id="form-transaksi">
+                <form method="POST" id="form-transaksi" class="mb-0">
                     @csrf
                     <div class="row">
-                        <div class="col-md-4 col-12 p-2">
+                        <div class="col-md-4 col-12 mt-2">
                             <h5>Parfum</h5>
                             <select class="form-select-sm form-control" id="input-parfum" name="parfum_id">
                                 <option value="" selected hidden>-</option>
@@ -437,7 +435,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-md-4 col-12 p-2">
+                        <div class="col-md-4 col-12 mt-2">
                             <div class="d-flex justify-content-center align-items-end h-100">
                                 <div class="form-check me-1">
                                     <input class="form-check-input" type="checkbox" id="formCheck-express" name="express" value=0>
@@ -449,10 +447,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-12 p-2 d-flex align-items-end justify-content-end">
+                        <div class="col-md-4 col-12 mt-2 d-flex align-items-end justify-content-end">
                             <button class="btn btn-primary full-when-small" type="button">Kode Promosi</button>
                         </div>
-                        <div class="col-md-9 col-12 p-2 d-flex align-items-center">
+                        <div class="col-md-9 col-12 mt-2 d-flex align-items-center">
                             <div class="position-relative w-100">
                                 <button class="btn btn-primary full-when-small" id="show-catatan-trans" type="button" style="width: 200px;">Catatan Transaksi</button>
                                 <div class="position-absolute w-100 card p-2" style="z-index: 1;display: none; box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
@@ -461,7 +459,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 col-12 p-2 d-flex align-items-center justify-content-end">
+                        <div class="col-md-3 col-12 mt-2 d-flex align-items-center justify-content-end">
                             <button id="save-trans" class="btn btn-primary full-when-small" type="submit">Simpan Transaksi</button>
                         </div>
                     </div>
@@ -605,5 +603,5 @@
     </section>
 </div>
 
-<script src="{{ asset('js/transaksi/bucket.js') }}"></script>
+<script src="{{ asset('js/transaksi/transaksi.js') }}"></script>
 @endsection

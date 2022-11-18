@@ -170,15 +170,6 @@ class PageController extends Controller
 
     public function transaksi()
     {
-        $data = [];
-        $data['transaksi_id'] = Transaksi::latest()->first()->count == null ? 1 : Transaksi::latest()->first()->id + 1;
-        $data['last_transaksi'] = Transaksi::latest()->take(5)->get();
-        $data['driver'] = User::role('delivery')->get();
-        $data['parfum'] = Parfum::get();
-    }
-
-    public function bucket()
-    {
         $data['transaksi_id'] = Transaksi::count() == 0 ? 1 : Transaksi::latest()->first()->id + 1;
         $data['last_transaksi'] = Transaksi::latest()->take(5)->get();
         $data['pelanggan'] = Pelanggan::latest()->take(5)->get();
@@ -189,7 +180,7 @@ class PageController extends Controller
         // dd($data['driver']);
 
         return view(
-            'pages.transaksi.Bucket',
+            'pages.transaksi.Transaksi',
             [
                 'data' => $data
             ]
