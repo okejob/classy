@@ -9,7 +9,7 @@ trait UploadTrait
 {
     public function upload(Request $request, $path)
     {
-        $quality = 50;
+        $quality = 70;
         $default_path = 'image\\' . $path . '\\';
         $file = $request->file('image');
         if ($file) {

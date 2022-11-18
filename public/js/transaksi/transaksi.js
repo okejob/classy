@@ -113,7 +113,20 @@ $(document).ready(function() {
             $('#table-trans-item tbody').empty();
             for (let i = 0; i < trans.item_transaksi.length; i++) {
                 const item = trans.item_transaksi[i];
-                $('#table-trans-item tbody').append("<tr id='" + item.id + "'><td style='white-space: nowrap;'>" + item.nama + "</td><td>" + item.nama_kategori + "</td><td></td><td></td><td></td><td class='text-center' style='padding-top: 4px;padding-bottom: 4px;'><button id='btn-catatan-item-" + item.id + "' class='btn btn-primary btn-sm show-catatan-item' type='button'>Catatan</button></td><td class='text-center' colspan='2'>" + item.bobot_bucket + "</td></tr>");
+                $('#table-trans-item tbody').append(
+                    "<tr id='" + item.id + "'>" +
+                        "<td style='white-space: nowrap;'>" + item.nama + "</td>" +
+                        "<td class='d-none d-md-table-cell'>" + item.nama_kategori + "</td>" +
+                        "<td class='d-none d-md-table-cell'></td>" +
+                        "<td class='d-none d-md-table-cell'></td>" +
+                        "<td class='d-none d-md-table-cell'></td>" +
+                        "<td class='text-center d-none d-md-table-cell' style='padding-top: 4px;padding-bottom: 4px;'>" +
+                            "<button id='btn-catatan-item-" + item.id + "' class='btn btn-primary btn-sm show-catatan-item' type='button'>Catatan</button>" +
+                        "</td>" +
+                        "<td class='text-center'>" + item.bobot_bucket + "</td>" +
+                        "<td class='text-center' colspan='2'>" + item.bobot_bucket + "</td>" +
+                    "</tr>"
+                );
             }
             $('#table-trans-item tbody').append(rowAdd);
 
@@ -122,7 +135,7 @@ $(document).ready(function() {
             $('#diskon-member').html(trans.diskon_member);
             $('#grand-total').html(trans.grand_total);
             setThousandSeparator();
-            $('#form-transaksi').attr('action', 'update/' + trans.id);
+            $('#form-transaksi').attr('action', '/transaksi/update/' + trans.id);
 
             parent.removeClass('disabled');
             $('#modal-opsi-trans').modal('hide');
@@ -306,6 +319,17 @@ $(document).ready(function() {
     });
 
     // bottom
+    if ($(this).width() < 576) {
+        $('.nama-1').attr('colspan', 2);
+    }
+    $(window).on('resize', function() {
+        if ($(this).width() < 576) {
+            $('.nama-1').attr('colspan', 2);
+        } else {
+            $('.nama-1').attr('colspan', 7);
+        }
+    });
+
     $('#add-item').on('click', function() {
         $('#table-items tbody').empty();
 
@@ -363,7 +387,7 @@ $(document).ready(function() {
                 $('#diskon-member').html(trans.diskon_member);
                 $('#grand-total').html(trans.grand_total);
 
-                $('#table-trans-item tbody').append("<tr id='" + trans.item_transaksi[trans.item_transaksi.length - 1].id + "'><td>" + item.nama + "</td><td>" + item.nama_kategori + "</td><td></td><td></td><td></td><td class='text-center' style='padding-top: 4px;padding-bottom: 4px;'><button id='btn-catatan-item-" + item.id + "' class='btn btn-primary btn-sm show-catatan-item' type='button'>Catatan</button></td><td class='text-center' colspan='2'>" + item.bobot_bucket + "</td></tr>");
+                $('#table-trans-item tbody').append("<tr id='" + trans.item_transaksi[trans.item_transaksi.length - 1].id + "'><td>" + item.nama + "</td><td>" + item.nama_kategori + "</td><td></td><td></td><td></td><td class='text-center' style='padding-top: 4px;padding-bottom: 4px;'><button id='btn-catatan-item-" + item.id + "' class='btn btn-primary btn-sm show-catatan-item' type='button'>Catatan</button></td><td class='text-center'>" + item.bobot_bucket + "</td><td class='text-center' colspan='2'>" + item.bobot_bucket + "</td></tr>");
                 $('#table-trans-item tbody').append(rowAdd);
 
                 setThousandSeparator();
@@ -429,14 +453,14 @@ $(document).ready(function() {
             $('#catatan-item').val(transNote.catatan);
             $('#container-image-item').attr('src', transNote.image_path);
 
-            transNote.front_top_left == 1 ? $('#td-kiri-atas').addClass('selected') : null;
-            transNote.front_top_right == 1 ? $('#td-kanan-atas').addClass('selected') : null;
-            transNote.front_bottom_left == 1 ? $('#td-kiri-bawah').addClass('selected') : null;
-            transNote.front_bottom_right == 1 ? $('#td-kanan-bawah').addClass('selected') : null;
-            transNote.back_top_left == 1 ? $('#tb-kiri-atas').addClass('selected') : null;
-            transNote.back_top_right == 1 ? $('#tb-kanan-atas').addClass('selected') : null;
-            transNote.back_bottom_left == 1 ? $('#tb-kiri-bawah').addClass('selected') : null;
-            transNote.back_bottom_right == 1 ? $('#tb-kanan-bawah').addClass('selected') : null;
+            transNote.front_top_left == 1 ? $('#td-kiri-atas').addClass('selected') : $('#td-kiri-atas').removeClass('selected');
+            transNote.front_top_right == 1 ? $('#td-kanan-atas').addClass('selected') : $('#td-kanan-atas').removeClass('selected');
+            transNote.front_bottom_left == 1 ? $('#td-kiri-bawah').addClass('selected') : $('#td-kiri-bawah').removeClass('selected');
+            transNote.front_bottom_right == 1 ? $('#td-kanan-bawah').addClass('selected') : $('#td-kanan-bawah').removeClass('selected');
+            transNote.back_top_left == 1 ? $('#tb-kiri-atas').addClass('selected') : $('#tb-kiri-atas').removeClass('selected');
+            transNote.back_top_right == 1 ? $('#tb-kanan-atas').addClass('selected') : $('#tb-kanan-atas').removeClass('selected');
+            transNote.back_bottom_left == 1 ? $('#tb-kiri-bawah').addClass('selected') : $('#tb-kiri-bawah').removeClass('selected');
+            transNote.back_bottom_right == 1 ? $('#tb-kanan-bawah').addClass('selected') : $('#tb-kanan-bawah').removeClass('selected');
 
             $('#penulis-catatan-item').addClass('disabled');
             $('#catatan-item').addClass('disabled');

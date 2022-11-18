@@ -97,6 +97,6 @@ class TransaksiController extends Controller
             $transaksi->kode = 'TRANS-' . $paded;
             $transaksi->save();
         }
-        return redirect()->intended(route('transaksi-bucket'));
+        return redirect()->intended(route('transaksi'));
     }
 }

@@ -139,7 +139,6 @@ $(document).ready(function() {
         $('.full-when-small').removeClass('active-fill');
     }
     $(window).on('resize', function() {
-        console.log($(this).width());
         if ($(this).width() <= 900) {
             sideNav_opened = false;
         }

@@ -381,17 +381,18 @@
                         <thead>
                             <tr>
                                 <th>Nama Item</th>
-                                <th>Kategori</th>
-                                <th>Pencuci</th>
-                                <th>Penyetrika</th>
-                                <th>Proses</th>
-                                <th>Catatan</th>
-                                <th colspan="2">Bobot</th>
+                                <th class="d-none d-md-table-cell">Kategori</th>
+                                <th class="d-none d-md-table-cell">Pencuci</th>
+                                <th class="d-none d-md-table-cell">Penyetrika</th>
+                                <th class="d-none d-md-table-cell">Proses</th>
+                                <th class="d-none d-md-table-cell">Catatan</th>
+                                <th>Bobot</th>
+                                <th colspan="2">Harga Premium</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="text-center" colspan="8" style="padding-top: 4px;padding-bottom: 4px;">
+                                <td class="text-center" colspan="9" style="padding-top: 4px;padding-bottom: 4px;">
                                     <button class="btn btn-primary btn-sm" id="add-item" type="button">
                                         <i class="fas fa-plus"></i>
                                     </button>
@@ -400,22 +401,22 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td class="text-end" colspan="6">Sub Total</td>
+                                <td class="text-end nama-1" colspan="7">Sub Total</td>
                                 <td>Rp</td>
                                 <td class="text-end thousand-separator" id="sub-total"></td>
                             </tr>
                             <tr>
-                                <td class="text-end" colspan="6">Diskon</td>
+                                <td class="text-end nama-1" colspan="7">Diskon</td>
                                 <td>Rp</td>
                                 <td class="text-end thousand-separator" id="diskon"></td>
                             </tr>
                             <tr>
-                                <td class="text-end" colspan="6">Diskon Member</td>
+                                <td class="text-end nama-1" colspan="7">Diskon Member</td>
                                 <td>Rp</td>
                                 <td class="text-end thousand-separator" id="diskon-member"></td>
                             </tr>
                             <tr>
-                                <td class="text-end" colspan="6">Grand Total</td>
+                                <td class="text-end nama-1" colspan="7">Grand Total</td>
                                 <td>Rp</td>
                                 <td class="text-end thousand-separator" id="grand-total"></td>
                             </tr>
@@ -428,7 +429,7 @@
                     <div class="row">
                         <div class="col-md-4 col-12 mt-2">
                             <h5>Parfum</h5>
-                            <select class="form-select-sm form-control" id="input-parfum" name="parfum_id">
+                            <select class="form-select-sm form-control" id="input-parfum" name="parfum_id" required>
                                 <option value="" selected hidden>-</option>
                                 @foreach ($data['parfum'] as $parfum)
                                     <option value="{{ $parfum->id }}">{{ $parfum->nama }}</option>
