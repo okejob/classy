@@ -126,6 +126,9 @@ $(document).ready(function() {
 
             parent.removeClass('disabled');
             $('#modal-opsi-trans').modal('hide');
+            if (getCookie('bucket-intro_trans') == '') {
+                introDetailTransaksi();
+            }
         });
     });
 
@@ -299,7 +302,6 @@ $(document).ready(function() {
     });
 
     $('#to-pickup-delivery').on('click', function() {
-        let transID = $('#id-trans').text();
         window.location = "/transaksi/pickup-delivery/";
     });
 
@@ -308,7 +310,7 @@ $(document).ready(function() {
         $('#table-items tbody').empty();
 
         $.ajax({
-            url: "/data/jenis-item/find?key=&tipe_transaksi=bucket",
+            url: "/data/jenis-item/find?",
         }).done(function(data) {
             let items = data[0];
 
@@ -324,7 +326,7 @@ $(document).ready(function() {
         let key = $('#input-nama-item').val();
 
         $.ajax({
-            url: "/data/jenis-item/find?key=" + key + "&tipe_transaksi=bucket",
+            url: "/data/jenis-item/find?key=" + key,
         }).done(function(data) {
             let items = data[0];
 
@@ -503,7 +505,7 @@ $(document).ready(function() {
             processData: false,
             data: formData,
         }).done(function() {
-            $(this).removeClass('disabled');
+            $('#simpan-catatan-item').removeClass('disabled');
             $('#modal-catatan-item').modal('hide');
             $('#modal-list-catatan-item').modal('hide');
         }).fail(function(message) {
@@ -511,4 +513,104 @@ $(document).ready(function() {
             console.log(message);
         });
     });
+
+    // intro.js
+    // intro init halaman
+    function setCookie(cname, cvalue, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        let expires = "expires="+d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
+    function getCookie(cname) {
+        let name = cname + "=";
+        let ca = document.cookie.split(';');
+        for(let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    if (getCookie('bucket-intro_halaman') == '') {
+        introHalaman();
+    }
+
+    function introHalaman() {
+        introJs().setOptions({
+            showBullets: false,
+            showProgress: true,
+            disableInteraction: true,
+            steps: [
+                {
+                    intro: "Berikut adalah tutorial cara menggunakan halaman ini"
+                }, {
+                    element: document.querySelector('#modal-opsi-trans .modal-content'),
+                    intro: "Bagian ini digunakan untuk memilih transaksi",
+                }, {
+                    element: document.querySelector('#modal-opsi-trans tbody'),
+                    intro: "Ini adalah 5 transaksi terakhir",
+                }, {
+                    element: document.querySelector('#modal-opsi-trans .intro-1'),
+                    intro: "Ini adalah search bar untuk mencari transaksi yang mau dipilih",
+                }, {
+                    element: document.querySelector('#modal-opsi-trans #add-new-trans'),
+                    intro: "Klik tombol ini untuk membuat transaksi baru",
+                },
+            ]
+        }).start();
+        setCookie('bucket-intro_halaman', 'done', 1);
+    }
+
+    function introDetailTransaksi() {
+        introJs().setOptions({
+            showBullets: false,
+            showProgress: true,
+            disableInteraction: true,
+            steps: [
+                {
+                    element: document.querySelector('#section-info'),
+                    intro: "Bagian ini berisikan informasi mengenai transaksi",
+                }, {
+                    element: document.querySelector('#section-info .row .col:nth-child(1) .card'),
+                    intro: "Ini adalah informasi data pelanggan",
+                }, {
+                    element: document.querySelector('#section-info .row .col:nth-child(2) .card'),
+                    intro: "Ini adalah informasi data penjemputan & pengantaran barang pelanggan",
+                }, {
+                    element: document.querySelector('#section-info .row .col:nth-child(3) .card'),
+                    intro: "Ini adalah informasi data outlet",
+                }, {
+                    element: document.querySelector('#section-info .row .col:nth-child(4) .card'),
+                    intro: "Ini adalah informasi data penerimaan",
+                }, {
+                    element: document.querySelector('#section-detail-transaksi'),
+                    intro: "Bagian ini berisikan data item",
+                }, {
+                    element: document.querySelector('#section-detail-transaksi #add-item'),
+                    intro: "Klik disini untuk menambahkan item pada transaksi",
+                }, {
+                    element: document.querySelector('#section-detail-transaksi #table-trans-item tr th:nth-child(6)'),
+                    intro: "Kolom ini berisikan tombol untuk menambahkan catatan pada item",
+                }, {
+                    element: document.querySelector('#section-detail-transaksi #form-transaksi .form-check:nth-child(1)'),
+                    intro: "Centang bagian ini, bila transaksi bersifat express (1 hari selesai)",
+                }, {
+                    element: document.querySelector('#section-detail-transaksi #form-transaksi .form-check:nth-child(2)'),
+                    intro: "Centang bagian ini, bila transaksi hanya perlu di setrika (tidak perlu di cuci)",
+                }, {
+                    element: document.querySelector('#section-detail-transaksi #save-trans'),
+                    intro: "Jangan lupa untuk menyimpan transaksi bila mengganti parfum, keterangan transaksi atau catatan transaksi",
+                    position: 'left',
+                },
+            ]
+        }).start();
+        setCookie('bucket-intro_trans', 'done', 1);
+    }
 });

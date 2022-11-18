@@ -1,5 +1,5 @@
 @extends('layouts.users')
-
+@include('includes.library.intro_js')
 @section('content')
 <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 <div class="container">
@@ -22,10 +22,12 @@
                 </div>
                 <div class="modal-body">
                     <div class="d-flex mb-3">
-                        <input class="form-control" type="search" id="input-key-trans" placeholder="Kata kunci">
-                        <button class="btn btn-primary mx-3" data-bs-toggle="tooltip" data-bss-tooltip="" id="search-key-trans" type="button" title="Cari transaksi">
-                            <i class="fas fa-search"></i>
-                        </button>
+                        <div class="intro-1 d-flex flex-fill">
+                            <input class="form-control" type="search" id="input-key-trans" placeholder="Kata kunci">
+                            <button class="btn btn-primary mx-3" data-bs-toggle="tooltip" data-bss-tooltip="" id="search-key-trans" type="button" title="Cari transaksi">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
                         <button class="btn btn-primary" data-bs-toggle="tooltip" data-bss-tooltip="" id="add-new-trans" type="button" title="Buat transaksi baru">
                             <i class="fas fa-plus"></i>
                         </button>
@@ -158,7 +160,7 @@
 
     <section id="section-info">
         <div class="row">
-            <div class="col-xl-3 col-md-6 col-12 position-relative mb-3">
+            <div class="col col-xl-3 col-md-6 col-12 position-relative mb-3">
                 <div class="card h-100">
                     <div class="card-body">
                         <section id="section-info-pelanggan">
@@ -253,7 +255,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-md-6 col-12 position-relative mb-3">
+            <div class="col col-xl-3 col-md-6 col-12 position-relative mb-3">
                 {{-- <div class="vr position-absolute" style="height: calc(100% + 2rem); margin: -1rem 0; border-left: 1px solid rgba(0,0,0,.125); top: 0; left: 0;"></div> --}}
                 <div class="card h-100">
                     <div class="card-body">
@@ -305,7 +307,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-md-6 col-12 position-relative mb-3">
+            <div class="col col-xl-3 col-md-6 col-12 position-relative mb-3">
                 {{-- <div class="vr position-absolute" style="height: calc(100% + 2rem); margin: -1rem 0; border-left: 1px solid rgba(0,0,0,.125); top: 0; left: 0;"></div> --}}
                 <div class="card h-100">
                     <div class="card-body">
@@ -331,7 +333,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-md-6 col-12 position-relative mb-3">
+            <div class="col col-xl-3 col-md-6 col-12 position-relative mb-3">
                 {{-- <div class="vr position-absolute" style="height: calc(100% + 2rem); margin: -1rem 0; border-left: 1px solid rgba(0,0,0,.125); top: 0; left: 0;"></div> --}}
                 <div class="card h-100">
                     <div class="card-body">
@@ -370,221 +372,219 @@
             </div>
         </div>
     </section>
-    <section id="section-transaksi-cuci">
-        <section id="section-detail-transaksi">
-            <div class="card">
-                <div class="card-body">
-                    <header>
-                        <h3>Kode Transaksi : <span id="kode-trans"></span><span id="id-trans" class="d-none"></span></h3>
-                    </header>
-                    <div class="table-responsive my-2">
-                        <table class="table table-striped mb-0" id="table-trans-item">
-                            <thead>
-                                <tr>
-                                    <th>Nama Item</th>
-                                    <th>Kategori</th>
-                                    <th>Pencuci</th>
-                                    <th>Penyetrika</th>
-                                    <th>Proses</th>
-                                    <th>Catatan</th>
-                                    <th colspan="2">Bobot</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="text-center" colspan="8" style="padding-top: 4px;padding-bottom: 4px;">
-                                        <button class="btn btn-primary btn-sm" id="add-item" type="button">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td class="text-end" colspan="6">Sub Total</td>
-                                    <td>Rp</td>
-                                    <td class="text-end thousand-separator" id="sub-total"></td>
-                                </tr>
-                                <tr>
-                                    <td class="text-end" colspan="6">Diskon</td>
-                                    <td>Rp</td>
-                                    <td class="text-end thousand-separator" id="diskon"></td>
-                                </tr>
-                                <tr>
-                                    <td class="text-end" colspan="6">Diskon Member</td>
-                                    <td>Rp</td>
-                                    <td class="text-end thousand-separator" id="diskon-member"></td>
-                                </tr>
-                                <tr>
-                                    <td class="text-end" colspan="6">Grand Total</td>
-                                    <td>Rp</td>
-                                    <td class="text-end thousand-separator" id="grand-total"></td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
+    <section id="section-detail-transaksi">
+        <div class="card">
+            <div class="card-body">
+                <header>
+                    <h3>Kode Transaksi : <span id="kode-trans"></span><span id="id-trans" class="d-none"></span></h3>
+                </header>
+                <div class="table-responsive my-2">
+                    <table class="table table-striped mb-0" id="table-trans-item">
+                        <thead>
+                            <tr>
+                                <th>Nama Item</th>
+                                <th>Kategori</th>
+                                <th>Pencuci</th>
+                                <th>Penyetrika</th>
+                                <th>Proses</th>
+                                <th>Catatan</th>
+                                <th colspan="2">Bobot</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center" colspan="8" style="padding-top: 4px;padding-bottom: 4px;">
+                                    <button class="btn btn-primary btn-sm" id="add-item" type="button">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td class="text-end" colspan="6">Sub Total</td>
+                                <td>Rp</td>
+                                <td class="text-end thousand-separator" id="sub-total"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-end" colspan="6">Diskon</td>
+                                <td>Rp</td>
+                                <td class="text-end thousand-separator" id="diskon"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-end" colspan="6">Diskon Member</td>
+                                <td>Rp</td>
+                                <td class="text-end thousand-separator" id="diskon-member"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-end" colspan="6">Grand Total</td>
+                                <td>Rp</td>
+                                <td class="text-end thousand-separator" id="grand-total"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
 
-                    <form method="POST" id="form-transaksi">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-4 col-12 p-2">
-                                <h5>Parfum</h5>
-                                <select class="form-select-sm form-control" id="input-parfum" name="parfum_id">
-                                    <option value="" selected hidden>-</option>
-                                    @foreach ($data['parfum'] as $parfum)
-                                        <option value="{{ $parfum->id }}">{{ $parfum->nama }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-md-4 col-12 p-2">
-                                <div class="d-flex justify-content-center align-items-end h-100">
-                                    <div class="form-check me-1">
-                                        <input class="form-check-input" type="checkbox" id="formCheck-express" name="express" value=0>
-                                        <label class="form-check-label" for="formCheck-express">Express</label>
-                                    </div>
-                                    <div class="form-check ms-1">
-                                        <input class="form-check-input" type="checkbox" id="formCheck-setrika" name="setrika_only" value=0>
-                                        <label class="form-check-label" for="formCheck-setrika">Setrika only</label>
-                                    </div>
+                <form method="POST" id="form-transaksi">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-4 col-12 p-2">
+                            <h5>Parfum</h5>
+                            <select class="form-select-sm form-control" id="input-parfum" name="parfum_id">
+                                <option value="" selected hidden>-</option>
+                                @foreach ($data['parfum'] as $parfum)
+                                    <option value="{{ $parfum->id }}">{{ $parfum->nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-4 col-12 p-2">
+                            <div class="d-flex justify-content-center align-items-end h-100">
+                                <div class="form-check me-1">
+                                    <input class="form-check-input" type="checkbox" id="formCheck-express" name="express" value=0>
+                                    <label class="form-check-label" for="formCheck-express">Express</label>
                                 </div>
-                            </div>
-                            <div class="col-md-4 col-12 p-2 d-flex align-items-end justify-content-end">
-                                <button class="btn btn-primary full-when-small" type="button">Kode Promosi</button>
-                            </div>
-                            <div class="col-md-9 col-12 p-2 d-flex align-items-center">
-                                <div class="position-relative w-100">
-                                    <button class="btn btn-primary full-when-small" id="show-catatan-trans" type="button" style="width: 200px;">Catatan Transaksi</button>
-                                    <div class="position-absolute w-100 card p-2" style="z-index: 1;display: none; box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
-                                        <textarea class="form-control" id="input-catatan-trans" name="catatan" style="height: 300px;"></textarea>
-                                        <button class="btn btn-primary" id="save-catatan-trans" type="button">Simpan Catatan</button>
-                                    </div>
+                                <div class="form-check ms-1">
+                                    <input class="form-check-input" type="checkbox" id="formCheck-setrika" name="setrika_only" value=0>
+                                    <label class="form-check-label" for="formCheck-setrika">Setrika only</label>
                                 </div>
-                            </div>
-                            <div class="col-md-3 col-12 p-2 d-flex align-items-center justify-content-end">
-                                <button id="save-trans" class="btn btn-primary full-when-small" type="submit">Simpan Transaksi</button>
                             </div>
                         </div>
-                    </form>
-
-                    <div role="dialog" tabindex="-1" class="modal fade" id="modal-add-item">
-                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Pilih Item</h4>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <div class="col-md-4 col-12 p-2 d-flex align-items-end justify-content-end">
+                            <button class="btn btn-primary full-when-small" type="button">Kode Promosi</button>
+                        </div>
+                        <div class="col-md-9 col-12 p-2 d-flex align-items-center">
+                            <div class="position-relative w-100">
+                                <button class="btn btn-primary full-when-small" id="show-catatan-trans" type="button" style="width: 200px;">Catatan Transaksi</button>
+                                <div class="position-absolute w-100 card p-2" style="z-index: 1;display: none; box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
+                                    <textarea class="form-control" id="input-catatan-trans" name="catatan" style="height: 300px;"></textarea>
+                                    <button class="btn btn-primary" id="save-catatan-trans" type="button">Simpan Catatan</button>
                                 </div>
-                                <div class="modal-body">
-                                    <div class="d-flex mb-3">
-                                        <input class="form-control" type="search" id="input-nama-item" placeholder="Nama Item">
-                                        <button class="btn btn-primary ms-3" data-bs-toggle="tooltip" data-bss-tooltip="" id="search-item" type="button" title="Cari Item">
-                                            <i class="fas fa-search"></i>
-                                        </button>
-                                    </div>
-                                    <div class="table-responsive">
-                                        <table class="table table-striped table-hover" id="table-items">
-                                            <thead>
-                                                <tr>
-                                                    <th>Nama Item</th>
-                                                    <th>Kategori</th>
-                                                    <th>Bobot</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-12 p-2 d-flex align-items-center justify-content-end">
+                            <button id="save-trans" class="btn btn-primary full-when-small" type="submit">Simpan Transaksi</button>
+                        </div>
+                    </div>
+                </form>
+
+                <div role="dialog" tabindex="-1" class="modal fade" id="modal-add-item">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Pilih Item</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="d-flex mb-3">
+                                    <input class="form-control" type="search" id="input-nama-item" placeholder="Nama Item">
+                                    <button class="btn btn-primary ms-3" data-bs-toggle="tooltip" data-bss-tooltip="" id="search-item" type="button" title="Cari Item">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover" id="table-items">
+                                        <thead>
+                                            <tr>
+                                                <th>Nama Item</th>
+                                                <th>Kategori</th>
+                                                <th>Bobot</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div role="dialog" tabindex="-1" class="modal fade" id="modal-list-catatan-item">
-                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Catatan Item</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="table-responsive">
-                                        <table class="table" id="table-list-catatan">
-                                            <thead class="text-center">
-                                                <tr>
-                                                    <th>Noted By</th>
-                                                    <th>Catatan</th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <td class="text-center" colspan="3"><button class="btn btn-primary btn-sm" type="button" id="add-catatan-item"><i class="fas fa-plus"></i></button></td>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                    </div>
+                <div role="dialog" tabindex="-1" class="modal fade" id="modal-list-catatan-item">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Catatan Item</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="table-responsive">
+                                    <table class="table" id="table-list-catatan">
+                                        <thead class="text-center">
+                                            <tr>
+                                                <th>Noted By</th>
+                                                <th>Catatan</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td class="text-center" colspan="3"><button class="btn btn-primary btn-sm" type="button" id="add-catatan-item"><i class="fas fa-plus"></i></button></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div role="dialog" tabindex="-1" class="modal fade" id="modal-catatan-item">
-                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Catatan Item <span id="catatan-item-name">nama item</span></h4>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <div class="mb-2">
-                                                <h5>Noted by</h5>
-                                                <input type="text" class="form-control" id="penulis-catatan-item" />
-                                            </div>
-                                            <div class="h-100">
-                                                <h5>Notes</h5>
-                                                <textarea class="form-control" id="catatan-item"></textarea>
-                                            </div>
+                <div role="dialog" tabindex="-1" class="modal fade" id="modal-catatan-item">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Catatan Item <span id="catatan-item-name">nama item</span></h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="mb-2">
+                                            <h5>Noted by</h5>
+                                            <input type="text" class="form-control" id="penulis-catatan-item" />
                                         </div>
-                                        <div class="col-8">
-                                            <div>
-                                                <ul role="tablist" class="nav nav-tabs">
-                                                    <li role="presentation" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link active" href="#tab-foto">Foto</a></li>
-                                                    <li role="presentation" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link" href="#tab-noda">Tandai Noda</a></li>
-                                                </ul>
-                                                <div class="tab-content card" style="border-top: none;border-radius: 0;height: 513px;">
-                                                    <div role="tabpanel" class="tab-pane active p-2" id="tab-foto">
-                                                        <img id="container-image-item" class="w-100 mb-2" style="object-fit: contain;max-height: 450px;height: 450px;" />
-                                                        <div class="text-end">
-                                                            <input type="file" class="form-control" id="input-foto-item" accept="image/*" onchange="document.getElementById('container-image-item').src = window.URL.createObjectURL(this.files[0])"/>
-                                                        </div>
+                                        <div class="h-100">
+                                            <h5>Notes</h5>
+                                            <textarea class="form-control" id="catatan-item"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-8">
+                                        <div>
+                                            <ul role="tablist" class="nav nav-tabs">
+                                                <li role="presentation" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link active" href="#tab-foto">Foto</a></li>
+                                                <li role="presentation" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link" href="#tab-noda">Tandai Noda</a></li>
+                                            </ul>
+                                            <div class="tab-content card" style="border-top: none;border-radius: 0;height: 513px;">
+                                                <div role="tabpanel" class="tab-pane active p-2" id="tab-foto">
+                                                    <img id="container-image-item" class="w-100 mb-2" style="object-fit: contain;max-height: 450px;height: 450px;" />
+                                                    <div class="text-end">
+                                                        <input type="file" class="form-control" id="input-foto-item" accept="image/*" onchange="document.getElementById('container-image-item').src = window.URL.createObjectURL(this.files[0])"/>
                                                     </div>
-                                                    <div role="tabpanel" class="tab-pane p-2" id="tab-noda">
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <h5>Tampak Depan</h5>
-                                                                <div id="tampak-depan" class="position-relative">
-                                                                    <div class="card p-2" style="height: 230px;">
-                                                                        <div class="w-100 h-100" style="background-image: url({{asset('image/tshirt-front.jpg')}});background-size: cover;"></div>
-                                                                    </div>
-                                                                    <div id="td-kiri-atas" class="position-absolute w-50 h-50 card stain-selection" style="top: 0;left: 0;"></div>
-                                                                    <div id="td-kanan-atas" class="position-absolute w-50 h-50 card stain-selection" style="top: 0;left: 50%;"></div>
-                                                                    <div id="td-kiri-bawah" class="position-absolute w-50 h-50 card stain-selection" style="top: 50%;left: 0;"></div>
-                                                                    <div id="td-kanan-bawah" class="position-absolute w-50 h-50 card stain-selection" style="top: 50%;left: 50%;"></div>
+                                                </div>
+                                                <div role="tabpanel" class="tab-pane p-2" id="tab-noda">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <h5>Tampak Depan</h5>
+                                                            <div id="tampak-depan" class="position-relative">
+                                                                <div class="card p-2" style="height: 230px;">
+                                                                    <div class="w-100 h-100" style="background-image: url({{asset('image/tshirt-front.jpg')}});background-size: cover;"></div>
                                                                 </div>
+                                                                <div id="td-kiri-atas" class="position-absolute w-50 h-50 card stain-selection" style="top: 0;left: 0;"></div>
+                                                                <div id="td-kanan-atas" class="position-absolute w-50 h-50 card stain-selection" style="top: 0;left: 50%;"></div>
+                                                                <div id="td-kiri-bawah" class="position-absolute w-50 h-50 card stain-selection" style="top: 50%;left: 0;"></div>
+                                                                <div id="td-kanan-bawah" class="position-absolute w-50 h-50 card stain-selection" style="top: 50%;left: 50%;"></div>
                                                             </div>
-                                                            <div class="col">
-                                                                <h5>Tampak Belakang</h5>
-                                                                <div id="tampak-belakang" class="position-relative">
-                                                                    <div class="card p-2" style="height: 230px;">
-                                                                        <div class="w-100 h-100" style="background-image: url({{asset('image/tshirt-back.jpg')}});background-size: cover;"></div>
-                                                                    </div>
-                                                                    <div id="tb-kiri-atas" class="position-absolute w-50 h-50 card stain-selection" style="top: 0;left: 0;"></div>
-                                                                    <div id="tb-kanan-atas" class="position-absolute w-50 h-50 card stain-selection" style="top: 0;left: 50%;"></div>
-                                                                    <div id="tb-kiri-bawah" class="position-absolute w-50 h-50 card stain-selection" style="top: 50%;left: 0;"></div>
-                                                                    <div id="tb-kanan-bawah" class="position-absolute w-50 h-50 card stain-selection" style="top: 50%;left: 50%;"></div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <h5>Tampak Belakang</h5>
+                                                            <div id="tampak-belakang" class="position-relative">
+                                                                <div class="card p-2" style="height: 230px;">
+                                                                    <div class="w-100 h-100" style="background-image: url({{asset('image/tshirt-back.jpg')}});background-size: cover;"></div>
                                                                 </div>
+                                                                <div id="tb-kiri-atas" class="position-absolute w-50 h-50 card stain-selection" style="top: 0;left: 0;"></div>
+                                                                <div id="tb-kanan-atas" class="position-absolute w-50 h-50 card stain-selection" style="top: 0;left: 50%;"></div>
+                                                                <div id="tb-kiri-bawah" class="position-absolute w-50 h-50 card stain-selection" style="top: 50%;left: 0;"></div>
+                                                                <div id="tb-kanan-bawah" class="position-absolute w-50 h-50 card stain-selection" style="top: 50%;left: 50%;"></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -593,15 +593,15 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <button class="btn btn-primary" type="button" id="simpan-catatan-item">Simpan</button>
-                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="button" id="simpan-catatan-item">Simpan</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     </section>
 </div>
 
