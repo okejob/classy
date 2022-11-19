@@ -91,7 +91,7 @@ class TransaksiController extends Controller
         ])->toArray();
         $transaksi = Transaksi::find($id);
         $transaksi->update($merged);
-        if (!empty($transaksi->kode) && $transaksi->status != "draft") {
+        if (empty($transaksi->kode) && $transaksi->status != "draft") {
             $count = Transaksi::where('status', '!=', 'draft')->count();
             $paded = str_pad($count, 6, '0', STR_PAD_LEFT);
             $transaksi->kode = 'TRANS-' . $paded;
