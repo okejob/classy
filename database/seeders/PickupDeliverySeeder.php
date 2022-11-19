@@ -19,9 +19,10 @@ class PickupDeliverySeeder extends Seeder
         $pelanggan = Pelanggan::find(2);
         PickupDelivery::create([
             'transaksi_id' => 1,
+            'kode' => 'PU-000001',
             'pelanggan_id' => 2,
             'driver_id' => 4,
-            'action' => 'Pickup',
+            'action' => 'pickup',
             'alamat' => $pelanggan->alamat,
             'modified_by' => 4,
         ]);
