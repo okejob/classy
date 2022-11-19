@@ -36,7 +36,7 @@
                                 <tr>
                                     <th>ID Transaksi</th>
                                     <th>Outlet</th>
-                                    <th class="d-none d-lg-block">Tanggal Transaksi</th>
+                                    <th class="d-none d-lg-table-cell">Tanggal Transaksi</th>
                                     <th>Nama Pelanggan</th>
                                     <th colspan="2">Harga Total</th>
                                     <th>Lunas</th>
@@ -47,7 +47,7 @@
                                 <tr data-bs-toggle="tooltip" data-bss-tooltip="" title="Double klik untuk memilih">
                                     <td>{{ $trans->id }}</td>
                                     <td>{{ $trans->outlet->nama }}</td>
-                                    <td class="d-none d-lg-block text-center">{{ $trans->created_at }}</td>
+                                    <td class="d-none d-lg-table-cell text-center">{{ $trans->created_at }}</td>
                                     <td>{{ $trans->pelanggan->nama }}</td>
                                     <td>Rp</td>
                                     <td class="text-end thousand-separator">{{ $trans->grand_total }}</td>
@@ -265,36 +265,32 @@
                                 </button>
                             </header>
                             <div id="info-pickup-delivery" class="mt-2" style="display: none;">
-                                <div class="mb-5 disabled">
+                                <div class="mb-5">
                                     <div class="form-check" id="check-pickup" style="margin-bottom: .5rem;">
                                         <input class="form-check-input" type="checkbox" id="formCheck-pickup">
                                         <label class="form-check-label" for="formCheck-pickup">Pickup</label>
                                     </div>
                                     <div id="container-pickup" class="position-relative mb-2" style="display: none;">
-                                        <h6>Nama driver</h6>
-                                        <select class="form-control" id="select-driver-pickup">
+                                        <h6>Kode Pickup</h6>
+                                        <select class="form-control" id="select-kode-pickup">
                                             <option value="" selected hidden>-</option>
-                                            @foreach ($data['driver'] as $driver)
-                                                <option value="{{ $driver->id }}">{{ $driver->username }}</option>
+                                            @foreach ($data['pickup'] as $pickup)
+                                                <option value="{{ $pickup->id }}">{{ $pickup->kode }}</option>
                                             @endforeach
                                         </select>
-                                        <h6 class="mt-2">Alamat ambil</h6>
-                                        <input type="text" class="form-control" id="input-alamat-ambil">
                                     </div>
                                     <div class="form-check" id="check-delivery" style="margin-bottom: .5rem;">
                                         <input class="form-check-input" type="checkbox" id="formCheck-delivery" />
                                         <label class="form-check-label" for="formCheck-delivery">Delivery</label>
                                     </div>
                                     <div id="container-delivery" class="position-relative mb-2" style="display: none;">
-                                        <h6>Nama driver</h6>
-                                        <select class="form-control" id="select-driver-delivery">
+                                        <h6>Kode Delivery</h6>
+                                        <select class="form-control" id="select-kode-delivery">
                                             <option value="" selected hidden>-</option>
-                                            @foreach ($data['driver'] as $driver)
-                                                <option value="{{ $driver->id }}">{{ $driver->username }}</option>
+                                            @foreach ($data['delivery'] as $delivery)
+                                                <option value="{{ $delivery->id }}">{{ $delivery->kode }}</option>
                                             @endforeach
                                         </select>
-                                        <h6 class="mt-2">Alamat antar</h6>
-                                        <input type="text" class="form-control" id="input-alamat-antar">
                                     </div>
                                 </div>
                                 <div class="position-absolute" style="right: 1rem; bottom: 1rem;">
@@ -376,18 +372,18 @@
                 <header>
                     <h3>Kode Transaksi : <span id="kode-trans"></span><span id="id-trans" class="d-none"></span></h3>
                 </header>
-                <div class="table-responsive my-2">
+                <div class="table-responsive my-2 tbody-wrap">
                     <table class="table table-striped mb-0" id="table-trans-item">
                         <thead>
                             <tr>
-                                <th>Nama Item</th>
-                                <th class="d-none d-md-table-cell">Kategori</th>
-                                <th class="d-none d-md-table-cell">Pencuci</th>
-                                <th class="d-none d-md-table-cell">Penyetrika</th>
-                                <th class="d-none d-md-table-cell">Proses</th>
-                                <th class="d-none d-md-table-cell">Catatan</th>
-                                <th>Bobot</th>
-                                <th colspan="2">Harga Premium</th>
+                                <th style="width: 25%;">Nama Item</th>
+                                <th class="d-none d-lg-table-cell" style="width: 15%;">Kategori</th>
+                                <th class="d-none d-lg-table-cell" style="width: 10%;">Cuci</th>
+                                <th class="d-none d-lg-table-cell" style="width: 10%;">Setrika</th>
+                                <th class="d-none d-lg-table-cell" style="width: 7.5%;">Proses</th>
+                                <th class="d-none d-lg-table-cell" style="width: 7.5%;">Notes</th>
+                                <th style="width: 10%;">Bobot</th>
+                                <th style="width: 15%;">Harga Premium</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -401,24 +397,24 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td class="text-end nama-1" colspan="7">Sub Total</td>
-                                <td>Rp</td>
-                                <td class="text-end thousand-separator" id="sub-total"></td>
+                                <td class="text-end">Sub Total</td>
+                                <td style="width: 5%">Rp</td>
+                                <td class="text-end thousand-separator" style="width: 10%;" id="sub-total"></td>
                             </tr>
                             <tr>
-                                <td class="text-end nama-1" colspan="7">Diskon</td>
-                                <td>Rp</td>
-                                <td class="text-end thousand-separator" id="diskon"></td>
+                                <td class="text-end">Diskon</td>
+                                <td style="width: 5%">Rp</td>
+                                <td class="text-end thousand-separator" style="width: 10%;" id="diskon"></td>
                             </tr>
                             <tr>
-                                <td class="text-end nama-1" colspan="7">Diskon Member</td>
-                                <td>Rp</td>
-                                <td class="text-end thousand-separator" id="diskon-member"></td>
+                                <td class="text-end">Diskon Member</td>
+                                <td style="width: 5%">Rp</td>
+                                <td class="text-end thousand-separator" style="width: 10%;" id="diskon-member"></td>
                             </tr>
                             <tr>
-                                <td class="text-end nama-1" colspan="7">Grand Total</td>
-                                <td>Rp</td>
-                                <td class="text-end thousand-separator" id="grand-total"></td>
+                                <td class="text-end">Grand Total</td>
+                                <td style="width: 5%">Rp</td>
+                                <td class="text-end thousand-separator" style="width: 10%;" id="grand-total"></td>
                             </tr>
                         </tfoot>
                     </table>

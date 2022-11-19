@@ -240,3 +240,15 @@ thead tr {
 .full-when-small.active-fill {
     width: 100%!important;
 }
+
+.tbody-wrap thead, .tbody-wrap tbody tr, .tbody-wrap tfoot tr  {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.tbody-wrap tbody {
+    display: block;
+    max-height: 300px;
+    overflow-y: scroll;
+}

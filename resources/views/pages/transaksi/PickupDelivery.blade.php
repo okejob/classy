@@ -16,9 +16,9 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Pelanggan</th>
-                                <th>Driver</th>
+                                <th style="width: 10%;">ID</th>
+                                <th style="width: 30%;">Pelanggan</th>
+                                <th style="width: 20%;">Driver</th>
                                 <th>Alamat</th>
                             </tr>
                         </thead>
@@ -46,9 +46,9 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Pelanggan</th>
-                                <th>Driver</th>
+                                <th style="width: 10%;">ID</th>
+                                <th style="width: 30%;">Pelanggan</th>
+                                <th style="width: 20%;">Driver</th>
                                 <th>Alamat</th>
                             </tr>
                         </thead>
@@ -76,9 +76,9 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Penerima</th>
-                                <th>Outlet</th>
+                                <th style="width: 10%;">ID</th>
+                                <th style="width: 30%;">Penerima</th>
+                                <th style="width: 20%;">Outlet</th>
                                 <th>Tanggal Ambil</th>
                             </tr>
                         </thead>

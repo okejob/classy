@@ -10,7 +10,7 @@ $(document).ready(function() {
         $('#modal-opsi-trans').modal('show');
     });
 
-    $('#table-list-trans tbody tr').on('click', function() {
+    $('#table-list-trans tbody').on('click', 'tr', function() {
         let parent = $(this).parent();
         parent.addClass('disabled');
         let id = $(this).children().eq(0).html();
@@ -53,29 +53,40 @@ $(document).ready(function() {
             let pickup = trans.pickup_delivery[0];
             let delivery = trans.pickup_delivery[1];
             let penerima = trans.penerima;
+            console.log(pickup);
 
             if (typeof pickup !== "undefined") {
-                $('#select-driver-pickup').val(pickup.driver_id);
-                $('#input-alamat-ambil').val(pickup.alamat);
                 $('#formCheck-pickup').parent().next().show();
                 $('#formCheck-pickup').prop('checked', true);
+                $('#select-kode-pickup').val(pickup.driver_id);
+                if (pickup.is_done) {
+                    $('#check-pickup').addClass('disabled');
+                    $('#container-pickup').addClass('disabled');
+                } else {
+                    $('#check-pickup').removeClass('disabled');
+                    $('#container-pickup').removeClass('disabled');
+                }
             } else {
                 $('#formCheck-pickup').parent().next().hide();
                 $('#formCheck-pickup').prop('checked', false);
-                $('#select-driver-pickup').val('');
-                $('#input-alamat-ambil').val('');
+                $('#select-kode-pickup').val('');
             }
 
             if (typeof delivery !== "undefined") {
-                $('#select-driver-delivery').val(delivery.driver_id);
-                $('#input-alamat-antar').val(delivery.alamat);
                 $('#formCheck-delivery').parent().next().show();
                 $('#formCheck-delivery').prop('checked', true);
+                $('#select-kode-delivery').val(delivery.driver_id);
+                if (delivery.is_done) {
+                    $('#check-delivery').addClass('disabled');
+                    $('#container-delivery').addClass('disabled');
+                } else {
+                    $('#check-delivery').removeClass('disabled');
+                    $('#container-delivery').removeClass('disabled');
+                }
             }else {
                 $('#formCheck-delivery').parent().next().hide();
                 $('#formCheck-delivery').prop('checked', false);
-                $('#select-driver-delivery').val('');
-                $('#input-alamat-antar').val('');
+                $('#select-kode-delivery').val('');
             }
 
             if (penerima) {
@@ -115,16 +126,16 @@ $(document).ready(function() {
                 const item = trans.item_transaksi[i];
                 $('#table-trans-item tbody').append(
                     "<tr id='" + item.id + "'>" +
-                        "<td style='white-space: nowrap;'>" + item.nama + "</td>" +
-                        "<td class='d-none d-md-table-cell'>" + item.nama_kategori + "</td>" +
-                        "<td class='d-none d-md-table-cell'></td>" +
-                        "<td class='d-none d-md-table-cell'></td>" +
-                        "<td class='d-none d-md-table-cell'></td>" +
-                        "<td class='text-center d-none d-md-table-cell' style='padding-top: 4px;padding-bottom: 4px;'>" +
+                        "<td style='white-space: nowrap; width: 25%;'>" + item.nama + "</td>" +
+                        "<td class='d-none d-lg-table-cell' style='width: 15%;'>" + item.nama_kategori + "</td>" +
+                        "<td class='d-none d-lg-table-cell' style='width: 10%;'></td>" +
+                        "<td class='d-none d-lg-table-cell' style='width: 10%;'></td>" +
+                        "<td class='d-none d-lg-table-cell' style='width: 7.5%;'></td>" +
+                        "<td class='text-center d-none d-lg-table-cell px-0' style='padding-top: 4px; padding-bottom: 4px; width: 7.5%;'>" +
                             "<button id='btn-catatan-item-" + item.id + "' class='btn btn-primary btn-sm show-catatan-item' type='button'>Catatan</button>" +
                         "</td>" +
-                        "<td class='text-center'>" + item.bobot_bucket + "</td>" +
-                        "<td class='text-center' colspan='2'>" + item.bobot_bucket + "</td>" +
+                        "<td class='text-center' style='width: 10%;'>" + item.bobot_bucket + "</td>" +
+                        "<td class='text-center' style='width: 15%;'>" + item.bobot_bucket + "</td>" +
                     "</tr>"
                 );
             }
@@ -169,6 +180,7 @@ $(document).ready(function() {
                     "</tr>"
                 );
             }
+            setThousandSeparator();
         });
     });
 
@@ -233,6 +245,14 @@ $(document).ready(function() {
             });
         }
     };
+
+    $('#formCheck-pickup, #formCheck-delivery').on('change', function() {
+        if ($(this).is(':checked')) {
+            $(this).parent().next().show();
+        } else {
+            $(this).parent().next().hide();
+        }
+    });
 
     $('#simpan-info-penerimaan').on('click', function() {
         $(this).addClass('disabled');
@@ -319,15 +339,21 @@ $(document).ready(function() {
     });
 
     // bottom
-    if ($(this).width() < 576) {
-        $('.nama-1').attr('colspan', 2);
-    }
-    $(window).on('resize', function() {
-        if ($(this).width() < 576) {
-            $('.nama-1').attr('colspan', 2);
+    function adjustWidth() {
+        if ($(window).width() < 576) {
+            $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '10%');
+            $('#table-trans-item tfoot tr td:nth-child(3)').css('width', '20%');
+        } else if ($(window).width() < 922) {
+            $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '7.5%');
+            $('#table-trans-item tfoot tr td:nth-child(3)').css('width', '15%');
         } else {
-            $('.nama-1').attr('colspan', 7);
+            $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '5%');
+            $('#table-trans-item tfoot tr td:nth-child(3)').css('width', '10%');
         }
+    }
+    adjustWidth();
+    $(window).on('resize', function() {
+        adjustWidth();
     });
 
     $('#add-item').on('click', function() {
@@ -573,17 +599,22 @@ $(document).ready(function() {
             disableInteraction: true,
             steps: [
                 {
+                    title: "Tutorial",
                     intro: "Berikut adalah tutorial cara menggunakan halaman ini"
                 }, {
+                    title: "Tutorial Transaksi",
                     element: document.querySelector('#modal-opsi-trans .modal-content'),
                     intro: "Bagian ini digunakan untuk memilih transaksi",
                 }, {
+                    title: "Tutorial Transaksi",
                     element: document.querySelector('#modal-opsi-trans tbody'),
                     intro: "Ini adalah 5 transaksi terakhir",
                 }, {
+                    title: "Tutorial Transaksi",
                     element: document.querySelector('#modal-opsi-trans .intro-1'),
                     intro: "Ini adalah search bar untuk mencari transaksi yang mau dipilih",
                 }, {
+                    title: "Tutorial Transaksi",
                     element: document.querySelector('#modal-opsi-trans #add-new-trans'),
                     intro: "Klik tombol ini untuk membuat transaksi baru",
                 },
@@ -599,36 +630,47 @@ $(document).ready(function() {
             disableInteraction: true,
             steps: [
                 {
+                    title: "Informasi Transaksi",
                     element: document.querySelector('#section-info'),
                     intro: "Bagian ini berisikan informasi mengenai transaksi",
                 }, {
+                    title: "Informasi Transaksi",
                     element: document.querySelector('#section-info .row .col:nth-child(1) .card'),
                     intro: "Ini adalah informasi data pelanggan",
                 }, {
+                    title: "Informasi Transaksi",
                     element: document.querySelector('#section-info .row .col:nth-child(2) .card'),
                     intro: "Ini adalah informasi data penjemputan & pengantaran barang pelanggan",
                 }, {
+                    title: "Informasi Transaksi",
                     element: document.querySelector('#section-info .row .col:nth-child(3) .card'),
                     intro: "Ini adalah informasi data outlet",
                 }, {
+                    title: "Informasi Transaksi",
                     element: document.querySelector('#section-info .row .col:nth-child(4) .card'),
                     intro: "Ini adalah informasi data penerimaan",
                 }, {
+                    title: "Detail Transaksi",
                     element: document.querySelector('#section-detail-transaksi'),
                     intro: "Bagian ini berisikan data item",
                 }, {
+                    title: "Detail Transaksi",
                     element: document.querySelector('#section-detail-transaksi #add-item'),
                     intro: "Klik disini untuk menambahkan item pada transaksi",
                 }, {
+                    title: "Detail Transaksi",
                     element: document.querySelector('#section-detail-transaksi #table-trans-item tr th:nth-child(6)'),
                     intro: "Kolom ini berisikan tombol untuk menambahkan catatan pada item",
                 }, {
+                    title: "Detail Transaksi",
                     element: document.querySelector('#section-detail-transaksi #form-transaksi .form-check:nth-child(1)'),
                     intro: "Centang bagian ini, bila transaksi bersifat express (1 hari selesai)",
                 }, {
+                    title: "Detail Transaksi",
                     element: document.querySelector('#section-detail-transaksi #form-transaksi .form-check:nth-child(2)'),
                     intro: "Centang bagian ini, bila transaksi hanya perlu di setrika (tidak perlu di cuci)",
                 }, {
+                    title: "Detail Transaksi",
                     element: document.querySelector('#section-detail-transaksi #save-trans'),
                     intro: "Jangan lupa untuk menyimpan transaksi bila mengganti parfum, keterangan transaksi atau catatan transaksi",
                     position: 'left',
