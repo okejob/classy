@@ -20,10 +20,20 @@ class TransaksiController extends Controller
         return Transaksi::detail()->find($id);
     }
 
+    public function historyPelanggan($id_pelanggan)
+    {
+        $transaksi = Transaksi::detail()->where('pelanggan_id', $id_pelanggan)->paginate(5);
+
+        return [
+            'status' => 200,
+            $transaksi
+        ];
+    }
+
     public function search($key)
     {
         $transaksi = Transaksi::detail()
-            ->where('id', 'like' , '%' . $key . '%')
+            ->where('id', 'like', '%' . $key . '%')
             ->orWhere('kode', 'like', '%' . $key . '%')
             ->orWhereHas('pelanggan', function ($q) use ($key) {
                 $q->where('nama', 'like', '%' . $key . '%');

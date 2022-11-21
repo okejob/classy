@@ -16,6 +16,7 @@ class PelangganController extends Controller
 
         return redirect()->intended(route('menu-pelanggan'));
     }
+    
 
     public function show($id)
     {

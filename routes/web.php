@@ -11,6 +11,7 @@ use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PenerimaController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\PickupDeliveryController;
+use App\Http\Controllers\SaldoController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
 use App\Models\Transaksi\PickupDelivery;
@@ -116,5 +117,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/transaksi/penerima', [PenerimaController::class, 'insert']);
 
     //Catatan Item Transaksi
-
+    //History
+    Route::get('/pelanggan/{id_pelanggan}/history/transaksi', [TransaksiController::class, 'historyPelanggan']);
+    Route::get('/pelanggan/{id_pelanggan}/history/saldo', [SaldoController::class, 'historyPelanggan']);
 });

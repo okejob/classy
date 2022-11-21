@@ -2,6 +2,7 @@
 
 namespace App\Models\Data;
 
+use App\Models\Saldo;
 use App\Models\User;
 use App\Observers\UserActionObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,5 +23,10 @@ class Pelanggan extends Model
     public function catatan_pelanggan()
     {
         return $this->hasOne(CatatanPelanggan::class);
+    }
+
+    public function saldo()
+    {
+        return $this->hasMany(Saldo::class);
     }
 }

@@ -29,4 +29,14 @@ class SaldoController extends Controller
 
         return null;
     }
+
+    public function historyPelanggan($id_pelanggan)
+    {
+        $saldo = Saldo::where('pelanggan_id', $id_pelanggan)->latest()->paginate(5);
+
+        return [
+            'status' => 200,
+            $saldo
+        ];
+    }
 }
