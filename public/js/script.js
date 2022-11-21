@@ -150,7 +150,7 @@ $(document).ready(function() {
         stateNav(sideNav_opened, false);
     })
 
-    var separatorInterval = setInterval(setThousandSeparator, 10);
+    var separatorInterval = setTimeout(setThousandSeparator, 10);
 
     function setThousandSeparator () {
         let length = $('.thousand-separator').length;
@@ -165,7 +165,6 @@ $(document).ready(function() {
                     $(element).text(number.toLocaleString(['ban', 'id']));
                 }
             });
-            clearInterval(separatorInterval);
         }
     };
 

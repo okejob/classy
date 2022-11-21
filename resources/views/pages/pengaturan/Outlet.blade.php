@@ -24,84 +24,86 @@
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach ($data as $outlet)
                             <tr>
-                                <td>Kode 1</td>
-                                <td>Outlet 1</td>
-                                <td>Alamat 1</td>
-                                <td>Telepon 1</td>
-                                <td>Telepon 2</td>
-                                <td>Fax 1</td>
-                                <td>Aktif</td>
+                                <td>{{ $outlet->kode }}</td>
+                                <td>{{ $outlet->nama }}</td>
+                                <td>{{ $outlet->alamat }}</td>
+                                <td>{{ $outlet->telp_1 }}</td>
+                                <td>{{ $outlet->telp_2 }}</td>
+                                <td>{{ $outlet->fax }}</td>
+                                @if ($outlet->status)
+                                    <td class="text-center">Aktif</td>
+                                @else
+                                    <td class="text-center">Tidak aktif</td>
+                                @endif
                                 <td class="cell-action"><button class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button></td>
                             </tr>
-                            <tr>
-                                <td>Kode 2</td>
-                                <td>Outlet 2</td>
-                                <td>Alamat 2</td>
-                                <td>Telepon 1</td>
-                                <td>Telepon 2</td>
-                                <td>Fax 2</td>
-                                <td>Aktif</td>
-                                <td class="cell-action"><button class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button></td>
-                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
-                </div><button class="btn btn-primary" type="button"><i class="fas fa-plus-circle"></i> Tambah</button>
+                </div>
+                <button class="btn btn-primary" id="add-outlet" type="button"><i class="fas fa-plus-circle"></i> Tambah</button>
             </div>
             <ul class="list-unstyled form-control" id="list-action">
                 <li id="action-update">Rubah data</li>
-                <li id="action-change-status">Rubah status</li>
             </ul>
         </div>
-        <div role="dialog" tabindex="-1" class="modal fade" id="modal-update-outlet">
-            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Rubah Data Outlet</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-12 col-sm-6">
-                                    <h5>Kode Outlet</h5><input type="text" class="form-control" id="input-kode" name="kode_outlet" />
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <h5>Nama Outlet</h5><input type="text" class="form-control" id="input-nama" name="nama_outlet" />
-                                </div>
-                                <div class="col-12">
-                                    <h5>Alamat lengkap</h5><input type="text" class="form-control" id="input-alamat" name="alamat" />
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <h5>Telepon 1</h5><input type="text" class="form-control" id="input-telp1" name="telepon_1" />
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <h5>Telepon 2</h5><input type="text" class="form-control" id="input-telp2" name="telepon_2" />
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <h5>Nomor Fax</h5><input type="text" class="form-control" id="input-fax" name="nomor_fax" />
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <h5>Status</h5>
-                                    <div class="form-control d-flex justify-content-around" style="height: 38px;">
-                                        <div class="form-check">
-                                            <input type="radio" class="form-check-input" id="radio-status-aktif" />
-                                            <label class="form-check-label" for="radio-status-aktif">Aktif</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input type="radio" class="form-check-input" id="radio-status-nonaktif" />
-                                            <label class="form-check-label" for="radio-status-nonaktif">Non-aktif</label>
-                                        </div>
+    </section>
+
+    <div role="dialog" tabindex="-1" class="modal fade" id="modal-outlet">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Rubah Data Outlet</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12 col-sm-6">
+                                <h5>Kode Outlet</h5>
+                                <input type="text" class="form-control" id="input-kode" name="kode_outlet" />
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <h5>Nama Outlet</h5>
+                                <input type="text" class="form-control" id="input-nama" name="nama_outlet" />
+                            </div>
+                            <div class="col-12">
+                                <h5>Alamat lengkap</h5>
+                                <input type="text" class="form-control" id="input-alamat" name="alamat" />
+                            </div>
+                            <div class="col-12 col-sm-6" id="col-telp1">
+                                <h5>Telepon 1</h5>
+                                <input type="text" class="form-control" id="input-telp1" name="telepon_1" />
+                            </div>
+                            <div class="col-12 col-sm-6" id="col-telp2">
+                                <h5>Telepon 2</h5>
+                                <input type="text" class="form-control" id="input-telp2" name="telepon_2" />
+                            </div>
+                            <div class="col-12 col-sm-6" id="col-fax">
+                                <h5>Nomor Fax</h5>
+                                <input type="text" class="form-control" id="input-fax" name="nomor_fax" />
+                            </div>
+                            <div class="col-12 col-sm-6" id="col-status">
+                                <h5>Status</h5>
+                                <div class="form-control d-flex justify-content-around" style="height: 38px;">
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" id="radio-status-aktif" />
+                                        <label class="form-check-label" for="radio-status-aktif">Aktif</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" id="radio-status-nonaktif" />
+                                        <label class="form-check-label" for="radio-status-nonaktif">Non-aktif</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-primary float-end" type="submit"><i class="fas fa-save"></i> Simpan</button></div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="modal-footer"><button class="btn btn-primary float-end" type="submit"><i class="fas fa-save"></i> Simpan</button></div>
+                </form>
             </div>
         </div>
-    </section>
-
+    </div>
 </div>
 
 <script src="{{ asset('js/pengaturan/outlet.js') }}"></script>
