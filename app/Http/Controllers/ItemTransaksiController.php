@@ -50,7 +50,7 @@ class ItemTransaksiController extends Controller
 
     public function update(InsertItemTransaksiRequest $request, $id)
     {
-        $merged = $request->safe()->merge(['modified_by' => Auth::id()])->toArray();
+        $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
         ItemTransaksi::find($id)->update($merged);
 
         return redirect()->intended(route(''));
@@ -59,7 +59,5 @@ class ItemTransaksiController extends Controller
     public function delete($id)
     {
         ItemTransaksi::destroy($id);
-
-        return redirect()->intended(route(''));
     }
 }

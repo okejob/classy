@@ -28,7 +28,7 @@ class OutletController extends Controller
 
     public function update(InsertOutletRequest $request, $id)
     {
-        $merged = $request->safe()->merge(['modified_by' => Auth::id()])->toArray();
+        $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
         Outlet::find($id)->update($merged);
 
         return redirect()->intended(route('setting-outlet'));
