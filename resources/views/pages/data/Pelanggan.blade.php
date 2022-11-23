@@ -68,11 +68,12 @@
                     &nbsp;Tambah
                 </button>
                 <ul class="list-unstyled form-control" id="list-action">
-                    <li id="action-update">Rubah data</li>
+                    <li id="action-detail">Detail pelanggan</li>
                     <li id="action-delete">Hapus data</li>
                 </ul>
             </div>
         </div>
+
         <div class="modal fade" role="dialog" tabindex="-1" id="modal-update">
             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -91,15 +92,15 @@
                                     <h5>Alamat</h5>
                                     <input class="form-control" type="text" id="input-alamat" name="alamat" required>
                                 </div>
-                                <div class="col-12 col-sm-6">
+                                <div class="col-12 col-lg-6">
                                     <h5>Tanggal Lahir</h5>
                                     <input class="form-control" id="input-tanggal-lahir" type="date" name="tanggal_lahir" required>
                                 </div>
-                                <div class="col-12 col-sm-6">
+                                <div class="col-12 col-lg-6">
                                     <h5>Tipe Member</h5>
                                     <div class="form-control d-flex align-items-center justify-content-around">
                                         <div class="form-check">
-                                            <input type="radio" class="form-check-input" id="formCheck-member" name="member" value=1 />
+                                            <input type="radio" class="form-check-input" id="formCheck-member" name="member" value=1 required />
                                             <label class="form-check-label" for="formCheck-member">Member</label>
                                         </div>
                                         <div class="form-check">
@@ -109,10 +110,6 @@
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <h5>Nomor Identitas</h5>
-                                    <input class="form-control" type="text" id="input-nomor-identitas" name="no_id" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
-                                </div>
-                                <div class="col-12 col-sm-6">
                                     <h5>Jenis Identitas</h5>
                                     <select class="form-select" id="input-jenis-identitas" name="jenis_id" required>
                                         <option value='' disabled selected hidden>-</option>
@@ -120,19 +117,23 @@
                                         <option value="sim">SIM</option>
                                     </select>
                                 </div>
-                                <div class="col-12 col-sm-4">
+                                <div class="col-12 col-sm-6">
+                                    <h5>Nomor Identitas</h5>
+                                    <input class="form-control" type="text" id="input-nomor-identitas" name="no_id" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                                </div>
+                                <div class="col-12 col-lg-4 col-sm-6">
                                     <h5>Telephone</h5>
                                     <input class="form-control" type="text" id="input-telepon" name="telephone" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                                 </div>
-                                <div class="col-12 col-sm-4">
+                                <div class="col-12 col-lg-4 col-sm-6">
                                     <h5>E-mail</h5>
                                     <input class="form-control" type="text" id="input-email" name="email" required>
                                 </div>
-                                <div class="col-12 col-sm-4">
+                                <div class="col-12 col-lg-4">
                                     <h5>Status</h5>
                                     <div class="form-control d-flex align-items-center justify-content-around">
                                         <div class="form-check">
-                                            <input type="radio" class="form-check-input" id="formCheck-aktif" name="status" value=1 />
+                                            <input type="radio" class="form-check-input" id="formCheck-aktif" name="status" value=1 required />
                                             <label class="form-check-label" for="formCheck-aktif">Aktif</label>
                                         </div>
                                         <div class="form-check">
@@ -148,6 +149,7 @@
                 </div>
             </div>
         </div>
+
     </section>
 </div>
 
