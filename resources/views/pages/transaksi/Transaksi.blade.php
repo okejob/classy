@@ -380,10 +380,10 @@
                                 <th class="d-none d-lg-table-cell" style="width: 15%;">Kategori</th>
                                 <th class="d-none d-lg-table-cell" style="width: 10%;">Cuci</th>
                                 <th class="d-none d-lg-table-cell" style="width: 10%;">Setrika</th>
-                                <th class="d-none d-lg-table-cell" style="width: 7.5%;">Proses</th>
-                                <th class="d-none d-lg-table-cell" style="width: 7.5%;">Notes</th>
+                                <th class="d-none d-lg-table-cell" style="width: 10%;">Proses</th>
                                 <th style="width: 10%;">Bobot</th>
-                                <th style="width: 15%;">Harga Premium</th>
+                                <th style="width: calc(20% - 46.25px);">Harga Premium</th>
+                                <th style="width: 46.25px;"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -400,25 +400,34 @@
                                 <td class="text-end">Sub Total</td>
                                 <td style="width: 5%">Rp</td>
                                 <td class="text-end thousand-separator" style="width: 10%;" id="sub-total"></td>
+                                <td style="width: 46.25px;"></td>
                             </tr>
                             <tr>
                                 <td class="text-end">Diskon</td>
                                 <td style="width: 5%">Rp</td>
                                 <td class="text-end thousand-separator" style="width: 10%;" id="diskon"></td>
+                                <td style="width: 46.25px;"></td>
                             </tr>
                             <tr>
                                 <td class="text-end">Diskon Member</td>
                                 <td style="width: 5%">Rp</td>
                                 <td class="text-end thousand-separator" style="width: 10%;" id="diskon-member"></td>
+                                <td style="width: 46.25px;"></td>
                             </tr>
                             <tr>
                                 <td class="text-end">Grand Total</td>
                                 <td style="width: 5%">Rp</td>
                                 <td class="text-end thousand-separator" style="width: 10%;" id="grand-total"></td>
+                                <td style="width: 46.25px;"></td>
                             </tr>
                         </tfoot>
                     </table>
                 </div>
+
+                <ul class="list-unstyled form-control" id="list-action">
+                    <li id="action-notes">Catatan item</li>
+                    <li id="action-delete">Hapus item</li>
+                </ul>
 
                 <form method="POST" id="form-transaksi" class="mb-0">
                     @csrf
