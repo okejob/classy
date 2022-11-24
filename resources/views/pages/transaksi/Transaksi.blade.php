@@ -378,17 +378,17 @@
                             <tr>
                                 <th style="width: 25%;">Nama Item</th>
                                 <th class="d-none d-lg-table-cell" style="width: 15%;">Kategori</th>
-                                <th class="d-none d-lg-table-cell" style="width: 10%;">Cuci</th>
-                                <th class="d-none d-lg-table-cell" style="width: 10%;">Setrika</th>
-                                <th class="d-none d-lg-table-cell" style="width: 10%;">Proses</th>
+                                <th class="d-none d-xl-table-cell" style="width: 10%;">Cuci</th>
+                                <th class="d-none d-xl-table-cell" style="width: 10%;">Setrika</th>
+                                <th class="d-none d-md-table-cell" style="width: 10%;">Proses</th>
                                 <th style="width: 10%;">Bobot</th>
-                                <th style="width: calc(20% - 46.25px);">Harga Premium</th>
-                                <th style="width: 46.25px;"></th>
+                                <th>Harga Premium</th>
+                                <th style="width: 50px;"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="text-center" colspan="9" style="padding-top: 4px;padding-bottom: 4px;">
+                                <td class="text-center" colspan="8" style="padding-top: 4px;padding-bottom: 4px;">
                                     <button class="btn btn-primary btn-sm" id="add-item" type="button">
                                         <i class="fas fa-plus"></i>
                                     </button>
@@ -399,26 +399,26 @@
                             <tr>
                                 <td class="text-end">Sub Total</td>
                                 <td style="width: 5%">Rp</td>
-                                <td class="text-end thousand-separator" style="width: 10%;" id="sub-total"></td>
-                                <td style="width: 46.25px;"></td>
+                                <td class="text-end thousand-separator" id="sub-total"></td>
+                                <td style="width: 50px;"></td>
                             </tr>
                             <tr>
                                 <td class="text-end">Diskon</td>
                                 <td style="width: 5%">Rp</td>
-                                <td class="text-end thousand-separator" style="width: 10%;" id="diskon"></td>
-                                <td style="width: 46.25px;"></td>
+                                <td class="text-end thousand-separator" id="diskon"></td>
+                                <td style="width: 50px;"></td>
                             </tr>
                             <tr>
                                 <td class="text-end">Diskon Member</td>
                                 <td style="width: 5%">Rp</td>
-                                <td class="text-end thousand-separator" style="width: 10%;" id="diskon-member"></td>
-                                <td style="width: 46.25px;"></td>
+                                <td class="text-end thousand-separator" id="diskon-member"></td>
+                                <td style="width: 50px;"></td>
                             </tr>
                             <tr>
                                 <td class="text-end">Grand Total</td>
                                 <td style="width: 5%">Rp</td>
-                                <td class="text-end thousand-separator" style="width: 10%;" id="grand-total"></td>
-                                <td style="width: 46.25px;"></td>
+                                <td class="text-end thousand-separator" id="grand-total"></td>
+                                <td style="width: 50px;"></td>
                             </tr>
                         </tfoot>
                     </table>

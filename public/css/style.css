@@ -251,5 +251,24 @@ thead tr {
 .tbody-wrap tbody {
     display: block;
     max-height: 300px;
-    overflow-y: scroll;
+    overflow-y: auto;
+}
+
+#table-trans-item tbody::-webkit-scrollbar {
+    width: 3px;
+}
+
+/* Track */
+#table-trans-item tbody::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+#table-trans-item tbody::-webkit-scrollbar-thumb {
+    background: rgba(159, 166, 178, .75)
+}
+
+/* Handle on hover */
+#table-trans-item tbody::-webkit-scrollbar-thumb:hover {
+    background: rgba(159, 166, 178, 1)
 }
