@@ -272,3 +272,15 @@ thead tr {
 #table-trans-item tbody::-webkit-scrollbar-thumb:hover {
     background: rgba(159, 166, 178, 1)
 }
+
+#section-transaksi-saldo #paket-container .card.selected {
+    box-shadow: rgba(34, 47, 100, 0.16) 0px 1px 4px, rgb(34, 47, 100) 0px 0px 0px 3px;
+}
+
+#section-transaksi-saldo #paket-container .card-body {
+    height: 150px;
+}
+
+#section-transaksi-saldo #paket-container .card {
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}

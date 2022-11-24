@@ -33,7 +33,7 @@ $(document).ready(function() {
 
         $('#modal-update').modal('show');
     });
-    
+
     $('#data-pelanggan #action-detail').on('click', function() {
         window.location = window.location + '/' + btnId + '/detail';
     });

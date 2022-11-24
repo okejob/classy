@@ -96,7 +96,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/transaksi/pickup-delivery/{id}', [PickupDeliveryController::class, 'update'])->middleware('permission:update_pickup_delivery');
     Route::get('/transaksi/pickup-delivery/delete/{id}', [PickupDeliveryController::class, 'delete'])->middleware('permission:delete_pickup_delivery');
 
-    //Catatan Item Transaksi //ItemTransaksi 
+    //Catatan Item Transaksi //ItemTransaksi
     Route::get('/transaksi/item-transaksi/{id}', [ItemTransaksiController::class, 'show'])->middleware('permission:show_item_transaksi');
     Route::post('/transaksi/item-transaksi', [ItemTransaksiController::class, 'insert'])->middleware('permission:insert_item_transaksi');
     Route::post('/transaksi/item-transaksi/{id}', [ItemTransaksiController::class, 'update'])->middleware('permission:update_item_transaksi');
@@ -125,5 +125,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/pelanggan/{id_pelanggan}/history/saldo', [SaldoController::class, 'historyPelanggan']);
 
     //Saldo
+    Route::get('/transaksi/saldo', [PageController::class, 'saldo']);
     Route::get('/pelanggan/{pelanggan_id}/check-saldo', [SaldoController::class, 'getSaldo']);
+    Route::post('/pelanggan/{pelanggan_id}/add-saldo', [SaldoController::class, 'insert']);
 });

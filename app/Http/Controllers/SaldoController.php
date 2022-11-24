@@ -10,11 +10,14 @@ class SaldoController extends Controller
 {
     public function insert(Request $request)
     {
-        $saldo_akhir = Saldo::where('pelanggan_id', $request->pelanggan_id)->latest()->first()->saldo_akhir;
+        $saldo_akhir = Saldo::where('pelanggan_id', $request->pelanggan_id)->latest()->first();
         if (empty($saldo_akhir)) {
             $saldo_akhir = 0;
+        } else {
+            $saldo_akhir = $saldo_akhir->saldo_akhir;
         }
-        if ($request->jenis_input == "tambah") {
+
+        if ($request->jenis_input == "deposit") {
             $saldo_akhir += $request->nominal;
         } else {
             $saldo_akhir -= $request->nominal;
@@ -34,12 +37,13 @@ class SaldoController extends Controller
 
     public function getSaldo($pelanggan_id)
     {
-        $saldo = Saldo::where('pelanggan_id')->latest()->first();
+        $saldo = Saldo::where('pelanggan_id', $pelanggan_id)->latest()->first();
         if (empty($saldo)) {
             $saldo = 0;
         } else {
             $saldo = $saldo->saldo_akhir;
         }
+
         return [
             'status' => 200,
             'saldo' => $saldo

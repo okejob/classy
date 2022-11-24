@@ -80,13 +80,13 @@
         </div>
     </section>
 
-    <section id="data-transaksi" class="mb-5>
+    <section id="data-transaksi" class="mb-5">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Data Transaksi</h4>
                 <hr>
                 <div class="table-responsive mb-2">
-                    <table class="table table-striped" id="table-pelanggan">
+                    <table class="table table-striped" id="table-transaksi">
                         <thead>
                             <tr>
                                 <th>Kode Transaksi</th>
@@ -127,7 +127,43 @@
     </section>
 
     <section id="data-saldo">
-
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Data Saldo</h4>
+                <hr>
+                <div class="table-responsive mb-2">
+                    <table class="table table-striped" id="table-pelanggan">
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Jenis Input</th>
+                                <th colspan="2" style="width: 15%;">Nominal</th>
+                                <th colspan="2" style="width: 15%;">Saldo Akhir</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($saldos as $saldo)
+                            <tr>
+                                <td>{{ $saldo->created_at }}</td>
+                                <td class="text-center">{{ $saldo->jenis_input }}</td>
+                                <td>Rp</td>
+                                <td class="text-end thousand-separator">{{ $saldo->nominal }}</td>
+                                <td>Rp</td>
+                                <td class="text-end thousand-separator">{{ $saldo->saldo_akhir }}</td>
+                                <td class="cell-action">
+                                    <button id="btn-{{ $saldo->id }}" class="btn btn-primary btn-sm btn-show-action" type="button">
+                                        <i class="fas fa-bars"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                {{ $transaksis->links() }}
+            </div>
+        </div>
     </section>
 </div>
 

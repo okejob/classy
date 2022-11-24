@@ -72,9 +72,15 @@
                         <p class="ms-3">Rewash</p>
                     </a>
                 </div>
+                <div id="nav-transaksi-saldo">
+                    <a href="/transaksi/saldo" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
+                        <i class="fa-solid fa-money-bill-transfer"></i>
+                        <p class="ms-3">Saldo</p>
+                    </a>
+                </div>
                 <div id="nav-transaksi-pembayaran">
                     <a href="/transaksi/pembayaran" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
-                        <i class="fas fa-money-bill-wave-alt"></i>
+                        <i class="fa-solid fa-money-bills"></i>
                         <p class="ms-3">Pembayaran</p>
                     </a>
                 </div>

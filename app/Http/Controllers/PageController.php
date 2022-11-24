@@ -185,4 +185,15 @@ class PageController extends Controller
             ]
         );
     }
+
+    public function saldo()
+    {
+        return view(
+            'pages.transaksi.saldo',
+            [
+                'paket_deposits' => PaketDeposit::where('status', 1)->get(),
+                'pelanggans' => Pelanggan::where('status', 1)->get(),
+            ]
+        );
+    }
 }
