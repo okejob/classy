@@ -128,11 +128,12 @@ $(document).ready(function() {
                     "<tr id='" + item.id + "'>" +
                         "<td style='white-space: nowrap; width: 25%;'>" + item.nama + "</td>" +
                         "<td class='d-none d-lg-table-cell' style='width: 15%;'>" + item.nama_kategori + "</td>" +
-                        "<td class='d-none d-lg-table-cell' style='width: 10%;'></td>" +
-                        "<td class='d-none d-lg-table-cell' style='width: 10%;'></td>" +
-                        "<td class='d-none d-lg-table-cell' style='width: 10%;'></td>" +
+                        "<td class='d-none d-xl-table-cell' style='width: 10%;'></td>" +
+                        "<td class='d-none d-xl-table-cell' style='width: 10%;'></td>" +
+                        "<td class='d-none d-md-table-cell' style='width: 10%;'></td>" +
                         "<td class='text-center' style='width: 10%;'>" + item.bobot_bucket + "</td>" +
-                        "<td class='text-center'>" + item.harga_premium + "</td>" +
+                        "<td class='d-none d-sm-table-cell' style='width: 5%;'>Rp</td>" +
+                        "<td class='text-end thousand-separator'>" + item.harga_premium + "</td>" +
                         "<td style='width: 46.25px;'>" +
                             "<button id='btn-" + item.id + "' class='btn btn-primary btn-sm btn-show-action' type='button'><i class='fas fa-bars' aria-hidden='true'></i></button>" +
                         "</td>" +
@@ -290,7 +291,6 @@ $(document).ready(function() {
         });
     });
 
-    // bagian kanan
     $('.show-data').on('click', function() {
         let dataType = $(this).attr('id').substring($(this).attr('id').indexOf('data-') + 5);
         if (!$(this).hasClass('show')) {
@@ -342,38 +342,58 @@ $(document).ready(function() {
     // bottom
     function adjustWidth() {
         if ($(window).width() < 576) {
-            $('#table-trans-item thead th:nth-child(1)').css('width', 'auto');
-            $('#table-trans-item thead th:nth-child(6)').css('width', '20%');
-            $('#table-trans-item thead th:nth-child(7)').css('width', 'calc(35% - 46.25px)');
-
-            $('#table-trans-item tbody tr td:nth-child(1)').css('width', 'auto');
-            $('#table-trans-item tbody tr td:nth-child(6)').css('width', '20%');
-            $('#table-trans-item tbody tr td:nth-child(7)').css('width', 'calc(35% - 46.25px)');
-
-            $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '10%');
-            $('#table-trans-item tfoot tr td:nth-child(3)').css('width', '20%');
-        } else if ($(window).width() < 1200) {
-            $('#table-trans-item thead th:nth-child(1)').css('width', 'auto');
+            $('#table-trans-item thead th:nth-child(1)').css('width', '40%');
             $('#table-trans-item thead th:nth-child(6)').css('width', '15%');
-            $('#table-trans-item thead th:nth-child(7)').css('width', 'calc(25% - 46.25px)');
 
-            $('#table-trans-item tbody tr td:nth-child(1)').css('width', 'auto');
+            $('#table-trans-item tbody tr td:nth-child(1)').css('width', '40%');
+            $('#table-trans-item tbody tr td:nth-child(1)').css('white-space', 'initial');
             $('#table-trans-item tbody tr td:nth-child(6)').css('width', '15%');
-            $('#table-trans-item tbody tr td:nth-child(7)').css('width', 'calc(25% - 46.25px)');
 
+            $('#table-trans-item tfoot tr td:nth-child(1)').css('width', '55%');
+            $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '10%');
+        } else if ($(window).width() < 992) {
+            $('#table-trans-item thead th:nth-child(1)').css('width', '40%');
+            $('#table-trans-item thead th:nth-child(5)').css('width', '15%');
+            $('#table-trans-item thead th:nth-child(6)').css('width', '10%');
+
+            $('#table-trans-item tbody tr td:nth-child(1)').css('width', '40%');
+            $('#table-trans-item tbody tr td:nth-child(1)').css('white-space', 'nowrap');
+            $('#table-trans-item tbody tr td:nth-child(5)').css('width', '15%');
+            $('#table-trans-item tbody tr td:nth-child(6)').css('width', '10%');
+            $('#table-trans-item tbody tr td:nth-child(7)').css('width', '7.5%');
+
+            $('#table-trans-item tfoot tr td:nth-child(1)').css('width', '65%');
             $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '7.5%');
-            $('#table-trans-item tfoot tr td:nth-child(3)').css('width', '15%');
+        } else if ($(window).width() < 1200) {
+            $('#table-trans-item thead th:nth-child(1)').css('width', '30%');
+            $('#table-trans-item thead th:nth-child(2)').css('width', '20%');
+            $('#table-trans-item thead th:nth-child(5)').css('width', '10%');
+            $('#table-trans-item thead th:nth-child(6)').css('width', '10%');
+
+            $('#table-trans-item tbody tr td:nth-child(1)').css('width', '30%');
+            $('#table-trans-item tbody tr td:nth-child(1)').css('white-space', 'nowrap');
+            $('#table-trans-item tbody tr td:nth-child(2)').css('width', '20%');
+            $('#table-trans-item tbody tr td:nth-child(5)').css('width', '10%');
+            $('#table-trans-item tbody tr td:nth-child(6)').css('width', '10%');
+            $('#table-trans-item tbody tr td:nth-child(7)').css('width', '5%');
+
+            $('#table-trans-item tfoot tr td:nth-child(1)').css('width', '70%');
+            $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '5%');
         } else {
             $('#table-trans-item thead th:nth-child(1)').css('width', '25%');
+            $('#table-trans-item thead th:nth-child(2)').css('width', '15%');
+            $('#table-trans-item thead th:nth-child(5)').css('width', '10%');
             $('#table-trans-item thead th:nth-child(6)').css('width', '10%');
-            $('#table-trans-item thead th:nth-child(7)').css('width', 'calc(20% - 46.25px)');
 
             $('#table-trans-item tbody tr td:nth-child(1)').css('width', '25%');
+            $('#table-trans-item tbody tr td:nth-child(1)').css('white-space', 'nowrap');
+            $('#table-trans-item tbody tr td:nth-child(2)').css('width', '15%');
+            $('#table-trans-item tbody tr td:nth-child(5)').css('width', '10%');
             $('#table-trans-item tbody tr td:nth-child(6)').css('width', '10%');
-            $('#table-trans-item tbody tr td:nth-child(7)').css('width', 'calc(20% - 46.25px)');
+            $('#table-trans-item tbody tr td:nth-child(7)').css('width', '5%');
 
+            $('#table-trans-item tfoot tr td:nth-child(1)').css('width', '80%');
             $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '5%');
-            $('#table-trans-item tfoot tr td:nth-child(3)').css('width', '10%');
         }
     }
 
@@ -443,11 +463,12 @@ $(document).ready(function() {
                     "<tr id='" + temp.id + "'>" +
                         "<td style='white-space: nowrap; width: 25%;'>" + temp.nama + "</td>" +
                         "<td class='d-none d-lg-table-cell' style='width: 15%;'>" + temp.nama_kategori + "</td>" +
-                        "<td class='d-none d-lg-table-cell' style='width: 10%;'></td>" +
-                        "<td class='d-none d-lg-table-cell' style='width: 10%;'></td>" +
-                        "<td class='d-none d-lg-table-cell' style='width: 10%;'></td>" +
+                        "<td class='d-none d-xl-table-cell' style='width: 10%;'></td>" +
+                        "<td class='d-none d-xl-table-cell' style='width: 10%;'></td>" +
+                        "<td class='d-none d-md-table-cell' style='width: 10%;'></td>" +
                         "<td class='text-center' style='width: 10%;'>" + temp.bobot_bucket + "</td>" +
-                        "<td class='text-center'>" + temp.harga_premium + "</td>" +
+                        "<td class='d-none d-sm-table-cell' style='width: 5%;'>Rp</td>" +
+                        "<td class='text-end thousand-separator'>" + temp.harga_premium + "</td>" +
                         "<td style='width: 46.25px;'>" +
                             "<button id='btn-" + temp.id + "' class='btn btn-primary btn-sm btn-show-action' type='button'><i class='fas fa-bars' aria-hidden='true'></i></button>" +
                         "</td>" +
@@ -507,10 +528,18 @@ $(document).ready(function() {
         if (confirm('Yakin menghapus data  ?')) {
             $.ajax({
                 url: "/transaksi/item-transaksi/delete/" + currentlySelectedItemTransactionID,
-            }).done(function() {
+            }).done(function(data) {
+                let trans = data[0];
+                $('#sub-total').html(trans.subtotal);
+                $('#diskon').html(trans.diskon);
+                $('#diskon-member').html(trans.diskon_member);
+                $('#grand-total').html(trans.grand_total);
+
                 $('#table-trans-item tbody tr:nth-child(' + btnIndex + ')').detach();
                 currentlySelectedItemTransactionID = 0;
                 currentlySelectedItemName = '';
+                setThousandSeparator();
+
             }).fail(function(jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR);
                 console.log(textStatus);
@@ -539,6 +568,7 @@ $(document).ready(function() {
         }).done(function(data) {
             let transNote = data[0];
 
+            $('#penulis-catatan-item').parent().show();
             $('#penulis-catatan-item').val(transNote.nama_user);
             $('#catatan-item').val(transNote.catatan);
             $('#container-image-item').attr('src', transNote.image_path);
@@ -566,6 +596,7 @@ $(document).ready(function() {
     $('#add-catatan-item').on('click', function() {
         $('#catatan-item-name').text(currentlySelectedItemName);
 
+        $('#penulis-catatan-item').parent().hide();
         $('#penulis-catatan-item').removeClass('disabled');
         $('#catatan-item').removeClass('disabled');
         $('#input-foto-item').show();

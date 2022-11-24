@@ -84,8 +84,6 @@ $(document).ready(function() {
     });
 
     $('#section-detail-transaksi #table-trans-item tbody').on('click', '.btn-show-action', function() {
-        console.log("offset : " + $(this).offset().left);
-        console.log("card offset : " + $(this).closest('.card').offset().left);
         let lebarList = 150;
         let lebarBtn = $(this).css('width');
         let lebarTambahan = 2;
