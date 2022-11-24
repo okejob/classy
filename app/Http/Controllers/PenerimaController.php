@@ -15,7 +15,7 @@ class PenerimaController extends Controller
 
     public function insert(InsertPenerimaRequest $request)
     {
-        $transaksi_id = $request->safe()->only('transaksi_id');
+        $transaksi_id = $request->only('transaksi_id');
         $penerima = Penerima::where('transaksi_id', $transaksi_id)->first();
         if (!$penerima) {
             $delivery = PickupDelivery::where('transaksi_id', $transaksi_id)->first();
@@ -26,7 +26,7 @@ class PenerimaController extends Controller
                 ];
             }
             $path = $this->upload($request, 'penerima');
-            $merged = $request->safe()->merge([
+            $merged = $request->merge([
                 'modified_by' => Auth::id(),
                 'foto_penerima' => url($path),
             ])->toArray();
@@ -37,7 +37,7 @@ class PenerimaController extends Controller
             ];
         }
         return [
-            'status' => 200,
+            'status' => 400,
             $penerima
         ];
     }

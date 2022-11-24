@@ -11,7 +11,7 @@ class PengeluaranController extends Controller
 {
     public function insert(InsertPengeluaranRequest $request)
     {
-        $merged = $request->safe()->merge(['modified_by' => Auth::id()])->toArray();
+        $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
         Pengeluaran::create($merged);
 
         return redirect()->intended(route('menu-pengeluaran'));
@@ -28,7 +28,7 @@ class PengeluaranController extends Controller
 
     public function update(InsertPengeluaranRequest $request, $id)
     {
-        $merged = $request->safe()->merge(['modified_by' => Auth::id()])->toArray();
+        $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
         Pengeluaran::find($id)->update($merged);
 
         return redirect()->intended(route('menu-pengeluaran'));

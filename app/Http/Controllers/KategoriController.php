@@ -11,7 +11,7 @@ class KategoriController extends Controller
 {
     public function insert(InsertKategoriRequest $request)
     {
-        $merged = $request->safe()->merge(['modified_by' => Auth::id()])->toArray();
+        $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
         Kategori::create($merged);
 
         return redirect()->intended(route('menu-kategori'));
@@ -28,7 +28,7 @@ class KategoriController extends Controller
 
     public function update(InsertKategoriRequest $request, $id)
     {
-        $merged = $request->safe()->merge(['modified_by' => Auth::id()])->toArray();
+        $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
         Kategori::find($id)->update($merged);
 
         return redirect()->intended(route('menu-kategori'));

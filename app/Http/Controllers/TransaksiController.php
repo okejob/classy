@@ -70,7 +70,7 @@ class TransaksiController extends Controller
 
     public function insert(InsertTransaksiRequest $request)
     {
-        $merged = $request->safe()->merge([
+        $merged = $request->merge([
             'outlet_id' => Auth::user()->outlet->id,
             'modified_by' => Auth::id(),
             'status' => "draft"
@@ -93,7 +93,7 @@ class TransaksiController extends Controller
         if ($request->setrika_only == "1") {
             $setrika_only = true;
         }
-        $merged = $request->safe()->merge([
+        $merged = $request->merge([
             'modified_by' => Auth::id(),
             'status' => User::getRole(Auth::id()),
             'express' => $express,

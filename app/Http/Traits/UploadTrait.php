@@ -16,7 +16,7 @@ trait UploadTrait
             $file_name = time() . '.' . $file->getClientOriginalExtension();
             $final_path = $default_path . $file_name;
             $img = Image::make($file);
-            $img->save(public_path($final_path), $quality);
+            $img->save($final_path, $quality);
 
             return $final_path;
         }

@@ -11,12 +11,12 @@ class PelangganController extends Controller
 {
     public function insert(InsertPelangganRequest $request)
     {
-        $merged = $request->safe()->merge(['modified_by' => Auth::id()])->toArray();
+        $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
         Pelanggan::create($merged);
 
         return redirect()->intended(route('menu-pelanggan'));
     }
-    
+
 
     public function show($id)
     {
@@ -29,7 +29,7 @@ class PelangganController extends Controller
 
     public function update(InsertPelangganRequest $request, $id)
     {
-        $merged = $request->safe()->merge(['modified_by' => Auth::id()])->toArray();
+        $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
         Pelanggan::find($id)->update($merged);
 
         return redirect()->intended(route('menu-pelanggan'));

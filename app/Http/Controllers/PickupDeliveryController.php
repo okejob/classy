@@ -25,7 +25,7 @@ class PickupDeliveryController extends Controller
             $paded = str_pad($count, 6, '0', STR_PAD_LEFT);
             $kode = 'PU-' . $paded;
 
-            $merged = $request->safe()->merge([
+            $merged = $request->merge([
                 'kode' => $kode,
                 'transaksi_id' => $transaksi->id,
                 'modified_by' => Auth::id()
@@ -40,7 +40,7 @@ class PickupDeliveryController extends Controller
                 $paded = str_pad($count, 6, '0', STR_PAD_LEFT);
                 $kode = 'DV-' . $paded;
 
-                $merged = $request->safe()->merge([
+                $merged = $request->merge([
                     'kode' => $kode,
                     'modified_by' => Auth::id()
                 ])->toArray();
@@ -64,7 +64,7 @@ class PickupDeliveryController extends Controller
 
     public function update(InsertPickupDeliveryRequest $request, $id)
     {
-        $merged = $request->safe()->merge(['modified_by' => Auth::id()])->toArray();
+        $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
         PickupDelivery::find($id)->update($merged);
 
         //return redirect()->intended(route(''));

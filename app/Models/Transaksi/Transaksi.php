@@ -45,6 +45,8 @@ class Transaksi extends Model
 
         $this->total_bobot = $sum_bobot;
         $this->jumlah_bucket = $jumlah_bucket;
+        $this->diskon = ceil($subtotal * $diskon / 100);
+        $this->diskon_member = ceil($subtotal * $diskon_member / 100);
         $this->subtotal = $subtotal;
         $this->grand_total = $grand_total;
         $this->save();
