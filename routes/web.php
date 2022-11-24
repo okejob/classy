@@ -96,11 +96,14 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/transaksi/pickup-delivery/{id}', [PickupDeliveryController::class, 'update'])->middleware('permission:update_pickup_delivery');
     Route::get('/transaksi/pickup-delivery/delete/{id}', [PickupDeliveryController::class, 'delete'])->middleware('permission:delete_pickup_delivery');
 
-    //ItemTransaksi
+    //Catatan Item Transaksi //ItemTransaksi 
     Route::get('/transaksi/item-transaksi/{id}', [ItemTransaksiController::class, 'show'])->middleware('permission:show_item_transaksi');
     Route::post('/transaksi/item-transaksi', [ItemTransaksiController::class, 'insert'])->middleware('permission:insert_item_transaksi');
     Route::post('/transaksi/item-transaksi/{id}', [ItemTransaksiController::class, 'update'])->middleware('permission:update_item_transaksi');
     Route::get('/transaksi/item-transaksi/delete/{id}', [ItemTransaksiController::class, 'delete'])->middleware('permission:delete_item_transaksi');
+    //ganti status pencuci & penyetrika
+    Route::get('/transaksi/item-transsaksi/{item_transaksi}/pencuci', [ItemTransaksiController::class, 'changeStatusCuci']);
+    Route::get('/transaksi/item-transsaksi/{item_transaksi}/penyetrika', [ItemTransaksiController::class, 'changStatusSetrika']);
 
     //ItemNote
     Route::get('/transaksi/item/note/list/{item_transaksi_id}', [ItemNoteController::class, 'list']);
@@ -116,9 +119,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/transaksi/update/{id}', [TransaksiController::class, 'update']);
     Route::post('/transaksi/penerima', [PenerimaController::class, 'insert']);
 
-    //Catatan Item Transaksi
     //History
     Route::get('/data/pelanggan/{id_pelanggan}/detail', [PelangganController::class, 'detailPelanggan']);
     Route::get('/pelanggan/{id_pelanggan}/history/transaksi', [TransaksiController::class, 'historyPelanggan']);
     Route::get('/pelanggan/{id_pelanggan}/history/saldo', [SaldoController::class, 'historyPelanggan']);
+
+    //Saldo
+    Route::get('/pelanggan/{pelanggan_id}/check-saldo', [SaldoController::class, 'getSaldo']);
 });

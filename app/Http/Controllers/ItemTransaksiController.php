@@ -33,8 +33,19 @@ class ItemTransaksiController extends Controller
 
     public function changeStatusCuci(ItemTransaksi $item_transaksi)
     {
+        if(empty($item_transaksi->pencuci)){
+            $item_transaksi->pencuci = Auth::id();
+            $item_transaksi->save();
+        }
     }
 
+    public function changeStatusSetrika(ItemTransaksi $item_transaksi)
+    {
+        if(empty($item_transaksi->penyetrika)){
+            $item_transaksi->penyetrika = Auth::id();
+            $item_transaksi->save();
+        }
+    }
 
     public function insert(InsertItemTransaksiRequest $request)
     {
