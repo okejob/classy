@@ -25,43 +25,17 @@ $(document).ready(function() {
         $('#input-email').val('');
         $('#formCheck-aktif').attr('checked', true);
         $('#formCheck-tidakAktif').attr('checked', false);
-        $('#modal-form .modal-body .row .col-12:nth-child(7)').removeClass('col-sm-4');
-        $('#modal-form .modal-body .row .col-12:nth-child(8)').removeClass('col-sm-4');
-        $('#modal-form .modal-body .row .col-12:nth-child(7)').addClass('col-sm-6');
-        $('#modal-form .modal-body .row .col-12:nth-child(8)').addClass('col-sm-6');
+        $('#modal-form .modal-body .row .col-12:nth-child(7)').removeClass('col-lg-4');
+        $('#modal-form .modal-body .row .col-12:nth-child(8)').removeClass('col-lg-4');
+        $('#modal-form .modal-body .row .col-12:nth-child(7)').addClass('col-lg-6');
+        $('#modal-form .modal-body .row .col-12:nth-child(8)').addClass('col-lg-6');
         $('#modal-form .modal-body .row .col-12:nth-child(9)').hide();
 
         $('#modal-update').modal('show');
     });
-
-    $('#data-pelanggan #action-update').on('click', function() {
-        $('#modal-form').attr('action', "/data/pelanggan/" + btnId);
-        $('#modal-title').text('Rubah data pelanggan');
-
-        $('#input-nama-pelanggan').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(3)').html());
-        $('#input-alamat').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(5)').html());
-        $('#input-tanggal-lahir').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(4)').html());
-        if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(2)').html() == "Member") {
-            $('#formCheck-member').attr('checked', true);
-        } else if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(2)').html() == "Bukan member") {
-            $('#formCheck-non-member').attr('checked', true);
-        }
-        $('#input-jenis-identitas').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(6)').html());
-        $('#input-nomor-identitas').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(7)').html());
-        $('#input-telepon').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(8)').html());
-        $('#input-email').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(9)').html());
-        if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(10)').html() == "Aktif") {
-            $('#formCheck-aktif').attr('checked', true);
-        } else if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(10)').html() == "Tidak aktif") {
-            $('#formCheck-tidakAktif').attr('checked', true);
-        }
-        $('#modal-form .modal-body .row .col-12:nth-child(7)').removeClass('col-sm-6');
-        $('#modal-form .modal-body .row .col-12:nth-child(8)').removeClass('col-sm-6');
-        $('#modal-form .modal-body .row .col-12:nth-child(7)').addClass('col-sm-4');
-        $('#modal-form .modal-body .row .col-12:nth-child(8)').addClass('col-sm-4');
-        $('#modal-form .modal-body .row .col-12:nth-child(9)').show();
-
-        $('#modal-update').modal('show');
+    
+    $('#data-pelanggan #action-detail').on('click', function() {
+        window.location = window.location + '/' + btnId + '/detail';
     });
 
     $('#action-delete').on('click', function() {

@@ -130,12 +130,12 @@ $(document).ready(function() {
                         "<td class='d-none d-lg-table-cell' style='width: 15%;'>" + item.nama_kategori + "</td>" +
                         "<td class='d-none d-lg-table-cell' style='width: 10%;'></td>" +
                         "<td class='d-none d-lg-table-cell' style='width: 10%;'></td>" +
-                        "<td class='d-none d-lg-table-cell' style='width: 7.5%;'></td>" +
-                        "<td class='text-center d-none d-lg-table-cell px-0' style='padding-top: 4px; padding-bottom: 4px; width: 7.5%;'>" +
-                            "<button id='btn-catatan-item-" + item.id + "' class='btn btn-primary btn-sm show-catatan-item' type='button'>Catatan</button>" +
-                        "</td>" +
+                        "<td class='d-none d-lg-table-cell' style='width: 10%;'></td>" +
                         "<td class='text-center' style='width: 10%;'>" + item.bobot_bucket + "</td>" +
-                        "<td class='text-center' style='width: 15%;'>" + item.bobot_bucket + "</td>" +
+                        "<td class='text-center'>" + item.harga_premium + "</td>" +
+                        "<td style='width: 46.25px;'>" +
+                            "<button id='btn-" + item.id + "' class='btn btn-primary btn-sm btn-show-action' type='button'><i class='fas fa-bars' aria-hidden='true'></i></button>" +
+                        "</td>" +
                     "</tr>"
                 );
             }
@@ -149,6 +149,7 @@ $(document).ready(function() {
             $('#form-transaksi').attr('action', '/transaksi/update/' + trans.id);
 
             parent.removeClass('disabled');
+            adjustWidth();
             $('#modal-opsi-trans').modal('hide');
             if (getCookie('transaksi-intro_trans') == '') {
                 introDetailTransaksi();
@@ -341,17 +342,41 @@ $(document).ready(function() {
     // bottom
     function adjustWidth() {
         if ($(window).width() < 576) {
+            $('#table-trans-item thead th:nth-child(1)').css('width', 'auto');
+            $('#table-trans-item thead th:nth-child(6)').css('width', '20%');
+            $('#table-trans-item thead th:nth-child(7)').css('width', 'calc(35% - 46.25px)');
+
+            $('#table-trans-item tbody tr td:nth-child(1)').css('width', 'auto');
+            $('#table-trans-item tbody tr td:nth-child(6)').css('width', '20%');
+            $('#table-trans-item tbody tr td:nth-child(7)').css('width', 'calc(35% - 46.25px)');
+
             $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '10%');
             $('#table-trans-item tfoot tr td:nth-child(3)').css('width', '20%');
-        } else if ($(window).width() < 922) {
+        } else if ($(window).width() < 1200) {
+            $('#table-trans-item thead th:nth-child(1)').css('width', 'auto');
+            $('#table-trans-item thead th:nth-child(6)').css('width', '15%');
+            $('#table-trans-item thead th:nth-child(7)').css('width', 'calc(25% - 46.25px)');
+
+            $('#table-trans-item tbody tr td:nth-child(1)').css('width', 'auto');
+            $('#table-trans-item tbody tr td:nth-child(6)').css('width', '15%');
+            $('#table-trans-item tbody tr td:nth-child(7)').css('width', 'calc(25% - 46.25px)');
+
             $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '7.5%');
             $('#table-trans-item tfoot tr td:nth-child(3)').css('width', '15%');
         } else {
+            $('#table-trans-item thead th:nth-child(1)').css('width', '25%');
+            $('#table-trans-item thead th:nth-child(6)').css('width', '10%');
+            $('#table-trans-item thead th:nth-child(7)').css('width', 'calc(20% - 46.25px)');
+
+            $('#table-trans-item tbody tr td:nth-child(1)').css('width', '25%');
+            $('#table-trans-item tbody tr td:nth-child(6)').css('width', '10%');
+            $('#table-trans-item tbody tr td:nth-child(7)').css('width', 'calc(20% - 46.25px)');
+
             $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '5%');
             $('#table-trans-item tfoot tr td:nth-child(3)').css('width', '10%');
         }
     }
-    adjustWidth();
+
     $(window).on('resize', function() {
         adjustWidth();
     });
@@ -400,7 +425,7 @@ $(document).ready(function() {
 
             let rowAdd = $('#table-trans-item tbody').children().last().detach();
             let total_bobot = 0;
-            $('#table-trans- item tbody tr').each(function() {
+            $('#table-trans-item tbody tr').each(function() {
                 total_bobot += parseFloat($(this).children().eq(6).html());
             });
 
@@ -413,7 +438,21 @@ $(document).ready(function() {
                 $('#diskon-member').html(trans.diskon_member);
                 $('#grand-total').html(trans.grand_total);
 
-                $('#table-trans-item tbody').append("<tr id='" + trans.item_transaksi[trans.item_transaksi.length - 1].id + "'><td>" + item.nama + "</td><td>" + item.nama_kategori + "</td><td></td><td></td><td></td><td class='text-center' style='padding-top: 4px;padding-bottom: 4px;'><button id='btn-catatan-item-" + item.id + "' class='btn btn-primary btn-sm show-catatan-item' type='button'>Catatan</button></td><td class='text-center'>" + item.bobot_bucket + "</td><td class='text-center' colspan='2'>" + item.bobot_bucket + "</td></tr>");
+                const temp = trans.item_transaksi[trans.item_transaksi.length - 1];
+                $('#table-trans-item tbody').append(
+                    "<tr id='" + temp.id + "'>" +
+                        "<td style='white-space: nowrap; width: 25%;'>" + temp.nama + "</td>" +
+                        "<td class='d-none d-lg-table-cell' style='width: 15%;'>" + temp.nama_kategori + "</td>" +
+                        "<td class='d-none d-lg-table-cell' style='width: 10%;'></td>" +
+                        "<td class='d-none d-lg-table-cell' style='width: 10%;'></td>" +
+                        "<td class='d-none d-lg-table-cell' style='width: 10%;'></td>" +
+                        "<td class='text-center' style='width: 10%;'>" + temp.bobot_bucket + "</td>" +
+                        "<td class='text-center'>" + temp.harga_premium + "</td>" +
+                        "<td style='width: 46.25px;'>" +
+                            "<button id='btn-" + temp.id + "' class='btn btn-primary btn-sm btn-show-action' type='button'><i class='fas fa-bars' aria-hidden='true'></i></button>" +
+                        "</td>" +
+                    "</tr>"
+                );
                 $('#table-trans-item tbody').append(rowAdd);
 
                 setThousandSeparator();
@@ -428,19 +467,20 @@ $(document).ready(function() {
         console.log(containerCatatan.css('height'));
         containerCatatan.css('top', 'calc(-' + containerCatatan.css('height') + ' - .75rem');
         containerCatatan.toggle();
-
     });
 
     $('#save-catatan-trans').on('click', function() {
         $(this).closest('div').hide();
     });
 
-    var currentlySelectedItemTransactionID = 0;
-    var currentlySelectedItemName = '';
-    $('#table-trans-item tbody').on('click', '.show-catatan-item', function() {
-        currentlySelectedItemTransactionID = $(this).closest('tr').attr('id');
-        currentlySelectedItemName = $(this).closest('tr').children().eq(0).html();
+    var btnIndex = -1, currentlySelectedItemTransactionID = 0, currentlySelectedItemName = '';
+    $('#table-trans-item tbody').on('click', '.btn-show-action', function() {
+        btnIndex = $(this).index('.btn-show-action') + 1;
+        currentlySelectedItemTransactionID = $('#table-trans-item tbody tr:nth-child(' + btnIndex + ')').attr('id');
+        currentlySelectedItemName = $('#table-trans-item tbody tr:nth-child(' + btnIndex + ')').children().eq(0).html();
+    });
 
+    $('#action-notes').on('click', function() {
         $.ajax({
             url: "/transaksi/item/note/list/" + currentlySelectedItemTransactionID,
         }).done(function(data) {
@@ -448,11 +488,35 @@ $(document).ready(function() {
             $('#table-list-catatan tbody').empty();
 
             notes.forEach(note => {
-                $('#table-list-catatan tbody').append("<tr id='" + note.id + "'><td>" + note.nama_user + "</td><td>" + note.catatan + "</td><td class='text-end' style='padding: 4px 8px;'><button class='btn btn-primary btn-sm' type='button'>Show</button></td></tr>");
+                $('#table-list-catatan tbody').append(
+                    "<tr id='" + note.id + "'>" +
+                        "<td>" + note.nama_user + "</td>" +
+                        "<td>" + note.catatan + "</td>" +
+                        "<td class='text-end' style='padding: 4px 8px;'>" +
+                            "<button class='btn btn-primary btn-sm' type='button'>Show</button>" +
+                        "</td>" +
+                    "</tr>"
+                );
             });
 
             $('#modal-list-catatan-item').modal('show');
         });
+    });
+
+    $('#action-delete').on('click', function() {
+        if (confirm('Yakin menghapus data  ?')) {
+            $.ajax({
+                url: "/transaksi/item-transaksi/delete/" + currentlySelectedItemTransactionID,
+            }).done(function() {
+                $('#table-trans-item tbody tr:nth-child(' + btnIndex + ')').detach();
+                currentlySelectedItemTransactionID = 0;
+                currentlySelectedItemName = '';
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+            });
+        }
     });
 
     $('.stain-selection').on('click', function() {
@@ -655,12 +719,8 @@ $(document).ready(function() {
                     intro: "Bagian ini berisikan data item",
                 }, {
                     title: "Detail Transaksi",
-                    element: document.querySelector('#section-detail-transaksi #add-item'),
-                    intro: "Klik disini untuk menambahkan item pada transaksi",
-                }, {
-                    title: "Detail Transaksi",
-                    element: document.querySelector('#section-detail-transaksi #table-trans-item tr th:nth-child(6)'),
-                    intro: "Kolom ini berisikan tombol untuk menambahkan catatan pada item",
+                    element: document.querySelector('#section-detail-transaksi tbody tr:last-child'),
+                    intro: "Klik tombol untuk menambahkan item pada transaksi",
                 }, {
                     title: "Detail Transaksi",
                     element: document.querySelector('#section-detail-transaksi #form-transaksi .form-check:nth-child(1)'),

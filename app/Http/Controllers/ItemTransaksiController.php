@@ -59,7 +59,5 @@ class ItemTransaksiController extends Controller
     public function delete($id)
     {
         ItemTransaksi::destroy($id);
-
-        return redirect()->intended(route(''));
     }
 }
