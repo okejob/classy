@@ -31,6 +31,11 @@ class ItemTransaksiController extends Controller
         ];
     }
 
+    public function changeStatusCuci(ItemTransaksi $item_transaksi)
+    {
+    }
+
+
     public function insert(InsertItemTransaksiRequest $request)
     {
         $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
@@ -56,8 +61,15 @@ class ItemTransaksiController extends Controller
         return redirect()->intended(route(''));
     }
 
-    public function delete($id)
+    public function delete(ItemTransaksi $id)
     {
-        ItemTransaksi::destroy($id);
+        $id_transaksi = $id->transaksi_id;
+        $id->delete();
+        
+        $transaksi = Transaksi::find($id_transaksi)->recalculate();
+        return  [
+            'status' => 200,
+            $transaksi,
+        ];
     }
 }
