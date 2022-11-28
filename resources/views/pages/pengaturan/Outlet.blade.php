@@ -37,7 +37,7 @@
                                 @else
                                     <td class="text-center">Tidak aktif</td>
                                 @endif
-                                <td class="cell-action"><button class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button></td>
+                                <td class="cell-action"><button id="btn-{{ $outlet->id }}"  class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button></td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -57,7 +57,8 @@
                 <div class="modal-header">
                     <h4 class="modal-title">Rubah Data Outlet</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form>
+                <form id="form-outlet" method="POST" action>
+                    @csrf
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-12 col-sm-6">
@@ -88,18 +89,20 @@
                                 <h5>Status</h5>
                                 <div class="form-control d-flex justify-content-around" style="height: 38px;">
                                     <div class="form-check">
-                                        <input type="radio" class="form-check-input" id="radio-status-aktif" />
+                                        <input type="radio" class="form-check-input" id="radio-status-aktif" name="status" value=1 />
                                         <label class="form-check-label" for="radio-status-aktif">Aktif</label>
                                     </div>
                                     <div class="form-check">
-                                        <input type="radio" class="form-check-input" id="radio-status-nonaktif" />
-                                        <label class="form-check-label" for="radio-status-nonaktif">Non-aktif</label>
+                                        <input type="radio" class="form-check-input" id="radio-status-nonaktif" name="status" value=0 />
+                                        <label class="form-check-label" for="radio-status-nonaktif">Tidak aktif</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer"><button class="btn btn-primary float-end" type="submit"><i class="fas fa-save"></i> Simpan</button></div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary float-end" type="submit"><i class="fas fa-save"></i> Simpan</button>
+                    </div>
                 </form>
             </div>
         </div>

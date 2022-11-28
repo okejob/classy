@@ -1,11 +1,15 @@
 $(document).ready(function() {
 
-    var btnIndex = -1;
+    var btnIndex = -1, btnId = 0;
     $('.btn-show-action').on('click', function() {
         btnIndex = $(this).index('.btn-show-action') + 1;
+        btnId = $(this).attr('id').substring(4);
     });
 
     $('#action-update').on('click', function() {
+        $('#form-outlet').attr('action', "/setting/outlet/" + btnId);
+        $('#modal-title').text('Rubah outlet');
+
         $('#input-kode').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(1)').html());
         $('#input-nama').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(2)').html());
         $('#input-alamat').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(3)').html());
@@ -30,6 +34,9 @@ $(document).ready(function() {
     });
 
     $('#add-outlet').on('click', function() {
+        $('#form-outlet').attr('action', "/setting/outlet");
+        $('#modal-title').text('Tambah outlet');
+
         $('#input-kode').val('');
         $('#input-nama').val('');
         $('#input-alamat').val('');
@@ -46,5 +53,5 @@ $(document).ready(function() {
         $('#col-status').hide();
 
         $('#modal-outlet').modal('show');
-    })
+    });
 });
