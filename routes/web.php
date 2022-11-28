@@ -55,14 +55,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/setting/outlet/delete/{id}', [OutletController::class, 'delete'])->middleware('permission:delete_outlet');
 
     //Paket Cuci
-    Route::get('/setting/paket', [PageController::class, 'paket'])->name('menu-paket')->middleware('permission:menu_paket');
+    Route::get('/setting/paket-cuci', [PageController::class, 'paketCuci'])->name('menu-paket-cuci')->middleware('permission:menu_paket');
     Route::get('/setting/paket-cuci/{id}', [PaketCuciController::class, 'show']);
     Route::post('/setting/paket-cuci', [PaketCuciController::class, 'insert']);
     Route::post('/setting/paket-cuci/{id}', [PaketCuciController::class, 'update']);
     Route::get('/setting/paket-cuci/delete/{id}', [PaketCuciController::class, 'delete']);
 
     //Paket Deposit
-    Route::get('/setting/paket', [PageController::class, 'paket'])->name('menu-paket')->middleware('permission:menu_paket');
+    Route::get('/setting/paket-deposit', [PageController::class, 'paketDeposit'])->name('menu-paket-deposit')->middleware('permission:menu_paket');
     Route::get('/setting/paket-deposit/{id}', [PaketDepositController::class, 'show']);
     Route::post('/setting/paket-deposit', [PaketDepositController::class, 'insert']);
     Route::post('/setting/paket-deposit/{id}', [PaketDepositController::class, 'update']);

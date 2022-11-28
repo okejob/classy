@@ -143,13 +143,22 @@ class PageController extends Controller
         );
     }
 
-    public function paket()
+    public function paketCuci()
     {
         return view(
-            'pages.pengaturan.Paket',
+            'pages.pengaturan.PaketCuci',
             [
-                'data1' => PaketCuci::paginate(),
-                'data2' => PaketDeposit::paginate()
+                'data' => PaketCuci::paginate(5)
+            ]
+        );
+    }
+
+    public function paketDeposit()
+    {
+        return view(
+            'pages.pengaturan.PaketDeposit',
+            [
+                'data' => PaketDeposit::paginate(5)
             ]
         );
     }
