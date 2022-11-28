@@ -45,10 +45,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $appends = ['role'];
+
     public static function boot()
     {
         parent::boot();
         User::observe(new UserActionObserver);
+    }
+
+    public function getRoleAttribute()
+    {
+        return $this->getRole($this->id);
     }
 
     public static function getRole($id)
@@ -57,6 +64,13 @@ class User extends Authenticatable
         $roles = $user->getRoleNames();
         $role = $roles[0];
         return $role;
+    }
+
+    public function changeRole($role)
+    {
+        $current_role = $this->getRole($this->id);
+        $this->removeRole($current_role);
+        $this->assignRole($role);
     }
 
     public function outlet()

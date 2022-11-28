@@ -30,7 +30,8 @@ class UserCreateRequest extends FormRequest
             'phone' => 'required|numeric',
             'address' => 'required|string',
             'email' => 'required|email',
-            'status' => 'boolean'
+            'status' => 'boolean',
+            'role' => 'string',
         ];
     }
 
