@@ -10,6 +10,7 @@ use App\Models\Data\Pengeluaran;
 use App\Models\Outlet;
 use App\Models\Paket\PaketCuci;
 use App\Models\Paket\PaketDeposit;
+use App\Models\Permission\Role;
 use App\Models\Transaksi\Penerima;
 use App\Models\Transaksi\PickupDelivery;
 use App\Models\Transaksi\Transaksi;
@@ -125,7 +126,11 @@ class PageController extends Controller
     {
         return view(
             'pages.pengaturan.Karyawan',
-            ['data' => User::paginate(5)]
+            [
+                'data' => User::paginate(5),
+                'outlets' => Outlet::get(),
+                'roles' => Role::get(),
+            ]
         );
     }
 

@@ -51,7 +51,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/setting/karyawan/{id}', [UserController::class, 'show']);
     Route::post('/setting/karyawan', [UserController::class, 'insert']);
     Route::post('/setting/karyawan/{id}', [UserController::class, 'update']);
-    Route::post('/setting/karyawan/{id}/change-password', [UserController::class, 'changePassword']);
+    Route::post('/setting/karyawan/{user}/change-password', [UserController::class, 'changePassword']);
 
     //outlet
     Route::get('/setting/outlet', [PageController::class, 'outlet'])->name('menu-outlet')->middleware('permission:menu_outlet');
