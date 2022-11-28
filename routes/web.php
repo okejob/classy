@@ -7,6 +7,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaketCuciController;
+use App\Http\Controllers\PaketDepositController;
 use App\Http\Controllers\ParfumController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PenerimaController;
@@ -59,6 +60,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/setting/paket-cuci', [PaketCuciController::class, 'insert']);
     Route::post('/setting/paket-cuci/{id}', [PaketCuciController::class, 'update']);
     Route::get('/setting/paket-cuci/delete/{id}', [PaketCuciController::class, 'delete']);
+
+    //Paket Deposit
+    Route::get('/setting/paket', [PageController::class, 'paket'])->name('menu-paket')->middleware('permission:menu_paket');
+    Route::get('/setting/paket-deposit/{id}', [PaketDepositController::class, 'show']);
+    Route::post('/setting/paket-deposit', [PaketDepositController::class, 'insert']);
+    Route::post('/setting/paket-deposit/{id}', [PaketDepositController::class, 'update']);
+    Route::get('/setting/paket-deposit/delete/{id}', [PaketDepositController::class, 'delete']);
 
     //item
     Route::get('/data/jenis-item', [PageController::class, 'jenisItem'])->name('menu-jenis-item')->middleware('permission:menu_jenis_item');
