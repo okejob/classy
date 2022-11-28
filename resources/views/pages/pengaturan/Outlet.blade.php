@@ -43,6 +43,7 @@
                         </tbody>
                     </table>
                 </div>
+                {{ $data->links() }}
                 <button class="btn btn-primary" id="add-outlet" type="button"><i class="fas fa-plus-circle"></i> Tambah</button>
             </div>
             <ul class="list-unstyled form-control" id="list-action">
@@ -63,11 +64,11 @@
                         <div class="row">
                             <div class="col-12 col-sm-6">
                                 <h5>Kode Outlet</h5>
-                                <input type="text" class="form-control" id="input-kode" name="kode_outlet" />
+                                <input type="text" class="form-control" id="input-kode" name="kode" />
                             </div>
                             <div class="col-12 col-sm-6">
                                 <h5>Nama Outlet</h5>
-                                <input type="text" class="form-control" id="input-nama" name="nama_outlet" />
+                                <input type="text" class="form-control" id="input-nama" name="nama" />
                             </div>
                             <div class="col-12">
                                 <h5>Alamat lengkap</h5>
@@ -75,15 +76,15 @@
                             </div>
                             <div class="col-12 col-sm-6" id="col-telp1">
                                 <h5>Telepon 1</h5>
-                                <input type="text" class="form-control" id="input-telp1" name="telepon_1" />
+                                <input type="text" class="form-control" id="input-telp1" name="telp_1" />
                             </div>
                             <div class="col-12 col-sm-6" id="col-telp2">
                                 <h5>Telepon 2</h5>
-                                <input type="text" class="form-control" id="input-telp2" name="telepon_2" />
+                                <input type="text" class="form-control" id="input-telp2" name="telp_2" />
                             </div>
                             <div class="col-12 col-sm-6" id="col-fax">
                                 <h5>Nomor Fax</h5>
-                                <input type="text" class="form-control" id="input-fax" name="nomor_fax" />
+                                <input type="text" class="form-control" id="input-fax" name="fax" />
                             </div>
                             <div class="col-12 col-sm-6" id="col-status">
                                 <h5>Status</h5>

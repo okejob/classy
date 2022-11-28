@@ -18,7 +18,7 @@ class PaketCuciController extends Controller
         ])->toArray();
         PaketCuci::create($merged);
 
-        return redirect()->intended(route('menu-paket'));
+        return redirect()->intended(route('menu-paket-cuci'));
     }
 
     public function show($id)
@@ -39,13 +39,13 @@ class PaketCuciController extends Controller
         ])->toArray();
         PaketCuci::find($id)->update($merged);
 
-        return redirect()->intended(route('menu-paket'));
+        return redirect()->intended(route('menu-paket-cuci'));
     }
 
     public function delete($id)
     {
         PaketCuci::destroy($id);
 
-        return redirect()->intended(route('menu-paket'));
+        return redirect()->intended(route('menu-paket-cuci'));
     }
 }

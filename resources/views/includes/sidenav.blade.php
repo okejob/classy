@@ -74,7 +74,7 @@
                 </div>
                 <div id="nav-transaksi-saldo">
                     <a href="/transaksi/saldo" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
-                        <i class="fa-solid fa-money-bill-transfer"></i>
+                        <i class="fa-solid fa-scale-balanced"></i>
                         <p class="ms-3">Saldo</p>
                     </a>
                 </div>
@@ -106,10 +106,16 @@
                         <p class="ms-3">Karyawan</p>
                     </a>
                 </div>
-                <div id="nav-setting-paket">
-                    <a href="/setting/paket" class="menu-item menu-setting pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
-                        <i class="fas fa-box-open"></i>
-                        <p class="ms-3">Paket</p>
+                <div id="nav-setting-paket-cuci">
+                    <a href="/setting/paket-cuci" class="menu-item menu-setting pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
+                        <i class="fa-solid fa-shirt"></i>
+                        <p class="ms-3">Paket Cuci</p>
+                    </a>
+                </div>
+                <div id="nav-setting-paket-deposit">
+                    <a href="/setting/paket-deposit" class="menu-item menu-setting pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
+                        <i class="fa-solid fa-money-bill-transfer"></i>
+                        <p class="ms-3">Paket Deposit</p>
                     </a>
                 </div>
             </div>
