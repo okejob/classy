@@ -45,7 +45,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/data/rewash', [PageController::class, 'rewash'])->name('menu-rewash')->middleware('permission:menu_rewash');
 
     //Setting
+
+    //Karyawan
     Route::get('/setting/karyawan', [PageController::class, 'karyawan'])->name('menu-karyawan')->middleware('permission:menu_karyawan');
+    Route::get('/setting/karyawan/{id}', [UserController::class, 'show']);
+    Route::post('/setting/karyawan', [UserController::class, 'insert']);
+    Route::post('/setting/karyawan/{id}', [UserController::class, 'update']);
 
     //outlet
     Route::get('/setting/outlet', [PageController::class, 'outlet'])->name('menu-outlet')->middleware('permission:menu_outlet');

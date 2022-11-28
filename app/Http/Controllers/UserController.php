@@ -46,10 +46,26 @@ class UserController extends Controller
      * @param UserCreateRequest $request
      * @return View dashboard
      */
-    public function store(UserCreateRequest $request)
+    public function insert(UserCreateRequest $request)
     {
         User::create($request);
         //need dashboard page
+        return redirect()->intended(route('menu-karyawan'));
+    }
+
+    public function show($id)
+    {
+        $user = User::find($id);
+        return [
+            'status' => 200,
+            $user,
+        ];
+    }
+
+    public function update(UserCreateRequest $request, $id)
+    {
+        User::find($id)->update($request);
+
         return redirect()->intended(route('menu-karyawan'));
     }
 
