@@ -73,17 +73,26 @@ class UserController extends Controller
 
     public function changePassword(Request $request, User $user)
     {
-        $request->validate([
-            'current_password' => 'current_password:auth',
-            'new_password' => 'confirmed',
-        ]);
-
-        $new = Hash::make($request->new_password);
-        $user->update(['password' => $new]);
-        return [
-            'status' => 200,
-            'message' => 'Success'
-        ];
+        if ($request->new_password != $request->new_password_confirmation) {
+            return [
+                'status' => 400,
+                'message' => "Password Confirmation Failed"
+            ];
+        }
+        $current = Hash::make($request->current_password);
+        if ($current != $user->password) {
+            return [
+                'status' => 400,
+                'message' => 'Password Salah',
+            ];
+        } else {
+            $new = Hash::make($request->new_password);
+            $user->update(['password' => $new]);
+            return [
+                'status' => 200,
+                'message' => 'Success'
+            ];
+        }
     }
 
     public function logout(Request $request)
