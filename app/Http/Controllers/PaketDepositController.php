@@ -11,7 +11,11 @@ class PaketDepositController extends Controller
 {
     public function insert(InsertPaketDepositRequest $request)
     {
-        $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
+        $harga_per_bobot = floor($request->harga_paket / $request->jumlah_bobot);
+        $merged = $request->merge([
+            'harga_per_bobot' => $harga_per_bobot,
+            'modified_by' => Auth::id(),
+        ])->toArray();
         PaketDeposit::create($merged);
 
         return redirect()->intended(route('menu-paket'));
@@ -28,7 +32,11 @@ class PaketDepositController extends Controller
 
     public function update(InsertPaketDepositRequest $request, $id)
     {
-        $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
+        $harga_per_bobot = floor($request->harga_paket / $request->jumlah_bobot);
+        $merged = $request->merge([
+            'harga_per_bobot' => $harga_per_bobot,
+            'modified_by' => Auth::id(),
+        ])->toArray();
         PaketDeposit::find($id)->update($merged);
 
         return redirect()->intended(route('menu-paket'));
