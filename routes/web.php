@@ -6,6 +6,7 @@ use App\Http\Controllers\JenisItemController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PaketCuciController;
 use App\Http\Controllers\ParfumController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PenerimaController;
@@ -44,7 +45,6 @@ Route::middleware(['auth'])->group(function () {
 
     //Setting
     Route::get('/setting/karyawan', [PageController::class, 'karyawan'])->name('menu-karyawan')->middleware('permission:menu_karyawan');
-    Route::get('/setting/paket', [PageController::class, 'paket'])->name('menu-paket')->middleware('permission:menu_paket');
 
     //outlet
     Route::get('/setting/outlet', [PageController::class, 'outlet'])->name('menu-outlet')->middleware('permission:menu_outlet');
@@ -52,6 +52,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/setting/outlet', [OutletController::class, 'insert'])->middleware('permission:insert_outlet');
     Route::post('/setting/outlet/{id}', [OutletController::class, 'update'])->middleware('permission:update_outlet');
     Route::get('/setting/outlet/delete/{id}', [OutletController::class, 'delete'])->middleware('permission:delete_outlet');
+
+    //Paket Cuci
+    Route::get('/setting/paket', [PageController::class, 'paket'])->name('menu-paket')->middleware('permission:menu_paket');
+    Route::get('/setting/paket-cuci/{id}', [PaketCuciController::class, 'show']);
+    Route::post('/setting/paket-cuci', [PaketCuciController::class, 'insert']);
+    Route::post('/setting/paket-cuci/{id}', [PaketCuciController::class, 'update']);
+    Route::get('/setting/paket-cuci/delete/{id}', [PaketCuciController::class, 'delete']);
 
     //item
     Route::get('/data/jenis-item', [PageController::class, 'jenisItem'])->name('menu-jenis-item')->middleware('permission:menu_jenis_item');

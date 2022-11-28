@@ -14,7 +14,7 @@ class OutletController extends Controller
         $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
         Outlet::create($merged);
 
-        return redirect()->intended(route('setting-outlet'));
+        return redirect()->intended(route('menu-outlet'));
     }
 
     public function show($id)
@@ -31,13 +31,13 @@ class OutletController extends Controller
         $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
         Outlet::find($id)->update($merged);
 
-        return redirect()->intended(route('setting-outlet'));
+        return redirect()->intended(route('menu-outlet'));
     }
 
     public function delete($id)
     {
         Outlet::destroy($id);
 
-        return redirect()->intended(route('setting-outlet'));
+        return redirect()->intended(route('menu-outlet'));
     }
 }
