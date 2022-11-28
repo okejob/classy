@@ -17,14 +17,8 @@ class JenisItemController extends Controller
                 $q->where('nama', 'like', "%{$request->key}%");
             })
             ->take(5)->get();
-        $sql = JenisItem::where('nama', 'like', "%{$request->key}%")
-            ->orWhereHas('kategori', function ($q) use ($request) {
-                $q->where('nama', 'like', "%{$request->key}%");
-            })
-            ->take(5)->toSql();
         return [
             'status' => 200,
-            'sql' => $sql,
             $jenis_item
         ];
     }

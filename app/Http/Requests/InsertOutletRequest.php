@@ -28,6 +28,9 @@ class InsertOutletRequest extends FormRequest
             'nama' => 'required|string',
             'alamat' => 'required',
             'telp_1' => 'required',
+            'telp_2' => 'string|nullable',
+            'fax' => 'string|nullable',
+            'status' => 'boolean',
         ];
     }
 }

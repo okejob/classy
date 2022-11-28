@@ -19,10 +19,10 @@ class PenerimaController extends Controller
         $penerima = Penerima::where('transaksi_id', $transaksi_id)->first();
         if (!$penerima) {
             $delivery = PickupDelivery::where('transaksi_id', $transaksi_id)->first();
-            if ($delivery && $request->ambil_di_outlet) {
+            if (!empty($delivery) && $request->ambil_di_outlet == 1) {
                 return [
                     'status' => 400,
-                    'message' => 'Sudah di ambil di outlet'
+                    'message' => 'Sudah di kirim.'
                 ];
             }
             $path = $this->upload($request, 'penerima');

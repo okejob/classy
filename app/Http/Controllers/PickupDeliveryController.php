@@ -48,8 +48,8 @@ class PickupDeliveryController extends Controller
                 $pickup_delivery = PickupDelivery::create($merged);
                 return redirect()->intended(route('pickup-delivery'))->with('message', 'Success Created Delivery');
             }
-
-            return redirect()->back()->with('message', 'Sudah diterima');
+            //Sudah diterima 
+            return redirect()->back()->with('message', 'Sudah diterima di outlet');
         }
     }
 
