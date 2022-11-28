@@ -9,6 +9,7 @@ use App\Models\Update;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
@@ -62,12 +63,30 @@ class UserController extends Controller
         ];
     }
 
-    public function update(UserCreateRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        User::find($id)->update($request);
+        User::find($id)->update($request->except('role'));
         $user = User::find($id);
         $user->changeRole($request->role);
         return redirect()->intended(route('menu-karyawan'));
+    }
+
+    public function changePassword(Request $request, User $user)
+    {
+        $current = Hash::make($request->current_password);
+        if ($current != $user->password) {
+            return [
+                'status' => 400,
+                'message' => 'Password Salah',
+            ];
+        } else {
+            $new = Hash::make($request->new_password);
+            $user->update(['password' => $new]);
+            return [
+                'status' => 200,
+                'message' => 'Success'
+            ];
+        }
     }
 
     public function logout(Request $request)
