@@ -31,10 +31,10 @@
                             </div>
                             @endforeach
                             <div class="col-xl-3 col-lg-4 col-md-6 col-12 mb-3">
-                                <div class="card" id="manual">
+                                <div class="card" id="1">
                                     <div class="card-body d-flex flex-column justify-content-between">
                                         <h4 class="card-title mb-1">Manual</h4>
-                                        <input id="input-manual" type="number" class="form-control mb-2" min="0" step="100" value="0"/>
+                                        <input id="input-manual" type="number" class="form-control mb-2" min="0" value="0" />
                                     </div>
                                 </div>
                             </div>

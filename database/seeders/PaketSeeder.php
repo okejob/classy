@@ -62,6 +62,15 @@ class PaketSeeder extends Seeder
         ]);
 
         PaketDeposit::create([
+            'id' => 0,
+            'nama' => 'Manual',
+            'deskripsi' => 'Pengisian saldo secara manual',
+            'nominal' => 0,
+            'harga' => 0,
+            'modified_by' => 2
+        ]);
+
+        PaketDeposit::create([
             'nama' => 'DEPOSIT 500K',
             'deskripsi' => 'DEPOSIT 500K FREE DEPOSIT 50K',
             'nominal' => 550000,

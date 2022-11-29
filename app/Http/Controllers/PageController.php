@@ -163,7 +163,7 @@ class PageController extends Controller
         return view(
             'pages.pengaturan.PaketDeposit',
             [
-                'data' => PaketDeposit::paginate(5)
+                'data' => PaketDeposit::where('id', '!=', 1)->paginate(5)
             ]
         );
     }
@@ -205,7 +205,7 @@ class PageController extends Controller
         return view(
             'pages.transaksi.saldo',
             [
-                'paket_deposits' => PaketDeposit::where('status', 1)->get(),
+                'paket_deposits' => PaketDeposit::where('status', 1)->where('id', '!=', 1)->get(),
                 'pelanggans' => Pelanggan::where('status', 1)->get(),
             ]
         );
