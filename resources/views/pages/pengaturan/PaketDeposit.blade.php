@@ -62,15 +62,15 @@
                             <div class="row">
                                 <div class="col-12">
                                     <h5>Nama Paket</h5>
-                                    <input type="text" class="form-control" id="input-nama-paket" name="nama" />
+                                    <input type="text" class="form-control" id="input-nama-paket" name="nama" required />
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <h5>Nominal</h5>
-                                    <input type="number" class="form-control" id="input-nominal" name="nominal" />
+                                    <input type="number" class="form-control" id="input-nominal" name="nominal" required />
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <h5>Harga Paket</h5>
-                                    <input type="number" class="form-control" id="input-harga-paket" name="harga" />
+                                    <input type="number" class="form-control" id="input-harga-paket" name="harga" required />
                                 </div>
                                 <div class="col-12">
                                     <h5>Deskripsi Paket</h5>

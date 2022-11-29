@@ -20,6 +20,7 @@ $(document).ready(function() {
             $('#radio-status-aktif').attr('checked', false);
             $('#radio-status-tidakAktif').attr('checked', true);
         }
+        $('#col-status').show();
 
         $('#modal-paket-deposit').modal('show');
     });
@@ -30,8 +31,9 @@ $(document).ready(function() {
 
         $('#input-nama-paket').val('');
         $('#input-deskripsi').val('');
-        $('#input-harga-paket').val(0);
-        $('#input-nominal').val(0);
+        $('#input-harga-paket').val('');
+        $('#input-nominal').val('');
+        $('#col-status').hide();
         $('#radio-status-aktif').attr('checked', false);
         $('#radio-status-tidakAktif').attr('checked', false);
 

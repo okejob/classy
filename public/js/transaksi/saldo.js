@@ -39,13 +39,14 @@ $(document).ready(function() {
                     console.log(errorThrown);
                 });
             } else {
-                $('#input-saldo-akhir').val(0);
+                $('#input-saldo-akhir').val('');
             }
         }
     });
 
-    $('#submit-saldo').on('click', function() {
-        $(this).addClass('disabled');
+    $('#form-saldo').on('submit', function() {
+        e.preventDefault();
+        $('#submit-saldo').addClass('disabled');
 
         let nominal = removeDot($('#paket-container .card.selected .nominal-paket .thousand-separator').text());
         if (selectedPaketId == 1) {

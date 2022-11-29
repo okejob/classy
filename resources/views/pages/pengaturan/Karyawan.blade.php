@@ -65,23 +65,23 @@
                             <div class="row">
                                 <div class="col-12 col-sm-6">
                                     <h5>Username</h5>
-                                    <input class="form-control" type="text" id="input-username" name="username">
+                                    <input class="form-control" type="text" id="input-username" name="username" required >
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <h5>Nama Lengkap</h5>
-                                    <input class="form-control" type="text" id="input-nama" name="name">
+                                    <input class="form-control" type="text" id="input-nama" name="name" required >
                                 </div>
                                 <div class="col-12">
                                     <h5>Telepon</h5>
-                                    <input class="form-control" type="text" id="input-telepon" name="phone">
+                                    <input class="form-control" type="text" id="input-telepon" name="phone" required >
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <h5>E-mail</h5>
-                                    <input class="form-control" type="text" id="input-email" name="email">
+                                    <input class="form-control" type="text" id="input-email" name="email" required >
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <h5>Outlet</h5>
-                                    <select class="form-select" id="input-outlet" name="outlet_id">
+                                    <select class="form-select" id="input-outlet" name="outlet_id" required >
                                         <option value="" selected hidden>-</option>
                                         @foreach ($outlets as $outlet)
                                             <option value="{{ $outlet->id }}">{{ $outlet->nama }}</option>
@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <h5>Role</h5>
-                                    <select class="form-select" id="input-role" name="role">
+                                    <select class="form-select" id="input-role" name="role" required >
                                         <option value="" selected hidden>-</option>
                                         @foreach ($roles as $role)
                                             <option value="{{ $role->name }}">{{ $role->name }}</option>
@@ -131,21 +131,21 @@
                                 <div class="col-12">
                                     <h5>Password Lama</h5>
                                     <div class="form-container d-flex align-items-center">
-                                        <input class="form-control" type="password" id="input-password-lama" required>
+                                        <input class="form-control" type="password" id="input-password-lama" required >
                                         <i class="fas fa-eye-slash"></i>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <h5>Password Baru</h5>
                                     <div class="form-container d-flex align-items-center">
-                                        <input class="form-control" type="password" id="input-password-baru" required>
+                                        <input class="form-control" type="password" id="input-password-baru" required >
                                         <i class="fas fa-eye-slash"></i>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <h5>Konfirmasi Password Baru</h5>
                                     <div class="form-container d-flex align-items-center">
-                                        <input class="form-control" type="password" id="input-konfirmasi" required>
+                                        <input class="form-control" type="password" id="input-konfirmasi" required >
                                         <i class="fas fa-eye-slash"></i>
                                     </div>
                                 </div>

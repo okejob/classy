@@ -31,8 +31,8 @@ $(document).ready(function() {
 
         $('#input-nama-paket').val('');
         $('#input-deskripsi').val('');
-        $('#input-bobot-paket').val(0);
-        $('#input-harga-paket').val(0);
+        $('#input-bobot-paket').val('');
+        $('#input-harga-paket').val('');
         $('#col-status').hide();
         $('#radio-status-aktif').attr('checked', false);
         $('#radio-status-tidakAktif').attr('checked', false);

@@ -205,7 +205,7 @@ class PageController extends Controller
         return view(
             'pages.transaksi.saldo',
             [
-                'paket_deposits' => PaketDeposit::where('status', 1)->where('id', '!=', 1)->get(),
+                'paket_deposits' => PaketDeposit::where('status', 1)->where('id', '!=', 1)->orderBy('nominal', 'desc')->get(),
                 'pelanggans' => Pelanggan::where('status', 1)->get(),
             ]
         );
