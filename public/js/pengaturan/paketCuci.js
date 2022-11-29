@@ -20,6 +20,7 @@ $(document).ready(function() {
             $('#radio-status-aktif').attr('checked', false);
             $('#radio-status-tidakAktif').attr('checked', true);
         }
+        $('#col-status').show();
 
         $('#modal-paket-cuci').modal('show');
     });
@@ -32,6 +33,7 @@ $(document).ready(function() {
         $('#input-deskripsi').val('');
         $('#input-bobot-paket').val(0);
         $('#input-harga-paket').val(0);
+        $('#col-status').hide();
         $('#radio-status-aktif').attr('checked', false);
         $('#radio-status-tidakAktif').attr('checked', false);
 
@@ -43,7 +45,7 @@ $(document).ready(function() {
             $.ajax({
                 url: "/setting/paket-cuci/delete/" + btnId,
             }).done(function() {
-                location.reload();
+                window.location = window.location.origin + window.location.pathname;
             });
         }
     });

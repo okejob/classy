@@ -46,7 +46,7 @@ $(document).ready(function() {
             $.ajax({
                 url: "/data/kategori/delete/" + btnId,
             }).done(function() {
-                location.reload();
+                window.location = window.location.origin + window.location.pathname;
             });
         }
     });
