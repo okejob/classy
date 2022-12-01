@@ -44,7 +44,7 @@ $(document).ready(function() {
         }
     });
 
-    $('#form-saldo').on('submit', function() {
+    $('#form-saldo').on('submit', function(e) {
         e.preventDefault();
         $('#submit-saldo').addClass('disabled');
 

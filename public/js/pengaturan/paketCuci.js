@@ -49,6 +49,10 @@ $(document).ready(function() {
             });
         }
     });
+
+    $('#form-paket-cuci').on('submit', function() {
+        $('#input-harga-paket').val($('#input-harga-paket').val().replace('.', ''));
+    });
 });
 
 
