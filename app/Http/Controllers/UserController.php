@@ -73,9 +73,14 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        User::find($id)->update($request->except('role'));
         $user = User::find($id);
+        $user->username = $request->username;
+        $user->name = $request->name;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->email = $request->email;
         $user->status = $request->status;
+        $user->outlet_id = $request->outlet_id;
         $user->changeRole($request->role);
         $user->save();
         return redirect()->intended(route('menu-karyawan'));

@@ -7,8 +7,11 @@ $(document).ready(function() {
 
     $('#action-update').on('click', function() {
         $('#form-karyawan').attr('action', "/setting/karyawan/" + btnId);
+        $('#modal-data-user .modal-title').text('Rubah data');
 
         $('#input-username').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(1)').html());
+        $('#input-password').attr('required', false);
+        $('#input-password').attr('name', '');
         $('#input-nama').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(2)').html());
         $('#input-telepon').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(3)').html());
         $('#input-email').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(4)').html());
@@ -20,19 +23,46 @@ $(document).ready(function() {
             $('#radio-status-tidakAktif').attr('checked', true);
         }
 
-        $('#modal-data-user').modal('show');
+        $('#col-password').hide();
+        $('#col-status').show();
+
+        $('#col-username').removeClass('col-sm-6');
+        $('#col-username').addClass('col-sm-3');
+        $('#col-name').addClass('col-sm-9');
+
+        $.ajax({
+            url: "/setting/karyawan/" + btnId,
+        }).done(function(data) {
+            let alamat = data[0].address;
+            $('#input-alamat').val(alamat);
+            $('#modal-data-user').modal('show');
+        });
+
     });
 
     $('#btn-add').on('click', function() {
+        $('#form-karyawan').attr('action', "/setting/karyawan");
+        $('#modal-data-user .modal-title').text('Tambah data');
+
         $('#input-username').val('');
+        $('#input-password').val('');
+        $('#input-password').attr('required', true);
+        $('#input-password').attr('name', 'password');
         $('#input-nama').val('');
+        $('#input-alamat').val('');
         $('#input-telepon').val('');
         $('#input-email').val('');
         $('#input-outlet').val('');
         $('#input-role').val('');
-        $('#col-status').hide();
         $('#radio-status-aktif').attr('checked', false);
         $('#radio-status-tidakAktif').attr('checked', false);
+
+        $('#col-password').show();
+        $('#col-status').hide();
+
+        $('#col-username').removeClass('col-sm-3');
+        $('#col-username').addClass('col-sm-6');
+        $('#col-name').removeClass('col-sm-9');
 
         $('#modal-data-user').modal('show');
     });
@@ -46,7 +76,6 @@ $(document).ready(function() {
         $('#error-msg').parent().addClass('d-none');
 
         let formData = new FormData();
-        formData.append('current_password', $('#input-password-lama').val());
         formData.append('new_password', $('#input-password-baru').val());
         formData.append('new_password_confirmation', $('#input-konfirmasi').val());
 

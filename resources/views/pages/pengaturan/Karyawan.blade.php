@@ -44,7 +44,10 @@
                         </tbody>
                     </table>
                 </div>
-                <button id="btn-add required" class="btn btn-primary" type="button"><i class="fas fa-plus-circle"></i>&nbsp;Tambah</button>
+                {{ $data->links() }}
+                <button id="btn-add" class="btn btn-primary" type="button">
+                    <i class="fas fa-plus-circle"></i>&nbsp;Tambah
+                </button>
                 <ul class="list-unstyled form-control" id="list-action">
                     <li id="action-update">Rubah data</li>
                     <li id="action-change-password">Rubah password</li>
@@ -63,41 +66,52 @@
                         @csrf
                         <div class="modal-body">
                             <div class="row">
-                                <div class="col-12 col-sm-6">
+                                <div class="col-12 col-sm-6" id="col-username">
                                     <h5>Username</h5>
-                                    <input class="form-control" type="text" id="input-username" name="username" required >
+                                    <input class="form-control" type="text" id="input-username" name="username" required />
                                 </div>
-                                <div class="col-12 col-sm-6">
+                                <div class="col-12 col-sm-6" id="col-password">
+                                    <h5>Password</h5>
+                                    <div class="form-control d-flex align-items-center">
+                                        <input class="w-100 me-2" style="outline: none; border: none;" id="input-password" name="password" type="password" required />
+                                        <i class="fas fa-eye-slash"></i>
+                                    </div>
+                                </div>
+                                <div class="col-12" id="col-name">
                                     <h5>Nama Lengkap</h5>
-                                    <input class="form-control" type="text" id="input-nama" name="name" required >
+                                    <input class="form-control" type="text" id="input-nama" name="name" required />
                                 </div>
                                 <div class="col-12">
+                                    <h5>Alamat</h5>
+                                    <input class="form-control" type="text" id="input-alamat" name="address" required />
+                                </div>
+                                <div class="col-12 col-sm-6">
                                     <h5>Telepon</h5>
-                                    <input class="form-control" type="text" id="input-telepon" name="phone" required >
+                                    <input class="form-control" type="text" id="input-telepon" name="phone" required />
                                 </div>
-                                <div class="col-12 col-sm-6">
+                                <div class="col-12 col-sm-6" id="col-email">
                                     <h5>E-mail</h5>
-                                    <input class="form-control" type="text" id="input-email" name="email" required >
+                                    <input class="form-control" type="email" id="input-email" name="email" required />
                                 </div>
-                                <div class="col-12 col-sm-6">
+                                <div class="col-12 col-sm-6" id="col-outlet">
                                     <h5>Outlet</h5>
-                                    <select class="form-select" id="input-outlet" name="outlet_id" required >
+                                    <select class="form-select" id="input-outlet" name="outlet_id" required />
                                         <option value="" selected hidden>-</option>
                                         @foreach ($outlets as $outlet)
                                             <option value="{{ $outlet->id }}">{{ $outlet->nama }}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-12 col-sm-6">
+                                <div class="col-12 col-sm-6" id="col-role">
                                     <h5>Role</h5>
-                                    <select class="form-select" id="input-role" name="role" required >
+                                    <select class="form-select" id="input-role" name="role" required />
                                         <option value="" selected hidden>-</option>
                                         @foreach ($roles as $role)
                                             <option value="{{ $role->name }}">{{ $role->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-12 col-sm-6" id="col-status">
+                                <div class="col-12" id="col-status">
                                     <h5>Status</h5>
                                     <div class="form-control d-flex justify-content-around" style="height: 38px;">
                                         <div class="form-check">
@@ -129,23 +143,16 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-12">
-                                    <h5>Password Lama</h5>
-                                    <div class="form-container d-flex align-items-center">
-                                        <input class="form-control" type="password" id="input-password-lama" required >
-                                        <i class="fas fa-eye-slash"></i>
-                                    </div>
-                                </div>
-                                <div class="col-12">
                                     <h5>Password Baru</h5>
                                     <div class="form-container d-flex align-items-center">
-                                        <input class="form-control" type="password" id="input-password-baru" required >
+                                        <input class="form-control" type="password" id="input-password-baru" required />
                                         <i class="fas fa-eye-slash"></i>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <h5>Konfirmasi Password Baru</h5>
                                     <div class="form-container d-flex align-items-center">
-                                        <input class="form-control" type="password" id="input-konfirmasi" required >
+                                        <input class="form-control" type="password" id="input-konfirmasi" required />
                                         <i class="fas fa-eye-slash"></i>
                                     </div>
                                 </div>
