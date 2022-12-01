@@ -203,7 +203,7 @@ class PageController extends Controller
     public function saldo()
     {
         return view(
-            'pages.transaksi.saldo',
+            'pages.transaksi.Saldo',
             [
                 'paket_deposits' => PaketDeposit::where('status', 1)->where('id', '!=', 1)->orderBy('nominal', 'desc')->get(),
                 'pelanggans' => Pelanggan::where('status', 1)->get(),
