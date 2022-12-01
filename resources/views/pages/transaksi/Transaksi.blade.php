@@ -341,24 +341,26 @@
                                 </h5>
                             </header>
                             <div id="info-penerimaan" class="mt-2" style="display: none;">
-                                <div class="mb-5">
-                                    <h6 class="mt-2">Outlet Ambil</h6>
-                                    <select class="form-control" id="select-outlet-ambil">
-                                        <option value="">-</option>
-                                        @foreach ($data['outlet'] as $outlet)
-                                            <option value="{{ $outlet->id }}">{{ $outlet->nama }}</option>
-                                        @endforeach
-                                    </select>
-                                    <h6 class="mt-2">Nama Penerima</h6>
-                                    <input type="text" class="form-control" id="input-nama-penerima" name="penerima">
-                                    <h6 class="mt-2">Tanggal Penerimaan</h6>
-                                    <input type="date" class="form-control" id="input-date-penerimaan" name=tanggal_penerimaan>
-                                    <h6 class="mt-2">Foto Penerima</h6>
-                                    <input type="file" class="form-control" id="input-foto-penerima" name="image" accept="image/*">
-                                </div>
-                                <div class="position-absolute" style="right: 1rem; bottom: 1rem;">
-                                    <button class="btn btn-primary full-when-small" id="simpan-info-penerimaan">Simpan Penerimaan</button>
-                                </div>
+                                <form id="form-penerimaan">
+                                    <div class="mb-5">
+                                        <h6 class="mt-2">Outlet Ambil</h6>
+                                        <select class="form-control" id="select-outlet-ambil" required>
+                                            <option value="">-</option>
+                                            @foreach ($data['outlet'] as $outlet)
+                                                <option value="{{ $outlet->id }}">{{ $outlet->nama }}</option>
+                                            @endforeach
+                                        </select>
+                                        <h6 class="mt-2">Nama Penerima</h6>
+                                        <input type="text" class="form-control" id="input-nama-penerima" name="penerima" required>
+                                        <h6 class="mt-2">Tanggal Penerimaan</h6>
+                                        <input type="date" class="form-control" id="input-date-penerimaan" name=tanggal_penerimaan required>
+                                        <h6 class="mt-2">Foto Penerima</h6>
+                                        <input type="file" class="form-control" id="input-foto-penerima" name="image" accept="image/*" required>
+                                    </div>
+                                    <div class="position-absolute" style="right: 1rem; bottom: 1rem;">
+                                        <button class="btn btn-primary full-when-small" id="simpan-info-penerimaan" type="submit">Simpan Penerimaan</button>
+                                    </div>
+                                </form>
                             </div>
                         </section>
                     </div>
