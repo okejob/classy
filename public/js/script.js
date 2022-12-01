@@ -219,6 +219,7 @@ $(document).ready(function() {
     });
 
     $('#modal-form').on('submit', function(e) {
+        e.preventDefault();
         $('.input-thousand-separator').each(function() {
             let val = $(this).val();
             $(this).attr('type', 'number');
@@ -231,6 +232,14 @@ $(document).ready(function() {
             }
         });
 
-        $(this).submit();
+        if ($(this).closest('#data-pengeluaran').length != 0) {
+            if ($(this)[0].checkValidity()) {
+                this.submit();
+            } else {
+                $(this)[0].reportValidity();
+            }
+        } else {
+            this.submit();
+        }
     });
 });
