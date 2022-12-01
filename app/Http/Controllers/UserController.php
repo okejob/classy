@@ -79,20 +79,13 @@ class UserController extends Controller
                 'message' => "Password Confirmation Failed"
             ];
         }
-        $current = Hash::make($request->current_password);
-        if ($current != $user->password) {
-            return [
-                'status' => 400,
-                'message' => 'Password Salah',
-            ];
-        } else {
-            $new = Hash::make($request->new_password);
-            $user->update(['password' => $new]);
-            return [
-                'status' => 200,
-                'message' => 'Success'
-            ];
-        }
+
+        $new = Hash::make($request->new_password);
+        $user->update(['password' => $new]);
+        return [
+            'status' => 200,
+            'message' => 'Success'
+        ];
     }
 
     public function logout(Request $request)
