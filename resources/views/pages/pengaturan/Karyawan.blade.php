@@ -16,85 +16,99 @@
                                 <th>Nama Lengkap</th>
                                 <th>Telepon</th>
                                 <th>E-mail</th>
+                                <th>Outlet</th>
                                 <th>Role</th>
-                                <th>Otorisasi<br>Disk</th>
-                                <th>Otorisasi<br>Batal</th>
-                                <th>Terakhir Login</th>
-                                <th>Tanggal Entry</th>
-                                <th>Tanggal Update</th>
                                 <th>Status</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="username">Freddy</td>
-                                <td>Freddy Kurniawan</td>
-                                <td>08123456789</td>
-                                <td>freddy@gmail.com</td>
-                                <td class="text-center">Owner</td>
-                                <td class="text-center">0</td>
-                                <td class="text-center">0</td>
-                                <td>12.09.2022 12:16:35</td>
-                                <td>12.09.2022 12:16:35<br></td>
-                                <td>12.09.2022 12:16:35<br></td>
-                                <td>Aktif</td>
-                                <td><button class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button></td>
-                            </tr>
-                            <tr>
-                                <td>Lenny</td>
-                                <td>Lenny Maryati</td>
-                                <td>08123456789</td>
-                                <td></td>
-                                <td class="text-center">Supervisor</td>
-                                <td class="text-center">0</td>
-                                <td class="text-center">0</td>
-                                <td></td>
-                                <td>12.09.2022 12:16:35<br></td>
-                                <td>12.09.2022 12:16:35<br></td>
-                                <td>Aktif</td>
-                                <td><button class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button></td>
-                            </tr>
+                            @foreach ($data as $karyawan)
+                                <tr>
+                                    <td>{{ $karyawan->username }}</td>
+                                    <td>{{ $karyawan->name }}</td>
+                                    <td class="text-center">{{ $karyawan->phone }}</td>
+                                    <td>{{ $karyawan->email }}</td>
+                                    <td class="text-center">{{ $karyawan->outlet->nama }}</td>
+                                    <td class="text-center">{{ $karyawan->role }}</td>
+                                    @if ($karyawan->status)
+                                        <td class="text-center">Aktif</td>
+                                    @else
+                                        <td class="text-center">Tidak aktif</td>
+                                    @endif
+                                    <td class="cell-action">
+                                        <button id="btn-{{ $karyawan->id }}"  class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
-                </div><button class="btn btn-primary" type="button"><i class="fas fa-plus-circle"></i>&nbsp;Tambah</button>
+                </div>
+                <button id="btn-add required" class="btn btn-primary" type="button"><i class="fas fa-plus-circle"></i>&nbsp;Tambah</button>
                 <ul class="list-unstyled form-control" id="list-action">
                     <li id="action-update">Rubah data</li>
                     <li id="action-change-password">Rubah password</li>
-                    <li id="action-change-status">Rubah status</li>
                 </ul>
             </div>
         </div>
-        <div class="modal fade" role="dialog" tabindex="-1" id="modal-update">
-            <div class="modal-dialog modal-lg" role="document">
+
+        <div class="modal fade" role="dialog" tabindex="-1" id="modal-data-user">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Rubah Data</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="modal-title">Rubah Data</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form>
+                    <form id="form-karyawan" method="POST" action>
+                        @csrf
                         <div class="modal-body">
                             <div class="row">
-                                <div class="col-12">
-                                    <h5>Username</h5><input class="form-control" type="text" id="input-username" name="username">
-                                </div>
-                                <div class="col-12">
-                                    <h5>Nama Lengkap</h5><input class="form-control" type="text" id="input-nama" name="nama_lengkap">
-                                </div>
-                                <div class="col-12">
-                                    <h5>Telepon</h5><input class="form-control" type="text" id="input-telepon" name="telepon">
+                                <div class="col-12 col-sm-6">
+                                    <h5>Username</h5>
+                                    <input class="form-control" type="text" id="input-username" name="username" required >
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <h5>E-mail</h5><input class="form-control" type="text" id="input-email" name="email">
+                                    <h5>Nama Lengkap</h5>
+                                    <input class="form-control" type="text" id="input-nama" name="name" required >
+                                </div>
+                                <div class="col-12">
+                                    <h5>Telepon</h5>
+                                    <input class="form-control" type="text" id="input-telepon" name="phone" required >
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <h5>Role</h5><select class="form-select" id="input-role" name="role">
-                                        <option value="" selected="">-</option>
-                                        <option value="owner">Owner</option>
-                                        <option value="supervisor">Supervisor</option>
-                                        <option value="operator">Operator</option>
-                                        <option value="produksi">Produksi</option>
-                                        <option value="delivery">Delivery</option>
+                                    <h5>E-mail</h5>
+                                    <input class="form-control" type="text" id="input-email" name="email" required >
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <h5>Outlet</h5>
+                                    <select class="form-select" id="input-outlet" name="outlet_id" required >
+                                        <option value="" selected hidden>-</option>
+                                        @foreach ($outlets as $outlet)
+                                            <option value="{{ $outlet->id }}">{{ $outlet->nama }}</option>
+                                        @endforeach
                                     </select>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <h5>Role</h5>
+                                    <select class="form-select" id="input-role" name="role" required >
+                                        <option value="" selected hidden>-</option>
+                                        @foreach ($roles as $role)
+                                            <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-12 col-sm-6" id="col-status">
+                                    <h5>Status</h5>
+                                    <div class="form-control d-flex justify-content-around" style="height: 38px;">
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="radio-status-aktif" name="status" value=1 />
+                                            <label class="form-check-label" for="radio-status-aktif">Aktif</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="radio-status-tidakAktif" name="status" value=0 />
+                                            <label class="form-check-label" for="radio-status-tidakAktif">Tidak aktif</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -103,35 +117,52 @@
                 </div>
             </div>
         </div>
+
         <div class="modal fade" role="dialog" tabindex="-1" id="modal-change-password">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Reset Password</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="modal-title">Reset Password</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-12">
                                     <h5>Password Lama</h5>
-                                    <div class="form-container d-flex align-items-center"><input class="form-control" type="password" id="input-password-lama" name="old_password"><i class="fas fa-eye-slash"></i></div>
+                                    <div class="form-container d-flex align-items-center">
+                                        <input class="form-control" type="password" id="input-password-lama" required >
+                                        <i class="fas fa-eye-slash"></i>
+                                    </div>
                                 </div>
                                 <div class="col-12">
                                     <h5>Password Baru</h5>
-                                    <div class="form-container d-flex align-items-center"><input class="form-control" type="password" id="input-password-baru" name="new_password"><i class="fas fa-eye-slash"></i></div>
+                                    <div class="form-container d-flex align-items-center">
+                                        <input class="form-control" type="password" id="input-password-baru" required >
+                                        <i class="fas fa-eye-slash"></i>
+                                    </div>
                                 </div>
                                 <div class="col-12">
                                     <h5>Konfirmasi Password Baru</h5>
-                                    <div class="form-container d-flex align-items-center"><input class="form-control" type="password" id="input-konfirmasi" name="confirm_password"><i class="fas fa-eye-slash"></i></div>
+                                    <div class="form-container d-flex align-items-center">
+                                        <input class="form-control" type="password" id="input-konfirmasi" required >
+                                        <i class="fas fa-eye-slash"></i>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="alert alert-danger d-none" role="alert">
+                                <span id="error-msg"></span>
+                            </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-primary" type="submit">Simpan</button></div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="button" id="btn-change-password">Simpan</button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </section>
+
     <section id="pengaturan-hak-akses">
         <div class="card">
             <div class="card-body">

@@ -7,7 +7,7 @@ $(document).ready(function() {
         selectedPaketId = $(this).attr('id');
         $(this).addClass('selected');
 
-        if (selectedPaketId != 'manual') {
+        if (selectedPaketId != 1) {
             $('#input-dibayarkan').val(removeDot($('#paket-container .card.selected .harga-paket .thousand-separator').text()).toLocaleString(['ban', 'id']));
         } else {
             $('#input-dibayarkan').val(parseInt($('#paket-container .card.selected #input-manual').val()).toLocaleString(['ban', 'id']));
@@ -25,29 +25,33 @@ $(document).ready(function() {
         if ($(this).val() != '') {
             pelangganId = $('#data-pelanggan option[value=' + $(this).val() +']').data('id');
 
-            $.ajax({
-                url: "/pelanggan/" + pelangganId + "/check-saldo",
-            }).done(function(data) {
-                console.log(data);
-                let saldo = data.saldo;
-                $('#input-saldo-akhir').val(parseInt(saldo).toLocaleString(['ban', 'id']));
-                $('#input-saldo-akhir').addClass('disabled');
+            if (pelangganId !== undefined) {
+                $.ajax({
+                    url: "/pelanggan/" + pelangganId + "/check-saldo",
+                }).done(function(data) {
+                    // console.log(data);
+                    let saldo = data.saldo;
+                    $('#input-saldo-akhir').val(parseInt(saldo).toLocaleString(['ban', 'id']));
 
-            }).fail(function(jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR);
-                console.log(textStatus);
-                console.log(errorThrown);
-            });
+                }).fail(function(jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                });
+            } else {
+                $('#input-saldo-akhir').val('');
+            }
         }
     });
 
-    $('#submit-saldo').on('click', function() {
-        $(this).addClass('disabled');
+    $('#form-saldo').on('submit', function() {
+        e.preventDefault();
+        $('#submit-saldo').addClass('disabled');
 
-        if (selectedPaketId == 'manual') {
-            selectedPaketId = null;
-        }
         let nominal = removeDot($('#paket-container .card.selected .nominal-paket .thousand-separator').text());
+        if (selectedPaketId == 1) {
+            nominal = $('#input-manual').val();
+        }
         let saldoAkhir = nominal + removeDot($('#input-saldo-akhir').val());
 
         let formData = new FormData();
@@ -67,10 +71,18 @@ $(document).ready(function() {
             processData: false,
             data: formData,
         }).done(function() {
-            window.location = window.location;
+            alert('Pengisian saldo berhasil');
+            $('#nama-pelanggan').trigger('change');
+            $('#paket-container .card.selected').removeClass('selected');
+            $('#input-dibayarkan').val(0);
+            $('#input-manual').val(0);
+
+            selectedPaketId = -1;
+            $('#submit-saldo').removeClass('disabled');
+
         }).fail(function(message) {
             alert('error');
-            console.log(message);
+            console.log(message.responseJSON.message);
         });
     });
 

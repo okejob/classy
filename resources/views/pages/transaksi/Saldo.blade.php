@@ -31,10 +31,10 @@
                             </div>
                             @endforeach
                             <div class="col-xl-3 col-lg-4 col-md-6 col-12 mb-3">
-                                <div class="card" id="manual">
+                                <div class="card" id="1">
                                     <div class="card-body d-flex flex-column justify-content-between">
                                         <h4 class="card-title mb-1">Manual</h4>
-                                        <input id="input-manual" type="number" class="form-control mb-2" min="0" step="100" value="0"/>
+                                        <input id="input-manual" type="number" class="form-control mb-2" min="0" value="0" />
                                     </div>
                                 </div>
                             </div>
@@ -42,28 +42,30 @@
                     </div>
                     <hr class="d-lg-none">
                     <div class="col-lg-3 border-start" id="info-pelanggan">
-                        <div class="mb-2">
-                            <h5>Pelanggan</h5>
-                            <div>
-                                <input id="nama-pelanggan" list="data-pelanggan" class="form-control">
-                                <datalist id="data-pelanggan">
-                                    @foreach ($pelanggans as $pelanggan)
-                                        <option value="{{ $pelanggan->nama }}" data-id="{{ $pelanggan->id }}"></option>
-                                    @endforeach
-                                </datalist>
+                        <form id="form-saldo" method="POST">
+                            <div class="mb-2">
+                                <h5>Pelanggan</h5>
+                                <div>
+                                    <input id="nama-pelanggan" list="data-pelanggan" class="form-control" required>
+                                    <datalist id="data-pelanggan">
+                                        @foreach ($pelanggans as $pelanggan)
+                                            <option value="{{ $pelanggan->nama }}" data-id="{{ $pelanggan->id }}"></option>
+                                        @endforeach
+                                    </datalist>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-2">
-                            <h5>Saldo Akhir</h5>
-                            <input id="input-saldo-akhir" type="text" class="form-control disabled" min="0" />
-                        </div>
-                        <div class="mb-2">
-                            <h5>Dibayarkan</h5>
-                            <input id="input-dibayarkan" type="text" class="form-control disabled" min="0" value="0" />
-                        </div>
-                        <div class="text-end">
-                            <button id="submit-saldo" class="btn btn-primary" type="button">Beli</button>
-                        </div>
+                            <div class="mb-2">
+                                <h5>Saldo Akhir</h5>
+                                <input id="input-saldo-akhir" type="text" class="form-control disabled" required />
+                            </div>
+                            <div class="mb-2">
+                                <h5>Dibayarkan</h5>
+                                <input id="input-dibayarkan" type="text" class="form-control disabled" required />
+                            </div>
+                            <div class="text-end">
+                                <button id="submit-saldo" class="btn btn-primary" type="submit">Beli</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

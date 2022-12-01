@@ -12,7 +12,7 @@ $(document).ready(function() {
     $('#data-kategori .btn-tambah').on('click', function() {
         btnIndex = -1;
         $('#modal-form').attr('action', "/data/kategori");
-        $('#modal-title').text('Tambah kategori');
+        $('.modal-title').text('Tambah kategori');
 
         $('#input-nama-kategori').val('');
         $('#input-deskripsi').val('');
@@ -25,7 +25,7 @@ $(document).ready(function() {
 
     $('#data-kategori #action-update').on('click', function() {
         $('#modal-form').attr('action', "/data/kategori/" + btnId);
-        $('#modal-title').text('Rubah kategori');
+        $('.modal-title').text('Rubah kategori');
 
         $('#input-nama-kategori').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(1)').html());
         $('#input-deskripsi').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(2)').html());
@@ -46,7 +46,7 @@ $(document).ready(function() {
             $.ajax({
                 url: "/data/kategori/delete/" + btnId,
             }).done(function() {
-                location.reload();
+                window.location = window.location.origin + window.location.pathname;
             });
         }
     });

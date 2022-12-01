@@ -64,19 +64,19 @@
                             <div class="row">
                                 <div class="col-12">
                                     <h5>Nama Paket</h5>
-                                    <input type="text" class="form-control" id="input-nama-paket" name="nama_paket" />
+                                    <input type="text" class="form-control" id="input-nama-paket" name="nama_paket" required />
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <h5>Bobot</h5>
-                                    <input type="number" class="form-control" id="input-bobot-paket" step="1" name="jumlah_bobot" />
+                                    <input type="number" class="form-control" id="input-bobot-paket" min="1" name="jumlah_bobot" required />
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <h5>Harga Paket</h5>
-                                    <input type="number" class="form-control" id="input-harga-paket" step="100" name="harga_paket" />
+                                    <input type="number" class="form-control" id="input-harga-paket" min="0" name="harga_paket" required />
                                 </div>
                                 <div class="col-12">
                                     <h5>Deskripsi Paket</h5>
-                                    <textarea class="form-control" id="input-deskripsi" name="deskripsi" ></textarea>
+                                    <textarea class="form-control" id="input-deskripsi" name="deskripsi"></textarea>
                                 </div>
                                 <div class="col-12" id="col-status">
                                     <h5>Status</h5>

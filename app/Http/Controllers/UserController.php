@@ -67,7 +67,9 @@ class UserController extends Controller
     {
         User::find($id)->update($request->except('role'));
         $user = User::find($id);
+        $user->status = $request->status;
         $user->changeRole($request->role);
+        $user->save();
         return redirect()->intended(route('menu-karyawan'));
     }
 
@@ -76,7 +78,7 @@ class UserController extends Controller
         if ($request->new_password != $request->new_password_confirmation) {
             return [
                 'status' => 400,
-                'message' => "Password Confirmation Failed"
+                'message' => 'Konfirmasi password salah'
             ];
         }
 

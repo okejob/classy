@@ -64,19 +64,19 @@
                         <div class="row">
                             <div class="col-12 col-sm-6">
                                 <h5>Kode Outlet</h5>
-                                <input type="text" class="form-control" id="input-kode" name="kode" />
+                                <input type="text" class="form-control" id="input-kode" name="kode" required />
                             </div>
                             <div class="col-12 col-sm-6">
                                 <h5>Nama Outlet</h5>
-                                <input type="text" class="form-control" id="input-nama" name="nama" />
+                                <input type="text" class="form-control" id="input-nama" name="nama" required />
                             </div>
                             <div class="col-12">
                                 <h5>Alamat lengkap</h5>
-                                <input type="text" class="form-control" id="input-alamat" name="alamat" />
+                                <input type="text" class="form-control" id="input-alamat" name="alamat" required />
                             </div>
                             <div class="col-12 col-sm-6" id="col-telp1">
                                 <h5>Telepon 1</h5>
-                                <input type="text" class="form-control" id="input-telp1" name="telp_1" />
+                                <input type="text" class="form-control" id="input-telp1" name="telp_1" required />
                             </div>
                             <div class="col-12 col-sm-6" id="col-telp2">
                                 <h5>Telepon 2</h5>
