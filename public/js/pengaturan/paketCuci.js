@@ -12,7 +12,7 @@ $(document).ready(function() {
         $('#input-nama-paket').val($('#table-paket-cuci tbody tr:nth-child(' + btnIndex + ') td:nth-child(1)').html());
         $('#input-deskripsi').val($('#table-paket-cuci tbody tr:nth-child(' + btnIndex + ') td:nth-child(2)').html());
         $('#input-bobot-paket').val($('#table-paket-cuci tbody tr:nth-child(' + btnIndex + ') td:nth-child(3)').html());
-        $('#input-harga-paket').val($('#table-paket-cuci tbody tr:nth-child(' + btnIndex + ') td:nth-child(7)').html().replace('.', ''));
+        $('#input-harga-paket').val($('#table-paket-cuci tbody tr:nth-child(' + btnIndex + ') td:nth-child(7)').html());
         if ($('#table-paket-cuci tbody tr:nth-child(' + btnIndex + ') td:nth-child(8)').html() == 'Aktif') {
             $('#radio-status-tidakAktif').attr('checked', false);
             $('#radio-status-aktif').attr('checked', true);

@@ -72,7 +72,10 @@
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <h5>Harga Paket</h5>
-                                    <input type="number" class="form-control" id="input-harga-paket" min="0" name="harga_paket" required />
+                                    <div class="form-control d-flex">
+                                        <p>Rp</p>
+                                        <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-harga-paket" name="harga_paket" required>
+                                    </div>
                                 </div>
                                 <div class="col-12">
                                     <h5>Deskripsi Paket</h5>
