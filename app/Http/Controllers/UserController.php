@@ -49,7 +49,7 @@ class UserController extends Controller
      */
     public function insert(UserCreateRequest $request)
     {
-        User::create($request);
+        User::create($request->except('role'))->assignRole($request->role);
         //need dashboard page
         return redirect()->intended(route('menu-karyawan'));
     }
