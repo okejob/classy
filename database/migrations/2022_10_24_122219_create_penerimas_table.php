@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('penerimas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('transaksi_id');
+            $table->foreignId('transaksi_id')
+                ->constrained()
+                ->cascadeOnDelete();
             $table->boolean('ambil_di_outlet')->default(true);
             $table->foreignId('outlet_id')
                 ->nullable()

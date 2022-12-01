@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('user_actions', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')
+                ->constrained()
+                ->cascadeOnDelete();
             $table->string('action');  // created / updated / deleted
             $table->string('action_model')->nullable();
             $table->integer('action_id')->nullable();  // CRUD entry ID    

@@ -20,7 +20,10 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('transaksis', 'id')
                 ->cascadeOnDelete();
-            $table->foreignId('pelanggan_id');
+            $table->foreignId('pelanggan_id')
+                ->nullable()
+                ->constrained()
+                ->cascadeOnDelete();
             $table->foreignId('driver_id')
                 ->nullable()
                 ->constrained('users', 'id')
