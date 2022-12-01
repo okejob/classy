@@ -256,7 +256,8 @@ $(document).ready(function() {
         }
     });
 
-    $('#simpan-info-penerimaan').on('click', function() {
+    $('#form-penerimaan').on('submit', function(e) {
+        e.preventDefault();
         $(this).addClass('disabled');
         let id_trans = $('#id-trans').text();
         let id_outlet = $('#select-outlet-ambil').val();

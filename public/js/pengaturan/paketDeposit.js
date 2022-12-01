@@ -49,4 +49,9 @@ $(document).ready(function() {
             });
         }
     });
+
+    $('#form-paket-deposit').on('submit', function() {
+        $('#input-nominal').val($('#input-nominal').val().replace('.', ''));
+        $('#input-harga-paket').val($('#input-harga-paket').val().replace('.', ''));
+    });
 });

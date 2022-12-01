@@ -132,7 +132,7 @@
                             <div class="col-12 mb-2">
                                 <div>
                                     <h5>Alamat</h5>
-                                    <input type="text" class="form-control" name="alamat" />
+                                    <input type="text" class="form-control" name="alamat" required />
                                 </div>
                             </div>
                         </div>
@@ -181,7 +181,7 @@
                             <div class="col-12 mb-2">
                                 <div>
                                     <h5>Alamat</h5>
-                                    <input type="text" class="form-control" name="alamat" />
+                                    <input type="text" class="form-control" name="alamat" required />
                                 </div>
                             </div>
                         </div>

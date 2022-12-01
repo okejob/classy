@@ -341,24 +341,26 @@
                                 </h5>
                             </header>
                             <div id="info-penerimaan" class="mt-2" style="display: none;">
-                                <div class="mb-5">
-                                    <h6 class="mt-2">Outlet Ambil</h6>
-                                    <select class="form-control" id="select-outlet-ambil">
-                                        <option value="">-</option>
-                                        @foreach ($data['outlet'] as $outlet)
-                                            <option value="{{ $outlet->id }}">{{ $outlet->nama }}</option>
-                                        @endforeach
-                                    </select>
-                                    <h6 class="mt-2">Nama Penerima</h6>
-                                    <input type="text" class="form-control" id="input-nama-penerima" name="penerima">
-                                    <h6 class="mt-2">Tanggal Penerimaan</h6>
-                                    <input type="date" class="form-control" id="input-date-penerimaan" name=tanggal_penerimaan>
-                                    <h6 class="mt-2">Foto Penerima</h6>
-                                    <input type="file" class="form-control" id="input-foto-penerima" name="image" accept="image/*">
-                                </div>
-                                <div class="position-absolute" style="right: 1rem; bottom: 1rem;">
-                                    <button class="btn btn-primary full-when-small" id="simpan-info-penerimaan">Simpan Penerimaan</button>
-                                </div>
+                                <form id="form-penerimaan">
+                                    <div class="mb-5">
+                                        <h6 class="mt-2">Outlet Ambil</h6>
+                                        <select class="form-control" id="select-outlet-ambil" required>
+                                            <option value="">-</option>
+                                            @foreach ($data['outlet'] as $outlet)
+                                                <option value="{{ $outlet->id }}">{{ $outlet->nama }}</option>
+                                            @endforeach
+                                        </select>
+                                        <h6 class="mt-2">Nama Penerima</h6>
+                                        <input type="text" class="form-control" id="input-nama-penerima" name="penerima" required>
+                                        <h6 class="mt-2">Tanggal Penerimaan</h6>
+                                        <input type="date" class="form-control" id="input-date-penerimaan" name=tanggal_penerimaan required>
+                                        <h6 class="mt-2">Foto Penerima</h6>
+                                        <input type="file" class="form-control" id="input-foto-penerima" name="image" accept="image/*" required>
+                                    </div>
+                                    <div class="position-absolute" style="right: 1rem; bottom: 1rem;">
+                                        <button class="btn btn-primary full-when-small" id="simpan-info-penerimaan" type="submit">Simpan Penerimaan</button>
+                                    </div>
+                                </form>
                             </div>
                         </section>
                     </div>
@@ -549,47 +551,45 @@
                                         </div>
                                         <div class="h-100">
                                             <h5>Notes</h5>
-                                            <textarea class="form-control" id="catatan-item"></textarea>
+                                            <textarea class="form-control" id="catatan-item" required ></textarea>
                                         </div>
                                     </div>
                                     <div class="col-8">
-                                        <div>
-                                            <ul role="tablist" class="nav nav-tabs">
-                                                <li role="presentation" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link active" href="#tab-foto">Foto</a></li>
-                                                <li role="presentation" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link" href="#tab-noda">Tandai Noda</a></li>
-                                            </ul>
-                                            <div class="tab-content card" style="border-top: none;border-radius: 0;height: 513px;">
-                                                <div role="tabpanel" class="tab-pane active p-2" id="tab-foto">
-                                                    <img id="container-image-item" class="w-100 mb-2" style="object-fit: contain;max-height: 450px;height: 450px;" />
-                                                    <div class="text-end">
-                                                        <input type="file" class="form-control" id="input-foto-item" accept="image/*" onchange="document.getElementById('container-image-item').src = window.URL.createObjectURL(this.files[0])"/>
-                                                    </div>
+                                        <ul role="tablist" class="nav nav-tabs">
+                                            <li role="presentation" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link active" href="#tab-foto">Foto</a></li>
+                                            <li role="presentation" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link" href="#tab-noda">Tandai Noda</a></li>
+                                        </ul>
+                                        <div class="tab-content card" style="border-top: none;border-radius: 0;height: 513px;">
+                                            <div role="tabpanel" class="tab-pane active p-2" id="tab-foto">
+                                                <img id="container-image-item" class="w-100 mb-2" style="object-fit: contain;max-height: 450px;height: 450px;" />
+                                                <div class="text-end">
+                                                    <input type="file" class="form-control" id="input-foto-item" accept="image/*" onchange="document.getElementById('container-image-item').src = window.URL.createObjectURL(this.files[0])" required />
                                                 </div>
-                                                <div role="tabpanel" class="tab-pane p-2" id="tab-noda">
-                                                    <div class="row">
-                                                        <div class="col">
-                                                            <h5>Tampak Depan</h5>
-                                                            <div id="tampak-depan" class="position-relative">
-                                                                <div class="card p-2" style="height: 230px;">
-                                                                    <div class="w-100 h-100" style="background-image: url({{asset('image/tshirt-front.jpg')}});background-size: cover;"></div>
-                                                                </div>
-                                                                <div id="td-kiri-atas" class="position-absolute w-50 h-50 card stain-selection" style="top: 0;left: 0;"></div>
-                                                                <div id="td-kanan-atas" class="position-absolute w-50 h-50 card stain-selection" style="top: 0;left: 50%;"></div>
-                                                                <div id="td-kiri-bawah" class="position-absolute w-50 h-50 card stain-selection" style="top: 50%;left: 0;"></div>
-                                                                <div id="td-kanan-bawah" class="position-absolute w-50 h-50 card stain-selection" style="top: 50%;left: 50%;"></div>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane p-2" id="tab-noda">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h5>Tampak Depan</h5>
+                                                        <div id="tampak-depan" class="position-relative">
+                                                            <div class="card p-2" style="height: 230px;">
+                                                                <div class="w-100 h-100" style="background-image: url({{asset('image/tshirt-front.jpg')}});background-size: cover;"></div>
                                                             </div>
+                                                            <div id="td-kiri-atas" class="position-absolute w-50 h-50 card stain-selection" style="top: 0;left: 0;"></div>
+                                                            <div id="td-kanan-atas" class="position-absolute w-50 h-50 card stain-selection" style="top: 0;left: 50%;"></div>
+                                                            <div id="td-kiri-bawah" class="position-absolute w-50 h-50 card stain-selection" style="top: 50%;left: 0;"></div>
+                                                            <div id="td-kanan-bawah" class="position-absolute w-50 h-50 card stain-selection" style="top: 50%;left: 50%;"></div>
                                                         </div>
-                                                        <div class="col">
-                                                            <h5>Tampak Belakang</h5>
-                                                            <div id="tampak-belakang" class="position-relative">
-                                                                <div class="card p-2" style="height: 230px;">
-                                                                    <div class="w-100 h-100" style="background-image: url({{asset('image/tshirt-back.jpg')}});background-size: cover;"></div>
-                                                                </div>
-                                                                <div id="tb-kiri-atas" class="position-absolute w-50 h-50 card stain-selection" style="top: 0;left: 0;"></div>
-                                                                <div id="tb-kanan-atas" class="position-absolute w-50 h-50 card stain-selection" style="top: 0;left: 50%;"></div>
-                                                                <div id="tb-kiri-bawah" class="position-absolute w-50 h-50 card stain-selection" style="top: 50%;left: 0;"></div>
-                                                                <div id="tb-kanan-bawah" class="position-absolute w-50 h-50 card stain-selection" style="top: 50%;left: 50%;"></div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <h5>Tampak Belakang</h5>
+                                                        <div id="tampak-belakang" class="position-relative">
+                                                            <div class="card p-2" style="height: 230px;">
+                                                                <div class="w-100 h-100" style="background-image: url({{asset('image/tshirt-back.jpg')}});background-size: cover;"></div>
                                                             </div>
+                                                            <div id="tb-kiri-atas" class="position-absolute w-50 h-50 card stain-selection" style="top: 0;left: 0;"></div>
+                                                            <div id="tb-kanan-atas" class="position-absolute w-50 h-50 card stain-selection" style="top: 0;left: 50%;"></div>
+                                                            <div id="tb-kiri-bawah" class="position-absolute w-50 h-50 card stain-selection" style="top: 50%;left: 0;"></div>
+                                                            <div id="tb-kanan-bawah" class="position-absolute w-50 h-50 card stain-selection" style="top: 50%;left: 50%;"></div>
                                                         </div>
                                                     </div>
                                                 </div>
