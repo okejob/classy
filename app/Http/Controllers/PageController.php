@@ -176,6 +176,7 @@ class PageController extends Controller
                 'data1' => PickupDelivery::where('action', 'pickup')->paginate(5),
                 'data2' => PickupDelivery::where('action', 'delivery')->paginate(5),
                 'data3' => Penerima::where('ambil_di_outlet', 1)->paginate(5),
+                'dataTransaksi' => Transaksi::get(),
                 'dataPelanggan' => Pelanggan::get(),
                 'dataDriver' => User::role('delivery')->get(),
             ]

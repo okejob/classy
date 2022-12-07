@@ -108,32 +108,26 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-6 mb-2">
-                                <div>
-                                    <h5>Pilih Pelanggan</h5>
-                                    <select class="form-control" name="pelanggan_id">
-                                        <option value="" selected hidden>-</option>
-                                        @foreach ($dataPelanggan as $pelanggan)
-                                            <option value="{{ $pelanggan->id }}">{{ $pelanggan->nama }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                <h5>Pilih Pelanggan</h5>
+                                <select class="form-control" name="pelanggan_id" required >
+                                    <option value="" selected hidden>-</option>
+                                    @foreach ($dataPelanggan as $pelanggan)
+                                        <option value="{{ $pelanggan->id }}">{{ $pelanggan->nama }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="col-6 mb-2">
-                                <div>
-                                    <h5>Pilih Driver</h5>
-                                    <select class="form-control" name="driver_id">
-                                        <option value="" selected hidden>-</option>
-                                        @foreach ($dataDriver as $driver)
-                                            <option value="{{ $driver->id }}">{{ $driver->username }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                <h5>Pilih Driver</h5>
+                                <select class="form-control" name="driver_id" required >
+                                    <option value="" selected hidden>-</option>
+                                    @foreach ($dataDriver as $driver)
+                                        <option value="{{ $driver->id }}">{{ $driver->username }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="col-12 mb-2">
-                                <div>
-                                    <h5>Alamat</h5>
-                                    <input type="text" class="form-control" name="alamat" required />
-                                </div>
+                                <h5>Alamat</h5>
+                                <input type="text" class="form-control" name="alamat" required />
                             </div>
                         </div>
                     </div>
@@ -156,18 +150,9 @@
                     @csrf
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-6 mb-2" id="col-pelanggan">
-                                <h5>Pilih Pelanggan</h5>
-                                <select class="form-control" name="pelanggan_id">
-                                    <option value="" selected hidden>-</option>
-                                    @foreach ($dataPelanggan as $pelanggan)
-                                        <option value="{{ $pelanggan->id }}">{{ $pelanggan->nama }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
                             <div class="col-6 mb-2" id="col-transaksi">
                                 <h5>Pilih Transaksi</h5>
-                                <select class="form-control" name="trans_id">
+                                <select class="form-control" name="trans_id" required >
                                     <option value="" selected hidden>-</option>
                                     @foreach ($dataTransaksi as $trans)
                                         <option value="{{ $trans->id }}">{{ $trans->kode }}</option>
@@ -176,7 +161,7 @@
                             </div>
                             <div class="col-6 mb-2">
                                 <h5>Pilih Driver</h5>
-                                <select class="form-control" name="driver_id">
+                                <select class="form-control" name="driver_id" required >
                                     <option value="" selected hidden>-</option>
                                     @foreach ($dataDriver as $driver)
                                         <option value="{{ $driver->id }}">{{ $driver->username }}</option>
@@ -184,10 +169,8 @@
                                 </select>
                             </div>
                             <div class="col-12 mb-2">
-                                <div>
-                                    <h5>Alamat</h5>
-                                    <input type="text" class="form-control" name="alamat" required />
-                                </div>
+                                <h5>Alamat</h5>
+                                <input type="text" class="form-control" name="alamat" required />
                             </div>
                         </div>
                     </div>
