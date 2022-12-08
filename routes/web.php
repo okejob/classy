@@ -149,4 +149,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transaksi/saldo', [PageController::class, 'saldo']);
     Route::get('/pelanggan/{pelanggan_id}/check-saldo', [SaldoController::class, 'getSaldo']);
     Route::post('/pelanggan/{pelanggan_id}/add-saldo', [SaldoController::class, 'insert']);
+
+    //Pembayaran
+    Route::get('/transaksi/pembayaran', [PageController::class, 'pembayaran']);
 });

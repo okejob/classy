@@ -211,4 +211,15 @@ class PageController extends Controller
             ]
         );
     }
+
+    public function pembayaran()
+    {
+        dd(Transaksi::get());
+        return view(
+            'pages.transaksi.Pembayaran',
+            [
+                'transaksis' => Transaksi::lastest()->take(5)->get(),
+            ]
+        );
+    }
 }
