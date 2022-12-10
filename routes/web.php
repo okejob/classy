@@ -10,6 +10,7 @@ use App\Http\Controllers\PaketCuciController;
 use App\Http\Controllers\PaketDepositController;
 use App\Http\Controllers\ParfumController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PenerimaController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\PickupDeliveryController;
@@ -151,5 +152,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/pelanggan/{pelanggan_id}/add-saldo', [SaldoController::class, 'insert']);
 
     //Pembayaran
-    Route::get('/transaksi/pembayaran', [PageController::class, 'pembayaran']);
+    Route::get('/transaksi/pembayaran', [PageController::class, 'pembayaran'])->name('menu_pembayaran');
+    Route::get('/transaksi/pembayaran/{pembayaran}', [PembayaranController::class, 'show']);
+    Route::post('/transaksi/pembayaran', [PembayaranController::class, 'insert']);
+    Route::post('/transaksi/pembayaran/{pembayaran}', [PembayaranController::class, 'update']);
+    Route::get('/transaksi/pembayaran/delete/{pembayaran}', [PembayaranController::class, 'delete']);
 });
