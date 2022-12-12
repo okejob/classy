@@ -59,7 +59,7 @@ $(document).ready(function() {
             if (typeof pickup !== "undefined") {
                 $('#formCheck-pickup').parent().next().show();
                 $('#formCheck-pickup').prop('checked', true);
-                $('#select-kode-pickup').val(pickup.driver_id);
+                $('#select-kode-pickup').val(pickup.id);
                 if (pickup.is_done) {
                     $('#check-pickup').addClass('disabled');
                     $('#container-pickup').addClass('disabled');
@@ -76,7 +76,7 @@ $(document).ready(function() {
             if (typeof delivery !== "undefined") {
                 $('#formCheck-delivery').parent().next().show();
                 $('#formCheck-delivery').prop('checked', true);
-                $('#select-kode-delivery').val(delivery.driver_id);
+                $('#select-kode-delivery').val(delivery.id);
                 if (delivery.is_done) {
                     $('#check-delivery').addClass('disabled');
                     $('#container-delivery').addClass('disabled');

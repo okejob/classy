@@ -173,7 +173,6 @@ class PageController extends Controller
         return view(
             'pages.transaksi.PickupDelivery',
             [
-                'data1' => PickupDelivery::where('action', 'pickup')->paginate(5),
                 'data2' => PickupDelivery::where('action', 'delivery')->paginate(5),
                 'data3' => Penerima::where('ambil_di_outlet', 1)->paginate(5),
                 'dataTransaksi' => Transaksi::get(),
@@ -188,8 +187,8 @@ class PageController extends Controller
         $data['transaksi_id'] = Transaksi::count() == 0 ? 1 : Transaksi::latest()->first()->id + 1;
         $data['last_transaksi'] = Transaksi::latest()->take(5)->get();
         $data['pelanggan'] = Pelanggan::latest()->take(5)->get();
-        $data['pickup'] = PickupDelivery::where('action', 'pickup');
-        $data['delivery'] = PickupDelivery::where('action', 'delivery');
+        $data['pickup'] = PickupDelivery::where('action', 'pickup')->get();
+        $data['delivery'] = PickupDelivery::where('action', 'delivery')->get();
         $data['parfum'] = Parfum::get();
         $data['outlet'] = Outlet::get();
 

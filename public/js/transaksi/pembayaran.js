@@ -14,7 +14,7 @@ $(document).ready(function() {
             url: "/transaksi/detail/" + btnId,
         }).done(function(data) {
             let trans = data;
-            $('#kode-trans').text(trans.kode);
+            $('.kode-trans').text(trans.kode);
             $('#subtotal').html(trans.subtotal);
             $('#diskon').html(trans.diskon + trans.diskon_member);
             $('#grand-total').html(trans.grand_total);
@@ -39,6 +39,10 @@ $(document).ready(function() {
             }
             setThousandSeparator();
             $('#modal-detail-trans').modal('show');
+
+            $('#input-total').val(trans.grand_total);
+            $('#input-terbayar').val(trans.total_terbayar);
+            $('#input-kembalian').val('0');
         });
     });
 
@@ -57,4 +61,42 @@ $(document).ready(function() {
             });
         }
     };
+
+    $('#btn-bayar').on('click', function() {
+        setThousandSeparator();
+        $('#modal-pembayaran').modal('show');
+    });
+
+    var calculateNow;
+    $('#input-nominal').on('input', function() {
+        clearTimeout(calculateNow);
+        if (!$('#btn-save').hasClass('disabled')) {
+            $('#btn-save').addClass('disabled');
+        }
+        calculateNow = setTimeout(calculate, 1000);
+    });
+
+    function calculate() {
+        let total = removeDot($('#input-total').val());
+
+        let nominal = removeDot($('#input-nominal').val());
+        let terbayar = removeDot($('#input-terbayar').val());
+        if (total > terbayar + nominal) {
+            $('#input-terbayar').val((terbayar + nominal).toLocaleString(['ban', 'id']));
+        } else {
+            $('#input-terbayar').val((total).toLocaleString(['ban', 'id']));
+            $('#input-kembalian').val((terbayar + nominal - total).toLocaleString(['ban', 'id']));
+        }
+        $('#btn-save').removeClass('disabled');
+    }
+
+    function removeDot(val) {
+        if (val != '') {
+            while(val.indexOf('.') != -1) {
+                val = val.replace('.', '');
+            }
+            let number = parseInt(val);
+            return number;
+        }
+    }
 });

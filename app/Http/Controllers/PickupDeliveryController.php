@@ -50,7 +50,7 @@ class PickupDeliveryController extends Controller
                 $pickup_delivery = PickupDelivery::create($merged);
                 return redirect()->intended(route('pickup-delivery'))->with('message', 'Success Created Delivery');
             }
-            //Sudah diterima 
+            //Sudah diterima
             return redirect()->back()->with('message', 'Sudah diterima di outlet');
         }
     }
@@ -77,5 +77,29 @@ class PickupDeliveryController extends Controller
         PickupDelivery::destroy($id);
 
         //return redirect()->intended(route(''));
+    }
+
+    public function pickup()
+    {
+        $pickup = PickupDelivery::where('action', 'pickup')->paginate(5);
+        return view('components.tablePickup', [
+            'pickups' => $pickup
+        ]);
+    }
+
+    public function delivery()
+    {
+        $delivery = PickupDelivery::where('action', 'delivery')->paginate(5);
+        return view('components.tableDelivery', [
+            'deliveries' => $delivery
+        ]);
+    }
+
+    public function ambil_di_outlet()
+    {
+        $diOutlet = Penerima::where('ambil_di_outlet', 1)->paginate(5);
+        return view('components.tableDiOutlet', [
+            'diOutlets' => $diOutlet
+        ]);
     }
 }

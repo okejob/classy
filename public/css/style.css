@@ -222,6 +222,11 @@ thead tr {
     font-size: 1.125rem;
 }
 
+.extra-large {
+    font-size: 2rem;
+    padding: 2px 8px;
+}
+
 .disabled {
     pointer-events: none !important;
 }

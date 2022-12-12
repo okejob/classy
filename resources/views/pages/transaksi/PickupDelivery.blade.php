@@ -12,29 +12,8 @@
             <section id="section-pickup" class="mb-4">
                 <h4>Pickup</h4>
                 <hr />
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th style="width: 10%;">ID</th>
-                                <th style="width: 30%;">Pelanggan</th>
-                                <th style="width: 20%;">Driver</th>
-                                <th>Alamat</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($data1 as $pickup)
-                                <tr>
-                                    <td class="text-center">{{ $pickup->id }}</td>
-                                    <td class="text-center">{{ $pickup->pelanggan->nama }}</td>
-                                    <td class="text-center">{{ $pickup->nama_driver }}</td>
-                                    <td>{{ $pickup->alamat }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                <div class="text-end">
+                <div id="table-pickup"></div>
+                <div class="text-end mt-3">
                     <button id="create-pickup" class="btn btn-primary">Pickup Baru</button>
                 </div>
             </section>
@@ -42,29 +21,8 @@
             <section id="section-delivery" class="mb-4">
                 <h4>Delivery</h4>
                 <hr />
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th style="width: 10%;">ID</th>
-                                <th style="width: 30%;">Pelanggan</th>
-                                <th style="width: 20%;">Driver</th>
-                                <th>Alamat</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($data2 as $delivery)
-                                <tr>
-                                    <td class="text-center">{{ $delivery->id }}</td>
-                                    <td class="text-center">{{ $delivery->pelanggan->nama }}</td>
-                                    <td class="text-center">{{ $delivery->nama_driver }}</td>
-                                    <td>{{ $delivery->alamat }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                <div class="text-end">
+                <div id="table-delivery"></div>
+                <div class="text-end mt-3">
                     <button id="create-delivery" class="btn btn-primary">Delivery Baru</button>
                 </div>
             </section>
@@ -72,28 +30,7 @@
             <section id="section-ambil-outlet" class="mb-4">
                 <h4>Ambil di outlet</h4>
                 <hr />
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th style="width: 10%;">ID</th>
-                                <th style="width: 30%;">Penerima</th>
-                                <th style="width: 20%;">Outlet</th>
-                                <th>Tanggal Ambil</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-center">
-                            @foreach ($data3 as $ambil_di_outlet)
-                                <tr>
-                                    <td>{{ $ambil_di_outlet->id }}</td>
-                                    <td>{{ $ambil_di_outlet->penerima }}</td>
-                                    <td>{{ $ambil_di_outlet->outlet->nama }}</td>
-                                    <td>{{ $ambil_di_outlet->tanggal_penerimaan }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                <div id="table-di-outlet"></div>
             </section>
         </div>
     </div>
@@ -155,7 +92,9 @@
                                 <select class="form-control" name="transaksi_id" required >
                                     <option value="" selected hidden>-</option>
                                     @foreach ($dataTransaksi as $trans)
-                                        <option value="{{ $trans->id }}">{{ $trans->kode }}</option>
+                                        @if($trans->kode != '')
+                                            <option value="{{ $trans->id }}">{{ $trans->kode }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>

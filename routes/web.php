@@ -117,6 +117,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/transaksi/pickup-delivery', [PickupDeliveryController::class, 'insert'])->middleware('permission:insert_pickup_delivery');
     Route::post('/transaksi/pickup-delivery/{id}', [PickupDeliveryController::class, 'update'])->middleware('permission:update_pickup_delivery');
     Route::get('/transaksi/pickup-delivery/delete/{id}', [PickupDeliveryController::class, 'delete'])->middleware('permission:delete_pickup_delivery');
+    Route::get('/component/pickup', [PickupDeliveryController::class, 'pickup']);
+    Route::get('/component/delivery', [PickupDeliveryController::class, 'delivery']);
+    Route::get('/component/ambil_di_outlet', [PickupDeliveryController::class, 'ambil_di_outlet']);
 
     //Catatan Item Transaksi //ItemTransaksi
     Route::get('/transaksi/item-transaksi/{id}', [ItemTransaksiController::class, 'show'])->middleware('permission:show_item_transaksi');

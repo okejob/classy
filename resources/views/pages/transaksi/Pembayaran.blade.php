@@ -27,6 +27,7 @@
                         </thead>
                         <tbody>
                         @foreach ($transaksis as $transaksi)
+                            {{-- @if($transaksi != 'draft') --}}
                             <tr>
                                 <td class="text-center">{{ $transaksi->kode }}</td>
                                 <td class="text-center">{{ $transaksi->pelanggan->nama }}</td>
@@ -46,6 +47,7 @@
                                     </button>
                                 </td>
                             </tr>
+                            {{-- @endif --}}
                         @endforeach
                         </tbody>
                     </table>
@@ -64,7 +66,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Detail Transaksi <span id="kode-trans">kode trans</span></h4>
+                    <h4 class="modal-title">Detail Transaksi <span class="kode-trans">kode trans</span></h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -100,8 +102,59 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary">Print Nota</button>
+                    <button id="btn-bayar" class="btn btn-primary">Bayar</button>
+                    <button id="btn-print" class="btn btn-primary">Print Nota</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div role="dialog" tabindex="-1" class="modal fade" id="modal-pembayaran">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Pembayaran <span class="kode-trans">kode trans</span></h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-3 text-end mb-4">
+                            <h1>Total :</h1>
+                        </div>
+                        <div class="col-9 mb-4">
+                            <input type="text" class="form-control h-100 extra-large disabled input-thousand-separator" id="input-total" />
+                        </div>
+                        <div class="col-3 mb-2">
+                            <p class="d-flex align-items-center justify-content-end" style="height: 38px;">Metode Pembayaran :</p>
+                        </div>
+                        <div class="col-9 mb-2">
+                            <select class="form-control">
+                                <option hidden selected>-</option>
+                                <option value="tunai">Tunai</option>
+                                <option value="kredit">Kredit</option>
+                                <option value="debit">Debit</option>
+                            </select>
+                        </div>
+                        <div class="col-3 mb-2">
+                            <p class="d-flex align-items-center justify-content-end" style="height: 38px;" >Nominal :</p>
+                        </div>
+                        <div class="col-9 mb-2">
+                            <input type="text" class="form-control input-thousand-separator" id="input-nominal" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+                        </div>
+                        <div class="col-3 mb-2">
+                            <p class="d-flex align-items-center justify-content-end fw-bold" style="height: 38px;">Total Terbayar :</p>
+                        </div>
+                        <div class="col-9 mb-2">
+                            <input type="text" class="form-control disabled input-thousand-separator" id="input-terbayar" />
+                        </div>
+                        <div class="col-3 mb-2">
+                            <p class="d-flex align-items-center justify-content-end fw-bold" style="height: 38px;">Kembali :</p>
+                        </div>
+                        <div class="col-9 mb-2">
+                            <input type="text" class="form-control disabled input-thousand-separator" id="input-kembalian" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer"><button class="btn btn-primary" type="button" id="btn-save">Save</button></div>
             </div>
         </div>
     </div>
