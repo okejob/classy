@@ -1,13 +1,15 @@
 $(document).ready(function() {
+    // btnIndex untuk menyimpan currently selected row
+    // btnId untuk menyimpan item id dari selected row
     var btnIndex = -1, btnId = 0;
     $('.btn-show-action').on('click', function() {
         btnIndex = $(this).index('.btn-show-action') + 1;
         btnId = $(this).attr('id').substring(4);
     });
 
+    // untuk menampilkan nota
     $('#action-detail').on('click', function() {
         $('#diskon').parent().show();
-
         $.ajax({
             url: "/transaksi/detail/" + btnId,
         }).done(function(data) {

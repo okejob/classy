@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+    // selectedPaketId untuk menyimpan paket id dari selected item
     var selectedPaketId = 0;
     $('#paket-container .card').on('click', function() {
         $('#paket-container .card').removeClass('selected');
@@ -14,12 +14,14 @@ $(document).ready(function() {
         }
     });
 
+    // menambahkan thousand separator bila mengisi paket manual
     $('#input-manual').on('input', function() {
         if ($(this).val() != "") {
             $('#input-dibayarkan').val(parseInt($(this).val()).toLocaleString(['ban', 'id']));
         }
     })
 
+    // pelangganId untuk menyimpan id pelanggan
     var pelangganId = 0;
     $('#nama-pelanggan').on('change', function() {
         if ($(this).val() != '') {
@@ -44,6 +46,10 @@ $(document).ready(function() {
         }
     });
 
+    /*
+        supaya halaman tidak di refresh karena function default form submit,
+        maka digunakan ajax form submit
+    */
     $('#form-saldo').on('submit', function(e) {
         e.preventDefault();
         $('#submit-saldo').addClass('disabled');
@@ -54,6 +60,7 @@ $(document).ready(function() {
         }
         let saldoAkhir = nominal + removeDot($('#input-saldo-akhir').val());
 
+        // bagian ini digunakan untuk "membuat komponen form" di javascript
         let formData = new FormData();
         formData.append('pelanggan_id', pelangganId);
         formData.append('paket_deposit_id', selectedPaketId);
@@ -67,8 +74,8 @@ $(document).ready(function() {
             },
             url: "/pelanggan/" + pelangganId + "/add-saldo",
             method: "POST",
-            contentType: false,
-            processData: false,
+            contentType: false, // harus ada untuk mengsubmit FormData
+            processData: false, // harus ada untuk mengsubmit FormData
             data: formData,
         }).done(function() {
             alert('Pengisian saldo berhasil');
@@ -86,6 +93,7 @@ $(document).ready(function() {
         });
     });
 
+    // untuk menghilangkan thousand separator
     function removeDot(val) {
         if (val != '') {
             while(val.indexOf('.') != -1) {
@@ -96,6 +104,7 @@ $(document).ready(function() {
         }
     }
 
+    // untuk merapikan halaman bila di resize
     function adjustWindow() {
         if ($(window).width() < 992) {
             $('#info-pelanggan').removeClass('border-start');

@@ -1,11 +1,13 @@
 $(document).ready(function() {
-
+    // btnIndex untuk menyimpan currently selected row
+    // btnId untuk menyimpan item id dari selected row
     var btnIndex = -1, btnId = 0;
     $('.btn-show-action').on('click', function() {
         btnIndex = $(this).index('.btn-show-action') + 1;
         btnId = $(this).attr('id').substring(4);
     });
 
+    // untuk update data outlet
     $('#action-update').on('click', function() {
         $('#form-outlet').attr('action', "/setting/outlet/" + btnId);
         $('.modal-title').text('Rubah outlet');
@@ -33,6 +35,7 @@ $(document).ready(function() {
         $('#modal-outlet').modal('show');
     });
 
+    // untuk menambah data outlet
     $('#add-outlet').on('click', function() {
         $('#form-outlet').attr('action', "/setting/outlet");
         $('.modal-title').text('Tambah outlet');

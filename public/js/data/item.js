@@ -3,12 +3,15 @@ $(document).ready(function() {
         $('#table-item tbody').append('<tr><td colspan=16 class="text-center">Data masih kosong</td></tr>');
     }
 
+    // btnIndex untuk menyimpan currently selected row
+    // btnId untuk menyimpan item id dari selected row
     var btnIndex = -1, btnId = 0;
     $('#data-item .btn-show-action').on('click', function() {
         btnIndex = $(this).index('.btn-show-action') + 1;
         btnId = $(this).attr('id').substring(4);
     });
 
+    // untuk mereset tampilan modal & menampilkan modal
     $('#data-item .btn-tambah').on('click', function() {
         btnIndex = -1;
         $('#modal-form').attr('action', "/data/jenis-item");
@@ -35,6 +38,7 @@ $(document).ready(function() {
         $('#modal-update').modal('show');
     });
 
+    // untuk mengisi tampilan modal & menampilkan modal
     $('#data-item #action-update').on('click', function() {
         $('#modal-form').attr('action', "/data/jenis-item/" + btnId);
         $('#modal-title').text('Rubah jenis item');
@@ -73,6 +77,7 @@ $(document).ready(function() {
         $('#modal-update').modal('show');
     });
 
+    // untuk menghapus data item
     $('#action-delete').on('click', function() {
         if (confirm('Yakin menghapus data ?')) {
             $.ajax({

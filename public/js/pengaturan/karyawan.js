@@ -1,10 +1,13 @@
 $(document).ready(function() {
+    // btnIndex untuk menyimpan currently selected row
+    // btnId untuk menyimpan item id dari selected row
     var btnIndex = -1, btnId = 0;
     $('.btn-show-action').on('click', function() {
         btnIndex = $(this).index('.btn-show-action') + 1;
         btnId = $(this).attr('id').substring(4);
     });
 
+    // untuk update data karyawan
     $('#action-update').on('click', function() {
         $('#form-karyawan').attr('action', "/setting/karyawan/" + btnId);
         $('#modal-data-user .modal-title').text('Rubah data karyawan');
@@ -37,9 +40,9 @@ $(document).ready(function() {
             $('#input-alamat').val(alamat);
             $('#modal-data-user').modal('show');
         });
-
     });
 
+    // untuk menambah data karyawan
     $('#btn-add').on('click', function() {
         $('#form-karyawan').attr('action', "/setting/karyawan");
         $('#modal-data-user .modal-title').text('Tambah data karyawan');
@@ -67,10 +70,12 @@ $(document).ready(function() {
         $('#modal-data-user').modal('show');
     });
 
+    // untuk menampilkan modal ganti password
     $('#action-change-password').on('click', function() {
         $('#modal-change-password').modal('show');
     });
 
+    // untuk merubah password karyawan
     $('#btn-change-password').on('click', function() {
         $(this).addClass('disabled');
         $('#error-msg').parent().addClass('d-none');

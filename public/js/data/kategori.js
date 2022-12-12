@@ -3,12 +3,15 @@ $(document).ready(function() {
         $('#table-kategori tbody').append('<tr><td colspan=4 class="text-center">Data masih kosong</td></tr>');
     }
 
+    // btnIndex untuk menyimpan currently selected row
+    // btnId untuk menyimpan item id dari selected row
     var btnIndex = -1, btnId = 0;
     $('.btn-show-action').on('click', function() {
         btnIndex = $(this).index('.btn-show-action') + 1;
         btnId = $(this).attr('id').substring(4);
     });
 
+    // untuk mereset tampilan modal & menampilkan modal
     $('#data-kategori .btn-tambah').on('click', function() {
         btnIndex = -1;
         $('#modal-form').attr('action', "/data/kategori");
@@ -23,6 +26,7 @@ $(document).ready(function() {
         $('#modal-update').modal('show');
     });
 
+    // untuk mengisi tampilan modal & menampilkan modal
     $('#data-kategori #action-update').on('click', function() {
         $('#modal-form').attr('action', "/data/kategori/" + btnId);
         $('.modal-title').text('Rubah kategori');
@@ -41,6 +45,7 @@ $(document).ready(function() {
         $('#modal-update').modal('show');
     });
 
+    // untuk menghapus data kategori
     $('#action-delete').on('click', function() {
         if (confirm('Yakin menghapus data ?')) {
             $.ajax({

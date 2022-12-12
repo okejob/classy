@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    // untuk melimit modal agar modal tidak dapat ditutup dengan cara biasa
     $('#modal-opsi-trans, #modal-new-trans').modal({
         backdrop: 'static',
         keyboard: false
@@ -10,6 +11,7 @@ $(document).ready(function() {
         $('#modal-opsi-trans').modal('show');
     });
 
+    // untuk mengset data transaksi yang dipilih
     $('#table-list-trans tbody').on('click', 'tr', function() {
         let parent = $(this).parent();
         parent.addClass('disabled');
@@ -18,7 +20,6 @@ $(document).ready(function() {
         $.ajax({
             url: "/transaksi/detail/" + id,
         }).done(function(data) {
-            // console.log(data[0]);
 
             let trans = data;
             $('#id-trans').text(trans.id);
@@ -158,6 +159,7 @@ $(document).ready(function() {
         });
     });
 
+    // untuk mencari data transaksi
     $('#search-key-trans').on('click', function() {
         let key = $('#input-key-trans').val()
         $.ajax({
@@ -186,6 +188,7 @@ $(document).ready(function() {
         });
     });
 
+    // untuk menampilkan modal
     $('#add-new-trans').on('click', function() {
         $('#modal-opsi-trans').modal('hide');
         $('#modal-new-trans').modal('show');
@@ -199,6 +202,7 @@ $(document).ready(function() {
         $(this).next().toggle();
     });
 
+    // untuk memilih pelanggan yang nantinya digunakan untuk membuat transaksi baru
     $('#table-list-pelanggan-2 tbody tr').on('click', function() {
         let parent = $(this).parent();
         parent.addClass('disabled');
@@ -223,6 +227,7 @@ $(document).ready(function() {
         parent.removeClass('disabled');
     });
 
+    // untuk membuat transaksi baru
     $('#create-trans').on('click', function() {
         let pelanggan_id = $('#input-id-2').val();
         $.ajax({
@@ -232,6 +237,7 @@ $(document).ready(function() {
         });
     });
 
+    // untuk menabahkan thousand separator
     function setThousandSeparator() {
         let length = $('.thousand-separator').length;
         if (length != 0) {
@@ -256,6 +262,7 @@ $(document).ready(function() {
         }
     });
 
+    // untuk mengubah data penerima dari transaksi
     $('#form-penerimaan').on('submit', function(e) {
         e.preventDefault();
         $(this).addClass('disabled');
@@ -292,6 +299,7 @@ $(document).ready(function() {
         });
     });
 
+    // untuk menampilkan data informasi transaksi
     $('.show-data').on('click', function() {
         let dataType = $(this).attr('id').substring($(this).attr('id').indexOf('data-') + 5);
         if (!$(this).hasClass('show')) {
@@ -313,7 +321,7 @@ $(document).ready(function() {
         $('#modal-list-pelanggan').modal('show');
     });
 
-    // select pelanggan
+    // untuk mengisi data pelanggan di informasi pelanggan
     $('#table-list-pelanggan tbody tr').on('click', function() {
         let id = $(this).attr('id').substring($(this).attr('id').indexOf('row-') + 4);
 
@@ -327,8 +335,6 @@ $(document).ready(function() {
             $('#input-alamat').val(pelanggan.alamat);
             $('#input-email').val(pelanggan.email);
             $('#input-tanggal-lahir').val(pelanggan.tanggal_lahir);
-
-            // console.log(pelanggan);
         });
 
         $('#search-pelanggan').text('Ganti pelanggan');
@@ -340,7 +346,7 @@ $(document).ready(function() {
         window.location = "/transaksi/pickup-delivery/";
     });
 
-    // bottom
+    // untuk mengatur lebar colom pada table beserta behavior table
     function adjustWidth() {
         if ($(window).width() < 576) {
             $('#table-trans-item thead th:nth-child(1)').css('width', '40%');
@@ -402,6 +408,7 @@ $(document).ready(function() {
         adjustWidth();
     });
 
+    // untuk menampilkan table jenis item yang nantinya digunakan untuk menambahkan jenis item pada transaksi
     $('#add-item').on('click', function() {
         $('#table-items tbody').empty();
 
@@ -417,6 +424,7 @@ $(document).ready(function() {
         });
     });
 
+    // untuk mencari jenis item
     $('#search-item').on('click', function() {
         $('#table-items tbody').empty();
         let key = $('#input-nama-item').val();
@@ -432,7 +440,7 @@ $(document).ready(function() {
         });
     });
 
-    // tambah item
+    // untuk menambahkan jenis item pada transaksi
     $('#table-items tbody').on('click', 'tr', function() {
         let parent = $(this).parent();
         parent.addClass('disabled');
@@ -484,17 +492,21 @@ $(document).ready(function() {
         });
     });
 
+    // untuk menampilkan catatan transaksi
     $('#show-catatan-trans').on('click', function() {
         let containerCatatan = $(this).next();
-        console.log(containerCatatan.css('height'));
         containerCatatan.css('top', 'calc(-' + containerCatatan.css('height') + ' - .75rem');
         containerCatatan.toggle();
     });
 
+    // untuk menutup catatan transaksi
     $('#save-catatan-trans').on('click', function() {
         $(this).closest('div').hide();
     });
 
+    // btnIndex untuk menyimpan currently selected row
+    // currentlySelectedItemTransactionID untuk menyimpan id item transaksi
+    // currentlySelectedItemName untuk menyimpan nama dari item transaksi
     var btnIndex = -1, currentlySelectedItemTransactionID = 0, currentlySelectedItemName = '';
     $('#table-trans-item tbody').on('click', '.btn-show-action', function() {
         btnIndex = $(this).index('.btn-show-action') + 1;
@@ -525,6 +537,7 @@ $(document).ready(function() {
         });
     });
 
+    // untuk menghapus item transaksi
     $('#action-delete').on('click', function() {
         if (confirm('Yakin menghapus data  ?')) {
             $.ajax({
@@ -561,7 +574,7 @@ $(document).ready(function() {
         }
     });
 
-    // show catatan item
+    // untuk menampilan modal detail catatan
     $('#table-list-catatan tbody').on('click', '.btn', function() {
         $('#catatan-item-name').text(currentlySelectedItemName);
         $.ajax({
@@ -593,7 +606,7 @@ $(document).ready(function() {
         });
     });
 
-    // add catatan item
+    // untuk mereset dan menampilkan modal tambah catatan
     $('#add-catatan-item').on('click', function() {
         $('#catatan-item-name').text(currentlySelectedItemName);
 
@@ -603,7 +616,6 @@ $(document).ready(function() {
         $('#input-foto-item').show();
         $('#tab-noda').removeClass('disabled');
 
-        // clear catatan
         $('#penulis-catatan-item').val('');
         $('#catatan-item').val('');
         $('#container-image-item').prop('src', '');
@@ -622,7 +634,7 @@ $(document).ready(function() {
         $('#modal-catatan-item').modal('show');
     });
 
-    // save catatan item
+    // untuk menyimpan catatan
     $('#simpan-catatan-item').on('click', function() {
         if ($('#form-catatan')[0].checkValidity()) {
             $(this).addClass('disabled');
@@ -664,7 +676,7 @@ $(document).ready(function() {
     });
 
     // intro.js
-    // intro init halaman
+    // intro ketika init halaman
     function setCookie(cname, cvalue, exdays) {
         const d = new Date();
         d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -691,6 +703,7 @@ $(document).ready(function() {
         introHalaman();
     }
 
+    // untuk tutorial halaman detail
     function introHalaman() {
         introJs().setOptions({
             showBullets: false,
@@ -722,6 +735,7 @@ $(document).ready(function() {
         setCookie('transaksi-intro_halaman', 'done', 1);
     }
 
+    // untuk tutorial managemen transaksi
     function introDetailTransaksi() {
         introJs().setOptions({
             showBullets: false,

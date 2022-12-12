@@ -3,12 +3,15 @@ $(document).ready(function() {
         $('#table-pelanggan tbody').append('<tr><td colspan=9 class="text-center">Data masih kosong</td></tr>');
     }
 
+    // btnIndex untuk menyimpan currently selected row
+    // btnId untuk menyimpan item id dari selected row
     var btnIndex = -1, btnId = 0;
     $('#data-pelanggan .btn-show-action').on('click', function() {
         btnIndex = $(this).index('.btn-show-action') + 1;
         btnId = $(this).attr('id').substring(4);
     });
 
+    // untuk mereset tampilan modal & menampilkan modal
     $('#data-pelanggan .btn-tambah').on('click', function() {
         btnIndex = -1;
         $('#modal-form').attr('action', "/data/pelanggan");
@@ -34,10 +37,12 @@ $(document).ready(function() {
         $('#modal-update').modal('show');
     });
 
+    // untuk membuka detail pelanggan
     $('#data-pelanggan #action-detail').on('click', function() {
         window.location = window.location + '/' + btnId + '/detail';
     });
 
+    // untuk menghapus data kategori
     $('#action-delete').on('click', function() {
         if (confirm('Yakin menghapus data ?')) {
             $.ajax({
