@@ -17,8 +17,8 @@ class PenerimaController extends Controller
     {
         $transaksi_id = $request->only('transaksi_id');
         $penerima = Penerima::where('transaksi_id', $transaksi_id)->first();
-        if (!$penerima) {
-            $delivery = PickupDelivery::where('transaksi_id', $transaksi_id)->first();
+        if (empty($penerima)) {
+            $delivery = PickupDelivery::where('transaksi_id', $transaksi_id)->where('action', 'delivery')->first();
             if (!empty($delivery) && $request->ambil_di_outlet == 1) {
                 return [
                     'status' => 400,
