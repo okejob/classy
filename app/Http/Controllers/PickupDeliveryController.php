@@ -21,7 +21,7 @@ class PickupDeliveryController extends Controller
                 'outlet_id' => Auth::user()->outlet_id,
                 'status' => 'draft',
             ]);
-            $count = PickupDelivery::where('action', $action)->count();
+            $count = PickupDelivery::where('action', $action)->count() + 1;
             $paded = str_pad($count, 6, '0', STR_PAD_LEFT);
             $kode = 'PU-' . $paded;
 
@@ -37,7 +37,7 @@ class PickupDeliveryController extends Controller
             $penerima = Penerima::where('transaksi_id', $request->transaksi_id)->first();
             if (empty($penerima)) {
                 $transaksi = Transaksi::find($request->transaksi_id);
-                $count = PickupDelivery::where('action', $action)->count();
+                $count = PickupDelivery::where('action', $action)->count() + 1;
                 $paded = str_pad($count, 6, '0', STR_PAD_LEFT);
                 $kode = 'DV-' . $paded;
 
