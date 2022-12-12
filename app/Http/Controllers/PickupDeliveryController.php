@@ -36,11 +36,13 @@ class PickupDeliveryController extends Controller
         } else {
             $penerima = Penerima::where('transaksi_id', $request->transaksi_id)->first();
             if (empty($penerima)) {
+                $transaksi = Transaksi::find($request->transaksi_id);
                 $count = PickupDelivery::where('action', $action)->count();
                 $paded = str_pad($count, 6, '0', STR_PAD_LEFT);
                 $kode = 'DV-' . $paded;
 
                 $merged = $request->merge([
+                    'pelanggan_id' => $transaksi->pelanggan_id,
                     'kode' => $kode,
                     'modified_by' => Auth::id()
                 ])->toArray();

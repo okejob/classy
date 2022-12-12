@@ -152,7 +152,7 @@
                         <div class="row">
                             <div class="col-6 mb-2" id="col-transaksi">
                                 <h5>Pilih Transaksi</h5>
-                                <select class="form-control" name="trans_id" required >
+                                <select class="form-control" name="transaksi_id" required >
                                     <option value="" selected hidden>-</option>
                                     @foreach ($dataTransaksi as $trans)
                                         <option value="{{ $trans->id }}">{{ $trans->kode }}</option>

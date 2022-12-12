@@ -7,7 +7,7 @@ $(document).ready(function() {
 
     $('#action-update').on('click', function() {
         $('#form-karyawan').attr('action', "/setting/karyawan/" + btnId);
-        $('#modal-data-user .modal-title').text('Rubah data');
+        $('#modal-data-user .modal-title').text('Rubah data karyawan');
 
         $('#input-username').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(1)').html());
         $('#input-password').attr('required', false);
@@ -42,7 +42,7 @@ $(document).ready(function() {
 
     $('#btn-add').on('click', function() {
         $('#form-karyawan').attr('action', "/setting/karyawan");
-        $('#modal-data-user .modal-title').text('Tambah data');
+        $('#modal-data-user .modal-title').text('Tambah data karyawan');
 
         $('#input-username').val('');
         $('#input-password').val('');
