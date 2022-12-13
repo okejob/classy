@@ -127,7 +127,7 @@
                             <p class="d-flex align-items-center justify-content-end" style="height: 38px;">Metode Pembayaran :</p>
                         </div>
                         <div class="col-9 mb-2">
-                            <select class="form-control">
+                            <select class="form-select">
                                 <option hidden selected>-</option>
                                 <option value="tunai">Tunai</option>
                                 <option value="kredit">Kredit</option>

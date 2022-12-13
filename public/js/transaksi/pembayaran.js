@@ -80,7 +80,7 @@ $(document).ready(function() {
         let total = removeDot($('#input-total').val());
 
         let nominal = removeDot($('#input-nominal').val());
-        let terbayar = removeDot($('#input-terbayar').val());
+        let terbayar = removeDot($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(7)').html());
         if (total > terbayar + nominal) {
             $('#input-terbayar').val((terbayar + nominal).toLocaleString(['ban', 'id']));
         } else {

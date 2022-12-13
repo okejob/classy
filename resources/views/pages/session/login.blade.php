@@ -11,7 +11,7 @@
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         <div class="px-2 mb-4 d-flex justify-content-between align-items-center form-container">
-            <input class="form-control px-2 me-2" type="password" name="password" placeholder="Password baru">
+            <input class="form-control px-2 me-2" type="password" name="password" placeholder="Password">
             <i class="fas fa-eye-slash"></i>
         </div>
         @error('password')
