@@ -48,8 +48,8 @@ $(document).ready(function() {
             $('#modal-detail-trans').modal('show');
 
             $('#input-trans-id').val(trans.id);
-            $('#input-total').val(trans.grand_total);
-            $('#input-terbayar').val(trans.total_terbayar);
+            $('#input-total').val(trans.grand_total.toLocaleString(['ban', 'id']));
+            $('#input-terbayar').val(trans.total_terbayar.toLocaleString(['ban', 'id']));
             $('#input-kembalian').val('0');
         });
     });

@@ -130,8 +130,8 @@
                                 <p class="d-flex align-items-center justify-content-end" style="height: 38px;">Metode Pembayaran :</p>
                             </div>
                             <div class="col-9 mb-2">
-                                <select class="form-select" name="metode_pembayaran">
-                                    <option hidden selected>-</option>
+                                <select class="form-select" name="metode_pembayaran" required>
+                                    <option value hidden selected>-</option>
                                     <option value="tunai">Tunai</option>
                                     <option value="saldo" hidden>Saldo</option>
                                     <option value="kredit">Kredit</option>
@@ -142,7 +142,7 @@
                                 <p class="d-flex align-items-center justify-content-end" style="height: 38px;" >Nominal :</p>
                             </div>
                             <div class="col-9 mb-2">
-                                <input type="text" class="form-control input-thousand-separator" id="input-nominal" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="nominal" />
+                                <input type="text" class="form-control input-thousand-separator" id="input-nominal" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="nominal" required />
                             </div>
                             <div class="col-3 mb-2">
                                 <p class="d-flex align-items-center justify-content-end fw-bold" style="height: 38px;">Total Terbayar :</p>
