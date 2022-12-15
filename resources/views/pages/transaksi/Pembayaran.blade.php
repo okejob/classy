@@ -115,46 +115,51 @@
                 <div class="modal-header">
                     <h4 class="modal-title">Pembayaran <span class="kode-trans">kode trans</span></h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-3 text-end mb-4">
-                            <h1>Total :</h1>
-                        </div>
-                        <div class="col-9 mb-4">
-                            <input type="text" class="form-control h-100 extra-large disabled input-thousand-separator" id="input-total" />
-                        </div>
-                        <div class="col-3 mb-2">
-                            <p class="d-flex align-items-center justify-content-end" style="height: 38px;">Metode Pembayaran :</p>
-                        </div>
-                        <div class="col-9 mb-2">
-                            <select class="form-select">
-                                <option hidden selected>-</option>
-                                <option value="tunai">Tunai</option>
-                                <option value="kredit">Kredit</option>
-                                <option value="debit">Debit</option>
-                            </select>
-                        </div>
-                        <div class="col-3 mb-2">
-                            <p class="d-flex align-items-center justify-content-end" style="height: 38px;" >Nominal :</p>
-                        </div>
-                        <div class="col-9 mb-2">
-                            <input type="text" class="form-control input-thousand-separator" id="input-nominal" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
-                        </div>
-                        <div class="col-3 mb-2">
-                            <p class="d-flex align-items-center justify-content-end fw-bold" style="height: 38px;">Total Terbayar :</p>
-                        </div>
-                        <div class="col-9 mb-2">
-                            <input type="text" class="form-control disabled input-thousand-separator" id="input-terbayar" />
-                        </div>
-                        <div class="col-3 mb-2">
-                            <p class="d-flex align-items-center justify-content-end fw-bold" style="height: 38px;">Kembali :</p>
-                        </div>
-                        <div class="col-9 mb-2">
-                            <input type="text" class="form-control disabled input-thousand-separator" id="input-kembalian" />
+                <form id="form-pembayaran" method="POST" action="/transaksi/pembayaran">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="row">
+                            <input id="input-trans-id" type="hidden" name="transaksi_id" value >
+                            <div class="col-3 text-end mb-4">
+                                <h1>Total :</h1>
+                            </div>
+                            <div class="col-9 mb-4">
+                                <input type="text" class="form-control h-100 extra-large disabled input-thousand-separator" id="input-total" />
+                            </div>
+                            <div class="col-3 mb-2">
+                                <p class="d-flex align-items-center justify-content-end" style="height: 38px;">Metode Pembayaran :</p>
+                            </div>
+                            <div class="col-9 mb-2">
+                                <select class="form-select" name="metode_pembayaran">
+                                    <option hidden selected>-</option>
+                                    <option value="tunai">Tunai</option>
+                                    <option value="saldo" hidden>Saldo</option>
+                                    <option value="kredit">Kredit</option>
+                                    <option value="debit">Debit</option>
+                                </select>
+                            </div>
+                            <div class="col-3 mb-2">
+                                <p class="d-flex align-items-center justify-content-end" style="height: 38px;" >Nominal :</p>
+                            </div>
+                            <div class="col-9 mb-2">
+                                <input type="text" class="form-control input-thousand-separator" id="input-nominal" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="nominal" />
+                            </div>
+                            <div class="col-3 mb-2">
+                                <p class="d-flex align-items-center justify-content-end fw-bold" style="height: 38px;">Total Terbayar :</p>
+                            </div>
+                            <div class="col-9 mb-2">
+                                <input type="text" class="form-control disabled input-thousand-separator" id="input-terbayar" />
+                            </div>
+                            <div class="col-3 mb-2">
+                                <p class="d-flex align-items-center justify-content-end fw-bold" style="height: 38px;">Kembali :</p>
+                            </div>
+                            <div class="col-9 mb-2">
+                                <input type="text" class="form-control disabled input-thousand-separator" id="input-kembalian" />
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer"><button class="btn btn-primary" type="button" id="btn-save">Save</button></div>
+                    <div class="modal-footer"><button class="btn btn-primary" type="submit">Simpan</button></div>
+                </form>
             </div>
         </div>
     </div>

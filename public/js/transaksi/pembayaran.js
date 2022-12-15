@@ -38,8 +38,16 @@ $(document).ready(function() {
                 $('#diskon').parent().hide();
             }
             setThousandSeparator();
+
+            if (trans.lunas) {
+                $('#btn-bayar').hide();
+            } else {
+                $('#btn-bayar').show();
+            }
+
             $('#modal-detail-trans').modal('show');
 
+            $('#input-trans-id').val(trans.id);
             $('#input-total').val(trans.grand_total);
             $('#input-terbayar').val(trans.total_terbayar);
             $('#input-kembalian').val('0');
@@ -83,6 +91,7 @@ $(document).ready(function() {
         let terbayar = removeDot($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(7)').html());
         if (total > terbayar + nominal) {
             $('#input-terbayar').val((terbayar + nominal).toLocaleString(['ban', 'id']));
+            $('#input-kembalian').val(0);
         } else {
             $('#input-terbayar').val((total).toLocaleString(['ban', 'id']));
             $('#input-kembalian').val((terbayar + nominal - total).toLocaleString(['ban', 'id']));
@@ -99,4 +108,10 @@ $(document).ready(function() {
             return number;
         }
     }
+
+    $('#form-pembayaran').on('submit', function(e) {
+        e.preventDefault;
+        $('#input-nominal').val(removeDot($('#input-nominal').val()));
+        $(this).submit();
+    });
 });
