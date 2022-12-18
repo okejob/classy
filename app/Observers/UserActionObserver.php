@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UserActionObserver
 {
+    //Dijalankan Ketika Menyimpan, melakukan Pencatatan siapa yang melakukan.
     public function saved($model)
     {
         if ($model->wasRecentlyCreated == true) {
@@ -26,6 +27,7 @@ class UserActionObserver
         }
     }
 
+    //Dijalankan Ketika Melakukan Hapus, melakukan Pencatatan siapa yang melakukan.
     public function deleting($model)
     {
         if (Auth::check()) {

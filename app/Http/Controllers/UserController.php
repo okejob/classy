@@ -56,7 +56,7 @@ class UserController extends Controller
             'phone' => $request->phone,
             'address' => $request->address,
             'email' => $request->email,
-            'outlet_id' => 1,
+            'outlet_id' => $request->outlet_id,
         ])->assignRole($request->role);
         //need dashboard page
         return redirect()->intended(route('menu-karyawan'));

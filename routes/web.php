@@ -35,15 +35,18 @@ Route::get('/', function () {
     return redirect()->route('login');
 })->name('welcome');
 
+//Middleware Guest digunakan ketika belum login
 Route::get('/login', [PageController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/login', [UserController::class, 'authenticate']);
 Route::get('/logout', [UserController::class, 'logout']);
 
+//Middleware Auth digunakan ketika Sudah Login
 Route::middleware(['auth'])->group(function () {
     Route::get('/reset-password', [PageController::class, 'resetPassword'])->name('reset_password');
 
     Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
     Route::get('/data/rewash', [PageController::class, 'rewash'])->name('menu-rewash')->middleware('permission:menu_rewash');
+    //Middleware dengan permission:XXXX untuk melakukan check permission
 
     //Setting
 

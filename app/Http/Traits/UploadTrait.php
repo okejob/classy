@@ -7,6 +7,7 @@ use Intervention\Image\Facades\Image;
 
 trait UploadTrait
 {
+    //Function Global untuk mengupload Gambar
     public function upload(Request $request, $path)
     {
         $quality = 70;

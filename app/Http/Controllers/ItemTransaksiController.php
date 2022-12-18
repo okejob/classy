@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ItemTransaksiController extends Controller
 {
+    //Menambahkan Item ke Transaksi
     public function addItemToTransaksi(Request $request)
     {
         $request['modified_by'] = Auth::id();
@@ -31,6 +32,7 @@ class ItemTransaksiController extends Controller
         ];
     }
 
+    //Mengubah Status item menjadi "Cuci"
     public function changeStatusCuci(ItemTransaksi $item_transaksi)
     {
         if(empty($item_transaksi->pencuci)){
@@ -39,6 +41,7 @@ class ItemTransaksiController extends Controller
         }
     }
 
+    //Mengubah Status itetm menjadi "Setrika"
     public function changeStatusSetrika(ItemTransaksi $item_transaksi)
     {
         if(empty($item_transaksi->penyetrika)){
@@ -47,6 +50,7 @@ class ItemTransaksiController extends Controller
         }
     }
 
+    //Menyimpan Item Transaksi ke DB
     public function insert(InsertItemTransaksiRequest $request)
     {
         $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
@@ -55,6 +59,7 @@ class ItemTransaksiController extends Controller
         return redirect()->intended(route(''));
     }
 
+    //Menampilkan Detail Item transaksi
     public function show($id)
     {
         $item_transaksi = ItemTransaksi::find($id);
@@ -64,6 +69,7 @@ class ItemTransaksiController extends Controller
         ];
     }
 
+    //Mengupdate Detail Item Transaksi
     public function update(InsertItemTransaksiRequest $request, $id)
     {
         $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
@@ -72,6 +78,7 @@ class ItemTransaksiController extends Controller
         return redirect()->intended(route(''));
     }
 
+    //Menghapus Item Transaksi
     public function delete(ItemTransaksi $id)
     {
         $id_transaksi = $id->transaksi_id;

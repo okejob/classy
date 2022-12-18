@@ -21,6 +21,7 @@ class PembayaranController extends Controller
             'metode_pembayaran' => $request->metode_pembayaran
         ]);
 
+        //Mengubah Total Transaksi
         $transaksi = Transaksi::find($request->transaksi_id);
         $total_terbayar = $transaksi->total_terbayar + (int) $request->nominal;
         if ($total_terbayar >= $transaksi->grand_total) {

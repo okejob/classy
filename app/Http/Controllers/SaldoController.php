@@ -35,6 +35,7 @@ class SaldoController extends Controller
         return null;
     }
 
+    //Mendapatkan saldo pelanggan (kebutuhan AJAX)
     public function getSaldo($pelanggan_id)
     {
         $saldo = Saldo::where('pelanggan_id', $pelanggan_id)->latest()->first();

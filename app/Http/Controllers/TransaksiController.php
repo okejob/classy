@@ -30,6 +30,7 @@ class TransaksiController extends Controller
         ];
     }
 
+    //Mencari Transaksi dengan KEY id, Kode Transaksi, atau Nama Pelanggan
     public function search($key)
     {
         $transaksi = Transaksi::detail()
@@ -44,6 +45,7 @@ class TransaksiController extends Controller
         ];
     }
 
+    //Mendapatkan harga Paket Bucket
     public function bucketPrice($total_bobot)
     {
         $paket_bucket = PaketCuci::where('nama_paket', 'BUCKET')->first();
@@ -52,6 +54,7 @@ class TransaksiController extends Controller
         return round($total_harga, 2);
     }
 
+    //Menghitung nilai Transaksi
     public function checkHarga(Request $request)
     {
         $paket_bucket = PaketCuci::where('nama_paket', 'BUCKET')->first();

@@ -12,6 +12,7 @@ class ItemNoteController extends Controller
 {
     use UploadTrait;
 
+    //Menampilkan List Semua Note 1 Item Transaksi
     public function list($item_transaksi_id)
     {
         $item_notes = ItemNote::where('item_transaksi_id', $item_transaksi_id)->latest()->get();
@@ -21,6 +22,7 @@ class ItemNoteController extends Controller
         ];
     }
 
+    //Menampilkan detail 1 Note Item Transaksi
     public function show($id)
     {
         $item_notes = ItemNote::find($id);
@@ -30,6 +32,7 @@ class ItemNoteController extends Controller
         ];
     }
 
+    //Menyimpan Note ke DB
     public function insert(InsertItemNoteRequest $request)
     {
         $path = $this->upload($request, 'item_notes');

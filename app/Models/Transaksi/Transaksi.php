@@ -18,12 +18,14 @@ class Transaksi extends Model
 
     protected $guarded = ['id'];
 
+    //Function untuk menerapkan Observer ke Model ini
     public static function boot()
     {
         parent::boot();
         User::observe(new UserActionObserver);
     }
 
+    //Function untuk menghitung nilai transaksi
     public function recalculate()
     {
         $pelanggan = Pelanggan::find($this->pelanggan_id);
@@ -53,6 +55,7 @@ class Transaksi extends Model
         return $this;
     }
 
+    //Function untuk melakukan Query detail Transaksi beserta table lain yang memiliki Relation
     public function scopeDetail($query)
     {
         return $query->with('item_transaksi', 'pickup_delivery', 'outlet', 'parfum', 'pelanggan', 'penerima', 'pelanggan.catatan_pelanggan', 'penerima');

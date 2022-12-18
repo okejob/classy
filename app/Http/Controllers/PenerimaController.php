@@ -19,6 +19,8 @@ class PenerimaController extends Controller
         $penerima = Penerima::where('transaksi_id', $transaksi_id)->first();
         if (empty($penerima)) {
             $delivery = PickupDelivery::where('transaksi_id', $transaksi_id)->where('action', 'delivery')->first();
+            
+            //Melakukan Pengecheckan apakah sudah dikirim tetapi request berisi ambil di outlet
             if (!empty($delivery) && $request->ambil_di_outlet == 1) {
                 return [
                     'status' => 400,

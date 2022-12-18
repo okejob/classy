@@ -35,6 +35,7 @@ class PickupDeliveryController extends Controller
             return redirect()->intended(route('pickup-delivery'))->with('message', 'Success Created Pickup');
         } else {
             $penerima = Penerima::where('transaksi_id', $request->transaksi_id)->first();
+            //Melakukan Pengecheckan apakah sudah diterima
             if (empty($penerima)) {
                 $transaksi = Transaksi::find($request->transaksi_id);
                 $count = PickupDelivery::where('action', $action)->count() + 1;

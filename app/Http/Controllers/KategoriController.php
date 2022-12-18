@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class KategoriController extends Controller
 {
+    //Menyimpan Kategori ke DB
     public function insert(InsertKategoriRequest $request)
     {
         $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
@@ -17,6 +18,7 @@ class KategoriController extends Controller
         return redirect()->intended(route('menu-kategori'));
     }
 
+    //Menampilkan Detail Kategori
     public function show($id)
     {
         $kategori = Kategori::find($id);
@@ -26,6 +28,7 @@ class KategoriController extends Controller
         ];
     }
 
+    //Update Kategori
     public function update(InsertKategoriRequest $request, $id)
     {
         $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
@@ -34,6 +37,7 @@ class KategoriController extends Controller
         return redirect()->intended(route('menu-kategori'));
     }
 
+    //Menghapus Kategori
     public function delete($id)
     {
         Kategori::destroy($id);

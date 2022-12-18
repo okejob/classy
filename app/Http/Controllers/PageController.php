@@ -40,11 +40,13 @@ class PageController extends Controller
         return view('pages.session.ubahPassword');
     }
 
+    //Menampilkan Home
     public function dashboard()
     {
         return view('pages.session.home');
     }
 
+    //Menampilkan Menu Jenis Item
     public function jenisItem(Request $request)
     {
         return view(
@@ -59,6 +61,7 @@ class PageController extends Controller
         );
     }
 
+    //Menampilkan Menu Kategori
     public function kategori(Request $request)
     {
         return view(
@@ -72,6 +75,7 @@ class PageController extends Controller
         );
     }
 
+    //Menampilkan Menu Parfum
     public function parfum(Request $request)
     {
         return view(
@@ -86,6 +90,7 @@ class PageController extends Controller
         );
     }
 
+    //Menampilkan Menu Pelanggan
     public function pelanggan(Request $request)
     {
         return view(
@@ -102,6 +107,7 @@ class PageController extends Controller
         );
     }
 
+    //Menampilkan Menu Pengeluaran
     public function pengeluaran(Request $request)
     {
         return view(
@@ -115,6 +121,7 @@ class PageController extends Controller
         );
     }
 
+    //Menampilkan Menu Rewash
     public function rewash()
     {
         return view(
@@ -122,6 +129,7 @@ class PageController extends Controller
         );
     }
 
+    //Menampilkan Menu Karyawan
     public function karyawan()
     {
         return view(
@@ -134,6 +142,7 @@ class PageController extends Controller
         );
     }
 
+    //Menampilkan Menu Outlet
     public function outlet(Request $request)
     {
         return view(

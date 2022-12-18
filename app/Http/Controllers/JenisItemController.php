@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class JenisItemController extends Controller
 {
 
+    //Mencari Jenis Item dengan Key Nama atau Nama Kategori
     public function find(Request $request)
     {
         $jenis_item = JenisItem::where('nama', 'like', "%{$request->key}%")
@@ -23,6 +24,7 @@ class JenisItemController extends Controller
         ];
     }
 
+    //Menyimpan Jenis Item ke DB
     public function insert(InsertJenisItemRequest $request)
     {
         $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
@@ -31,6 +33,7 @@ class JenisItemController extends Controller
         return redirect()->intended(route('menu-jenis-item'));
     }
 
+    //Menampilkan Detail Jenis Item
     public function show($id)
     {
         $jenis_item = JenisItem::find($id);
@@ -40,6 +43,7 @@ class JenisItemController extends Controller
         ];
     }
 
+    //Update Jenis Item
     public function update(InsertJenisItemRequest $request, $id)
     {
         $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
@@ -48,6 +52,7 @@ class JenisItemController extends Controller
         return redirect()->intended(route('menu-jenis-item'));
     }
 
+    //Delete Jenis Item
     public function delete($id)
     {
         JenisItem::destroy($id);
