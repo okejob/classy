@@ -1,11 +1,19 @@
 $(document).ready(function() {
     $('form').on('click', '.fas.fa-eye-slash', function() {
-        $(this).siblings().attr('type', 'text');
+        if ($(this).siblings().is('input')) {
+            $(this).siblings().attr('type', 'text');
+        } else {
+            $(this).parent().siblings().attr('type', 'text');
+        }
         $(this).attr('class', 'fas fa-eye');
     });
 
     $('form').on('click', '.fas.fa-eye', function() {
-        $(this).siblings().attr('type', 'password');
+        if ($(this).siblings().is('input')) {
+            $(this).siblings().attr('type', 'password');
+        } else {
+            $(this).parent().siblings().attr('type', 'password');
+        }
         $(this).attr('class', 'fas fa-eye-slash');
     });
 

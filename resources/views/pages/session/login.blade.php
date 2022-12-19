@@ -15,7 +15,7 @@
         <div class="mb-3">
             <div class="ps-2 mb-1 d-flex justify-content-between align-items-center form-container">
                 <input class="form-control px-2" type="password" name="password" placeholder="Password">
-                <button class="btn h-100"><i class="fas fa-eye-slash"></i></button>
+                <button class="btn h-100" type="button" style="box-shadow: none;"><i class="fas fa-eye-slash"></i></button>
             </div>
             @error('password')
                 <div class="alert alert-danger" style="padding: 0.5rem 1.15rem;">{{ $message }}</div>
