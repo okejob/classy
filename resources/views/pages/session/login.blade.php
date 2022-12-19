@@ -24,13 +24,13 @@
         <div class="mb-4">
             <div class="form-container mb-1 px-2">
                 <select class="px-2 form-control" style="border-bottom: none;" name="cabang">
-                    <option value="" hidden selected disabled class="px-2">Cabang</option>
-                    @foreach ($cabangs as $cabang)
-                        <option value="{{ $cabang->id }}">{{ $cabang->nama }}</option>
+                    <option value="" hidden selected disabled class="px-2">Outlet</option>
+                    @foreach ($outlets as $outlet)
+                        <option value="{{ $outlet->id }}">{{ $outlet->nama }}</option>
                     @endforeach
                 </select>
             </div>
-            @error('cabang')
+            @error('outlet')
                 <div class="alert alert-danger" style="padding: 0.5rem 1.15rem;">{{ $message }}</div>
             @enderror
         </div>

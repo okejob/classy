@@ -7,33 +7,78 @@
         <i class="fas fa-angle-right mx-2"></i>
         <a>Pickup &amp; Delivery</a>
     </header>
-    <div class="card">
-        <div class="card-body">
-            <section id="section-pickup" class="mb-4">
-                <h4>Pickup</h4>
-                <hr />
-                <div id="table-pickup"></div>
-                <div class="text-end mt-3">
-                    <button id="create-pickup" class="btn btn-primary">Pickup Baru</button>
+    <ul role="tablist" class="nav nav-tabs" style="border-bottom: none;">
+        <li role="presentation" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link active" href="#tab-1">Data</a></li>
+        <li role="presentation" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link" href="#tab-2">Task Hub</a></li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="tab-1">
+            <div class="card">
+                <div class="card-body">
+                    <section id="section-pickup" class="mb-4">
+                        <h4>Pickup</h4>
+                        <hr />
+                        <div id="table-pickup"></div>
+                        <div class="text-end mt-3">
+                            <button id="create-pickup" class="btn btn-primary">Pickup Baru</button>
+                        </div>
+                    </section>
+                    <hr style="margin: 1rem -1rem;" />
+                    <section id="section-delivery" class="mb-4">
+                        <h4>Delivery</h4>
+                        <hr />
+                        <div id="table-delivery"></div>
+                        <div class="text-end mt-3">
+                            <button id="create-delivery" class="btn btn-primary">Delivery Baru</button>
+                        </div>
+                    </section>
+                    <hr style="margin: 1rem -1rem;" />
+                    <section id="section-ambil-outlet" class="mb-4">
+                        <h4>Ambil di outlet</h4>
+                        <hr />
+                        <div id="table-di-outlet"></div>
+                    </section>
                 </div>
-            </section>
-            <hr style="margin: 1rem -1rem;" />
-            <section id="section-delivery" class="mb-4">
-                <h4>Delivery</h4>
-                <hr />
-                <div id="table-delivery"></div>
-                <div class="text-end mt-3">
-                    <button id="create-delivery" class="btn btn-primary">Delivery Baru</button>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-2">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-xl-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4>Nama Driver</h4>
+                                    <hr />
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Action</th>
+                                                    <th>Time</th>
+                                                    <th>Alamat</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center">Pick up</td>
+                                                    <td>09.00</td>
+                                                    <td>Jl Kusuma Bangsa</td>
+                                                    <td class="text-center">not done</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </section>
-            <hr style="margin: 1rem -1rem;" />
-            <section id="section-ambil-outlet" class="mb-4">
-                <h4>Ambil di outlet</h4>
-                <hr />
-                <div id="table-di-outlet"></div>
-            </section>
+            </div>
         </div>
     </div>
+
     <div role="dialog" tabindex="-1" class="modal fade" id="modal-create-pickup">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">

@@ -30,7 +30,7 @@ class PageController extends Controller
         return view(
             'pages.session.login',
             [
-                'cabangs' => Outlet::where("status", 1)->orderBy("nama", "asc")->get(),
+                'outlets' => Outlet::where("status", 1)->orderBy("nama", "asc")->get(),
             ]
         );
     }
