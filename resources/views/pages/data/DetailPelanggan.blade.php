@@ -12,16 +12,16 @@
                     @csrf
                     <div class="row">
                         <div class="col-12 mb-2 disabled">
-                            <h5>Nama Lengkap</h5>
+                            <h5>Nama Lengkap*</h5>
                             <input class="form-control" type="text" id="input-nama-pelanggan" name="nama" value="{{ $pelanggan->nama }}" required>
                         </div>
                         <div class="col-12 mb-2 disabled">
-                            <h5>Alamat</h5>
+                            <h5>Alamat*</h5>
                             <input class="form-control" type="text" id="input-alamat" name="alamat" value="{{ $pelanggan->alamat }}" required>
                         </div>
                         <div class="col-12 col-lg-6 mb-2 disabled">
                             <h5>Tanggal Lahir</h5>
-                            <input class="form-control" id="input-tanggal-lahir" type="date" name="tanggal_lahir" value="{{ $pelanggan->tanggal_lahir }}" required>
+                            <input class="form-control" id="input-tanggal-lahir" type="date" name="tanggal_lahir" value="{{ $pelanggan->tanggal_lahir }}" >
                         </div>
                         <div class="col-12 col-lg-6 mb-2 disabled">
                             <h5>Tipe Member</h5>
@@ -38,7 +38,7 @@
                         </div>
                         <div class="col-12 col-sm-6 mb-2 disabled">
                             <h5>Jenis Identitas</h5>
-                            <select class="form-select" id="input-jenis-identitas" name="jenis_id" value="{{ $pelanggan->jenis_id }}" required>
+                            <select class="form-select" id="input-jenis-identitas" name="jenis_id" value="{{ $pelanggan->jenis_id }}" >
                                 <option value='' disabled hidden>-</option>
                                 <option value="ktp">KTP</option>
                                 <option value="sim">SIM</option>
@@ -46,15 +46,15 @@
                         </div>
                         <div class="col-12 col-sm-6 mb-2 disabled">
                             <h5>Nomor Identitas</h5>
-                            <input class="form-control" type="text" id="input-nomor-identitas" name="no_id" value="{{ $pelanggan->no_id }}" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                            <input class="form-control" type="text" id="input-nomor-identitas" name="no_id" value="{{ $pelanggan->no_id }}"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                         </div>
                         <div class="col-12 col-lg-4 col-sm-6 mb-2 disabled">
-                            <h5>Telephone</h5>
+                            <h5>Telephone*</h5>
                             <input class="form-control" type="text" id="input-telepon" name="telephone" value="{{ $pelanggan->telephone }}" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                         </div>
                         <div class="col-12 col-lg-4 col-sm-6 mb-2 disabled">
                             <h5>E-mail</h5>
-                            <input class="form-control" type="text" id="input-email" name="email" value="{{ $pelanggan->email }}" required>
+                            <input class="form-control" type="text" id="input-email" name="email" value="{{ $pelanggan->email }}" >
                         </div>
                         <div class="col-12 col-lg-4 mb-2 disabled">
                             <h5>Status</h5>

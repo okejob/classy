@@ -43,11 +43,6 @@ $(document).ready(function() {
         $('#input-email').val('');
         $('#formCheck-aktif').attr('checked', true);
         $('#formCheck-tidakAktif').attr('checked', false);
-        $('#modal-form .modal-body .row .col-12:nth-child(7)').removeClass('col-lg-4');
-        $('#modal-form .modal-body .row .col-12:nth-child(8)').removeClass('col-lg-4');
-        $('#modal-form .modal-body .row .col-12:nth-child(7)').addClass('col-lg-6');
-        $('#modal-form .modal-body .row .col-12:nth-child(8)').addClass('col-lg-6');
-        $('#modal-form .modal-body .row .col-12:nth-child(9)').hide();
 
         $('#modal-update').modal('show');
     });
