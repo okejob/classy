@@ -96,20 +96,9 @@ class PageController extends Controller
     }
 
     //Menampilkan Menu Pelanggan
-    public function pelanggan(Request $request)
+    public function pelanggan()
     {
-        return view(
-            'pages.data.Pelanggan',
-            [
-                'data1' => Pelanggan::when($request->has("search"), function ($q) use ($request) {
-                    return $q->where("nama", "like", "%" . $request->get("search") . "%")
-                        ->orWhere("no_id", "like", "%" . $request->get("search") . "%")
-                        ->orWhere("telephone", "like", "%" . $request->get("search") . "%")
-                        ->orWhere("email", "like", "%" . $request->get("search") . "%");
-                })->orderBy("nama", "asc")->paginate(5),
-                'data2' => Pelanggan::select('member')->orderBy("member", "asc")->distinct()->get()
-            ]
-        );
+        return view('pages.data.Pelanggan');
     }
 
     //Menampilkan Menu Pengeluaran

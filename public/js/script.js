@@ -108,6 +108,23 @@ $(document).ready(function() {
         flag = true;
     });
 
+    $('#data-pelanggan #table-pelanggan').on('click', '.btn-show-action', function() {
+        let lebarList = 150;
+        let lebarBtn = $(this).css('width');
+        let lebarTambahan = 2;
+        lebarBtn = parseInt(lebarBtn.substr(0, lebarBtn.indexOf('px')));
+        $('#list-action').css('left', $(this).offset().left - $(this).closest('.card').offset().left - lebarList + lebarBtn + lebarTambahan);
+
+        let tinggiBtn = $(this).css('height');
+        let tinggiHeader = 0;
+        tinggiBtn = parseInt(tinggiBtn.substr(0, tinggiBtn.indexOf('px')));
+        $('#list-action').css('top', $(this).offset().top - $(this).closest('.card').offset().top + tinggiBtn + tinggiHeader);
+
+        $('#list-action').show();
+        btnIndex = $(this).index('.btn-show-action') + 1;
+        flag = true;
+    });
+
     $('#section-detail-transaksi #table-trans-item tbody').on('scroll', function() {
         setTimeout(function (){
             if (flag) {

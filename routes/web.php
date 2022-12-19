@@ -113,6 +113,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/data/pelanggan', [PelangganController::class, 'insert'])->middleware('permission:insert_pelanggan');
     Route::post('/data/pelanggan/{id}', [PelangganController::class, 'update'])->middleware('permission:update_pelanggan');
     Route::get('/data/pelanggan/delete/{id}', [PelangganController::class, 'delete'])->middleware('permission:delete_pelanggan');
+    Route::get('/component/pelanggan', [PelangganController::class, 'pelanggan']);
 
     //Pickup & Delivery
     Route::get('/transaksi/pickup-delivery', [PageController::class, 'pickupDelivery'])->name('pickup-delivery')->middleware('permission:menu_pickup_delivery');

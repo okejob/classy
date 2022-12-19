@@ -53,4 +53,17 @@ class PelangganController extends Controller
             ]
         );
     }
+
+    public function pelanggan(Request $request)
+    {
+        $pelanggan = Pelanggan::when($request->has("search"), function ($q) use ($request) {
+            return $q->where("nama", "like", "%" . $request->get("search") . "%")
+                ->orWhere("no_id", "like", "%" . $request->get("search") . "%")
+                ->orWhere("telephone", "like", "%" . $request->get("search") . "%")
+                ->orWhere("email", "like", "%" . $request->get("search") . "%");
+        })->orderBy("nama", "asc")->paginate(5);
+        return view('components.tablePelanggan', [
+            'pelanggans' => $pelanggan,
+        ]);
+    }
 }
