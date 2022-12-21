@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\InsertTransaksiRequest;
 use App\Http\Requests\UpdateTransaksiRequest;
+use App\Http\Requests\UserLoginRequest;
 use App\Models\Data\Pelanggan;
 use App\Models\Paket\PaketCuci;
 use App\Models\Transaksi\Transaksi;
@@ -83,6 +84,24 @@ class TransaksiController extends Controller
             'status' => 200,
             $transaksi,
         ];
+    }
+
+    public function authenticationDiskon(UserLoginRequest $request)
+    {
+        $user = User::where('username', $request['username'])->first();
+        $auth = Auth::attempt(['email' => $user->email, 'password' => $request['password']]);
+
+        if ($auth) {
+            $role = $user->getRole();
+            if ($role == 'supervisor' || $role == 'administrator') {
+                return [
+                    'status' => 200,
+                ];
+            }
+        }
+        return back()->withErrors([
+            'password' => 'Tidak Memiliki Akses'
+        ]);
     }
 
     public function update(UpdateTransaksiRequest $request, $id)

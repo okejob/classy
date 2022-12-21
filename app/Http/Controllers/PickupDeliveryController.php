@@ -65,12 +65,30 @@ class PickupDeliveryController extends Controller
         ];
     }
 
+    public function showTaskHub()
+    {
+        $id = Auth::id();
+        $pickup_delivery = PickupDelivery::where('driver_id', $id)->get();
+        return [
+            'status' => 200,
+            $pickup_delivery
+        ];
+    }
+
     public function update(InsertPickupDeliveryRequest $request, $id)
     {
         $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
         PickupDelivery::find($id)->update($merged);
 
         //return redirect()->intended(route(''));
+    }
+
+    public function changeDoneStatus(PickupDelivery $pickup_delivery)
+    {
+        $pickup_delivery->is_done = true;
+        return [
+            'status' => 200
+        ];
     }
 
     public function delete($id)

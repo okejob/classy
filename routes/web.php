@@ -17,7 +17,6 @@ use App\Http\Controllers\PickupDeliveryController;
 use App\Http\Controllers\SaldoController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
-use App\Models\Transaksi\PickupDelivery;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -124,6 +123,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/component/pickup', [PickupDeliveryController::class, 'pickup']);
     Route::get('/component/delivery', [PickupDeliveryController::class, 'delivery']);
     Route::get('/component/ambil_di_outlet', [PickupDeliveryController::class, 'ambil_di_outlet']);
+    Route::get('/transaksi/pickup-delivery/task-hub', [PickupDeliveryController::class, 'showTaskHub']);
+    Route::get('/transaksi/pickup-delivery/{pickup_delivery}/is-done', [PickupDeliveryController::class, 'changeIsDone']);
 
     //Catatan Item Transaksi //ItemTransaksi
     Route::get('/transaksi/item-transaksi/{id}', [ItemTransaksiController::class, 'show'])->middleware('permission:show_item_transaksi');
@@ -148,6 +149,8 @@ Route::middleware(['auth'])->group(function () {
     //ganti status pencuci & penyetrika
     Route::get('/transaksi/{transaksi}/pencuci', [ItemTransaksiController::class, 'changeStatusCuci']);
     Route::get('/transaksi/{transaksi}/penyetrika', [ItemTransaksiController::class, 'changStatusSetrika']);
+    //Autentikasi Diskon
+    Route::post('/transaksi/diskon/autentikasi', [TransaksiController::class, 'authenticationDiskon']);
 
     //History
     Route::get('/data/pelanggan/{id_pelanggan}/detail', [PelangganController::class, 'detailPelanggan']);
