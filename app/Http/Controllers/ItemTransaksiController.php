@@ -32,23 +32,7 @@ class ItemTransaksiController extends Controller
         ];
     }
 
-    //Mengubah Status item menjadi "Cuci"
-    public function changeStatusCuci(ItemTransaksi $item_transaksi)
-    {
-        if(empty($item_transaksi->pencuci)){
-            $item_transaksi->pencuci = Auth::id();
-            $item_transaksi->save();
-        }
-    }
-
-    //Mengubah Status itetm menjadi "Setrika"
-    public function changeStatusSetrika(ItemTransaksi $item_transaksi)
-    {
-        if(empty($item_transaksi->penyetrika)){
-            $item_transaksi->penyetrika = Auth::id();
-            $item_transaksi->save();
-        }
-    }
+    
 
     //Menyimpan Item Transaksi ke DB
     public function insert(InsertItemTransaksiRequest $request)

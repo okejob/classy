@@ -6,7 +6,6 @@ use App\Http\Requests\InsertTransaksiRequest;
 use App\Http\Requests\UpdateTransaksiRequest;
 use App\Models\Data\Pelanggan;
 use App\Models\Paket\PaketCuci;
-use App\Models\Transaksi\ItemTransaksi;
 use App\Models\Transaksi\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -111,5 +110,23 @@ class TransaksiController extends Controller
             $transaksi->save();
         }
         return redirect()->intended(route('transaksi'));
+    }
+
+    //Mengubah Status item menjadi "Cuci"
+    public function changeStatusCuci(Transaksi $transaksi)
+    {
+        if (empty($transaksi->pencuci)) {
+            $transaksi->pencuci = Auth::id();
+            $transaksi->save();
+        }
+    }
+
+    //Mengubah Status itetm menjadi "Setrika"
+    public function changeStatusSetrika(Transaksi $transaksi)
+    {
+        if (empty($transaksi->penyetrika)) {
+            $transaksi->penyetrika = Auth::id();
+            $transaksi->save();
+        }
     }
 }

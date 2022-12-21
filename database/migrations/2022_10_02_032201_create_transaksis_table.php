@@ -43,6 +43,14 @@ return new class extends Migration
             $table->integer('total_terbayar')->default(0);
             $table->string('status')->default('draft');
             $table->text('catatan')->nullable();
+            $table->foreignId('pencuci')
+                ->nullable()
+                ->constrained('users', 'id')
+                ->cascadeOnDelete();
+            $table->foreignId('penyetrika')
+                ->nullable()
+                ->constrained('users', 'id')
+                ->cascadeOnDelete();
             $table->foreignId('modified_by')
                 ->nullable()
                 ->constrained('users', 'id')

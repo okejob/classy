@@ -130,9 +130,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/transaksi/item-transaksi', [ItemTransaksiController::class, 'insert'])->middleware('permission:insert_item_transaksi');
     Route::post('/transaksi/item-transaksi/{id}', [ItemTransaksiController::class, 'update'])->middleware('permission:update_item_transaksi');
     Route::get('/transaksi/item-transaksi/delete/{id}', [ItemTransaksiController::class, 'delete'])->middleware('permission:delete_item_transaksi');
-    //ganti status pencuci & penyetrika
-    Route::get('/transaksi/item-transsaksi/{item_transaksi}/pencuci', [ItemTransaksiController::class, 'changeStatusCuci']);
-    Route::get('/transaksi/item-transsaksi/{item_transaksi}/penyetrika', [ItemTransaksiController::class, 'changStatusSetrika']);
+
 
     //ItemNote
     Route::get('/transaksi/item/note/list/{item_transaksi_id}', [ItemNoteController::class, 'list']);
@@ -147,6 +145,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transaksi/addItem', [ItemTransaksiController::class, 'addItemToTransaksi']);
     Route::post('/transaksi/update/{id}', [TransaksiController::class, 'update']);
     Route::post('/transaksi/penerima', [PenerimaController::class, 'insert']);
+    //ganti status pencuci & penyetrika
+    Route::get('/transaksi/{transaksi}/pencuci', [ItemTransaksiController::class, 'changeStatusCuci']);
+    Route::get('/transaksi/{transaksi}/penyetrika', [ItemTransaksiController::class, 'changStatusSetrika']);
 
     //History
     Route::get('/data/pelanggan/{id_pelanggan}/detail', [PelangganController::class, 'detailPelanggan']);
