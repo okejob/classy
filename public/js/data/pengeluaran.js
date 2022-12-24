@@ -1,6 +1,6 @@
 $(document).ready(function() {
     if ($('#table-pengeluaran tbody').children().length == 0) {
-        $('#table-pengeluaran tbody').append('<tr><td colspan=6 class="text-center">Data masih kosong</td></tr>');
+        $('#table-pengeluaran tbody').append('<tr><td colspan=7 class="text-center">Data masih kosong</td></tr>');
     }
 
     // btnIndex untuk menyimpan currently selected row

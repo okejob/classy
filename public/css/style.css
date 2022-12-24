@@ -289,3 +289,17 @@ thead tr {
 #section-transaksi-saldo #paket-container .card {
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
+
+#proses-cuci .item {
+    border: 1px solid rgba(0,0,0,0.125);
+    z-index: 1;
+    background: white;
+    margin-bottom: 1rem;
+}
+
+.sortable-placeholder {
+    height: 82px;
+    border-radius: 1rem;
+    border: 4px dashed #dee2e6;
+}
+

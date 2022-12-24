@@ -66,6 +66,12 @@
                         <p class="ms-3">Pickup & Delivery</p>
                     </a>
                 </div>
+                <div id="nav-transaksi-proses-cuci">
+                    <a href="/transaksi/proses-cuci" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
+                        <i class="fa-solid fa-jug-detergent"></i>
+                        <p class="ms-3">Proses Cuci</p>
+                    </a>
+                </div>
                 <div id="nav-transaksi-rewash">
                     <a href="/transaksi/rewash" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fas fa-water"></i>

@@ -378,14 +378,12 @@
                     <table class="table table-striped mb-0" id="table-trans-item">
                         <thead>
                             <tr>
-                                <th style="width: 25%;">Nama Item</th>
-                                <th class="d-none d-lg-table-cell" style="width: 15%;">Kategori</th>
-                                <th class="d-none d-xl-table-cell" style="width: 10%;">Cuci</th>
-                                <th class="d-none d-xl-table-cell" style="width: 10%;">Setrika</th>
-                                <th class="d-none d-md-table-cell" style="width: 10%;">Proses</th>
-                                <th style="width: 10%;">Bobot</th>
+                                <th>Nama Item</th>
+                                <th class="d-none d-lg-table-cell">Kategori</th>
+                                <th class="d-none d-md-table-cell">Proses</th>
+                                <th>Bobot</th>
                                 <th>Harga Premium</th>
-                                <th style="width: 50px;"></th>
+                                <th style="width: 46.25px;"></th>
                             </tr>
                         </thead>
                         <tbody>

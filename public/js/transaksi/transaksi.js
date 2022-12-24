@@ -127,11 +127,9 @@ $(document).ready(function() {
                 const item = trans.item_transaksi[i];
                 $('#table-trans-item tbody').append(
                     "<tr id='" + item.id + "'>" +
-                        "<td style='white-space: nowrap; width: 25%;'>" + item.nama + "</td>" +
-                        "<td class='d-none d-lg-table-cell' style='width: 15%;'>" + item.nama_kategori + "</td>" +
+                        "<td style='white-space: nowrap; width: 35%;'>" + item.nama + "</td>" +
+                        "<td class='d-none d-lg-table-cell' style='width: 25%;'>" + item.nama_kategori + "</td>" +
                         "<td class='d-none d-xl-table-cell' style='width: 10%;'></td>" +
-                        "<td class='d-none d-xl-table-cell' style='width: 10%;'></td>" +
-                        "<td class='d-none d-md-table-cell' style='width: 10%;'></td>" +
                         "<td class='text-center' style='width: 10%;'>" + item.bobot_bucket + "</td>" +
                         "<td class='d-none d-sm-table-cell' style='width: 5%;'>Rp</td>" +
                         "<td class='text-end thousand-separator'>" + item.harga_premium + "</td>" +
@@ -350,54 +348,51 @@ $(document).ready(function() {
     function adjustWidth() {
         if ($(window).width() < 576) {
             $('#table-trans-item thead th:nth-child(1)').css('width', '40%');
-            $('#table-trans-item thead th:nth-child(6)').css('width', '15%');
+            $('#table-trans-item thead th:nth-child(4)').css('width', '15%');
 
             $('#table-trans-item tbody tr td:nth-child(1)').css('width', '40%');
             $('#table-trans-item tbody tr td:nth-child(1)').css('white-space', 'initial');
-            $('#table-trans-item tbody tr td:nth-child(6)').css('width', '15%');
+            $('#table-trans-item tbody tr td:nth-child(4)').css('width', '15%');
 
             $('#table-trans-item tfoot tr td:nth-child(1)').css('width', '55%');
             $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '10%');
         } else if ($(window).width() < 992) {
             $('#table-trans-item thead th:nth-child(1)').css('width', '40%');
-            $('#table-trans-item thead th:nth-child(5)').css('width', '15%');
-            $('#table-trans-item thead th:nth-child(6)').css('width', '10%');
+            $('#table-trans-item thead th:nth-child(3)').css('width', '15%');
+            $('#table-trans-item thead th:nth-child(4)').css('width', '10%');
 
             $('#table-trans-item tbody tr td:nth-child(1)').css('width', '40%');
             $('#table-trans-item tbody tr td:nth-child(1)').css('white-space', 'nowrap');
-            $('#table-trans-item tbody tr td:nth-child(5)').css('width', '15%');
-            $('#table-trans-item tbody tr td:nth-child(6)').css('width', '10%');
-            $('#table-trans-item tbody tr td:nth-child(7)').css('width', '7.5%');
+            $('#table-trans-item tbody tr td:nth-child(3)').css('width', '15%');
+            $('#table-trans-item tbody tr td:nth-child(4)').css('width', '10%');
 
             $('#table-trans-item tfoot tr td:nth-child(1)').css('width', '65%');
             $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '7.5%');
         } else if ($(window).width() < 1200) {
             $('#table-trans-item thead th:nth-child(1)').css('width', '30%');
             $('#table-trans-item thead th:nth-child(2)').css('width', '20%');
-            $('#table-trans-item thead th:nth-child(5)').css('width', '10%');
-            $('#table-trans-item thead th:nth-child(6)').css('width', '10%');
+            $('#table-trans-item thead th:nth-child(3)').css('width', '10%');
+            $('#table-trans-item thead th:nth-child(4)').css('width', '10%');
 
             $('#table-trans-item tbody tr td:nth-child(1)').css('width', '30%');
             $('#table-trans-item tbody tr td:nth-child(1)').css('white-space', 'nowrap');
             $('#table-trans-item tbody tr td:nth-child(2)').css('width', '20%');
-            $('#table-trans-item tbody tr td:nth-child(5)').css('width', '10%');
-            $('#table-trans-item tbody tr td:nth-child(6)').css('width', '10%');
-            $('#table-trans-item tbody tr td:nth-child(7)').css('width', '5%');
+            $('#table-trans-item tbody tr td:nth-child(3)').css('width', '10%');
+            $('#table-trans-item tbody tr td:nth-child(4)').css('width', '10%');
 
             $('#table-trans-item tfoot tr td:nth-child(1)').css('width', '70%');
             $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '5%');
         } else {
-            $('#table-trans-item thead th:nth-child(1)').css('width', '25%');
-            $('#table-trans-item thead th:nth-child(2)').css('width', '15%');
-            $('#table-trans-item thead th:nth-child(5)').css('width', '10%');
-            $('#table-trans-item thead th:nth-child(6)').css('width', '10%');
+            $('#table-trans-item thead th:nth-child(1)').css('width', '35%');
+            $('#table-trans-item thead th:nth-child(2)').css('width', '25%');
+            $('#table-trans-item thead th:nth-child(3)').css('width', '10%');
+            $('#table-trans-item thead th:nth-child(4)').css('width', '10%');
 
-            $('#table-trans-item tbody tr td:nth-child(1)').css('width', '25%');
+            $('#table-trans-item tbody tr td:nth-child(1)').css('width', '35%');
             $('#table-trans-item tbody tr td:nth-child(1)').css('white-space', 'nowrap');
-            $('#table-trans-item tbody tr td:nth-child(2)').css('width', '15%');
-            $('#table-trans-item tbody tr td:nth-child(5)').css('width', '10%');
-            $('#table-trans-item tbody tr td:nth-child(6)').css('width', '10%');
-            $('#table-trans-item tbody tr td:nth-child(7)').css('width', '5%');
+            $('#table-trans-item tbody tr td:nth-child(2)').css('width', '25%');
+            $('#table-trans-item tbody tr td:nth-child(3)').css('width', '10%');
+            $('#table-trans-item tbody tr td:nth-child(4)').css('width', '10%');
 
             $('#table-trans-item tfoot tr td:nth-child(1)').css('width', '80%');
             $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '5%');
