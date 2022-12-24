@@ -16,6 +16,7 @@ use App\Models\Transaksi\PickupDelivery;
 use App\Models\Transaksi\Transaksi;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Gd\Driver;
 
 class PageController extends Controller
@@ -201,6 +202,19 @@ class PageController extends Controller
                 'data' => $data
             ]
         );
+    }
+
+    public function hubCuci()
+    {
+        $data['transaksi'] = Transaksi::whereNull('pencuci')->latest()->get();
+        return view();
+    }
+
+    public function hubSetrika()
+    {
+        $data['transaksi'] = Transaksi::whereNotNull('pencuci')
+            ->whereNull('penyetrika')->latest()->get();
+        return view();
     }
 
     public function saldo()

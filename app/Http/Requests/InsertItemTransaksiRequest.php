@@ -27,8 +27,7 @@ class InsertItemTransaksiRequest extends FormRequest
             'transaksi_id' => 'required|exists:transaksis,id',
             'jenis_item_id' => 'required|exists:jenis_items,id',
             'status_proses' => 'nullable|string',
-            'pencuci' => 'nullable|exists:users,id',
-            'penyetrika' => 'nullable|exists:users,id',
+            'keterangan' => 'nullable|string'
         ];
     }
 }

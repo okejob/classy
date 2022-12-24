@@ -132,7 +132,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/transaksi/item-transaksi/{id}', [ItemTransaksiController::class, 'update'])->middleware('permission:update_item_transaksi');
     Route::get('/transaksi/item-transaksi/delete/{id}', [ItemTransaksiController::class, 'delete'])->middleware('permission:delete_item_transaksi');
 
-
     //ItemNote
     Route::get('/transaksi/item/note/list/{item_transaksi_id}', [ItemNoteController::class, 'list']);
     Route::get('/transaksi/item/note/{id}', [ItemNoteController::class, 'show']);

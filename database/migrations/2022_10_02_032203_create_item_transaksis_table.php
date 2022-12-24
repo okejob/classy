@@ -24,7 +24,7 @@ return new class extends Migration
             $table->float('bobot_bucket')->default(0);
             $table->integer('harga_premium')->default(0);
             $table->string('status_proses');
-            
+            $table->string('keterangan')->nullable();
             $table->foreignId('modified_by')
                 ->constrained('users', 'id')
                 ->cascadeOnDelete();
