@@ -130,8 +130,15 @@ p {
   background-color: rgb(31,40,45);
 }
 
-#side-nav .nav-menu i, #side-nav .nav-menu svg, .bg-clean i {
+#side-nav .nav-menu i, .bg-clean i {
     width: 16px;
+    display: flex;
+    justify-content: center;
+}
+
+#side-nav .nav-menu svg {
+    width: 20px;
+    position: absolute;
     display: flex;
     justify-content: center;
 }
