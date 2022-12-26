@@ -212,9 +212,8 @@ class PageController extends Controller
 
     public function hubSetrika()
     {
-        $data['transaksi'] = Transaksi::detail()->whereNotNull('pencuci')
-            ->whereNull('penyetrika')->latest()->get();
-        return view();
+        $data['transaksis'] = Transaksi::detail()->latest()->get();
+        return view('pages.transaksi.ProsesSetrika', $data);
     }
 
     public function saldo()

@@ -3,19 +3,19 @@
 @section('content')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
 <div class="container">
-    <header class="my-3" style="color: var(--bs-gray);"><a>Transaksi</a><i class="fas fa-angle-right mx-2"></i><a>Proses Cuci</a></header>
-    <section id="proses-cuci">
+    <header class="my-3" style="color: var(--bs-gray);"><a>Transaksi</a><i class="fas fa-angle-right mx-2"></i><a>Proses Setrika</a></header>
+    <section id="proses-setrika">
         <div class="container">
             <div class="card">
                 <div class="card-body">
                     <div id="hub" class="d-flex">
                         <div class="card-1 w-50 py-2" style="padding-right: .75rem!important;">
                             <div class="p-3 border rounded" style="border: 1px solid rgba(0,0,0,.125);">
-                                <h4>Hub Cuci</h4>
+                                <h4>Hub Setrika</h4>
                                 <hr />
-                                <div class="hub-list hub-cuci">
+                                <div class="hub-list hub-setrika">
                                     @foreach ($transaksis as $transaksi)
-                                        @if ($transaksi->pencuci == null)
+                                        @if ($transaksi->penyetrika == null)
                                         <div class="p-3 border rounded item d-flex justify-content-between align-items-start">
                                             <div class="d-flex flex-column">
                                                 <h4>{{ $transaksi->kode }}</h4>
@@ -32,11 +32,11 @@
                         </div>
                         <div class="card-1 w-50 py-2" style="padding-left: .75rem!important;">
                             <div class="p-3 border rounded" style="border: 1px solid rgba(0,0,0,.125);">
-                                <h4>Hub Pencuci</h4>
+                                <h4>Hub Penyetrika</h4>
                                 <hr />
                                 <div class="hub-list hub-karyawan">
                                     @foreach ($transaksis as $transaksi)
-                                        @if ($transaksi->pencuci == Auth::id())
+                                        @if ($transaksi->penyetrika == Auth::id())
                                         <div class="p-3 border rounded item d-flex justify-content-between align-items-start">
                                             <div class="d-flex flex-column">
                                                 <h4>{{ $transaksi->kode }}</h4>
@@ -95,6 +95,6 @@
     </section>
 </div>
 
-<script src="{{ asset('js/transaksi/prosesCuci.js') }}"></script>
+<script src="{{ asset('js/transaksi/prosesSetrika.js') }}"></script>
 @endsection
 

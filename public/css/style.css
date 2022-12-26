@@ -130,10 +130,10 @@ p {
   background-color: rgb(31,40,45);
 }
 
-#side-nav .nav-menu i, .bg-clean i {
-  width: 16px;
-  display: flex;
-  justify-content: center;
+#side-nav .nav-menu i, #side-nav .nav-menu svg, .bg-clean i {
+    width: 16px;
+    display: flex;
+    justify-content: center;
 }
 
 section#pengaturan-outlet .col-12, section#pengaturan-karyawan #modal-update .col-12, section#pengaturan-karyawan #modal-change-password .col-12 {
@@ -290,7 +290,7 @@ thead tr {
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
-#proses-cuci .item {
+#proses-cuci .item, #proses-setrika .item {
     border: 1px solid rgba(0,0,0,0.125);
     z-index: 1;
     background: white;

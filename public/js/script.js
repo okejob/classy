@@ -45,6 +45,9 @@ $(document).ready(function() {
     if (getCookie('submenu-Transaksi') == '') {
         $('#nav-menu-transaksi .nav-items').hide();
     }
+    if (getCookie('submenu-Proses') == '') {
+        $('#nav-menu-proses .nav-items').hide();
+    }
     if (getCookie('submenu-Setting') == '') {
         $('#nav-menu-setting .nav-items').hide();
     }
