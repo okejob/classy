@@ -15,15 +15,17 @@
                                 <hr />
                                 <div class="hub-list hub-cuci">
                                     @foreach ($transaksis as $transaksi)
-                                    <div class="p-3 border rounded item d-flex justify-content-between align-items-start">
-                                        <div class="d-flex flex-column">
-                                            <h4>{{ $transaksi->kode }}</h4>
-                                            <h6 class="text-text-muted">{{ $transaksi->created_at }}</h6>
+                                        @if ($transaksi->pencuci == null)
+                                        <div class="p-3 border rounded item d-flex justify-content-between align-items-start">
+                                            <div class="d-flex flex-column">
+                                                <h4>{{ $transaksi->kode }}</h4>
+                                                <h6 class="text-text-muted">{{ $transaksi->created_at }}</h6>
+                                            </div>
+                                            <button class="btn btn-sm btn-show-action" type="button" id="trans-{{ $transaksi->id }}" style="box-shadow: none;">
+                                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                                            </button>
                                         </div>
-                                        <button class="btn btn-sm btn-show-action" type="button" id="trans-{{ $transaksi->id }}" style="box-shadow: none;">
-                                            <i class="fa-solid fa-ellipsis-vertical"></i>
-                                        </button>
-                                    </div>
+                                        @endif
                                     @endforeach
                                 </div>
                             </div>
@@ -32,7 +34,21 @@
                             <div class="p-3 border rounded" style="border: 1px solid rgba(0,0,0,.125);">
                                 <h4>Hub Penyuci</h4>
                                 <hr />
-                                <div class="hub-list hub-karyawan"></div>
+                                <div class="hub-list hub-karyawan">
+                                    @foreach ($transaksis as $transaksi)
+                                        @if ($transaksi->pencuci == Auth::id())
+                                        <div class="p-3 border rounded item d-flex justify-content-between align-items-start">
+                                            <div class="d-flex flex-column">
+                                                <h4>{{ $transaksi->kode }}</h4>
+                                                <h6 class="text-text-muted">{{ $transaksi->created_at }}</h6>
+                                            </div>
+                                            <button class="btn btn-sm btn-show-action" type="button" id="trans-{{ $transaksi->id }}" style="box-shadow: none;">
+                                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                                            </button>
+                                        </div>
+                                        @endif
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                         <ul class="list-unstyled form-control" id="list-action">
@@ -49,10 +65,28 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-primary" type="submit">Simpan</button>
+                            <div class="table-responsive my-2 tbody-wrap">
+                                <table class="table table-striped mb-0" id="table-trans-item">
+                                    <thead>
+                                        <tr>
+                                            <th>Nama Item</th>
+                                            <th>Kategori</th>
+                                            <th>Keterangan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($transaksis as $transaksi)
+                                            @foreach ($transaksi->item_transaksi as $item_transaksi)
+                                            <tr class="trans-{{ $transaksi->id }}">
+                                                <td>{{ $item_transaksi->nama }}</td>
+                                                <td>{{ $item_transaksi->nama_kategori }}</td>
+                                                <td>keterangan</td>
+                                            </tr>
+                                            @endforeach
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

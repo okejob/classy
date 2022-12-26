@@ -206,7 +206,7 @@ class PageController extends Controller
 
     public function hubCuci()
     {
-        $data['transaksis'] = Transaksi::detail()->whereNull('pencuci')->latest()->get();
+        $data['transaksis'] = Transaksi::detail()->latest()->get();
         return view('pages.transaksi.ProsesCuci', $data);
     }
 

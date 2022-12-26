@@ -32,8 +32,6 @@ class ItemTransaksiController extends Controller
         ];
     }
 
-    
-
     //Menyimpan Item Transaksi ke DB
     public function insert(InsertItemTransaksiRequest $request)
     {
@@ -67,7 +65,7 @@ class ItemTransaksiController extends Controller
     {
         $id_transaksi = $id->transaksi_id;
         $id->delete();
-        
+
         $transaksi = Transaksi::find($id_transaksi)->recalculate();
         return  [
             'status' => 200,

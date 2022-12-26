@@ -14,13 +14,31 @@ $(document).ready(function() {
     }
     karyawanHubCheck();
 
+    var currentlySelectedItemId = 0;
     $(".hub-cuci, .hub-karyawan").sortable({
         connectWith: ".hub-list",
         placeholder: "sortable-placeholder",
         items: ".item",
+        start: function( event, ui ) {
+            currentlySelectedItemId = ui.item.find('.btn').attr('id').substring(6);
+            console.log(currentlySelectedItemId);
+        },
         receive: function( event, ui ) {
             karyawanHubCheck();
-
+            ui.item.addClass('disabled');
+            if (ui.item.parent().hasClass('hub-karyawan')) {
+                $.ajax({
+                    url: "/transaksi/" + currentlySelectedItemId + "/pencuci",
+                }).done(function() {
+                    ui.item.removeClass('disabled');
+                });
+            } else if (ui.item.parent().hasClass('hub-cuci')) {
+                $.ajax({
+                    url: "/transaksi/" + currentlySelectedItemId + "/pencuci/delete",
+                }).done(function() {
+                    ui.item.removeClass('disabled');
+                });
+            }
         },
     }).disableSelection();
 
@@ -31,6 +49,10 @@ $(document).ready(function() {
     });
 
     $('#action-detail').on('click', function() {
-        
+        $('#table-trans-item tbody tr').each(function() {
+            $(this).hide();
+        });
+        $('#table-trans-item tbody tr.trans-' + btnId).show();
+        $('#modal-detail').modal('show');
     });
 });

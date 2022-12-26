@@ -54,7 +54,7 @@ $(document).ready(function() {
             let pickup = trans.pickup_delivery[0];
             let delivery = trans.pickup_delivery[1];
             let penerima = trans.penerima;
-            console.log(pickup);
+            // console.log(pickup);
 
             if (typeof pickup !== "undefined") {
                 $('#formCheck-pickup').parent().next().show();
@@ -125,19 +125,24 @@ $(document).ready(function() {
             $('#table-trans-item tbody').empty();
             for (let i = 0; i < trans.item_transaksi.length; i++) {
                 const item = trans.item_transaksi[i];
-                $('#table-trans-item tbody').append(
-                    "<tr id='" + item.id + "'>" +
-                        "<td style='white-space: nowrap; width: 35%;'>" + item.nama + "</td>" +
-                        "<td class='d-none d-lg-table-cell' style='width: 25%;'>" + item.nama_kategori + "</td>" +
-                        "<td class='d-none d-xl-table-cell' style='width: 10%;'></td>" +
-                        "<td class='text-center' style='width: 10%;'>" + item.bobot_bucket + "</td>" +
-                        "<td class='d-none d-sm-table-cell' style='width: 5%;'>Rp</td>" +
-                        "<td class='text-end thousand-separator'>" + item.harga_premium + "</td>" +
-                        "<td style='width: 46.25px;'>" +
-                            "<button id='btn-" + item.id + "' class='btn btn-primary btn-sm btn-show-action' type='button'><i class='fas fa-bars' aria-hidden='true'></i></button>" +
-                        "</td>" +
-                    "</tr>"
-                );
+                let temp = "<tr id='" + item.id + "'>" +
+                    "<td style='white-space: nowrap; width: 35%;'>" + item.nama + "</td>" +
+                    "<td class='d-none d-lg-table-cell' style='width: 25%;'>" + item.nama_kategori + "</td>";
+
+                if (trans.penyetrika != null) {
+                    temp += "<td class='d-none d-xl-table-cell text-center' style='width: 10%;'>Setrika</td>";
+                } else if (trans.pencuci != null) {
+                    temp += "<td class='d-none d-xl-table-cell text-center' style='width: 10%;'>Cuci</td>";
+                } else {
+                    temp += "<td class='d-none d-xl-table-cell' style='width: 10%;'></td>";
+                }
+                temp += "<td class='text-center' style='width: 10%;'>" + item.bobot_bucket + "</td>" +
+                    "<td class='d-none d-sm-table-cell' style='width: 5%;'>Rp</td>" +
+                    "<td class='text-end thousand-separator'>" + item.harga_premium + "</td>" +
+                    "<td style='width: 46.25px;'>" +
+                        "<button id='btn-" + item.id + "' class='btn btn-primary btn-sm btn-show-action' type='button'><i class='fas fa-bars' aria-hidden='true'></i></button>" +
+                    "</td>" + "</tr>";
+                $('#table-trans-item tbody').append(temp);
             }
             $('#table-trans-item tbody').append(rowAdd);
 
