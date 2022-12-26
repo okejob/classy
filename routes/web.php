@@ -149,8 +149,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transaksi/proses-cuci', [PageController::class, 'hubCuci']);
     Route::get('/transaksi/proses-setrika', [PageController::class, 'hubSetrika']);
     //ganti status pencuci & penyetrika
-    Route::get('/transaksi/{transaksi}/pencuci', [ItemTransaksiController::class, 'changeStatusCuci']);
-    Route::get('/transaksi/{transaksi}/penyetrika', [ItemTransaksiController::class, 'changStatusSetrika']);
+    Route::get('/transaksi/{transaksi}/pencuci', [TransaksiController::class, 'changeStatusCuci']);
+    Route::get('/transaksi/{transaksi}/penyetrika', [TransaksiController::class, 'changeStatusSetrika']);
+    //hapus status pencuci & penyetrika
+    Route::get('/transaksi/{transaksi}/pencuci/delete', [TransaksiController::class, 'clearStatusCuci']);
+    Route::get('/transaksi/{transaksi}/penyetrika/delete', [TransaksiController::class, 'clearStatusSetrika']);
     //Autentikasi Diskon
     Route::post('/transaksi/diskon/autentikasi', [TransaksiController::class, 'authenticationDiskon']);
 

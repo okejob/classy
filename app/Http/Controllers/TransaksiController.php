@@ -140,11 +140,27 @@ class TransaksiController extends Controller
         }
     }
 
+    public function clearStatusCuci(Transaksi $transaksi)
+    {
+        if (!empty($transaksi->pencuci)) {
+            $transaksi->pencuci = NULL;
+            $transaksi->save();
+        }
+    }
+
     //Mengubah Status itetm menjadi "Setrika"
     public function changeStatusSetrika(Transaksi $transaksi)
     {
         if (empty($transaksi->penyetrika)) {
             $transaksi->penyetrika = Auth::id();
+            $transaksi->save();
+        }
+    }
+
+    public function clearStatusSetrika(Transaksi $transaksi)
+    {
+        if (!empty($transaksi->penyetrika)) {
+            $transaksi->penyetrika = NULL;
             $transaksi->save();
         }
     }
