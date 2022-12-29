@@ -52,7 +52,7 @@
                 <div class="col-6">
                     <div class="border rounded p-3">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h4>Hub {{ $driver->username }}</h4>
+                            <h4>Hub {{ $driver->name }}</h4>
                             <button class="btn btn-sm btn-toggle" style="box-shadow: none;"><i class="fa-solid fa-down-left-and-up-right-to-center"></i></button>
                         </div>
                         <div class="hub-container">
@@ -153,7 +153,7 @@
                                 <select class="form-control" name="driver_id" required >
                                     <option value="" selected hidden>-</option>
                                     @foreach ($dataDriver as $driver)
-                                        <option value="{{ $driver->id }}">{{ $driver->username }}</option>
+                                        <option value="{{ $driver->id }}">{{ $driver->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -198,7 +198,7 @@
                                 <select class="form-control" name="driver_id" required >
                                     <option value="" selected hidden>-</option>
                                     @foreach ($dataDriver as $driver)
-                                        <option value="{{ $driver->id }}">{{ $driver->username }}</option>
+                                        <option value="{{ $driver->id }}">{{ $driver->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
