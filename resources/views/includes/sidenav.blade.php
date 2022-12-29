@@ -39,6 +39,12 @@
                         <p class="ms-3">Pelanggan</p>
                     </a>
                 </div>
+                <div id="nav-data-inventory">
+                    <a href="/data/inventory" class="menu-item menu-data pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
+                        <i class="fa-solid fa-boxes-stacked"></i>
+                        <p class="ms-3">Inventory</p>
+                    </a>
+                </div>
                 <div id="nav-data-pengeluaran">
                     <a href="/data/pengeluaran" class="menu-item menu-data pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fas fa-dollar-sign"></i>
