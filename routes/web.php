@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ItemNoteController;
 use App\Http\Controllers\ItemTransaksiController;
 use App\Http\Controllers\JenisItemController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\LaporanInventoryController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaketCuciController;
@@ -173,4 +175,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/transaksi/pembayaran', [PembayaranController::class, 'insert']);
     Route::post('/transaksi/pembayaran/{pembayaran}', [PembayaranController::class, 'update']);
     Route::get('/transaksi/pembayaran/delete/{pembayaran}', [PembayaranController::class, 'delete']);
+
+    //Inventory
+    Route::get('/inventory/inventory', [PageController::class, 'inventory'])->name('menu_inventory');
+    Route::post('/inventory/insert', [InventoryController::class, 'insert']);
+    Route::post('/inventory/update/{inventory}', [InventoryController::class, 'update']);
+    Route::get('/inventory/delete/{inventory}', [InventoryController::class, 'delete']);
+    Route::post('/inventory/traffic', [LaporanInventoryController::class, 'insert']);
 });
