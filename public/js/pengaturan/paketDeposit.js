@@ -10,7 +10,7 @@ $(document).ready(function() {
     // untuk update data paket
     $('#action-update').on('click', function() {
         $('#form-paket-deposit').attr('action', "/setting/paket-deposit/" + btnId);
-        $('#modal-title').text('Rubah paket');
+        $('.modal-title').text('Rubah paket');
 
         $('#input-nama-paket').val($('#table-paket-deposit tbody tr:nth-child(' + btnIndex + ') td:nth-child(1)').html());
         $('#input-deskripsi').val($('#table-paket-deposit tbody tr:nth-child(' + btnIndex + ') td:nth-child(2)').html());
@@ -31,7 +31,7 @@ $(document).ready(function() {
     // untuk menambah data paket
     $('.btn-add').on('click', function() {
         $('#form-paket-deposit').attr('action', "/setting/paket-deposit");
-        $('#modal-title').text('Rubah paket');
+        $('.modal-title').text('Rubah paket');
 
         $('#input-nama-paket').val('');
         $('#input-deskripsi').val('');

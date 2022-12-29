@@ -10,7 +10,7 @@ $(document).ready(function() {
     // untuk update data paket
     $('#action-update').on('click', function() {
         $('#form-paket-cuci').attr('action', "/setting/paket-cuci/" + btnId);
-        $('#modal-title').text('Rubah paket');
+        $('.modal-title').text('Rubah paket');
 
         $('#input-nama-paket').val($('#table-paket-cuci tbody tr:nth-child(' + btnIndex + ') td:nth-child(1)').html());
         $('#input-deskripsi').val($('#table-paket-cuci tbody tr:nth-child(' + btnIndex + ') td:nth-child(2)').html());
@@ -31,7 +31,7 @@ $(document).ready(function() {
     // untuk menambah data paket
     $('.btn-add').on('click', function() {
         $('#form-paket-cuci').attr('action', "/setting/paket-cuci");
-        $('#modal-title').text('Tambah paket');
+        $('.modal-title').text('Tambah paket');
 
         $('#input-nama-paket').val('');
         $('#input-deskripsi').val('');

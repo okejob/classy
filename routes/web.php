@@ -177,9 +177,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transaksi/pembayaran/delete/{pembayaran}', [PembayaranController::class, 'delete']);
 
     //Inventory
-    Route::get('/inventory/inventory', [PageController::class, 'inventory'])->name('menu_inventory');
-    Route::post('/inventory/insert', [InventoryController::class, 'insert']);
-    Route::post('/inventory/update/{inventory}', [InventoryController::class, 'update']);
-    Route::get('/inventory/delete/{inventory}', [InventoryController::class, 'delete']);
-    Route::post('/inventory/traffic', [LaporanInventoryController::class, 'insert']);
+    Route::get('/data/inventory', [PageController::class, 'inventory'])->name('menu-inventory');
+    Route::post('/data/inventory/insert', [InventoryController::class, 'insert']);
+    Route::post('/data/inventory/update/{inventory}', [InventoryController::class, 'update']);
+    Route::get('/data/inventory/delete/{inventory}', [InventoryController::class, 'delete']);
+    Route::post('/data/inventory/traffic', [LaporanInventoryController::class, 'insert']);
 });

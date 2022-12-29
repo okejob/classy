@@ -15,7 +15,7 @@ $(document).ready(function() {
     $('#data-item .btn-tambah').on('click', function() {
         btnIndex = -1;
         $('#modal-form').attr('action', "/data/jenis-item");
-        $('#modal-title').text('Tambah jenis item');
+        $('.modal-title').text('Tambah jenis item');
 
         $('#input-kategori').val('');
         $('#input-nama-item').val('');
@@ -41,7 +41,7 @@ $(document).ready(function() {
     // untuk mengisi tampilan modal & menampilkan modal
     $('#data-item #action-update').on('click', function() {
         $('#modal-form').attr('action', "/data/jenis-item/" + btnId);
-        $('#modal-title').text('Rubah jenis item');
+        $('.modal-title').text('Rubah jenis item');
 
         $('#input-kategori').val($('#input-kategori option:contains(' + $('tbody tr:nth-child(' + btnIndex + ') td:nth-child(1)').html() + ')').val());
         $('#input-nama-item').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(2)').html());

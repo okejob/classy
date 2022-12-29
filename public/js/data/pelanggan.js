@@ -30,7 +30,7 @@ $(document).ready(function() {
     $('#data-pelanggan .btn-tambah').on('click', function() {
         btnIndex = -1;
         $('#modal-form').attr('action', "/data/pelanggan");
-        $('#modal-title').text('Tambah pelanggan baru');
+        $('.modal-title').text('Tambah pelanggan baru');
 
         $('#input-nama-pelanggan').val('');
         $('#input-alamat').val('');

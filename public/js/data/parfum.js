@@ -15,7 +15,7 @@ $(document).ready(function() {
     $('#data-parfum .btn-tambah').on('click', function() {
         btnIndex = -1;
         $('#modal-form').attr('action', "/data/parfum");
-        $('#modal-title').text('Tambah parfum');
+        $('.modal-title').text('Tambah parfum');
 
         $('#input-nama-parfum').val('');
         $('#input-deskripsi').val('');
@@ -31,7 +31,7 @@ $(document).ready(function() {
     // untuk mengisi tampilan modal & menampilkan modal
     $('#data-parfum #action-update').on('click', function() {
         $('#modal-form').attr('action', "/data/parfum/" + btnId);
-        $('#modal-title').text('Rubah parfum');
+        $('.modal-title').text('Rubah parfum');
 
         $('#input-nama-parfum').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(1)').html());
         $('#input-deskripsi').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(2)').html());

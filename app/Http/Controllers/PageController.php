@@ -7,6 +7,7 @@ use App\Models\Data\Kategori;
 use App\Models\Data\Parfum;
 use App\Models\Data\Pelanggan;
 use App\Models\Data\Pengeluaran;
+use App\Models\Inventory\Inventory;
 use App\Models\Outlet;
 use App\Models\Paket\PaketCuci;
 use App\Models\Paket\PaketDeposit;
@@ -233,6 +234,16 @@ class PageController extends Controller
             'pages.transaksi.Pembayaran',
             [
                 'transaksis' => Transaksi::with('pelanggan')->latest()->take(5)->get(),
+            ]
+        );
+    }
+
+    public function inventory()
+    {
+        return view(
+            'pages.data.Inventory',
+            [
+                'inventories' => Inventory::paginate(5),
             ]
         );
     }

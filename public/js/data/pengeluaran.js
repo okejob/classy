@@ -15,7 +15,7 @@ $(document).ready(function() {
     $('#data-pengeluaran .btn-tambah').on('click', function() {
         btnIndex = -1;
         $('#modal-form').attr('action', "/data/pengeluaran");
-        $('#modal-title').text('Tambah pengeluaran baru');
+        $('.modal-title').text('Tambah pengeluaran baru');
 
         $('#input-nama-pengeluaran').val('');
         $('#input-deskripsi').val('');
@@ -27,7 +27,7 @@ $(document).ready(function() {
     // untuk mengisi tampilan modal & menampilkan modal
     $('#data-pengeluaran #action-update').on('click', function() {
         $('#modal-form').attr('action', "/data/pengeluaran/" + btnId);
-        $('#modal-title').text('Rubah pengeluaran');
+        $('.modal-title').text('Rubah pengeluaran');
 
         $('#input-nama-pengeluaran').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(1)').html());
         $('#input-deskripsi').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(2)').html());
