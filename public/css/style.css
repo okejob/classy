@@ -310,3 +310,10 @@ thead tr {
     border: 4px dashed #dee2e6;
 }
 
+.border-pickup {
+    border-color: rgb(75, 192, 192)!important;
+}
+
+.border-delivery {
+    border-color: rgb(153, 102, 255)!important;
+}

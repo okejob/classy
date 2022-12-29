@@ -21,7 +21,6 @@ $(document).ready(function() {
         items: ".item",
         start: function( event, ui ) {
             currentlySelectedItemId = ui.item.find('.btn').attr('id').substring(6);
-            console.log(currentlySelectedItemId);
         },
         receive: function( event, ui ) {
             karyawanHubCheck();

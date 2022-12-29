@@ -25,5 +25,18 @@ $(document).ready(function() {
     $('#section-ambil-outlet').on('click', '.page-link', function(e) {
         e.preventDefault();
         $('#table-di-outlet').load($(this).attr('href'));
-    })
+    });
+
+    $('.btn-toggle').on('click', function() {
+        let icon = $(this).children();
+        if (icon.hasClass('fa-down-left-and-up-right-to-center')) {
+            icon.removeClass('fa-down-left-and-up-right-to-center');
+            icon.addClass('fa-up-right-and-down-left-from-center');
+            icon.closest('div').next().hide();
+        } else {
+            icon.removeClass('fa-up-right-and-down-left-from-center');
+            icon.addClass('fa-down-left-and-up-right-to-center');
+            icon.closest('div').next().show();
+        }
+    });
 });

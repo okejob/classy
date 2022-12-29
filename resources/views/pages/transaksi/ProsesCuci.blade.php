@@ -6,56 +6,52 @@
     <header class="my-3" style="color: var(--bs-gray);"><a>Transaksi</a><i class="fas fa-angle-right mx-2"></i><a>Proses Cuci</a></header>
     <section id="proses-cuci">
         <div class="container">
-            <div class="card">
-                <div class="card-body">
-                    <div id="hub" class="d-flex">
-                        <div class="card-1 w-50 py-2" style="padding-right: .75rem!important;">
-                            <div class="p-3 border rounded" style="border: 1px solid rgba(0,0,0,.125);">
-                                <h4>Hub Cuci</h4>
-                                <hr />
-                                <div class="hub-list hub-cuci">
-                                    @foreach ($transaksis as $transaksi)
-                                        @if ($transaksi->pencuci == null)
-                                        <div class="p-3 border rounded item d-flex justify-content-between align-items-start">
-                                            <div class="d-flex flex-column">
-                                                <h4>{{ $transaksi->kode }}</h4>
-                                                <h6 class="text-text-muted">{{ $transaksi->created_at }}</h6>
-                                            </div>
-                                            <button class="btn btn-sm btn-show-action" type="button" id="trans-{{ $transaksi->id }}" style="box-shadow: none;">
-                                                <i class="fa-solid fa-ellipsis-vertical"></i>
-                                            </button>
-                                        </div>
-                                        @endif
-                                    @endforeach
+            <div id="hub" class="d-flex">
+                <div class="card-1 w-50 py-2" style="padding-right: .75rem!important;">
+                    <div class="p-3 border rounded" style="border: 1px solid rgba(0,0,0,.125);">
+                        <h4>Hub Cuci</h4>
+                        <hr />
+                        <div class="hub-list hub-cuci">
+                            @foreach ($transaksis as $transaksi)
+                                @if ($transaksi->pencuci == null)
+                                <div class="p-3 border rounded item d-flex justify-content-between align-items-start">
+                                    <div class="d-flex flex-column">
+                                        <h4>{{ $transaksi->kode }}</h4>
+                                        <h6 class="text-muted">{{ $transaksi->created_at }}</h6>
+                                    </div>
+                                    <button class="btn btn-sm btn-show-action" type="button" id="trans-{{ $transaksi->id }}" style="box-shadow: none;">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </button>
                                 </div>
-                            </div>
+                                @endif
+                            @endforeach
                         </div>
-                        <div class="card-1 w-50 py-2" style="padding-left: .75rem!important;">
-                            <div class="p-3 border rounded" style="border: 1px solid rgba(0,0,0,.125);">
-                                <h4>Hub Pencuci</h4>
-                                <hr />
-                                <div class="hub-list hub-karyawan">
-                                    @foreach ($transaksis as $transaksi)
-                                        @if ($transaksi->pencuci == Auth::id())
-                                        <div class="p-3 border rounded item d-flex justify-content-between align-items-start">
-                                            <div class="d-flex flex-column">
-                                                <h4>{{ $transaksi->kode }}</h4>
-                                                <h6 class="text-text-muted">{{ $transaksi->created_at }}</h6>
-                                            </div>
-                                            <button class="btn btn-sm btn-show-action" type="button" id="trans-{{ $transaksi->id }}" style="box-shadow: none;">
-                                                <i class="fa-solid fa-ellipsis-vertical"></i>
-                                            </button>
-                                        </div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                        <ul class="list-unstyled form-control" id="list-action">
-                            <li id="action-detail">Detail</li>
-                        </ul>
                     </div>
                 </div>
+                <div class="card-1 w-50 py-2" style="padding-left: .75rem!important;">
+                    <div class="p-3 border rounded" style="border: 1px solid rgba(0,0,0,.125);">
+                        <h4>Hub Pencuci</h4>
+                        <hr />
+                        <div class="hub-list hub-karyawan">
+                            @foreach ($transaksis as $transaksi)
+                                @if ($transaksi->pencuci == Auth::id())
+                                <div class="p-3 border rounded item d-flex justify-content-between align-items-start">
+                                    <div class="d-flex flex-column">
+                                        <h4>{{ $transaksi->kode }}</h4>
+                                        <h6 class="text-muted">{{ $transaksi->created_at }}</h6>
+                                    </div>
+                                    <button class="btn btn-sm btn-show-action" type="button" id="trans-{{ $transaksi->id }}" style="box-shadow: none;">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </button>
+                                </div>
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                <ul class="list-unstyled form-control" id="list-action">
+                    <li id="action-detail">Detail</li>
+                </ul>
             </div>
             <div class="modal fade" role="dialog" tabindex="-1" id="modal-detail">
                 <div class="modal-dialog modal-lg modal-dialog-centered modal-fullscreen-lg-down" role="document">
