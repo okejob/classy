@@ -21,23 +21,23 @@
                     <table class="table table-striped" id="table-pengeluaran">
                         <thead>
                             <tr>
+                                <th>Outlet</th>
                                 <th>Nama Pengeluaran</th>
                                 <th>Deskripsi</th>
                                 <th>Tanggal</th>
                                 <th colspan="2">Nominal</th>
-                                <th>Outlet</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($data as $pengeluaran)
                             <tr>
+                                <td class="text-center">{{ $pengeluaran->outlet }}</td>
                                 <td>{{ $pengeluaran->nama }}</td>
                                 <td>{{ $pengeluaran->deskripsi }}</td>
                                 <td class="text-center">{{ $pengeluaran->created_at }}</td>
                                 <td>Rp</td>
                                 <td class="text-end thousand-separator">{{ $pengeluaran->nominal }}</td>
-                                <td class="text-center">{{ $pengeluaran->outlet }}</td>
                                 <td class="cell-action">
                                     <button id="btn-{{ $pengeluaran->id }}" class="btn btn-primary btn-sm btn-show-action" type="button">
                                         <i class="fas fa-bars"></i>

@@ -71,8 +71,30 @@ $(document).ready(function() {
     };
 
     $('#btn-bayar').on('click', function() {
-        setThousandSeparator();
-        $('#modal-pembayaran').modal('show');
+        $.ajax({
+            url: "/transaksi/detail/" + btnId,
+        }).done(function(data) {
+            let pelanggan = data.pelanggan;
+            $.ajax({
+                url: "/pelanggan/" + pelanggan.id + "/check-saldo",
+            }).done(function(data) {
+                let saldo = data.saldo;
+
+                if (saldo >= 100000) {
+                    $('#alert-saldo').alert('close');
+                }
+                if (pelanggan.member) {
+                    $('#alert-member').alert('close');
+                }
+
+                setThousandSeparator();
+                $('#modal-pembayaran').modal('show');
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+            });
+        });
     });
 
     var calculateNow;

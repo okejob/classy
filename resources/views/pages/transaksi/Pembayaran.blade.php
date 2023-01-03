@@ -118,6 +118,14 @@
                 <form id="form-pembayaran" method="POST" action="/transaksi/pembayaran">
                     @csrf
                     <div class="modal-body">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert" id="alert-saldo">
+                            Saldo kurang dari 100.000, <a href="/transaksi/saldo" class="alert-link fw-bold" style="text-decoration: underline!important; color: #6a1a21!important;">Top up?</a>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        <div class="alert alert-info alert-dismissible fade show" role="alert" id="alert-member">
+                            Pelanggan belum menjadi member, <a href="#" class="alert-link fw-bold" style="text-decoration: underline!important; color: #04414d!important;">Daftar membership ?</a>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
                         <div class="row">
                             <input id="input-trans-id" type="hidden" name="transaksi_id" value >
                             <div class="col-3 text-end mb-4">

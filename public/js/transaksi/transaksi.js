@@ -143,6 +143,18 @@ $(document).ready(function() {
                         "<button id='btn-" + item.id + "' class='btn btn-primary btn-sm btn-show-action' type='button'><i class='fas fa-bars' aria-hidden='true'></i></button>" +
                     "</td>" + "</tr>";
                 $('#table-trans-item tbody').append(temp);
+
+                temp = "<td>Rp</td><td class='text-end'>" + item.harga_premium + "</td>";
+                if (item.harga_premium == 0) {
+                    temp = "<td colspan='2' class='text-center'>" + parseFloat(item.bobot_bucket) + "</td>";
+                }
+                $('#table-pembayaran tbody').append(
+                    "<tr id='item-" + item.jenis_item_id + "'>" +
+                        "<td>" + item.nama + "</td>" +
+                        "<td class='text-center'>" + item.nama_kategori + "</td>" +
+                        temp +
+                    "</tr>"
+                );
             }
             $('#table-trans-item tbody').append(rowAdd);
 
@@ -150,6 +162,27 @@ $(document).ready(function() {
             $('#diskon').html(trans.diskon);
             $('#diskon-member').html(trans.diskon_member);
             $('#grand-total').html(trans.grand_total);
+
+            $('#pembayaran-subtotal').html(trans.subtotal);
+            $('#pembayaran-diskon').html(trans.diskon + trans.diskon_member);
+            $('#pembayaran-grand-total').html(trans.grand_total);
+
+            if (trans.diskon + trans.diskon_member == 0) {
+                $('#pembayaran-diskon').parent().hide();
+            }
+            setThousandSeparator();
+
+            if (trans.lunas) {
+                $('#btn-bayar').hide();
+            } else {
+                $('#btn-bayar').show();
+                $('#terbayar').val(trans.total_terbayar);
+            }
+
+            $('#input-trans-id').val(trans.id);
+            $('#input-total').val(trans.grand_total.toLocaleString(['ban', 'id']));
+            $('#input-kembalian').val('0');
+
             setThousandSeparator();
             $('#form-transaksi').attr('action', '/transaksi/update/' + trans.id);
 
@@ -418,7 +451,7 @@ $(document).ready(function() {
             let items = data[0];
 
             items.forEach(item => {
-                $('#table-items tbody').append("<tr id='item-" + item.id + "'><td>" + item.nama + "</td><td>" + item.nama_kategori + "</td><td>" + parseFloat(item.bobot_bucket) + "</td></tr>");
+                $('#table-items tbody').append("<tr id='item-" + item.id + "'><td>" + item.nama + "</td><td class='text-center'>" + item.nama_kategori + "</td><td class='text-center'>" + parseFloat(item.bobot_bucket) + "</td></tr>");
             });
             $('#modal-add-item').modal('show');
         });
@@ -675,6 +708,51 @@ $(document).ready(function() {
         }
     });
 
+    $('#btn-bayar').on('click', function() {
+        setThousandSeparator();
+        $('#modal-pembayaran').modal('show');
+    });
+
+    var calculateNow;
+    $('#input-nominal').on('input', function() {
+        clearTimeout(calculateNow);
+        if (!$('#btn-save').hasClass('disabled')) {
+            $('#btn-save').addClass('disabled');
+        }
+        calculateNow = setTimeout(calculate, 1000);
+    });
+
+    function calculate() {
+        let total = removeDot($('#input-total').val());
+
+        let nominal = removeDot($('#input-nominal').val());
+        let terbayar = removeDot($('#terbayar').val());
+        if (total > terbayar + nominal) {
+            $('#input-terbayar').val((terbayar + nominal).toLocaleString(['ban', 'id']));
+            $('#input-kembalian').val(0);
+        } else {
+            $('#input-terbayar').val((total).toLocaleString(['ban', 'id']));
+            $('#input-kembalian').val((terbayar + nominal - total).toLocaleString(['ban', 'id']));
+        }
+        $('#btn-save').removeClass('disabled');
+    }
+
+    function removeDot(val) {
+        if (val != '') {
+            while(val.indexOf('.') != -1) {
+                val = val.replace('.', '');
+            }
+            let number = parseInt(val);
+            return number;
+        }
+    }
+
+    $('#form-pembayaran').on('submit', function(e) {
+        e.preventDefault;
+        $('#input-nominal').val(removeDot($('#input-nominal').val()));
+        $(this).submit();
+    });
+
     // intro.js
     // intro ketika init halaman
     function setCookie(cname, cvalue, exdays) {
@@ -703,6 +781,7 @@ $(document).ready(function() {
         introHalaman();
     }
 
+    /*
     // untuk tutorial halaman detail
     function introHalaman() {
         introJs().setOptions({
@@ -788,4 +867,7 @@ $(document).ready(function() {
         }).start();
         setCookie('transaksi-intro_trans', 'done', 1);
     }
+    */
+
+
 });

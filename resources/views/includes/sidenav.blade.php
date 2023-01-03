@@ -73,6 +73,37 @@
                         <p class="ms-3">Transaksi</p>
                     </a>
                 </div>
+                <div id="nav-transaksi-bucket">
+                    <a href="/transaksi/bucket" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
+                        <div class="position-relative" style="width: 16px; height: 16px;">
+                            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="currentColor" stroke="none">
+                                <path d="M1999 5106 c-65 -23 -112 -70 -143 -141 -11 -25 -29 -36 -107 -68 -525 -213 -956 -731 -1069 -1289 -46 -224 -59 -118 210 -1733 268 -1612 245 -1502 344 -1592 27 -24 95 -67 150 -93 233 -113 579 -174 1056 -187 666 -17 1224 91 1433 278 104 92 79 -23 347 1594 132 796 240 1471 240 1499 0 144 -54 373 -129 550 -183 433 -569 818 -978 977 -78 31 -87 37 -104 75 -23 48 -70 98 -113 122 -28 15 -87 17 -566 19 -423 2 -543 0 -571 -11z m34 -456 c36 -8 207 -10 557 -8 471 3 507 4 540 22 19 10 42 24 50 32 13 11 29 7 100 -25 186 -82 346 -193 495 -345 125 -127 210 -246 289 -406 61 -125 124 -295 113 -306 -3 -3 -41 6 -84 20 -256 84 -641 140 -1153 166 -697 35 -1507 -33 -1908 -162 -52 -16 -96 -27 -99 -24 -11 11 50 175 112 301 80 164 163 282 290 411 149 151 309 263 494 345 l83 37 35 -23 c18 -13 57 -29 86 -35z m1213 -1104 c490 -51 915 -142 937 -200 28 -73 -381 -169 -943 -223 -235 -22 -1081 -26 -1310 -5 -509 46 -912 126 -992 199 -48 43 31 79 295 133 267 54 471 83 743 105 236 19 1059 13 1270 -9z"/>
+                                </g>
+                            </svg>
+                        </div>
+                        <p class="ms-3">Bucket</p>
+                    </a>
+                </div>
+                <div id="nav-transaksi-premium">
+                    <a href="/transaksi/premium" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
+                        <div class="position-relative" style="width: 16px; height: 16px;">
+                            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="currentColor" stroke="none">
+                                    <path d="M1237 4266 c37 -62 570 -795 577 -792 5 1 131 171 279 377 148 206 278 386 288 402 l20 27 -586 0 c-490 0 -585 -2 -578 -14z"/>
+                                    <path d="M2749 4238 c17 -24 147 -205 289 -402 142 -198 263 -361 268 -363 7 -2 540 731 577 793 7 12 -88 14 -578 14 l-586 0 30 -42z"/>
+                                    <path d="M776 3820 c-157 -221 -286 -405 -286 -410 0 -6 219 -10 581 -10 444 0 580 3 577 12 -6 18 -572 807 -579 807 -4 1 -136 -179 -293 -399z"/>
+                                    <path d="M2270 3824 c-157 -219 -286 -403 -288 -411 -3 -11 95 -13 577 -13 376 0 581 3 581 10 0 11 -567 804 -578 808 -4 1 -136 -176 -292 -394z"/>
+                                    <path d="M3761 3821 c-157 -218 -287 -403 -289 -409 -3 -9 133 -12 577 -12 362 0 581 4 581 10 0 12 -570 810 -579 809 -3 0 -134 -179 -290 -398z"/>
+                                    <path d="M507 3215 c62 -84 1868 -2331 1870 -2326 1 3 -138 533 -310 1176 l-312 1170 -634 3 -633 2 19 -25z"/>
+                                    <path d="M1922 3228 c2 -7 146 -545 319 -1195 173 -651 316 -1183 319 -1183 3 0 146 532 319 1183 173 650 317 1188 319 1195 3 9 -129 12 -638 12 -509 0 -641 -3 -638 -12z"/>
+                                    <path d="M3367 3233 c-7 -12 -628 -2345 -625 -2348 3 -2 1824 2266 1871 2330 l19 25 -631 0 c-346 0 -632 -3 -634 -7z"/>
+                                </g>
+                            </svg>
+                        </div>
+                        <p class="ms-3">Premium</p>
+                    </a>
+                </div>
                 <div id="nav-transaksi-pickup-delivery">
                     <a href="/transaksi/pickup-delivery" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fas fa-motorcycle"></i>
