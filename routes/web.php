@@ -16,6 +16,7 @@ use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PenerimaController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\PickupDeliveryController;
+use App\Http\Controllers\RewashController;
 use App\Http\Controllers\SaldoController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
@@ -182,4 +183,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/data/inventory/update/{inventory}', [InventoryController::class, 'update']);
     Route::get('/data/inventory/delete/{inventory}', [InventoryController::class, 'delete']);
     Route::post('/data/inventory/traffic', [LaporanInventoryController::class, 'insert']);
+
+    //Rewash
+    Route::get('/proses/rewash', [PageController::class, 'rewash'])->name('menu-rewash');
+    Route::post('/proses/rewash/insert', [RewashController::class, 'insert']);
+    Route::post('/proses/rewash/update-status/{rewash}', [RewashController::class, 'updateStatus']);
+    Route::get('/proses/rewash/delete/{rewash}', [RewashController::class, 'delete']);
 });
