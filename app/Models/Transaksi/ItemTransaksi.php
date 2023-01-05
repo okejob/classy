@@ -16,13 +16,20 @@ class ItemTransaksi extends Model
     protected $guarded = ['id'];
     protected $appends = [
         'nama',
-        'nama_kategori'
+        'nama_kategori',
+        'kode_transaksi'
     ];
 
     public static function boot()
     {
         parent::boot();
         ItemTransaksi::observe(new UserActionObserver);
+    }
+
+    public function getKodeTransaksiAttribute()
+    {
+        $transaksi = Transaksi::find($this->transaksi_id);
+        return $transaksi->kode;
     }
 
     public function getNamaAttribute()

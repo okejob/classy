@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 class RewashController extends Controller
 {
+
+    public function test()
+    {
+        return Rewash::with('itemTransaksi')->get();
+    }
+
     public function insert(Request $request)
     {
         Rewash::create([

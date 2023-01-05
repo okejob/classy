@@ -14,6 +14,7 @@ use App\Models\Paket\PaketDeposit;
 use App\Models\Permission\Role;
 use App\Models\Transaksi\Penerima;
 use App\Models\Transaksi\PickupDelivery;
+use App\Models\Transaksi\Rewash;
 use App\Models\Transaksi\Transaksi;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -123,7 +124,7 @@ class PageController extends Controller
         return view(
             'pages.proses.Rewash',
             [
-                'rewashes'
+                'rewashes' => Rewash::with('itemTransaksi')->get(),
             ]
         );
     }
