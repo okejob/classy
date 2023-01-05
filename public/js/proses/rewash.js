@@ -1,6 +1,4 @@
 $(document).ready(function() {
-    $('#table-rewash').DataTable();
-
     var btnIndex = -1;
     $('#data-rewash .btn-show-action').on('click', function() {
         btnIndex = $(this).index('.btn-show-action') + 1;

@@ -121,7 +121,10 @@ class PageController extends Controller
     public function rewash()
     {
         return view(
-            'pages.data.Rewash'
+            'pages.proses.Rewash',
+            [
+                'rewashes'
+            ]
         );
     }
 
@@ -208,13 +211,13 @@ class PageController extends Controller
     public function hubCuci()
     {
         $data['transaksis'] = Transaksi::detail()->latest()->get();
-        return view('pages.transaksi.ProsesCuci', $data);
+        return view('pages.proses.Cuci', $data);
     }
 
     public function hubSetrika()
     {
         $data['transaksis'] = Transaksi::detail()->latest()->get();
-        return view('pages.transaksi.ProsesSetrika', $data);
+        return view('pages.proses.Setrika', $data);
     }
 
     public function saldo()

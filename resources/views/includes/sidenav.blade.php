@@ -51,12 +51,6 @@
                         <p class="ms-3">Pengeluaran</p>
                     </a>
                 </div>
-                <div id="nav-data-rewash">
-                    <a href="/data/rewash" class="menu-item menu-data pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
-                        <i class="fas fa-water"></i>
-                        <p class="ms-3">Rewash</p>
-                    </a>
-                </div>
             </div>
         </div>
         <div id="nav-menu-transaksi" class="nav-menu">
@@ -110,12 +104,6 @@
                         <p class="ms-3">Pickup & Delivery</p>
                     </a>
                 </div>
-                <div id="nav-transaksi-rewash">
-                    <a href="/transaksi/rewash" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
-                        <i class="fas fa-water"></i>
-                        <p class="ms-3">Rewash</p>
-                    </a>
-                </div>
                 <div id="nav-transaksi-saldo">
                     <a href="/transaksi/saldo" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fa-solid fa-scale-balanced"></i>
@@ -141,7 +129,7 @@
             </div>
             <div class="nav-items">
                 <div id="nav-proses-cuci">
-                    <a href="/proses/cuci" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
+                    <a href="/proses/cuci" class="menu-item menu-proses pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <div class="position-relative" style="width: 16px; height: 16px;">
                             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet" style="left: -2px; top: -2px;">
                                 <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="currentColor" stroke="none">
@@ -156,7 +144,7 @@
                     </a>
                 </div>
                 <div id="nav-proses-setrika">
-                    <a href="/proses/setrika" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
+                    <a href="/proses/setrika" class="menu-item menu-proses pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <div class="position-relative" style="width: 16px; height: 16px;">
                             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet" style="left: -2px; top: -2px;">
                                 <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="currentColor" stroke="none">
@@ -168,6 +156,12 @@
                             </svg>
                         </div>
                         <p class="ms-3">Setrika</p>
+                    </a>
+                </div>
+                <div id="nav-proses-rewash">
+                    <a href="/proses/rewash" class="menu-item menu-proses pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
+                        <i class="fas fa-water"></i>
+                        <p class="ms-3">Rewash</p>
                     </a>
                 </div>
             </div>

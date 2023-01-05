@@ -12,34 +12,17 @@
                     <table class="table" id="table-rewash">
                         <thead>
                             <tr>
-                                <th>ID Cuci</th>
-                                <th>Jenis Rewash</th>
-                                <th>Alasan Rewash</th>
+                                <th>Kode Transaksi</th>
+                                <th>Item</th>
+                                <th>Keterangan</th>
                                 <th>Status</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>ID001</td>
-                                <td>Salah Parfum</td>
-                                <td>07.01.2020 00:07:27</td>
-                                <td>Freddy</td>
-                                <td>07.01.2020 00:07:27<br></td>
-                                <td>Freddy</td>
-                                <td>Aktif</td>
-                                <td class="cell-action"><button class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button></td>
-                            </tr>
-                            <tr>
-                                <td>ID002</td>
-                                <td>Masih Kotor</td>
-                                <td>07.01.2020 00:07:27<br></td>
-                                <td>Freddy</td>
-                                <td>07.01.2020 00:07:27<br></td>
-                                <td>Freddy</td>
-                                <td>Aktif</td>
-                                <td class="cell-action"><button class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button></td>
-                            </tr>
+                            @foreach ( as )
+
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -78,5 +61,5 @@
     </section>
 </div>
 
-<script src="{{ asset('js/data/rewash.js') }}"></script>
+<script src="{{ asset('js/proses/rewash.js') }}"></script>
 @endsection
