@@ -13,7 +13,7 @@
                         <thead>
                             <tr>
                                 <th>Kode Transaksi</th>
-                                <th>Item</th>
+                                <th>Nama Item</th>
                                 <th>Keterangan</th>
                                 <th>Status</th>
                                 <th style="width: 46.25px;"></th>
@@ -22,9 +22,14 @@
                         <tbody>
                             @foreach ($rewashes as $rewash)
                                 <tr id='{{ $rewash->id }}'>
-                                    <td>{{ $rewash->item_transaksi->kode }}</td>
-                                    <td>{{ $rewash->item_transaksi->nama }}</td>
-                                    <td>{{ $rewash->status }}</td>
+                                    <td class="text-center">{{ $rewash->itemTransaksi->kode_transaksi }}</td>
+                                    <td>{{ $rewash->itemTransaksi->nama }}</td>
+                                    <td>{{ $rewash['jenis_rewash'] }}</td>
+                                    @if ($rewash->status)
+                                        <td class="text-center">is done</td>
+                                    @else
+                                        <td class="text-center">in progress</td>
+                                    @endif
                                     <td class="cell-action" style="width: 46.25px;">
                                         <button id="btn-{{ $rewash->id }}" class="btn btn-primary btn-sm btn-show-action" type="button">
                                             <i class="fas fa-bars"></i>
@@ -35,14 +40,10 @@
                         </tbody>
                     </table>
                 </div>
-                <button class="btn btn-primary btn-tambah" type="button">
-                    <i class="fas fa-plus-circle"></i>
-                    &nbsp;Tambah
-                </button>
-                <ul class="list-unstyled form-control" id="list-action">
+                {{-- <ul class="list-unstyled form-control" id="list-action">
                     <li id="action-update">Rubah data</li>
                     <li id="action-change-status">Rubah status</li>
-                </ul>
+                </ul> --}}
             </div>
         </div>
         <div class="modal fade" role="dialog" tabindex="-1" id="modal-update">
