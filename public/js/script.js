@@ -83,8 +83,6 @@ $(document).ready(function() {
         let lebarTambahan = 2;
         lebarBtn = parseInt(lebarBtn.substr(0, lebarBtn.indexOf('px')));
         $('#list-action').css('left', $(this).offset().left - $('.card').offset().left - lebarList + lebarBtn + lebarTambahan);
-        console.log('this offset : ' + $(this).offset().left + '\ncard offset : ' + $(this).closest('.card'));
-        console.log($(this).closest('.card'));
 
         let tinggiBtn = $(this).css('height');
         let tinggiHeader = 0;

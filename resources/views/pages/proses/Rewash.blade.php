@@ -16,12 +16,21 @@
                                 <th>Item</th>
                                 <th>Keterangan</th>
                                 <th>Status</th>
-                                <th></th>
+                                <th style="width: 46.25px;"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ( as )
-
+                            @foreach ($rewashes as $rewash)
+                                <tr id='{{ $rewash->id }}'>
+                                    <td>{{ $rewash->item_transaksi->kode }}</td>
+                                    <td>{{ $rewash->item_transaksi->nama }}</td>
+                                    <td>{{ $rewash->status }}</td>
+                                    <td class="cell-action" style="width: 46.25px;">
+                                        <button id="btn-{{ $rewash->id }}" class="btn btn-primary btn-sm btn-show-action" type="button">
+                                            <i class="fas fa-bars"></i>
+                                        </button>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>

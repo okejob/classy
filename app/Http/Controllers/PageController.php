@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Data\JenisItem;
+use App\Models\Data\JenisRewash;
 use App\Models\Data\Kategori;
 use App\Models\Data\Parfum;
 use App\Models\Data\Pelanggan;
@@ -121,6 +122,7 @@ class PageController extends Controller
     //Menampilkan Menu Rewash
     public function rewash()
     {
+        dd(Rewash::with('itemTransaksi')->get());
         return view(
             'pages.proses.Rewash',
             [
@@ -218,6 +220,7 @@ class PageController extends Controller
     public function hubSetrika()
     {
         $data['transaksis'] = Transaksi::detail()->latest()->get();
+        $data['jenis_rewashes'] = JenisRewash::get();
         return view('pages.proses.Setrika', $data);
     }
 

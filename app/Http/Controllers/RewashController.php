@@ -22,7 +22,7 @@ class RewashController extends Controller
             'modified_by' => Auth::id(),
         ]);
 
-        return redirect()->intended(route('menu-rewash'));
+        return redirect()->back();//->intended(route('menu-rewash'));
     }
 
     public function updateStatus(Request $request, Rewash $rewash)
