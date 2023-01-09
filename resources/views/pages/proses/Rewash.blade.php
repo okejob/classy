@@ -66,7 +66,9 @@
                                     <select id="kode-trans" class="form-select">
                                         <option value hidden selected></option>
                                         @foreach ($transaksis as $transaksi)
-                                            <option value="{{ $transaksi->id }}">{{ $transaksi->kode }}</option>
+                                            @if ($transaksi->pencuci != null)
+                                                <option value="{{ $transaksi->id }}">{{ $transaksi->kode }}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>

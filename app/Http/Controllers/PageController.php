@@ -20,6 +20,7 @@ use App\Models\Transaksi\Transaksi;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Intervention\Image\Gd\Driver;
 
 class PageController extends Controller
@@ -217,7 +218,8 @@ class PageController extends Controller
     public function hubCuci()
     {
         $data['transaksis'] = Transaksi::detail()->latest()->get();
-        $data['rewash'] = Rewash::where('pencuci', Auth::id())->get();
+        $data['rewashes'] = Rewash::with('itemTransaksi')->where('pencuci', Auth::id())->get();
+        // dd($data);
         return view('pages.proses.Cuci', $data);
     }
 
