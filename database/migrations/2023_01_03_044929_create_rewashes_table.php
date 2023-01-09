@@ -24,6 +24,10 @@ return new class extends Migration
             $table->foreignId('modified_by')
                 ->constrained('users', 'id')
                 ->cascadeOnDelete();
+            $table->foreignId('pencuci')
+                ->constrained('users', 'id')
+                ->cascadeOnDelete();
+            $table->text('keterangan')->nullable();
             $table->boolean('status')->default(false);
             $table->timestamps();
         });

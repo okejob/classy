@@ -217,6 +217,7 @@ class PageController extends Controller
     public function hubCuci()
     {
         $data['transaksis'] = Transaksi::detail()->latest()->get();
+        $data['rewash'] = Rewash::where('pencuci', Auth::id())->get();
         return view('pages.proses.Cuci', $data);
     }
 
