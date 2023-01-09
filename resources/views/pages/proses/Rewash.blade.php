@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-    <header class="d-flex align-items-center my-3" style="color: var(--bs-gray);"><a>Master Data</a><i class="fas fa-angle-right mx-2"></i><a>Data Rewash</a></header>
-    <section id="data-pengeluaran">
+    <header class="d-flex align-items-center my-3" style="color: var(--bs-gray);"><a>Proses</a><i class="fas fa-angle-right mx-2"></i><a>Rewash</a></header>
+    <section id="data-rewash">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Data Rewash</h4>
@@ -87,7 +87,7 @@
                                 </div>
                                 <div class="col-12">
                                     <h5>Keterangan</h5>
-                                    <textarea class="form-control" id="input-deskripsi" style="resize: none;"></textarea>
+                                    <textarea name="keterangan" class="form-control" id="input-deskripsi" style="resize: none;"></textarea>
                                 </div>
                             </div>
                         </div>

@@ -123,6 +123,7 @@ class PageController extends Controller
     public function rewash()
     {
         // dd(Rewash::with('itemTransaksi')->get());
+
         return view(
             'pages.proses.Rewash',
             [

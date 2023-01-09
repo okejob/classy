@@ -3,7 +3,7 @@
 @section('content')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
 <div class="container">
-    <header class="my-3" style="color: var(--bs-gray);"><a>Transaksi</a><i class="fas fa-angle-right mx-2"></i><a>Proses Cuci</a></header>
+    <header class="my-3" style="color: var(--bs-gray);"><a>Proses</a><i class="fas fa-angle-right mx-2"></i><a>Cuci</a></header>
     <section id="proses-cuci">
         <div id="hub" class="row card d-flex flex-row position-relative border-0">
             <div class="col-12 col-md-6 py-2">
