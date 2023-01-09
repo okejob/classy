@@ -127,6 +127,8 @@ class PageController extends Controller
             'pages.proses.Rewash',
             [
                 'rewashes' => Rewash::with('itemTransaksi')->get(),
+                'jenisRewashes' => JenisRewash::get(),
+                'transaksis' => Transaksi::latest()->get(),
             ]
         );
     }

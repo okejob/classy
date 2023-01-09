@@ -44,26 +44,56 @@
                     <li id="action-update">Rubah data</li>
                     <li id="action-change-status">Rubah status</li>
                 </ul> --}}
+                <button class="btn btn-primary btn-tambah mt-2" type="button">
+                    <i class="fas fa-plus-circle"></i>
+                    &nbsp;Tambah
+                </button>
             </div>
         </div>
         <div class="modal fade" role="dialog" tabindex="-1" id="modal-update">
-            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Data Rewash</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h4 class="modal-title">Data Rewash</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form>
+                    <form method="POST" action="/proses/rewash/insert">
+                        @csrf
                         <div class="modal-body">
                             <div class="row">
-                                <div class="col-12">
-                                    <h5>ID Cuci</h5><input class="form-control" type="text" id="input-nama-pengeluaran" name="username">
+                                <div class="col-4 mb-3">
+                                    <h5>Kode Transaksi</h5>
+                                    <select id="kode-trans" class="form-select">
+                                        <option value hidden selected></option>
+                                        @foreach ($transaksis as $transaksi)
+                                            <option value="{{ $transaksi->id }}">{{ $transaksi->kode }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-8 mb-3">
+                                    <h5>Jenis Item</h5>
+                                    <select name="item_transaksi_id" id="item-trans" class="form-select" required>
+                                        <option value hidden selected></option>
+                                    </select>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <h5>Alasan Cuci</h5>
+                                    <select name="jenis_rewash_id" id="jenis-rewash" class="form-select" required>
+                                        <option value hidden selected></option>
+                                        @foreach ($jenisRewashes as $jenisRewash)
+                                            <option value="{{ $jenisRewash->id }}">{{ $jenisRewash->keterangan }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="col-12">
-                                    <h5>Alasan Rewash</h5><textarea class="form-control" id="input-deskripsi" style="resize: none;"></textarea>
+                                    <h5>Keterangan</h5>
+                                    <textarea class="form-control" id="input-deskripsi" style="resize: none;"></textarea>
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-primary" type="submit">Simpan</button></div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="submit">Simpan</button>
+                        </div>
                     </form>
                 </div>
             </div>
