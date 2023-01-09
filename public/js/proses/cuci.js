@@ -45,6 +45,14 @@ $(document).ready(function() {
     $('.btn-show-action').on('click', function() {
         btnIndex = $(this).index('.btn-show-action') + 1;
         btnId = $(this).attr('id').substring(6);
+
+        if ($(this).closest('.hub-cuci').length != 0) {
+            $('#action-add').show();
+            $('#action-remove').hide();
+        } else if ($(this).closest('.hub-karyawan').length != 0) {
+            $('#action-add').hide();
+            $('#action-remove').show();
+        }
     });
 
     $('#action-detail').on('click', function() {
@@ -53,5 +61,29 @@ $(document).ready(function() {
         });
         $('#table-trans-item tbody tr.trans-' + btnId).show();
         $('#modal-detail').modal('show');
+    });
+
+    $('#action-add').on('click', function() {
+        $('#trans-' + btnId).addClass('disabled');
+        let temp = $('#trans-' + btnId).parent().detach();
+        $.ajax({
+            url: "/transaksi/" + btnId + "/pencuci",
+        }).done(function() {
+            $('.hub-karyawan').append(temp);
+            $('#trans-' + btnId).removeClass('disabled');
+            karyawanHubCheck();
+        });
+    });
+
+    $('#action-remove').on('click', function() {
+        $('#trans-' + btnId).addClass('disabled');
+        let temp = $('#trans-' + btnId).parent().detach();
+        $.ajax({
+            url: "/transaksi/" + btnId + "/pencuci/delete",
+        }).done(function() {
+            $('.hub-cuci').append(temp);
+            $('#trans-' + btnId).removeClass('disabled');
+            karyawanHubCheck();
+        });
     });
 });
