@@ -251,12 +251,14 @@ class PageController extends Controller
         );
     }
 
-    public function inventory()
+    public function inventory(Request $request)
     {
         return view(
             'pages.data.Inventory',
             [
-                'inventories' => Inventory::paginate(5),
+                'inventories' => Inventory::when($request->has("search"), function ($q) use ($request) {
+                    return $q->Where("nama", "like", "%" . $request->get("search") . "%");
+                })->orderBy("nama", "asc")->paginate(5)
             ]
         );
     }

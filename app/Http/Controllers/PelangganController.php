@@ -54,7 +54,7 @@ class PelangganController extends Controller
         );
     }
 
-    public function pelanggan(Request $request)
+    public function search(Request $request)
     {
         $pelanggan = Pelanggan::when($request->has("search"), function ($q) use ($request) {
             return $q->where("nama", "like", "%" . $request->get("search") . "%")

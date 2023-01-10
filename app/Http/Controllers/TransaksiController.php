@@ -123,7 +123,7 @@ class TransaksiController extends Controller
         $transaksi = Transaksi::find($id);
         $transaksi->update($merged);
         if (empty($transaksi->kode) && $transaksi->status != "draft") {
-            $count = Transaksi::where('status', '!=', 'draft')->count() + 1;
+            $count = Transaksi::where('status', '!=', 'draft')->count();
             $paded = str_pad($count, 6, '0', STR_PAD_LEFT);
             $transaksi->kode = 'TRANS-' . $paded;
             $transaksi->save();
@@ -131,7 +131,7 @@ class TransaksiController extends Controller
         return redirect()->intended(route('transaksi'));
     }
 
-    //Mengubah Status item menjadi "Cuci"
+    //Mengubah Data Status item menjadi "Cuci"
     public function changeStatusCuci(Transaksi $transaksi)
     {
         if (empty($transaksi->pencuci)) {
@@ -148,7 +148,7 @@ class TransaksiController extends Controller
         }
     }
 
-    //Mengubah Status itetm menjadi "Setrika"
+    //Mengubah Data Status itetm menjadi "Setrika"
     public function changeStatusSetrika(Transaksi $transaksi)
     {
         if (empty($transaksi->penyetrika)) {

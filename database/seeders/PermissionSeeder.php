@@ -17,69 +17,136 @@ class PermissionSeeder extends Seeder
     public function run()
     {
 
-        //Menu
-        Permission::create(['name' => 'menu_rewash']);
+        //Basic
+        Permission::create(['name' => 'Merubah Hak Akses']);
 
-        //setting
-        Permission::create(['name' => 'menu_karyawan']);
-        Permission::create(['name' => 'menu_paket']);
+        //Karyawan
+        Permission::create(['name' => 'Membuka Menu Karyawan']);
+        Permission::create(['name' => 'Melihat Detail Karyawan']);
+        Permission::create(['name' => 'Menambahkan Karyawan']);
+        Permission::create(['name' => 'Mengubah Data Karyawan']);
+        Permission::create(['name' => 'Mengubah Data Password Karyawan']);
 
-        //outlet
-        Permission::create(['name' => 'menu_outlet']);
-        Permission::create(['name' => 'show_outlet']);
-        Permission::create(['name' => 'insert_outlet']);
-        Permission::create(['name' => 'update_outlet']);
-        Permission::create(['name' => 'delete_outlet']);
+        //Outlet
+        Permission::create(['name' => 'Membuka Menu Outlet']);
+        Permission::create(['name' => 'Melihat Detail Outlet']);
+        Permission::create(['name' => 'Membuat Outlet']);
+        Permission::create(['name' => 'Mengubah Data Outlet']);
+        Permission::create(['name' => 'Menghapus Outlet']);
 
-        //Item
-        Permission::create(['name' => 'menu_jenis_item']);
-        Permission::create(['name' => 'show_jenis_item']);
-        Permission::create(['name' => 'insert_jenis_item']);
-        Permission::create(['name' => 'update_jenis_item']);
-        Permission::create(['name' => 'delete_jenis_item']);
+        //PaketCuci
+        Permission::create(['name' => 'Membuka Menu Paket Cuci']);
+        Permission::create(['name' => 'Melihat Detail Paket Cuci']);
+        Permission::create(['name' => 'Membuat Paket Cuci']);
+        Permission::create(['name' => 'Mengubah Data Paket Cuci']);
+        Permission::create(['name' => 'Menghapus Paket Cuci']);
 
-        //Parfum
-        Permission::create(['name' => 'menu_parfum']);
-        Permission::create(['name' => 'show_parfum']);
-        Permission::create(['name' => 'insert_parfum']);
-        Permission::create(['name' => 'update_parfum']);
-        Permission::create(['name' => 'delete_parfum']);
+        //PaketDeposit
+        Permission::create(['name' => 'Membuka Menu Paket Deposit']);
+        Permission::create(['name' => 'Melihat Detail Paket Deposit']);
+        Permission::create(['name' => 'Membuat Paket Deposit']);
+        Permission::create(['name' => 'Mengubah Data Paket Deposit']);
+        Permission::create(['name' => 'Menghapus Paket Deposit']);
 
-        //Pengeluaran
-        Permission::create(['name' => 'menu_pengeluaran']);
-        Permission::create(['name' => 'show_pengeluaran']);
-        Permission::create(['name' => 'insert_pengeluaran']);
-        Permission::create(['name' => 'update_pengeluaran']);
-        Permission::create(['name' => 'delete_pengeluaran']);
-
-        //Pelanggan
-        Permission::create(['name' => 'menu_pelanggan']);
-        Permission::create(['name' => 'show_pelanggan']);
-        Permission::create(['name' => 'insert_pelanggan']);
-        Permission::create(['name' => 'update_pelanggan']);
-        Permission::create(['name' => 'delete_pelanggan']);
+        //JenisItem
+        Permission::create(['name' => 'Membuka Menu Jenis Item']);
+        Permission::create(['name' => 'Melihat Detail Jenis Item']);
+        Permission::create(['name' => 'Membuat Jenis Item']);
+        Permission::create(['name' => 'Mengubah Data Jenis Item']);
+        Permission::create(['name' => 'Menghapus Jenis Item']);
 
         //Kategori
-        Permission::create(['name' => 'menu_kategori']);
-        Permission::create(['name' => 'show_kategori']);
-        Permission::create(['name' => 'insert_kategori']);
-        Permission::create(['name' => 'update_kategori']);
-        Permission::create(['name' => 'delete_kategori']);
+        Permission::create(['name' => 'Membuka Menu Kategori']);
+        Permission::create(['name' => 'Melihat Detail Kategori']);
+        Permission::create(['name' => 'Membuat Kategori']);
+        Permission::create(['name' => 'Mengubah Data Kategori']);
+        Permission::create(['name' => 'Menghapus Kategori']);
 
-        //Pickup Delivery
-        Permission::create(['name' => 'menu_pickup_delivery']);
-        Permission::create(['name' => 'show_pickup_delivery']);
-        Permission::create(['name' => 'insert_pickup_delivery']);
-        Permission::create(['name' => 'update_pickup_delivery']);
-        Permission::create(['name' => 'delete_pickup_delivery']);
+        //Pengeluaran
+        Permission::create(['name' => 'Membuka Menu Pengeluaran']);
+        Permission::create(['name' => 'Melihat Detail Pengeluaran']);
+        Permission::create(['name' => 'Membuat Pengeluaran']);
+        Permission::create(['name' => 'Mengubah Data Pengeluaran']);
+        Permission::create(['name' => 'Menghapus Pengeluaran']);
+
+        //Parfum
+        Permission::create(['name' => 'Membuka Menu Parfum']);
+        Permission::create(['name' => 'Melihat Detail Parfum']);
+        Permission::create(['name' => 'Membuat Parfum']);
+        Permission::create(['name' => 'Mengubah Data Parfum']);
+        Permission::create(['name' => 'Menghapus Parfum']);
+
+        //Pelanggan
+        Permission::create(['name' => 'Membuka Menu Pelanggan']);
+        Permission::create(['name' => 'Melihat Detail Pelanggan']);
+        Permission::create(['name' => 'Membuat Pelanggan']);
+        Permission::create(['name' => 'Mengubah Data Pelanggan']);
+        Permission::create(['name' => 'Menghapus Pelanggan']);
+
+        //Pickup & Delivery
+        Permission::create(['name' => 'Membuka Menu Pickup Delivery']);
+        Permission::create(['name' => 'Melihat Detail Pickup Delivery']);
+        Permission::create(['name' => 'Membuat Pickup Delivery']);
+        Permission::create(['name' => 'Mengubah Data Pickup Delivery']);
+        Permission::create(['name' => 'Menghapus Pickup Delivery']);
+        Permission::create(['name' => 'Mengganti Status Selesai Pickup Delivery']);
 
         //Item Transaksi
-        Permission::create(['name' => 'show_item_transaksi']);
-        Permission::create(['name' => 'insert_item_transaksi']);
-        Permission::create(['name' => 'update_item_transaksi']);
-        Permission::create(['name' => 'delete_item_transaksi']);
+        Permission::create(['name' => 'Melihat Detail Item Transaksi']);
+        Permission::create(['name' => 'Membuat Item Transaksi']);
+        Permission::create(['name' => 'Mengubah Data Item Transaksi']);
+        Permission::create(['name' => 'Menghapus Item Transaksi']);
+
+        //Item Note
+        Permission::create(['name' => 'Melihat Detail Daftar Catatan Item']);
+        Permission::create(['name' => 'Melihat Detail Catatan Item']);
+        Permission::create(['name' => 'Membuat Catatan Item']);
 
         //Transaksi
-        Permission::create(['name' => 'menu_transaksi_bucket']);
-    }
+        Permission::create(['name' => 'Membuka Menu Transaksi']);
+        Permission::create(['name' => 'Membuat Transaksi']);
+        Permission::create(['name' => 'Melihat Detail Transaksi']);
+        Permission::create(['name' => 'Menambahkan Item Ke Transaksi']);
+        Permission::create(['name' => 'Mengubah Data Transaksi']);
+        Permission::create(['name' => 'Menambahkan Penerima Ke Transaksi']);
+
+        //HubCuci
+        Permission::create(['name' => 'Membuka Menu Hub Cuci']);
+        Permission::create(['name' => 'Mengambil Tugas Cuci']);
+        Permission::create(['name' => 'Mengurangi Tugas Cuci']);
+        //HubSetrika
+        Permission::create(['name' => 'Membuka Menu Hub Setrika']);
+        Permission::create(['name' => 'Mengambil Tugas Setrika']);
+        Permission::create(['name' => 'Mengurangi Tugas Setrika']);
+
+        //History Pelanggan
+        Permission::create(['name' => 'Membuka Halaman Detail Pelanggan']);
+        Permission::create(['name' => 'Melihat Detail History Transaksi Pelanggan']);
+        Permission::create(['name' => 'Melihat Detail History Saldo Pelanggan']);
+
+        //Saldo
+        Permission::create(['name' => 'Membuka Menu Saldo']);
+        Permission::create(['name' => 'Topup Saldo Pelanggan']);
+
+        //Pembayaran
+        Permission::create(['name' => 'Membuka Menu Pembayaran']);
+        Permission::create(['name' => 'Melihat Detail Pembayaran']);
+        Permission::create(['name' => 'Membuat Pembayaran']);
+        Permission::create(['name' => 'Mengubah Data Pembayaran']);
+        Permission::create(['name' => 'Menghapus Pembayaran']);
+
+        //Inventory
+        Permission::create(['name' => 'Membuka Menu Inventory']);
+        Permission::create(['name' => 'Menambah Inventory']);
+        Permission::create(['name' => 'Mengubah Data Inventory']);
+        Permission::create(['name' => 'Menghapus Inventory']);
+        Permission::create(['name' => 'Mengubah Data Stok Inventory']);
+
+        //Rewash
+        Permission::create(['name' => 'Membuka Menu Rewash']);
+        Permission::create(['name' => 'Manambah Rewash']);
+        Permission::create(['name' => 'Mengganti Status Rewash']);
+        Permission::create(['name' => 'Menghapus Rewash']);
+
+    }   
 }

@@ -27,7 +27,7 @@ class UserController extends Controller
         $user = User::where('username', $request['username'])->first();
         $auth = Auth::attempt(['email' => $user->email, 'password' => $request['password']]);
 
-        if ($auth) {
+        if ($auth && ($user->status == true)) {
             $request->session()->regenerate();
             Session::put('user', $user);
             $roles = $user->getRoleNames();

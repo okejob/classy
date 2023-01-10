@@ -48,146 +48,147 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/reset-password', [PageController::class, 'resetPassword'])->name('reset_password');
 
     Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
-    Route::get('/data/rewash', [PageController::class, 'rewash'])->name('menu-rewash')->middleware('permission:menu_rewash');
     //Middleware dengan permission:XXXX untuk melakukan check permission
 
     //Setting
 
     //Karyawan
-    Route::get('/setting/karyawan', [PageController::class, 'karyawan'])->name('menu-karyawan')->middleware('permission:menu_karyawan');
-    Route::get('/setting/karyawan/{id}', [UserController::class, 'show']);
-    Route::post('/setting/karyawan', [UserController::class, 'insert']);
-    Route::post('/setting/karyawan/{id}', [UserController::class, 'update']);
-    Route::post('/setting/karyawan/{user}/change-password', [UserController::class, 'changePassword']);
+    Route::get('/setting/karyawan', [PageController::class, 'karyawan'])->name('menu-karyawan')->middleware('permission:Membuka Menu Karyawan');
+    Route::get('/setting/karyawan/{id}', [UserController::class, 'show'])->middleware('permission:Melihat Detail Karyawan');
+    Route::post('/setting/karyawan', [UserController::class, 'insert'])->middleware('permission:Menambahkan Karyawan');
+    Route::post('/setting/karyawan/{id}', [UserController::class, 'update'])->middleware('permission:Mengubah Data Karyawan');
+    Route::post('/setting/karyawan/{user}/change-password', [UserController::class, 'changePassword'])->middleware('permission:Mengubah Data Password Karyawan');
 
     //outlet
-    Route::get('/setting/outlet', [PageController::class, 'outlet'])->name('menu-outlet')->middleware('permission:menu_outlet');
-    Route::get('/setting/outlet/{id}', [OutletController::class, 'show'])->middleware('permission:show_outlet');
-    Route::post('/setting/outlet', [OutletController::class, 'insert'])->middleware('permission:insert_outlet');
-    Route::post('/setting/outlet/{id}', [OutletController::class, 'update'])->middleware('permission:update_outlet');
-    Route::get('/setting/outlet/delete/{id}', [OutletController::class, 'delete'])->middleware('permission:delete_outlet');
+    Route::get('/setting/outlet', [PageController::class, 'outlet'])->name('menu-outlet')->middleware('permission:Membuka Menu Outlet');
+    Route::get('/setting/outlet/{id}', [OutletController::class, 'show'])->middleware('permission:Melihat Detail Outlet');
+    Route::post('/setting/outlet', [OutletController::class, 'insert'])->middleware('permission:Membuat Outlet');
+    Route::post('/setting/outlet/{id}', [OutletController::class, 'update'])->middleware('permission:Mengubah Data Outlet');
+    Route::get('/setting/outlet/delete/{id}', [OutletController::class, 'delete'])->middleware('permission:Menghapus Outlet');
 
     //Paket Cuci
-    Route::get('/setting/paket-cuci', [PageController::class, 'paketCuci'])->name('menu-paket-cuci')->middleware('permission:menu_paket');
-    Route::get('/setting/paket-cuci/{id}', [PaketCuciController::class, 'show']);
-    Route::post('/setting/paket-cuci', [PaketCuciController::class, 'insert']);
-    Route::post('/setting/paket-cuci/{id}', [PaketCuciController::class, 'update']);
-    Route::get('/setting/paket-cuci/delete/{id}', [PaketCuciController::class, 'delete']);
+    Route::get('/setting/paket-cuci', [PageController::class, 'paketCuci'])->name('menu-paket-cuci')->middleware('permission:Membuka Menu Paket Cuci');
+    Route::get('/setting/paket-cuci/{id}', [PaketCuciController::class, 'show'])->middleware('permission:Melihat Detail Paket Cuci');
+    Route::post('/setting/paket-cuci', [PaketCuciController::class, 'insert'])->middleware('permission:Membuat Paket Cuci');
+    Route::post('/setting/paket-cuci/{id}', [PaketCuciController::class, 'update'])->middleware('permission:Mengubah Data Paket Cuci');
+    Route::get('/setting/paket-cuci/delete/{id}', [PaketCuciController::class, 'delete'])->middleware('permission:Menghapus Paket Cuci');
 
     //Paket Deposit
-    Route::get('/setting/paket-deposit', [PageController::class, 'paketDeposit'])->name('menu-paket-deposit')->middleware('permission:menu_paket');
-    Route::get('/setting/paket-deposit/{id}', [PaketDepositController::class, 'show']);
-    Route::post('/setting/paket-deposit', [PaketDepositController::class, 'insert']);
-    Route::post('/setting/paket-deposit/{id}', [PaketDepositController::class, 'update']);
-    Route::get('/setting/paket-deposit/delete/{id}', [PaketDepositController::class, 'delete']);
+    Route::get('/setting/paket-deposit', [PageController::class, 'paketDeposit'])->name('menu-paket-deposit')->middleware('permission:Membuka Menu Paket Deposit');
+    Route::get('/setting/paket-deposit/{id}', [PaketDepositController::class, 'show'])->middleware('permission:Melihat Detail Paket Deposit');
+    Route::post('/setting/paket-deposit', [PaketDepositController::class, 'insert'])->middleware('permission:Membuat Paket Deposit');
+    Route::post('/setting/paket-deposit/{id}', [PaketDepositController::class, 'update'])->middleware('permission:Mengubah Data Paket Deposit');
+    Route::get('/setting/paket-deposit/delete/{id}', [PaketDepositController::class, 'delete'])->middleware('permission:Menghapus Paket Deposit');
 
     //item
-    Route::get('/data/jenis-item', [PageController::class, 'jenisItem'])->name('menu-jenis-item')->middleware('permission:menu_jenis_item');
+    Route::get('/data/jenis-item', [PageController::class, 'jenisItem'])->name('menu-jenis-item')->middleware('permission:Membuka Menu Jenis Item');
     Route::get('/data/jenis-item/find', [JenisItemController::class, 'find']);
-    Route::get('/data/jenis-item/{id}', [JenisItemController::class, 'show'])->middleware('permission:show_jenis_item');
-    Route::post('/data/jenis-item', [JenisItemController::class, 'insert'])->middleware('permission:insert_jenis_item');
-    Route::post('/data/jenis-item/{id}', [JenisItemController::class, 'update'])->middleware('permission:update_jenis_item');
-    Route::get('/data/jenis-item/delete/{id}', [JenisItemController::class, 'delete'])->middleware('permission:delete_jenis_item');
+    Route::get('/data/jenis-item/{id}', [JenisItemController::class, 'show'])->middleware('permission:Melihat Detail Jenis Item');
+    Route::post('/data/jenis-item', [JenisItemController::class, 'insert'])->middleware('permission:Membuat Jenis Item');
+    Route::post('/data/jenis-item/{id}', [JenisItemController::class, 'update'])->middleware('permission:Mengubah Data Jenis Item');
+    Route::get('/data/jenis-item/delete/{id}', [JenisItemController::class, 'delete'])->middleware('permission:Menghapus jjenis_item');
 
-    //kategori
-    Route::get('/data/kategori', [PageController::class, 'kategori'])->name('menu-kategori')->middleware('permission:menu_kategori');
-    Route::get('/data/kategori/{id}', [KategoriController::class, 'show'])->middleware('permission:show_kategori');
-    Route::post('/data/kategori', [KategoriController::class, 'insert'])->middleware('permission:insert_kategori');
-    Route::post('/data/kategori/{id}', [KategoriController::class, 'update'])->middleware('permission:update_kategori');
-    Route::get('/data/kategori/delete/{id}', [KategoriController::class, 'delete'])->middleware('permission:delete_kategori');
+    //Kategori
+    Route::get('/data/kategori', [PageController::class, 'kategori'])->name('menu-kategori')->middleware('permission:Membuka Menu Kategori');
+    Route::get('/data/kategori/{id}', [KategoriController::class, 'show'])->middleware('permission:Melihat Detail Kategori');
+    Route::post('/data/kategori', [KategoriController::class, 'insert'])->middleware('permission:Membuat Kategori');
+    Route::post('/data/kategori/{id}', [KategoriController::class, 'update'])->middleware('permission:Mengubah Data Kategori');
+    Route::get('/data/kategori/delete/{id}', [KategoriController::class, 'delete'])->middleware('permission:Menghapus Kategori');
 
     //pengeluaran
-    Route::get('/data/pengeluaran', [PageController::class, 'pengeluaran'])->name('menu-pengeluaran')->middleware('permission:menu_pengeluaran');
-    Route::get('/data/pengeluaran/{id}', [PengeluaranController::class, 'show'])->middleware('permission:show_pengeluaran');
-    Route::post('/data/pengeluaran', [PengeluaranController::class, 'insert'])->middleware('permission:insert_pengeluaran');
-    Route::post('/data/pengeluaran/{id}', [PengeluaranController::class, 'update'])->middleware('permission:insert_pengeluaran');
-    Route::get('/data/pengeluaran/delete/{id}', [PengeluaranController::class, 'delete'])->middleware('permission:delete_pengeluaran');
+    Route::get('/data/pengeluaran', [PageController::class, 'pengeluaran'])->name('menu-pengeluaran')->middleware('permission:Membuka Menu Pengeluaran');
+    Route::get('/data/pengeluaran/{id}', [PengeluaranController::class, 'show'])->middleware('permission:Melihat Detail Pengeluaran');
+    Route::post('/data/pengeluaran', [PengeluaranController::class, 'insert'])->middleware('permission:Membuat Pengeluaran');
+    Route::post('/data/pengeluaran/{id}', [PengeluaranController::class, 'update'])->middleware('permission:Mengubah Data Pengeluaran');
+    Route::get('/data/pengeluaran/delete/{id}', [PengeluaranController::class, 'delete'])->middleware('permission:Menghapus Pengeluaran');
 
-    //parfum
-    Route::get('/data/parfum', [PageController::class, 'parfum'])->name('menu-parfum')->middleware('permission:menu_parfum');
-    Route::get('/data/parfum/{id}', [ParfumController::class, 'show'])->middleware('permission:show_parfum');
-    Route::post('/data/parfum', [ParfumController::class, 'insert'])->middleware('permission:insert_parfum');
-    Route::post('/data/parfum/{id}', [ParfumController::class, 'update'])->middleware('permission:update_parfum');
-    Route::get('data/parfum/delete/{id}', [ParfumController::class, 'delete'])->middleware('permission:delete_parfum');
+    //Parfum
+    Route::get('/data/parfum', [PageController::class, 'parfum'])->name('menu-parfum')->middleware('permission:Membuka Menu Parfum');
+    Route::get('/data/parfum/{id}', [ParfumController::class, 'show'])->middleware('permission:Melihat Detail Parfum');
+    Route::post('/data/parfum', [ParfumController::class, 'insert'])->middleware('permission:Membuat Parfum');
+    Route::post('/data/parfum/{id}', [ParfumController::class, 'update'])->middleware('permission:Mengubah Data Parfum');
+    Route::get('data/parfum/delete/{id}', [ParfumController::class, 'delete'])->middleware('permission:Menghapus Parfum');
 
     //Pelanggan
-    Route::get('/data/pelanggan', [PageController::class, 'pelanggan'])->name('menu-pelanggan')->middleware('permission:menu_pelanggan');
-    Route::get('/data/pelanggan/{id}', [PelangganController::class, 'show'])->middleware('permission:show_pelanggan');
-    Route::post('/data/pelanggan', [PelangganController::class, 'insert'])->middleware('permission:insert_pelanggan');
-    Route::post('/data/pelanggan/{id}', [PelangganController::class, 'update'])->middleware('permission:update_pelanggan');
-    Route::get('/data/pelanggan/delete/{id}', [PelangganController::class, 'delete'])->middleware('permission:delete_pelanggan');
-    Route::get('/component/pelanggan', [PelangganController::class, 'pelanggan']);
+    Route::get('/data/pelanggan', [PageController::class, 'pelanggan'])->name('menu-pelanggan')->middleware('permission:Membuka Menu Pelanggan');
+    Route::get('/data/pelanggan/{id}', [PelangganController::class, 'show'])->middleware('permission:Melihat Detail Pelanggan');
+    Route::post('/data/pelanggan', [PelangganController::class, 'insert'])->middleware('permission:Membuat Pelanggan');
+    Route::post('/data/pelanggan/{id}', [PelangganController::class, 'update'])->middleware('permission:Mengubah Data Pelanggan');
+    Route::get('/data/pelanggan/delete/{id}', [PelangganController::class, 'delete'])->middleware('permission:Menghapus Pelanggan');
+    Route::get('/component/pelanggan', [PelangganController::class, 'search']);
 
     //Pickup & Delivery
-    Route::get('/transaksi/pickup-delivery', [PageController::class, 'pickupDelivery'])->name('pickup-delivery')->middleware('permission:menu_pickup_delivery');
-    Route::get('/transaksi/pickup-delivery/{id}', [PickupDeliveryController::class, 'show'])->middleware('permission:show_pickup_delivery');
-    Route::post('/transaksi/pickup-delivery', [PickupDeliveryController::class, 'insert'])->middleware('permission:insert_pickup_delivery');
-    Route::post('/transaksi/pickup-delivery/{id}', [PickupDeliveryController::class, 'update'])->middleware('permission:update_pickup_delivery');
-    Route::get('/transaksi/pickup-delivery/delete/{id}', [PickupDeliveryController::class, 'delete'])->middleware('permission:delete_pickup_delivery');
+    Route::get('/transaksi/pickup-delivery', [PageController::class, 'pickupDelivery'])->name('pickup-delivery')->middleware('permission:Membuka Menu Pickup Delivery');
+    Route::get('/transaksi/pickup-delivery/{id}', [PickupDeliveryController::class, 'show'])->middleware('permission:Melihat Detail Pickup Delivery');
+    Route::post('/transaksi/pickup-delivery', [PickupDeliveryController::class, 'insert'])->middleware('permission:Membuat Pickup Delivery');
+    Route::post('/transaksi/pickup-delivery/{id}', [PickupDeliveryController::class, 'update'])->middleware('permission:Mengubah Data Pickup Delivery');
+    Route::get('/transaksi/pickup-delivery/delete/{id}', [PickupDeliveryController::class, 'delete'])->middleware('permission:Menghapus Pickup Delivery');
     Route::get('/component/pickup', [PickupDeliveryController::class, 'pickup']);
     Route::get('/component/delivery', [PickupDeliveryController::class, 'delivery']);
     Route::get('/component/ambil_di_outlet', [PickupDeliveryController::class, 'ambil_di_outlet']);
     Route::get('/transaksi/pickup-delivery/task-hub', [PickupDeliveryController::class, 'showTaskHub']);
-    Route::get('/transaksi/pickup-delivery/{pickup_delivery}/is-done', [PickupDeliveryController::class, 'changeIsDone']);
+    Route::get('/transaksi/pickup-delivery/{pickup_delivery}/is-done', [PickupDeliveryController::class, 'changeDoneStatus'])->middleware('permission:Mengganti Status Selesai Pickup Delivery');
 
     //Catatan Item Transaksi //ItemTransaksi
-    Route::get('/transaksi/item-transaksi/{id}', [ItemTransaksiController::class, 'show'])->middleware('permission:show_item_transaksi');
-    Route::post('/transaksi/item-transaksi', [ItemTransaksiController::class, 'insert'])->middleware('permission:insert_item_transaksi');
-    Route::post('/transaksi/item-transaksi/{id}', [ItemTransaksiController::class, 'update'])->middleware('permission:update_item_transaksi');
-    Route::get('/transaksi/item-transaksi/delete/{id}', [ItemTransaksiController::class, 'delete'])->middleware('permission:delete_item_transaksi');
+    Route::get('/transaksi/item-transaksi/{id}', [ItemTransaksiController::class, 'show'])->middleware('permission:Melihat Detail Item Transaksi');
+    Route::post('/transaksi/item-transaksi', [ItemTransaksiController::class, 'insert'])->middleware('permission:Membuat Item Transaksi');
+    Route::post('/transaksi/item-transaksi/{id}', [ItemTransaksiController::class, 'update'])->middleware('permission:Mengubah Data Item Transaksi');
+    Route::get('/transaksi/item-transaksi/delete/{id}', [ItemTransaksiController::class, 'delete'])->middleware('permission:Menghapus Item Transaksi');
 
     //ItemNote
-    Route::get('/transaksi/item/note/list/{item_transaksi_id}', [ItemNoteController::class, 'list']);
-    Route::get('/transaksi/item/note/{id}', [ItemNoteController::class, 'show']);
-    Route::post('/transaksi/item/note/add', [ItemNoteController::class, 'insert']);
+    Route::get('/transaksi/item/note/list/{item_transaksi_id}', [ItemNoteController::class, 'list'])->middleware('permission:Melihat Detail Daftar Catatan Item');
+    Route::get('/transaksi/item/note/{id}', [ItemNoteController::class, 'show'])->middleware('permission:Melihat Detail Catatan Item');
+    Route::post('/transaksi/item/note/add', [ItemNoteController::class, 'insert'])->middleware('permission:Membuat Catatan Item');
 
     //Transaksi
-    Route::get('/transaksi', [PageController::class, 'transaksi'])->name('transaksi');
-    Route::get('/transaksi/create', [TransaksiController::class, 'insert']);
-    Route::get('/transaksi/detail/{id}', [TransaksiController::class, 'show']);
+    Route::get('/transaksi', [PageController::class, 'transaksi'])->name('transaksi')->middleware('permission:Membuka Menu Transaksi');
+    Route::get('/transaksi/create', [TransaksiController::class, 'insert'])->middleware('permission:Membuat Transaksi');
+    Route::get('/transaksi/detail/{id}', [TransaksiController::class, 'show'])->middleware('permission:Melihat Detail Transaksi');
     Route::get('/transaksi/search/{key}', [TransaksiController::class, 'search']);
-    Route::get('/transaksi/addItem', [ItemTransaksiController::class, 'addItemToTransaksi']);
-    Route::post('/transaksi/update/{id}', [TransaksiController::class, 'update']);
-    Route::post('/transaksi/penerima', [PenerimaController::class, 'insert']);
+    Route::get('/transaksi/addItem', [ItemTransaksiController::class, 'addItemToTransaksi'])->middleware('permission:Menambahkan Item Ke Transaksi');
+    Route::post('/transaksi/update/{id}', [TransaksiController::class, 'update'])->middleware('permission:Mengubah Data Transaksi');
+    Route::post('/transaksi/penerima', [PenerimaController::class, 'insert'])->middleware('permission:Menambahkan Penerima Ke Transaksi');
+
+
     // proses cuci & seterika
-    Route::get('/proses/cuci', [PageController::class, 'hubCuci']);
-    Route::get('/proses/setrika', [PageController::class, 'hubSetrika']);
+    Route::get('/proses/cuci', [PageController::class, 'hubCuci'])->middleware('permission:Membuka Menu Hub Cuci');
+    Route::get('/proses/setrika', [PageController::class, 'hubSetrika'])->middleware('permission:Membuka Menu Hub Setrika');
     //ganti status pencuci & penyetrika
-    Route::get('/transaksi/{transaksi}/pencuci', [TransaksiController::class, 'changeStatusCuci']);
-    Route::get('/transaksi/{transaksi}/penyetrika', [TransaksiController::class, 'changeStatusSetrika']);
+    Route::get('/transaksi/{transaksi}/pencuci', [TransaksiController::class, 'changeStatusCuci'])->middleware('permission:Mengambil Tugas Cuci');
+    Route::get('/transaksi/{transaksi}/penyetrika', [TransaksiController::class, 'changeStatusSetrika'])->middleware('permission:Mengambil Tugas Setrika');
     //hapus status pencuci & penyetrika
-    Route::get('/transaksi/{transaksi}/pencuci/delete', [TransaksiController::class, 'clearStatusCuci']);
-    Route::get('/transaksi/{transaksi}/penyetrika/delete', [TransaksiController::class, 'clearStatusSetrika']);
+    Route::get('/transaksi/{transaksi}/pencuci/delete', [TransaksiController::class, 'clearStatusCuci'])->middleware('permission:Mengurangi Tugas Cuci');
+    Route::get('/transaksi/{transaksi}/penyetrika/delete', [TransaksiController::class, 'clearStatusSetrika'])->middleware('Mengurangi Tugas Setrika');
     //Autentikasi Diskon
     Route::post('/transaksi/diskon/autentikasi', [TransaksiController::class, 'authenticationDiskon']);
 
     //History
-    Route::get('/data/pelanggan/{id_pelanggan}/detail', [PelangganController::class, 'detailPelanggan']);
-    Route::get('/pelanggan/{id_pelanggan}/history/transaksi', [TransaksiController::class, 'historyPelanggan']);
-    Route::get('/pelanggan/{id_pelanggan}/history/saldo', [SaldoController::class, 'historyPelanggan']);
+    Route::get('/data/pelanggan/{id_pelanggan}/detail', [PelangganController::class, 'detailPelanggan'])->middleware('permission:Membuka Halaman Detail Pelanggan');
+    Route::get('/pelanggan/{id_pelanggan}/history/transaksi', [TransaksiController::class, 'historyPelanggan'])->middleware('permission:Melihat Detail History Transaksi Pelanggan');
+    Route::get('/pelanggan/{id_pelanggan}/history/saldo', [SaldoController::class, 'historyPelanggan'])->middleware('Melihat Detail History Saldo Pelanggan');
 
     //Saldo
-    Route::get('/transaksi/saldo', [PageController::class, 'saldo']);
+    Route::get('/transaksi/saldo', [PageController::class, 'saldo'])->middleware('permission:Membuka Menu Saldo');
     Route::get('/pelanggan/{pelanggan_id}/check-saldo', [SaldoController::class, 'getSaldo']);
-    Route::post('/pelanggan/{pelanggan_id}/add-saldo', [SaldoController::class, 'insert']);
+    Route::post('/pelanggan/{pelanggan_id}/add-saldo', [SaldoController::class, 'insert'])->middleware('permission:Topup Saldo Pelanggan');
 
     //Pembayaran
-    Route::get('/transaksi/pembayaran', [PageController::class, 'pembayaran'])->name('menu_pembayaran');
-    Route::get('/transaksi/pembayaran/{pembayaran}', [PembayaranController::class, 'show']);
-    Route::post('/transaksi/pembayaran', [PembayaranController::class, 'insert']);
-    Route::post('/transaksi/pembayaran/{pembayaran}', [PembayaranController::class, 'update']);
-    Route::get('/transaksi/pembayaran/delete/{pembayaran}', [PembayaranController::class, 'delete']);
+    Route::get('/transaksi/pembayaran', [PageController::class, 'pembayaran'])->name('menu_pembayaran')->middleware('permission:Membuka Menu Pembayaran');
+    Route::get('/transaksi/pembayaran/{pembayaran}', [PembayaranController::class, 'show'])->middleware('permission:Melihat Detail Pembayaran');
+    Route::post('/transaksi/pembayaran', [PembayaranController::class, 'insert'])->middleware('permission:Membuat Pembayaran');
+    Route::post('/transaksi/pembayaran/{pembayaran}', [PembayaranController::class, 'update'])->middleware('permission:Mengubah Data Pembayaran');
+    Route::get('/transaksi/pembayaran/delete/{pembayaran}', [PembayaranController::class, 'delete'])->middleware('permission:Menghapus Pembayaran');
 
     //Inventory
-    Route::get('/data/inventory', [PageController::class, 'inventory'])->name('menu-inventory');
-    Route::post('/data/inventory/insert', [InventoryController::class, 'insert']);
-    Route::post('/data/inventory/update/{inventory}', [InventoryController::class, 'update']);
-    Route::get('/data/inventory/delete/{inventory}', [InventoryController::class, 'delete']);
-    Route::post('/data/inventory/traffic', [LaporanInventoryController::class, 'insert']);
+    Route::get('/data/inventory', [PageController::class, 'inventory'])->name('menu-inventory')->middleware('permission:Membuka Menu Inventory');
+    Route::post('/data/inventory/insert', [InventoryController::class, 'insert'])->middleware('permission:Menambah Inventory');
+    Route::post('/data/inventory/update/{inventory}', [InventoryController::class, 'update'])->middleware('permission:Mengubah Data Inventory');
+    Route::get('/data/inventory/delete/{inventory}', [InventoryController::class, 'delete'])->middleware('permission:Menghapus Inventory');
+    Route::post('/data/inventory/traffic', [LaporanInventoryController::class, 'insert'])->middleware('permission:Mengubah Data Stok Inventory');
 
     //Rewash
-    Route::get('/proses/rewash', [PageController::class, 'rewash'])->name('menu-rewash');
-    Route::post('/proses/rewash/insert', [RewashController::class, 'insert']);
-    Route::post('/proses/rewash/update-status/{rewash}', [RewashController::class, 'updateStatus']);
-    Route::get('/proses/rewash/delete/{rewash}', [RewashController::class, 'delete']);
+    Route::get('/proses/rewash', [PageController::class, 'rewash'])->name('menu-rewash')->middleware('permission:Membuka Menu Rewash');
+    Route::post('/proses/rewash/insert', [RewashController::class, 'insert'])->middleware('permission:Menambah Rewash');
+    Route::post('/proses/rewash/update-status/{rewash}', [RewashController::class, 'updateStatus'])->middleware('permission:Mengganti Status Rewash');
+    Route::get('/proses/rewash/delete/{rewash}', [RewashController::class, 'delete'])->middleware('permission:Menghapus Rewash');
 });
