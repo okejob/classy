@@ -15,6 +15,7 @@ use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PenerimaController;
 use App\Http\Controllers\PengeluaranController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PickupDeliveryController;
 use App\Http\Controllers\RewashController;
 use App\Http\Controllers\SaldoController;
@@ -48,8 +49,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/reset-password', [PageController::class, 'resetPassword'])->name('reset_password');
 
     Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
-    //Middleware dengan permission:XXXX untuk melakukan check permission
 
+    Route::get('/setting/hak-akses/list', [PermissionController::class, 'permissionList']); //Ngambil List SEMUA Permission
+    Route::get('/setting/hak-akses/role/{role}', [PermissionController::class, 'rolesPermissionList']); //Ngambil List Permission KHUSUS ROLE Tertentu
+    Route::post('/setting/hak-akses/role/{role}/sync', [PermissionController::class, 'syncPermission'])->middleware('permission:Merubah Hak Akses'); //Ngambil List Permission KHUSUS ROLE Tertentu
     //Setting
 
     //Karyawan
