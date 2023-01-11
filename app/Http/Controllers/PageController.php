@@ -215,6 +215,42 @@ class PageController extends Controller
         );
     }
 
+    public function bucket()
+    {
+        $data['transaksi_id'] = Transaksi::count() == 0 ? 1 : Transaksi::latest()->first()->id + 1;
+        $data['last_transaksi'] = Transaksi::latest()->take(5)->get();
+        $data['pelanggan'] = Pelanggan::latest()->take(5)->get();
+        $data['pickup'] = PickupDelivery::where('action', 'pickup')->get();
+        $data['delivery'] = PickupDelivery::where('action', 'delivery')->get();
+        $data['parfum'] = Parfum::get();
+        $data['outlet'] = Outlet::get();
+
+        return view(
+            'pages.transaksi.Bucket',
+            [
+                'data' => $data
+            ]
+        );
+    }
+
+    public function premium()
+    {
+        $data['transaksi_id'] = Transaksi::count() == 0 ? 1 : Transaksi::latest()->first()->id + 1;
+        $data['last_transaksi'] = Transaksi::latest()->take(5)->get();
+        $data['pelanggan'] = Pelanggan::latest()->take(5)->get();
+        $data['pickup'] = PickupDelivery::where('action', 'pickup')->get();
+        $data['delivery'] = PickupDelivery::where('action', 'delivery')->get();
+        $data['parfum'] = Parfum::get();
+        $data['outlet'] = Outlet::get();
+
+        return view(
+            'pages.transaksi.Premium',
+            [
+                'data' => $data
+            ]
+        );
+    }
+
     public function hubCuci()
     {
         $data['transaksis'] = Transaksi::detail()->latest()->get();

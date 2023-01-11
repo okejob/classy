@@ -94,7 +94,7 @@ $(document).ready(function() {
         flag = true;
     });
 
-    $('#section-detail-transaksi #table-trans-item tbody').on('click', '.btn-show-action', function() {
+    $('.section-detail-transaksi #table-trans-item tbody').on('click', '.btn-show-action', function() {
         let lebarList = 150;
         let lebarBtn = $(this).css('width');
         let lebarTambahan = 2;
@@ -128,7 +128,7 @@ $(document).ready(function() {
         flag = true;
     });
 
-    $('#section-detail-transaksi #table-trans-item tbody').on('scroll', function() {
+    $('.section-detail-transaksi #table-trans-item tbody').on('scroll', function() {
         setTimeout(function (){
             if (flag) {
                 flag = !flag;

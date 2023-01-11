@@ -151,7 +151,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transaksi/addItem', [ItemTransaksiController::class, 'addItemToTransaksi'])->middleware('permission:Menambahkan Item Ke Transaksi');
     Route::post('/transaksi/update/{id}', [TransaksiController::class, 'update'])->middleware('permission:Mengubah Data Transaksi');
     Route::post('/transaksi/penerima', [PenerimaController::class, 'insert'])->middleware('permission:Menambahkan Penerima Ke Transaksi');
-
+    // Bucket
+    Route::get('/transaksi/bucket', [PageController::class, 'bucket'])->name('transaksi')->middleware('permission:Membuka Menu Transaksi');
+    Route::get('/transaksi/premium', [PageController::class, 'premium'])->name('transaksi')->middleware('permission:Membuka Menu Transaksi');
 
     // proses cuci & seterika
     Route::get('/proses/cuci', [PageController::class, 'hubCuci'])->middleware('permission:Membuka Menu Hub Cuci');

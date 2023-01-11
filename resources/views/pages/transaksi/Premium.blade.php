@@ -6,6 +6,8 @@
     <header class="my-3 d-flex justify-content-between" style="color: var(--bs-gray);">
         <div class="d-flex align-items-center">
             <a>Transaksi</a>
+            <i class="fas fa-angle-right mx-2"></i>
+            <a>Premium</a>
         </div>
         <button class="btn btn-primary btn-sm" data-bs-toggle="tooltip" data-bss-tooltip="" id="show-option" type="button" title="Show options">
             <i class="fas fa-cog"></i>
@@ -178,7 +180,6 @@
                                             <th>Nama Item</th>
                                             <th class="d-none d-lg-table-cell">Kategori</th>
                                             <th class="d-none d-md-table-cell">Proses</th>
-                                            <th>Bobot</th>
                                             <th>Harga Premium</th>
                                             <th style="width: 46.25px;"></th>
                                         </tr>
@@ -288,7 +289,7 @@
                                                         <tr>
                                                             <th>Nama Item</th>
                                                             <th>Kategori</th>
-                                                            <th>Bobot</th>
+                                                            <th>Harga</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -628,7 +629,7 @@
                                     <tr>
                                         <th>Nama</th>
                                         <th>Kategori</th>
-                                        <th colspan="2">Bobot/Harga</th>
+                                        <th colspan="2">Harga</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -718,5 +719,5 @@
     </div>
 </div>
 
-<script src="{{ asset('js/transaksi/transaksi.js') }}"></script>
+<script src="{{ asset('js/transaksi/premium.js') }}"></script>
 @endsection

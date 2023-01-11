@@ -6,6 +6,8 @@
     <header class="my-3 d-flex justify-content-between" style="color: var(--bs-gray);">
         <div class="d-flex align-items-center">
             <a>Transaksi</a>
+            <i class="fas fa-angle-right mx-2"></i>
+            <a>Bucket</a>
         </div>
         <button class="btn btn-primary btn-sm" data-bs-toggle="tooltip" data-bss-tooltip="" id="show-option" type="button" title="Show options">
             <i class="fas fa-cog"></i>
@@ -165,7 +167,7 @@
         </ul>
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active py-4" id="tab-transaksi">
-                <section class="section-detail-transaksi">
+                <section id="section-transaksi-bucket" class="section-detail-transaksi">
                     <div class="card">
                         <div class="card-body">
                             <header>
@@ -179,13 +181,12 @@
                                             <th class="d-none d-lg-table-cell">Kategori</th>
                                             <th class="d-none d-md-table-cell">Proses</th>
                                             <th>Bobot</th>
-                                            <th>Harga Premium</th>
                                             <th style="width: 46.25px;"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="text-center" colspan="8" style="padding-top: 4px;padding-bottom: 4px;">
+                                            <td class="text-center" colspan="5" style="padding-top: 4px;padding-bottom: 4px;">
                                                 <button class="btn btn-primary btn-sm" id="add-item" type="button">
                                                     <i class="fas fa-plus"></i>
                                                 </button>
@@ -504,7 +505,6 @@
                             </div>
                         </div>
                         <div class="col col-xl-3 col-md-6 col-12 position-relative mb-3">
-                            {{-- <div class="vr position-absolute" style="height: calc(100% + 2rem); margin: -1rem 0; border-left: 1px solid rgba(0,0,0,.125); top: 0; left: 0;"></div> --}}
                             <div class="card h-100">
                                 <div class="card-body">
                                     <section id="section-info-pickup-delivery" class="h-100">
@@ -552,7 +552,6 @@
                             </div>
                         </div>
                         <div class="col col-xl-3 col-md-6 col-12 position-relative mb-3">
-                            {{-- <div class="vr position-absolute" style="height: calc(100% + 2rem); margin: -1rem 0; border-left: 1px solid rgba(0,0,0,.125); top: 0; left: 0;"></div> --}}
                             <div class="card h-100">
                                 <div class="card-body">
                                     <section id="section-info-outlet">
@@ -578,7 +577,6 @@
                             </div>
                         </div>
                         <div class="col col-xl-3 col-md-6 col-12 position-relative mb-3">
-                            {{-- <div class="vr position-absolute" style="height: calc(100% + 2rem); margin: -1rem 0; border-left: 1px solid rgba(0,0,0,.125); top: 0; left: 0;"></div> --}}
                             <div class="card h-100">
                                 <div class="card-body">
                                     <section id="section-info-penerimaan" class="h-100">
@@ -628,7 +626,7 @@
                                     <tr>
                                         <th>Nama</th>
                                         <th>Kategori</th>
-                                        <th colspan="2">Bobot/Harga</th>
+                                        <th colspan="2">Bobot</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -718,5 +716,5 @@
     </div>
 </div>
 
-<script src="{{ asset('js/transaksi/transaksi.js') }}"></script>
+<script src="{{ asset('js/transaksi/bucket.js') }}"></script>
 @endsection
