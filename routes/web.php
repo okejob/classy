@@ -161,7 +161,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transaksi/{transaksi}/penyetrika', [TransaksiController::class, 'changeStatusSetrika'])->middleware('permission:Mengambil Tugas Setrika');
     //hapus status pencuci & penyetrika
     Route::get('/transaksi/{transaksi}/pencuci/delete', [TransaksiController::class, 'clearStatusCuci'])->middleware('permission:Mengurangi Tugas Cuci');
-    Route::get('/transaksi/{transaksi}/penyetrika/delete', [TransaksiController::class, 'clearStatusSetrika'])->middleware('Mengurangi Tugas Setrika');
+    Route::get('/transaksi/{transaksi}/penyetrika/delete', [TransaksiController::class, 'clearStatusSetrika'])->middleware('permission:Mengurangi Tugas Setrika');
     //Autentikasi Diskon
     Route::post('/transaksi/diskon/autentikasi', [TransaksiController::class, 'authenticationDiskon']);
 

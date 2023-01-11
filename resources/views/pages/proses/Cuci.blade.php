@@ -18,7 +18,7 @@
                             <hr />
                             <div class="hub-list hub-cuci">
                                 @foreach ($transaksis as $transaksi)
-                                    @if ($transaksi->pencuci == null)
+                                    @if ($transaksi->pencuci == null && !$transaksi->setrika_only)
                                     <div class="p-3 border rounded item d-flex justify-content-between align-items-start">
                                         <div class="d-flex flex-column">
                                             <h4>{{ $transaksi->kode }}</h4>

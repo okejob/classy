@@ -13,7 +13,7 @@
                 <h4 class="card-title">Data Item</h4>
                 <hr>
                 <div class="d-flex justify-content-end">
-                    <form method="GET" action="/inventory/inventory" class="d-flex align-items-center">
+                    <form method="GET" action="/data/inventory" class="d-flex align-items-center">
                         Search :
                         <input class="form-control mx-1" type="search" name="search" style="max-width: 200px;">
                     </form>

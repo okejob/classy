@@ -80,9 +80,11 @@
                                             <td class="text-center">{{ $item_transaksi->nama_kategori }}</td>
                                             <td>keterangan</td>
                                             <td class="cell-action" style="width: 46.25px;">
+                                                @if ($transaksi->pencuci != null && !$transaksi->setrika_only)
                                                 <button id="btn-{{ $item_transaksi->id }}" class="btn btn-primary btn-sm btn-show-action-2" type="button">
                                                     <i class="fas fa-bars"></i>
                                                 </button>
+                                                @endif
                                             </td>
                                         </tr>
                                         @endforeach
