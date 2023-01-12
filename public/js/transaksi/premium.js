@@ -125,7 +125,7 @@ $(document).ready(function() {
                 const item = trans.item_transaksi[i];
                 let temp = "<tr id='" + item.id + "'>" +
                     "<td style='white-space: nowrap;'>" + item.nama + "</td>" +
-                    "<td class='d-none d-lg-table-cell'>" + item.nama_kategori + "</td>";
+                    "<td class='d-none d-lg-table-cell text-center'>" + item.nama_kategori + "</td>";
 
                 if (trans.penyetrika != null) {
                     temp += "<td class='d-none d-xl-table-cell text-center'>Setrika</td>";
@@ -380,53 +380,33 @@ $(document).ready(function() {
     function adjustWidth() {
         if ($(window).width() < 576) {
             $('#table-trans-item thead th:nth-child(1)').css('width', '40%');
-            $('#table-trans-item thead th:nth-child(4)').css('width', '15%');
 
             $('#table-trans-item tbody tr td:nth-child(1)').css('width', '40%');
             $('#table-trans-item tbody tr td:nth-child(1)').css('white-space', 'initial');
-            $('#table-trans-item tbody tr td:nth-child(4)').css('width', '15%');
 
             $('#table-trans-item tfoot tr td:nth-child(1)').css('width', '55%');
             $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '10%');
         } else if ($(window).width() < 992) {
-            $('#table-trans-item thead th:nth-child(1)').css('width', '40%');
+            $('#table-trans-item thead th:nth-child(1)').css('width', '45%');
             $('#table-trans-item thead th:nth-child(3)').css('width', '15%');
-            $('#table-trans-item thead th:nth-child(4)').css('width', '10%');
 
-            $('#table-trans-item tbody tr td:nth-child(1)').css('width', '40%');
+            $('#table-trans-item tbody tr td:nth-child(1)').css('width', '45%');
             $('#table-trans-item tbody tr td:nth-child(1)').css('white-space', 'nowrap');
             $('#table-trans-item tbody tr td:nth-child(3)').css('width', '15%');
-            $('#table-trans-item tbody tr td:nth-child(4)').css('width', '10%');
 
-            $('#table-trans-item tfoot tr td:nth-child(1)').css('width', '65%');
+            $('#table-trans-item tfoot tr td:nth-child(1)').css('width', '60%');
             $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '7.5%');
-        } else if ($(window).width() < 1200) {
-            $('#table-trans-item thead th:nth-child(1)').css('width', '30%');
-            $('#table-trans-item thead th:nth-child(2)').css('width', '20%');
-            $('#table-trans-item thead th:nth-child(3)').css('width', '10%');
-            $('#table-trans-item thead th:nth-child(4)').css('width', '10%');
-
-            $('#table-trans-item tbody tr td:nth-child(1)').css('width', '30%');
-            $('#table-trans-item tbody tr td:nth-child(1)').css('white-space', 'nowrap');
-            $('#table-trans-item tbody tr td:nth-child(2)').css('width', '20%');
-            $('#table-trans-item tbody tr td:nth-child(3)').css('width', '10%');
-            $('#table-trans-item tbody tr td:nth-child(4)').css('width', '10%');
-
-            $('#table-trans-item tfoot tr td:nth-child(1)').css('width', '70%');
-            $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '5%');
         } else {
             $('#table-trans-item thead th:nth-child(1)').css('width', '35%');
             $('#table-trans-item thead th:nth-child(2)').css('width', '25%');
-            $('#table-trans-item thead th:nth-child(3)').css('width', '10%');
-            $('#table-trans-item thead th:nth-child(4)').css('width', '10%');
+            $('#table-trans-item thead th:nth-child(3)').css('width', '15%');
 
             $('#table-trans-item tbody tr td:nth-child(1)').css('width', '35%');
             $('#table-trans-item tbody tr td:nth-child(1)').css('white-space', 'nowrap');
             $('#table-trans-item tbody tr td:nth-child(2)').css('width', '25%');
-            $('#table-trans-item tbody tr td:nth-child(3)').css('width', '10%');
-            $('#table-trans-item tbody tr td:nth-child(4)').css('width', '10%');
+            $('#table-trans-item tbody tr td:nth-child(3)').css('width', '15%');
 
-            $('#table-trans-item tfoot tr td:nth-child(1)').css('width', '80%');
+            $('#table-trans-item tfoot tr td:nth-child(1)').css('width', '75%');
             $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '5%');
         }
     }
@@ -445,8 +425,9 @@ $(document).ready(function() {
             let items = data[0];
 
             items.forEach(item => {
-                $('#table-items tbody').append("<tr id='item-" + item.id + "'><td>" + item.nama + "</td><td class='text-center'>" + item.nama_kategori + "</td><td class='text-center'>" + parseFloat(item.bobot_bucket) + "</td></tr>");
+                $('#table-items tbody').append("<tr id='item-" + item.id + "'><td>" + item.nama + "</td><td class='text-center'>" + item.nama_kategori + "</td><td>Rp</td><td class='text-end thousand-separator'>" + item.harga_premium + "</td></tr>");
             });
+            setThousandSeparator();
             $('#modal-add-item').modal('show');
         });
     });
@@ -462,8 +443,9 @@ $(document).ready(function() {
             let items = data[0];
 
             items.forEach(item => {
-                $('#table-items tbody').append("<tr id='item-" + item.id + "'><td>" + item.nama + "</td><td>" + item.nama_kategori + "</td><td>" + parseFloat(item.bobot_bucket) + "</td></tr>");
+                $('#table-items tbody').append("<tr id='item-" + item.id + "'><td>" + item.nama + "</td><td class='text-center'>" + item.nama_kategori + "</td><td>Rp</td><td class='text-end thousand-separator'>" + item.harga_premium + "</td></tr>");
             });
+            setThousandSeparator();
         });
     });
 
@@ -497,13 +479,10 @@ $(document).ready(function() {
                 const temp = trans.item_transaksi[trans.item_transaksi.length - 1];
                 $('#table-trans-item tbody').append(
                     "<tr id='" + temp.id + "'>" +
-                        "<td style='white-space: nowrap; width: 25%;'>" + temp.nama + "</td>" +
-                        "<td class='d-none d-lg-table-cell' style='width: 15%;'>" + temp.nama_kategori + "</td>" +
-                        "<td class='d-none d-xl-table-cell' style='width: 10%;'></td>" +
-                        "<td class='d-none d-xl-table-cell' style='width: 10%;'></td>" +
-                        "<td class='d-none d-md-table-cell' style='width: 10%;'></td>" +
-                        "<td class='text-center' style='width: 10%;'>" + temp.bobot_bucket + "</td>" +
-                        "<td class='d-none d-sm-table-cell' style='width: 5%;'>Rp</td>" +
+                        "<td style='white-space: nowrap;'>" + temp.nama + "</td>" +
+                        "<td class='d-none d-lg-table-cell text-center'>" + temp.nama_kategori + "</td>" +
+                        "<td class='d-none d-xl-table-cell'></td>" +
+                        "<td class='d-none d-sm-table-cell'>Rp</td>" +
                         "<td class='text-end thousand-separator'>" + temp.harga_premium + "</td>" +
                         "<td style='width: 46.25px;'>" +
                             "<button id='btn-" + temp.id + "' class='btn btn-primary btn-sm btn-show-action' type='button'><i class='fas fa-bars' aria-hidden='true'></i></button>" +
@@ -514,6 +493,7 @@ $(document).ready(function() {
 
                 setThousandSeparator();
                 parent.removeClass('disabled');
+                adjustWidth();
                 $('#modal-add-item').modal('hide');
             });
         });

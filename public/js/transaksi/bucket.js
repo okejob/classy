@@ -460,12 +460,10 @@ $(document).ready(function() {
                 const temp = trans.item_transaksi[trans.item_transaksi.length - 1];
                 $('#table-trans-item tbody').append(
                     "<tr id='" + temp.id + "'>" +
-                        "<td style='white-space: nowrap; width: 25%;'>" + temp.nama + "</td>" +
-                        "<td class='d-none d-lg-table-cell' style='width: 15%;'>" + temp.nama_kategori + "</td>" +
-                        "<td class='d-none d-xl-table-cell' style='width: 10%;'></td>" +
-                        "<td class='d-none d-xl-table-cell' style='width: 10%;'></td>" +
-                        "<td class='d-none d-md-table-cell' style='width: 10%;'></td>" +
-                        "<td class='text-center' style='width: 10%;'>" + temp.bobot_bucket + "</td>" +
+                        "<td style='white-space: nowrap;'>" + temp.nama + "</td>" +
+                        "<td class='d-none d-lg-table-cell text-center'>" + temp.nama_kategori + "</td>" +
+                        "<td class='d-none d-xl-table-cell'></td>" +
+                        "<td class='text-center'>" + temp.bobot_bucket + "</td>" +
                         "<td style='width: 46.25px;'>" +
                             "<button id='btn-" + temp.id + "' class='btn btn-primary btn-sm btn-show-action' type='button'><i class='fas fa-bars' aria-hidden='true'></i></button>" +
                         "</td>" +
@@ -475,6 +473,7 @@ $(document).ready(function() {
 
                 setThousandSeparator();
                 parent.removeClass('disabled');
+                adjustWidth();
                 $('#modal-add-item').modal('hide');
             });
         });

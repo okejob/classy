@@ -167,7 +167,7 @@
         </ul>
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active py-4" id="tab-transaksi">
-                <section class="section-detail-transaksi">
+                <section id="section-transaksi-premium" class="section-detail-transaksi">
                     <div class="card">
                         <div class="card-body">
                             <header>
@@ -186,7 +186,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="text-center" colspan="8" style="padding-top: 4px;padding-bottom: 4px;">
+                                            <td class="text-center" colspan="6" style="padding-top: 4px;padding-bottom: 4px;">
                                                 <button class="btn btn-primary btn-sm" id="add-item" type="button">
                                                     <i class="fas fa-plus"></i>
                                                 </button>
@@ -289,7 +289,7 @@
                                                         <tr>
                                                             <th>Nama Item</th>
                                                             <th>Kategori</th>
-                                                            <th>Harga</th>
+                                                            <th colspan="2">Harga</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
