@@ -131,6 +131,7 @@ class PageController extends Controller
                 'rewashes' => Rewash::with('itemTransaksi')->get(),
                 'jenisRewashes' => JenisRewash::get(),
                 'transaksis' => Transaksi::latest()->get(),
+                'pencucis' => User::role('produksi_cuci')->get(),
             ]
         );
     }
@@ -255,7 +256,7 @@ class PageController extends Controller
     {
         $data['transaksis'] = Transaksi::detail()->latest()->get();
         $data['rewashes'] = Rewash::with('itemTransaksi')->where('pencuci', Auth::id())->get();
-        // dd($data);
+        $data['pencucis'] = User::role('produksi_cuci')->get();
         return view('pages.proses.Cuci', $data);
     }
 
@@ -263,6 +264,7 @@ class PageController extends Controller
     {
         $data['transaksis'] = Transaksi::detail()->latest()->get();
         $data['jenis_rewashes'] = JenisRewash::get();
+        $data['penyetrikas'] = User::role('produksi_setrika')->get();
         return view('pages.proses.Setrika', $data);
     }
 
