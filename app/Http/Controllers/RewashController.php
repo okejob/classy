@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\InsertJenisRewashRequest;
+use App\Models\Data\JenisRewash;
 use App\Models\Transaksi\ItemTransaksi;
 use App\Models\Transaksi\Rewash;
 use App\Models\Transaksi\Transaksi;
@@ -45,5 +47,28 @@ class RewashController extends Controller
         $rewash->delete();
 
         return redirect()->intended(route('menu-rewash'));
+    }
+
+    public function insertData(InsertJenisRewashRequest $request)
+    {
+        $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
+        JenisRewash::create($merged);
+
+        return redirect()->intended(route('data-rewash'));
+    }
+
+    public function update(InsertJenisRewashRequest $request, $id)
+    {
+        $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
+        JenisRewash::find($id)->update($merged);
+
+        return redirect()->back();
+    }
+
+    public function deleteData($id)
+    {
+        JenisRewash::destroy($id);
+
+        return redirect()->intended(route('data-rewash'));
     }
 }

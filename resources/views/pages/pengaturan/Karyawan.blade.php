@@ -177,105 +177,440 @@
                 <hr>
                 <div class="d-flex align-items-center mb-3">
                     <p class="me-2">Role :</p><select class="form-select" style="width: initial;">
-                        <option value="supervisor" selected="">Supervisor</option>
+                        <option value="" selected hidden>-</option>
+                        <option value="supervisor">Supervisor</option>
                         <option value="operator">Operator</option>
-                        <option value="produksi">Produksi</option>
+                        <option value="produksi_cuci">Pencuci</option>
+                        <option value="produksi_setrika">Penyetrika</option>
                     </select>
                 </div>
                 <div class="row">
-                    <div class="col-12 col-md-6">
-                        <div class="card h-100">
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <div class="card h-100" id="card-pengaturan">
                             <div class="card-body">
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="check-pengaturan"><label class="form-check-label text-uppercase fw-bold" for="formCheck-1">Pengaturan</label></div>
-                                <div class="ps-4">
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="check-pengaturan-outlet"><label class="form-check-label" for="formCheck-1">Outlet</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="check-pengaturan-karyawan"><label class="form-check-label" for="formCheck-1">Karyawan &amp; Hak Akses</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="check-pengaturan-paket"><label class="form-check-label" for="formCheck-1">Paket</label></div>
+                                <h4>Pengaturan</h4>
+                                <hr>
+                                <h5 class="fw-bold">Outlet</h5>
+                                <div class="ms-1 mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-pengaturan-outlet-1">
+                                        <label class="form-check-label" for="check-pengaturan-outlet-1">Membuka menu outlet</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-pengaturan-outlet-2">
+                                        <label class="form-check-label" for="check-pengaturan-outlet-2">Melihat detail outlet</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-pengaturan-outlet-3">
+                                        <label class="form-check-label" for="check-pengaturan-outlet-3">Membuat outlet</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-pengaturan-outlet-4">
+                                        <label class="form-check-label" for="check-pengaturan-outlet-4">Mengubah data outlet</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-pengaturan-outlet-5">
+                                        <label class="form-check-label" for="check-pengaturan-outlet-5">Menghapus outlet</label>
+                                    </div>
+                                </div>
+                                <h5 class="fw-bold">Karyawan & Hak Akses</h5>
+                                <div class="ms-1 mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-pengaturan-akses-1">
+                                        <label class="form-check-label" for="check-pengaturan-akses-1">Merubah hak akses</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-pengaturan-karyawan-1">
+                                        <label class="form-check-label" for="check-pengaturan-karyawan-1">Membuka menu karyawan</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-pengaturan-karyawan-2">
+                                        <label class="form-check-label" for="check-pengaturan-karyawan-2">Melihat detail karyawan</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-pengaturan-karyawan-3">
+                                        <label class="form-check-label" for="check-pengaturan-karyawan-3">Menambahkan karyawan</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-pengaturan-karyawan-4">
+                                        <label class="form-check-label" for="check-pengaturan-karyawan-4">Mengubah data karyawan</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-pengaturan-karyawan-5">
+                                        <label class="form-check-label" for="check-pengaturan-karyawan-5">Mengubah password karyawan</label>
+                                    </div>
+                                </div>
+                                <h5 class="fw-bold">Paket Cuci</h5>
+                                <div class="ms-1 mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-cuci-1">
+                                        <label class="form-check-label" for="check-pengaturan-paket-cuci-1">Membuka menu paket cuci</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-cuci-2">
+                                        <label class="form-check-label" for="check-pengaturan-paket-cuci-2">Melihat detail paket cuci</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-cuci-3">
+                                        <label class="form-check-label" for="check-pengaturan-paket-cuci-3">Membuat paket cuci</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-cuci-4">
+                                        <label class="form-check-label" for="check-pengaturan-paket-cuci-4">Mengubah data paket cuci</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-cuci-5">
+                                        <label class="form-check-label" for="check-pengaturan-paket-cuci-5">Menghapus paket cuci</label>
+                                    </div>
+                                </div>
+                                <h5 class="fw-bold">Paket Deposit</h5>
+                                <div class="ms-1 mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-pengaturan-pakdeposit-1">
+                                        <label class="form-check-label" for="check-pengaturan-paket-deposit-1">Membuka menu paket deposit</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-deposit-2">
+                                        <label class="form-check-label" for="check-pengaturan-paket-deposit-2">Melihat detail paket deposit</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-deposit-3">
+                                        <label class="form-check-label" for="check-pengaturan-paket-deposit-3">Membuat paket deposit</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-deposit-4">
+                                        <label class="form-check-label" for="check-pengaturan-paket-deposit-4">Mengubah data paket deposit</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-deposit-5">
+                                        <label class="form-check-label" for="check-pengaturan-paket-deposit-5">Menghapus paket deposit</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6">
-                        <div class="card h-100">
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <div class="card h-100" id="card-data">
                             <div class="card-body">
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="check-data"><label class="form-check-label text-uppercase fw-bold" for="formCheck-1">master data</label></div>
-                                <div class="ps-4">
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="check-pengaturan-outlet"><label class="form-check-label" for="formCheck-1">Item</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="check-pengaturan-karyawan"><label class="form-check-label" for="formCheck-1">Kategori</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="check-pengaturan-paket"><label class="form-check-label" for="formCheck-1">Parfum</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="check-data-pelanggan"><label class="form-check-label" for="formCheck-1">Pelanggan</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="check-pengaturan-paket-2"><label class="form-check-label" for="formCheck-1">Pengeluaran</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="check-data-rewash"><label class="form-check-label" for="formCheck-1">Rewash</label></div>
+                                <h4>Data</h4>
+                                <hr>
+                                <h5 class="fw-bold">Kategori</h5>
+                                <div class="ms-1 mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-kategori-1">
+                                        <label class="form-check-label" for="check-data-kategori-1">Membuka menu kategori</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-kategori-2">
+                                        <label class="form-check-label" for="check-data-kategori-2">Melihat detail kategori</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-kategori-3">
+                                        <label class="form-check-label" for="check-data-kategori-3">Membuat kategori</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-kategori-4">
+                                        <label class="form-check-label" for="check-data-kategori-4">Mengubah data kategori</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-kategori-5">
+                                        <label class="form-check-label" for="check-data-kategori-5">Menghapus kategori</label>
+                                    </div>
+                                </div>
+                                <h5 class="fw-bold">Jenis Item</h5>
+                                <div class="ms-1 mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="checkdatan-item-1">
+                                        <label class="form-check-label" for="check-data-item-1">Membuka menu jenis item</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-item-2">
+                                        <label class="form-check-label" for="check-data-item-2">Melihat detail jenis item</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-item-3">
+                                        <label class="form-check-label" for="check-data-item-3">Membuat jenis item</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-item-4">
+                                        <label class="form-check-label" for="check-data-item-4">Mengubah data jenis item</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-item-5">
+                                        <label class="form-check-label" for="check-data-item-5">Menghapus jenis item</label>
+                                    </div>
+                                </div>
+                                <h5 class="fw-bold">Parfum</h5>
+                                <div class="ms-1 mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-parfum-1">
+                                        <label class="form-check-label" for="check-data-parfum-1">Membuka menu perfum</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-parfum-2">
+                                        <label class="form-check-label" for="check-data-parfum-2">Melihat detail perfum</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-parfum-3">
+                                        <label class="form-check-label" for="check-data-parfum-3">Membuat perfum</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-parfum-4">
+                                        <label class="form-check-label" for="check-data-parfum-4">Mengubah data perfum</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-parfum-5">
+                                        <label class="form-check-label" for="check-data-parfum-5">Menghapus perfum</label>
+                                    </div>
+                                </div>
+                                <h5 class="fw-bold">Pelanggan</h5>
+                                <div class="ms-1 mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-pelanggan-1">
+                                        <label class="form-check-label" for="check-data-pelanggan-1">Membuka menu pelanggan</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-pelanggan-2">
+                                        <label class="form-check-label" for="check-data-pelanggan-2">Melihat detail pelanggan</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-pelanggan-3">
+                                        <label class="form-check-label" for="check-data-pelanggan-3">Membuat pelanggan</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-pelanggan-4">
+                                        <label class="form-check-label" for="check-data-pelanggan-4">Mengubah data pelanggan</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-pelanggan-5">
+                                        <label class="form-check-label" for="check-data-pelanggan-5">Menghapus pelanggan</label>
+                                    </div>
+                                </div>
+                                <h5 class="fw-bold">Pengeluaran</h5>
+                                <div class="ms-1 mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-pengeluaran-1">
+                                        <label class="form-check-label" for="check-data-pengeluaran-1">Membuka menu pengeluaran</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-pengeluaran-2">
+                                        <label class="form-check-label" for="check-data-pengeluaran-2">Melihat detail pengeluaran</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-pengeluaran-3">
+                                        <label class="form-check-label" for="check-data-pengeluaran-3">Membuat pengeluaran</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-pengeluaran-4">
+                                        <label class="form-check-label" for="check-data-pengeluaran-4">Mengubah data pengeluaran</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-pengeluaran-5">
+                                        <label class="form-check-label" for="check-data-pengeluaran-5">Menghapus pengeluaran</label>
+                                    </div>
+                                </div>
+                                <h5 class="fw-bold">Inventory</h5>
+                                <div class="ms-1 mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-inventory-1">
+                                        <label class="form-check-label" for="check-data-inventory-1">Membuka menu inventory</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-inventory-2">
+                                        <label class="form-check-label" for="check-data-inventory-2">Menambahkan inventory</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-inventory-3">
+                                        <label class="form-check-label" for="check-data-inventory-3">Mengubah data inventory</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-inventory-4">
+                                        <label class="form-check-label" for="check-data-inventory-4">Menghapus inventory</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-data-inventory-5">
+                                        <label class="form-check-label" for="check-data-inventory-5">Mengubah stok inventory</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12">
-                        <div class="card h-100">
-                            <div class="card-body row">
-                                <div class="col">
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="check-transaksi"><label class="form-check-label text-uppercase fw-bold" for="formCheck-1">transaksi</label></div>
-                                    <div class="ps-4">
-                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="check-transaksi-cuci-premium"><label class="form-check-label" for="formCheck-1">Cuci Premium</label></div>
-                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="check-transaksi-cuci-bucket"><label class="form-check-label" for="formCheck-1">Cuci Bucket</label></div>
-                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="check-transaksi-cuci-kiloan"><label class="form-check-label" for="formCheck-1">Cuci Kiloan</label></div>
-                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="check-transaksi-cuci-rewash"><label class="form-check-label" for="formCheck-1">Rewash</label></div>
-                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="check-transaksi-pembayaran"><label class="form-check-label" for="formCheck-1">Pembayaran</label></div>
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <div class="card h-100" id="card-transaksi">
+                            <div class="card-body">
+                                <h4>Transaksi</h4>
+                                <hr>
+                                <div class="ms-1 mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-1">
+                                        <label class="form-check-label" for="check-transaksi-1">Membuka menu transaksi</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-2">
+                                        <label class="form-check-label" for="check-transaksi-2">Membuat transaksi</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-3">
+                                        <label class="form-check-label" for="check-transaksi-3">Melihat detail transaksi</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-4">
+                                        <label class="form-check-label" for="check-transaksi-4">Menambahkan item transaksi</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-5">
+                                        <label class="form-check-label" for="check-transaksi-5">Mengubah data transaksi</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-6">
+                                        <label class="form-check-label" for="check-transaksi-6">Menambahkan penerima</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-item-1">
+                                        <label class="form-check-label" for="check-transaksi-item-1">Melihat detail item transaksi</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-item-2">
+                                        <label class="form-check-label" for="check-transaksi-item-2">Membuat item transaksi</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-item-3">
+                                        <label class="form-check-label" for="check-transaksi-item-3">Mengubah data item transaksi</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-item-4">
+                                        <label class="form-check-label" for="check-transaksi-item-4">Menghapus item transaksi</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-catatan-1">
+                                        <label class="form-check-label" for="check-transaksi-catatan-1">Melihat daftar catatan item</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-catatan-2">
+                                        <label class="form-check-label" for="check-transaksi-catatan-2">Melihat catatan item</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-catatan-3">
+                                        <label class="form-check-label" for="check-transaksi-catatan-3">Membuat catatan item</label>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="mb-2">
-                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="check-distribusi"><label class="form-check-label text-uppercase fw-bold" for="formCheck-1">distribusi</label></div>
-                                        <div class="ps-4">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="check-distribusi-pickup"><label class="form-check-label" for="formCheck-1">Pick Up</label></div>
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="check-distribusi-progress-cuci"><label class="form-check-label" for="formCheck-1">Progress Cuci</label></div>
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="check-distribusi-delivery"><label class="form-check-label" for="formCheck-1">Delivery</label></div>
-                                        </div>
+                                <h5 class="fw-bold">Pickup & Delivery</h5>
+                                <div class="ms-1 mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-pickup-delivery-1">
+                                        <label class="form-check-label" for="check-transaksi-pickup-delivery-1">Membuka menu pickup delivery</label>
                                     </div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="check-inventaris"><label class="form-check-label text-uppercase fw-bold" for="formCheck-1">inventaris</label></div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-pickup-delivery-2">
+                                        <label class="form-check-label" for="check-transaksi-pickup-delivery-2">Melihat detail pickup delivery</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-pickup-delivery-3">
+                                        <label class="form-check-label" for="check-transaksi-pickup-delivery-3">Membuat pickup delivery</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-pickup-delivery-4">
+                                        <label class="form-check-label" for="check-transaksi-pickup-delivery-4">Mengubah data pickup delivery</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-pickup-delivery-5">
+                                        <label class="form-check-label" for="check-transaksi-pickup-delivery-5">Menghapus pickup delivery</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-pickup-delivery-6">
+                                        <label class="form-check-label" for="check-transaksi-pickup-delivery-6">Mengganti status pickup delivery</label>
+                                    </div>
                                 </div>
-                                <div class="col">
-                                    <div class="mb-2">
-                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="check-deposit"><label class="form-check-label text-uppercase fw-bold" for="formCheck-1">Deposit</label></div>
-                                        <div class="ps-4">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="check-deposit-pengisian"><label class="form-check-label" for="formCheck-1">Pengisian Deposit</label></div>
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="check-deposit-pencarian"><label class="form-check-label" for="formCheck-1">Pencarian Deposit</label></div>
-                                        </div>
+                                <h5 class="fw-bold">Saldo</h5>
+                                <div class="ms-1 mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-saldo-1">
+                                        <label class="form-check-label" for="check-transaksi-saldo-1">Membuka menu saldo</label>
                                     </div>
-                                    <div>
-                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="check-pembatalan"><label class="form-check-label text-uppercase fw-bold" for="formCheck-1">Pembatalan</label></div>
-                                        <div class="ps-4">
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="check-pembatalan-cuci"><label class="form-check-label" for="formCheck-1">Pembatalan Cuci</label></div>
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" id="check-pembatalan-bayar"><label class="form-check-label" for="formCheck-1">Pembatalan Bayar</label></div>
-                                        </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-saldo-2">
+                                        <label class="form-check-label" for="check-transaksi-saldo-2">Topup saldo pelanggan</label>
+                                    </div>
+                                </div>
+                                <h5 class="fw-bold">Permbayaran</h5>
+                                <div class="ms-1 mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-pembayaran-1">
+                                        <label class="form-check-label" for="check-transaksi-pembayaran-1">Membuka menu pembayaran</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-pembayaran-2">
+                                        <label class="form-check-label" for="check-transaksi-pembayaran-2">Melihat detail pembayaran</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-pembayaran-3">
+                                        <label class="form-check-label" for="check-transaksi-pembayaran-3">Membuat pembayaran</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-pembayaran-4">
+                                        <label class="form-check-label" for="check-transaksi-pembayaran-4">Mengubah data pembayaran</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-pembayaran-5">
+                                        <label class="form-check-label" for="check-transaksi-pembayaran-5">Menghapus pembayaran</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6">
-                        <div class="card h-100">
+                    <div class="col-12 col-md-6 col-xl-3">
+                        <div class="card h-100" id="card-proses">
                             <div class="card-body">
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="check-pengaturan-1"><label class="form-check-label text-uppercase fw-bold" for="formCheck-1">promosi</label></div>
-                                <div class="ps-4">
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="check-promosi-cashback"><label class="form-check-label" for="formCheck-1">Cashback</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="check-promosi-diskon-mingguan"><label class="form-check-label" for="formCheck-1">Diskon Mingguan</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="check-promosi-diskon-member"><label class="form-check-label" for="formCheck-1">Diskon Member</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="check-promosi-diskon-group"><label class="form-check-label" for="formCheck-1">Diskon Group Item</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="check-promosi-diskon-item"><label class="form-check-label" for="formCheck-1">Diskon Item</label></div>
+                                <h4>Proses</h4>
+                                <hr>
+                                <h5 class="fw-bold">Cuci</h5>
+                                <div class="ms-1 mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-proses-cuci-1">
+                                        <label class="form-check-label" for="check-proses-cuci-1">Membuka menu hub cuci</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-proses-cuci-2">
+                                        <label class="form-check-label" for="check-proses-cuci-2">Mengambil tugas cuci</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-proses-cuci-3">
+                                        <label class="form-check-label" for="check-proses-cuci-3">Mengurangi tugas cuci</label>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="card h-100">
-                            <div class="card-body">
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="check-laporan"><label class="form-check-label text-uppercase fw-bold" for="formCheck-1">laporan</label></div>
-                                <div class="ps-4">
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="check-laporan-cuci"><label class="form-check-label" for="formCheck-1">Cuci</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="check-laporan-deposit"><label class="form-check-label" for="formCheck-1">Deposit</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="check-laporan-pengeluaran"><label class="form-check-label" for="formCheck-1">Pengeluaran</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="check-laporan-karyawan"><label class="form-check-label" for="formCheck-1">Karyawan</label></div>
+                                <h5 class="fw-bold">Setrika</h5>
+                                <div class="ms-1 mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-proses-setrika-1">
+                                        <label class="form-check-label" for="check-proses-setrika-1">Membuka menu hub setrika</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-proses-setrika-2">
+                                        <label class="form-check-label" for="check-proses-setrika-2">Mengambil tugas setrika</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-proses-setrika-3">
+                                        <label class="form-check-label" for="check-proses-setrika-3">Mengurangi tugas setrika</label>
+                                    </div>
+                                </div>
+                                <h5 class="fw-bold">Rewash</h5>
+                                <div class="ms-1 mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-proses-rewash-1">
+                                        <label class="form-check-label" for="check-proses-rewash-1">Membuka menu rewash</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-proses-rewash-2">
+                                        <label class="form-check-label" for="check-proses-rewash-2">Menambah rewash</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-proses-rewash-3">
+                                        <label class="form-check-label" for="check-proses-rewash-3">Mengganti status rewash</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-proses-rewash-4">
+                                        <label class="form-check-label" for="check-proses-rewash-4">Menghapus rewash</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>

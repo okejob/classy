@@ -120,6 +120,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/data/pelanggan/delete/{id}', [PelangganController::class, 'delete'])->middleware('permission:Menghapus Pelanggan');
     Route::get('/component/pelanggan', [PelangganController::class, 'search']);
 
+    //Rewash data
+    Route::get('/data/rewash', [PageController::class, 'dataRewash'])->name('data-rewash');
+    Route::post('/data/rewash', [RewashController::class, 'insertData']);
+    Route::post('/data/rewash/{id}', [RewashController::class, 'updateData']);
+    Route::get('/data/rewash/delete/{id}', [RewashController::class, 'deleteData']);
+
     //Pickup & Delivery
     Route::get('/transaksi/pickup-delivery', [PageController::class, 'pickupDelivery'])->name('pickup-delivery')->middleware('permission:Membuka Menu Pickup Delivery');
     Route::get('/transaksi/pickup-delivery/{id}', [PickupDeliveryController::class, 'show'])->middleware('permission:Melihat Detail Pickup Delivery');
@@ -191,8 +197,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/data/inventory/delete/{inventory}', [InventoryController::class, 'delete'])->middleware('permission:Menghapus Inventory');
     Route::post('/data/inventory/traffic', [LaporanInventoryController::class, 'insert'])->middleware('permission:Mengubah Data Stok Inventory');
 
-    //Rewash
-    Route::get('/proses/rewash', [PageController::class, 'rewash'])->name('menu-rewash')->middleware('permission:Membuka Menu Rewash');
+    //Rewash proses
+    Route::get('/proses/rewash', [PageController::class, 'prosesRewash'])->name('menu-rewash')->middleware('permission:Membuka Menu Rewash');
     Route::post('/proses/rewash/insert', [RewashController::class, 'insert'])->middleware('permission:Menambah Rewash');
     Route::post('/proses/rewash/update-status/{rewash}', [RewashController::class, 'updateStatus'])->middleware('permission:Mengganti Status Rewash');
     Route::get('/proses/rewash/delete/{rewash}', [RewashController::class, 'delete'])->middleware('permission:Menghapus Rewash');
