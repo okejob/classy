@@ -177,25 +177,229 @@
                 <hr>
                 <div class="d-flex align-items-center mb-3">
                     <p class="me-2">Role :</p><select class="form-select" style="width: initial;">
-                        <option value="supervisor" selected="">Supervisor</option>
+                        <option value="" selected hidden>-</option>
+                        <option value="administrator">Administrator</option>
+                        <option value="supervisor">Supervisor</option>
                         <option value="operator">Operator</option>
-                        <option value="produksi">Produksi</option>
+                        <option value="produksi_cuci">Pencuci</option>
+                        <option value="produksi_setrika">Penyetrika</option>
                     </select>
                 </div>
                 <div class="row">
                     <div class="col-12 col-md-6">
-                        <div class="card h-100">
+                        <div class="card h-100" id="card-pengaturan">
                             <div class="card-body">
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="check-pengaturan"><label class="form-check-label text-uppercase fw-bold" for="formCheck-1">Pengaturan</label></div>
-                                <div class="ps-4">
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="check-pengaturan-outlet"><label class="form-check-label" for="formCheck-1">Outlet</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="check-pengaturan-karyawan"><label class="form-check-label" for="formCheck-1">Karyawan &amp; Hak Akses</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="check-pengaturan-paket"><label class="form-check-label" for="formCheck-1">Paket</label></div>
+                                <h4>Pengaturan</h4>
+                                <hr>
+                                <div>
+                                    <h5>Outlet</h5>
+                                    <div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-outlet-1">
+                                            <label class="form-check-label" for="check-pengaturan-outlet-1">Membuka menu oultet</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-outlet-2">
+                                            <label class="form-check-label" for="check-pengaturan-outlet-2">Melihat detail oultet</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-outlet-3">
+                                            <label class="form-check-label" for="check-pengaturan-outlet-3">Membuat oultet</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-outlet-4">
+                                            <label class="form-check-label" for="check-pengaturan-outlet-4">Mengubah data oultet</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-outlet-5">
+                                            <label class="form-check-label" for="check-pengaturan-outlet-5">Menghapus oultet</label>
+                                        </div>
+                                    </div>
+                                    <h5>Karyawan & Hak Akses</h5>
+                                    <div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-akses-1">
+                                            <label class="form-check-label" for="check-pengaturan-akses-1">Merubah hak akses</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-karyawan-1">
+                                            <label class="form-check-label" for="check-pengaturan-karyawan-1">Membuka menu karyawan</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-karyawan-2">
+                                            <label class="form-check-label" for="check-pengaturan-karyawan-2">Melihat detail karyawan</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-karyawan-3">
+                                            <label class="form-check-label" for="check-pengaturan-karyawan-3">Menambahkan karyawan</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-karyawan-4">
+                                            <label class="form-check-label" for="check-pengaturan-karyawan-4">Mengubah data karyawan</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-karyawan-5">
+                                            <label class="form-check-label" for="check-pengaturan-karyawan-5">Mengubah password karyawan</label>
+                                        </div>
+                                    </div>
+                                    <h5>Paket Cuci</h5>
+                                    <div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-cuci-1">
+                                            <label class="form-check-label" for="check-pengaturan-paket-cuci-1">Membuka menu paket cuci</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-cuci-2">
+                                            <label class="form-check-label" for="check-pengaturan-paket-cuci-2">Melihat detail paket cuci</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-cuci-3">
+                                            <label class="form-check-label" for="check-pengaturan-paket-cuci-3">Membuat paket cuci</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-cuci-4">
+                                            <label class="form-check-label" for="check-pengaturan-paket-cuci-4">Mengubah data paket cuci</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-cuci-5">
+                                            <label class="form-check-label" for="check-pengaturan-paket-cuci-5">Menghapus paket cuci</label>
+                                        </div>
+                                    </div>
+                                    <h5>Paket Deposit</h5>
+                                    <div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-pakdeposit-1">
+                                            <label class="form-check-label" for="check-pengaturan-paket-deposit-1">Membuka menu paket deposit</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-deposit-2">
+                                            <label class="form-check-label" for="check-pengaturan-paket-deposit-2">Melihat detail paket deposit</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-deposit-3">
+                                            <label class="form-check-label" for="check-pengaturan-paket-deposit-3">Membuat paket deposit</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-deposit-4">
+                                            <label class="form-check-label" for="check-pengaturan-paket-deposit-4">Mengubah data paket deposit</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-deposit-5">
+                                            <label class="form-check-label" for="check-pengaturan-paket-deposit-5">Menghapus paket deposit</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
+                        <div class="card h-100" id="card-pengaturan">
+                            <div class="card-body">
+                                <h4>Pengaturan</h4>
+                                <hr>
+                                <div>
+                                    <h5>Outlet</h5>
+                                    <div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-outlet-1">
+                                            <label class="form-check-label" for="check-pengaturan-outlet-1">Membuka menu oultet</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-outlet-2">
+                                            <label class="form-check-label" for="check-pengaturan-outlet-2">Melihat detail oultet</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-outlet-3">
+                                            <label class="form-check-label" for="check-pengaturan-outlet-3">Membuat oultet</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-outlet-4">
+                                            <label class="form-check-label" for="check-pengaturan-outlet-4">Mengubah data oultet</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-outlet-5">
+                                            <label class="form-check-label" for="check-pengaturan-outlet-5">Menghapus oultet</label>
+                                        </div>
+                                    </div>
+                                    <h5>Karyawan & Hak Akses</h5>
+                                    <div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-akses-1">
+                                            <label class="form-check-label" for="check-pengaturan-akses-1">Merubah hak akses</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-karyawan-1">
+                                            <label class="form-check-label" for="check-pengaturan-karyawan-1">Membuka menu karyawan</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-karyawan-2">
+                                            <label class="form-check-label" for="check-pengaturan-karyawan-2">Melihat detail karyawan</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-karyawan-3">
+                                            <label class="form-check-label" for="check-pengaturan-karyawan-3">Menambahkan karyawan</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-karyawan-4">
+                                            <label class="form-check-label" for="check-pengaturan-karyawan-4">Mengubah data karyawan</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-karyawan-5">
+                                            <label class="form-check-label" for="check-pengaturan-karyawan-5">Mengubah password karyawan</label>
+                                        </div>
+                                    </div>
+                                    <h5>Paket Cuci</h5>
+                                    <div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-cuci-1">
+                                            <label class="form-check-label" for="check-pengaturan-paket-cuci-1">Membuka menu paket cuci</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-cuci-2">
+                                            <label class="form-check-label" for="check-pengaturan-paket-cuci-2">Melihat detail paket cuci</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-cuci-3">
+                                            <label class="form-check-label" for="check-pengaturan-paket-cuci-3">Membuat paket cuci</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-cuci-4">
+                                            <label class="form-check-label" for="check-pengaturan-paket-cuci-4">Mengubah data paket cuci</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-cuci-5">
+                                            <label class="form-check-label" for="check-pengaturan-paket-cuci-5">Menghapus paket cuci</label>
+                                        </div>
+                                    </div>
+                                    <h5>Paket Deposit</h5>
+                                    <div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-pakdeposit-1">
+                                            <label class="form-check-label" for="check-pengaturan-paket-deposit-1">Membuka menu paket deposit</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-deposit-2">
+                                            <label class="form-check-label" for="check-pengaturan-paket-deposit-2">Melihat detail paket deposit</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-deposit-3">
+                                            <label class="form-check-label" for="check-pengaturan-paket-deposit-3">Membuat paket deposit</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-deposit-4">
+                                            <label class="form-check-label" for="check-pengaturan-paket-deposit-4">Mengubah data paket deposit</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-deposit-5">
+                                            <label class="form-check-label" for="check-pengaturan-paket-deposit-5">Menghapus paket deposit</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- <div class="col-12 col-md-6">
                         <div class="card h-100">
                             <div class="card-body">
                                 <div class="form-check"><input class="form-check-input" type="checkbox" id="check-data"><label class="form-check-label text-uppercase fw-bold" for="formCheck-1">master data</label></div>
@@ -279,7 +483,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="text-end"><button class="btn btn-primary" type="button"><i class="fas fa-save"></i>&nbsp;Simpan</button></div>
             </div>

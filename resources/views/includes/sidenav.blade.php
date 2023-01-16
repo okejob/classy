@@ -61,12 +61,12 @@
                 <i class="fas fa-angle-down"></i>
             </div>
             <div class="nav-items">
-                <div id="nav-transaksi-undefined">
+                {{-- <div id="nav-transaksi-undefined">
                     <a href="/transaksi" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fas fa-comment-dollar"></i>
                         <p class="ms-3">Transaksi</p>
                     </a>
-                </div>
+                </div> --}}
                 <div id="nav-transaksi-bucket">
                     <a href="/transaksi/bucket" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <div class="position-relative d-flex justify-content-center" style="width: 16px; height: 16px;">
