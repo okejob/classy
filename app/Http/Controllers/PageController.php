@@ -254,9 +254,16 @@ class PageController extends Controller
 
     public function hubCuci()
     {
-        $data['transaksis'] = Transaksi::detail()->latest()->get();
-        $data['rewashes'] = Rewash::with('itemTransaksi')->where('pencuci', Auth::id())->get();
-        $data['pencucis'] = User::role('produksi_cuci')->get();
+        $role = User::getRole(Auth::id());
+        if ($role == 'produksi_cuci') {
+            $data['transaksis'] = Transaksi::detail()->where('pencuci', Auth::id())->latest()->get();
+            $data['rewashes'] = Rewash::with('itemTransaksi')->where('pencuci', Auth::id())->get();
+        } else if ($role == 'administrator') {
+            $data['transaksis'] = Transaksi::detail()->latest()->get();
+            $data['rewashes'] = Rewash::with('itemTransaksi')->where('pencuci', Auth::id())->get();
+            $data['pencucis'] = User::role('produksi_cuci')->with('transaksi')->get();
+        }
+
         return view('pages.proses.Cuci', $data);
     }
 

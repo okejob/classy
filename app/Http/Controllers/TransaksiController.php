@@ -142,7 +142,7 @@ class TransaksiController extends Controller
 
     public function clearStatusCuci(Transaksi $transaksi)
     {
-        if (!empty($transaksi->pencuci)) {
+        if (!empty($transaksi->pencuci) && $transaksi->pencuci == Auth::id()) {
             $transaksi->pencuci = NULL;
             $transaksi->save();
         }
@@ -159,7 +159,7 @@ class TransaksiController extends Controller
 
     public function clearStatusSetrika(Transaksi $transaksi)
     {
-        if (!empty($transaksi->penyetrika)) {
+        if (!empty($transaksi->penyetrika) && $transaksi->penyetrika == Auth::id()) {
             $transaksi->penyetrika = NULL;
             $transaksi->save();
         }
