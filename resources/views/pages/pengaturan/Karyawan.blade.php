@@ -185,7 +185,7 @@
                     </select>
                 </div>
                 <div class="row">
-                    <div class="col-12 col-md-6 col-xl-4">
+                    <div class="col-12 col-md-6 col-xl-3">
                         <div class="card h-100" id="card-pengaturan">
                             <div class="card-body">
                                 <h4>Pengaturan</h4>
@@ -289,7 +289,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 col-xl-4">
+                    <div class="col-12 col-md-6 col-xl-3">
                         <div class="card h-100" id="card-data">
                             <div class="card-body">
                                 <h4>Data</h4>
@@ -435,7 +435,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 col-xl-4">
+                    <div class="col-12 col-md-6 col-xl-3">
                         <div class="card h-100" id="card-transaksi">
                             <div class="card-body">
                                 <h4>Transaksi</h4>
@@ -558,7 +558,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 col-xl-4">
+                    <div class="col-12 col-md-6 col-xl-3">
                         <div class="card h-100" id="card-proses">
                             <div class="card-body">
                                 <h4>Proses</h4>

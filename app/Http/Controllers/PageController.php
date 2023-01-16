@@ -121,10 +121,19 @@ class PageController extends Controller
     }
 
     //Menampilkan Menu Rewash
-    public function rewash()
+    public function dataRewash()
     {
-        // dd(Rewash::with('itemTransaksi')->get());
+        return view(
+            'pages.data.Rewash',
+            [
+                'jenisRewashes' => JenisRewash::get(),
+            ]
+        );
+    }
 
+    //Menampilkan Menu Rewash
+    public function prosesRewash()
+    {
         return view(
             'pages.proses.Rewash',
             [

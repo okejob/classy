@@ -51,6 +51,12 @@
                         <p class="ms-3">Pengeluaran</p>
                     </a>
                 </div>
+                <div id="nav-data-rewash">
+                    <a href="/data/rewash" class="menu-item menu-data pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
+                        <i class="fas fa-water"></i>
+                        <p class="ms-3">Rewash</p>
+                    </a>
+                </div>
             </div>
         </div>
         <div id="nav-menu-transaksi" class="nav-menu">

@@ -5,37 +5,35 @@
     <header class="d-flex align-items-center my-3" style="color: var(--bs-gray);">
         <a>Master Data</a>
         <i class="fas fa-angle-right mx-2"></i>
-        <a>Data Inventory</a>
+        <a>Data Rewash</a>
     </header>
-    <section id="data-inventory">
+    <section id="data-rewash">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Data Item</h4>
                 <hr>
                 <div class="d-flex justify-content-end">
-                    <form method="GET" action="/data/inventory" class="d-flex align-items-center">
+                    <form method="GET" action="/data/rewash" class="d-flex align-items-center">
                         Search :
                         <input class="form-control mx-1" type="search" name="search" style="max-width: 200px;">
                     </form>
                 </div>
                 <div class="table-responsive mb-2">
-                    <table class="table table-striped" id="table-inventory">
+                    <table class="table table-striped" id="table-rewash">
                         <thead>
                             <tr>
-                                <th>Nama</th>
-                                <th>Deskripsi</th>
-                                <th>Stok</th>
+                                <th>Alasan Rewash</th>
+                                <th>Modified_by</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($inventories as $inventory)
+                            @foreach ($jenisRewashes as $jenisRewash)
                             <tr>
-                                <td>{{ $inventory->nama }}</td>
-                                <td>{{ $inventory->deskripsi }}</td>
-                                <td class="text-center thousand-separator">{{ $inventory->stok }}</td>
+                                <td>{{ $jenisRewash->keterangan }}</td>
+                                <td>{{ $jenisRewash->modified_by }}</td>
                                 <td class="cell-action">
-                                    <button id="btn-{{ $inventory->id }}" class="btn btn-primary btn-sm btn-show-action" type="button">
+                                    <button id="btn-{{ $jenisRewash->id }}" class="btn btn-primary btn-sm btn-show-action" type="button">
                                         <i class="fas fa-bars"></i>
                                     </button>
                                 </td>
@@ -44,39 +42,30 @@
                         </tbody>
                     </table>
                 </div>
-                {{ $inventories->links() }}
+                {{ $jenisRewashes->links() }}
                 <button class="btn btn-primary btn-tambah mt-2" type="button">
                     <i class="fas fa-plus-circle"></i>
                     &nbsp;Tambah
                 </button>
                 <ul class="list-unstyled form-control" id="list-action">
-                    <li id="action-update">Rubah data</li>
                     <li id="action-delete">Hapus data</li>
                 </ul>
             </div>
         </div>
-        <div class="modal fade" role="dialog" tabindex="-1" id="modal-inventory">
+        <div class="modal fade" role="dialog" tabindex="-1" id="modal-rewash">
             <div class="modal-dialog modal-lg modal-dialog-centered modal-fullscreen-lg-down" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Rubah Data</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form id="modal-form" action="/data/inventory/insert" method="POST">
+                    <form id="modal-form" action="/data/rewash" method="POST">
                         @csrf
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-12">
-                                    <h5>Nama Item</h5>
-                                    <input class="form-control" type="text" id="input-nama-inventory" name="nama" required>
-                                </div>
-                                <div class="col-12">
-                                    <h5>Deskripsi</h5>
-                                    <textarea class="form-control" id="input-deskripsi" name="deskripsi"></textarea>
-                                </div>
-                                <div class="col-12">
-                                    <h5>Stok</h5>
-                                    <input class="form-control" type="number" id="input-stok" name="stok" required>
+                                    <h5>Keterangan</h5>
+                                    <input class="form-control" type="number" id="input-keterangan" name="keterangan" required>
                                 </div>
                             </div>
                         </div>
@@ -90,5 +79,5 @@
     </section>
 </div>
 
-<script src="{{ asset('js/data/inventory.js') }}"></script>
+<script src="{{ asset('js/data/rewash.js') }}"></script>
 @endsection
