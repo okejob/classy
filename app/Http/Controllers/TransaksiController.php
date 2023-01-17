@@ -40,11 +40,15 @@ class TransaksiController extends Controller
             $tipe = 'PR-';
         }
         $transaksi = Transaksi::detail()
-            ->where('id', 'like', '%' . $request->key . '%')
-            ->orWhere('kode', 'like', $tipe . '%')
-            ->orWhereHas('pelanggan', function ($q) use ($request) {
-                $q->where('nama', 'like', '%' . $request->key . '%');
-            })->take(5)->get();
+            ->where('kode', 'like', $tipe . '%')
+            ->where(function ($query) use ($request) {
+                $query->where('id', 'like', '%' . $request->key . '%')
+                    ->orWhereHas('pelanggan', function ($q) use ($request) {
+                        $q->where('nama', 'like', '%' . $request->key . '%');
+                    });
+            })
+            ->take(5)->get();
+
         return [
             'status' => 200,
             $transaksi
