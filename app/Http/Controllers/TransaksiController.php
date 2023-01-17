@@ -131,7 +131,7 @@ class TransaksiController extends Controller
         }
 
         if (empty($transaksi->kode) && $transaksi->status != "draft") {
-            $count = Transaksi::where('status', '!=', 'draft')->count();
+            $count = Transaksi::where('status', '!=', 'draft')->where('kode', 'like', $kode . '%')->count();
             $paded = str_pad($count, 6, '0', STR_PAD_LEFT);
 
             $transaksi->kode = $kode . $paded;
