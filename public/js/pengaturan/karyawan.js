@@ -107,5 +107,32 @@ $(document).ready(function() {
         });
     });
 
+    $('#save-permission').on('click', function() {
+        let permissions = [];
+        let bungkus = [];
+        $('.form-check-input:checked').each(function(index){
+            permissions.push($(this).val());
+        });
+        bungkus[0] = permissions;
+        console.log(bungkus);
+        let formData = new FormData();
+        formData.append('list', bungkus);
 
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            },
+            url: "/setting/hak-akses/role/" + $('#role-id').val() + "/sync",
+            method: "POST",
+            contentType: false,
+            processData: false,
+            data: formData,
+        }).done(function(data) {
+            console.log(data);
+
+        }).fail(function(message) {
+            alert('error');
+            console.log(message);
+        });
+    });
 });

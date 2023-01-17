@@ -22,6 +22,7 @@ class PermissionController extends Controller
 
     public function syncPermission(Request $request, Role $role)
     {
+        return $request;
         $role->syncPermissions($request->list);
         return [
             'status' => 200,
