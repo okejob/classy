@@ -108,15 +108,10 @@ $(document).ready(function() {
     });
 
     $('#save-permission').on('click', function() {
-        let permissions = [];
-        let bungkus = [];
-        $('.form-check-input:checked').each(function(index){
-            permissions.push($(this).val());
-        });
-        bungkus[0] = permissions;
-        console.log(bungkus);
         let formData = new FormData();
-        formData.append('list', bungkus);
+        $('.form-check-input:checked').each(function(index){
+            formData.append('list[]', $(this).val());
+        });
 
         $.ajax({
             headers: {
@@ -128,7 +123,7 @@ $(document).ready(function() {
             processData: false,
             data: formData,
         }).done(function(data) {
-            console.log(data);
+            alert('Perubahan hak akses berhasil disimpan');
 
         }).fail(function(message) {
             alert('error');

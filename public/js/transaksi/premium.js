@@ -420,7 +420,7 @@ $(document).ready(function() {
         $('#table-items tbody').empty();
 
         $.ajax({
-            url: "/data/jenis-item/find?",
+            url: "/data/jenis-item/find?tipe=premium",
         }).done(function(data) {
             let items = data[0];
 
@@ -438,7 +438,7 @@ $(document).ready(function() {
         let key = $('#input-nama-item').val();
 
         $.ajax({
-            url: "/data/jenis-item/find?key=" + key,
+            url: "/data/jenis-item/find?tipe=premium&key=" + key,
         }).done(function(data) {
             let items = data[0];
 
