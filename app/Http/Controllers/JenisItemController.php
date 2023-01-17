@@ -21,7 +21,7 @@ class JenisItemController extends Controller
                         $q->where('nama', 'like', "%{$request->key}%");
                     });
             })
-            ->take(5)->toSql();
+            ->take(5)->get();
         return [
             'status' => 200,
             $jenis_item
