@@ -14,12 +14,14 @@ class JenisItemController extends Controller
     public function find(Request $request)
     {
         $tipe = 'status_' . $request->tipe;
-        $jenis_item = JenisItem::where('nama', 'like', "%{$request->key}%")
-            ->where($tipe, 1)
-            ->whereHas('kategori', function ($q) use ($request) {
-                $q->where('nama', 'like', "%{$request->key}%");
+        $jenis_item = JenisItem::where($tipe, 1)
+            ->where(function ($query) use ($request) {
+                $query->where('nama', 'like', "%{$request->key}%")
+                    ->orWhereHas('kategori', function ($q) use ($request) {
+                        $q->where('nama', 'like', "%{$request->key}%");
+                    });
             })
-            ->take(5)->get();
+            ->take(5)->toSql();
         return [
             'status' => 200,
             $jenis_item
