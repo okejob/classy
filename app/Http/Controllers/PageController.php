@@ -126,7 +126,7 @@ class PageController extends Controller
         return view(
             'pages.data.Rewash',
             [
-                'jenisRewashes' => JenisRewash::get(),
+                'jenisRewashes' => JenisRewash::paginate(5),
             ]
         );
     }

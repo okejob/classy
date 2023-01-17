@@ -13,8 +13,10 @@ class JenisItemController extends Controller
     //Mencari Jenis Item dengan Key Nama atau Nama Kategori
     public function find(Request $request)
     {
+        $tipe = 'status_' . $request->tipe;
         $jenis_item = JenisItem::where('nama', 'like', "%{$request->key}%")
-            ->orWhereHas('kategori', function ($q) use ($request) {
+            ->where($tipe, 1)
+            ->whereHas('kategori', function ($q) use ($request) {
                 $q->where('nama', 'like', "%{$request->key}%");
             })
             ->take(5)->get();

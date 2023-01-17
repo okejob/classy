@@ -28,6 +28,7 @@ class UpdateTransaksiRequest extends FormRequest
             'express' => 'boolean',
             'setrika_only' => 'boolean',
             'catatan' => 'string|nullable',
+            'tipe_transaksi' => 'string',
         ];
     }
 }
