@@ -153,7 +153,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transaksi', [PageController::class, 'transaksi'])->name('transaksi')->middleware('permission:Membuka Menu Transaksi');
     Route::get('/transaksi/create', [TransaksiController::class, 'insert'])->middleware('permission:Membuat Transaksi');
     Route::get('/transaksi/detail/{id}', [TransaksiController::class, 'show'])->middleware('permission:Melihat Detail Transaksi');
-    Route::get('/transaksi/search/{key}', [TransaksiController::class, 'search']);
+    Route::get('/transaksi/search', [TransaksiController::class, 'search']);
     Route::get('/transaksi/addItem', [ItemTransaksiController::class, 'addItemToTransaksi'])->middleware('permission:Menambahkan Item Ke Transaksi');
     Route::post('/transaksi/update/{id}', [TransaksiController::class, 'update'])->middleware('permission:Mengubah Data Transaksi');
     Route::post('/transaksi/penerima', [PenerimaController::class, 'insert'])->middleware('permission:Menambahkan Penerima Ke Transaksi');

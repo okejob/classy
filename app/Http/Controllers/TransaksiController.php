@@ -31,13 +31,19 @@ class TransaksiController extends Controller
     }
 
     //Mencari Transaksi dengan KEY id, Kode Transaksi, atau Nama Pelanggan
-    public function search($key)
+    public function search(Request $request)
     {
+        $tipe = '';
+        if ($request->tipe == "bucket") {
+            $tipe = 'BU-';
+        } else {
+            $tipe = 'PR-';
+        }
         $transaksi = Transaksi::detail()
-            ->where('id', 'like', '%' . $key . '%')
-            ->orWhere('kode', 'like', '%' . $key . '%')
-            ->orWhereHas('pelanggan', function ($q) use ($key) {
-                $q->where('nama', 'like', '%' . $key . '%');
+            ->where('id', 'like', '%' . $request->key . '%')
+            ->orWhere('kode', 'like', $tipe . '%')
+            ->orWhereHas('pelanggan', function ($q) use ($request) {
+                $q->where('nama', 'like', '%' . $request->key . '%');
             })->take(5)->get();
         return [
             'status' => 200,

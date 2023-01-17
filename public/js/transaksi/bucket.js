@@ -188,7 +188,7 @@ $(document).ready(function() {
     $('#search-key-trans').on('click', function() {
         let key = $('#input-key-trans').val()
         $.ajax({
-            url: "/transaksi/search/" + key,
+            url: "/transaksi/search?tipe=bucket&key=" + key,
         }).done(function(data) {
             console.log(data);
             let transaksi = data[0];

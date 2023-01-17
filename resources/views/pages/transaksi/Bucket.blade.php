@@ -263,6 +263,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <input type="hidden" name="tipe_transaksi" value="bucket">
                                     <div class="col-md-3 col-12 mt-2 d-flex align-items-center justify-content-end">
                                         <button id="save-trans" class="btn btn-primary full-when-small" type="submit">Simpan Transaksi</button>
                                     </div>
