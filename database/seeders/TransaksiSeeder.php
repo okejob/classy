@@ -16,8 +16,17 @@ class TransaksiSeeder extends Seeder
     public function run()
     {
         Transaksi::create([
-            'kode' => 'TRANS-000001',
+            'kode' => 'PR-000001',
             'pelanggan_id' => 2,
+            'outlet_id' => 1,
+            'cashier_id' => 1,
+            'parfum_id' => 1,
+            'status' => 'draft',
+            'modified_by' => 1,
+        ]);
+        Transaksi::create([
+            'kode' => 'BU-000001',
+            'pelanggan_id' => 1,
             'outlet_id' => 1,
             'cashier_id' => 1,
             'parfum_id' => 1,
