@@ -107,6 +107,21 @@ $(document).ready(function() {
         });
     });
 
+    $('#role-id').on('change', function() {
+        $(this).addClass('disabled');
+        $(".form-check-input").each(function() {
+            $(this).prop("checked", false);
+        })
+        $.ajax({
+            url: "/setting/hak-akses/role/" + $(this).val(),
+        }).done(function(data) {
+            data.forEach(value => {
+                $("input:checkbox[value='" + value + "']").prop("checked", true);
+            });
+            $('#role-id').removeClass('disabled');
+        });
+    });
+
     $('#save-permission').on('click', function() {
         let formData = new FormData();
         $('.form-check-input:checked').each(function(index){
