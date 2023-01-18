@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
+
 class UserController extends Controller
 {
-
     /**
      * Authenticate Login
      *
@@ -28,12 +28,17 @@ class UserController extends Controller
         $auth = Auth::attempt(['email' => $user->email, 'password' => $request['password']]);
 
         if ($auth && ($user->status == true)) {
+
             $request->session()->regenerate();
             Session::put('user', $user);
+
             $roles = $user->getRoleNames();
             $role = $roles[0];
             Session::put('role', $role);
-            //need dashboard page
+
+            $permission = $user->getPermissionsViaRoles()->pluck('name');
+            Session::put('permissions', $permission);
+
             return redirect()->intended(route('dashboard'));
         }
         return back()->withErrors([
