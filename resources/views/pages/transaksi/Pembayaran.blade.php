@@ -55,7 +55,9 @@
                 {{-- {{ $transaksis->links() }} --}}
 
                 <ul class="list-unstyled form-control" id="list-action">
+                    @if(in_array("Melihat Detail Pembayaran", Session::get('permissions')) || Session::get('role') == 'administrator')
                     <li id="action-detail">Lihat detail</li>
+                    @endif
                     {{-- <li id="action-delete">Hapus data</li> --}}
                 </ul>
             </div>

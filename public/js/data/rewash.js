@@ -3,6 +3,9 @@ $(document).ready(function() {
         $('#table-rewash tbody').append('<tr><td colspan=3 class="text-center">Data masih kosong</td></tr>');
     }
 
+    if($('#list-action').children().length == 0) {
+        $('#list-action').detach();
+    }
     var btnIndex = -1, btnId = 0;
     $('#data-rewash .btn-show-action').on('click', function() {
         btnIndex = $(this).index('.btn-show-action') + 1;

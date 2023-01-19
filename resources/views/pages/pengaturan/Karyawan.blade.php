@@ -45,12 +45,18 @@
                     </table>
                 </div>
                 {{ $data->links() }}
+                @if(in_array("Menambahkan Karyawan", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <button id="btn-add" class="btn btn-primary" type="button">
                     <i class="fas fa-plus-circle"></i>&nbsp;Tambah
                 </button>
+                @endif
                 <ul class="list-unstyled form-control" id="list-action">
+                    @if(in_array("Mengubah Data Karyawan", Session::get('permissions')) || Session::get('role') == 'administrator')
                     <li id="action-update">Rubah data</li>
+                    @endif
+                    @if(in_array("Mengubah Data Password Karyawan", Session::get('permissions')) || Session::get('role') == 'administrator')
                     <li id="action-change-password">Rubah password</li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -170,6 +176,7 @@
         </div>
     </section>
 
+    @if(in_array("Merubah Hak Akses", Session::get('permissions')) || Session::get('role') == 'administrator')
     <section id="pengaturan-hak-akses">
         <div class="card">
             <div class="card-body">
@@ -623,6 +630,7 @@
             </div>
         </div>
     </section>
+    @endif
 </div>
 
 <script src="{{ asset('js/pengaturan/karyawan.js') }}"></script>

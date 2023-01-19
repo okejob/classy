@@ -191,7 +191,7 @@
                     </a>
                 </div>
                 @endif
-                @if(in_array("Membuka Menu Rewash", Session::get('permissions')) || Session::get('role') == 'administrator')
+                @if(in_array("Membuka Menu Hub Cuci", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-proses-rewash">
                     <a href="/proses/rewash" class="menu-item menu-proses pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fas fa-water"></i>

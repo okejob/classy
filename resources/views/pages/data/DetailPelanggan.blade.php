@@ -70,16 +70,19 @@
                             </div>
                         </div>
                     </div>
+                    @if(in_array("Mengubah Data Pelanggan", Session::get('permissions')) || Session::get('role') == 'administrator')
                     <hr>
                     <div class="text-end">
                         <button class="btn btn-primary" id="btn-ubah" type="button">Ubah Data</button>
                         <button class="btn btn-primary" type="submit" style="display: none;">Simpan</button>
                     </div>
+                    @endif
                 </form>
             </div>
         </div>
     </section>
 
+    @if(in_array("Melihat Detail History Transaksi Pelanggan", Session::get('permissions')) || Session::get('role') == 'administrator')
     <section id="data-transaksi" class="mb-5">
         <div class="card">
             <div class="card-body">
@@ -125,7 +128,9 @@
             </div>
         </div>
     </section>
+    @endif
 
+    @if(in_array("Melihat Detail History Saldo Pelanggan", Session::get('permissions')) || Session::get('role') == 'administrator')
     <section id="data-saldo">
         <div class="card">
             <div class="card-body">
@@ -165,6 +170,7 @@
             </div>
         </div>
     </section>
+    @endif
 </div>
 
 <script src="{{ asset('js/data/detailPelanggan.js') }}"></script>

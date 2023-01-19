@@ -26,18 +26,22 @@
                             <h4>Pickup</h4>
                             <hr />
                             <div id="table-pickup"></div>
+                            @if(in_array("Membuat Pickup Delivery", Session::get('permissions')) || Session::get('role') == 'administrator')
                             <div class="text-end mt-3">
                                 <button id="create-pickup" class="btn btn-primary">Pickup Baru</button>
                             </div>
+                            @endif
                         </section>
                         <hr style="margin: 1rem -1rem;" />
                         <section id="section-delivery" class="mb-4">
                             <h4>Delivery</h4>
                             <hr />
                             <div id="table-delivery"></div>
+                            @if(in_array("Membuat Pickup Delivery", Session::get('permissions')) || Session::get('role') == 'administrator')
                             <div class="text-end mt-3">
                                 <button id="create-delivery" class="btn btn-primary">Delivery Baru</button>
                             </div>
+                            @endif
                         </section>
                         <hr style="margin: 1rem -1rem;" />
                         <section id="section-ambil-outlet" class="mb-4">

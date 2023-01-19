@@ -1,6 +1,7 @@
 $(document).ready(function() {
-    // btnIndex untuk menyimpan currently selected row
-    // btnId untuk menyimpan item id dari selected row
+    if($('#list-action').children().length == 0) {
+        $('#list-action').detach();
+    }
     var btnIndex = -1, btnId = 0;
     $('.btn-show-action').on('click', function() {
         btnIndex = $(this).index('.btn-show-action') + 1;

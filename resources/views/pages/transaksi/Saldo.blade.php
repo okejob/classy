@@ -62,9 +62,11 @@
                                 <h5>Dibayarkan</h5>
                                 <input id="input-dibayarkan" type="text" class="form-control disabled" required />
                             </div>
+                            @if(in_array("Topup Saldo Pelanggan", Session::get('permissions')) || Session::get('role') == 'administrator')
                             <div class="text-end">
                                 <button id="submit-saldo" class="btn btn-primary" type="submit">Beli</button>
                             </div>
+                            @endif
                         </form>
                     </div>
                 </div>

@@ -45,11 +45,19 @@
                     </table>
                 </div>
                 {{ $data->links() }}
-                <button class="btn btn-primary btn-add" type="button"><i class="fas fa-plus-circle"></i>&nbsp;Tambah</button>
+                @if(in_array("Membuat Paket Cuci", Session::get('permissions')) || Session::get('role') == 'administrator')
+                <button class="btn btn-primary btn-add" type="button">
+                    <i class="fas fa-plus-circle"></i>&nbsp;Tambah
+                </button>
+                @endif
             </div>
             <ul class="list-unstyled form-control" id="list-action">
+                @if(in_array("Mengubah Data Paket Cuci", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <li id="action-update">Rubah data</li>
+                @endif
+                @if(in_array("Menghapus Paket Cuci", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <li id="action-delete">Hapus data</li>
+                @endif
             </ul>
         </div>
         <div role="dialog" tabindex="-1" class="modal fade" id="modal-paket-cuci">

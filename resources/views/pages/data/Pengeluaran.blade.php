@@ -49,13 +49,19 @@
                     </table>
                 </div>
                 {{ $data->links() }}
+                @if(in_array("Membuat Pengeluaran", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <button class="btn btn-primary btn-tambah mt-2" type="button">
                     <i class="fas fa-plus-circle"></i>
                     &nbsp;Tambah
                 </button>
+                @endif
                 <ul class="list-unstyled form-control" id="list-action">
+                    @if(in_array("Mengubah Data Pengeluaran", Session::get('permissions')) || Session::get('role') == 'administrator')
                     <li id="action-update">Rubah data</li>
+                    @endif
+                    @if(in_array("Menghapus Pengeluaran", Session::get('permissions')) || Session::get('role') == 'administrator')
                     <li id="action-delete">Hapus data</li>
+                    @endif
                 </ul>
             </div>
         </div>

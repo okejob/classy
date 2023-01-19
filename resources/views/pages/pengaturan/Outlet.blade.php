@@ -44,10 +44,16 @@
                     </table>
                 </div>
                 {{ $data->links() }}
-                <button class="btn btn-primary" id="add-outlet" type="button"><i class="fas fa-plus-circle"></i> Tambah</button>
+                @if(in_array("Membuat Outlet", Session::get('permissions')) || Session::get('role') == 'administrator')
+                <button class="btn btn-primary" id="add-outlet" type="button">
+                    <i class="fas fa-plus-circle"></i> Tambah
+                </button>
+                @endif
             </div>
             <ul class="list-unstyled form-control" id="list-action">
+                @if(in_array("Mengubah Data Outlet", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <li id="action-update">Rubah data</li>
+                @endif
             </ul>
         </div>
     </section>

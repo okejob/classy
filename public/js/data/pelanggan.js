@@ -3,8 +3,9 @@ $(document).ready(function() {
         $('#table-pelanggan tbody').append('<tr><td colspan=9 class="text-center">Data masih kosong</td></tr>');
     }
 
-    // btnIndex untuk menyimpan currently selected row
-    // btnId untuk menyimpan item id dari selected row
+    if($('#list-action').children().length == 0) {
+        $('#list-action').detach();
+    }
     var btnIndex = -1, btnId = 0;
     $('#data-pelanggan').on('click', '.btn-show-action', function() {
         btnIndex = $(this).index('.btn-show-action') + 1;
