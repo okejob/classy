@@ -36,7 +36,7 @@ class UserController extends Controller
             $role = $roles[0];
             Session::put('role', $role);
 
-            $permission = $user->getPermissionsViaRoles()->pluck('name');
+            $permission = $user->getPermissionsViaRoles()->pluck('name')->toArray();
             Session::put('permissions', $permission);
 
             return redirect()->intended(route('dashboard'));

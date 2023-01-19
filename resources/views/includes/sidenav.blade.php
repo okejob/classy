@@ -1,3 +1,4 @@
+{{-- @dump(Session::get('role')) --}}
 <div id="side-nav">
     <div class="menu-section my-1">
         <div id="nav-menu-data" class="nav-menu">
@@ -8,18 +9,23 @@
                 <i class="fas fa-angle-down"></i>
             </div>
             <div class="nav-items">
+                @if(in_array("Membuka Menu Kategori", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-data-kategori">
                     <a href="/data/kategori" class="menu-item menu-data pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fas fa-boxes"></i>
                         <p class="ms-3">Kategori</p>
                     </a>
                 </div>
+                @endif
+                @if(in_array("Membuka Menu Jenis Item", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-data-jenis-item">
                     <a href="/data/jenis-item" class="menu-item menu-data pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fas fa-box"></i>
                         <p class="ms-3">Item</p>
                     </a>
                 </div>
+                @endif
+                @if(in_array("Membuka Menu Parfum", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-data-parfum">
                     <a href="/data/parfum" class="menu-item menu-data pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <div class="position-relative d-flex justify-content-center" style="width: 16px; height: 16px;">
@@ -33,30 +39,39 @@
                         <p class="ms-3">Parfum</p>
                     </a>
                 </div>
+                @endif
+                @if(in_array("Membuka Menu Pelanggan", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-data-pelanggan">
                     <a href="/data/pelanggan" class="menu-item menu-data pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fas fa-users"></i>
                         <p class="ms-3">Pelanggan</p>
                     </a>
                 </div>
+                @endif
+                @if(in_array("Membuka Menu Inventory", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-data-inventory">
                     <a href="/data/inventory" class="menu-item menu-data pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fa-solid fa-boxes-stacked"></i>
                         <p class="ms-3">Inventory</p>
                     </a>
                 </div>
+                @endif
+                @if(in_array("Membuka Menu Pengeluaran", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-data-pengeluaran">
                     <a href="/data/pengeluaran" class="menu-item menu-data pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fas fa-dollar-sign"></i>
                         <p class="ms-3">Pengeluaran</p>
                     </a>
                 </div>
+                @endif
+                @if(in_array("Membuka Menu Rewash", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-data-rewash">
                     <a href="/data/rewash" class="menu-item menu-data pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fas fa-water"></i>
                         <p class="ms-3">Rewash</p>
                     </a>
                 </div>
+                @endif
             </div>
         </div>
         <div id="nav-menu-transaksi" class="nav-menu">
@@ -73,6 +88,7 @@
                         <p class="ms-3">Transaksi</p>
                     </a>
                 </div> --}}
+                @if(in_array("Membuka Menu Transaksi", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-transaksi-bucket">
                     <a href="/transaksi/bucket" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <div class="position-relative d-flex justify-content-center" style="width: 16px; height: 16px;">
@@ -104,24 +120,31 @@
                         <p class="ms-3">Premium</p>
                     </a>
                 </div>
+                @endif
+                @if(in_array("Membuka Menu Pickup Delivery", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-transaksi-pickup-delivery">
                     <a href="/transaksi/pickup-delivery" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fas fa-motorcycle"></i>
                         <p class="ms-3">Pickup & Delivery</p>
                     </a>
                 </div>
+                @endif
+                @if(in_array("Membuka Menu Saldo", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-transaksi-saldo">
                     <a href="/transaksi/saldo" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fa-solid fa-scale-balanced"></i>
                         <p class="ms-3">Saldo</p>
                     </a>
                 </div>
+                @endif
+                @if(in_array("Membuka Menu Pembayaran", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-transaksi-pembayaran">
                     <a href="/transaksi/pembayaran" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fa-solid fa-money-bills"></i>
                         <p class="ms-3">Pembayaran</p>
                     </a>
                 </div>
+                @endif
             </div>
         </div>
 
@@ -134,6 +157,7 @@
                 <i class="fas fa-angle-down"></i>
             </div>
             <div class="nav-items">
+                @if(in_array("Membuka Menu Hub Cuci", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-proses-cuci">
                     <a href="/proses/cuci" class="menu-item menu-proses pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <div class="position-relative d-flex justify-content-center" style="width: 16px; height: 16px;">
@@ -149,6 +173,8 @@
                         <p class="ms-3">Cuci</p>
                     </a>
                 </div>
+                @endif
+                @if(in_array("Membuka Menu Hub Setrika", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-proses-setrika">
                     <a href="/proses/setrika" class="menu-item menu-proses pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <div class="position-relative d-flex justify-content-center" style="width: 16px; height: 16px;">
@@ -164,12 +190,15 @@
                         <p class="ms-3">Setrika</p>
                     </a>
                 </div>
+                @endif
+                @if(in_array("Membuka Menu Rewash", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-proses-rewash">
                     <a href="/proses/rewash" class="menu-item menu-proses pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fas fa-water"></i>
                         <p class="ms-3">Rewash</p>
                     </a>
                 </div>
+                @endif
             </div>
         </div>
 
@@ -181,30 +210,38 @@
                 <i class="fas fa-angle-down"></i>
             </div>
             <div class="nav-items">
+                @if(in_array("Membuka Menu Outlet", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-setting-outlet">
                     <a href="/setting/outlet" class="menu-item menu-setting pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fas fa-building"></i>
                         <p class="ms-3">Outlet</p>
                     </a>
                 </div>
+                @endif
+                @if(in_array("Membuka Menu Karyawan", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-setting-karyawan">
                     <a href="/setting/karyawan" class="menu-item menu-setting pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fas fa-user-friends"></i>
                         <p class="ms-3">Karyawan</p>
                     </a>
                 </div>
+                @endif
+                @if(in_array("Membuka Menu Paket Cuci", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-setting-paket-cuci">
                     <a href="/setting/paket-cuci" class="menu-item menu-setting pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fa-solid fa-shirt"></i>
                         <p class="ms-3">Paket Cuci</p>
                     </a>
                 </div>
+                @endif
+                @if(in_array("Membuka Menu Paket Deposit", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-setting-paket-deposit">
                     <a href="/setting/paket-deposit" class="menu-item menu-setting pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fa-solid fa-money-bill-transfer"></i>
                         <p class="ms-3">Paket Deposit</p>
                     </a>
                 </div>
+                @endif
             </div>
         </div>
     </div>

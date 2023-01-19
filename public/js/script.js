@@ -1,4 +1,10 @@
 $(document).ready(function() {
+    $('.nav-items').each(function() {
+        if ($(this).children().length == 0) {
+            $(this).parent().detach();
+        }
+    });
+
     $('form').on('click', '.fas.fa-eye-slash', function() {
         if ($(this).siblings().is('input')) {
             $(this).siblings().attr('type', 'text');
