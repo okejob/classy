@@ -86,6 +86,7 @@ class PickupDeliveryController extends Controller
     public function changeDoneStatus(PickupDelivery $pickup_delivery)
     {
         $pickup_delivery->is_done = true;
+        $pickup_delivery->save();
         return [
             'status' => 200
         ];

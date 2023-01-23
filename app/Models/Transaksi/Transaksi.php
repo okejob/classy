@@ -35,7 +35,7 @@ class Transaksi extends Model
         $diskon_member = $pelanggan->member ? 10 : 0;
         $grand_total = 0;
 
-        $sum_bobot = ItemTransaksi::where('transaksi_id', $this->id)->sum('bobot_bucket');
+        $sum_bobot = ItemTransaksi::where('transaksi_id', $this->id)->sum('total_bobot');
         $sum_harga_premium = ItemTransaksi::where('transaksi_id', $this->id)->sum('harga_premium');
 
         $paket_bucket = PaketCuci::where('nama_paket', 'BUCKET')->first();

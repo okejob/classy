@@ -142,6 +142,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transaksi/item-transaksi/{id}', [ItemTransaksiController::class, 'show'])->middleware('permission:Melihat Detail Item Transaksi');
     Route::post('/transaksi/item-transaksi', [ItemTransaksiController::class, 'insert'])->middleware('permission:Membuat Item Transaksi');
     Route::post('/transaksi/item-transaksi/{id}', [ItemTransaksiController::class, 'update'])->middleware('permission:Mengubah Data Item Transaksi');
+    Route::get('/transaksi/item-transaksi/{id}/qty', [ItemTransaksiController::class, 'updateQty']);
     Route::get('/transaksi/item-transaksi/delete/{id}', [ItemTransaksiController::class, 'delete'])->middleware('permission:Menghapus Item Transaksi');
 
     //ItemNote

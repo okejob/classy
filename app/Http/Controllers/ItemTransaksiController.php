@@ -21,6 +21,7 @@ class ItemTransaksiController extends Controller
         $request['bobot_bucket'] = $jenis_item->bobot_bucket;
         $request['harga_premium'] = $jenis_item->harga_premium;
         $request['status_proses'] = $role;
+        $request['total_bobot'] = $jenis_item->bobot_bucket;
         $item_transaksi = ItemTransaksi::create($request->toArray());
 
         $transaksi = Transaksi::detail()->find($request['transaksi_id'])->recalculate();
@@ -29,6 +30,18 @@ class ItemTransaksiController extends Controller
         return  [
             'status' => 200,
             $transaksi,
+        ];
+    }
+
+    public function updateQty(Request $request, $id)
+    {
+        $item_transaksi = ItemTransaksi::find($id);
+        $item_transaksi->update([
+            'qty' => $request->qty
+        ]);
+        $item_transaksi->save();
+        return [
+            'status' => 200,
         ];
     }
 
