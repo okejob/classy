@@ -119,6 +119,7 @@ $(document).ready(function() {
             data.forEach(value => {
                 $("input:checkbox[value='" + value + "']").prop("checked", true);
             });
+            $('#list-hak-akses').removeClass('disabled');
             $('#role-id').removeClass('disabled');
         });
     });

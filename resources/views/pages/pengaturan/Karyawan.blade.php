@@ -193,7 +193,7 @@
                         <option value="6">Delivery</option>
                     </select>
                 </div>
-                <div class="row">
+                <div class="row disabled" id="list-hak-akses">
                     <div class="col-12 col-md-6 col-xl-3">
                         <div class="card h-100" id="card-pengaturan">
                             <div class="card-body">
@@ -205,10 +205,10 @@
                                         <input class="form-check-input" type="checkbox" id="check-pengaturan-outlet-1" value="Membuka Menu Outlet">
                                         <label class="form-check-label" for="check-pengaturan-outlet-1">Membuka menu outlet</label>
                                     </div>
-                                    <div class="form-check">
+                                    {{-- <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="check-pengaturan-outlet-2" value="Melihat Detail Outlet">
                                         <label class="form-check-label" for="check-pengaturan-outlet-2">Melihat detail outlet</label>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="check-pengaturan-outlet-3" value="Membuat Outlet">
                                         <label class="form-check-label" for="check-pengaturan-outlet-3">Membuat outlet</label>
@@ -217,14 +217,13 @@
                                         <input class="form-check-input" type="checkbox" id="check-pengaturan-outlet-4" value="Mengubah Data Outlet">
                                         <label class="form-check-label" for="check-pengaturan-outlet-4">Mengubah data outlet</label>
                                     </div>
-                                    <div class="form-check">
+                                    {{-- <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="check-pengaturan-outlet-5" value="Menghapus Outlet">
                                         <label class="form-check-label" for="check-pengaturan-outlet-5">Menghapus outlet</label>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <h5 class="fw-bold">Karyawan & Hak Akses</h5>
                                 <div class="ms-1 mb-3">
-                                    {{-- @dump(Auth::User()->role) --}}
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="check-pengaturan-akses-1" value="Merubah Hak Akses">
                                         <label class="form-check-label" for="check-pengaturan-akses-1">Merubah hak akses</label>
@@ -256,10 +255,10 @@
                                         <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-cuci-1" value="Membuka Menu Paket Cuci">
                                         <label class="form-check-label" for="check-pengaturan-paket-cuci-1">Membuka menu paket cuci</label>
                                     </div>
-                                    <div class="form-check">
+                                    {{-- <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-cuci-2" value="Melihat Detail Paket Cuci">
                                         <label class="form-check-label" for="check-pengaturan-paket-cuci-2">Melihat detail paket cuci</label>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-cuci-3" value="Membuat Paket Cuci">
                                         <label class="form-check-label" for="check-pengaturan-paket-cuci-3">Membuat paket cuci</label>
@@ -279,10 +278,10 @@
                                         <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-deposit-1" value="Membuka Menu Paket Deposit">
                                         <label class="form-check-label" for="check-pengaturan-paket-deposit-1">Membuka menu paket deposit</label>
                                     </div>
-                                    <div class="form-check">
+                                    {{-- <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-deposit-2" value="Melihat Detail Paket Deposit">
                                         <label class="form-check-label" for="check-pengaturan-paket-deposit-2">Melihat detail paket deposit</label>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="check-pengaturan-paket-deposit-3" value="Membuat Paket Deposit">
                                         <label class="form-check-label" for="check-pengaturan-paket-deposit-3">Membuat paket deposit</label>
@@ -310,10 +309,10 @@
                                         <input class="form-check-input" type="checkbox" id="check-data-kategori-1" value="Membuka Menu Kategori">
                                         <label class="form-check-label" for="check-data-kategori-1">Membuka menu kategori</label>
                                     </div>
-                                    <div class="form-check">
+                                    {{-- <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="check-data-kategori-2" value="Melihat Detail Kategori">
                                         <label class="form-check-label" for="check-data-kategori-2">Melihat detail kategori</label>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="check-data-kategori-3" value="Membuat Kategori">
                                         <label class="form-check-label" for="check-data-kategori-3">Membuat kategori</label>
@@ -333,10 +332,10 @@
                                         <input class="form-check-input" type="checkbox" id="check-data-item-1" value="Membuka Menu Jenis Item">
                                         <label class="form-check-label" for="check-data-item-1">Membuka menu jenis item</label>
                                     </div>
-                                    <div class="form-check">
+                                    {{-- <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="check-data-item-2" value="Melihat Detail Jenis Item">
                                         <label class="form-check-label" for="check-data-item-2">Melihat detail jenis item</label>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="check-data-item-3" value="Membuat Jenis Item">
                                         <label class="form-check-label" for="check-data-item-3">Membuat jenis item</label>
@@ -356,10 +355,10 @@
                                         <input class="form-check-input" type="checkbox" id="check-data-parfum-1" value="Membuka Menu Parfum">
                                         <label class="form-check-label" for="check-data-parfum-1">Membuka menu perfum</label>
                                     </div>
-                                    <div class="form-check">
+                                    {{-- <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="check-data-parfum-2" value="Melihat Detail Parfum">
                                         <label class="form-check-label" for="check-data-parfum-2">Melihat detail perfum</label>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="check-data-parfum-3" value="Membuat Parfum">
                                         <label class="form-check-label" for="check-data-parfum-3">Membuat perfum</label>
@@ -402,10 +401,10 @@
                                         <input class="form-check-input" type="checkbox" id="check-data-pengeluaran-1" value="Membuka Menu Pengeluaran">
                                         <label class="form-check-label" for="check-data-pengeluaran-1">Membuka menu pengeluaran</label>
                                     </div>
-                                    <div class="form-check">
+                                    {{-- <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="check-data-pengeluaran-2" value="Melihat Detail Pengeluaran">
                                         <label class="form-check-label" for="check-data-pengeluaran-2">Melihat detail pengeluaran</label>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="check-data-pengeluaran-3" value="Membuat Pengeluaran">
                                         <label class="form-check-label" for="check-data-pengeluaran-3">Membuat pengeluaran</label>
@@ -475,14 +474,14 @@
                                         <input class="form-check-input" type="checkbox" id="check-transaksi-6" value="Menambahkan Penerima">
                                         <label class="form-check-label" for="check-transaksi-6">Menambahkan penerima</label>
                                     </div>
-                                    <div class="form-check">
+                                    {{-- <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="check-transaksi-item-1" value="Melihat Detail Item Transaksi">
                                         <label class="form-check-label" for="check-transaksi-item-1">Melihat detail item transaksi</label>
-                                    </div>
-                                    <div class="form-check">
+                                    </div> --}}
+                                    {{-- <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="check-transaksi-item-2" value="Membuat Item Transaksi">
                                         <label class="form-check-label" for="check-transaksi-item-2">Membuat item transaksi</label>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="check-transaksi-item-3" value="Mengubah Data Item Transaksi">
                                         <label class="form-check-label" for="check-transaksi-item-3">Mengubah data item transaksi</label>
@@ -518,16 +517,16 @@
                                         <input class="form-check-input" type="checkbox" id="check-transaksi-pickup-delivery-3" value="Membuat Pickup Delivery">
                                         <label class="form-check-label" for="check-transaksi-pickup-delivery-3">Membuat pickup delivery</label>
                                     </div>
-                                    <div class="form-check">
+                                    {{-- <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="check-transaksi-pickup-delivery-4" value="Mengubah Data Pickup Delivery">
                                         <label class="form-check-label" for="check-transaksi-pickup-delivery-4">Mengubah data pickup delivery</label>
-                                    </div>
-                                    <div class="form-check">
+                                    </div> --}}
+                                    {{-- <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="check-transaksi-pickup-delivery-5" value="Menghapus Pickup Delivery">
                                         <label class="form-check-label" for="check-transaksi-pickup-delivery-5">Menghapus pickup delivery</label>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="check-transaksi-pickup-delivery-6" value="Mengganti Status Pickup Delivery">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-pickup-delivery-6" value="Mengganti Status Selesai Pickup Delivery">
                                         <label class="form-check-label" for="check-transaksi-pickup-delivery-6">Mengganti status pickup delivery</label>
                                     </div>
                                 </div>

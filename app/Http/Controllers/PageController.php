@@ -267,7 +267,7 @@ class PageController extends Controller
         if ($role == 'produksi_cuci') {
             $data['transaksis'] = Transaksi::detail()->where('pencuci', Auth::id())->latest()->get();
             $data['rewashes'] = Rewash::with('itemTransaksi')->where('pencuci', Auth::id())->get();
-        } else if ($role == 'administrator') {
+        } else {
             $data['transaksis'] = Transaksi::detail()->latest()->get();
             $data['rewashes'] = Rewash::with('itemTransaksi')->where('pencuci', Auth::id())->get();
             $data['pencucis'] = User::role('produksi_cuci')->with('transaksi')->get();

@@ -39,4 +39,25 @@ $(document).ready(function() {
             icon.closest('div').next().show();
         }
     });
+
+    var btnIndex = -1, btnId = 0, currentlySelectedType = '';
+    $('.btn-show-action').on('click', function() {
+        btnIndex = $(this).index('.btn-show-action') + 1;
+        btnId = $(this).attr('id').substring(6);
+        if ($(this).closest('.card-pickup').length == 1) {
+            currentlySelectedType = "pickup";
+        } else if ($(this).closest('.card-delivery').length == 1) {
+            currentlySelectedType = "delivery";
+        }
+    });
+
+    $('#action-change-status').on('click', function() {
+        if (confirm('Nyatakan ' + currentlySelectedType + ' selesai ?') == true) {
+            $.ajax({
+                url: "/transaksi/pickup-delivery/" + btnId + "/is-done",
+            }).done(function(data) {
+                // window.location = window.location.origin + window.location.pathname;
+            });
+        }
+    });
 });

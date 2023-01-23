@@ -180,13 +180,14 @@
                                             <th>Nama Item</th>
                                             <th class="d-none d-lg-table-cell">Kategori</th>
                                             <th class="d-none d-md-table-cell">Proses</th>
+                                            <th class="d-none d-md-table-cell">Qty</th>
                                             <th>Harga Premium</th>
                                             <th style="width: 46.25px;"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="text-center" colspan="6" style="padding-top: 4px;padding-bottom: 4px;">
+                                            <td class="text-center" colspan="7" style="padding-top: 4px;padding-bottom: 4px;">
                                                 <button class="btn btn-primary btn-sm" id="add-item" type="button">
                                                     <i class="fas fa-plus"></i>
                                                 </button>

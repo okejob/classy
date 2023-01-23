@@ -25,14 +25,18 @@
                     <div class="d-flex mb-3">
                         <div class="intro-1 d-flex flex-fill">
                             <input class="form-control" type="search" id="input-key-trans" placeholder="Kata kunci">
-                            <button class="btn btn-primary mx-3" data-bs-toggle="tooltip" data-bss-tooltip="" id="search-key-trans" type="button" title="Cari transaksi">
+                            <button class="btn btn-primary ms-3" data-bs-toggle="tooltip" data-bss-tooltip="" id="search-key-trans" type="button" title="Cari transaksi">
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>
-                        <button class="btn btn-primary" data-bs-toggle="tooltip" data-bss-tooltip="" id="add-new-trans" type="button" title="Buat transaksi baru">
+
+                        @if(in_array("Membuat Transaksi", Session::get('permissions')) || Session::get('role') == 'administrator')
+                        <button class="btn btn-primary ms-3" data-bs-toggle="tooltip" data-bss-tooltip="" id="add-new-trans" type="button" title="Buat transaksi baru">
                             <i class="fas fa-plus"></i>
                         </button>
+                        @endif
                     </div>
+                    @if(in_array("Melihat Detail Transaksi", Session::get('permissions')) || Session::get('role') == 'administrator')
                     <div class="table-responsive">
                         <table class="table table-striped table-hover" id="table-list-trans">
                             <thead class="text-center">
@@ -66,6 +70,7 @@
                             </tbody>
                         </table>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -180,18 +185,21 @@
                                             <th>Nama Item</th>
                                             <th class="d-none d-lg-table-cell">Kategori</th>
                                             <th class="d-none d-md-table-cell">Proses</th>
+                                            <th class="d-none d-md-table-cell">Qty</th>
                                             <th>Bobot</th>
                                             <th style="width: 46.25px;"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @if(in_array("Menambahkan Item Transaksi", Session::get('permissions')) || Session::get('role') == 'administrator')
                                         <tr>
-                                            <td class="text-center" colspan="5" style="padding-top: 4px;padding-bottom: 4px;">
+                                            <td class="text-center" colspan="6" style="padding-top: 4px;padding-bottom: 4px;">
                                                 <button class="btn btn-primary btn-sm" id="add-item" type="button">
                                                     <i class="fas fa-plus"></i>
                                                 </button>
                                             </td>
                                         </tr>
+                                        @endif
                                     </tbody>
                                     <tfoot>
                                         <tr>

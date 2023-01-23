@@ -228,7 +228,7 @@
             @foreach ($dataDriver as $driver)
                 @if($driver->id == Auth::id())
                 <div class="col-6">
-                    <div class="border rounded p-3">
+                    <div class="card p-3">
                         <div class="d-flex justify-content-between align-items-center">
                             <h4>Hub {{ $driver->name }}</h4>
                             <button class="btn btn-sm btn-toggle" style="box-shadow: none;"><i class="fa-solid fa-down-left-and-up-right-to-center"></i></button>
@@ -238,7 +238,7 @@
                             <div class="hub-list">
                                 @foreach ($pickups as $pickup)
                                     @if($driver->id == $pickup->driver_id)
-                                        <div class="p-3 border rounded d-flex justify-content-between align-items-center mt-3"
+                                        <div class="p-3 border rounded d-flex justify-content-between align-items-center mt-3 card-pickup"
                                             @if ($pickup->is_done)
                                                 style="border-bottom: 3px solid rgb(75, 192, 192)!important; background-image: linear-gradient(to bottom right, white, rgb(75, 192, 192, .5));"
                                             @else
@@ -255,13 +255,20 @@
                                                     {{ $pickup->alamat }}
                                                 </h6>
                                             </div>
-                                            <div class="position-relative">
-                                                <h4 class="fw-bold" style="font-style: italic;">Pickup</h4>
-                                                @if ($pickup->is_done)
-                                                    <i class="fa-solid fa-flag-checkered position-absolute top-50 start-0 translate-middle fa-4x" style="font-style: italic; opacity: 0.25;"></i>
-                                                @else
-                                                    <i class="fa-solid fa-spinner position-absolute top-50 start-0 translate-middle fa-4x" style="font-style: italic; opacity: 0.25;"></i>
-                                                @endif
+                                            <div class="d-flex h-100">
+                                                <div class="position-relative h-100">
+                                                    <h4 class="fw-bold" style="font-style: italic; margin-right: 2.5rem;">Pickup</h4>
+                                                    @if ($pickup->is_done)
+                                                        <i class="fa-solid fa-flag-checkered position-absolute top-50 start-0 translate-middle fa-4x" style="font-style: italic; opacity: 0.25;"></i>
+                                                    @else
+                                                        <i class="fa-solid fa-spinner position-absolute top-50 start-0 translate-middle fa-4x" style="font-style: italic; opacity: 0.25;"></i>
+                                                        @if(in_array("Mengganti Status Selesai Pickup Delivery", Session::get('permissions')))
+                                                            <button class="btn btn-sm btn-show-action position-absolute end-0" type="button" style="top: -12px;" id="trans-{{ $pickup->id }}" style="box-shadow: none;">
+                                                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                                                            </button>
+                                                        @endif
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
                                     @endif
@@ -269,7 +276,7 @@
 
                                 @foreach ($deliveries as $delivery)
                                     @if($driver->id == $pickup->driver_id)
-                                        <div class="p-3 border rounded d-flex justify-content-between align-items-center mt-3"
+                                        <div class="p-3 border rounded d-flex justify-content-between align-items-center mt-3 card-delivery"
                                             @if ($delivery->is_done)
                                                 style="border-bottom: 3px solid rgb(153, 102, 255)!important; background-image: linear-gradient(to bottom right, white, rgb(153, 102, 255, .5));"
                                             @else
@@ -288,17 +295,25 @@
                                             </div>
                                             <div class="position-relative">
                                                 {{-- background-image: linear-gradient(to bottom right, red, yellow); --}}
-                                                <h4 class="fw-bold" style="font-style: italic;">Delivery</h4>
+                                                <h4 class="fw-bold me-4" style="font-style: italic;">Delivery</h4>
                                                 @if ($delivery->is_done)
                                                     <i class="fa-solid fa-flag-checkered position-absolute top-50 start-0 translate-middle fa-4x" style="font-style: italic; opacity: 0.25;"></i>
                                                 @else
                                                     <i class="fa-solid fa-spinner position-absolute top-50 start-0 translate-middle fa-4x" style="font-style: italic; opacity: 0.25;"></i>
+                                                    @if(in_array("Mengganti Status Selesai Pickup Delivery", Session::get('permissions')))
+                                                        <button class="btn btn-sm btn-show-action position-absolute end-0" type="button" style="top: -12px;" id="trans-{{ $delivery->id }}" style="box-shadow: none;">
+                                                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                                                        </button>
+                                                    @endif
                                                 @endif
                                             </div>
                                         </div>
                                     @endif
                                 @endforeach
                             </div>
+                            <ul class="list-unstyled form-control" id="list-action">
+                                <li id="action-change-status">Selesai</li>
+                            </ul>
                         </div>
                     </div>
                 </div>

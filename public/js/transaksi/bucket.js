@@ -132,6 +132,7 @@ $(document).ready(function() {
                 } else {
                     temp += "<td class='d-none d-md-table-cell'></td>";
                 }
+                temp += "<td class='d-none d-md-table-cell text-center'>qty</td>";
                 temp += "<td class='text-center'>" + item.bobot_bucket + "</td>" +
                     "<td style='width: 46.25px;'>" +
                         "<button id='btn-" + item.id + "' class='btn btn-primary btn-sm btn-show-action' type='button'><i class='fas fa-bars' aria-hidden='true'></i></button>" +
@@ -374,25 +375,29 @@ $(document).ready(function() {
             $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '10%');
         } else if ($(window).width() < 992) {
             $('#table-trans-item thead th:nth-child(1)').css('width', '40%');
-            $('#table-trans-item thead th:nth-child(3)').css('width', '15%');
+            $('#table-trans-item thead th:nth-child(3)').css('width', '20%');
+            $('#table-trans-item thead th:nth-child(4)').css('width', '7.5%');
 
             $('#table-trans-item tbody tr td:nth-child(1)').css('width', '40%');
             $('#table-trans-item tbody tr td:nth-child(1)').css('white-space', 'nowrap');
-            $('#table-trans-item tbody tr td:nth-child(3)').css('width', '15%');
+            $('#table-trans-item tbody tr td:nth-child(3)').css('width', '20%');
+            $('#table-trans-item tbody tr td:nth-child(4)').css('width', '7.5%');
 
-            $('#table-trans-item tfoot tr td:nth-child(1)').css('width', '65%');
+            $('#table-trans-item tfoot tr td:nth-child(1)').css('width', '67.5%');
             $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '7.5%');
         } else {
             $('#table-trans-item thead th:nth-child(1)').css('width', '35%');
             $('#table-trans-item thead th:nth-child(2)').css('width', '20%');
             $('#table-trans-item thead th:nth-child(3)').css('width', '15%');
+            $('#table-trans-item thead th:nth-child(4)').css('width', '5%');
 
             $('#table-trans-item tbody tr td:nth-child(1)').css('width', '35%');
             $('#table-trans-item tbody tr td:nth-child(1)').css('white-space', 'nowrap');
             $('#table-trans-item tbody tr td:nth-child(2)').css('width', '20%');
             $('#table-trans-item tbody tr td:nth-child(3)').css('width', '15%');
+            $('#table-trans-item tbody tr td:nth-child(4)').css('width', '5%');
 
-            $('#table-trans-item tfoot tr td:nth-child(1)').css('width', '75%');
+            $('#table-trans-item tfoot tr td:nth-child(1)').css('width', '80%');
             $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '5%');
         }
     }
