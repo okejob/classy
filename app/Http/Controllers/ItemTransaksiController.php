@@ -22,7 +22,14 @@ class ItemTransaksiController extends Controller
         $request['harga_premium'] = $jenis_item->harga_premium;
         $request['status_proses'] = $role;
         $request['total_bobot'] = $jenis_item->bobot_bucket;
-        $item_transaksi = ItemTransaksi::create($request->toArray());
+        $finder = ItemTransaksi::where('transaksi_id', $request->transaksi_id)->where('jenis_item_id', $request->jenis_item_id)->first();
+        if ($finder) {
+            $finder->qty = $finder->qty + 1;
+            $finder->total_bobot = $finder->qty * $finder->bobot_bucket;
+            $finder->save();
+        } else {
+            $item_transaksi = ItemTransaksi::create($request->toArray());
+        }
 
         $transaksi = Transaksi::detail()->find($request['transaksi_id'])->recalculate();
         $transaksi->modified_by = Auth::id();
