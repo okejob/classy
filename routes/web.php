@@ -7,6 +7,7 @@ use App\Http\Controllers\JenisItemController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LaporanInventoryController;
 use App\Http\Controllers\OutletController;
+use App\Http\Controllers\PackingController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaketCuciController;
 use App\Http\Controllers\PaketDepositController;
@@ -203,4 +204,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/proses/rewash/insert', [RewashController::class, 'insert'])->middleware('permission:Menambah Rewash');
     Route::post('/proses/rewash/update-status/{rewash}', [RewashController::class, 'updateStatus'])->middleware('permission:Mengganti Status Rewash');
     Route::get('/proses/rewash/delete/{rewash}', [RewashController::class, 'delete'])->middleware('permission:Menghapus Rewash');
+
+    //Packing
+    Route::post('/packing', [PackingController::class, 'create']);
 });
