@@ -41,7 +41,7 @@
                         <table class="table table-striped table-hover" id="table-list-trans">
                             <thead class="text-center">
                                 <tr>
-                                    <th>ID Transaksi</th>
+                                    <th>Kode</th>
                                     <th>Outlet</th>
                                     <th class="d-none d-lg-table-cell">Tanggal Transaksi</th>
                                     <th>Nama Pelanggan</th>
@@ -51,8 +51,8 @@
                             </thead>
                             <tbody style="cursor: pointer">
                                 @foreach ($data['last_transaksi'] as $trans)
-                                <tr data-bs-toggle="tooltip" data-bss-tooltip="" title="Double klik untuk memilih">
-                                    <td>{{ $trans->id }}</td>
+                                <tr data-bs-toggle="tooltip" data-bss-tooltip="" title="Double klik untuk memilih" id={{ $trans->id }}>
+                                    <td>{{ $trans->kode }}</td>
                                     <td>{{ $trans->outlet->nama }}</td>
                                     <td class="d-none d-lg-table-cell text-center">{{ $trans->created_at }}</td>
                                     <td>{{ $trans->pelanggan->nama }}</td>
@@ -181,11 +181,19 @@
                             <div id="table-container"></div>
 
                             <ul class="list-unstyled form-control" id="list-action">
-                                <li id="action-notes">Catatan item</li>
-                                <li id="action-delete">Hapus item</li>
+                                @if(in_array("Melihat Detail Daftar Catatan Item", Session::get('permissions')) || Session::get('role') == 'administrator')
+                                    <li id="action-notes">Catatan item</li>
+                                @endif
+                                @if(in_array("Menghapus Item Transaksi", Session::get('permissions')) || Session::get('role') == 'administrator')
+                                    <li id="action-delete">Hapus item</li>
+                                @endif
                             </ul>
 
-                            <form method="POST" id="form-transaksi" class="mb-0">
+                            @if(in_array("Mengubah Data Transaksi", Session::get('permissions')) || Session::get('role') == 'administrator')
+                                <form method="POST" id="form-transaksi" class="mb-0">
+                            @else
+                                <form method="POST" id="form-transaksi" class="mb-0 disabled">
+                            @endif
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-4 col-12 mt-2">
@@ -223,7 +231,9 @@
                                     </div>
                                     <input type="hidden" name="tipe_transaksi" value="bucket">
                                     <div class="col-md-3 col-12 mt-2 d-flex align-items-center justify-content-end">
-                                        <button id="save-trans" class="btn btn-primary full-when-small" type="submit">Simpan Transaksi</button>
+                                        @if(in_array("Mengubah Data Transaksi", Session::get('permissions')) || Session::get('role') == 'administrator')
+                                            <button id="save-trans" class="btn btn-primary full-when-small" type="submit">Simpan Transaksi</button>
+                                        @endif
                                     </div>
                                 </div>
                             </form>
@@ -276,13 +286,20 @@
                                                             <th></th>
                                                         </tr>
                                                     </thead>
+                                                    @if(in_array("Melihat Detail Catatan Item", Session::get('permissions')) || Session::get('role') == 'administrator')
                                                     <tbody>
                                                     </tbody>
+                                                    @else
+                                                    <tbody class="disabled">
+                                                    </tbody>
+                                                    @endif
+                                                    @if(in_array("Membuat Catatan Item", Session::get('permissions')) || Session::get('role') == 'administrator')
                                                     <tfoot>
                                                         <tr>
                                                             <td class="text-center" colspan="3"><button class="btn btn-primary btn-sm" type="button" id="add-catatan-item"><i class="fas fa-plus"></i></button></td>
                                                         </tr>
                                                     </tfoot>
+                                                    @endif
                                                 </table>
                                             </div>
                                         </div>
@@ -549,7 +566,11 @@
                                         </header>
                                         <div id="info-penerimaan" class="mt-2" style="display: none;">
                                             <form id="form-penerimaan">
-                                                <div class="mb-5">
+                                                @if(in_array("Menambahkan Penerima Ke Transaksi", Session::get('permissions')) || Session::get('role') == 'administrator')
+                                                    <div class="mb-5">
+                                                @else
+                                                    <div class="mb-5 disabled">
+                                                @endif
                                                     <h6 class="mt-2">Outlet Ambil</h6>
                                                     <select class="form-control" id="select-outlet-ambil" required>
                                                         <option value="">-</option>
@@ -564,9 +585,11 @@
                                                     <h6 class="mt-2">Foto Penerima</h6>
                                                     <input type="file" class="form-control" id="input-foto-penerima" name="image" accept="image/*" required>
                                                 </div>
+                                                @if(in_array("Menambahkan Penerima Ke Transaksi", Session::get('permissions')) || Session::get('role') == 'administrator')
                                                 <div class="position-absolute" style="right: 1rem; bottom: 1rem;">
                                                     <button class="btn btn-primary full-when-small" id="simpan-info-penerimaan" type="submit">Simpan Penerimaan</button>
                                                 </div>
+                                                @endif
                                             </form>
                                         </div>
                                     </section>

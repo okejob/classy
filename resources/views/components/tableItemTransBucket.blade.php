@@ -23,9 +23,15 @@
                 @else
                     <td class='d-none d-md-table-cell'></td>
                 @endif
+                @if(in_array("Mengubah Data Item Transaksi", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <td class='d-none d-md-table-cell text-center p-0 col-qty'>
                     <div class='d-flex align-items-center justify-content-center' style='height: 39.5px;'>{{ $item->qty }}</div>
                 </td>
+                @else
+                <td class='d-none d-md-table-cell text-center p-0 col-qty disabled'>
+                    <div class='d-flex align-items-center justify-content-center' style='height: 39.5px;'>{{ $item->qty }}</div>
+                </td>
+                @endif
                 <td class='text-center'>{{ $item->bobot_bucket }}</td>
                 <td class='text-center'>{{ $item->total_bobot }}</td>
                 <td class='text-end' style='width: 46.25px;'>

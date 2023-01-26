@@ -23,9 +23,15 @@
                 @else
                     <td class='d-none d-md-table-cell'></td>
                 @endif
+                @if(in_array("Mengubah Data Item Transaksi", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <td class='d-none d-md-table-cell text-center p-0 col-qty'>
                     <div class='d-flex align-items-center justify-content-center' style='height: 39.5px;'>{{ $item->qty }}</div>
                 </td>
+                @else
+                <td class='d-none d-md-table-cell text-center p-0 col-qty disabled'>
+                    <div class='d-flex align-items-center justify-content-center' style='height: 39.5px;'>{{ $item->qty }}</div>
+                </td>
+                @endif
                 <td>Rp</td>
                 <td class='text-end thousand-separator'>{{ $item->harga_premium }}</td>
                 <td>Rp</td>

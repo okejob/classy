@@ -14,13 +14,12 @@ $(document).ready(function() {
     $('#table-list-trans tbody').on('click', 'tr', function() {
         let parent = $(this).parent();
         parent.addClass('disabled');
-        let id = $(this).children().eq(0).html();
+        let id = $(this).attr('id');
         transId = id;
 
         $.ajax({
             url: "/transaksi/detail/" + id,
         }).done(function(data) {
-
             let trans = data;
             $('#id-trans').text(trans.id);
             $('#kode-trans').text(trans.kode);
@@ -54,7 +53,6 @@ $(document).ready(function() {
             let pickup = trans.pickup_delivery[0];
             let delivery = trans.pickup_delivery[1];
             let penerima = trans.penerima;
-            // console.log(pickup);
 
             if (typeof pickup !== "undefined") {
                 $('#formCheck-pickup').parent().next().show();
@@ -150,15 +148,13 @@ $(document).ready(function() {
             $('#form-transaksi').attr('action', '/transaksi/update/' + trans.id);
 
             parent.removeClass('disabled');
-            adjustWidth();
             $('#modal-opsi-trans').modal('hide');
-            if (getCookie('transaksi-intro_trans') == '') {
-                introDetailTransaksi();
-            }
+            // if (getCookie('transaksi-intro_trans') == '') {
+            //     introDetailTransaksi();
+            // }
         });
     });
 
-    // untuk mencari data transaksi
     $('#search-key-trans').on('click', function() {
         let key = $('#input-key-trans').val()
         $.ajax({
@@ -187,7 +183,6 @@ $(document).ready(function() {
         });
     });
 
-    // untuk menampilkan modal
     $('#add-new-trans').on('click', function() {
         $('#modal-opsi-trans').modal('hide');
         $('#modal-new-trans').modal('show');
@@ -201,7 +196,6 @@ $(document).ready(function() {
         $(this).next().toggle();
     });
 
-    // untuk memilih pelanggan yang nantinya digunakan untuk membuat transaksi baru
     $('#table-list-pelanggan-2 tbody tr').on('click', function() {
         let parent = $(this).parent();
         parent.addClass('disabled');
@@ -226,7 +220,6 @@ $(document).ready(function() {
         parent.removeClass('disabled');
     });
 
-    // untuk membuat transaksi baru
     $('#create-trans').on('click', function() {
         let pelanggan_id = $('#input-id-2').val();
         $.ajax({
@@ -236,7 +229,6 @@ $(document).ready(function() {
         });
     });
 
-    // untuk menabahkan thousand separator
     function setThousandSeparator() {
         let length = $('.thousand-separator').length;
         if (length != 0) {
@@ -261,7 +253,6 @@ $(document).ready(function() {
         }
     });
 
-    // untuk mengubah data penerima dari transaksi
     $('#form-penerimaan').on('submit', function(e) {
         e.preventDefault();
         $(this).addClass('disabled');
@@ -297,8 +288,6 @@ $(document).ready(function() {
             console.log(message);
         });
     });
-
-    // untuk menampilkan data informasi transaksi
     $('.show-data').on('click', function() {
         let dataType = $(this).attr('id').substring($(this).attr('id').indexOf('data-') + 5);
         if (!$(this).hasClass('show')) {
@@ -320,7 +309,6 @@ $(document).ready(function() {
         $('#modal-list-pelanggan').modal('show');
     });
 
-    // untuk mengisi data pelanggan di informasi pelanggan
     $('#table-list-pelanggan tbody tr').on('click', function() {
         let id = $(this).attr('id').substring($(this).attr('id').indexOf('row-') + 4);
 
@@ -345,7 +333,6 @@ $(document).ready(function() {
         window.location = "/transaksi/pickup-delivery/";
     });
 
-    // untuk mengatur lebar colom pada table beserta behavior table
     function adjustWidth() {
         if ($(window).width() < 576) {
             $('#table-trans-item thead th:nth-child(1)').css('width', '60%');
@@ -406,7 +393,6 @@ $(document).ready(function() {
         });
     });
 
-    // untuk mencari jenis item
     $('#search-item').on('click', function() {
         $('#table-items tbody').empty();
         let key = $('#input-nama-item').val();
@@ -423,7 +409,6 @@ $(document).ready(function() {
         });
     });
 
-    // untuk menambahkan jenis item pada transaksi
     $('#table-items tbody').on('click', 'tr', function() {
         let parent = $(this).parent();
         parent.addClass('disabled');
@@ -484,21 +469,16 @@ $(document).ready(function() {
         });
     });
 
-    // untuk menampilkan catatan transaksi
     $('#show-catatan-trans').on('click', function() {
         let containerCatatan = $(this).next();
         containerCatatan.css('top', 'calc(-' + containerCatatan.css('height') + ' - .75rem');
         containerCatatan.toggle();
     });
 
-    // untuk menutup catatan transaksi
     $('#save-catatan-trans').on('click', function() {
         $(this).closest('div').hide();
     });
 
-    // btnIndex untuk menyimpan currently selected row
-    // currentlySelectedItemTransactionID untuk menyimpan id item transaksi
-    // currentlySelectedItemName untuk menyimpan nama dari item transaksi
     var btnIndex = -1, currentlySelectedItemTransactionID = 0, currentlySelectedItemName = '';
     $('#table-trans-item tbody').on('click', '.btn-show-action', function() {
         btnIndex = $(this).index('.btn-show-action') + 1;

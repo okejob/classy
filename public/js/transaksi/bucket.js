@@ -14,7 +14,7 @@ $(document).ready(function() {
     $('#table-list-trans tbody').on('click', 'tr', function() {
         let parent = $(this).parent();
         parent.addClass('disabled');
-        let id = $(this).children().eq(0).html();
+        let id = $(this).attr('id');
         transId = id;
 
         $.ajax({
@@ -149,9 +149,9 @@ $(document).ready(function() {
 
             parent.removeClass('disabled');
             $('#modal-opsi-trans').modal('hide');
-            if (getCookie('transaksi-intro_trans') == '') {
-                introDetailTransaksi();
-            }
+            // if (getCookie('transaksi-intro_trans') == '') {
+            //     introDetailTransaksi();
+            // }
         });
     });
 
@@ -509,7 +509,6 @@ $(document).ready(function() {
         });
     });
 
-    // untuk menghapus item transaksi
     $('#action-delete').on('click', function() {
         if (confirm('Yakin menghapus data  ?')) {
             $.ajax({
