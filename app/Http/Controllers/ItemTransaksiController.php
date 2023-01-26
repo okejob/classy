@@ -26,6 +26,7 @@ class ItemTransaksiController extends Controller
         if ($finder) {
             $finder->qty = $finder->qty + 1;
             $finder->total_bobot = $finder->qty * $finder->bobot_bucket;
+            $finder->harga_premium = $finder->qty * $finder->harga_premium;
             $finder->save();
         } else {
             $item_transaksi = ItemTransaksi::create($request->toArray());

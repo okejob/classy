@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('status_proses');
             $table->integer('qty')->default(1);
             $table->float('total_bobot')->default(0);
+            $table->float('total_premium')->default(0);
             $table->foreignId('modified_by')
                 ->constrained('users', 'id')
                 ->cascadeOnDelete();
