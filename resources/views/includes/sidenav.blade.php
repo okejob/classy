@@ -1,4 +1,3 @@
-{{-- @dump(Session::get('role')) --}}
 <div id="side-nav">
     <div class="menu-section my-1">
         <div id="nav-menu-data" class="nav-menu">

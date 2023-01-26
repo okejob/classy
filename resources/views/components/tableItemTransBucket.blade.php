@@ -32,7 +32,7 @@
                     <div class='d-flex align-items-center justify-content-center' style='height: 39.5px;'>{{ $item->qty }}</div>
                 </td>
                 @endif
-                <td class='text-center'>{{ $item->bobot_bucket }}</td>
+                <td class='d-none d-md-table-cell text-center'>{{ $item->bobot_bucket }}</td>
                 <td class='text-center'>{{ $item->total_bobot }}</td>
                 <td class='text-end' style='width: 46.25px;'>
                     <button id='btn-{{ $item->id }}' class='btn btn-primary btn-sm btn-show-action' type='button'>

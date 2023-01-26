@@ -70,6 +70,11 @@ $(document).ready(function() {
         setCookie('submenu-' + submenu, state, 1);
     });
 
+    // $('#side-nav a').on('click', function(e) {
+    //     e.preventDefault();
+    //     $('#content').load($(this).attr('href'));
+    // });
+
     if (getCookie('current-menu') != '') {
         let menu = getCookie('current-menu').split('/');
         menu.shift();

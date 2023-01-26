@@ -32,8 +32,8 @@
                     <div class='d-flex align-items-center justify-content-center' style='height: 39.5px;'>{{ $item->qty }}</div>
                 </td>
                 @endif
-                <td>Rp</td>
-                <td class='text-end thousand-separator'>{{ $item->harga_premium }}</td>
+                <td class="d-none d-md-table-cell">Rp</td>
+                <td class='d-none d-md-table-cell text-end thousand-separator'>{{ $item->harga_premium }}</td>
                 <td>Rp</td>
                 <td class='text-end thousand-separator'>{{ $item->harga_premium * $item->qty }}</td>
                 <td class='text-end' style='width: 46.25px;'>
