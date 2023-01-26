@@ -10,10 +10,12 @@ $(document).ready(function() {
         $('#modal-opsi-trans').modal('show');
     });
 
+    var transId;
     $('#table-list-trans tbody').on('click', 'tr', function() {
         let parent = $(this).parent();
         parent.addClass('disabled');
         let id = $(this).children().eq(0).html();
+        transId = id;
 
         $.ajax({
             url: "/transaksi/detail/" + id,
@@ -119,44 +121,10 @@ $(document).ready(function() {
                 $('#show-data-penerimaan').trigger('click');
             }
 
-            let rowAdd = $('#table-trans-item tbody').children().last().detach();
-            $('#table-trans-item tbody').empty();
-            for (let i = 0; i < trans.item_transaksi.length; i++) {
-                const item = trans.item_transaksi[i];
-                let temp = "<tr id='" + item.id + "'>" +
-                    "<td style='white-space: nowrap;'>" + item.nama + "</td>" +
-                    "<td class='d-none d-lg-table-cell text-center'>" + item.nama_kategori + "</td>";
-
-                if (trans.penyetrika != null) {
-                    temp += "<td class='d-none d-xl-table-cell text-center'>Setrika</td>";
-                } else if (trans.pencuci != null) {
-                    temp += "<td class='d-none d-xl-table-cell text-center'>Cuci</td>";
-                } else {
-                    temp += "<td class='d-none d-xl-table-cell'></td>";
-                }
-                temp += "<td class='d-none d-xl-table-cell text-center'>qty</td>";
-                temp += "<td class='d-none d-sm-table-cell' style='width: 5%;'>Rp</td>" +
-                    "<td class='text-end thousand-separator'>" + item.harga_premium + "</td>" +
-                    "<td style='width: 46.25px;'>" +
-                        "<button id='btn-" + item.id + "' class='btn btn-primary btn-sm btn-show-action' type='button'><i class='fas fa-bars' aria-hidden='true'></i></button>" +
-                    "</td>" + "</tr>";
-                $('#table-trans-item tbody').append(temp);
-
-                $('#table-pembayaran tbody').append(
-                    "<tr id='item-" + item.jenis_item_id + "'>" +
-                        "<td>" + item.nama + "</td>" +
-                        "<td class='text-center'>" + item.nama_kategori + "</td>" +
-                        "<td>Rp</td>" +
-                        "<td class='text-end'>" + item.harga_premium + "</td>" +
-                    "</tr>"
-                );
-            }
-            $('#table-trans-item tbody').append(rowAdd);
-
-            $('#sub-total').html(trans.subtotal);
-            $('#diskon').html(trans.diskon);
-            $('#diskon-member').html(trans.diskon_member);
-            $('#grand-total').html(trans.grand_total);
+            $('#table-container').load(window.location.origin + '/component/transPremium/' + id, function() {
+                adjustWidth();
+                setThousandSeparator();
+            });
 
             $('#pembayaran-subtotal').html(trans.subtotal);
             $('#pembayaran-diskon').html(trans.diskon + trans.diskon_member);
@@ -380,35 +348,37 @@ $(document).ready(function() {
     // untuk mengatur lebar colom pada table beserta behavior table
     function adjustWidth() {
         if ($(window).width() < 576) {
-            $('#table-trans-item thead th:nth-child(1)').css('width', '40%');
+            $('#table-trans-item thead th:nth-child(1)').css('width', '60%');
 
-            $('#table-trans-item tbody tr td:nth-child(1)').css('width', '40%');
+            $('#table-trans-item tbody tr td:nth-child(1)').css('width', '60%');
             $('#table-trans-item tbody tr td:nth-child(1)').css('white-space', 'initial');
 
             $('#table-trans-item tfoot tr td:nth-child(1)').css('width', '55%');
             $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '10%');
         } else if ($(window).width() < 992) {
-            $('#table-trans-item thead th:nth-child(1)').css('width', '45%');
-            $('#table-trans-item thead th:nth-child(3)').css('width', '15%');
-            $('#table-trans-item thead th:nth-child(4)').css('width', '7.5%');
-
-            $('#table-trans-item tbody tr td:nth-child(1)').css('width', '45%');
-            $('#table-trans-item tbody tr td:nth-child(1)').css('white-space', 'nowrap');
-            $('#table-trans-item tbody tr td:nth-child(3)').css('width', '15%');
-            $('#table-trans-item tbody tr td:nth-child(4)').css('width', '7.5%');
-
-            $('#table-trans-item tfoot tr td:nth-child(1)').css('width', '67.5%');
-            $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '7.5%');
-        } else {
             $('#table-trans-item thead th:nth-child(1)').css('width', '35%');
-            $('#table-trans-item thead th:nth-child(2)').css('width', '25%');
             $('#table-trans-item thead th:nth-child(3)').css('width', '15%');
-            $('#table-trans-item thead th:nth-child(4)').css('width', '5%');
+            $('#table-trans-item thead th:nth-child(4)').css('width', '10%');
+            $('#table-trans-item thead th:nth-child(5)').css('width', '20%');
 
             $('#table-trans-item tbody tr td:nth-child(1)').css('width', '35%');
             $('#table-trans-item tbody tr td:nth-child(1)').css('white-space', 'nowrap');
-            $('#table-trans-item tbody tr td:nth-child(2)').css('width', '25%');
             $('#table-trans-item tbody tr td:nth-child(3)').css('width', '15%');
+            $('#table-trans-item tbody tr td:nth-child(4)').css('width', '10%');
+
+            $('#table-trans-item tfoot tr td:nth-child(1)').css('width', '70%');
+            $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '10%');
+        } else {
+            $('#table-trans-item thead th:nth-child(1)').css('width', '30%');
+            $('#table-trans-item thead th:nth-child(2)').css('width', '20%');
+            $('#table-trans-item thead th:nth-child(3)').css('width', '10%');
+            $('#table-trans-item thead th:nth-child(4)').css('width', '5%');
+            $('#table-trans-item thead th:nth-child(5)').css('width', '15%');
+
+            $('#table-trans-item tbody tr td:nth-child(1)').css('width', '30%');
+            $('#table-trans-item tbody tr td:nth-child(1)').css('white-space', 'nowrap');
+            $('#table-trans-item tbody tr td:nth-child(2)').css('width', '20%');
+            $('#table-trans-item tbody tr td:nth-child(3)').css('width', '10%');
             $('#table-trans-item tbody tr td:nth-child(4)').css('width', '5%');
 
             $('#table-trans-item tfoot tr td:nth-child(1)').css('width', '80%');
@@ -420,8 +390,7 @@ $(document).ready(function() {
         adjustWidth();
     });
 
-    // untuk menampilkan table jenis item yang nantinya digunakan untuk menambahkan jenis item pada transaksi
-    $('#add-item').on('click', function() {
+    $('#table-container').on('click', '#add-item',function() {
         $('#table-items tbody').empty();
 
         $.ajax({
@@ -466,41 +435,52 @@ $(document).ready(function() {
         }).done(function(data) {
             let item = data[0];
 
-            let rowAdd = $('#table-trans-item tbody').children().last().detach();
-            let total_bobot = 0;
-            $('#table-trans-item tbody tr').each(function() {
-                total_bobot += parseFloat($(this).children().eq(6).html());
-            });
-
             $.ajax({
                 url: "/transaksi/addItem?jenis_item_id=" + item.id + "&transaksi_id=" + $('#id-trans').text(),
             }).done(function(data) {
-                let trans = data[0];
-                $('#sub-total').html(trans.subtotal);
-                $('#diskon').html(trans.diskon);
-                $('#diskon-member').html(trans.diskon_member);
-                $('#grand-total').html(trans.grand_total);
-
-                const temp = trans.item_transaksi[trans.item_transaksi.length - 1];
-                $('#table-trans-item tbody').append(
-                    "<tr id='" + temp.id + "'>" +
-                        "<td style='white-space: nowrap;'>" + temp.nama + "</td>" +
-                        "<td class='d-none d-lg-table-cell text-center'>" + temp.nama_kategori + "</td>" +
-                        "<td class='d-none d-xl-table-cell'></td>" +
-                        "<td class='d-none d-sm-table-cell'>Rp</td>" +
-                        "<td class='text-end thousand-separator'>" + temp.harga_premium + "</td>" +
-                        "<td style='width: 46.25px;'>" +
-                            "<button id='btn-" + temp.id + "' class='btn btn-primary btn-sm btn-show-action' type='button'><i class='fas fa-bars' aria-hidden='true'></i></button>" +
-                        "</td>" +
-                    "</tr>"
-                );
-                $('#table-trans-item tbody').append(rowAdd);
-
-                setThousandSeparator();
-                parent.removeClass('disabled');
-                adjustWidth();
-                $('#modal-add-item').modal('hide');
+                $('#table-container').load(window.location.origin + '/component/transPremium/' + transId, function() {
+                    adjustWidth();
+                    setThousandSeparator();
+                    parent.removeClass('disabled');
+                    $('#modal-add-item').modal('hide');
+                });
             });
+        });
+    });
+
+    $('#table-container').on('dblclick', '.col-qty', function() {
+        let div = $(this).find('div').detach();
+        $(this).append('<input class="form-control text-center" type="number" step=1 min=1 name="qty" value=' + div.text() + '>');
+        $(this).find('input').focus();
+    });
+
+    $('#table-container').on('blur', '.col-qty', function() {
+        let input = $(this).find('input').detach();
+        $(this).append("<div class='d-flex align-items-center justify-content-center' style='height: 39.5px;'>" + input.val() + "</div>");
+
+        let id = $(this).closest('tr').attr('id');
+        console.log(id);
+        let formData = new FormData();
+        formData.append('qty', input.val());
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            },
+            url: "/transaksi/item-transaksi/" + id + "/qty",
+            method: "POST",
+            contentType: false,
+            processData: false,
+            data: formData,
+        }).done(function(data) {
+            console.log(data)
+            $('#table-container').load(window.location.origin + '/component/transPremium/' + transId, function() {
+                adjustWidth();
+                setThousandSeparator();
+            });
+        }).fail(function(message) {
+            alert('error');
+            console.log(message);
         });
     });
 

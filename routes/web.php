@@ -143,7 +143,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transaksi/item-transaksi/{id}', [ItemTransaksiController::class, 'show'])->middleware('permission:Melihat Detail Item Transaksi');
     Route::post('/transaksi/item-transaksi', [ItemTransaksiController::class, 'insert'])->middleware('permission:Membuat Item Transaksi');
     Route::post('/transaksi/item-transaksi/{id}', [ItemTransaksiController::class, 'update'])->middleware('permission:Mengubah Data Item Transaksi');
-    Route::get('/transaksi/item-transaksi/{id}/qty', [ItemTransaksiController::class, 'updateQty']);
+    Route::post('/transaksi/item-transaksi/{id}/qty', [ItemTransaksiController::class, 'updateQty']);
     Route::get('/transaksi/item-transaksi/delete/{id}', [ItemTransaksiController::class, 'delete'])->middleware('permission:Menghapus Item Transaksi');
 
     //ItemNote
@@ -161,7 +161,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/transaksi/penerima', [PenerimaController::class, 'insert'])->middleware('permission:Menambahkan Penerima Ke Transaksi');
     // Bucket
     Route::get('/transaksi/bucket', [PageController::class, 'bucket'])->name('transaksi')->middleware('permission:Membuka Menu Transaksi');
+    Route::get('/component/transBucket/{id}', [TransaksiController::class, 'tableBucket']);
+    // Premium
     Route::get('/transaksi/premium', [PageController::class, 'premium'])->name('transaksi')->middleware('permission:Membuka Menu Transaksi');
+    Route::get('/component/transPremium/{id}', [TransaksiController::class, 'tablePremium']);
 
     // proses cuci & seterika
     Route::get('/proses/cuci', [PageController::class, 'hubCuci'])->middleware('permission:Membuka Menu Hub Cuci');

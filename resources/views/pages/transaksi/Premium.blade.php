@@ -173,55 +173,7 @@
                             <header>
                                 <h3>Kode Transaksi : <span id="kode-trans"></span><span id="id-trans" class="d-none"></span></h3>
                             </header>
-                            <div class="table-responsive my-2 tbody-wrap">
-                                <table class="table table-striped mb-0" id="table-trans-item">
-                                    <thead>
-                                        <tr>
-                                            <th>Nama Item</th>
-                                            <th class="d-none d-lg-table-cell">Kategori</th>
-                                            <th class="d-none d-md-table-cell">Proses</th>
-                                            <th class="d-none d-md-table-cell">Qty</th>
-                                            <th>Harga Premium</th>
-                                            <th style="width: 46.25px;"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="text-center" colspan="7" style="padding-top: 4px;padding-bottom: 4px;">
-                                                <button class="btn btn-primary btn-sm" id="add-item" type="button">
-                                                    <i class="fas fa-plus"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <td class="text-end">Sub Total</td>
-                                            <td style="width: 5%">Rp</td>
-                                            <td class="text-end thousand-separator" id="sub-total"></td>
-                                            <td style="width: 50px;"></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-end">Diskon</td>
-                                            <td style="width: 5%">Rp</td>
-                                            <td class="text-end thousand-separator" id="diskon"></td>
-                                            <td style="width: 50px;"></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-end">Diskon Member</td>
-                                            <td style="width: 5%">Rp</td>
-                                            <td class="text-end thousand-separator" id="diskon-member"></td>
-                                            <td style="width: 50px;"></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-end">Grand Total</td>
-                                            <td style="width: 5%">Rp</td>
-                                            <td class="text-end thousand-separator" id="grand-total"></td>
-                                            <td style="width: 50px;"></td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
+                            <div id="table-container"></div>
 
                             <ul class="list-unstyled form-control" id="list-action">
                                 <li id="action-notes">Catatan item</li>

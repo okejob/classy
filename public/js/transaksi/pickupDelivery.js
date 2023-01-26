@@ -56,7 +56,7 @@ $(document).ready(function() {
             $.ajax({
                 url: "/transaksi/pickup-delivery/" + btnId + "/is-done",
             }).done(function(data) {
-                // window.location = window.location.origin + window.location.pathname;
+                window.location = window.location.origin + window.location.pathname;
             });
         }
     });

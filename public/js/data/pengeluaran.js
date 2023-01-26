@@ -30,9 +30,9 @@ $(document).ready(function() {
         $('#modal-form').attr('action', "/data/pengeluaran/" + btnId);
         $('.modal-title').text('Rubah pengeluaran');
 
-        $('#input-nama-pengeluaran').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(1)').html());
-        $('#input-deskripsi').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(2)').html());
-        $('#input-nominal').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(5)').html());
+        $('#input-nama-pengeluaran').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(2)').html());
+        $('#input-deskripsi').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(3)').html());
+        $('#input-nominal').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(6)').html());
 
         $('#modal-update').modal('show');
     });

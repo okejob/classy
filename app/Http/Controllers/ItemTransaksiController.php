@@ -49,6 +49,7 @@ class ItemTransaksiController extends Controller
         $item_transaksi->save();
         return [
             'status' => 200,
+            'qty' => $request->qty
         ];
     }
 

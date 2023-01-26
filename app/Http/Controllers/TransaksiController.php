@@ -20,6 +20,20 @@ class TransaksiController extends Controller
         return Transaksi::detail()->find($id);
     }
 
+    public function tableBucket($id)
+    {
+        return view('components.tableItemTransBucket', [
+            'trans' => Transaksi::detail()->find($id),
+        ]);
+    }
+
+    public function tablePremium($id)
+    {
+        return view('components.tableItemTransPremium', [
+            'trans' => Transaksi::detail()->find($id),
+        ]);
+    }
+
     public function historyPelanggan($id_pelanggan)
     {
         $transaksi = Transaksi::detail()->where('pelanggan_id', $id_pelanggan)->paginate(5);
