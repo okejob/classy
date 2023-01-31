@@ -284,6 +284,16 @@ class PageController extends Controller
         return view('pages.proses.Setrika', $data);
     }
 
+    public function packing()
+    {
+        return view('pages.proses.Packing',
+            [
+                'last_transaksi' => Transaksi::latest()->paginate(5),
+                'inventories' => Inventory::get(),
+            ]
+        );
+    }
+
     public function saldo()
     {
         return view(

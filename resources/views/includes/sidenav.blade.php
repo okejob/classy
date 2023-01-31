@@ -198,6 +198,12 @@
                     </a>
                 </div>
                 @endif
+                <div id="nav-proses-packing">
+                    <a href="/proses/packing" class="menu-item menu-proses pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
+                        <i class="fa-solid fa-boxes-packing"></i>
+                        <p class="ms-3">Packing</p>
+                    </a>
+                </div>
             </div>
         </div>
 

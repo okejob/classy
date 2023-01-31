@@ -209,5 +209,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/proses/rewash/delete/{rewash}', [RewashController::class, 'delete'])->middleware('permission:Menghapus Rewash');
 
     //Packing
-    Route::post('/packing', [PackingController::class, 'create']);
+    Route::get('/proses/packing', [PageController::class, 'packing']);
+    Route::post('/proses/packing', [PackingController::class, 'create']);
 });
