@@ -45,9 +45,15 @@ class ItemTransaksiController extends Controller
     {
         $item_transaksi = ItemTransaksi::find($id);
         $item_transaksi->update([
-            'qty' => $request->qty
+            'qty' => $request->qty,
+            'total_bobot' => $request->qty * $item_transaksi->bobot_bucket,
+            'harga_premium' => $request->qty * $item_transaksi->harga_premium,
         ]);
         $item_transaksi->save();
+
+        $transaksi = Transaksi::detail()->find($item_transaksi->transaksi_id)->recalculate();
+        $transaksi->modified_by = Auth::id();
+        $transaksi->save();
         return [
             'status' => 200,
             'qty' => $request->qty

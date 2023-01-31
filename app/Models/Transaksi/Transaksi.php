@@ -36,7 +36,7 @@ class Transaksi extends Model
         $grand_total = 0;
 
         $sum_bobot = ItemTransaksi::where('transaksi_id', $this->id)->sum('total_bobot');
-        $sum_harga_premium = ItemTransaksi::where('transaksi_id', $this->id)->sum('harga_premium');
+        $sum_harga_premium = ItemTransaksi::where('transaksi_id', $this->id)->sum('total_premium');
 
         $paket_bucket = PaketCuci::where('nama_paket', 'BUCKET')->first();
         $jumlah_bucket = ceil($sum_bobot / $paket_bucket->jumlah_bobot);

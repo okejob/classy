@@ -147,5 +147,9 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'Menambah Rewash']);
         Permission::create(['name' => 'Mengganti Status Rewash']);
         Permission::create(['name' => 'Menghapus Rewash']);
+
+        //Packing
+        Permission::create(['name' => 'Membuka Menu Packing']);
+        Permission::create(['name' => 'Menginputkan Data Packing']);
     }
 }
