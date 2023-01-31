@@ -317,7 +317,7 @@
                                         <form id="form-catatan">
                                             <div class="modal-body">
                                                 <div class="row">
-                                                    <div class="col-4">
+                                                    <div class="col col-lg-4">
                                                         <div class="mb-2">
                                                             <h5>Noted by</h5>
                                                             <input type="text" class="form-control" id="penulis-catatan-item" />
@@ -327,7 +327,7 @@
                                                             <textarea class="form-control" id="catatan-item" required ></textarea>
                                                         </div>
                                                     </div>
-                                                    <div class="col-8">
+                                                    {{-- <div class="col-8">
                                                         <ul role="tablist" class="nav nav-tabs">
                                                             <li role="presentation" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link active" href="#tab-foto">Foto</a></li>
                                                             <li role="presentation" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link" href="#tab-noda">Tandai Noda</a></li>
@@ -368,7 +368,21 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    </div> --}}
+
+                                                    <div class="col col-lg-8">
+                                                        <div class="position-relative">
+                                                            <div class="position-absolute top-0 start-0 px-2" style="color: white; background-color: #6c757d;">
+                                                                <p>x: <span id="location-x"></span>&nbsp;y: <span id="location-y"></span></p>
+                                                            </div>
+                                                            <img id="container-image-item" class="w-100 mb-2" style="object-fit: contain;max-height: 450px;height: 450px;" />
+                                                        </div>
+                                                        <div class="text-end">
+                                                            <input type="file" class="form-control" id="input-foto-item" accept="image/*" onchange="document.getElementById('container-image-item').src = window.URL.createObjectURL(this.files[0])" required />
+                                                        </div>
                                                     </div>
+
+
                                                 </div>
                                             </div>
                                             <div class="modal-footer">

@@ -10,9 +10,8 @@ use Intervention\Image\Facades\Image;
 
 trait LaporanInventoryTrait
 {
-    public function stockist($inventory_id, $jumlah)
+    public static function stockist($inventory_id, $jumlah)
     {
-
         $inventory = Inventory::find($inventory_id);
         if ($inventory->stok - $jumlah > 0) {
             return [

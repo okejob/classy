@@ -24,14 +24,14 @@
                                 <th>Nama Pelanggan</th>
                                 <th colspan="2">Harga Total</th>
                                 <th>Lunas</th>
-                                <th></th>
+                                <th style="width: 46.25px;"></th>
                             </tr>
                         </thead>
                         <tbody style="cursor: pointer">
                             @foreach ($last_transaksi as $trans)
                             <tr id="{{ $trans->id }}" data-bs-toggle="tooltip" data-bss-tooltip="" title="Double klik untuk memilih">
                                 <td class="text-center">{{ $trans->kode }}</td>
-                                <td>{{ $trans->outlet->nama }}</td>
+                                <td class="text-center">{{ $trans->outlet->nama }}</td>
                                 <td class="d-none d-lg-table-cell text-center">{{ $trans->created_at }}</td>
                                 <td>{{ $trans->pelanggan->nama }}</td>
                                 <td>Rp</td>
@@ -86,30 +86,53 @@
                         <h4 class="modal-title">Kemas</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-8">
-                                <input class="nama-inventory form-control" list="data-inventory">
-                                <datalist id="data-inventory">
-                                    @foreach ($inventories as $inventory)
-                                        <option value="{{ $inventory->nama }}" data-id="{{ $inventory->id }}" data-stok="{{ $inventory->stok }}"></option>
-                                    @endforeach
-                                </datalist>
+                    <form id="form-packing">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <h5>Alamat Antar</h5>
+                                <input id="alamat-antar" type="text" class="form-control" name="alamat" required/>
                             </div>
-                            <div class="col-3">
-                                <input class="qty-inventory form-control" type="number">
-                            </div>
-                            <div class="col-1">
-                                <button class="btn btn-danger" type="btn"><i class="fas fa-trash"></i></button>
+                            <hr>
+                            <h5>Item</h5>
+                            <div class="table-responsive mb-2">
+                                <table class="table" id="table-list-inventory">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th style="width: 80%;">Nama Item</th>
+                                            <th>Quantity</th>
+                                            <th style="width: 56px;"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody style="cursor: pointer">
+                                        <datalist id="data-inventory">
+                                            @foreach ($inventories as $inventory)
+                                                <option value="{{ $inventory->nama }}" data-id="{{ $inventory->id }}" data-stok="{{ $inventory->stok }}"></option>
+                                            @endforeach
+                                        </datalist>
+                                        <tr class="row-clone">
+                                            <td>
+                                                <input class="nama-inventory form-control" list="data-inventory" placeholder="nama item inventory">
+                                            </td>
+                                            <td>
+                                                <input class="qty-inventory form-control" type="number" min=1 placeholder="qty">
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-danger btn-delete-item" type="btn"><i class="fas fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr class="row-add">
+                                            <td colspan="3" class="text-center">
+                                                <button class="btn btn-primary btn-sm" id="add-clone" type="button"><i class="fas fa-plus"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                        <div class="col-12 d-flex justify-content-center align-items-center" id="add-clone">
-                            <button class="btn btn-primary" type="btn"><i class="fas fa-plus-circle"></i></button>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" id="simpan-packing" type="submit">Simpan & Antar</button>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-primary" type="btn">Simpan & Antar</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

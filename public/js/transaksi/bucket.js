@@ -546,6 +546,17 @@ $(document).ready(function() {
     });
 
     // Catatan
+    var imgWidth = 0, imgHeight = 0;
+    $('#input-foto-item').on('change', function() {
+        imgWidth = $('#container-image-item').clientWidth;
+        imgHeight = $('#container-image-item').clientHeight;
+        console.log("width : " + imgWidth + "\nheight : " + imgHeight);
+    });
+
+    $('#container-image-item').on('hover', function() {
+        
+    });
+
     $('#table-list-catatan tbody').on('click', '.btn', function() {
         $('#catatan-item-name').text(currentlySelectedItemName);
         $.ajax({

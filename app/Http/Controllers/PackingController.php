@@ -48,14 +48,14 @@ class PackingController extends Controller
             'modified_by' => Auth::id(),
         ]);
 
-        $inventories = $request->inventories;
+        $inventories = json_decode($request->inventories);
         foreach ($inventories as $inventory) {
             $packing_inventory = PackingInventory::create([
                 'packing_id' => $packing->id,
-                'inventory_id' => $inventory->id,
+                'inventory_id' => $inventory->inventory_id,
                 'qty' => $inventory->qty,
             ]);
-            LaporanInventoryTrait::stockist($inventory->id, $inventory->qty);
+            LaporanInventoryTrait::stockist($inventory->inventory_id, $inventory->qty);
         }
 
         return [

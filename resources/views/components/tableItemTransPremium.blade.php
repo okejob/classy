@@ -35,7 +35,7 @@
                 <td class="d-none d-md-table-cell">Rp</td>
                 <td class='d-none d-md-table-cell text-end thousand-separator'>{{ $item->harga_premium }}</td>
                 <td>Rp</td>
-                <td class='text-end thousand-separator'>{{ $item->harga_premium * $item->qty }}</td>
+                <td class='text-end thousand-separator'>{{ $item->total_premium }}</td>
                 <td class='text-end' style='width: 46.25px;'>
                     <button id='btn-{{ $item->id }}' class='btn btn-primary btn-sm btn-show-action' type='button'>
                         <i class='fas fa-bars' aria-hidden='true'></i>

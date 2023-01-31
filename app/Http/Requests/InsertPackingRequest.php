@@ -25,7 +25,7 @@ class InsertPackingRequest extends FormRequest
     {
         return [
             'transaksi_id' => 'required|exists:transaksis,id',
-            'inventories' => 'required|array',
+            'inventories' => 'required',
             'alamat' => 'nullable',
         ];
     }
