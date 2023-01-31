@@ -26,8 +26,11 @@ class PickupDelivery extends Model
 
     public function getNamaDriverAttribute()
     {
-        $driver = User::find($this->driver_id);
-        return $driver->username;
+        if (!empty($this->driver_id)) {
+            $driver = User::find($this->driver_id);
+            return $driver->username;
+        }
+        return null;
     }
 
     public function getNamaPelangganAttribute()

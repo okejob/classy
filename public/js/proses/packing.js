@@ -195,6 +195,7 @@ $(document).ready(function() {
             data: formData,
         }).done(function(data) {
             alert('Barang & request delivery berhasil disimpan');
+            window.location = "/proses/packing/";
         }).fail(function(message) {
             alert('error');
             console.log(message);
