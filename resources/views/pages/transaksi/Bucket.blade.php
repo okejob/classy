@@ -166,9 +166,9 @@
 
     <div>
         <ul role="tablist" class="nav nav-tabs">
-            <li role="presentation" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link active" href="#tab-transaksi">Transaksi</a></li>
-            <li role="presentation" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link" href="#tab-info">Informasi</a></li>
-            <li role="presentation" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link" href="#tab-pembayaran">Pembayaran</a></li>
+            <li role="presentation" id="nav-trans" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link active" href="#tab-transaksi">Transaksi</a></li>
+            <li role="presentation" id="nav-info" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link" href="#tab-info">Informasi</a></li>
+            <li role="presentation" id="nav-pembayaran" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link" href="#tab-pembayaran">Pembayaran</a></li>
         </ul>
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active py-4" id="tab-transaksi">

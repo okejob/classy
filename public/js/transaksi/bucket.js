@@ -124,26 +124,6 @@ $(document).ready(function() {
                 setThousandSeparator();
             });
 
-            $('#pembayaran-subtotal').html(trans.subtotal);
-            $('#pembayaran-diskon').html(trans.diskon + trans.diskon_member);
-            $('#pembayaran-grand-total').html(trans.grand_total);
-
-            if (trans.diskon + trans.diskon_member == 0) {
-                $('#pembayaran-diskon').parent().hide();
-            }
-            setThousandSeparator();
-
-            if (trans.lunas) {
-                $('#btn-bayar').hide();
-            } else {
-                $('#btn-bayar').show();
-                $('#terbayar').val(trans.total_terbayar);
-            }
-
-            $('#input-trans-id').val(trans.id);
-            $('#input-total').val(trans.grand_total.toLocaleString(['ban', 'id']));
-            $('#input-kembalian').val('0');
-
             setThousandSeparator();
             $('#form-transaksi').attr('action', '/transaksi/update/' + trans.id);
 
@@ -554,7 +534,7 @@ $(document).ready(function() {
     });
 
     $('#container-image-item').on('hover', function() {
-        
+
     });
 
     $('#table-list-catatan tbody').on('click', '.btn', function() {
@@ -656,6 +636,50 @@ $(document).ready(function() {
     });
 
     // Pembayaran
+    $('#nav-pembayaran').on('click', function() {
+        $('#pembayaran-diskon').parent().show();
+        $.ajax({
+            url: "/transaksi/detail/" + transId,
+        }).done(function(data) {
+            let trans = data;
+            $('.kode-trans').text(trans.kode);
+            $('#pembayaran-subtotal').html(trans.subtotal);
+            $('#pembayaran-diskon').html(trans.diskon + trans.diskon_member);
+            $('#pembayaran-grand-total').html(trans.grand_total);
+
+            let items = trans.item_transaksi;
+            console.log(items);
+            items.forEach(item => {
+                let temp = "<td colspan='2' class='text-center'>" + parseFloat(item.bobot_bucket) + "</td>";
+                $('#table-pembayaran tbody').append(
+                    "<tr id='item-" + item.jenis_item_id + "'>" +
+                        "<td>" + item.nama + "</td>" +
+                        "<td class='text-center'>" + item.nama_kategori + "</td>" +
+                        temp +
+                    "</tr>"
+                );
+            });
+
+            if (trans.diskon + trans.diskon_member == 0) {
+                $('#pembayaran-diskon').parent().hide();
+            }
+            setThousandSeparator();
+
+            if (trans.lunas) {
+                $('#btn-bayar').hide();
+            } else {
+                $('#btn-bayar').show();
+            }
+
+            $('#modal-detail-trans').modal('show');
+
+            $('#input-trans-id').val(trans.id);
+            $('#input-total').val(trans.grand_total.toLocaleString(['ban', 'id']));
+            $('#input-terbayar').val(trans.total_terbayar.toLocaleString(['ban', 'id']));
+            $('#input-kembalian').val('0');
+        });
+    });
+
     $('#btn-bayar').on('click', function() {
         setThousandSeparator();
         $('#modal-pembayaran').modal('show');

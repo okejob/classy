@@ -121,17 +121,7 @@ $(document).ready(function() {
 
             $('#table-container').load(window.location.origin + '/component/transPremium/' + id, function() {
                 adjustWidth();
-                setThousandSeparator();
             });
-
-            $('#pembayaran-subtotal').html(trans.subtotal);
-            $('#pembayaran-diskon').html(trans.diskon + trans.diskon_member);
-            $('#pembayaran-grand-total').html(trans.grand_total);
-
-            if (trans.diskon + trans.diskon_member == 0) {
-                $('#pembayaran-diskon').parent().hide();
-            }
-            setThousandSeparator();
 
             if (trans.lunas) {
                 $('#btn-bayar').hide();
@@ -645,6 +635,52 @@ $(document).ready(function() {
         } else {
             $('#form-catatan')[0].reportValidity()
         }
+    });
+
+    $('#nav-pembayaran').on('click', function() {
+        $('#table-pembayaran tbody').empty();
+        $('#pembayaran-diskon').parent().show();
+        $.ajax({
+            url: "/transaksi/detail/" + transId,
+        }).done(function(data) {
+            let trans = data;
+            $('.kode-trans').text(trans.kode);
+            $('#pembayaran-subtotal').html(trans.subtotal);
+            $('#pembayaran-diskon').html(trans.diskon + trans.diskon_member);
+            $('#pembayaran-grand-total').html(trans.grand_total);
+
+            let items = trans.item_transaksi;
+            console.log(items);
+            items.forEach(item => {
+                let temp = "<td>Rp</td><td class='text-end thousand-separator'>" + item.harga_premium + "</td>";
+                $('#table-pembayaran tbody').append(
+                    "<tr id='item-" + item.jenis_item_id + "'>" +
+                        "<td>" + item.nama + "</td>" +
+                        "<td class='text-center'>" + item.nama_kategori + "</td>" +
+                        temp +
+                    "</tr>"
+                );
+            });
+
+            if (trans.diskon + trans.diskon_member == 0) {
+                $('#pembayaran-diskon').parent().hide();
+            }
+
+            if (trans.lunas) {
+                $('#btn-bayar').hide();
+            } else {
+                $('#btn-bayar').show();
+            }
+
+            $('#modal-detail-trans').modal('show');
+
+            $('#input-trans-id').val(trans.id);
+            $('#input-total').val(trans.grand_total.toLocaleString(['ban', 'id']));
+            $('#input-terbayar').val(trans.total_terbayar.toLocaleString(['ban', 'id']));
+            $('#input-kembalian').val('0');
+
+            setThousandSeparator();
+        });
     });
 
     $('#btn-bayar').on('click', function() {
