@@ -22,7 +22,7 @@
                 </button>
                 @endif
                 <ul class="list-unstyled form-control" id="list-action">
-                    @if(in_array("Melihat Detail Pelanggan", Session::get('permissions')) || Session::get('role') == 'administrator')
+                    @if(in_array("Membuka Halaman Detail Pelanggan", Session::get('permissions')) || Session::get('role') == 'administrator')
                     <li id="action-detail">Detail pelanggan</li>
                     @endif
                     @if(in_array("Menghapus Pelanggan", Session::get('permissions')) || Session::get('role') == 'administrator')

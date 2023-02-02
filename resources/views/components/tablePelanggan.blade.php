@@ -2,7 +2,6 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Outlet</th>
                 <th>Membership</th>
                 <th>Nama Lengkap</th>
                 <th>Tanggal Lahir</th>
@@ -18,7 +17,6 @@
         <tbody>
             @foreach ($pelanggans as $pelanggan)
             <tr>
-                <td>Outlet Pelanggan</td>
                 @if ($pelanggan->member)
                     <td class="text-center">Member</td>
                 @else

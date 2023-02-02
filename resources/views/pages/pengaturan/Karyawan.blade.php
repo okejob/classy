@@ -245,7 +245,7 @@
                                         <label class="form-check-label" for="check-pengaturan-karyawan-4">Mengubah data karyawan</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="check-pengaturan-karyawan-5" value="Mengubah Password Karyawan">
+                                        <input class="form-check-input" type="checkbox" id="check-pengaturan-karyawan-5" value="Mengubah Data Password Karyawan">
                                         <label class="form-check-label" for="check-pengaturan-karyawan-5">Mengubah password karyawan</label>
                                     </div>
                                 </div>
@@ -379,8 +379,8 @@
                                         <label class="form-check-label" for="check-data-pelanggan-1">Membuka menu pelanggan</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="check-data-pelanggan-2" value="Melihat Detail Pelanggan">
-                                        <label class="form-check-label" for="check-data-pelanggan-2">Melihat detail pelanggan</label>
+                                        <input class="form-check-input" type="checkbox" id="check-data-pelanggan-2" value="Membuka Halaman Detail Pelanggan">
+                                        <label class="form-check-label" for="check-data-pelanggan-2">Membuka halaman detail pelanggan</label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="check-data-pelanggan-3" value="Membuat Pelanggan">
@@ -425,8 +425,8 @@
                                         <label class="form-check-label" for="check-data-inventory-1">Membuka menu inventory</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="check-data-inventory-2" value="Menambahkan Inventory">
-                                        <label class="form-check-label" for="check-data-inventory-2">Menambahkan inventory</label>
+                                        <input class="form-check-input" type="checkbox" id="check-data-inventory-2" value="Menambah Inventory">
+                                        <label class="form-check-label" for="check-data-inventory-2">Menambah inventory</label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="check-data-inventory-3" value="Mengubah Data Inventory">
@@ -541,7 +541,7 @@
                                         <label class="form-check-label" for="check-transaksi-saldo-2">Topup saldo pelanggan</label>
                                     </div>
                                 </div>
-                                <h5 class="fw-bold">Permbayaran</h5>
+                                <h5 class="fw-bold">Pembayaran</h5>
                                 <div class="ms-1 mb-3">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="check-transaksi-pembayaran-1" value="Membuka Menu Pembayaran">
@@ -562,6 +562,17 @@
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="check-transaksi-pembayaran-5" value="Menghapus Pembayaran">
                                         <label class="form-check-label" for="check-transaksi-pembayaran-5">Menghapus pembayaran</label>
+                                    </div>
+                                </div>
+                                <h5 class="fw-bold">History</h5>
+                                <div class="ms-1 mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-history-1" value="Melihat Detail History Transaksi Pelanggan">
+                                        <label class="form-check-label" for="check-transaksi-history-1">Melihat history transaksi pelanggan</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-history-2" value="Melihat Detail History Saldo Pelanggan">
+                                        <label class="form-check-label" for="check-transaksi-history-2">Melihat history saldo pelanggan</label>
                                     </div>
                                 </div>
                             </div>
