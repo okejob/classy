@@ -109,6 +109,8 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'Menambahkan Item Ke Transaksi']);
         Permission::create(['name' => 'Mengubah Data Transaksi']);
         Permission::create(['name' => 'Menambahkan Penerima Ke Transaksi']);
+        Permission::create(['name' => 'Membatalkan Transaksi']);
+        Permission::create(['name' => 'Restore Transaksi']);
 
         //HubCuci
         Permission::create(['name' => 'Membuka Menu Hub Cuci']);

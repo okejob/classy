@@ -138,9 +138,17 @@ class TransaksiController extends Controller
         if ($request->setrika_only == "1") {
             $setrika_only = true;
         }
+        $status = 'draft';
+        if (
+            User::getRole(Auth::id()) == "administrator"
+            || User::getRole(Auth::id()) == "supervisor"
+            || User::getRole(Auth::id()) == "operator"
+        ) {
+            $status = "confirmed";
+        }
         $merged = $request->merge([
             'modified_by' => Auth::id(),
-            'status' => User::getRole(Auth::id()),
+            'status' => $status,
             'express' => $express,
             'setrika_only' => $setrika_only,
         ])->toArray();
@@ -196,5 +204,24 @@ class TransaksiController extends Controller
             $transaksi->penyetrika = NULL;
             $transaksi->save();
         }
+    }
+
+    public function cancelTransaksi(Transaksi $transaksi)
+    {
+        $transaksi->update([
+            'status' => "cancelled"
+        ]);
+        $transaksi->delete();
+        return [];
+    }
+
+    public function restoreTransaksi($id)
+    {
+        $transaksi = Transaksi::withTrashed()->where('id', $id)->first();
+        $transaksi->status = "draft";
+        $transaksi->save();
+        Transaksi::withTrashed()->where('id', $id)->restore();
+
+        return [];
     }
 }

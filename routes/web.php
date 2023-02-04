@@ -90,7 +90,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/data/jenis-item/{id}', [JenisItemController::class, 'show'])->middleware('permission:Melihat Detail Jenis Item');
     Route::post('/data/jenis-item', [JenisItemController::class, 'insert'])->middleware('permission:Membuat Jenis Item');
     Route::post('/data/jenis-item/{id}', [JenisItemController::class, 'update'])->middleware('permission:Mengubah Data Jenis Item');
-    Route::get('/data/jenis-item/delete/{id}', [JenisItemController::class, 'delete'])->middleware('permission:Menghapus jjenis_item');
+    Route::get('/data/jenis-item/delete/{id}', [JenisItemController::class, 'delete'])->middleware('permission:Menghapus Jenis Item');
 
     //Kategori
     Route::get('/data/kategori', [PageController::class, 'kategori'])->name('menu-kategori')->middleware('permission:Membuka Menu Kategori');
@@ -115,7 +115,7 @@ Route::middleware(['auth'])->group(function () {
 
     //Pelanggan
     Route::get('/data/pelanggan', [PageController::class, 'pelanggan'])->name('menu-pelanggan')->middleware('permission:Membuka Menu Pelanggan');
-    Route::get('/data/pelanggan/{id}', [PelangganController::class, 'show'])->middleware('permission:Melihat Detail Pelanggan');
+    Route::get('/data/pelanggan/{id}', [PelangganController::class, 'show'])->middleware('permission:Membuka Halaman Detail Pelanggan');
     Route::post('/data/pelanggan', [PelangganController::class, 'insert'])->middleware('permission:Membuat Pelanggan');
     Route::post('/data/pelanggan/{id}', [PelangganController::class, 'update'])->middleware('permission:Mengubah Data Pelanggan');
     Route::get('/data/pelanggan/delete/{id}', [PelangganController::class, 'delete'])->middleware('permission:Menghapus Pelanggan');
@@ -159,6 +159,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transaksi/addItem', [ItemTransaksiController::class, 'addItemToTransaksi'])->middleware('permission:Menambahkan Item Ke Transaksi');
     Route::post('/transaksi/update/{id}', [TransaksiController::class, 'update'])->middleware('permission:Mengubah Data Transaksi');
     Route::post('/transaksi/penerima', [PenerimaController::class, 'insert'])->middleware('permission:Menambahkan Penerima Ke Transaksi');
+    Route::get('/transaksi/{transaksi}/cancel', [TransaksiController::class, 'cancelTransaksi'])->middleware('permission:Membatalkan Transaksi');
+    Route::get('/transaksi/{id}/restore', [TransaksiController::class, 'restoreTransaksi'])->middleware('permission:Restore Transaksi');
+
     // Bucket
     Route::get('/transaksi/bucket', [PageController::class, 'bucket'])->name('transaksi')->middleware('permission:Membuka Menu Transaksi');
     Route::get('/component/transBucket/{id}', [TransaksiController::class, 'tableBucket']);

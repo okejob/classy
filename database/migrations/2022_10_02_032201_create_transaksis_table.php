@@ -56,6 +56,7 @@ return new class extends Migration
                 ->constrained('users', 'id')
                 ->cascadeOnUpdate();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
