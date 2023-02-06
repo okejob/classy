@@ -144,6 +144,12 @@
                     </a>
                 </div>
                 @endif
+                <div id="nav-transaksi-cancelled">
+                    <a href="/transaksi/cancelled" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
+                        <i class="fa-solid fa-ban"></i>
+                        <p class="ms-3">Cancelled</p>
+                    </a>
+                </div>
             </div>
         </div>
 

@@ -326,4 +326,16 @@ class PageController extends Controller
             ]
         );
     }
+
+    public function cancel(Request $request)
+    {
+        return view(
+            'pages.transaksi.Cancelled',
+            [
+                'last_transaksi' => Transaksi::when($request->has("search"), function ($q) use ($request) {
+                    return $q->Where("kode", "like", "%" . $request->get("search") . "%");
+                })->orderBy("id", "desc")->onlyTrashed()->paginate(10),
+            ]
+        );
+    }
 }

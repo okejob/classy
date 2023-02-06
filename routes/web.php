@@ -159,6 +159,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transaksi/addItem', [ItemTransaksiController::class, 'addItemToTransaksi'])->middleware('permission:Menambahkan Item Ke Transaksi');
     Route::post('/transaksi/update/{id}', [TransaksiController::class, 'update'])->middleware('permission:Mengubah Data Transaksi');
     Route::post('/transaksi/penerima', [PenerimaController::class, 'insert'])->middleware('permission:Menambahkan Penerima Ke Transaksi');
+    Route::get('/transaksi/cancelled', [PageController::class, 'cancel']);
     Route::get('/transaksi/{transaksi}/cancel', [TransaksiController::class, 'cancelTransaksi'])->middleware('permission:Membatalkan Transaksi');
     Route::get('/transaksi/{id}/restore', [TransaksiController::class, 'restoreTransaksi'])->middleware('permission:Restore Transaksi');
 
