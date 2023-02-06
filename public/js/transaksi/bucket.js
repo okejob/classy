@@ -635,6 +635,16 @@ $(document).ready(function() {
         }
     });
 
+    $('#cancel-trans').on('click', function() {
+        if (confirm('Yakin membatalkan transaksi ?')) {
+            $.ajax({
+                url: "/transaksi/" + transId + "/cancel",
+            }).done(function() {
+                window.location = window.location.origin + window.location.pathname;
+            });
+        }
+    });
+
     // Pembayaran
     $('#nav-pembayaran').on('click', function() {
         $('#pembayaran-diskon').parent().show();
@@ -648,7 +658,7 @@ $(document).ready(function() {
             $('#pembayaran-grand-total').html(trans.grand_total);
 
             let items = trans.item_transaksi;
-            console.log(items);
+            // console.log(items);
             items.forEach(item => {
                 let temp = "<td colspan='2' class='text-center'>" + parseFloat(item.bobot_bucket) + "</td>";
                 $('#table-pembayaran tbody').append(
@@ -683,6 +693,10 @@ $(document).ready(function() {
     $('#btn-bayar').on('click', function() {
         setThousandSeparator();
         $('#modal-pembayaran').modal('show');
+    });
+
+    $('#btn-print').on('click', function() {
+        window.location = window.location.origin + "/transaksi/print/" + transId;
     });
 
     var calculateNow;
@@ -840,6 +854,5 @@ $(document).ready(function() {
         setCookie('transaksi-intro_trans', 'done', 1);
     }
     */
-
 
 });

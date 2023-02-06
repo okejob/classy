@@ -215,7 +215,7 @@
                                     <div class="col-md-4 col-12 mt-2 d-flex align-items-end justify-content-end">
                                         <button class="btn btn-primary full-when-small" type="button">Kode Promosi</button>
                                     </div>
-                                    <div class="col-md-9 col-12 mt-2 d-flex align-items-center">
+                                    <div class="col-md-8 col-12 mt-2 d-flex align-items-center">
                                         <div class="position-relative w-100">
                                             <button class="btn btn-primary full-when-small" id="show-catatan-trans" type="button" style="width: 200px;">Catatan Transaksi</button>
                                             <div class="position-absolute w-100 card p-2" style="z-index: 1;display: none; box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
@@ -225,9 +225,10 @@
                                         </div>
                                     </div>
                                     <input type="hidden" name="tipe_transaksi" value="premium">
-                                    <div class="col-md-3 col-12 mt-2 d-flex align-items-center justify-content-end">
+                                    <div class="col-md-4 col-12 mt-2 d-flex align-items-center justify-content-end">
                                         @if(in_array("Mengubah Data Transaksi", Session::get('permissions')) || Session::get('role') == 'administrator')
-                                            <button id="save-trans" class="btn btn-primary full-when-small" type="submit">Simpan Transaksi</button>
+                                            <button id="cancel-trans" class="btn btn-danger full-when-small me-2" type="button">Cancel</button>
+                                            <button id="save-trans" class="btn btn-primary full-when-small" type="submit">Simpan</button>
                                         @endif
                                     </div>
                                 </div>

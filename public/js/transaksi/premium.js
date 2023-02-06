@@ -637,6 +637,16 @@ $(document).ready(function() {
         }
     });
 
+    $('#cancel-trans').on('click', function() {
+        if (confirm('Yakin membatalkan transaksi ?')) {
+            $.ajax({
+                url: "/transaksi/" + transId + "/cancel",
+            }).done(function() {
+                window.location = window.location.origin + window.location.pathname;
+            });
+        }
+    });
+
     $('#nav-pembayaran').on('click', function() {
         $('#table-pembayaran tbody').empty();
         $('#pembayaran-diskon').parent().show();
@@ -686,6 +696,10 @@ $(document).ready(function() {
     $('#btn-bayar').on('click', function() {
         setThousandSeparator();
         $('#modal-pembayaran').modal('show');
+    });
+
+    $('#btn-print').on('click', function() {
+        window.location = window.location.origin + "/transaksi/print/" + transId;
     });
 
     var calculateNow;
