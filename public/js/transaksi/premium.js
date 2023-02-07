@@ -648,7 +648,6 @@ $(document).ready(function() {
     });
 
     $('#nav-pembayaran').on('click', function() {
-        $('#table-pembayaran tbody').empty();
         $('#pembayaran-diskon').parent().show();
         $.ajax({
             url: "/transaksi/detail/" + transId,
@@ -659,8 +658,8 @@ $(document).ready(function() {
             $('#pembayaran-diskon').html(trans.diskon + trans.diskon_member);
             $('#pembayaran-grand-total').html(trans.grand_total);
 
+            $('#table-pembayaran tbody').empty();
             let items = trans.item_transaksi;
-            console.log(items);
             items.forEach(item => {
                 let temp = "<td>Rp</td><td class='text-end thousand-separator'>" + item.harga_premium + "</td>";
                 $('#table-pembayaran tbody').append(
@@ -674,6 +673,8 @@ $(document).ready(function() {
 
             if (trans.diskon + trans.diskon_member == 0) {
                 $('#pembayaran-diskon').parent().hide();
+            } else {
+                $('#pembayaran-diskon').parent().show();
             }
 
             if (trans.lunas) {

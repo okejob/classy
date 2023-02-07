@@ -647,7 +647,6 @@ $(document).ready(function() {
 
     // Pembayaran
     $('#nav-pembayaran').on('click', function() {
-        $('#pembayaran-diskon').parent().show();
         $.ajax({
             url: "/transaksi/detail/" + transId,
         }).done(function(data) {
@@ -657,8 +656,8 @@ $(document).ready(function() {
             $('#pembayaran-diskon').html(trans.diskon + trans.diskon_member);
             $('#pembayaran-grand-total').html(trans.grand_total);
 
+            $('#table-pembayaran tbody').empty();
             let items = trans.item_transaksi;
-            // console.log(items);
             items.forEach(item => {
                 let temp = "<td colspan='2' class='text-center'>" + parseFloat(item.bobot_bucket) + "</td>";
                 $('#table-pembayaran tbody').append(
@@ -672,6 +671,8 @@ $(document).ready(function() {
 
             if (trans.diskon + trans.diskon_member == 0) {
                 $('#pembayaran-diskon').parent().hide();
+            } else {
+                $('#pembayaran-diskon').parent().show();
             }
             setThousandSeparator();
 
