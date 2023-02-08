@@ -18,6 +18,7 @@ use App\Http\Controllers\PenerimaController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PickupDeliveryController;
+use App\Http\Controllers\PrintController;
 use App\Http\Controllers\RewashController;
 use App\Http\Controllers\SaldoController;
 use App\Http\Controllers\TransaksiController;
@@ -39,6 +40,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect()->route('login');
 })->name('welcome');
+
+Route::get('/print/{id}', [PrintController::class, 'pdf']);
 
 //Middleware Guest digunakan ketika belum login
 Route::get('/login', [PageController::class, 'login'])->name('login')->middleware('guest');

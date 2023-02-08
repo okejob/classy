@@ -17,7 +17,8 @@ class ItemTransaksi extends Model
     protected $appends = [
         'nama',
         'nama_kategori',
-        'kode_transaksi'
+        'kode_transaksi',
+        'satuan_unit'
     ];
 
     public static function boot()
@@ -37,6 +38,13 @@ class ItemTransaksi extends Model
         $jenis_item = JenisItem::find($this->jenis_item_id);
         return $jenis_item->nama;
     }
+
+    public function getSatuanUnitAttribute()
+    {
+        $jenis_item = JenisItem::find($this->jenis_item_id);
+        return $jenis_item->unit;
+    }
+
 
     public function getNamaKategoriAttribute()
     {

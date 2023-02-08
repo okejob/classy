@@ -24,5 +24,15 @@ class SettingUmumSeeder extends Seeder
             'nama' => 'multiplier setrika only',
             'value' => '0.7',
         ]);
+
+        SettingUmum::create([
+            'nama' => 'Print Header Nama Usaha',
+            'value' => 'CLASSY SURABAYA'
+        ]);
+
+        SettingUmum::create([
+            'nama' => 'Print Header Delivery Text',
+            'value' => 'FREE DELIVERY 0822-3344-3678'
+        ]);
     }
 }
