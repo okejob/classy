@@ -700,7 +700,7 @@ $(document).ready(function() {
     });
 
     $('#btn-print').on('click', function() {
-        window.location = window.location.origin + "/transaksi/print/" + transId;
+        window.location = window.location.origin + "/print/" + transId;
     });
 
     var calculateNow;

@@ -11,6 +11,31 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class PrintController extends Controller
 {
 
+    public function preview($transaksi_id)
+    {
+        $transaksi = Transaksi::detail()->find($transaksi_id);
+        $header = [
+            'nama_usaha' => SettingUmum::where('nama', 'Print Header Nama Usaha')->first()->value,
+            'delivery_text' => SettingUmum::where('nama', 'Print Header Delivery Text')->first()->value
+        ];
+        $pos = strpos($transaksi->kode, 'BU');
+        if ($pos === false) {
+            $transaksi->jenis_transaksi = 'PREMIUM';
+        } else {
+            $transaksi->jenis_transaksi = 'BUCKET';
+        }
+        $data = collect();
+        $data->header = $header;
+        $data->transaksi = $transaksi;
+
+        $paper_size = [0, 0, 612, 792];
+        return view('pages.print.template', [
+            'data' => $data,
+            'height' => $paper_size[2],
+            'width' => $paper_size[3],
+        ]);
+    }
+
     public function dotMatrix($transaksi_id)
     {
     }

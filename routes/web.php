@@ -42,6 +42,7 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::get('/print/{id}', [PrintController::class, 'pdf']);
+Route::get('/printPreview/{id}', [PrintController::class, 'preview']);
 
 //Middleware Guest digunakan ketika belum login
 Route::get('/login', [PageController::class, 'login'])->name('login')->middleware('guest');
