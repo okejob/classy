@@ -59,7 +59,9 @@ class PrintController extends Controller
 
         //8.5x 11 inch = 612x792 point
         $paper_size = [0, 0, 612, 792];
-        $pdf = Pdf::loadView('pages.print.template', ['data' => $data])->setPaper($paper_size, 'landscape');
+        $pdf = Pdf::loadView('pages.print.template', [
+            'data' => $data
+        ])->setPaper($paper_size, 'landscape');
         return $pdf->stream('invoice.pdf');
         //stream kalau preview, download kalau lsg download
     }
