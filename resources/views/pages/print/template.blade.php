@@ -145,8 +145,8 @@
                         <td class="text-start">{{ $item->nama }}</td>
                         <td class="text-center">{{ $item->qty }}</td>
                         <td class="text-center">{{ $item->satuan_unit }}</td>
-                        <td class="text-end thousand-separator">{{ $item->harga_premium / $item->qty }}</td>
                         <td class="text-end thousand-separator">{{ $item->harga_premium }}</td>
+                        <td class="text-end thousand-separator">{{ $item->total_premium }}</td>
                     </tr>
                 @endforeach
                 <tr>

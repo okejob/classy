@@ -470,10 +470,10 @@ $(document).ready(function() {
     });
 
     var btnIndex = -1, currentlySelectedItemTransactionID = 0, currentlySelectedItemName = '';
-    $('#table-trans-item tbody').on('click', '.btn-show-action', function() {
+    $('#table-container').on('click', '.btn-show-action', function() {
         btnIndex = $(this).index('.btn-show-action') + 1;
-        currentlySelectedItemTransactionID = $('#table-trans-item tbody tr:nth-child(' + btnIndex + ')').attr('id');
-        currentlySelectedItemName = $('#table-trans-item tbody tr:nth-child(' + btnIndex + ')').children().eq(0).html();
+        currentlySelectedItemTransactionID = $('#table-container tbody tr:nth-child(' + btnIndex + ')').attr('id');
+        currentlySelectedItemName = $('#table-container tbody tr:nth-child(' + btnIndex + ')').children().eq(0).html();
     });
 
     $('#action-notes').on('click', function() {

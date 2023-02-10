@@ -30,6 +30,10 @@ class ItemTransaksiController extends Controller
             $finder->save();
         } else {
             $item_transaksi = ItemTransaksi::create($request->toArray());
+            $item_transaksi->qty = $item_transaksi->qty + 1;
+            $item_transaksi->total_bobot = $item_transaksi->qty * $item_transaksi->bobot_bucket;
+            $item_transaksi->total_premium = $item_transaksi->qty * $item_transaksi->harga_premium;
+            $item_transaksi->save();
         }
 
         $transaksi = Transaksi::detail()->find($request['transaksi_id'])->recalculate();
@@ -47,7 +51,7 @@ class ItemTransaksiController extends Controller
         $item_transaksi->update([
             'qty' => $request->qty,
             'total_bobot' => $request->qty * $item_transaksi->bobot_bucket,
-            'harga_premium' => $request->qty * $item_transaksi->harga_premium,
+            'total_premium' => $request->qty * $item_transaksi->harga_premium,
         ]);
         $item_transaksi->save();
 
