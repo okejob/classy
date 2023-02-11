@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Data\Pelanggan;
 use App\Models\Pembayaran;
 use App\Models\Transaksi\Transaksi;
 use Illuminate\Http\Request;
@@ -33,6 +34,44 @@ class PembayaranController extends Controller
         $transaksi->save();
 
         return redirect()->intended(route('menu_pembayaran'));
+    }
+
+    public function bayarTagihan(Request $request)
+    {
+        $transaksis = Transaksi::where('pelanggan_id', $request->pelanggan_id)->where('lunas', false)->oldest()->get();
+        $nominal = $request->nominal;
+        foreach ($transaksis as $transaksi) {
+            if ($nominal > 0) {
+                $tagihan_transaksi = $transaksi->grand_total - $transaksi->total_terbayar;
+
+                if ($nominal >= $tagihan_transaksi) {
+                    $transaksi->total_terbayar = $transaksi->grand_total;
+                    $transaksi->lunas = true;
+                    $nominal -= $tagihan_transaksi;
+
+                    Pembayaran::create([
+                        'nominal' => $transaksi->total_terbayar,
+                        'transaksi_id' => $transaksi->id,
+                        'metode_pembayaran' => 'cash'
+                    ]);
+                } else {
+                    $transaksi->total_terbayar = $transaksi->total_terbayar + $nominal;
+                    Pembayaran::create([
+                        'nominal' => $nominal,
+                        'transaksi_id' => $transaksi->id,
+                        'metode_pembayaran' => 'cash'
+                    ]);
+                    $nominal = 0;
+                }
+                $transaksi->save();
+            } else {
+                break;
+            }
+        }
+        return [
+            'status' => 200,
+            'message' => 'success',
+        ];
     }
 
     public function show(Pembayaran $pembayaran)

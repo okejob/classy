@@ -200,6 +200,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transaksi/pembayaran', [PageController::class, 'pembayaran'])->name('menu_pembayaran')->middleware('permission:Membuka Menu Pembayaran');
     Route::get('/transaksi/pembayaran/{pembayaran}', [PembayaranController::class, 'show'])->middleware('permission:Melihat Detail Pembayaran');
     Route::post('/transaksi/pembayaran', [PembayaranController::class, 'insert'])->middleware('permission:Membuat Pembayaran');
+    Route::post('/transaksi/pembayaran-tagihan', [PembayaranController::class, 'bayarTagihan'])->middleware('permission:Membuat Pembayaran');
     Route::post('/transaksi/pembayaran/{pembayaran}', [PembayaranController::class, 'update'])->middleware('permission:Mengubah Data Pembayaran');
     Route::get('/transaksi/pembayaran/delete/{pembayaran}', [PembayaranController::class, 'delete'])->middleware('permission:Menghapus Pembayaran');
 
