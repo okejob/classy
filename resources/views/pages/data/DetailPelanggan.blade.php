@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <header class="d-flex align-items-center my-3" style="color: var(--bs-gray);"><a>Master Data</a><i class="fas fa-angle-right mx-2"></i><a>Data Pelanggan</a></header>
-    <section id="data-pelanggan" class="mb-5">
+    <section id="data-pelanggan" class="mb-3">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Data Pelanggan</h4>
@@ -82,12 +82,78 @@
         </div>
     </section>
 
-    @if(in_array("Melihat Detail History Transaksi Pelanggan", Session::get('permissions')) || Session::get('role') == 'administrator')
-    <section id="data-transaksi" class="mb-5">
-        <div class="card">
-            <div class="card-body">
+    <div class="card">
+        <div class="card-body">
+            <section id="data-tagihan" class="mb-3">
+                <div class="d-flex align-items-center">
+                    <h4 class="me-4">Tagihan</h4>
+                    <h5>Rp<span class="thousand-separator ms-2">{{ $pelanggan->tagihan }}</span></h5>
+                    <button class="btn btn-primary btn-sm ms-4" id="btn-bayar">Bayar</button>
+                </div>
+            </section>
+
+            <div role="dialog" tabindex="-1" class="modal fade" id="modal-pembayaran">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Pembayaran <span class="kode-trans">kode trans</span></h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form id="form-pembayaran" method="POST" action="/transaksi/pembayaran-tagihan">
+                            @csrf
+                            <div class="modal-body">
+                                {{-- <div class="alert alert-danger alert-dismissible fade show" role="alert" id="alert-saldo">
+                                    Saldo kurang dari 100.000, <a href="/transaksi/saldo" class="alert-link fw-bold" style="text-decoration: underline!important; color: #6a1a21!important;">Top up?</a>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                <div class="alert alert-info alert-dismissible fade show" role="alert" id="alert-member">
+                                    Pelanggan belum menjadi member, <a href="#" class="alert-link fw-bold" style="text-decoration: underline!important; color: #04414d!important;">Daftar membership ?</a>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div> --}}
+                                <div class="row">
+                                    <input id="input-trans-id" type="hidden" name="transaksi_id" value >
+                                    <div class="col-3 text-end mb-4">
+                                        <h1>Total :</h1>
+                                    </div>
+                                    <div class="col-9 mb-4">
+                                        <input type="text" class="form-control h-100 extra-large disabled input-thousand-separator" id="input-total" value="{{ $pelanggan->tagihan }}"/>
+                                    </div>
+                                    <div class="col-3 mb-2">
+                                        <p class="d-flex align-items-center justify-content-end" style="height: 38px;">Metode Pembayaran :</p>
+                                    </div>
+                                    <div class="col-9 mb-2">
+                                        <select class="form-select" name="metode_pembayaran" required>
+                                            <option value hidden selected>-</option>
+                                            <option value="tunai">Tunai</option>
+                                            <option value="saldo" hidden>Saldo</option>
+                                            <option value="kredit">Kredit</option>
+                                            <option value="debit">Debit</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-3 mb-2">
+                                        <p class="d-flex align-items-center justify-content-end" style="height: 38px;" >Nominal :</p>
+                                    </div>
+                                    <div class="col-9 mb-2">
+                                        <input type="text" class="form-control input-thousand-separator" id="input-nominal" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="nominal" required />
+                                    </div>
+                                    <div class="col-3 mb-2">
+                                        <p class="d-flex align-items-center justify-content-end fw-bold" style="height: 38px;">Kembali :</p>
+                                    </div>
+                                    <div class="col-9 mb-2">
+                                        <input type="text" class="form-control disabled input-thousand-separator" id="input-kembalian" />
+                                    </div>
+                                    <input type="hidden" id="input-pelanggan" name="pelanggan_id" value="{{ $pelanggan->id }}"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer"><button class="btn btn-primary" type="submit">Simpan</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            @if(in_array("Melihat Detail History Transaksi Pelanggan", Session::get('permissions')) || Session::get('role') == 'administrator')
+            <hr>
+            <section id="data-transaksi" class="mb-3">
                 <h4 class="card-title">Data Transaksi</h4>
-                <hr>
                 <div class="table-responsive mb-2">
                     <table class="table table-striped" id="table-transaksi">
                         <thead>
@@ -125,17 +191,13 @@
                     </table>
                 </div>
                 {{ $transaksis->links() }}
-            </div>
-        </div>
-    </section>
-    @endif
+            </section>
+            @endif
 
-    @if(in_array("Melihat Detail History Saldo Pelanggan", Session::get('permissions')) || Session::get('role') == 'administrator')
-    <section id="data-saldo">
-        <div class="card">
-            <div class="card-body">
+            @if(in_array("Melihat Detail History Saldo Pelanggan", Session::get('permissions')) || Session::get('role') == 'administrator')
+            <hr>
+            <section id="data-saldo">
                 <h4 class="card-title">Data Saldo</h4>
-                <hr>
                 <div class="table-responsive mb-2">
                     <table class="table table-striped" id="table-pelanggan">
                         <thead>
@@ -167,10 +229,10 @@
                     </table>
                 </div>
                 {{ $transaksis->links() }}
-            </div>
+            </section>
+            @endif
         </div>
-    </section>
-    @endif
+    </div>
 </div>
 
 <script src="{{ asset('js/data/detailPelanggan.js') }}"></script>

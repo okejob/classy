@@ -81,7 +81,7 @@
             <p style="position: absolute; left: 300px; top: 120px;">SETRIKA SAJA</p>
             <p style="position: absolute; left: 400px; top: 120px;">: {{ $data->transaksi->setrika_only ? 'YA' : 'TIDAK' }}</p>
         </div>
-        <p class="hr-text">
+        <p class="hr-text" style="margin-bottom: 0px;">
             ============================================================================================================================
         </p>
     </div>
@@ -108,7 +108,7 @@
                     </tr>
                 @endforeach
                 <tr>
-                    <td colspan="5" class="hr-text">
+                    <td colspan="5" class="hr-text" style="padding: 0px;">
                         ============================================================================================================================
                     </td>
                 </tr>
@@ -150,7 +150,7 @@
                     </tr>
                 @endforeach
                 <tr>
-                    <td colspan="5" class="hr-text">
+                    <td colspan="5" class="hr-text" style="padding: 0;">
                         ============================================================================================================================
                     </td>
                 </tr>
@@ -171,7 +171,7 @@
             </tfoot>
         </table>
         @endif
-        <p class="hr-text">
+        <p class="hr-text" style="margin-top: 0px;">
             ============================================================================================================================
         </p>
     </div>

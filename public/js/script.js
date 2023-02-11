@@ -295,7 +295,7 @@ $(document).ready(function() {
                 $(this)[0].reportValidity();
             }
         } else {
-            this.submit();
+            $(this).submit();
         }
     });
 });
