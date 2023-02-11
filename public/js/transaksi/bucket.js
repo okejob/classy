@@ -148,13 +148,14 @@ $(document).ready(function() {
                 const trans = transaksi[i];
                 console.log(trans);
                 $('#table-list-trans tbody').prepend(
-                    "<tr>" +
-                        "<td>" + trans.id + "</td>" +
+                    "<tr data-bs-toggle='tooltip' data-bss-tooltip='' title='Double klik untuk memilih' id=" + trans.id + ">" +
+                        "<td>" + trans.kode + "</td>" +
                         "<td>" + trans.outlet.nama + "</td>" +
-                        "<td class='text-center'>" + trans.created_at + "</td>" +
+                        "<td class='d-none d-lg-table-cell  text-center'>" + trans.created_at + "</td>" +
                         "<td>" + trans.pelanggan.nama + "</td>" +
+                        "<td>Rp</td>" +
                         "<td class='text-end thousand-separator'>" + trans.grand_total + "</td>" +
-                        "<td class='text-center'>" + ((trans.lunas) ? 'Lunas' : 'Belum Lunas') + "</td>" +
+                        "<td class='text-center' style='white-space: nowrap'>" + ((trans.lunas) ? 'Lunas' : 'Belum Lunas') + "</td>" +
                     "</tr>"
                 );
             }
