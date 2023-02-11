@@ -3,6 +3,7 @@
 namespace App\Models\Data;
 
 use App\Models\Saldo;
+use App\Models\Transaksi\Transaksi;
 use App\Models\User;
 use App\Observers\UserActionObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,12 +15,27 @@ class Pelanggan extends Model
 
     protected $guarded = ['id'];
     protected $appends = [
-        'saldo_akhir'
+        'saldo_akhir',
+        'tagihan',
     ];
+
     public static function boot()
     {
         parent::boot();
         Pelanggan::observe(new UserActionObserver);
+    }
+
+    public function getTagihanAttribute()
+    {
+        $transaksi = Transaksi::where('pelanggan_id', $this->id)->where('lunas', false)->get();
+        $grand_total = $transaksi->map(function ($item) {
+            return $item->grand_total;
+        })->sum();
+        $total_terbayar = $transaksi->map(function ($item) {
+            return $item->total_terbayar;
+        })->sum();
+        $tagihan = $grand_total - $total_terbayar;
+        return $tagihan;
     }
 
     public function getSaldoAkhirAttribute()
