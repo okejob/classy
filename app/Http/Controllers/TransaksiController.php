@@ -36,12 +36,10 @@ class TransaksiController extends Controller
 
     public function historyPelanggan($id_pelanggan)
     {
-        $transaksi = Transaksi::detail()->where('pelanggan_id', $id_pelanggan)->paginate(5);
-
-        return [
+        return view('components.tableHistoryTransaksi', [
             'status' => 200,
-            $transaksi
-        ];
+            'transaksis' => Transaksi::detail()->where('pelanggan_id', $id_pelanggan)->latest()->paginate(5),
+        ]);
     }
 
     //Mencari Transaksi dengan KEY id, Kode Transaksi, atau Nama Pelanggan
@@ -169,7 +167,7 @@ class TransaksiController extends Controller
             $transaksi->kode = $kode . $paded;
             $transaksi->save();
         }
-        return redirect()->intended(route('transaksi'));
+        return redirect()->back();
     }
 
     //Mengubah Data Status item menjadi "Cuci"

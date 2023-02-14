@@ -48,8 +48,6 @@ class PelangganController extends Controller
             'pages.data.DetailPelanggan',
             [
                 'pelanggan' => Pelanggan::where('id', $id_pelanggan)->first(),
-                'transaksis' => Transaksi::detail()->where('pelanggan_id', $id_pelanggan)->latest()->paginate(5),
-                'saldos' => Saldo::where('pelanggan_id', $id_pelanggan)->latest()->paginate(5),
             ]
         );
     }

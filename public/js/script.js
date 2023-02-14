@@ -274,7 +274,7 @@ $(document).ready(function() {
         }
     });
 
-    $('#modal-form').on('submit', function(e) {
+    $('#data-pengeluaran #modal-form').on('submit', function(e) {
         e.preventDefault();
         $('.input-thousand-separator').each(function() {
             let val = $(this).val();

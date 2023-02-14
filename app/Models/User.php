@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use App\Models\Transaksi\Transaksi;
 
 class User extends Authenticatable
 {
@@ -80,5 +81,15 @@ class User extends Authenticatable
     public function outlet()
     {
         return $this->belongsTo(Outlet::class);
+    }
+
+    public function cucian()
+    {
+        return $this->hasMany(Transaksi::class, 'pencuci', 'id');
+    }
+
+    public function setrikaan()
+    {
+        return $this->hasMany(Transaksi::class, 'penyetrika', 'id');
     }
 }

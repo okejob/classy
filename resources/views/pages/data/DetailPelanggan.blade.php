@@ -154,43 +154,7 @@
             <hr>
             <section id="data-transaksi" class="mb-3">
                 <h4 class="card-title">Data Transaksi</h4>
-                <div class="table-responsive mb-2">
-                    <table class="table table-striped" id="table-transaksi">
-                        <thead>
-                            <tr>
-                                <th>Kode Transaksi</th>
-                                <th>Outlet</th>
-                                <th colspan="2" style="width: 15%;">Total</th>
-                                <th>Status</th>
-                                <th colspan="2" style="width: 15%;">Terbayar</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($transaksis as $transaksi)
-                            <tr>
-                                <td>{{ $transaksi->kode }}</td>
-                                <td>{{ $transaksi->outlet->nama }}</td>
-                                <td>Rp</td>
-                                <td class="text-end thousand-separator">{{ $transaksi->grand_total }}</td>
-                                @if ($transaksi->lunas)
-                                    <td class="text-center">Lunas</td>
-                                @else
-                                    <td class="text-center">Belum lunas</td>
-                                @endif
-                                <td>Rp</td>
-                                <td class="text-end thousand-separator">{{ $transaksi->total_terbayar }}</td>
-                                <td class="cell-action">
-                                    <button id="btn-{{ $transaksi->id }}" class="btn btn-primary btn-sm btn-show-action" type="button">
-                                        <i class="fas fa-bars"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                {{ $transaksis->links() }}
+                <div id="table-history-transaksi"></div>
             </section>
             @endif
 
@@ -198,37 +162,7 @@
             <hr>
             <section id="data-saldo">
                 <h4 class="card-title">Data Saldo</h4>
-                <div class="table-responsive mb-2">
-                    <table class="table table-striped" id="table-pelanggan">
-                        <thead>
-                            <tr>
-                                <th>Tanggal</th>
-                                <th>Jenis Input</th>
-                                <th colspan="2" style="width: 15%;">Nominal</th>
-                                <th colspan="2" style="width: 15%;">Saldo Akhir</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($saldos as $saldo)
-                            <tr>
-                                <td>{{ $saldo->created_at }}</td>
-                                <td class="text-center">{{ $saldo->jenis_input }}</td>
-                                <td>Rp</td>
-                                <td class="text-end thousand-separator">{{ $saldo->nominal }}</td>
-                                <td>Rp</td>
-                                <td class="text-end thousand-separator">{{ $saldo->saldo_akhir }}</td>
-                                <td class="cell-action">
-                                    <button id="btn-{{ $saldo->id }}" class="btn btn-primary btn-sm btn-show-action" type="button">
-                                        <i class="fas fa-bars"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                {{ $transaksis->links() }}
+                <div id="table-history-saldo"></div>
             </section>
             @endif
         </div>

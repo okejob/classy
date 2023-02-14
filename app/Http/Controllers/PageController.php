@@ -264,13 +264,10 @@ class PageController extends Controller
     public function hubCuci()
     {
         $role = User::getRole(Auth::id());
-        if ($role == 'produksi_cuci') {
-            $data['transaksis'] = Transaksi::detail()->where('pencuci', Auth::id())->latest()->get();
-            $data['rewashes'] = Rewash::with('itemTransaksi')->where('pencuci', Auth::id())->get();
-        } else {
-            $data['transaksis'] = Transaksi::detail()->latest()->get();
-            $data['rewashes'] = Rewash::with('itemTransaksi')->where('pencuci', Auth::id())->get();
-            $data['pencucis'] = User::role('produksi_cuci')->with('transaksi')->get();
+        $data['transaksis'] = Transaksi::detail()->latest()->get();
+        $data['rewashes'] = Rewash::with('itemTransaksi')->where('pencuci', Auth::id())->get();
+        if ($role != 'produksi_cuci') {
+            $data['pencucis'] = User::role('produksi_cuci')->with('cucian')->get();
         }
 
         return view('pages.proses.Cuci', $data);
@@ -280,7 +277,7 @@ class PageController extends Controller
     {
         $data['transaksis'] = Transaksi::detail()->latest()->get();
         $data['jenis_rewashes'] = JenisRewash::get();
-        $data['penyetrikas'] = User::role('produksi_setrika')->get();
+        $data['penyetrikas'] = User::role('produksi_setrika')->with('setrikaan')->get();
         return view('pages.proses.Setrika', $data);
     }
 

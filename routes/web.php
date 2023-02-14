@@ -189,7 +189,7 @@ Route::middleware(['auth'])->group(function () {
     //History
     Route::get('/data/pelanggan/{id_pelanggan}/detail', [PelangganController::class, 'detailPelanggan'])->middleware('permission:Membuka Halaman Detail Pelanggan');
     Route::get('/pelanggan/{id_pelanggan}/history/transaksi', [TransaksiController::class, 'historyPelanggan'])->middleware('permission:Melihat Detail History Transaksi Pelanggan');
-    Route::get('/pelanggan/{id_pelanggan}/history/saldo', [SaldoController::class, 'historyPelanggan'])->middleware('Melihat Detail History Saldo Pelanggan');
+    Route::get('/pelanggan/{id_pelanggan}/history/saldo', [SaldoController::class, 'historyPelanggan'])->middleware('permission:Melihat Detail History Saldo Pelanggan');
 
     //Saldo
     Route::get('/transaksi/saldo', [PageController::class, 'saldo'])->middleware('permission:Membuka Menu Saldo');

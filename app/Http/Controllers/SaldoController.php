@@ -53,11 +53,9 @@ class SaldoController extends Controller
 
     public function historyPelanggan($id_pelanggan)
     {
-        $saldo = Saldo::where('pelanggan_id', $id_pelanggan)->latest()->paginate(5);
-
-        return [
+        return view('components.tableHistorySaldo',  [
             'status' => 200,
-            $saldo
-        ];
+            'saldos' => Saldo::where('pelanggan_id', $id_pelanggan)->latest()->paginate(5),
+        ]);
     }
 }

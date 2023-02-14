@@ -23,7 +23,7 @@
                         <thead>
                             <tr>
                                 <th>Alasan Rewash</th>
-                                <th>Modified_by</th>
+                                <th>Terakhir Edit</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -69,7 +69,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <h5>Keterangan</h5>
-                                    <input class="form-control" type="number" id="input-keterangan" name="keterangan" required>
+                                    <input class="form-control" type="text" id="input-keterangan" name="keterangan" required>
                                 </div>
                             </div>
                         </div>
