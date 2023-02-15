@@ -43,7 +43,7 @@
                     </table>
                 </div>
                 {{ $jenisRewashes->links() }}
-                @if(in_array("Membuat Rewash", Session::get('permissions')) || Session::get('role') == 'administrator')
+                @if(in_array("Menambah Rewash", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <button class="btn btn-primary btn-tambah mt-2" type="button">
                     <i class="fas fa-plus-circle"></i>
                     &nbsp;Tambah

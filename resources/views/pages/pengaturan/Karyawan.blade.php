@@ -620,11 +620,11 @@
                                         <label class="form-check-label" for="check-proses-rewash-1">Membuka menu rewash</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="check-proses-rewash-2" value="Mengambil Rewash">
+                                        <input class="form-check-input" type="checkbox" id="check-proses-rewash-2" value="Menambah Rewash">
                                         <label class="form-check-label" for="check-proses-rewash-2">Menambah rewash</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="check-proses-rewash-3" value="Mengambil Status Rewash">
+                                        <input class="form-check-input" type="checkbox" id="check-proses-rewash-3" value="Mengganti Status Rewash">
                                         <label class="form-check-label" for="check-proses-rewash-3">Mengganti status rewash</label>
                                     </div>
                                     <div class="form-check">
