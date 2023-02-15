@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nama');
             $table->text('deskripsi')->nullable();
             $table->integer('nominal');
+            $table->foreignId('outlet_id');
             $table->foreignId('modified_by')
                 ->constrained('users', 'id')
                 ->cascadeOnDelete();

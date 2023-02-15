@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('telp_1');
             $table->string('telp_2')->nullable();
             $table->string('fax')->nullable();
+            $table->integer('saldo')->default(0);
             $table->boolean('status')->default(true);
             $table->foreignId('modified_by')
                 ->nullable()

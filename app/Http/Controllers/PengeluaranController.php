@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\InsertPengeluaranRequest;
 use App\Models\Data\Pengeluaran;
+use App\Models\Outlet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,10 +12,21 @@ class PengeluaranController extends Controller
 {
     public function insert(InsertPengeluaranRequest $request)
     {
-        $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
-        Pengeluaran::create($merged);
+        $outlet_id = Auth::user()->outlet_id;
+        $outlet = Outlet::find($outlet_id);
+        if ($outlet->saldo >= $request->nominal) {
 
-        return redirect()->intended(route('menu-pengeluaran'));
+            $merged = $request->merge([
+                'modified_by' => Auth::id(),
+                'outlet_id' => Auth::user()->outlet_id
+            ])->toArray();
+            Pengeluaran::create($merged);
+            $outlet->update([
+                'saldo' => $outlet->saldo - $request->nominal
+            ]);
+            return redirect()->intended(route('menu-pengeluaran'));
+        }
+        //kurang return kalau error
     }
 
     public function show($id)

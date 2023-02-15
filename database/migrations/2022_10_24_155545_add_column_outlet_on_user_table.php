@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->foreignId('outlet_id')
+                ->nullable()
                 ->constrained('outlets', 'id')
                 ->cascadeOnDelete()
                 ->after('status');
