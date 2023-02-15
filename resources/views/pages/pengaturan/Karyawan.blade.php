@@ -463,7 +463,7 @@
                                         <label class="form-check-label" for="check-transaksi-3">Melihat detail transaksi</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="check-transaksi-4" value="Menambahkan Item Transaksi">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-4" value="Menambahkan Item Ke Transaksi">
                                         <label class="form-check-label" for="check-transaksi-4">Menambahkan item transaksi</label>
                                     </div>
                                     <div class="form-check">
@@ -491,7 +491,7 @@
                                         <label class="form-check-label" for="check-transaksi-item-4">Menghapus item transaksi</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="check-transaksi-catatan-1" value="Melihat Daftar Catatan Item">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-catatan-1" value="Melihat Detail Daftar Catatan Item">
                                         <label class="form-check-label" for="check-transaksi-catatan-1">Melihat daftar catatan item</label>
                                     </div>
                                     <div class="form-check">

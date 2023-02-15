@@ -43,7 +43,7 @@
                 </td>
             </tr>
             @endforeach
-            @if(in_array("Menambahkan Item Transaksi", Session::get('permissions')) || Session::get('role') == 'administrator')
+            @if(in_array("Menambahkan Item Ke Transaksi", Session::get('permissions')) || Session::get('role') == 'administrator')
             <tr>
                 <td class="text-center" colspan="7" style="padding-top: 4px;padding-bottom: 4px;">
                     <button class="btn btn-primary btn-sm" id="add-item" type="button">

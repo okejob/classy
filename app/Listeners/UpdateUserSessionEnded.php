@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +27,7 @@ class UpdateUserSessionEnded
      */
     public function handle($event)
     {
-        $user = Auth::user();
+        $user = User::find(Auth::user());
 
         if ($user) {
             $user->update([

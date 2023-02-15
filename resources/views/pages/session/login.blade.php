@@ -23,7 +23,7 @@
         </div>
         <div class="mb-4">
             <div class="form-container mb-1 px-2">
-                <select class="px-2 form-control" style="border-bottom: none;" name="cabang">
+                <select class="px-2 form-control" style="border-bottom: none;" name="outlet_id">
                     <option value="" hidden selected disabled class="px-2">Outlet</option>
                     @foreach ($outlets as $outlet)
                         <option value="{{ $outlet->id }}">{{ $outlet->nama }}</option>
