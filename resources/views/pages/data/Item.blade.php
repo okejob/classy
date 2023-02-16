@@ -219,7 +219,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-primary" type="submit">Simpan</button>
+                            <button id="btn-simpan" class="btn btn-primary" type="submit">Simpan</button>
                         </div>
                     </form>
                 </div>

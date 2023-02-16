@@ -19,6 +19,7 @@
                                 <th>Telepon 1</th>
                                 <th>Telepon 2</th>
                                 <th>Nomor Fax</th>
+                                <th>Saldo</th>
                                 <th>Status</th>
                                 <th></th>
                             </tr>
@@ -31,6 +32,7 @@
                                 <td>{{ $outlet->alamat }}</td>
                                 <td>{{ $outlet->telp_1 }}</td>
                                 <td>{{ $outlet->telp_2 }}</td>
+                                <td>{{ $outlet->saldo }}</td>
                                 <td>{{ $outlet->fax }}</td>
                                 @if ($outlet->status)
                                     <td class="text-center">Aktif</td>
