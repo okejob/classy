@@ -32,7 +32,7 @@
                                 <td>{{ $outlet->alamat }}</td>
                                 <td>{{ $outlet->telp_1 }}</td>
                                 <td>{{ $outlet->telp_2 }}</td>
-                                <td>{{ $outlet->saldo }}</td>
+                                <td class="thousand-separator">{{ $outlet->saldo }}</td>
                                 <td>{{ $outlet->fax }}</td>
                                 @if ($outlet->status)
                                     <td class="text-center">Aktif</td>
