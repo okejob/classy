@@ -125,8 +125,9 @@
                                 <div class="col-12">
                                     <h5>Unit</h5>
                                     <select class="form-select" id="input-unit" name="unit">
-                                        <option value="pcs">PCS</option>
-                                        <option value="kg">KG</option>
+                                        <option value="PCS">Piece</option>
+                                        <option value="KG">Kilogram</option>
+                                        <option value="MTR">Meter</option>
                                     </select>
                                 </div>
                                 <div class="col-12 col-sm-6">
