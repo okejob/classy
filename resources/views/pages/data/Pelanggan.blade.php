@@ -89,7 +89,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-primary" type="submit">Simpan</button></div>
+                        <div class="modal-footer">
+                            <button id="btn-submit" class="btn btn-primary" type="submit">Simpan</button>
+                        </div>
                     </form>
                 </div>
             </div>

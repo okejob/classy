@@ -47,4 +47,10 @@ $(document).ready(function() {
             });
         }
     });
+
+    $('#modal-form').on('submit', function(e) {
+        e.preventDefault();
+        $('#btn-submit').addClass('disabled');
+        e.currentTarget.submit();
+    });
 });
