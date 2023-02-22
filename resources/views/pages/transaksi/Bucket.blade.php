@@ -218,7 +218,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-12 mt-2 d-flex align-items-end justify-content-end">
-                                        <button class="btn btn-primary full-when-small" type="button">Kode Promosi</button>
+                                        <button class="btn btn-primary full-when-small" id="kode-promo" type="button">Kode Promosi</button>
                                     </div>
                                     <div class="col-md-8 col-12 mt-2 d-flex align-items-center">
                                         <div class="position-relative w-100">
@@ -238,6 +238,50 @@
                                     </div>
                                 </div>
                             </form>
+
+                            <div role="dialog" tabindex="-1" class="modal fade" id="modal-kode-promo">
+                                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Promo Diskon</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div id="promo-biasa">
+                                                <h5>Kode Promo</h5>
+                                                <div class="d-flex">
+                                                    <input class="form-control me-3" type="text" name="kode">
+                                                    <button class="btn btn-primary" type="button" id="btn-apply-promo-basic">Apply</button>
+                                                </div>
+                                                <p class="error-promo-basic"></p>
+                                            </div>
+                                            <hr>
+                                            <div id="promo-spesial">
+                                                <h5>Promo Spesial</h5>
+                                                <div class="d-block rounded mt-3" style="height: 200px; background-color: lightgrey;">
+                                                    <div class="d-flex justify-content-center align-items-center h-100" id="div-login">
+                                                        <div class="d-flex flex-column" style="300px;">
+                                                            <input class="form-control mb-2" type="text" name="username" placeholder="username">
+                                                            <input class="form-control mb-3" type="password" name="password" placeholder="password">
+                                                            <button class="btn btn-primary" type="button">Login</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="d-none mt-3" id="div-promo-spesial">
+                                                    <div class="d-flex align-items-center">
+                                                        <p style="white-space: nowrap;">Besar Diskon : </p>
+                                                        <div class="form-control d-flex align-items-center mx-3">
+                                                            <p>Rp</p>
+                                                            <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-nominal" name="nominal" required>
+                                                        </div>
+                                                        <button class="btn btn-primary" type="button" id="btn-apply-promo-spesial">Apply</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div role="dialog" tabindex="-1" class="modal fade" id="modal-add-item">
                                 <div class="modal-dialog modal-lg modal-dialog-centered" role="document">

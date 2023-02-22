@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('#modal-opsi-trans, #modal-new-trans').modal({
+    $('#modal-opsi-trans, #modal-new-trans, #modal-kode-promo').modal({
         backdrop: 'static',
         keyboard: false
     });
@@ -645,6 +645,12 @@ $(document).ready(function() {
             });
         }
     });
+
+    $('#kode-promo').on('click', function() {
+        $('#modal-kode-promo').modal('show');
+    });
+
+
 
     // Pembayaran
     $('#nav-pembayaran').on('click', function() {
