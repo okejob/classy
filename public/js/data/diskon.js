@@ -12,7 +12,7 @@ $(document).ready(function() {
         btnId = $(this).attr('id').substring(4);
     });
 
-    $('#data-inventory .btn-tambah').on('click', function() {
+    $('#data-diskon .btn-tambah').on('click', function() {
         btnIndex = -1;
         $('#modal-form').attr('action', "/data/diskon/insert");
         $('.modal-title').text('Diskon baru');

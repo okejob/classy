@@ -8,6 +8,7 @@ use App\Models\Data\Kategori;
 use App\Models\Data\Parfum;
 use App\Models\Data\Pelanggan;
 use App\Models\Data\Pengeluaran;
+use App\Models\Diskon;
 use App\Models\Inventory\Inventory;
 use App\Models\Outlet;
 use App\Models\Paket\PaketCuci;
@@ -320,6 +321,16 @@ class PageController extends Controller
                 'inventories' => Inventory::when($request->has("search"), function ($q) use ($request) {
                     return $q->Where("nama", "like", "%" . $request->get("search") . "%");
                 })->orderBy("nama", "asc")->paginate(5)
+            ]
+        );
+    }
+
+    public function diskon(Request $request)
+    {
+        return view(
+            'pages.data.Diskon',
+            [
+                'diskons' => Diskon::orderBy("code", "asc")->paginate(5)
             ]
         );
     }

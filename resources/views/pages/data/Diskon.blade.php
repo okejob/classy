@@ -26,7 +26,7 @@
                         <tbody>
                             @foreach ($diskons as $diskon)
                             <tr>
-                                <td>{{ $diskon->kode }}</td>
+                                <td>{{ $diskon->code }}</td>
                                 <td>{{ $diskon->deskripsi }}</td>
                                 <td>Rp</td>
                                 <td class="text-end thousand-separator">{{ $diskon->nominal }}</td>
@@ -71,7 +71,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <h5>Kode Diskon</h5>
-                                    <input class="form-control" type="text" id="input-kode" name="kode" required>
+                                    <input class="form-control" type="text" id="input-kode" name="code" required>
                                 </div>
                                 <div class="col-12">
                                     <h5>Deskripsi</h5>

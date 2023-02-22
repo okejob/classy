@@ -131,6 +131,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/data/rewash/{id}', [RewashController::class, 'updateData']);
     Route::get('/data/rewash/delete/{id}', [RewashController::class, 'deleteData']);
 
+    // Diskon
+    Route::get('/data/diskon', [PageController::class, 'diskon']);
+    Route::post('/data/diskon', [DiskonController::class, 'insert']);
+    Route::post('/data/diskon/{id}', [DiskonController::class, 'update']);
+    Route::get('/data/diskon/delete/{id}', [DiskonController::class, 'delete']);
+
     //Pickup & Delivery
     Route::get('/transaksi/pickup-delivery', [PageController::class, 'pickupDelivery'])->name('pickup-delivery')->middleware('permission:Membuka Menu Pickup Delivery');
     Route::get('/transaksi/pickup-delivery/{id}', [PickupDeliveryController::class, 'show'])->middleware('permission:Melihat Detail Pickup Delivery');
