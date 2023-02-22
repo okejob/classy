@@ -71,6 +71,14 @@
                     </a>
                 </div>
                 @endif
+                {{-- @if(in_array("Membuka Menu Rewash", Session::get('permissions')) || Session::get('role') == 'administrator') --}}
+                <div id="nav-data-diskon">
+                    <a href="/data/diskon" class="menu-item menu-data pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
+                        <i class="fa-solid fa-tags"></i>
+                        <p class="ms-3">Diskon</p>
+                    </a>
+                </div>
+                {{-- @endif --}}
             </div>
         </div>
         <div id="nav-menu-transaksi" class="nav-menu">
