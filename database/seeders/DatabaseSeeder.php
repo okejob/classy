@@ -38,5 +38,6 @@ class DatabaseSeeder extends Seeder
         $this->call(JenisItemSeeder::class);
         $this->call(TransaksiSeeder::class);
         $this->call(PickupDeliverySeeder::class);
+        $this->call(DiskonSeeder::class);
     }
 }
