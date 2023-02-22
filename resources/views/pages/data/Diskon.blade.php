@@ -19,6 +19,7 @@
                                 <th>Kode</th>
                                 <th>Deskripsi</th>
                                 <th colspan="2">Besar Diskon</th>
+                                <th>Expired Date</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -29,6 +30,7 @@
                                 <td>{{ $diskon->deskripsi }}</td>
                                 <td>Rp</td>
                                 <td class="text-end thousand-separator">{{ $diskon->nominal }}</td>
+                                <td class="text-center">{{ $diskon->expired_date }}</td>
                                 <td class="cell-action">
                                     <button id="btn-{{ $diskon->id }}" class="btn btn-primary btn-sm btn-show-action" type="button">
                                         <i class="fas fa-bars"></i>
