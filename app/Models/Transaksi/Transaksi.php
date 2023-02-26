@@ -44,7 +44,7 @@ class Transaksi extends Model
         $total_harga_bucket = $jumlah_bucket * $paket_bucket->harga_paket;
 
         $subtotal = $sum_harga_premium + $total_harga_bucket;
-        $grand_total = $subtotal * ((100 - ($diskon + $diskon_member)) / 100);
+        $grand_total = ($subtotal * ((100 - ($diskon + $diskon_member)) / 100)) - $this->special_diskon;
 
         $this->total_bobot = $sum_bobot;
         $this->jumlah_bucket = $jumlah_bucket;

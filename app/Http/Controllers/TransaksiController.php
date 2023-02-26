@@ -129,6 +129,17 @@ class TransaksiController extends Controller
         ];
     }
 
+    public function inputSpecialDiskon(Transaksi $transaksi, $nominal)
+    {
+        $transaksi->update([
+            'special_diskon' => $nominal
+        ]);
+        $transaksi->recalculate();
+        return [
+            'status' => 200
+        ];
+    }
+
     public function update(UpdateTransaksiRequest $request, $id)
     {
         $express = false;

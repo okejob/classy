@@ -191,6 +191,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transaksi/{transaksi}/penyetrika/delete', [TransaksiController::class, 'clearStatusSetrika'])->middleware('permission:Mengurangi Tugas Setrika');
     //Autentikasi Diskon
     Route::post('/transaksi/diskon/autentikasi', [TransaksiController::class, 'authenticationDiskon']);
+    Route::get('/transaksi/diskon/special/transaksi/{transaksi}/nominal/{nominal}', [TransaksiController::class, 'inputSpecialDiskon']);
 
     //History
     Route::get('/data/pelanggan/{id_pelanggan}/detail', [PelangganController::class, 'detailPelanggan'])->middleware('permission:Membuka Halaman Detail Pelanggan');
