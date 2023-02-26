@@ -213,7 +213,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-12 mt-2 d-flex align-items-end justify-content-end">
-                                        <button class="btn btn-primary full-when-small" type="button">Kode Promosi</button>
+                                        <button class="btn btn-primary full-when-small" id="kode-promo" type="button">Kode Promosi</button>
                                     </div>
                                     <div class="col-md-8 col-12 mt-2 d-flex align-items-center">
                                         <div class="position-relative w-100">
