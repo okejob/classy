@@ -11,6 +11,7 @@ use App\Models\Transaksi\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class TransaksiController extends Controller
 {
@@ -111,19 +112,21 @@ class TransaksiController extends Controller
     public function authenticationDiskon(UserLoginRequest $request)
     {
         $user = User::where('username', $request['username'])->first();
-        $auth = Auth::attempt(['email' => $user->email, 'password' => $request['password']]);
 
-        if ($auth) {
-            $role = $user->getRole();
-            if ($role == 'supervisor' || $role == 'administrator') {
-                return [
-                    'status' => 200,
-                ];
+        if ($user) {
+            if (Hash::check($request['password'], $user->password)) {
+                $role = $user->getRole($user->id);
+                if ($role == 'supervisor' || $role == 'administrator') {
+                    return [
+                        'status' => 200,
+                    ];
+                }
             }
         }
-        return back()->withErrors([
+
+        return [
             'password' => 'Tidak Memiliki Akses'
-        ]);
+        ];
     }
 
     public function update(UpdateTransaksiRequest $request, $id)

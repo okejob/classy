@@ -650,7 +650,29 @@ $(document).ready(function() {
         $('#modal-kode-promo').modal('show');
     });
 
+    $('#btn-authenticate-login').on('click', function() {
+        let formData = new FormData();
+        formData.append('username', $('#input-username-auth').val());
+        formData.append('password', $('#input-password-auth').val());
 
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            },
+            url: "/transaksi/diskon/autentikasi",
+            method: "POST",
+            contentType: false,
+            processData: false,
+            data: formData,
+        }).done(function(data) {
+            $('#div-promo-spesial').prev().addClass('d-none').removeClass('d-flex');
+            $('#div-promo-spesial').removeClass('d-none').addClass('d-flex');
+
+        }).fail(function(message) {
+            alert('error');
+            console.log(message);
+        });
+    });
 
     // Pembayaran
     $('#nav-pembayaran').on('click', function() {

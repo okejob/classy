@@ -260,11 +260,11 @@
                                                 <h5>Promo Spesial</h5>
                                                 <div class="d-block rounded mt-3" style="height: 200px; background-color: lightgrey;">
                                                     <div class="d-flex justify-content-center align-items-center h-100" id="div-login">
-                                                        <div class="d-flex flex-column" style="300px;">
-                                                            <input class="form-control mb-2" type="text" name="username" placeholder="username">
-                                                            <input class="form-control mb-3" type="password" name="password" placeholder="password">
-                                                            <button class="btn btn-primary" type="button">Login</button>
-                                                        </div>
+                                                        <form id="authenticate-login" class="d-flex flex-column mb-0" style="300px;">
+                                                            <input class="form-control mb-2" id="input-username-auth" type="text" name="username" placeholder="username">
+                                                            <input class="form-control mb-3" id="input-password-auth" type="password" name="password" placeholder="password">
+                                                            <button id="btn-authenticate-login" class="btn btn-primary" type="button">Login</button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                                 <div class="d-none mt-3" id="div-promo-spesial">
