@@ -674,6 +674,18 @@ $(document).ready(function() {
         });
     });
 
+    $('#btn-apply-promo-spesial').on('click', function() {
+        $('#input-nominal-promo').val(removeDot($('#input-nominal-promo').val()));
+        $.ajax({
+            url: "/transaksi/diskon/special/transaksi/" + transId + "/nominal/" + $('#input-nominal-promo').val(),
+        }).done(function() {
+            window.location = window.location.origin + window.location.pathname;
+        }).fail(function(message) {
+            alert('error');
+            console.log(message);
+        });
+    });
+
     // Pembayaran
     $('#nav-pembayaran').on('click', function() {
         $.ajax({

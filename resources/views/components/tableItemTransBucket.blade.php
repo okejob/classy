@@ -61,7 +61,7 @@
             <tr>
                 <td class="text-end">Diskon</td>
                 <td style="width: 5%">Rp</td>
-                <td class="text-end thousand-separator" id="diskon">{{ $trans->diskon }}</td>
+                <td class="text-end thousand-separator" id="diskon">{{ $trans->diskon + $trans->special_diskon }}</td>
                 <td style="width: 46.25px;"></td>
             </tr>
             <tr>

@@ -267,7 +267,7 @@
                                                         <p style="white-space: nowrap;">Besar Diskon : </p>
                                                         <div class="form-control d-flex align-items-center mx-3">
                                                             <p>Rp</p>
-                                                            <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-nominal" name="nominal" required>
+                                                            <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-nominal-promo" name="nominal" required>
                                                         </div>
                                                         <button class="btn btn-primary" type="button" id="btn-apply-promo-spesial">Apply</button>
                                                     </div>

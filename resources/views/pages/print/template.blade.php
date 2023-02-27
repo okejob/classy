@@ -120,7 +120,7 @@
                 </tr>
                 <tr>
                     <td colspan="4" class="text-end fw-bold">Diskon</td>
-                    <td class="text-end thousand-separator">{{ $data->transaksi->diskon + $data->transaksi->diskon_member }}</td>
+                    <td class="text-end thousand-separator">{{ $data->transaksi->diskon + $data->transaksi->special_diskon + $data->transaksi->diskon_member }}</td>
                 </tr>
                 <tr>
                     <td colspan="4" class="text-end fw-bold">Grand Total</td>
@@ -162,7 +162,7 @@
                 </tr>
                 <tr>
                     <td colspan="4" class="text-end fw-bold">Diskon</td>
-                    <td class="text-end thousand-separator">{{ $data->transaksi->diskon + $data->transaksi->diskon_member }}</td>
+                    <td class="text-end thousand-separator">{{ $data->transaksi->diskon +  $data->transaksi->special_diskon +$data->transaksi->diskon_member }}</td>
                 </tr>
                 <tr>
                     <td colspan="4" class="text-end fw-bold">Grand Total</td>
