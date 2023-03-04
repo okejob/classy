@@ -126,16 +126,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/component/pelanggan', [PelangganController::class, 'search']);
 
     //Rewash data
-    Route::get('/data/rewash', [PageController::class, 'dataRewash'])->name('data-rewash');
-    Route::post('/data/rewash', [RewashController::class, 'insertData']);
-    Route::post('/data/rewash/{id}', [RewashController::class, 'updateData']);
-    Route::get('/data/rewash/delete/{id}', [RewashController::class, 'deleteData']);
+    Route::get('/data/rewash', [PageController::class, 'dataRewash'])->name('data-rewash')->middleware('permission:Membuka Menu Rewash');
+    Route::post('/data/rewash', [RewashController::class, 'insertData'])->middleware('permission:Menambah Rewash');
+    Route::get('/data/rewash/delete/{id}', [RewashController::class, 'deleteData'])->middleware('permission:Menghapus Rewash');
 
     // Diskon
-    Route::get('/data/diskon', [PageController::class, 'diskon'])->name('data-diskon');
-    Route::post('/data/diskon', [DiskonController::class, 'insert']);
-    Route::post('/data/diskon/{id}', [DiskonController::class, 'update']);
-    Route::get('/data/diskon/delete/{id}', [DiskonController::class, 'delete']);
+    Route::get('/data/diskon', [PageController::class, 'diskon'])->name('data-diskon')->middleware('permission:Membuka Menu Diskon');
+    Route::post('/data/diskon', [DiskonController::class, 'insert'])->middleware('permission: Menambah Data Diskon');
+    Route::post('/data/diskon/{id}', [DiskonController::class, 'update'])->middleware('permission:Mengubah Data Diskon');
+    Route::get('/data/diskon/delete/{id}', [DiskonController::class, 'delete'])->middleware('permission:Menghapus Data Diskon');
 
     //Pickup & Delivery
     Route::get('/transaksi/pickup-delivery', [PageController::class, 'pickupDelivery'])->name('pickup-delivery')->middleware('permission:Membuka Menu Pickup Delivery');
@@ -219,12 +218,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/data/inventory/traffic', [LaporanInventoryController::class, 'insert'])->middleware('permission:Mengubah Data Stok Inventory');
 
     //Rewash proses
-    Route::get('/proses/rewash', [PageController::class, 'prosesRewash'])->name('menu-rewash')->middleware('permission:Membuka Menu Rewash');
-    Route::post('/proses/rewash/insert', [RewashController::class, 'insert'])->middleware('permission:Menambah Rewash');
-    Route::post('/proses/rewash/update-status/{rewash}', [RewashController::class, 'updateStatus'])->middleware('permission:Mengganti Status Rewash');
-    Route::get('/proses/rewash/delete/{rewash}', [RewashController::class, 'delete'])->middleware('permission:Menghapus Rewash');
+    Route::get('/proses/rewash', [PageController::class, 'prosesRewash'])->name('menu-rewash')->middleware('permission:Membuka Menu Proses Rewash');
+    Route::post('/proses/rewash/insert', [RewashController::class, 'insert'])->middleware('permission:Menambah Data Proses Rewash');
+    Route::post('/proses/rewash/update-status/{rewash}', [RewashController::class, 'updateStatus'])->middleware('permission:Menyatakan Selesai Proses Rewash');
+    Route::get('/proses/rewash/delete/{rewash}', [RewashController::class, 'delete'])->middleware('permission:Menghapus Data Proses Rewash');
 
     //Packing
-    Route::get('/proses/packing', [PageController::class, 'packing']);
-    Route::post('/proses/packing', [PackingController::class, 'create']);
+    Route::get('/proses/packing', [PageController::class, 'packing'])->middleware('permission:Membuka Menu Packing');
+    Route::post('/proses/packing', [PackingController::class, 'create'])->middleware('Menginputkan Data Packing');
 });

@@ -112,6 +112,10 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'Membatalkan Transaksi']);
         Permission::create(['name' => 'Restore Transaksi']);
 
+        //Cancelled
+        Permission::create(['name' => 'Membuka Menu Canceled']);
+        Permission::create(['name' => 'Merestore Transaksi']);
+
         //HubCuci
         Permission::create(['name' => 'Membuka Menu Hub Cuci']);
         Permission::create(['name' => 'Mengambil Tugas Cuci']);
@@ -147,11 +151,22 @@ class PermissionSeeder extends Seeder
         //Rewash
         Permission::create(['name' => 'Membuka Menu Rewash']);
         Permission::create(['name' => 'Menambah Rewash']);
-        Permission::create(['name' => 'Mengganti Status Rewash']);
         Permission::create(['name' => 'Menghapus Rewash']);
-        
+
+        //Proses Rewash
+        Permission::create(['name' => 'Membuka Menu Proses Rewash']);
+        Permission::create(['name' => 'Menambah Data Proses Rewash']);
+        Permission::create(['name' => 'Menyatakan Selesai Proses Rewash']);
+        Permission::create(['name' => 'Menghapus Data Proses Rewash']);
+
         //Packing
         Permission::create(['name' => 'Membuka Menu Packing']);
         Permission::create(['name' => 'Menginputkan Data Packing']);
+
+        //Diskon
+        Permission::create(['name' => 'Membuka Menu Diskon']);
+        Permission::create(['name' => 'Menambah Data Diskon']);
+        Permission::create(['name' => 'Mengubah Data Diskon']);
+        Permission::create(['name' => 'Menghapus Data Diskon']);
     }
 }
