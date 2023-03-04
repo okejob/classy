@@ -132,7 +132,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/data/rewash/delete/{id}', [RewashController::class, 'deleteData']);
 
     // Diskon
-    Route::get('/data/diskon', [PageController::class, 'diskon']);
+    Route::get('/data/diskon', [PageController::class, 'diskon'])->name('data-diskon');
     Route::post('/data/diskon', [DiskonController::class, 'insert']);
     Route::post('/data/diskon/{id}', [DiskonController::class, 'update']);
     Route::get('/data/diskon/delete/{id}', [DiskonController::class, 'delete']);

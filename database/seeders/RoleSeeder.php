@@ -19,8 +19,11 @@ class RoleSeeder extends Seeder
         $admin = Role::create(['name' => 'administrator']);
         $admin->givePermissionTo(Permission::all());
 
-        Role::create(['name' => 'supervisor']);
+        $supervisor = Role::create(['name' => 'supervisor']);
+        $supervisor->givePermissionTo(Permission::all());
         Role::create(['name' => 'operator']);
+        $packing = Role::create(['name' => 'packing']);
+        $packing->givePermissionTo(Permission::all());
 
         $produksi_cuci = Role::create(['name' => 'produksi_cuci']);
         $produksi_cuci->syncPermissions([

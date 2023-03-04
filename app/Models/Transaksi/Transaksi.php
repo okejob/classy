@@ -44,14 +44,13 @@ class Transaksi extends Model
         $total_harga_bucket = $jumlah_bucket * $paket_bucket->harga_paket;
 
         $subtotal = $sum_harga_premium + $total_harga_bucket;
-        $grand_total = ($subtotal * ((100 - ($diskon + $diskon_member)) / 100)) - $this->special_diskon;
+        $grand_total = (($subtotal - $diskon) * ((100 - $diskon_member) / 100)) - $this->special_diskon;
 
         $this->total_bobot = $sum_bobot;
         $this->jumlah_bucket = $jumlah_bucket;
-        $this->diskon = ceil($subtotal * $diskon / 100);
-        $this->diskon_member = ceil($subtotal * $diskon_member / 100);
+        $this->diskon_member = ceil(($subtotal - $diskon) * $diskon_member / 100);
         $this->subtotal = $subtotal;
-        $this->grand_total = $grand_total;
+        $grand_total < 0 ? $this->grand_total = 0 : $this->grand_total = $grand_total;
         $this->save();
         return $this;
     }

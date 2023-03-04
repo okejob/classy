@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('diskons', function (Blueprint $table) {
-            $table->id();
-            $table->string('code')->unique();
-            $table->text('description');
-            $table->date('expired');
-            $table->integer('nominal');
-            $table->timestamps();
-            $table->softDeletes();
+        Schema::table('transaksis', function (Blueprint $table) {
+            $table->foreignId('promo_code')
+                ->nullable()
+                ->constrained('diskons', 'id')
+                ->cascadeOnDelete()
+                ->after('diskon');
         });
     }
 
@@ -31,6 +29,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('diskons');
+        Schema::table('transaksis', function (Blueprint $table) {
+            $table->dropColumn('promo_code');
+        });
     }
 };
