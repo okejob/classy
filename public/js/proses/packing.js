@@ -12,12 +12,22 @@ $(document).ready(function() {
             $('#container-bucket').load(window.location.origin + '/component/transBucket/' + btnId, function() {
                 setThousandSeparator();
                 adjustWidthBucket();
+                $('#table-trans-item thead th').last().detach();
+                $('#table-trans-item tbody tr').last().detach();
+                $('#table-trans-item tbody tr').each(function() {
+                    $(this).find('td').last().detach();
+                });
                 $('#modal-detail').modal('show');
             });
         } else {
             $('#container-premium').load(window.location.origin + '/component/transPremium/' + btnId, function() {
                 setThousandSeparator();
                 adjustWidthPremium();
+                $('#table-trans-item thead th').last().detach();
+                $('#table-trans-item tbody tr').last().detach();
+                $('#table-trans-item tbody tr').each(function() {
+                    $(this).find('td').last().detach();
+                });
                 $('#modal-detail').modal('show');
             });
         }

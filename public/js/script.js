@@ -269,12 +269,15 @@ $(document).ready(function() {
         let val = $(this).val();
         $(this).attr('type', 'text');
         if (val != '') {
+            while(val.indexOf('.') != -1) {
+                val = val.replace('.', '');
+            }
             let number = parseInt(val);
             $(this).val(number.toLocaleString(['ban', 'id']));
         }
     });
 
-    $('#data-pengeluaran #modal-form').on('submit', function(e) {
+    $('#modal-form').on('submit', function(e) {
         e.preventDefault();
         $('.input-thousand-separator').each(function() {
             let val = $(this).val();
@@ -288,14 +291,14 @@ $(document).ready(function() {
             }
         });
 
-        if ($(this).closest('#data-pengeluaran').length != 0) {
+        // if ($(this).closest('#data-pengeluaran').length != 0) {
             if ($(this)[0].checkValidity()) {
                 this.submit();
             } else {
                 $(this)[0].reportValidity();
             }
-        } else {
-            $(this).submit();
-        }
+        // } else {
+        //     $(this).submit();
+        // }
     });
 });

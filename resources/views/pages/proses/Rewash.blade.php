@@ -12,7 +12,7 @@
             <section id="data-rewash">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Data Rewash</h4>
+                        <h4 class="card-title">Rewash</h4>
                         <hr>
                         <div class="table-responsive">
                             <table class="table" id="table-rewash">
@@ -46,14 +46,20 @@
                                 </tbody>
                             </table>
                         </div>
-                        {{-- <ul class="list-unstyled form-control" id="list-action">
-                            <li id="action-update">Rubah data</li>
-                            <li id="action-change-status">Rubah status</li>
-                        </ul> --}}
+                        <ul class="list-unstyled form-control" id="list-action">
+                            @if(in_array("Menyatakan Selesai Proses Rewash", Session::get('permissions')) || Session::get('role') == 'administrator')
+                            <li id="action-finish">Rewash Selesai</li>
+                            @endif
+                            @if(in_array("Menghapus Data Proses Rewash", Session::get('permissions')) || Session::get('role') == 'administrator')
+                            <li id="action-delete">Hapus data</li>
+                            @endif
+                        </ul>
+                        @if(in_array("Menambah Data Proses Rewash", Session::get('permissions')) || Session::get('role') == 'administrator')
                         <button class="btn btn-primary btn-tambah mt-2" type="button">
                             <i class="fas fa-plus-circle"></i>
                             &nbsp;Tambah
                         </button>
+                        @endif
                     </div>
                 </div>
                 <div class="modal fade" role="dialog" tabindex="-1" id="modal-update">

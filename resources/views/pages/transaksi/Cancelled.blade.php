@@ -52,12 +52,9 @@
                 </div>
                 {{ $last_transaksi->links() }}
                 <ul class="list-unstyled form-control" id="list-action">
-                    {{-- @if(in_array("Mengubah Data Inventory", Session::get('permissions')) || Session::get('role') == 'administrator') --}}
-                    {{-- <li id="action-detail">Lihat Detail</li> --}}
-                    {{-- @endif --}}
-                    {{-- @if(in_array("Menghapus Inventory", Session::get('permissions')) || Session::get('role') == 'administrator') --}}
+                    @if(in_array("Merestore Transaksi", Session::get('permissions')) || Session::get('role') == 'administrator')
                     <li id="action-restore">Restore Transaksi</li>
-                    {{-- @endif --}}
+                    @endif
                 </ul>
             </div>
         </div>

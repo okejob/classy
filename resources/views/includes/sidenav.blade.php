@@ -71,14 +71,14 @@
                     </a>
                 </div>
                 @endif
-                {{-- @if(in_array("Membuka Menu Rewash", Session::get('permissions')) || Session::get('role') == 'administrator') --}}
+                @if(in_array("Membuka Menu Diskon", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-data-diskon">
                     <a href="/data/diskon" class="menu-item menu-data pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fa-solid fa-tags"></i>
                         <p class="ms-3">Diskon</p>
                     </a>
                 </div>
-                {{-- @endif --}}
+                @endif
             </div>
         </div>
         <div id="nav-menu-transaksi" class="nav-menu">
@@ -89,12 +89,6 @@
                 <i class="fas fa-angle-down"></i>
             </div>
             <div class="nav-items">
-                {{-- <div id="nav-transaksi-undefined">
-                    <a href="/transaksi" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
-                        <i class="fas fa-comment-dollar"></i>
-                        <p class="ms-3">Transaksi</p>
-                    </a>
-                </div> --}}
                 @if(in_array("Membuka Menu Transaksi", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-transaksi-bucket">
                     <a href="/transaksi/bucket" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
@@ -152,12 +146,14 @@
                     </a>
                 </div>
                 @endif
+                @if(in_array("Membuka Menu Canceled", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-transaksi-cancelled">
                     <a href="/transaksi/cancelled" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fa-solid fa-ban"></i>
                         <p class="ms-3">Cancelled</p>
                     </a>
                 </div>
+                @endif
             </div>
         </div>
 
@@ -204,7 +200,7 @@
                     </a>
                 </div>
                 @endif
-                @if(in_array("Membuka Menu Hub Cuci", Session::get('permissions')) || Session::get('role') == 'administrator')
+                @if(in_array("Membuka Menu Proses Rewash", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-proses-rewash">
                     <a href="/proses/rewash" class="menu-item menu-proses pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fas fa-water"></i>
@@ -212,12 +208,14 @@
                     </a>
                 </div>
                 @endif
+                @if(in_array("Membuka Menu Packing", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-proses-packing">
                     <a href="/proses/packing" class="menu-item menu-proses pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
                         <i class="fa-solid fa-boxes-packing"></i>
                         <p class="ms-3">Packing</p>
                     </a>
                 </div>
+                @endif
             </div>
         </div>
 

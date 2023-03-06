@@ -647,7 +647,20 @@ $(document).ready(function() {
     });
 
     $('#kode-promo').on('click', function() {
+        let val = $('#grand-total').html();
+        while(val.indexOf('.') != -1) {
+            val = val.replace('.', '');
+        }
+        let number = parseInt(val);
+        $('#input-nominal-promo').attr('max', number);
         $('#modal-kode-promo').modal('show');
+    });
+
+    $('#input-nominal-promo').on('input', function() {
+        console.log('val = ' + $(this).val());
+        if (parseInt($(this).val()) > parseInt($(this).attr('max'))) {
+            $(this).val($(this).attr('max'));
+        }
     });
 
     $('#btn-authenticate-login').on('click', function() {

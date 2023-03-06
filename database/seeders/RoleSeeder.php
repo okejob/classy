@@ -36,8 +36,7 @@ class RoleSeeder extends Seeder
             'Mengambil Tugas Cuci',
             'Mengurangi Tugas Cuci',
 
-            'Membuka Menu Rewash',
-            'Mengganti Status Rewash'
+            'Membuka Menu Rewash'
         ]);
 
         $produksi_setrika = Role::create(['name' => 'produksi_setrika']);
@@ -52,8 +51,7 @@ class RoleSeeder extends Seeder
             'Mengurangi Tugas Setrika',
 
             'Membuka Menu Rewash',
-            'Menambah Rewash',
-            'Mengganti Status Rewash',
+            'Menambah Rewash'
         ]);
 
         $delivery = Role::create(['name' => 'delivery']);

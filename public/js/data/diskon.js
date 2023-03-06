@@ -14,23 +14,25 @@ $(document).ready(function() {
 
     $('#data-diskon .btn-tambah').on('click', function() {
         btnIndex = -1;
-        $('#modal-form').attr('action', "/data/diskon/insert");
+        $('#modal-form').attr('action', "/data/diskon");
         $('.modal-title').text('Diskon baru');
 
         $('#input-kode').val('');
         $('#input-deskripsi').val('');
         $('#input-nominal').val('');
+        $('#input-expired').val('');
 
         $('#modal-diskon').modal('show');
     });
 
     $('#data-diskon #action-update').on('click', function() {
-        $('#modal-form').attr('action', "/data/diskon/update/" + btnId);
+        $('#modal-form').attr('action', "/data/diskon/" + btnId);
         $('.modal-title').text('Rubah diskon');
 
-        $('#input-nama').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(1)').html());
+        $('#input-kode').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(1)').html());
         $('#input-deskripsi').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(2)').html());
-        $('#input-nominal').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(3)').html().replace('.', ''));
+        $('#input-nominal').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(4)').html().replace('.', ''));
+        $('#input-expired').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(5)').html());
 
         $('#modal-diskon').modal('show');
     });

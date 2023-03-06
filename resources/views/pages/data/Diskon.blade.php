@@ -27,10 +27,10 @@
                             @foreach ($diskons as $diskon)
                             <tr>
                                 <td>{{ $diskon->code }}</td>
-                                <td>{{ $diskon->deskripsi }}</td>
+                                <td>{{ $diskon->description }}</td>
                                 <td>Rp</td>
                                 <td class="text-end thousand-separator">{{ $diskon->nominal }}</td>
-                                <td class="text-center">{{ $diskon->expired_date }}</td>
+                                <td class="text-center">{{ $diskon->expired }}</td>
                                 <td class="cell-action">
                                     <button id="btn-{{ $diskon->id }}" class="btn btn-primary btn-sm btn-show-action" type="button">
                                         <i class="fas fa-bars"></i>
@@ -42,19 +42,19 @@
                     </table>
                 </div>
                 {{ $diskons->links() }}
-                {{-- @if(in_array("Menambah Inventory", Session::get('permissions')) || Session::get('role') == 'administrator') --}}
+                @if(in_array("Menambah Data Diskon", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <button class="btn btn-primary btn-tambah mt-2" type="button">
                     <i class="fas fa-plus-circle"></i>
                     &nbsp;Tambah
                 </button>
-                {{-- @endif --}}
+                @endif
                 <ul class="list-unstyled form-control" id="list-action">
-                    {{-- @if(in_array("Mengubah Data Inventory", Session::get('permissions')) || Session::get('role') == 'administrator') --}}
+                    @if(in_array("Mengubah Data Diskon", Session::get('permissions')) || Session::get('role') == 'administrator')
                     <li id="action-update">Rubah data</li>
-                    {{-- @endif --}}
-                    {{-- @if(in_array("Menghapus Inventory", Session::get('permissions')) || Session::get('role') == 'administrator') --}}
+                    @endif
+                    @if(in_array("Menghapus Data Diskon", Session::get('permissions')) || Session::get('role') == 'administrator')
                     <li id="action-delete">Hapus data</li>
-                    {{-- @endif --}}
+                    @endif
                 </ul>
             </div>
         </div>
@@ -65,7 +65,7 @@
                         <h4 class="modal-title">Diskon Baru</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form id="modal-form" action="/data/diskon/insert" method="POST">
+                    <form id="modal-form" action="/data/diskon" method="POST">
                         @csrf
                         <div class="modal-body">
                             <div class="row">
@@ -75,14 +75,18 @@
                                 </div>
                                 <div class="col-12">
                                     <h5>Deskripsi</h5>
-                                    <textarea class="form-control" id="input-deskripsi" name="deskripsi"></textarea>
+                                    <textarea class="form-control" id="input-deskripsi" name="description"></textarea>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-6">
                                     <h5>Besar Diskon</h5>
                                     <div class="form-control d-flex">
                                         <p>Rp</p>
                                         <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-nominal" name="nominal" required>
                                     </div>
+                                </div>
+                                <div class="col-6">
+                                    <h5>Tanggal Expired</h5>
+                                    <input class="form-control" type="date" id="input-expired" name="expired_date" required>
                                 </div>
                             </div>
                         </div>

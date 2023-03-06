@@ -11,12 +11,14 @@ class DiskonController extends Controller
 {
     public function insert(Request $request)
     {
+        // dd($request);
         Diskon::create([
             'code' => $request->code,
             'description' => $request->description,
-            'expired' => Date::createFromFormat('dd-mm-yyyy', $request->expired_date),
+            'expired' => Date::createFromFormat('Y-m-d', $request->expired_date),
             'nominal' => $request->nominal
         ]);
+        return redirect()->intended(route('data-diskon'));
     }
 
     public function update(Request $request, Diskon $diskon)
@@ -24,9 +26,11 @@ class DiskonController extends Controller
         $diskon->update([
             'code' => $request->code,
             'description' => $request->description,
-            'expired' => Date::createFromFormat('dd-mm-yyyy', $request->expired_date),
+            'expired' => Date::createFromFormat('Y-m-d', $request->expired_date),
             'nominal' => $request->nominal
         ]);
+        $diskon->save();
+        return redirect()->intended(route('data-diskon'));
     }
 
     public function addCodeToTransaksi(Transaksi $transaksi, $promo)
@@ -46,9 +50,9 @@ class DiskonController extends Controller
         }
     }
 
-    public function delete(Diskon $diskon)
+    public function delete($id)
     {
-        $diskon->delete();
+        Diskon::destroy($id);
 
         return redirect()->intended(route('data-diskon'));
     }
