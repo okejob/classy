@@ -35,7 +35,6 @@ class PengeluaranController extends Controller
         ])->toArray();
         Pengeluaran::create($merged);
         return redirect()->intended(route('menu-pengeluaran'));
-
     }
 
     public function show($id)

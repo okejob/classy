@@ -330,7 +330,7 @@ class PageController extends Controller
         return view(
             'pages.data.Diskon',
             [
-                'diskons' => Diskon::orderBy("code", "asc")->paginate(5)
+                'diskons' => Diskon::withTrashed()->orderBy("code", "asc")->paginate(5)
             ]
         );
     }

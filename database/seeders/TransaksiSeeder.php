@@ -21,7 +21,7 @@ class TransaksiSeeder extends Seeder
             'outlet_id' => 1,
             'cashier_id' => 1,
             'parfum_id' => 1,
-            'status' => 'draft',
+            'status' => 'confirmed',
             'modified_by' => 1,
         ]);
         Transaksi::create([
@@ -30,7 +30,7 @@ class TransaksiSeeder extends Seeder
             'outlet_id' => 1,
             'cashier_id' => 1,
             'parfum_id' => 1,
-            'status' => 'draft',
+            'status' => 'confirmed',
             'modified_by' => 1,
         ]);
     }

@@ -57,6 +57,7 @@
                 @if(in_array("Mengubah Data Outlet", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <li id="action-update">Rubah data</li>
                 @endif
+                <li id="action-add-saldo">Tambah saldo</li>
             </ul>
         </div>
     </section>
@@ -117,6 +118,50 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="modal-add-saldo">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Tambah Saldo</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="modal-form" action="" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-3 mb-3">
+                                <h5>Kode Outlet</h5>
+                                <input class="form-control" type="text" id="input-saldo-kode" name="" required disabled>
+                            </div>
+                            <div class="col-9 mb-3">
+                                <h5>Nama Outlet</h5>
+                                <input class="form-control" type="text" id="input-saldo-nama" name="" required disabled>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <h5>Saldo Sekarang</h5>
+                                <div class="form-control d-flex disabled" style="background-color: #e9ecef;">
+                                    <p>Rp</p>
+                                    <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-saldo" name="saldo" required disabled>
+                                </div>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <h5>Jumlah yang ditambahkan</h5>
+                                <div class="form-control d-flex">
+                                    <p>Rp</p>
+                                    <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-nominal" min=1000 name="nominal" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btn-submit" class="btn btn-primary" type="submit">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <script src="{{ asset('js/pengaturan/outlet.js') }}"></script>

@@ -11,7 +11,7 @@ $(document).ready(function() {
     // untuk update data outlet
     $('#action-update').on('click', function() {
         $('#form-outlet').attr('action', "/setting/outlet/" + btnId);
-        $('.modal-title').text('Rubah outlet');
+        $('#modal-outlet .modal-title').text('Rubah outlet');
 
         $('#input-kode').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(1)').html());
         $('#input-nama').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(2)').html());
@@ -39,7 +39,7 @@ $(document).ready(function() {
     // untuk menambah data outlet
     $('#add-outlet').on('click', function() {
         $('#form-outlet').attr('action', "/setting/outlet");
-        $('.modal-title').text('Tambah outlet');
+        $('#modal-outlet .modal-title').text('Tambah outlet');
 
         $('#input-kode').val('');
         $('#input-nama').val('');
@@ -57,5 +57,14 @@ $(document).ready(function() {
         $('#col-status').hide();
 
         $('#modal-outlet').modal('show');
+    });
+
+    $('#action-add-saldo').on('click', function() {
+        $('#input-saldo-kode').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(1)').html());
+        $('#input-saldo-nama').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(2)').html());
+        $('#input-saldo').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(8)').html());
+        $('#input-nominal').val('0');
+
+        $('#modal-add-saldo').modal('show');
     });
 });

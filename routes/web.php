@@ -134,7 +134,7 @@ Route::middleware(['auth'])->group(function () {
     // Diskon
     Route::get('/data/diskon', [PageController::class, 'diskon'])->name('data-diskon')->middleware('permission:Membuka Menu Diskon');
     Route::post('/data/diskon', [DiskonController::class, 'insert'])->middleware('permission:Menambah Data Diskon');
-    Route::post('/data/diskon/{id}', [DiskonController::class, 'update'])->middleware('permission:Mengubah Data Diskon');
+    Route::post('/data/diskon/{diskon}', [DiskonController::class, 'update'])->middleware('permission:Mengubah Data Diskon');
     Route::get('/data/diskon/delete/{id}', [DiskonController::class, 'delete'])->middleware('permission:Menghapus Data Diskon');
 
     //Pickup & Delivery

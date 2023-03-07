@@ -20,6 +20,7 @@
                                 <th>Deskripsi</th>
                                 <th colspan="2">Besar Diskon</th>
                                 <th>Expired Date</th>
+                                <th>Status</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -31,11 +32,21 @@
                                 <td>Rp</td>
                                 <td class="text-end thousand-separator">{{ $diskon->nominal }}</td>
                                 <td class="text-center">{{ $diskon->expired }}</td>
-                                <td class="cell-action">
-                                    <button id="btn-{{ $diskon->id }}" class="btn btn-primary btn-sm btn-show-action" type="button">
-                                        <i class="fas fa-bars"></i>
-                                    </button>
-                                </td>
+                                @if ($diskon->deleted_at != null)
+                                    <td class="text-center">Deleted</td>
+                                    <td></td>
+                                @else
+                                    @if (date('Y-m-d') > $diskon->expired)
+                                        <td class="text-center">Expired</td>
+                                    @else
+                                        <td class="text-center">Active</td>
+                                    @endif
+                                    <td class="cell-action">
+                                        <button id="btn-{{ $diskon->id }}" class="btn btn-primary btn-sm btn-show-action" type="button">
+                                            <i class="fas fa-bars"></i>
+                                        </button>
+                                    </td>
+                                @endif
                             </tr>
                             @endforeach
                         </tbody>

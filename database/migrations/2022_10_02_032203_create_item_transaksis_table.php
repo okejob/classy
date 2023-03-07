@@ -21,12 +21,12 @@ return new class extends Migration
             $table->foreignId('jenis_item_id')
                 ->constrained()
                 ->cascadeOnDelete();
-            $table->float('bobot_bucket')->default(0);
+            $table->double('bobot_bucket')->default(0);
             $table->integer('harga_premium')->default(0);
             $table->string('status_proses');
             $table->integer('qty')->default(1);
-            $table->float('total_bobot')->default(0);
-            $table->float('total_premium')->default(0);
+            $table->double('total_bobot')->default(0);
+            $table->double('total_premium')->default(0);
             $table->foreignId('modified_by')
                 ->constrained('users', 'id')
                 ->cascadeOnDelete();

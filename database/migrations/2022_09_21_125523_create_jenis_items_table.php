@@ -20,7 +20,7 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $table->string('nama');
             $table->string('unit');
-            $table->float('bobot_bucket');
+            $table->double('bobot_bucket');
             $table->integer('harga_kilo');
             $table->integer('harga_bucket');
             $table->integer('harga_premium');
@@ -28,7 +28,7 @@ return new class extends Migration
             $table->boolean('status_bucket')->default(false);
             $table->boolean('status_premium')->default(false);
             $table->boolean('status_item')->default(true);
-            $table->float('beban_produksi')->default(0.0);
+            $table->double('beban_produksi')->default(0.0);
             $table->timestamps();
         });
     }
