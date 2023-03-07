@@ -12,22 +12,24 @@ class PengeluaranController extends Controller
 {
     public function insert(InsertPengeluaranRequest $request)
     {
-        // if implement saldo outlet
-        // $outlet_id = Auth::user()->outlet_id;
-        // $outlet = Outlet::find($outlet_id);
-        // if ($outlet->saldo >= $request->nominal) {
+        $outlet_id = Auth::user()->outlet_id;
+        $outlet = Outlet::find($outlet_id);
+        if ($outlet->saldo >= $request->nominal) {
 
-        //     $merged = $request->merge([
-        //         'modified_by' => Auth::id(),
-        //         'outlet_id' => Auth::user()->outlet_id
-        //     ])->toArray();
-        //     Pengeluaran::create($merged);
-        //     $outlet->update([
-        //         'saldo' => $outlet->saldo - $request->nominal
-        //     ]);
-        //     return redirect()->intended(route('menu-pengeluaran'));
-        // }
-        //kurang return kalau error
+            $merged = $request->merge([
+                'modified_by' => Auth::id(),
+                'outlet_id' => Auth::user()->outlet_id
+            ])->toArray();
+            Pengeluaran::create($merged);
+            $outlet->update([
+                'saldo' => $outlet->saldo - $request->nominal
+            ]);
+            return redirect()->intended(route('menu-pengeluaran'));
+        } else {
+            return response()->json([
+                'message' => 'Saldo Kurang'
+            ], 400);
+        }
 
         $merged = $request->merge([
             'modified_by' => Auth::id(),

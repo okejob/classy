@@ -33,6 +33,7 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'Membuat Outlet']);
         Permission::create(['name' => 'Mengubah Data Outlet']);
         Permission::create(['name' => 'Menghapus Outlet']);
+        Permission::create(['name' => 'Menambah Saldo Outlet']);
 
         //PaketCuci
         Permission::create(['name' => 'Membuka Menu Paket Cuci']);

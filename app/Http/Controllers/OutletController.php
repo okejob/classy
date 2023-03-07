@@ -40,4 +40,13 @@ class OutletController extends Controller
 
         return redirect()->intended(route('menu-outlet'));
     }
+
+    public function updateSaldo(Request $request, Outlet $outlet)
+    {
+        $outlet->update([
+            'nominal' => $outlet->saldo + $request->nominal
+        ]);
+
+        return redirect()->intended(route('menu-outlet'));
+    }
 }
