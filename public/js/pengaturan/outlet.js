@@ -19,9 +19,9 @@ $(document).ready(function() {
         $('#input-telp1').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(4)').html());
         $('#input-telp2').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(5)').html());
         $('#input-fax').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(6)').html());
-        if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(7)').html() == 'Aktif') {
+        if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(9)').html() == 'Aktif') {
             $('#radio-status-aktif').attr('checked', true);
-        } else if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(7)').html() == 'Tidak aktif') {
+        } else if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(9)').html() == 'Tidak aktif') {
             $('#radio-status-nonaktif').attr('checked', true);
         }
 

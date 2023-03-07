@@ -124,7 +124,6 @@ $(document).ready(function() {
                 setThousandSeparator();
             });
 
-            setThousandSeparator();
             $('#form-transaksi').attr('action', '/transaksi/update/' + trans.id);
 
             parent.removeClass('disabled');
@@ -647,12 +646,8 @@ $(document).ready(function() {
     });
 
     $('#kode-promo').on('click', function() {
-        let val = $('#grand-total').html();
-        while(val.indexOf('.') != -1) {
-            val = val.replace('.', '');
-        }
-        let number = parseInt(val);
-        $('#input-nominal-promo').attr('max', number);
+        let val = removeDot($('#sub-total').html()) - removeDot($('#diskon-member').html());
+        $('#input-nominal-promo').attr('max', val);
         $('#modal-kode-promo').modal('show');
     });
 

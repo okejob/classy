@@ -19,7 +19,7 @@
                                 <th>Telepon 1</th>
                                 <th>Telepon 2</th>
                                 <th>Nomor Fax</th>
-                                <th>Saldo</th>
+                                <th colspan="2">Saldo</th>
                                 <th>Status</th>
                                 <th></th>
                             </tr>
@@ -27,13 +27,14 @@
                         <tbody>
                         @foreach ($data as $outlet)
                             <tr>
-                                <td>{{ $outlet->kode }}</td>
+                                <td class="text-center">{{ $outlet->kode }}</td>
                                 <td>{{ $outlet->nama }}</td>
                                 <td>{{ $outlet->alamat }}</td>
                                 <td>{{ $outlet->telp_1 }}</td>
                                 <td>{{ $outlet->telp_2 }}</td>
-                                <td class="thousand-separator">{{ $outlet->saldo }}</td>
                                 <td>{{ $outlet->fax }}</td>
+                                <td>Rp</td>
+                                <td class="text-end thousand-separator">{{ $outlet->saldo }}</td>
                                 @if ($outlet->status)
                                     <td class="text-center">Aktif</td>
                                 @else

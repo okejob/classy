@@ -116,7 +116,7 @@ class PageController extends Controller
                 'data' => Pengeluaran::when($request->has("search"), function ($q) use ($request) {
                     return $q->where("nama", "like", "%" . $request->get("search") . "%")
                         ->orWhere("deskripsi", "like", "%" . $request->get("search") . "%");
-                })->orderBy("nama", "asc")->paginate(5)
+                })->where('outlet_id', Auth::user()->outlet_id)->orderBy("nama", "asc")->paginate(5)
             ]
         );
     }

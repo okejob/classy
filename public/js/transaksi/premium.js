@@ -121,20 +121,9 @@ $(document).ready(function() {
 
             $('#table-container').load(window.location.origin + '/component/transPremium/' + id, function() {
                 adjustWidth();
+                setThousandSeparator();
             });
 
-            if (trans.lunas) {
-                $('#btn-bayar').hide();
-            } else {
-                $('#btn-bayar').show();
-                $('#terbayar').val(trans.total_terbayar);
-            }
-
-            $('#input-trans-id').val(trans.id);
-            $('#input-total').val(trans.grand_total.toLocaleString(['ban', 'id']));
-            $('#input-kembalian').val('0');
-
-            setThousandSeparator();
             $('#form-transaksi').attr('action', '/transaksi/update/' + trans.id);
 
             parent.removeClass('disabled');
@@ -648,12 +637,8 @@ $(document).ready(function() {
     });
 
     $('#kode-promo').on('click', function() {
-        let val = $('#grand-total').html();
-        while(val.indexOf('.') != -1) {
-            val = val.replace('.', '');
-        }
-        let number = parseInt(val);
-        $('#input-nominal-promo').attr('max', number);
+        let val = removeDot($('#sub-total').html()) - removeDot($('#diskon-member').html());
+        $('#input-nominal-promo').attr('max', val);
         $('#modal-kode-promo').modal('show');
     });
 
