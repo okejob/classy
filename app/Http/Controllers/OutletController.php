@@ -44,8 +44,9 @@ class OutletController extends Controller
     public function updateSaldo(Request $request, Outlet $outlet)
     {
         $outlet->update([
-            'nominal' => $outlet->saldo + $request->nominal
+            'saldo' => $outlet->saldo + $request->nominal
         ]);
+        $outlet->save();
 
         return redirect()->intended(route('menu-outlet'));
     }

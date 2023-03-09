@@ -60,6 +60,8 @@ $(document).ready(function() {
     });
 
     $('#action-add-saldo').on('click', function() {
+        $('#modal-form').attr('action', "/setting/outlet/update-saldo/" + btnId);
+        
         $('#input-saldo-kode').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(1)').html());
         $('#input-saldo-nama').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(2)').html());
         $('#input-saldo').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(8)').html());

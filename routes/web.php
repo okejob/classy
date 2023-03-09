@@ -74,7 +74,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/setting/outlet', [OutletController::class, 'insert'])->middleware('permission:Membuat Outlet');
     Route::post('/setting/outlet/{id}', [OutletController::class, 'update'])->middleware('permission:Mengubah Data Outlet');
     Route::get('/setting/outlet/delete/{id}', [OutletController::class, 'delete'])->middleware('permission:Menghapus Outlet');
-    Route::get('/setting/outlet/update-saldo/{outlet}', [OutletController::class, 'updateSaldo'])->middleware('permission:Menambah Saldo Outlet');
+    Route::post('/setting/outlet/update-saldo/{outlet}', [OutletController::class, 'updateSaldo'])->middleware('permission:Menambah Saldo Outlet');
 
     //Paket Cuci
     Route::get('/setting/paket-cuci', [PageController::class, 'paketCuci'])->name('menu-paket-cuci')->middleware('permission:Membuka Menu Paket Cuci');

@@ -26,17 +26,18 @@ class PengeluaranController extends Controller
             ]);
             return redirect()->intended(route('menu-pengeluaran'));
         } else {
-            return response()->json([
+            return [
+                'status' => 400,
                 'message' => 'Saldo Kurang'
-            ], 400);
+            ];
         }
 
-        $merged = $request->merge([
-            'modified_by' => Auth::id(),
-            'outlet_id' => Auth::user()->outlet_id
-        ])->toArray();
-        Pengeluaran::create($merged);
-        return redirect()->intended(route('menu-pengeluaran'));
+        // $merged = $request->merge([
+        //     'modified_by' => Auth::id(),
+        //     'outlet_id' => Auth::user()->outlet_id
+        // ])->toArray();
+        // Pengeluaran::create($merged);
+        // return redirect()->intended(route('menu-pengeluaran'));
     }
 
     public function show($id)

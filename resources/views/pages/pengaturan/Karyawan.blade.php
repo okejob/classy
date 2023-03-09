@@ -217,10 +217,10 @@
                                         <input class="form-check-input" type="checkbox" id="check-pengaturan-outlet-4" value="Mengubah Data Outlet">
                                         <label class="form-check-label" for="check-pengaturan-outlet-4">Mengubah data outlet</label>
                                     </div>
-                                    {{-- <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="check-pengaturan-outlet-5" value="Menghapus Outlet">
-                                        <label class="form-check-label" for="check-pengaturan-outlet-5">Menghapus outlet</label>
-                                    </div> --}}
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="check-pengaturan-outlet-5" value="Menambah Saldo Outlet">
+                                        <label class="form-check-label" for="check-pengaturan-outlet-5">Menambah saldo outlet</label>
+                                    </div>
                                 </div>
                                 <h5 class="fw-bold">Karyawan & Hak Akses</h5>
                                 <div class="ms-1 mb-3">

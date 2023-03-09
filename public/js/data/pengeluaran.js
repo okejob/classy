@@ -15,7 +15,7 @@ $(document).ready(function() {
     // untuk mereset tampilan modal & menampilkan modal
     $('#data-pengeluaran .btn-tambah').on('click', function() {
         btnIndex = -1;
-        $('#modal-form').attr('action', "/data/pengeluaran");
+        $('#modal-form-pengeluaran').attr('action', "/data/pengeluaran");
         $('.modal-title').text('Tambah pengeluaran baru');
 
         $('#input-nama-pengeluaran').val('');
@@ -27,7 +27,7 @@ $(document).ready(function() {
 
     // untuk mengisi tampilan modal & menampilkan modal
     $('#data-pengeluaran #action-update').on('click', function() {
-        $('#modal-form').attr('action', "/data/pengeluaran/" + btnId);
+        $('#modal-form-pengeluaran').attr('action', "/data/pengeluaran/" + btnId);
         $('.modal-title').text('Rubah pengeluaran');
 
         $('#input-nama-pengeluaran').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(2)').html());
@@ -48,9 +48,31 @@ $(document).ready(function() {
         }
     });
 
-    $('#modal-form').on('submit', function(e) {
+    $('#modal-form-pengeluaran').on('submit', function(e) {
         e.preventDefault();
         $('#btn-submit').addClass('disabled');
-        e.currentTarget.submit();
+        // e.currentTarget.submit();
+
+        let formData = new FormData();
+        formData.append('nama', $('#input-nama-pengeluaran').val());
+        formData.append('deskripsi', $('#input-deskripsi').val());
+        formData.append('nominal', $('#input-nominal').val());
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            },
+            url: "/data/pengeluaran",
+            method: "POST",
+            contentType: false,
+            processData: false,
+            data: formData,
+        }).done(function(data) {
+            if (data.status == '400') {
+                alert('saldo outlet tidak mencukupi');
+                $('#modal-update').modal('hide');
+                $('#btn-submit').removeClass('disabled');
+            }
+        });
     });
 });

@@ -57,7 +57,9 @@
                 @if(in_array("Mengubah Data Outlet", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <li id="action-update">Rubah data</li>
                 @endif
+                @if(in_array("Menambah Saldo Outlet", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <li id="action-add-saldo">Tambah saldo</li>
+                @endif
             </ul>
         </div>
     </section>
@@ -66,7 +68,8 @@
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Rubah Data Outlet</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h4 class="modal-title">Rubah Data Outlet</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form id="form-outlet" method="POST" action>
                     @csrf
@@ -149,7 +152,7 @@
                                 <h5>Jumlah yang ditambahkan</h5>
                                 <div class="form-control d-flex">
                                     <p>Rp</p>
-                                    <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-nominal" min=1000 name="nominal" required>
+                                    <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-nominal" name="nominal" required>
                                 </div>
                             </div>
                         </div>
