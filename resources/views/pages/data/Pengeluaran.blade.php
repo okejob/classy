@@ -57,9 +57,6 @@
                     @if(in_array("Mengubah Data Pengeluaran", Session::get('permissions')) || Session::get('role') == 'administrator')
                     <li id="action-update">Rubah data</li>
                     @endif
-                    @if(in_array("Menghapus Pengeluaran", Session::get('permissions')) || Session::get('role') == 'administrator')
-                    <li id="action-delete">Hapus data</li>
-                    @endif
                 </ul>
             </div>
         </div>

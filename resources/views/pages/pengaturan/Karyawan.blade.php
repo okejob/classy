@@ -436,10 +436,6 @@
                                         <input class="form-check-input" type="checkbox" id="check-data-pengeluaran-4" value="Mengubah Data Pengeluaran">
                                         <label class="form-check-label" for="check-data-pengeluaran-4">Mengubah data pengeluaran</label>
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="check-data-pengeluaran-5" value="Menghapus Pengeluaran">
-                                        <label class="form-check-label" for="check-data-pengeluaran-5">Menghapus pengeluaran</label>
-                                    </div>
                                 </div>
                                 <h5 class="fw-bold">Rewash</h5>
                                 <div class="ms-1 mb-3">
