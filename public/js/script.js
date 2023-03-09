@@ -291,14 +291,12 @@ $(document).ready(function() {
             }
         });
 
-        // if ($(this).closest('#data-pengeluaran').length != 0) {
+        if ($(this).closest('#data-pengeluaran').length != 1) {
             if ($(this)[0].checkValidity()) {
                 this.submit();
             } else {
                 $(this)[0].reportValidity();
             }
-        // } else {
-        //     $(this).submit();
-        // }
+        }
     });
 });

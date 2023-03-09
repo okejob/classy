@@ -26,10 +26,10 @@ class PengeluaranController extends Controller
             ]);
             return redirect()->intended(route('menu-pengeluaran'));
         } else {
-            return [
+            return response()->json([
                 'status' => 400,
                 'message' => 'Saldo Kurang'
-            ];
+            ]);
         }
 
         // $merged = $request->merge([

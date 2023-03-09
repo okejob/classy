@@ -15,7 +15,7 @@ $(document).ready(function() {
     // untuk mereset tampilan modal & menampilkan modal
     $('#data-pengeluaran .btn-tambah').on('click', function() {
         btnIndex = -1;
-        $('#modal-form-pengeluaran').attr('action', "/data/pengeluaran");
+        $('#form-pengeluaran').attr('action', "/data/pengeluaran");
         $('.modal-title').text('Tambah pengeluaran baru');
 
         $('#input-nama-pengeluaran').val('');
@@ -27,12 +27,12 @@ $(document).ready(function() {
 
     // untuk mengisi tampilan modal & menampilkan modal
     $('#data-pengeluaran #action-update').on('click', function() {
-        $('#modal-form-pengeluaran').attr('action', "/data/pengeluaran/" + btnId);
+        $('#form-pengeluaran').attr('action', "/data/pengeluaran/" + btnId);
         $('.modal-title').text('Rubah pengeluaran');
 
-        $('#input-nama-pengeluaran').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(2)').html());
-        $('#input-deskripsi').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(3)').html());
-        $('#input-nominal').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(6)').html());
+        $('#input-nama-pengeluaran').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(1)').html());
+        $('#input-deskripsi').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(2)').html());
+        $('#input-nominal').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(5)').html());
 
         $('#modal-update').modal('show');
     });
@@ -48,7 +48,7 @@ $(document).ready(function() {
         }
     });
 
-    $('#modal-form-pengeluaran').on('submit', function(e) {
+    $('#modal-form').on('submit', function(e) {
         e.preventDefault();
         $('#btn-submit').addClass('disabled');
         // e.currentTarget.submit();
@@ -72,6 +72,8 @@ $(document).ready(function() {
                 alert('saldo outlet tidak mencukupi');
                 $('#modal-update').modal('hide');
                 $('#btn-submit').removeClass('disabled');
+            } else {
+                window.location = window.location.origin + window.location.pathname;
             }
         });
     });
