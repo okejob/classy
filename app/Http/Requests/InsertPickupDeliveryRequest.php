@@ -28,7 +28,8 @@ class InsertPickupDeliveryRequest extends FormRequest
             'driver_id' => 'exists:users,id',
             'action' => 'string',
             'alamat' => 'string',
-            'transaksi_id' => 'exists:transaksis,id'
+            'transaksi_id' => 'exists:transaksis,id',
+            'request' => 'string',
         ];
     }
 }
