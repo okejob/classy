@@ -23,11 +23,11 @@ $(document).ready(function() {
         }
     };
 
-    // untuk "enable" kan komponen yang nantinya digunakan untuk mengupdate data pelanggan
     $('#btn-ubah').on('click', function() {
-        $('.disabled').each(function(index, element) {
-            $(element).removeClass('disabled');
+        $('#modal-form input:disabled').each(function(index, element) {
+            $(element).attr('disabled', false);
         });
+        $('#modal-form select:disabled').attr('disabled', false);
         $(this).hide();
         $(this).next().show();
     });

@@ -11,52 +11,65 @@
                 <form id="modal-form" action="/data/pelanggan/{{ $pelanggan->id }}" method="POST">
                     @csrf
                     <div class="row">
-                        <div class="col-12 mb-2 disabled">
+                        <div class="col-12 mb-2">
                             <h5>Nama Lengkap*</h5>
-                            <input class="form-control" type="text" id="input-nama-pelanggan" name="nama" value="{{ $pelanggan->nama }}" required>
+                            <input class="form-control" type="text" id="input-nama-pelanggan" name="nama" value="{{ $pelanggan->nama }}" required disabled>
                         </div>
-                        <div class="col-12 mb-2 disabled">
-                            <h5>Alamat*</h5>
-                            <input class="form-control" type="text" id="input-alamat" name="alamat" value="{{ $pelanggan->alamat }}" required>
-                        </div>
-                        <div class="col-12 col-lg-6 mb-2 disabled">
+                        <div class="col-12 col-lg-4 mb-2">
                             <h5>Tanggal Lahir</h5>
-                            <input class="form-control" id="input-tanggal-lahir" type="date" name="tanggal_lahir" value="{{ $pelanggan->tanggal_lahir }}" >
+                            <input class="form-control" id="input-tanggal-lahir" type="date" name="tanggal_lahir" value="{{ $pelanggan->tanggal_lahir }}" disabled>
                         </div>
-                        <div class="col-12 col-lg-6 mb-2 disabled">
+                        <div class="col-12 col-lg-4 mb-2">
+                            <h5>Jenis Kelamin</h5>
+                            <div class="form-control d-flex align-items-center justify-content-around">
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" id="formCheck-pria" name="gender" value='pria' @if ($pelanggan->gender == "pria") checked @endif required disabled/>
+                                    <label class="form-check-label" for="formCheck-pria">Pria</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" class="form-check-input" id="formCheck-wanita" name="gender" value='wanita' @if ($pelanggan->gender == "wanita") checked @endif disabled/>
+                                    <label class="form-check-label" for="formCheck-wanita">Wanita</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4 mb-2">
                             <h5>Tipe Member</h5>
                             <div class="form-control d-flex align-items-center justify-content-around">
                                 <div class="form-check">
-                                    <input type="radio" class="form-check-input" id="formCheck-member" name="member" value=1 @if ($pelanggan->member) checked @endif required />
+                                    <input type="radio" class="form-check-input" id="formCheck-member" name="member" value=1 @if ($pelanggan->member) checked @endif required disabled/>
                                     <label class="form-check-label" for="formCheck-member">Member</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="radio" class="form-check-input" id="formCheck-non-member" name="member" value=0 @if (!$pelanggan->member) checked @endif />
+                                    <input type="radio" class="form-check-input" id="formCheck-non-member" name="member" value=0 @if (!$pelanggan->member) checked @endif disabled/>
                                     <label class="form-check-label" for="formCheck-non-member">Bukan member</label>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6 mb-2 disabled">
+                        <div class="col-12 mb-2">
+                            <h5>Alamat*</h5>
+                            <input class="form-control" type="text" id="input-alamat" name="alamat" value="{{ $pelanggan->alamat }}" required disabled>
+                        </div>
+                        <div class="col-12 col-sm-6 mb-2">
                             <h5>Jenis Identitas</h5>
-                            <select class="form-select" id="input-jenis-identitas" name="jenis_id" value="{{ $pelanggan->jenis_id }}" >
+                            <select class="form-select" id="input-jenis-identitas" name="jenis_id" value="{{ $pelanggan->jenis_id }}" disabled>
                                 <option value='' disabled hidden>-</option>
                                 <option value="ktp">KTP</option>
                                 <option value="sim">SIM</option>
                             </select>
                         </div>
-                        <div class="col-12 col-sm-6 mb-2 disabled">
+                        <div class="col-12 col-sm-6 mb-2">
                             <h5>Nomor Identitas</h5>
-                            <input class="form-control" type="text" id="input-nomor-identitas" name="no_id" value="{{ $pelanggan->no_id }}"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                            <input class="form-control" type="text" id="input-nomor-identitas" name="no_id" value="{{ $pelanggan->no_id }}"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" disabled>
                         </div>
-                        <div class="col-12 col-lg-4 col-sm-6 mb-2 disabled">
+                        <div class="col-12 col-lg-6 mb-2">
                             <h5>Telephone*</h5>
-                            <input class="form-control" type="text" id="input-telepon" name="telephone" value="{{ $pelanggan->telephone }}" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                            <input class="form-control" type="text" id="input-telepon" name="telephone" value="{{ $pelanggan->telephone }}" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" disabled>
                         </div>
-                        <div class="col-12 col-lg-4 col-sm-6 mb-2 disabled">
+                        <div class="col-12 col-lg-6 mb-2">
                             <h5>E-mail</h5>
-                            <input class="form-control" type="text" id="input-email" name="email" value="{{ $pelanggan->email }}" >
+                            <input class="form-control" type="text" id="input-email" name="email" value="{{ $pelanggan->email }}" disabled>
                         </div>
-                        <div class="col-12 col-lg-4 mb-2 disabled">
+                        {{-- <div class="col-12 col-lg-4 mb-2">
                             <h5>Status</h5>
                             <div class="form-control d-flex align-items-center justify-content-around">
                                 <div class="form-check">
@@ -68,7 +81,7 @@
                                     <label class="form-check-label" for="formCheck-tidakAktif">Tidak aktif</label>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     @if(in_array("Mengubah Data Pelanggan", Session::get('permissions')) || Session::get('role') == 'administrator')
                     <hr>

@@ -12,20 +12,38 @@ $(document).ready(function() {
         btnId = $(this).attr('id').substring(4);
     });
 
-    $('#table-pelanggan').load(window.location.origin + '/component/pelanggan');
+    $('#table-pelanggan').load(window.location.origin + '/component/pelanggan?paginate=5');
     $('#data-pelanggan').on('click', '.page-link', function(e) {
         e.preventDefault();
         $('#table-pelanggan').load($(this).attr('href'));
     });
-    var searchData;
+    var searchData, searchFilter = '', paginateCount = 5;
     $('#input-search').on('input', function() {
         clearTimeout(searchData);
         searchData = setTimeout(search, 500);
     });
 
     function search() {
-        $('#table-pelanggan').load(window.location.origin + '/component/pelanggan?search=' + $('#input-search').val());
+        $('#table-pelanggan').load(window.location.origin + '/component/pelanggan?search=' + $('#input-search').val() + '&filter=' + searchFilter + '&paginate=' + paginateCount);
     }
+
+    $("#dropdown-filter .filter-search").on('click', function() {
+        paginateCount = parseInt($(this).data('paginate'));
+        $("#dropdown-filter .filter-search").each(function(index, element) {
+            $(element).removeClass('active');
+        });
+        $(this).addClass('active');
+        search();
+    });
+
+    $("#dropdown-filter .filter-paginate").on('click', function() {
+        paginateCount = parseInt($(this).data('paginate'));
+        $("#dropdown-filter .filter-paginate").each(function(index, element) {
+            $(element).removeClass('active');
+        });
+        $(this).addClass('active');
+        search();
+    });
 
     // untuk mereset tampilan modal & menampilkan modal
     $('#data-pelanggan .btn-tambah').on('click', function() {

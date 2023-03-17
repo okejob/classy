@@ -92,11 +92,12 @@ Route::middleware(['auth'])->group(function () {
 
     //item
     Route::get('/data/jenis-item', [PageController::class, 'jenisItem'])->name('menu-jenis-item')->middleware('permission:Membuka Menu Jenis Item');
-    Route::get('/data/jenis-item/find', [JenisItemController::class, 'find']);
+    // Route::get('/data/jenis-item/find', [JenisItemController::class, 'find']);
     Route::get('/data/jenis-item/{id}', [JenisItemController::class, 'show'])->middleware('permission:Melihat Detail Jenis Item');
     Route::post('/data/jenis-item', [JenisItemController::class, 'insert'])->middleware('permission:Membuat Jenis Item');
     Route::post('/data/jenis-item/{id}', [JenisItemController::class, 'update'])->middleware('permission:Mengubah Data Jenis Item');
     Route::get('/data/jenis-item/delete/{id}', [JenisItemController::class, 'delete'])->middleware('permission:Menghapus Jenis Item');
+    Route::get('/component/jenis-item', [JenisItemController::class, 'find']);
 
     //Kategori
     Route::get('/data/kategori', [PageController::class, 'kategori'])->name('menu-kategori')->middleware('permission:Membuka Menu Kategori');

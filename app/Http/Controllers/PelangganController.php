@@ -59,7 +59,7 @@ class PelangganController extends Controller
                 ->orWhere("no_id", "like", "%" . $request->get("search") . "%")
                 ->orWhere("telephone", "like", "%" . $request->get("search") . "%")
                 ->orWhere("email", "like", "%" . $request->get("search") . "%");
-        })->orderBy("nama", "asc")->paginate(5);
+        })->orderBy("created_at", "asc")->paginate($request->paginate);
         return view('components.tablePelanggan', [
             'pelanggans' => $pelanggan,
         ]);

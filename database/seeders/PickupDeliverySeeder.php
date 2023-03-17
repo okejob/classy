@@ -24,6 +24,7 @@ class PickupDeliverySeeder extends Seeder
             'driver_id' => 4,
             'action' => 'pickup',
             'alamat' => $pelanggan->alamat,
+            'request' => '',
             'modified_by' => 4,
         ]);
     }

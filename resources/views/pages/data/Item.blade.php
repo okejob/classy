@@ -11,77 +11,25 @@
             <div class="card-body">
                 <h4 class="card-title">Data Item</h4>
                 <hr>
-                <div class="d-flex justify-content-end">
-                    <form method="GET" action="/data/jenis-item" class="d-flex align-items-center">
+                <div class="d-flex justify-content-between">
+                    <div class="dropdown" id="dropdown-filter">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButtonFilter" data-bs-toggle="dropdown" aria-expanded="false">
+                            Filter
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonFilter" style="min-width: 6rem;">
+                            <li><h6 class="dropdown-header">Paginate</h6></li>
+                            <li><a class="dropdown-item active" data-paginate='5'>5 items</a></li>
+                            <li><a class="dropdown-item" data-paginate='10'>10 items</a></li>
+                            <li><a class="dropdown-item" data-paginate='25'>25 items</a></li>
+                            <li><a class="dropdown-item" data-paginate='50'>50 items</a></li>
+                        </ul>
+                    </div>
+                    <div class="d-flex align-items-center">
                         Search :
-                        <input class="form-control mx-1" type="search" name="search" style="max-width: 200px;">
-                    </form>
+                        <input class="form-control mx-1" id="input-search" type="search" name="search" style="max-width: 200px;">
+                    </div>
                 </div>
-                <div class="table-responsive mb-2">
-                    <table class="table table-striped" id="table-item">
-                        <thead>
-                            <tr>
-                                <th>Kategori</th>
-                                <th>Nama Item</th>
-                                <th>Unit</th>
-                                <th colspan="2">Bobot Bucket</th>
-                                <th colspan="2">Harga Kilo</th>
-                                <th colspan="2">Harga Bucket</th>
-                                <th colspan="2">Harga Premium</th>
-                                <th>Bobot Produksi</th>
-                                <th>Status Kilo</th>
-                                <th>Status Bucket</th>
-                                <th>Status Premium</th>
-                                <th>Status</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($data1 as $item)
-                            <tr>
-                                <td>{{ $item->kategori->nama }}</td>
-                                <td>{{ $item->nama }}</td>
-                                <td class="text-center">{{ $item->unit }}</td>
-                                <td class="text-end">{{ $item->bobot_bucket }}</td>
-                                <td>kg</td>
-                                <td>Rp</td>
-                                <td class="text-end thousand-separator">{{ $item->harga_kilo }}</td>
-                                <td>Rp</td>
-                                <td class="text-end thousand-separator">{{ $item->harga_bucket }}</td>
-                                <td>Rp</td>
-                                <td class="text-end thousand-separator">{{ $item->harga_premium }}</td>
-                                <td class="text-center">{{ $item->beban_produksi }}</td>
-                                @if ($item->status_kilo)
-                                    <td class="text-center">Aktif</td>
-                                @else
-                                    <td class="text-center">Tidak aktif</td>
-                                @endif
-                                @if ($item->status_bucket)
-                                    <td class="text-center">Aktif</td>
-                                @else
-                                    <td class="text-center">Tidak aktif</td>
-                                @endif
-                                @if ($item->status_premium)
-                                    <td class="text-center">Aktif</td>
-                                @else
-                                    <td class="text-center">Tidak aktif</td>
-                                @endif
-                                @if ($item->status_item)
-                                    <td class="text-center">Aktif</td>
-                                @else
-                                    <td class="text-center">Tidak aktif</td>
-                                @endif
-                                <td class="cell-action">
-                                    <button id="btn-{{ $item->id }}" class="btn btn-primary btn-sm btn-show-action" type="button">
-                                        <i class="fas fa-bars"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                {{ $data1->links() }}
+                <div id="table-item"></div>
                 @if(in_array("Membuat Jenis Item", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <button class="btn btn-primary btn-tambah mt-2" type="button">
                     <i class="fas fa-plus-circle"></i>
@@ -113,7 +61,7 @@
                                     <h5>Kategori</h5>
                                     <select class="form-select" id="input-kategori" name="kategori_id" required>
                                         <option value='' disabled selected hidden>-</option>
-                                        @foreach ($data2 as $kategori)
+                                        @foreach ($kategoris as $kategori)
                                             <option value={{ $kategori->id }}>{{ $kategori->nama }}</option>
                                         @endforeach
                                     </select>
