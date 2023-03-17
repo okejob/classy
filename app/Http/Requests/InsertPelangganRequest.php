@@ -28,6 +28,7 @@ class InsertPelangganRequest extends FormRequest
             'tanggal_lahir' => 'date',
             'alamat' => 'required|string',
             'member' => 'required|boolean',
+            'gender' => 'required|string',
             'no_id' => 'nullable|string',
             'jenis_id' => 'nullable|string',
             'telephone' => 'nullable|string',

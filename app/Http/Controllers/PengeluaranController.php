@@ -31,13 +31,6 @@ class PengeluaranController extends Controller
                 'message' => 'Saldo Kurang'
             ]);
         }
-
-        // $merged = $request->merge([
-        //     'modified_by' => Auth::id(),
-        //     'outlet_id' => Auth::user()->outlet_id
-        // ])->toArray();
-        // Pengeluaran::create($merged);
-        // return redirect()->intended(route('menu-pengeluaran'));
     }
 
     public function show($id)
