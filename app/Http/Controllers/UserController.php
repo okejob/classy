@@ -116,6 +116,12 @@ class UserController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
+        $role = User::getRole(Auth::id());
+        if ($role == "administrator") {
+            $user = User::find(Auth::id());
+            $user->outlet_id = null;
+        }
         return redirect()->route('login');
     }
 }
