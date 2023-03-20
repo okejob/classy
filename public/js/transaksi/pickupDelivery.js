@@ -46,8 +46,10 @@ $(document).ready(function() {
         btnId = $(this).attr('id').substring(6);
         if ($(this).closest('.card-pickup').length == 1) {
             currentlySelectedType = "pickup";
+            $('#action-detail').hide();
         } else if ($(this).closest('.card-delivery').length == 1) {
             currentlySelectedType = "delivery";
+            $('#action-detail').show();
         }
     });
 
@@ -60,4 +62,10 @@ $(document).ready(function() {
             });
         }
     });
+
+    $('#action-detail').on('click', function() {
+
+    });
+
+    $(".hub-karyawan").sortable();
 });

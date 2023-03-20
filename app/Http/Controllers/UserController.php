@@ -94,6 +94,17 @@ class UserController extends Controller
         return redirect()->intended(route('menu-karyawan'));
     }
 
+    public function updateOutlet(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+        $user->outlet_id = $request->outlet_id;
+        $user->save();
+        return [
+            'status' => 200,
+            'message' => 'Success'
+        ];
+    }
+
     public function changePassword(Request $request, User $user)
     {
         if ($request->new_password != $request->new_password_confirmation) {
@@ -113,15 +124,16 @@ class UserController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
         $role = User::getRole(Auth::id());
         if ($role == "administrator") {
             $user = User::find(Auth::id());
             $user->outlet_id = null;
         }
+
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
         return redirect()->route('login');
     }
 }

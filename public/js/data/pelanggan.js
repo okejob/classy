@@ -17,23 +17,22 @@ $(document).ready(function() {
         e.preventDefault();
         $('#table-pelanggan').load($(this).attr('href'));
     });
-    var searchData, searchFilter = '', paginateCount = 5;
+    var searchData, searchFilter = 'nama', paginateCount = 5;
     $('#input-search').on('input', function() {
         clearTimeout(searchData);
         searchData = setTimeout(search, 500);
     });
 
     function search() {
-        $('#table-pelanggan').load(window.location.origin + '/component/pelanggan?search=' + $('#input-search').val() + '&filter=' + searchFilter + '&paginate=' + paginateCount);
+        $('#table-pelanggan').load(window.location.origin + '/component/pelanggan?key=' + $('#input-search').val() + '&filter=' + searchFilter + '&paginate=' + paginateCount);
     }
 
     $("#dropdown-filter .filter-search").on('click', function() {
-        paginateCount = parseInt($(this).data('paginate'));
+        searchFilter = $(this).data('search');
         $("#dropdown-filter .filter-search").each(function(index, element) {
             $(element).removeClass('active');
         });
         $(this).addClass('active');
-        search();
     });
 
     $("#dropdown-filter .filter-paginate").on('click', function() {

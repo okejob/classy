@@ -29,7 +29,11 @@
                                     <td>{{ $karyawan->name }}</td>
                                     <td class="text-center">{{ $karyawan->phone }}</td>
                                     <td>{{ $karyawan->email }}</td>
-                                    <td class="text-center">{{ $karyawan->outlet->nama }}</td>
+                                    @if ($karyawan->outlet)
+                                        <td class="text-center">{{ $karyawan->outlet->nama }}</td>
+                                    @else
+                                        <td class="text-center">-</td>
+                                    @endif
                                     <td class="text-center">{{ $karyawan->role }}</td>
                                     @if ($karyawan->status)
                                         <td class="text-center">Aktif</td>

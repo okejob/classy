@@ -16,8 +16,29 @@
                 <i class="fas fa-user-circle"></i>
             </button>
             <div class="dropdown-menu dropdown-menu-end">
+            @if (Session::get('role') == 'administrator')
+                <a class="dropdown-item" id="menu-outlet" data-outlet="@if (Auth::user()->outlet){{ Auth::user()->outlet->id }}@endif">Outlet</a>
+            @endif
                 <a class="dropdown-item" href="/logout">Log Out</a>
             </div>
         </div>
     </div>
 </header>
+<div class="modal fade" id="modal-pengaturan-outlet" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ganti Sesi Outlet</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="form-pengaturan-outlet">
+                <div class="modal-body" id="container-select-outlet">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="btn-ganti-outlet">Ganti</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

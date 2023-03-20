@@ -50,4 +50,10 @@ class OutletController extends Controller
 
         return redirect()->intended(route('menu-outlet'));
     }
+
+    public function component() {
+        return view('components.selectOutlet', [
+            'outlets' => Outlet::all(),
+        ]);
+    }
 }

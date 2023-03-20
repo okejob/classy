@@ -25,7 +25,8 @@ $(document).ready(function() {
     var pelangganId = 0;
     $('#nama-pelanggan').on('change', function() {
         if ($(this).val() != '') {
-            pelangganId = $('#data-pelanggan option[value=' + $(this).val() +']').data('id');
+            pelangganId = $('#data-pelanggan option[data-id=' + $(this).val().split(' - ')[0] +']').data('id');
+            console.log(pelangganId);
 
             if (pelangganId !== undefined) {
                 $.ajax({

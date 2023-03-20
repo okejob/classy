@@ -9,7 +9,11 @@
 
 <div class="container">
     <section id="section-transaksi-saldo">
-        <header class="my-3" style="color: var(--bs-gray);"><a>Transaksi</a><i class="fas fa-angle-right mx-2"></i><a>Saldo</a></header>
+        <header class="my-3" style="color: var(--bs-gray);">
+            <a>Transaksi</a>
+            <i class="fas fa-angle-right mx-2"></i>
+            <a>Saldo</a>
+        </header>
         <div class="card">
             <div class="card-body">
                 <h1 class="card-title">Saldo</h1>
@@ -41,7 +45,7 @@
                         </div>
                     </div>
                     <hr class="d-lg-none">
-                    <div class="col-lg-3 border-start" id="info-pelanggan">
+                    <div class="col-lg-3 border-lg-start border-0" id="info-pelanggan">
                         <form id="form-saldo" method="POST">
                             <div class="mb-2">
                                 <h5>Pelanggan</h5>
@@ -49,7 +53,7 @@
                                     <input id="nama-pelanggan" list="data-pelanggan" class="form-control" required>
                                     <datalist id="data-pelanggan">
                                         @foreach ($pelanggans as $pelanggan)
-                                            <option value="{{ $pelanggan->nama }}" data-id="{{ $pelanggan->id }}"></option>
+                                            <option data-id="{{ $pelanggan->id }}">{{ $pelanggan->id }} - {{ $pelanggan->nama }}</option>
                                         @endforeach
                                     </datalist>
                                 </div>

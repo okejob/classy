@@ -27,7 +27,7 @@
                 @if(in_array("Membuka Menu Parfum", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-data-parfum">
                     <a href="/data/parfum" class="menu-item menu-data pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
-                        <div class="position-relative d-flex justify-content-center" style="width: 16px; height: 16px;">
+                        <div class="position-relative d-flex justify-content-center align-items-center" style="width: 16px; height: 16px;">
                             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet" style="left: -2px; top: -2px;">
                                 <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="currentColor" stroke="none">
                                     <path d="M2152 4787 c-46 -14 -121 -84 -143 -132 -15 -33 -19 -66 -19 -197 l0 -158 570 0 570 0 0 158 c0 179 -9 210 -76 274 -70 66 -82 68 -498 67 -229 -1 -384 -5 -404 -12z"/>
@@ -92,7 +92,7 @@
                 @if(in_array("Membuka Menu Transaksi", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-transaksi-bucket">
                     <a href="/transaksi/bucket" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
-                        <div class="position-relative d-flex justify-content-center" style="width: 16px; height: 16px;">
+                        <div class="position-relative d-flex justify-content-center align-items-center" style="width: 16px; height: 16px;">
                             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="currentColor" stroke="none">
                                 <path d="M1999 5106 c-65 -23 -112 -70 -143 -141 -11 -25 -29 -36 -107 -68 -525 -213 -956 -731 -1069 -1289 -46 -224 -59 -118 210 -1733 268 -1612 245 -1502 344 -1592 27 -24 95 -67 150 -93 233 -113 579 -174 1056 -187 666 -17 1224 91 1433 278 104 92 79 -23 347 1594 132 796 240 1471 240 1499 0 144 -54 373 -129 550 -183 433 -569 818 -978 977 -78 31 -87 37 -104 75 -23 48 -70 98 -113 122 -28 15 -87 17 -566 19 -423 2 -543 0 -571 -11z m34 -456 c36 -8 207 -10 557 -8 471 3 507 4 540 22 19 10 42 24 50 32 13 11 29 7 100 -25 186 -82 346 -193 495 -345 125 -127 210 -246 289 -406 61 -125 124 -295 113 -306 -3 -3 -41 6 -84 20 -256 84 -641 140 -1153 166 -697 35 -1507 -33 -1908 -162 -52 -16 -96 -27 -99 -24 -11 11 50 175 112 301 80 164 163 282 290 411 149 151 309 263 494 345 l83 37 35 -23 c18 -13 57 -29 86 -35z m1213 -1104 c490 -51 915 -142 937 -200 28 -73 -381 -169 -943 -223 -235 -22 -1081 -26 -1310 -5 -509 46 -912 126 -992 199 -48 43 31 79 295 133 267 54 471 83 743 105 236 19 1059 13 1270 -9z"/>
@@ -104,7 +104,7 @@
                 </div>
                 <div id="nav-transaksi-premium">
                     <a href="/transaksi/premium" class="menu-item menu-transaksi pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
-                        <div class="position-relative d-flex justify-content-center" style="width: 16px; height: 16px;">
+                        <div class="position-relative d-flex justify-content-center align-items-center" style="width: 16px; height: 16px;">
                             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="currentColor" stroke="none">
                                     <path d="M1237 4266 c37 -62 570 -795 577 -792 5 1 131 171 279 377 148 206 278 386 288 402 l20 27 -586 0 c-490 0 -585 -2 -578 -14z"/>
@@ -169,7 +169,7 @@
                 @if(in_array("Membuka Menu Hub Cuci", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-proses-cuci">
                     <a href="/proses/cuci" class="menu-item menu-proses pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
-                        <div class="position-relative d-flex justify-content-center" style="width: 16px; height: 16px;">
+                        <div class="position-relative d-flex justify-content-center align-items-center" style="width: 16px; height: 16px;">
                             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet" style="left: -2px; top: -2px;">
                                 <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="currentColor" stroke="none">
                                 <path d="M921 5104 c-169 -45 -301 -180 -346 -351 -22 -86 -22 -555 1 -577 14 -14 208 -16 1984 -16 1776 0 1970 2 1984 16 23 22 23 491 1 577 -45 173 -178 307 -350 352 -87 22 -3190 22 -3274 -1z m2365 -330 c53 -39 69 -71 69 -134 0 -63 -16 -95 -69 -134 -33 -25 -158 -35 -216 -17 -103 31 -143 169 -73 252 41 48 76 60 175 57 69 -2 92 -7 114 -24z m640 0 c53 -39 69 -71 69 -134 0 -63 -16 -95 -69 -134 -33 -25 -158 -35 -216 -17 -103 31 -143 169 -73 252 41 48 76 60 175 57 69 -2 92 -7 114 -24z"/>
@@ -186,7 +186,7 @@
                 @if(in_array("Membuka Menu Hub Setrika", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <div id="nav-proses-setrika">
                     <a href="/proses/setrika" class="menu-item menu-proses pe-3 py-1 d-flex align-items-center" style="padding-left: 2rem;">
-                        <div class="position-relative d-flex justify-content-center" style="width: 16px; height: 16px;">
+                        <div class="position-relative d-flex justify-content-center align-items-center" style="width: 16px; height: 16px;">
                             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet" style="left: -2px; top: -2px;">
                                 <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="currentColor" stroke="none">
                                 <path d="M4660 4582 c-73 -48 -193 -147 -240 -198 -123 -135 -244 -351 -294 -526 -27 -93 -56 -269 -56 -337 l0 -41 80 0 80 0 0 38 c0 77 31 237 65 340 77 231 212 416 403 555 109 79 123 107 81 161 -24 31 -79 35 -119 8z"/>

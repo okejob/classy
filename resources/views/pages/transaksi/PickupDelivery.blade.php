@@ -1,6 +1,7 @@
 @extends('layouts.users')
 
 @section('content')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
 <div class="container">
     <header class="my-3" style="color: var(--bs-gray);">
         <a>Transaksi</a>
@@ -166,6 +167,10 @@
                                     <h5>Alamat</h5>
                                     <input type="text" class="form-control" name="alamat" required />
                                 </div>
+                                <div class="col-12 mb-2">
+                                    <h5>Catatan Pelanggan</h5>
+                                    <textarea class="form-control" name="request"></textarea>
+                                </div>
                             </div>
                         </div>
                         <input type="hidden" name="action" value="pickup">
@@ -211,6 +216,10 @@
                                     <h5>Alamat</h5>
                                     <input type="text" class="form-control" name="alamat" required />
                                 </div>
+                                <div class="col-12 mb-2">
+                                    <h5>Catatan Pelanggan</h5>
+                                    <textarea class="form-control" name="request"></textarea>
+                                </div>
                             </div>
                         </div>
                         <input type="hidden" name="action" value="delivery">
@@ -227,7 +236,7 @@
         <div class="row">
             @foreach ($dataDriver as $driver)
                 @if($driver->id == Auth::id())
-                <div class="col-6">
+                <div class="col-12 col-lg-6">
                     <div class="card p-3">
                         <div class="d-flex justify-content-between align-items-center">
                             <h4>Hub {{ $driver->name }}</h4>
@@ -235,25 +244,25 @@
                         </div>
                         <div class="hub-container">
                             <hr />
-                            <div class="hub-list">
+                            <div class="hub-list hub-karyawan">
                                 @foreach ($pickups as $pickup)
                                     @if($driver->id == $pickup->driver_id)
                                         <div class="p-3 border rounded d-flex justify-content-between align-items-center mt-3 card-pickup"
                                             @if ($pickup->is_done)
-                                                style="border-bottom: 3px solid rgb(75, 192, 192)!important; background-image: linear-gradient(to bottom right, white, rgb(75, 192, 192, .5));"
+                                                style="border-bottom: 3px solid rgb(75, 192, 192)!important; background-image: linear-gradient(to bottom right, white, rgb(75, 192, 192, .5)); background-color: white;"
                                             @else
-                                                style="border-bottom: 3px solid rgb(75, 192, 192)!important;"
+                                                style="border-bottom: 3px solid rgb(75, 192, 192)!important; background-color: white;"
                                             @endif
                                         >
                                             <div id="{{ $pickup->id }}" class="d-flex flex-column">
-                                                <h4>{{ $pickup->kode }}</h4>
-                                                <h6>
-                                                    <span class="text-muted">{{ $pickup->pelanggan->nama }}</span>
+                                                <h4>
+                                                    <span>{{ $pickup->pelanggan->nama }}</span>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 16 16" fill="currentColor" class="bi bi-dot">
                                                         <path fill-rule="evenodd" d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"></path>
                                                     </svg>
-                                                    {{ $pickup->alamat }}
-                                                </h6>
+                                                    <span class="text-muted">{{ $pickup->alamat }}</span>
+                                                </h4>
+                                                <h6>{{ $pickup->kode }}</h6>
                                             </div>
                                             <div class="d-flex h-100">
                                                 <div class="position-relative h-100">
@@ -278,23 +287,22 @@
                                     @if($driver->id == $pickup->driver_id)
                                         <div class="p-3 border rounded d-flex justify-content-between align-items-center mt-3 card-delivery"
                                             @if ($delivery->is_done)
-                                                style="border-bottom: 3px solid rgb(153, 102, 255)!important; background-image: linear-gradient(to bottom right, white, rgb(153, 102, 255, .5));"
+                                                style="border-bottom: 3px solid rgb(153, 102, 255)!important; background-image: linear-gradient(to bottom right, white, rgb(153, 102, 255, .5)); background-color: white;"
                                             @else
-                                                style="border-bottom: 3px solid rgb(153, 102, 255)!important;"
+                                                style="border-bottom: 3px solid rgb(153, 102, 255)!important; background-color: white;"
                                             @endif
                                         >
                                             <div id="{{ $delivery->id }}" class="d-flex flex-column">
-                                                <h4>{{ $delivery->kode }}</h4>
-                                                <h6>
-                                                    <span class="text-muted">{{ $delivery->pelanggan->nama }}</span>
+                                                <h4>
+                                                    <span>{{ $delivery->pelanggan->nama }}</span>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 16 16" fill="currentColor" class="bi bi-dot">
                                                         <path fill-rule="evenodd" d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"></path>
                                                     </svg>
-                                                    {{ $delivery->alamat }}
-                                                </h6>
+                                                    <span class="text-muted">{{ $delivery->alamat }}</span>
+                                                </h4>
+                                                <h6>{{ $delivery->kode }}</h6>
                                             </div>
                                             <div class="position-relative">
-                                                {{-- background-image: linear-gradient(to bottom right, red, yellow); --}}
                                                 <h4 class="fw-bold me-4" style="font-style: italic;">Delivery</h4>
                                                 @if ($delivery->is_done)
                                                     <i class="fa-solid fa-flag-checkered position-absolute top-50 start-0 translate-middle fa-4x" style="font-style: italic; opacity: 0.25;"></i>
@@ -312,6 +320,7 @@
                                 @endforeach
                             </div>
                             <ul class="list-unstyled form-control" id="list-action">
+                                <li id="action-detail">Detail Transaksi</li>
                                 <li id="action-change-status">Selesai</li>
                             </ul>
                         </div>

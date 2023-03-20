@@ -12,7 +12,7 @@ $(document).ready(function() {
         btnId = $(this).attr('id').substring(4);
     });
 
-    $('#table-item').load(window.location.origin + '/component/jenis-item?search=' + $('#input-search').val() +'&paginate=5', function() {
+    $('#table-item').load(window.location.origin + '/component/jenis-item?key=' + $('#input-search').val() +'&paginate=5', function() {
         setThousandSeparator();
     });
     $('#data-item').on('click', '.page-link', function(e) {
@@ -26,7 +26,7 @@ $(document).ready(function() {
     });
 
     function search() {
-        $('#table-item').load(window.location.origin + '/component/jenis-item?search=' + $('#input-search').val() +'&paginate=' + paginateCount, function() {
+        $('#table-item').load(window.location.origin + '/component/jenis-item?key=' + $('#input-search').val() +'&paginate=' + paginateCount, function() {
             setThousandSeparator();
         });
     }

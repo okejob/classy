@@ -65,6 +65,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/setting/karyawan', [PageController::class, 'karyawan'])->name('menu-karyawan')->middleware('permission:Membuka Menu Karyawan');
     Route::get('/setting/karyawan/{id}', [UserController::class, 'show'])->middleware('permission:Melihat Detail Karyawan');
     Route::post('/setting/karyawan', [UserController::class, 'insert'])->middleware('permission:Menambahkan Karyawan');
+    Route::post('/setting/karyawan/outlet', [UserController::class, 'updateOutlet']);
     Route::post('/setting/karyawan/{id}', [UserController::class, 'update'])->middleware('permission:Mengubah Data Karyawan');
     Route::post('/setting/karyawan/{user}/change-password', [UserController::class, 'changePassword'])->middleware('permission:Mengubah Data Password Karyawan');
 
@@ -75,6 +76,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/setting/outlet/{id}', [OutletController::class, 'update'])->middleware('permission:Mengubah Data Outlet');
     Route::get('/setting/outlet/delete/{id}', [OutletController::class, 'delete'])->middleware('permission:Menghapus Outlet');
     Route::post('/setting/outlet/update-saldo/{outlet}', [OutletController::class, 'updateSaldo'])->middleware('permission:Menambah Saldo Outlet');
+    Route::get('/component/outlet', [OutletController::class, 'component']);
 
     //Paket Cuci
     Route::get('/setting/paket-cuci', [PageController::class, 'paketCuci'])->name('menu-paket-cuci')->middleware('permission:Membuka Menu Paket Cuci');
@@ -92,12 +94,12 @@ Route::middleware(['auth'])->group(function () {
 
     //item
     Route::get('/data/jenis-item', [PageController::class, 'jenisItem'])->name('menu-jenis-item')->middleware('permission:Membuka Menu Jenis Item');
-    // Route::get('/data/jenis-item/find', [JenisItemController::class, 'find']);
+    Route::get('/data/jenis-item/find', [JenisItemController::class, 'find']);
     Route::get('/data/jenis-item/{id}', [JenisItemController::class, 'show'])->middleware('permission:Melihat Detail Jenis Item');
     Route::post('/data/jenis-item', [JenisItemController::class, 'insert'])->middleware('permission:Membuat Jenis Item');
     Route::post('/data/jenis-item/{id}', [JenisItemController::class, 'update'])->middleware('permission:Mengubah Data Jenis Item');
     Route::get('/data/jenis-item/delete/{id}', [JenisItemController::class, 'delete'])->middleware('permission:Menghapus Jenis Item');
-    Route::get('/component/jenis-item', [JenisItemController::class, 'find']);
+    Route::get('/component/jenis-item', [JenisItemController::class, 'componentFind']);
 
     //Kategori
     Route::get('/data/kategori', [PageController::class, 'kategori'])->name('menu-kategori')->middleware('permission:Membuka Menu Kategori');

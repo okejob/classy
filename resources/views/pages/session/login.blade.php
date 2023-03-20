@@ -21,7 +21,7 @@
                 <div class="alert alert-danger" style="padding: 0.5rem 1.15rem;">{{ $message }}</div>
             @enderror
         </div>
-        <div class="mb-4">
+        {{-- <div class="mb-4">
             <div class="form-container mb-1 px-2">
                 <select class="px-2 form-control" style="border-bottom: none;" name="outlet_id" required>
                     <option value="" hidden selected disabled class="px-2">Outlet</option>
@@ -33,7 +33,7 @@
             @error('outlet')
                 <div class="alert alert-danger" style="padding: 0.5rem 1.15rem;">{{ $message }}</div>
             @enderror
-        </div>
+        </div> --}}
         <div class="mb-3">
             <button class="btn btn-primary d-block w-100" type="submit">Log In</button>
         </div>

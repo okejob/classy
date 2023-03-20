@@ -54,12 +54,41 @@ class PelangganController extends Controller
 
     public function search(Request $request)
     {
-        $pelanggan = Pelanggan::when($request->has("search"), function ($q) use ($request) {
-            return $q->where("nama", "like", "%" . $request->get("search") . "%")
-                ->orWhere("no_id", "like", "%" . $request->get("search") . "%")
-                ->orWhere("telephone", "like", "%" . $request->get("search") . "%")
-                ->orWhere("email", "like", "%" . $request->get("search") . "%");
-        })->orderBy("created_at", "asc")->paginate($request->paginate);
+        // $pelanggan = Pelanggan::when($request->has("key"), function ($q) use ($request) {
+        //     return $q->where("nama", "like", "%" . $request->get("search") . "%")
+        //         ->orWhere("no_id", "like", "%" . $request->get("search") . "%")
+        //         ->orWhere("telephone", "like", "%" . $request->get("search") . "%")
+        //         ->orWhere("email", "like", "%" . $request->get("search") . "%");
+        // })->orderBy("created_at", "asc")->paginate($request->paginate);
+
+        $conditions = [];
+        if ($request->filter === 'nama') {
+
+            $conditions[] = function ($q) use ($request) {
+                return $q->where('nama', 'like', '%' . $request->key . '%');
+            };
+        } else if ($request->filter === 'no_id') {
+            $conditions[] = function ($q) use ($request) {
+                return $q->where('no_id', 'like', '%' . $request->key . '%');
+            };
+        } else if ($request->filter === 'telephone') {
+            $conditions[] = function ($q) use ($request) {
+                return $q->where('telephone', 'like', '%' . $request->key . '%');
+            };
+        } else if ($request->filter === 'email') {
+            $conditions[] = function ($q) use ($request) {
+                return $q->where('email', 'like', '%' . $request->key . '%');
+            };
+        }
+
+        $pelanggan = Pelanggan::when($request->filled('key'), function ($q) use ($conditions) {
+            return tap($q, function ($q) use ($conditions) {
+                foreach ($conditions as $condition) {
+                    $q->when(true, $condition);
+                }
+            });
+        })->orderBy('created_at', 'asc')->paginate($request->paginate);
+
         return view('components.tablePelanggan', [
             'pelanggans' => $pelanggan,
         ]);

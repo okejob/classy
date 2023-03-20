@@ -19,6 +19,7 @@ class PickupDeliveryController extends Controller
             $transaksi = Transaksi::create([
                 'pelanggan_id' => $request->pelanggan_id,
                 'outlet_id' => Auth::user()->outlet_id,
+                'request' => $request->request,
                 'status' => 'draft',
             ]);
             $count = PickupDelivery::where('action', $action)->count() + 1;

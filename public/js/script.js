@@ -299,4 +299,39 @@ $(document).ready(function() {
             }
         }
     });
+
+    if($('#menu-outlet').data('outlet') == "") {
+        $('#container-select-outlet').load(window.location.origin + '/component/outlet', function() {
+            $('#modal-pengaturan-outlet').modal('show');
+        });
+    }
+
+    $('#menu-outlet').on('click', function() {
+        $('#container-select-outlet').load(window.location.origin + '/component/outlet', function() {
+            $('#modal-pengaturan-outlet').modal('show');
+        });
+    });
+
+    $('#form-pengaturan-outlet').on('submit', function(e) {
+        e.preventDefault();
+
+        let formData = new FormData();
+        formData.append('outlet_id', $('#container-select-outlet option:selected').val());
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            },
+            url: "/setting/karyawan/outlet",
+            method: "POST",
+            contentType: false,
+            processData: false,
+            data: formData,
+        }).done(function() {
+            window.location = window.location.origin + window.location.pathname;
+        }).fail(function(message) {
+            alert('error');
+            console.log(message);
+        });
+    });
 });
