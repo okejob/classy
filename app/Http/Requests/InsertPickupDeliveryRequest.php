@@ -29,7 +29,7 @@ class InsertPickupDeliveryRequest extends FormRequest
             'action' => 'string',
             'alamat' => 'string',
             'transaksi_id' => 'exists:transaksis,id',
-            'request' => 'string',
+            'request' => 'string|nullable',
         ];
     }
 }
