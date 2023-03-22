@@ -7,7 +7,7 @@ $(document).ready(function() {
         $('#list-action').detach();
     }
     var btnIndex = -1, btnId = 0;
-    $('#data-item .btn-show-action').on('click', function() {
+    $('#data-item').on('click',  '.btn-show-action', function() {
         btnIndex = $(this).index('.btn-show-action') + 1;
         btnId = $(this).attr('id').substring(4);
     });
@@ -67,7 +67,6 @@ $(document).ready(function() {
         $('#modal-update').modal('show');
     });
 
-    // untuk mengisi tampilan modal & menampilkan modal
     $('#data-item #action-update').on('click', function() {
         $('#modal-form').attr('action', "/data/jenis-item/" + btnId);
         $('.modal-title').text('Rubah jenis item');

@@ -1,4 +1,4 @@
-<div class="table-responsive mb-2">
+<div class="table-responsive">
     <table class="table table-striped" id="table-item">
         <thead>
             <tr>
