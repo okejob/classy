@@ -75,14 +75,14 @@
                                                 @endif
                                             >
                                                 <div id="{{ $pickup->id }}" class="d-flex flex-column">
-                                                    <h4>{{ $pickup->kode }}</h4>
-                                                    <h6>
-                                                        <span class="text-muted">{{ $pickup->pelanggan->nama }}</span>
+                                                    <h4>
+                                                        <span>{{ $pickup->pelanggan->nama }}</span>
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 16 16" fill="currentColor" class="bi bi-dot">
                                                             <path fill-rule="evenodd" d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"></path>
                                                         </svg>
-                                                        {{ $pickup->alamat }}
-                                                    </h6>
+                                                        <span class="text-muted">{{ $pickup->alamat }}</span>
+                                                    </h4>
+                                                    <h6>{{ $pickup->kode }}</h6>
                                                 </div>
                                                 <div class="position-relative">
                                                     <h4 class="fw-bold" style="font-style: italic;">Pickup</h4>
@@ -106,14 +106,14 @@
                                                 @endif
                                             >
                                                 <div id="{{ $delivery->id }}" class="d-flex flex-column">
-                                                    <h4>{{ $delivery->kode }}</h4>
-                                                    <h6>
-                                                        <span class="text-muted">{{ $delivery->pelanggan->nama }}</span>
+                                                    <h4>
+                                                        <span>{{ $delivery->pelanggan->nama }}</span>
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 16 16" fill="currentColor" class="bi bi-dot">
                                                             <path fill-rule="evenodd" d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"></path>
                                                         </svg>
-                                                        {{ $delivery->alamat }}
-                                                    </h6>
+                                                        <span class="text-muted">{{ $delivery->alamat }}</span>
+                                                    </h4>
+                                                    <h6>{{ $delivery->kode }}</h6>
                                                 </div>
                                                 <div class="position-relative">
                                                     {{-- background-image: linear-gradient(to bottom right, red, yellow); --}}
@@ -271,11 +271,9 @@
                                                         <i class="fa-solid fa-flag-checkered position-absolute top-50 start-0 translate-middle fa-4x" style="font-style: italic; opacity: 0.25;"></i>
                                                     @else
                                                         <i class="fa-solid fa-spinner position-absolute top-50 start-0 translate-middle fa-4x" style="font-style: italic; opacity: 0.25;"></i>
-                                                        @if(in_array("Mengganti Status Selesai Pickup Delivery", Session::get('permissions')))
-                                                            <button class="btn btn-sm btn-show-action position-absolute end-0" type="button" style="top: -12px;" id="trans-{{ $pickup->id }}" style="box-shadow: none;">
-                                                                <i class="fa-solid fa-ellipsis-vertical"></i>
-                                                            </button>
-                                                        @endif
+                                                        <button class="btn btn-sm btn-show-action position-absolute end-0" type="button" style="top: -12px;" id="trans-{{ $pickup->id }}" style="box-shadow: none;">
+                                                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                                                        </button>
                                                     @endif
                                                 </div>
                                             </div>
@@ -285,7 +283,7 @@
 
                                 @foreach ($deliveries as $delivery)
                                     @if($driver->id == $pickup->driver_id)
-                                        <div class="p-3 border rounded d-flex justify-content-between align-items-center mt-3 card-delivery"
+                                        <div class="p-3 border rounded d-flex justify-content-between align-items-center mt-3 card-delivery" data-transaksi="{{ $delivery->transaksi_id }}"
                                             @if ($delivery->is_done)
                                                 style="border-bottom: 3px solid rgb(153, 102, 255)!important; background-image: linear-gradient(to bottom right, white, rgb(153, 102, 255, .5)); background-color: white;"
                                             @else
@@ -308,11 +306,9 @@
                                                     <i class="fa-solid fa-flag-checkered position-absolute top-50 start-0 translate-middle fa-4x" style="font-style: italic; opacity: 0.25;"></i>
                                                 @else
                                                     <i class="fa-solid fa-spinner position-absolute top-50 start-0 translate-middle fa-4x" style="font-style: italic; opacity: 0.25;"></i>
-                                                    @if(in_array("Mengganti Status Selesai Pickup Delivery", Session::get('permissions')))
-                                                        <button class="btn btn-sm btn-show-action position-absolute end-0" type="button" style="top: -12px;" id="trans-{{ $delivery->id }}" style="box-shadow: none;">
-                                                            <i class="fa-solid fa-ellipsis-vertical"></i>
-                                                        </button>
-                                                    @endif
+                                                    <button class="btn btn-sm btn-show-action position-absolute end-0" type="button" style="top: -12px;" id="trans-{{ $delivery->id }}" style="box-shadow: none;">
+                                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                                    </button>
                                                 @endif
                                             </div>
                                         </div>
@@ -320,14 +316,31 @@
                                 @endforeach
                             </div>
                             <ul class="list-unstyled form-control" id="list-action">
-                                <li id="action-detail">Detail Transaksi</li>
-                                <li id="action-change-status">Selesai</li>
+                                @if(in_array("Melihat Detail Transaksi", Session::get('permissions')) || Session::get('role') == 'administrator')
+                                    <li id="action-detail">Detail Transaksi</li>
+                                @endif
+                                @if(in_array("Mengganti Status Selesai Pickup Delivery", Session::get('permissions')))
+                                    <li id="action-change-status">Selesai</li>
+                                @endif
                             </ul>
                         </div>
                     </div>
                 </div>
                 @endif
             @endforeach
+        </div>
+        <div role="dialog" tabindex="-1" class="modal fade" id="modal-transaksi">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Detail Transaksi <span id="kode-transaksi"></span></h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="detail-transaksi">
+
+                    </div>
+                </div>
+            </div>
         </div>
     @endif
 </div>

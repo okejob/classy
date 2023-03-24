@@ -40,15 +40,17 @@ $(document).ready(function() {
         }
     });
 
-    var btnIndex = -1, btnId = 0, currentlySelectedType = '';
+    var btnIndex = -1, btnId = 0, currentlySelectedType = '', transId = 0;
     $('.btn-show-action').on('click', function() {
         btnIndex = $(this).index('.btn-show-action') + 1;
         btnId = $(this).attr('id').substring(6);
         if ($(this).closest('.card-pickup').length == 1) {
             currentlySelectedType = "pickup";
+            transId = 0;
             $('#action-detail').hide();
         } else if ($(this).closest('.card-delivery').length == 1) {
             currentlySelectedType = "delivery";
+            transId = $(this).closest('.card-delivery').data('transaksi');
             $('#action-detail').show();
         }
     });
@@ -63,9 +65,42 @@ $(document).ready(function() {
         }
     });
 
-    $('#action-detail').on('click', function() {
-
-    });
-
     $(".hub-karyawan").sortable();
+
+    $('#action-detail').on('click', function() {
+        $('#kode-transaksi').text($('h6').eq(btnIndex).text());
+        $.ajax({
+            url: "/transaksi/detail/" + transId,
+        }).done(function(data) {
+            $('#kode-transaksi').text(data.kode);
+            if (data.kode.indexOf('BU') !== -1) {
+                $('#detail-transaksi').load(window.location.origin + "/component/transBucket/" + transId, function() {
+                    $('#detail-transaksi tbody tr:last-child').detach();
+                    $('#detail-transaksi tr').each(function(index, element) {
+                        $(this).children().eq(6).detach();
+                        $(this).children().eq(5).detach();
+                        $(this).children().eq(4).detach();
+                        $(this).children().eq(2).detach();
+                    });
+                    $('#detail-transaksi tfoot').detach();
+                    $('#modal-transaksi').modal('show');
+                });
+            } else if (data.kode.indexOf('PR') !== -1) {
+                $('#detail-transaksi').load(window.location.origin + "/component/transPremium/" + transId, function() {
+                    $('#detail-transaksi thead th:nth-child(7), #detail-transaksi thead th:nth-child(6), #detail-transaksi thead th:nth-child(5), #detail-transaksi thead th:nth-child(3)').detach();
+                    $('#detail-transaksi tbody tr:last-child').detach();
+                    $('#detail-transaksi tbody tr').each(function(index, element) {
+                        $(this).children().eq(8).detach();
+                        $(this).children().eq(7).detach();
+                        $(this).children().eq(6).detach();
+                        $(this).children().eq(5).detach();
+                        $(this).children().eq(4).detach();
+                        $(this).children().eq(2).detach();
+                    });
+                    $('#detail-transaksi tfoot').detach();
+                    $('#modal-transaksi').modal('show');
+                });
+            }
+        });
+    });
 });
