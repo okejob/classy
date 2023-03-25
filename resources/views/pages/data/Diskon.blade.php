@@ -18,7 +18,8 @@
                             <tr>
                                 <th>Kode</th>
                                 <th>Deskripsi</th>
-                                <th colspan="2">Besar Diskon</th>
+                                <th>Besar Diskon</th>
+                                <th>Diskon Maksimal</th>
                                 <th>Expired Date</th>
                                 <th>Status</th>
                                 <th></th>
@@ -29,8 +30,27 @@
                             <tr>
                                 <td>{{ $diskon->code }}</td>
                                 <td>{{ $diskon->description }}</td>
-                                <td>Rp</td>
-                                <td class="text-end thousand-separator">{{ $diskon->nominal }}</td>
+                                @if ($diskon->tipe == "percetage")
+                                <td>
+                                    <div class="d-flex justify-content-between">
+                                        <span class="thousand-separator">{{ $diskon->nominal }}</span>
+                                        <span>%</span>
+                                    </div>
+                                </td>
+                                @elseif ($diskon->tipe == "exact")
+                                <td>
+                                    <div class="d-flex justify-content-between">
+                                        <span>Rp</span>
+                                        <span class="thousand-separator">{{ $diskon->nominal }}</span>
+                                    </div>
+                                </td>
+                                @endif
+                                <td>
+                                    <div class="d-flex justify-content-between">
+                                        <span>Rp</span>
+                                        <span class="thousand-separator">{{ $diskon->maksimal_diskon }}</span>
+                                    </div>
+                                </td>
                                 <td class="text-center">{{ $diskon->expired }}</td>
                                 @if ($diskon->deleted_at != null)
                                     <td class="text-center">Deleted</td>
@@ -87,6 +107,18 @@
                                 <div class="col-12">
                                     <h5>Deskripsi</h5>
                                     <textarea class="form-control" id="input-deskripsi" name="description"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-flex align-items-center">
+                                        <h5>Tipe Diskon</h5>
+                                        <div class="ms-3">
+                                            <input type="radio" class="btn-check" name="options-outlined" id="tipe-percentage" autocomplete="off">
+                                            <label class="btn btn-outline-primary" for="tipe-percentage">Persentasi</label>
+
+                                            <input type="radio" class="btn-check" name="options-outlined" id="tipe-exact" autocomplete="off">
+                                            <label class="btn btn-outline-primary" for="tipe-exact">Nominal</label>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-6">
                                     <h5>Besar Diskon</h5>
