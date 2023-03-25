@@ -113,6 +113,13 @@
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6">
+                                    <h5>Diskon Jenis Item</h5>
+                                    <div class="form-control d-flex">
+                                        <p>Rp</p>
+                                        <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-diskon-item" name="diskon_item" required>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
                                     <h5>Status Kilo</h5>
                                     <div class="form-control d-flex align-items-center justify-content-around">
                                         <div class="form-check">
@@ -151,7 +158,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-12 col-sm-6">
                                     <h5>Status Item</h5>
                                     <div class="form-control d-flex align-items-center justify-content-around">
                                         <div class="form-check">
