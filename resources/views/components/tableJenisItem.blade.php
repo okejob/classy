@@ -10,6 +10,7 @@
                 <th colspan="2">Harga Bucket</th>
                 <th colspan="2">Harga Premium</th>
                 <th>Bobot Produksi</th>
+                <th colspan="2">Diskon Item</th>
                 <th>Status Kilo</th>
                 <th>Status Bucket</th>
                 <th>Status Premium</th>
@@ -32,6 +33,8 @@
                 <td>Rp</td>
                 <td class="text-end thousand-separator">{{ $item->harga_premium }}</td>
                 <td class="text-center">{{ $item->beban_produksi }}</td>
+                <td>Rp</td>
+                <td class="text-end thousand-separator">{{ $item->diskon_item }}</td>
                 @if ($item->status_kilo)
                     <td class="text-center">Aktif</td>
                 @else
