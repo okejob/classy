@@ -24,6 +24,7 @@ use App\Http\Controllers\SaldoController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DiskonController;
+use App\Http\Controllers\DiskonTransaksiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -176,6 +177,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transaksi/cancelled', [PageController::class, 'cancel']);
     Route::get('/transaksi/{transaksi}/cancel', [TransaksiController::class, 'cancelTransaksi'])->middleware('permission:Membatalkan Transaksi');
     Route::get('/transaksi/{id}/restore', [TransaksiController::class, 'restoreTransaksi'])->middleware('permission:Restore Transaksi');
+    Route::post('/diskon-transaksi', [DiskonTransaksiController::class, 'insert']);
+    Route::get('/diskon-transaksi/{id}', [DiskonTransaksiController::class, 'delete']);
 
     // Bucket
     Route::get('/transaksi/bucket', [PageController::class, 'bucket'])->name('transaksi')->middleware('permission:Membuka Menu Transaksi');
@@ -195,7 +198,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transaksi/{transaksi}/penyetrika/delete', [TransaksiController::class, 'clearStatusSetrika'])->middleware('permission:Mengurangi Tugas Setrika');
     //Autentikasi Diskon
     Route::post('/transaksi/diskon/autentikasi', [TransaksiController::class, 'authenticationDiskon']);
-    Route::get('/transaksi/diskon/special/transaksi/{transaksi}/nominal/{nominal}', [TransaksiController::class, 'inputSpecialDiskon']);
 
     //History
     Route::get('/data/pelanggan/{id_pelanggan}/detail', [PelangganController::class, 'detailPelanggan'])->middleware('permission:Membuka Halaman Detail Pelanggan');
