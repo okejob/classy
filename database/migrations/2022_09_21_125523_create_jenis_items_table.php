@@ -28,6 +28,7 @@ return new class extends Migration
             $table->boolean('status_bucket')->default(false);
             $table->boolean('status_premium')->default(false);
             $table->boolean('status_item')->default(true);
+            $table->integer('diskon_jenis_item')->default(0);
             $table->double('beban_produksi')->default(0.0);
             $table->timestamps();
         });

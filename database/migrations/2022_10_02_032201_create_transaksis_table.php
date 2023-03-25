@@ -36,10 +36,14 @@ return new class extends Migration
             $table->integer('total_bobot')->default(0);
             $table->integer('jumlah_bucket')->default(0);
             $table->integer('subtotal')->default(0);
-            $table->integer('diskon')->default(0);
+            //diskon
+
+            $table->integer('diskon_jenis_item')->default(0);
+            $table->integer('total_diskon_promo')->default(0);
             $table->integer('diskon_member')->default(0);
-            $table->integer('special_diskon')->default(0);
+
             $table->integer('grand_total')->default(0);
+            //pembayaran
             $table->boolean('lunas')->default(false);
             $table->integer('total_terbayar')->default(0);
             $table->string('status')->default('draft');

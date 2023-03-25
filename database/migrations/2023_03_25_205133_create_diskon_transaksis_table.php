@@ -13,16 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('diskons', function (Blueprint $table) {
+        Schema::create('diskon_transaksis', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique();
-            $table->text('description');
-            $table->date('expired');
-            $table->integer('nominal');
-            $table->integer('maximal_diskon')->default(0);
-            $table->string('jenis_diskon');
+            $table->foreignId('transaksi_id')
+                ->constrained()
+                ->cascadeOnDelete();
+            $table->foreignId('diskon_id')
+                ->constrained()
+                ->cascadeOnDelete();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('diskons');
+        Schema::dropIfExists('diskon_transaksis');
     }
 };

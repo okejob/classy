@@ -20,11 +20,15 @@ class ItemTransaksiController extends Controller
         $jenis_item = JenisItem::find($request['jenis_item_id']);
         $request['bobot_bucket'] = $jenis_item->bobot_bucket;
         $request['harga_premium'] = $jenis_item->harga_premium;
+        $request['diskon_jenis_item'] = $jenis_item->diskon_jenis_item;
         $request['status_proses'] = $role;
         $request['total_bobot'] = $jenis_item->bobot_bucket;
         $finder = ItemTransaksi::where('transaksi_id', $request->transaksi_id)->where('jenis_item_id', $request->jenis_item_id)->first();
         if ($finder) {
             $finder->qty = $finder->qty + 1;
+            $finder->bobot_bucket = $jenis_item->bobot_bucket;
+            $finder->harga_premium = $jenis_item->harga_premium;
+            $finder->diskon_jenis_item = $jenis_item->diskon_jenis_item;
             $finder->total_bobot = $finder->qty * $finder->bobot_bucket;
             $finder->total_premium = $finder->qty * $finder->harga_premium;
             $finder->save();

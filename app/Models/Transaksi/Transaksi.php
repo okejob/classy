@@ -6,6 +6,8 @@ use App\Models\Data\CatatanPelanggan;
 use App\Models\Data\Pelanggan;
 use App\Models\Outlet;
 use App\Models\Data\Parfum;
+use App\Models\Diskon;
+use App\Models\DiskonTransaksi;
 use App\Models\Paket\PaketCuci;
 use App\Models\User;
 use App\Observers\UserActionObserver;
@@ -29,27 +31,58 @@ class Transaksi extends Model
     //Function untuk menghitung nilai transaksi
     public function recalculate()
     {
+        //find relation
         $pelanggan = Pelanggan::find($this->pelanggan_id);
+        $diskon_transaksi = DiskonTransaksi::where('transaksi_id', $this->id)->get();
 
+        //declare variable
         $subtotal = 0;
-        $diskon = $this->diskon;
+        $total_diskon_promo = 0;
         $diskon_member = $pelanggan->member ? 10 : 0;
+        $total_diskon_overall = 0;
         $grand_total = 0;
 
+        //find bucket dan premium
         $sum_bobot = ItemTransaksi::where('transaksi_id', $this->id)->sum('total_bobot');
         $sum_harga_premium = ItemTransaksi::where('transaksi_id', $this->id)->sum('total_premium');
-
+        //kalkulasi bobot bucket
         $paket_bucket = PaketCuci::where('nama_paket', 'BUCKET')->first();
         $jumlah_bucket = ceil($sum_bobot / $paket_bucket->jumlah_bobot);
         $total_harga_bucket = $jumlah_bucket * $paket_bucket->harga_paket;
-
-        $subtotal = $sum_harga_premium + $total_harga_bucket;
-        $grand_total = (($subtotal - $diskon) * ((100 - $diskon_member) / 100)) - $this->special_diskon;
-
+        //simpan bucket dan bobot
         $this->total_bobot = $sum_bobot;
         $this->jumlah_bucket = $jumlah_bucket;
-        $this->diskon_member = ceil(($subtotal - $diskon) * $diskon_member / 100);
+
+        //hitung subtotal
+        $subtotal = $sum_harga_premium + $total_harga_bucket;
         $this->subtotal = $subtotal;
+        //hitung diskon
+        //promo kode bertumpuk
+        foreach ($diskon_transaksi as $related) {
+            $promo = Diskon::find($related->diskon_id)->first();
+            if ($promo->jenis_diskon == "percentage") {
+                $temp = $subtotal * $promo->nominal;
+                if ($temp > 0) {
+                    $temp = floor($temp / 100);
+                    if ($temp > $promo->maximal_diskon) {
+                        $temp = $promo->maximal_diskon;
+                    }
+                }
+                $total_diskon_promo += $temp;
+            } else {
+                $total_diskon_promo += $promo->nominal;
+            }
+        }
+        //diskon membership
+        $diskon_member = floor($subtotal * $diskon_member / 100);
+        $this->diskon_member = $diskon_member;
+        //diskon jenis item
+        $diskon_jenis_item = ItemTransaksi::where('transaksi_id', $this->id)->sum(function ($t) {
+            return $t->qty * $t->diskon_jenis_item;
+        });
+
+        //calculate grand total
+        $grand_total = $subtotal - ($diskon_jenis_item + $diskon_member + $total_diskon_promo);
         $grand_total < 0 ? $this->grand_total = 0 : $this->grand_total = $grand_total;
         $this->save();
         return $this;
