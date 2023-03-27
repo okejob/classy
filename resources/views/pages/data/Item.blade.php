@@ -116,7 +116,7 @@
                                     <h5>Diskon Jenis Item</h5>
                                     <div class="form-control d-flex">
                                         <p>Rp</p>
-                                        <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-diskon-item" name="diskon_item" required>
+                                        <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-diskon-item" min=0 name="diskon_jenis_item" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6">

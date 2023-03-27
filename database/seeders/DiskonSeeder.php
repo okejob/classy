@@ -19,6 +19,7 @@ class DiskonSeeder extends Seeder
         Diskon::create([
             'code' => 'DC'. rand(10000,99999),
             'description' => 'Contoh',
+            'jenis_diskon' => 'exact',
             'expired' => Date::createFromDate(2023,6,1,'Asia/Jakarta'),
             'nominal' => 20000
         ]);

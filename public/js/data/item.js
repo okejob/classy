@@ -80,26 +80,26 @@ $(document).ready(function() {
         $('#input-harga-bucket').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(9)').html());
         $('#input-harga-premium').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(11)').html());
         $('#input-beban-produksi').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(12)').html());
-        $('#input-diskon-item').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(13)').html());
+        $('#input-diskon-item').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(14)').html());
 
-        if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(14)').html() == "Aktif") {
+        if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(15)').html() == "Aktif") {
             $('#formCheck-kilo-aktif').attr('checked', true);
-        } else if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(14)').html() == "Tidak aktif") {
+        } else if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(15)').html() == "Tidak aktif") {
             $('#formCheck-kilo-tidakAktif').attr('checked', true);
         }
-        if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(15)').html() == "Aktif") {
+        if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(16)').html() == "Aktif") {
             $('#formCheck-bucket-aktif').attr('checked', true);
-        } else if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(15)').html() == "Tidak aktif") {
+        } else if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(16)').html() == "Tidak aktif") {
             $('#formCheck-bucket-tidakAktif').attr('checked', true);
         }
-        if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(16)').html() == "Aktif") {
+        if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(17)').html() == "Aktif") {
             $('#formCheck-premium-aktif').attr('checked', true);
-        } else if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(16)').html() == "Tidak aktif") {
+        } else if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(17)').html() == "Tidak aktif") {
             $('#formCheck-premium-tidakAktif').attr('checked', true);
         }
-        if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(17)').html() == "Aktif") {
+        if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(18)').html() == "Aktif") {
             $('#formCheck-item-aktif').attr('checked', true);
-        } else if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(17)').html() == "Tidak aktif") {
+        } else if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(18)').html() == "Tidak aktif") {
             $('#formCheck-item-tidakAktif').attr('checked', true);
         }
         $('#modal-form .modal-body .row .col-12:nth-child(13)').show();

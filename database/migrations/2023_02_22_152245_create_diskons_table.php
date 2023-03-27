@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('diskons', function (Blueprint $table) {
             $table->id();
             $table->string('code')->unique();
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->date('expired');
             $table->integer('nominal');
             $table->integer('maximal_diskon')->default(0);

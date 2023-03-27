@@ -47,6 +47,25 @@ $(document).ready(function() {
         }
     });
 
+    $('input[type=radio][name=jenis_diskon]').on('change', function() {
+        if (this.value == 'percentage') {
+            $('.percentage').show();
+            $('.exact').hide();
+        }
+        else if (this.value == 'exact') {
+            $('.percentage').hide();
+            $('.exact').show();
+        }
+    });
+
+    $('#btn-submit').on('click', function() {
+        if ($('.btn-check:checked').val() == 'percentage') {
+            $('.exact').detach();
+        } else if ($('.btn-check:checked').val() == 'exact') {
+            $('.percentage').detach();
+        }
+    });
+
     $('#modal-form').on('submit', function(e) {
         e.preventDefault();
         $('#btn-submit').addClass('disabled');

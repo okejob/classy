@@ -30,14 +30,14 @@
                             <tr>
                                 <td>{{ $diskon->code }}</td>
                                 <td>{{ $diskon->description }}</td>
-                                @if ($diskon->tipe == "percetage")
+                                @if ($diskon->jenis_diskon == "percentage")
                                 <td>
-                                    <div class="d-flex justify-content-between">
+                                    <div class="d-flex justify-content-center">
                                         <span class="thousand-separator">{{ $diskon->nominal }}</span>
                                         <span>%</span>
                                     </div>
                                 </td>
-                                @elseif ($diskon->tipe == "exact")
+                                @elseif ($diskon->jenis_diskon == "exact")
                                 <td>
                                     <div class="d-flex justify-content-between">
                                         <span>Rp</span>
@@ -48,7 +48,7 @@
                                 <td>
                                     <div class="d-flex justify-content-between">
                                         <span>Rp</span>
-                                        <span class="thousand-separator">{{ $diskon->maksimal_diskon }}</span>
+                                        <span class="thousand-separator">{{ $diskon->maximal_diskon }}</span>
                                     </div>
                                 </td>
                                 <td class="text-center">{{ $diskon->expired }}</td>
@@ -109,27 +109,43 @@
                                     <textarea class="form-control" id="input-deskripsi" name="description"></textarea>
                                 </div>
                                 <div class="col-12">
+                                    <h5>Tanggal Expired</h5>
+                                    <input class="form-control" type="date" id="input-expired" name="expired_date" required>
+                                </div>
+                                <div class="col-12">
                                     <div class="d-flex align-items-center">
                                         <h5>Tipe Diskon</h5>
                                         <div class="ms-3">
-                                            <input type="radio" class="btn-check" name="options-outlined" id="tipe-percentage" autocomplete="off">
+                                            <input type="radio" class="btn-check" id="tipe-percentage" autocomplete="off" name="jenis_diskon" value="percentage" required>
                                             <label class="btn btn-outline-primary" for="tipe-percentage">Persentasi</label>
-
-                                            <input type="radio" class="btn-check" name="options-outlined" id="tipe-exact" autocomplete="off">
+                                            <input type="radio" class="btn-check" id="tipe-exact" autocomplete="off" name="jenis_diskon" value="exact">
                                             <label class="btn btn-outline-primary" for="tipe-exact">Nominal</label>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-12 exact" style="display: none;">
                                     <h5>Besar Diskon</h5>
                                     <div class="form-control d-flex">
                                         <p>Rp</p>
-                                        <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-nominal" name="nominal" required>
+                                        <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-nominal" name="nominal" min=0 required>
                                     </div>
                                 </div>
-                                <div class="col-6">
-                                    <h5>Tanggal Expired</h5>
-                                    <input class="form-control" type="date" id="input-expired" name="expired_date" required>
+                                <div class="col-6 percentage" style="display: none;">
+                                    <h5>Besar Diskon</h5>
+                                    <div class="form-control d-flex">
+                                        <input class="w-100 me-2 input-thousand-separator" type="text" id="input-nominal" name="nominal" min=0 max=100 required>
+                                        <p>%</p>
+                                    </div>
+                                </div>
+                                <div class="col-6 percentage" style="display: none;">
+                                    <h5>
+                                        Maksimal Diskon
+                                        <i class="bi bi-question-circle" data-toggle="tooltip" data-placement="top" title="Tooltip text"></i>
+                                    </h5>
+                                    <div class="form-control d-flex">
+                                        <p>Rp</p>
+                                        <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-max-nominal" name="maximal_diskon" required>
+                                    </div>
                                 </div>
                             </div>
                         </div>
