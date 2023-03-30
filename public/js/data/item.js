@@ -26,7 +26,7 @@ $(document).ready(function() {
     });
 
     function search() {
-        $('#table-item').load(window.location.origin + '/component/jenis-item?key=' + $('#input-search').val() +'&paginate=' + paginateCount, function() {
+        $('#table-item').load(window.location.origin + '/component/jenis-item?key=' + encodeURIComponent($('#input-search').val()) +'&paginate=' + paginateCount, function() {
             setThousandSeparator();
         });
     }

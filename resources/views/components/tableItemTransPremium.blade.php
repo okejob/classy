@@ -1,3 +1,4 @@
+@dump($trans->item_transaksi)
 <div class="table-responsive my-2 tbody-wrap">
     <table class="table table-striped mb-0" id="table-trans-item">
         <thead>

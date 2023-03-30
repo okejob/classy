@@ -139,13 +139,11 @@ $(document).ready(function() {
         $.ajax({
             url: "/transaksi/search?tipe=bucket&key=" + key,
         }).done(function(data) {
-            console.log(data);
             let transaksi = data[0];
 
             $('#table-list-trans tbody').empty();
             for (let i = 0; i < transaksi.length; i++) {
                 const trans = transaksi[i];
-                console.log(trans);
                 $('#table-list-trans tbody').prepend(
                     "<tr data-bs-toggle='tooltip' data-bss-tooltip='' title='Double klik untuk memilih' id=" + trans.id + ">" +
                         "<td>" + trans.kode + "</td>" +
@@ -424,7 +422,7 @@ $(document).ready(function() {
         $(this).append("<div class='d-flex align-items-center justify-content-center' style='height: 39.5px;'>" + input.val() + "</div>");
 
         let id = $(this).closest('tr').attr('id');
-        console.log(id);
+        // console.log(id);
         let formData = new FormData();
         formData.append('qty', input.val());
 
@@ -438,7 +436,7 @@ $(document).ready(function() {
             processData: false,
             data: formData,
         }).done(function(data) {
-            console.log(data)
+            // console.log(data);
             $('#table-container').load(window.location.origin + '/component/transBucket/' + transId, function() {
                 adjustWidth();
                 setThousandSeparator();
@@ -530,7 +528,7 @@ $(document).ready(function() {
     $('#input-foto-item').on('change', function() {
         imgWidth = $('#container-image-item').clientWidth;
         imgHeight = $('#container-image-item').clientHeight;
-        console.log("width : " + imgWidth + "\nheight : " + imgHeight);
+        // console.log("width : " + imgWidth + "\nheight : " + imgHeight);
     });
 
     $('#container-image-item').on('hover', function() {
@@ -652,7 +650,7 @@ $(document).ready(function() {
     });
 
     $('#input-nominal-promo').on('input', function() {
-        console.log('val = ' + $(this).val());
+        // console.log('val = ' + $(this).val());
         if (parseInt($(this).val()) > parseInt($(this).attr('max'))) {
             $(this).val($(this).attr('max'));
         }
