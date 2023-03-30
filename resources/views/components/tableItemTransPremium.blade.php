@@ -1,4 +1,4 @@
-@dump($trans->item_transaksi)
+{{-- @dump($trans->item_transaksi) --}}
 <div class="table-responsive my-2 tbody-wrap">
     <table class="table table-striped mb-0" id="table-trans-item">
         <thead>
@@ -43,6 +43,20 @@
                     </button>
                 </td>
             </tr>
+            @if($item->diskon_jenis_item != 0) {
+                <tr id='diskon-{{ $item->id }}'>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Rp</td>
+                    <td class="thousand-separator text-end">{{ $item->diskon_jenis_item }}</td>
+                    <td>Rp</td>
+                    <td class="thousand-separator text-end">{{ $item->diskon_jenis_item * $item->qty }}</td>
+                    <td style='width: 46.25px;'></td>
+                </tr>
+            }
+            @endif
             @endforeach
             @if(in_array("Menambahkan Item Ke Transaksi", Session::get('permissions')) || Session::get('role') == 'administrator')
             <tr>
