@@ -31,8 +31,15 @@ $(document).ready(function() {
 
         $('#input-kode').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(1)').html());
         $('#input-deskripsi').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(2)').html());
-        $('#input-nominal').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(4)').html().replace('.', ''));
         $('#input-expired').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(5)').html());
+        if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(3) .thousand-separator').next().text() == "%") {
+            $('#tipe-percentage').trigger('click');
+            $('#input-nominal-2').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(3) .thousand-separator').text());
+            $('#input-max-nominal').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(4) .thousand-separator').text());
+        } else if ($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(3) .thousand-separator').prev().text() == "Rp") {
+            $('#tipe-exact').trigger('click');
+            $('#input-nominal-1').val($('tbody tr:nth-child(' + btnIndex + ') td:nth-child(3) .thousand-separator').text());
+        }
 
         $('#modal-diskon').modal('show');
     });

@@ -127,13 +127,13 @@
                                     <h5>Besar Diskon</h5>
                                     <div class="form-control d-flex">
                                         <p>Rp</p>
-                                        <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-nominal" name="nominal" min=0 required>
+                                        <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-nominal-1" name="nominal" min=0 required>
                                     </div>
                                 </div>
                                 <div class="col-6 percentage" style="display: none;">
                                     <h5>Besar Diskon</h5>
                                     <div class="form-control d-flex">
-                                        <input class="w-100 me-2 input-thousand-separator" type="text" id="input-nominal" name="nominal" min=0 max=100 required>
+                                        <input class="w-100 me-2 input-thousand-separator" type="text" id="input-nominal-2" name="nominal" min=0 max=100 required>
                                         <p>%</p>
                                     </div>
                                 </div>
