@@ -13,7 +13,7 @@
         </thead>
         <tbody>
             @foreach ($trans->item_transaksi as $item)
-            <tr id='{{ $item->id }}'>
+            <tr id='{{ $item->id }}' class="item">
                 <td style='white-space: nowrap;'>{{ $item->nama }}</td>
                 <td class='d-none d-lg-table-cell text-center'>{{ $item->nama_kategori }}</td>
                 @if ($trans->penyetrika != null)
@@ -43,11 +43,8 @@
                 </td>
             </tr>
             @if($item->diskon_jenis_item != 0)
-            <tr id='diskon-{{ $item->id }}'>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+            <tr id='diskon-{{ $item->id }}' class="diskon">
+                <td class="text-end" colspan="4">Diskon jenis item</td>
                 <td>Rp</td>
                 <td class="thousand-separator text-end">{{ $item->diskon_jenis_item }}</td>
                 <td>Rp</td>
