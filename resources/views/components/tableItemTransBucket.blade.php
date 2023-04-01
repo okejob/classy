@@ -40,6 +40,16 @@
                     </button>
                 </td>
             </tr>
+            @if($item->diskon_jenis_item != 0)
+            <tr id='diskon-{{ $item->id }}' class="diskon">
+                <td class="text-end" colspan="4">Diskon jenis item</td>
+                <td class="d-none d-md-table-cell">Rp</td>
+                <td class="d-none d-md-table-cell thousand-separator text-end">{{ $item->diskon_jenis_item }}</td>
+                <td>Rp</td>
+                <td class="thousand-separator text-end">{{ $item->diskon_jenis_item * $item->qty }}</td>
+                <td style='width: 46.25px;'></td>
+            </tr>
+            @endif
             @endforeach
             @if(in_array("Menambahkan Item Ke Transaksi", Session::get('permissions')) || Session::get('role') == 'administrator')
             <tr>
@@ -59,9 +69,15 @@
                 <td style="width: 46.25px;"></td>
             </tr>
             <tr>
-                <td class="text-end">Diskon</td>
+                <td class="text-end">Diskon Jenis Item</td>
                 <td style="width: 5%">Rp</td>
-                <td class="text-end thousand-separator" id="diskon">{{ $trans->diskon + $trans->special_diskon }}</td>
+                <td class="text-end thousand-separator" id="diskon-item">{{ $trans->diskon_jenis_item }}</td>
+                <td style="width: 46.25px;"></td>
+            </tr>
+            <tr>
+                <td class="text-end">Diskon Promo</td>
+                <td style="width: 5%">Rp</td>
+                <td class="text-end thousand-separator" id="diskon-promo">{{ $trans->total_diskon_promo }}</td>
                 <td style="width: 46.25px;"></td>
             </tr>
             <tr>

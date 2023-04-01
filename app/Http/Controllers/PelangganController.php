@@ -11,7 +11,6 @@ class PelangganController extends Controller
 {
     public function insert(InsertPelangganRequest $request)
     {
-        dd($request);
         $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
         Pelanggan::create($merged);
 

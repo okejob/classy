@@ -317,7 +317,6 @@ $(document).ready(function() {
 
             $('#table-trans-item tbody tr td:nth-child(1)').css('width', '60%');
             $('#table-trans-item tbody tr td:nth-child(1)').css('white-space', 'initial');
-
             $('#table-trans-item tfoot tr td:nth-child(1)').css('width', '55%');
             $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '10%');
         } else if ($(window).width() < 992) {
