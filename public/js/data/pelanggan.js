@@ -24,7 +24,7 @@ $(document).ready(function() {
     });
 
     function search() {
-        $('#table-pelanggan').load(window.location.origin + '/component/pelanggan?key=' + $('#input-search').val() + '&filter=' + searchFilter + '&paginate=' + paginateCount);
+        $('#table-pelanggan').load(window.location.origin + '/component/pelanggan?key=' + encodeURIComponent($('#input-search').val()) + '&filter=' + searchFilter + '&paginate=' + paginateCount);
     }
 
     $("#dropdown-filter .filter-search").on('click', function() {
@@ -84,6 +84,6 @@ $(document).ready(function() {
     $('#modal-form').on('submit', function(e) {
         e.preventDefault();
         $('#btn-submit').addClass('disabled');
-        e.currentTarget.submit();
+        // e.currentTarget.submit();
     });
 });

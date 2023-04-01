@@ -318,6 +318,8 @@ $(document).ready(function() {
 
             $('#table-trans-item tbody tr.item td:nth-child(1)').css('width', '60%');
             $('#table-trans-item tbody tr.item td:nth-child(1)').css('white-space', 'initial');
+            $('#table-trans-item tbody tr.diskon td:nth-child(1)').css('width', '60%');
+            $('#table-trans-item tbody tr.diskon td:nth-child(1)').attr('colspan', 0);
 
             $('#table-trans-item tfoot tr td:nth-child(1)').css('width', '55%');
             $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '10%');
@@ -331,6 +333,8 @@ $(document).ready(function() {
             $('#table-trans-item tbody tr.item td:nth-child(1)').css('white-space', 'nowrap');
             $('#table-trans-item tbody tr.item td:nth-child(3)').css('width', '15%');
             $('#table-trans-item tbody tr.item td:nth-child(4)').css('width', '10%');
+            $('#table-trans-item tbody tr.diskon td:nth-child(1)').css('width', '60%');
+            $('#table-trans-item tbody tr.diskon td:nth-child(1)').attr('colspan', 3);
 
             $('#table-trans-item tfoot tr td:nth-child(1)').css('width', '70%');
             $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '10%');
@@ -346,6 +350,8 @@ $(document).ready(function() {
             $('#table-trans-item tbody tr.item td:nth-child(2)').css('width', '20%');
             $('#table-trans-item tbody tr.item td:nth-child(3)').css('width', '10%');
             $('#table-trans-item tbody tr.item td:nth-child(4)').css('width', '5%');
+            $('#table-trans-item tbody tr.diskon td:nth-child(1)').css('width', '65%');
+            $('#table-trans-item tbody tr.diskon td:nth-child(1)').attr('colspan', 4);
 
             $('#table-trans-item tfoot tr td:nth-child(1)').css('width', '80%');
             $('#table-trans-item tfoot tr td:nth-child(2)').css('width', '5%');
@@ -488,7 +494,6 @@ $(document).ready(function() {
         });
     });
 
-    // untuk menghapus item transaksi
     $('#action-delete').on('click', function() {
         if (confirm('Yakin menghapus data  ?')) {
             $.ajax({
@@ -496,7 +501,8 @@ $(document).ready(function() {
             }).done(function(data) {
                 let trans = data[0];
                 $('#sub-total').html(trans.subtotal);
-                $('#diskon').html(trans.diskon);
+                $('#diskon-item').html(trans.diskon_jenis_item);
+                $('#diskon-promo').html(trans.total_diskon_promo);
                 $('#diskon-member').html(trans.diskon_member);
                 $('#grand-total').html(trans.grand_total);
 
@@ -525,7 +531,6 @@ $(document).ready(function() {
         }
     });
 
-    // untuk menampilan modal detail catatan
     $('#table-list-catatan tbody').on('click', '.btn', function() {
         $('#catatan-item-name').text(currentlySelectedItemName);
         $.ajax({
@@ -557,7 +562,6 @@ $(document).ready(function() {
         });
     });
 
-    // untuk mereset dan menampilkan modal tambah catatan
     $('#add-catatan-item').on('click', function() {
         $('#catatan-item-name').text(currentlySelectedItemName);
 
@@ -585,7 +589,6 @@ $(document).ready(function() {
         $('#modal-catatan-item').modal('show');
     });
 
-    // untuk menyimpan catatan
     $('#simpan-catatan-item').on('click', function() {
         if ($('#form-catatan')[0].checkValidity()) {
             $(this).addClass('disabled');
@@ -636,54 +639,54 @@ $(document).ready(function() {
         }
     });
 
-    $('#kode-promo').on('click', function() {
-        let val = removeDot($('#sub-total').html()) - removeDot($('#diskon-member').html());
-        $('#input-nominal-promo').attr('max', val);
-        $('#modal-kode-promo').modal('show');
-    });
+    // $('#kode-promo').on('click', function() {
+    //     let val = removeDot($('#sub-total').html()) - removeDot($('#diskon-member').html());
+    //     $('#input-nominal-promo').attr('max', val);
+    //     $('#modal-kode-promo').modal('show');
+    // });
 
-    $('#input-nominal-promo').on('input', function() {
-        console.log('val = ' + $(this).val());
-        if (parseInt($(this).val()) > parseInt($(this).attr('max'))) {
-            $(this).val($(this).attr('max'));
-        }
-    });
+    // $('#input-nominal-promo').on('input', function() {
+    //     console.log('val = ' + $(this).val());
+    //     if (parseInt($(this).val()) > parseInt($(this).attr('max'))) {
+    //         $(this).val($(this).attr('max'));
+    //     }
+    // });
 
-    $('#btn-authenticate-login').on('click', function() {
-        let formData = new FormData();
-        formData.append('username', $('#input-username-auth').val());
-        formData.append('password', $('#input-password-auth').val());
+    // $('#btn-authenticate-login').on('click', function() {
+    //     let formData = new FormData();
+    //     formData.append('username', $('#input-username-auth').val());
+    //     formData.append('password', $('#input-password-auth').val());
 
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-            },
-            url: "/transaksi/diskon/autentikasi",
-            method: "POST",
-            contentType: false,
-            processData: false,
-            data: formData,
-        }).done(function(data) {
-            $('#div-promo-spesial').prev().addClass('d-none').removeClass('d-flex');
-            $('#div-promo-spesial').removeClass('d-none').addClass('d-flex');
+    //     $.ajax({
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+    //         },
+    //         url: "/transaksi/diskon/autentikasi",
+    //         method: "POST",
+    //         contentType: false,
+    //         processData: false,
+    //         data: formData,
+    //     }).done(function(data) {
+    //         $('#div-promo-spesial').prev().addClass('d-none').removeClass('d-flex');
+    //         $('#div-promo-spesial').removeClass('d-none').addClass('d-flex');
 
-        }).fail(function(message) {
-            alert('error');
-            console.log(message);
-        });
-    });
+    //     }).fail(function(message) {
+    //         alert('error');
+    //         console.log(message);
+    //     });
+    // });
 
-    $('#btn-apply-promo-spesial').on('click', function() {
-        $('#input-nominal-promo').val(removeDot($('#input-nominal-promo').val()));
-        $.ajax({
-            url: "/transaksi/diskon/special/transaksi/" + transId + "/nominal/" + $('#input-nominal-promo').val(),
-        }).done(function() {
-            window.location = window.location.origin + window.location.pathname;
-        }).fail(function(message) {
-            alert('error');
-            console.log(message);
-        });
-    });
+    // $('#btn-apply-promo-spesial').on('click', function() {
+    //     $('#input-nominal-promo').val(removeDot($('#input-nominal-promo').val()));
+    //     $.ajax({
+    //         url: "/transaksi/diskon/special/transaksi/" + transId + "/nominal/" + $('#input-nominal-promo').val(),
+    //     }).done(function() {
+    //         window.location = window.location.origin + window.location.pathname;
+    //     }).fail(function(message) {
+    //         alert('error');
+    //         console.log(message);
+    //     });
+    // });
 
     $('#nav-pembayaran').on('click', function() {
         $('#pembayaran-diskon').parent().show();
@@ -693,7 +696,7 @@ $(document).ready(function() {
             let trans = data;
             $('.kode-trans').text(trans.kode);
             $('#pembayaran-subtotal').html(trans.subtotal);
-            $('#pembayaran-diskon').html(trans.diskon + trans.diskon_member);
+            $('#pembayaran-diskon').html(trans.diskon_jenis_item + trans.total_diskon_promo + trans.diskon_member);
             $('#pembayaran-grand-total').html(trans.grand_total);
 
             $('#table-pembayaran tbody').empty();
@@ -709,7 +712,7 @@ $(document).ready(function() {
                 );
             });
 
-            if (trans.diskon + trans.diskon_member == 0) {
+            if (trans.diskon_jenis_item + trans.total_diskon_promo + trans.diskon_member == 0) {
                 $('#pembayaran-diskon').parent().hide();
             } else {
                 $('#pembayaran-diskon').parent().show();

@@ -11,7 +11,6 @@ class DiskonController extends Controller
 {
     public function insert(Request $request)
     {
-        // dd($request);
         Diskon::create([
             'code' => $request->code,
             'description' => $request->description,
@@ -28,8 +27,10 @@ class DiskonController extends Controller
         $diskon->update([
             'code' => $request->code,
             'description' => $request->description,
+            'jenis_diskon' => $request->jenis_diskon,
+            'nominal' => $request->nominal,
+            'maximal_diskon' => ($request->jenis_diskon == 'percentage') ? $request->maximal_diskon : 0,
             'expired' => Date::createFromFormat('Y-m-d', $request->expired_date),
-            'nominal' => $request->nominal
         ]);
         $diskon->save();
         return redirect()->intended(route('data-diskon'));

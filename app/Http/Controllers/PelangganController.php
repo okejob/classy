@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\InsertPelangganRequest;
 use App\Models\Data\Pelanggan;
-use App\Models\Saldo;
-use App\Models\Transaksi\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,6 +11,7 @@ class PelangganController extends Controller
 {
     public function insert(InsertPelangganRequest $request)
     {
+        dd($request);
         $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
         Pelanggan::create($merged);
 
@@ -54,16 +53,8 @@ class PelangganController extends Controller
 
     public function search(Request $request)
     {
-        // $pelanggan = Pelanggan::when($request->has("key"), function ($q) use ($request) {
-        //     return $q->where("nama", "like", "%" . $request->get("search") . "%")
-        //         ->orWhere("no_id", "like", "%" . $request->get("search") . "%")
-        //         ->orWhere("telephone", "like", "%" . $request->get("search") . "%")
-        //         ->orWhere("email", "like", "%" . $request->get("search") . "%");
-        // })->orderBy("created_at", "asc")->paginate($request->paginate);
-
         $conditions = [];
         if ($request->filter === 'nama') {
-
             $conditions[] = function ($q) use ($request) {
                 return $q->where('nama', 'like', '%' . $request->key . '%');
             };
