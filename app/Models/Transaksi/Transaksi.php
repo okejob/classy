@@ -45,6 +45,7 @@ class Transaksi extends Model
         //find bucket dan premium
         $sum_bobot = ItemTransaksi::where('transaksi_id', $this->id)->sum('total_bobot');
         $sum_harga_premium = ItemTransaksi::where('transaksi_id', $this->id)->sum('total_premium');
+
         //kalkulasi bobot bucket
         $paket_bucket = PaketCuci::where('nama_paket', 'BUCKET')->first();
         $jumlah_bucket = ceil($sum_bobot / $paket_bucket->jumlah_bobot);
@@ -77,7 +78,9 @@ class Transaksi extends Model
         $diskon_member = floor($subtotal * $diskon_member / 100);
         $this->diskon_member = $diskon_member;
         //diskon jenis item
-        $diskon_jenis_item = ItemTransaksi::where('transaksi_id', $this->id)->sum('diskon_jenis_item');
+        $diskon_jenis_item = ItemTransaksi::where('transaksi_id', $this->id)->sum(function ($t) {
+            return $t->diskon_jenis_item * $t->qty;
+        });
 
         //calculate grand total
         $grand_total = $subtotal - ($diskon_jenis_item + $diskon_member + $total_diskon_promo);
