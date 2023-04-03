@@ -249,16 +249,47 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <div id="promo-biasa">
+                                        <div id="promo-biasa">
                                                 <h5>Kode Promo</h5>
                                                 <div class="d-flex">
-                                                    <input class="form-control me-3" type="text" name="kode">
-                                                    <button class="btn btn-primary" type="button" id="btn-apply-promo-basic">Apply</button>
+                                                    <input id="input-kode-diskon" class="form-control me-3" type="text" name="diskon_code">
+                                                    <button class="btn btn-primary" type="button" id="btn-apply-promo-basic">
+                                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                                    </button>
                                                 </div>
                                                 <p class="error-promo-basic"></p>
                                             </div>
-                                            <hr>
-                                            <div id="promo-spesial">
+                                            <div id="active-promo" style="display: none;">
+                                                <hr>
+                                                <h5>Active Promo</h5>
+                                                <div class="d-flex mt-2">
+                                                    <div id="diskon-1">
+                                                        <div class="btn-group" role="group">
+                                                            <button type="button" class="btn btn-primary">
+                                                                <span class="kode-diskon"></span>
+                                                                &nbsp;-&nbsp;
+                                                                <span class="info-diskon"></span>
+                                                            </button>
+                                                            <button type="button" class="btn btn-primary cancel-diskon">
+                                                                <i class="fa-solid fa-xmark"></i>
+                                                            </button>
+                                                          </div>
+                                                    </div>
+                                                    <div class="ms-2" id="diskon-2">
+                                                        <div class="btn-group" role="group">
+                                                            <button type="button" class="btn btn-primary">
+                                                                <span class="kode-diskon"></span>
+                                                                &nbsp;-&nbsp;
+                                                                <span class="info-diskon"></span>
+                                                            </button>
+                                                            <button type="button" class="btn btn-primary cancel-diskon">
+                                                                <i class="fa-solid fa-xmark"></i>
+                                                            </button>
+                                                          </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{-- <div id="promo-spesial">
                                                 <h5>Promo Spesial</h5>
                                                 <div class="d-block rounded mt-3" style="height: 200px; background-color: lightgrey;">
                                                     <div class="d-flex justify-content-center align-items-center h-100" id="div-login">
@@ -279,7 +310,7 @@
                                                         <button class="btn btn-primary" type="button" id="btn-apply-promo-spesial">Apply</button>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>

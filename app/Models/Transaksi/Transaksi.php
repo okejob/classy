@@ -78,12 +78,13 @@ class Transaksi extends Model
         $diskon_member = floor($subtotal * $diskon_member / 100);
         $this->diskon_member = $diskon_member;
         //diskon jenis item
-        $diskon_jenis_item = ItemTransaksi::where('transaksi_id', $this->id)->sum(function ($t) {
+        $diskon_jenis_item = ItemTransaksi::where('transaksi_id', $this->id)->get()->map(function ($t) {
             return $t->diskon_jenis_item * $t->qty;
-        });
+        })->sum();
         if ($sum_bobot > 0) {
             $diskon_jenis_item = 0;
         }
+
         //calculate grand total
         $grand_total = $subtotal - ($diskon_jenis_item + $diskon_member + $total_diskon_promo);
         $grand_total < 0 ? $this->grand_total = 0 : $this->grand_total = $grand_total;

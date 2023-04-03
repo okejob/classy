@@ -643,41 +643,142 @@ $(document).ready(function() {
     });
 
     $('#kode-promo').on('click', function() {
-        let val = removeDot($('#sub-total').html()) - removeDot($('#diskon-member').html());
-        $('#input-nominal-promo').attr('max', val);
-        $('#modal-kode-promo').modal('show');
+        $.ajax({
+            url: "/diskon-transaksi/" + transId,
+        }).done(function(response) {
+            if (response.data.length != 0) {
+                $('#diskon-1 .kode-diskon').text(response.data[0].diskon.code);
+                if (response.data[0].diskon.jenis_diskon == "exact") {
+                    $('#diskon-1 .info-diskon').text("Rp " + response.data[0].diskon.nominal);
+                } else if (response.data[0].diskon.jenis_diskon == "percentage") {
+                    if (response.data[1].diskon.maximal_diskon != 0) {
+                        $('#diskon-2 .info-diskon').text(response.data[0].diskon.nominal + " % - Max Rp " + response.data[0].diskon.maximal_diskon);
+                    } else {
+                        $('#diskon-2 .info-diskon').text(response.data[0].diskon.nominal + " %");
+                    }
+                } else {
+                    console.log('tipe diskon : ' + response.data[0].diskon.jenis_diskon)
+                }
+                $('#diskon-2').hide();
+                if (response.data.length == 2) {
+                    $('#diskon-2 .kode-diskon').text(response.data[1].diskon.code);
+                    if (response.data[1].diskon.jenis_diskon == "exact") {
+                        $('#diskon-2 .info-diskon').text("Rp " + response.data[1].diskon.nominal);
+                    } else if (response.data[1].diskon.jenis_diskon == "percentage") {
+                        if (response.data[1].diskon.maximal_diskon != 0) {
+                            $('#diskon-2 .info-diskon').text(response.data[1].diskon.nominal + " % - Max Rp " + response.data[1].diskon.maximal_diskon);
+                        } else {
+                            $('#diskon-2 .info-diskon').text(response.data[1].diskon.nominal + " %");
+                        }
+                    } else {
+                        console.log('tipe diskon : ' + response.data[1].diskon.jenis_diskon);
+                    }
+                    $('#diskon-2').show();
+                }
+                $('#active-promo').show();
+            } else {
+                $('#active-promo').hide();
+            }
+            $('#modal-kode-promo').modal('show');
+        });
     });
 
-    $('#input-nominal-promo').on('input', function() {
-        // console.log('val = ' + $(this).val());
-        if (parseInt($(this).val()) > parseInt($(this).attr('max'))) {
-            $(this).val($(this).attr('max'));
-        }
-    });
-
-    $('#btn-authenticate-login').on('click', function() {
+    $('#btn-apply-promo-basic').on('click', function() {
         let formData = new FormData();
-        formData.append('username', $('#input-username-auth').val());
-        formData.append('password', $('#input-password-auth').val());
+        formData.append('transaksi_id', transId);
+        formData.append('code', $('#input-kode-diskon').val());
 
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
             },
-            url: "/transaksi/diskon/autentikasi",
+            url: "/diskon-transaksi",
             method: "POST",
             contentType: false,
             processData: false,
             data: formData,
-        }).done(function(data) {
-            $('#div-promo-spesial').prev().addClass('d-none').removeClass('d-flex');
-            $('#div-promo-spesial').removeClass('d-none').addClass('d-flex');
-
+        }).done(function(response) {
+            if (response.status == '200') {
+                $.ajax({
+                    url: "/diskon-transaksi/" + transId,
+                }).done(function(response) {
+                    $('#diskon-1 .kode-diskon').text(response.data[0].diskon.code);
+                    if (response.data[0].diskon.jenis_diskon == "exact") {
+                        $('#diskon-1 .info-diskon').text("Rp " + response.data[0].diskon.nominal);
+                    } else if (response.data[0].diskon.jenis_diskon == "percentage") {
+                        if (response.data[1].diskon.maximal_diskon != 0) {
+                            $('#diskon-2 .info-diskon').text(response.data[0].diskon.nominal + " % - Max Rp " + response.data[0].diskon.maximal_diskon);
+                        } else {
+                            $('#diskon-2 .info-diskon').text(response.data[0].diskon.nominal + " %");
+                        }
+                    } else {
+                        console.log('tipe diskon : ' + response.data[0].diskon.jenis_diskon);
+                    }
+                    $('#diskon-2').hide();
+                    if (response.data.length == 2) {
+                        $('#diskon-2 .kode-diskon').text(response.data[1].diskon.code);
+                        if (response.data[1].diskon.jenis_diskon == "exact") {
+                            $('#diskon-2 .info-diskon').text("Rp " + response.data[1].diskon.nominal);
+                        } else if (response.data[1].diskon.jenis_diskon == "percentage") {
+                            if (response.data[1].diskon.maximal_diskon != 0) {
+                                $('#diskon-2 .info-diskon').text(response.data[1].diskon.nominal + " % - Max Rp " + response.data[1].diskon.maximal_diskon);
+                            } else {
+                                $('#diskon-2 .info-diskon').text(response.data[1].diskon.nominal + " %");
+                            }
+                        } else {
+                            console.log('tipe diskon : ' + response.data[1].diskon.jenis_diskon);
+                        }
+                        $('#diskon-2').show();
+                    }
+                    $('#active-promo').show();
+                });
+            } else {
+                alert(data.message);
+            }
         }).fail(function(message) {
             alert('error');
             console.log(message);
         });
     });
+
+    $('.cancel-diskon').on('click', function() {
+        $.ajax({
+            url: "/diskon-transaksi/" + transId + "/delete",
+        }).done(function(response) {
+            console.log(response);
+        });
+    });
+
+    // $('#input-nominal-promo').on('input', function() {
+    //     // console.log('val = ' + $(this).val());
+    //     if (parseInt($(this).val()) > parseInt($(this).attr('max'))) {
+    //         $(this).val($(this).attr('max'));
+    //     }
+    // });
+
+    // $('#btn-authenticate-login').on('click', function() {
+    //     let formData = new FormData();
+    //     formData.append('username', $('#input-username-auth').val());
+    //     formData.append('password', $('#input-password-auth').val());
+
+    //     $.ajax({
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+    //         },
+    //         url: "/transaksi/diskon/autentikasi",
+    //         method: "POST",
+    //         contentType: false,
+    //         processData: false,
+    //         data: formData,
+    //     }).done(function(data) {
+    //         $('#div-promo-spesial').prev().addClass('d-none').removeClass('d-flex');
+    //         $('#div-promo-spesial').removeClass('d-none').addClass('d-flex');
+
+    //     }).fail(function(message) {
+    //         alert('error');
+    //         console.log(message);
+    //     });
+    // });
 
     $('#btn-apply-promo-spesial').on('click', function() {
         $('#input-nominal-promo').val(removeDot($('#input-nominal-promo').val()));

@@ -50,7 +50,6 @@ Route::get('/printPreview/{id}', [PrintController::class, 'preview']);
 Route::get('/login', [PageController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/login', [UserController::class, 'authenticate']);
 Route::get('/logout', [UserController::class, 'logout']);
-
 //Middleware Auth digunakan ketika Sudah Login
 Route::middleware(['auth'])->group(function () {
     Route::get('/reset-password', [PageController::class, 'resetPassword'])->name('reset_password');
@@ -177,8 +176,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transaksi/cancelled', [PageController::class, 'cancel']);
     Route::get('/transaksi/{transaksi}/cancel', [TransaksiController::class, 'cancelTransaksi'])->middleware('permission:Membatalkan Transaksi');
     Route::get('/transaksi/{id}/restore', [TransaksiController::class, 'restoreTransaksi'])->middleware('permission:Restore Transaksi');
+    Route::get('/diskon-transaksi/{id}', [DiskonTransaksiController::class, 'find']);
     Route::post('/diskon-transaksi', [DiskonTransaksiController::class, 'insert']);
-    Route::get('/diskon-transaksi/{id}', [DiskonTransaksiController::class, 'delete']);
+    Route::get('/diskon-transaksi/{id}/delete', [DiskonTransaksiController::class, 'delete']);
 
     // Bucket
     Route::get('/transaksi/bucket', [PageController::class, 'bucket'])->name('transaksi')->middleware('permission:Membuka Menu Transaksi');

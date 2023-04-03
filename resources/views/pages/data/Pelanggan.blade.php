@@ -74,8 +74,8 @@
                                     <input class="form-control" type="text" id="input-alamat" name="alamat" required>
                                 </div>
                                 <div class="col-12 col-lg-4">
-                                    <h5>Tanggal Lahir</h5>
-                                    <input class="form-control" id="input-tanggal-lahir" type="date" name="tanggal_lahir" >
+                                    <h5>Tanggal Lahir*</h5>
+                                    <input class="form-control" id="input-tanggal-lahir" type="date" name="tanggal_lahir" required>
                                 </div>
                                 <div class="col-12 col-lg-4">
                                     <h5>Jenis Kelamin*</h5>

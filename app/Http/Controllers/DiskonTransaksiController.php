@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class DiskonTransaksiController extends Controller
 {
+    public function find($id)
+    {
+        return [
+            'data' => DiskonTransaksi::with('diskon')->where('transaksi_id', $id)->get(),
+        ];
+    }
+
     public function insert(Request $request)
     {
         $diskon = Diskon::where('code', $request->code)->first();
@@ -19,18 +26,14 @@ class DiskonTransaksiController extends Controller
             ]);
             $transaksi = Transaksi::find($request->transaksi_id);
             $transaksi->recalculate();
-            $list = DiskonTransaksi::where('transaksi_id', $request->transaksi_id)->get();
             return [
                 'status' => 200,
-                'messaage' => 'Success',
-                'data' => $list,
+                'message' => 'Success'
             ];
         } else {
-            $list = DiskonTransaksi::where('transaksi_id', $request->transaksi_id)->get();
             return [
                 'status' => 400,
-                'messaage' => 'Code Not Found',
-                'data' => $list,
+                'message' => 'Code Not Found',
             ];
         }
     }

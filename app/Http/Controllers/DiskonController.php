@@ -36,22 +36,22 @@ class DiskonController extends Controller
         return redirect()->intended(route('data-diskon'));
     }
 
-    public function addCodeToTransaksi(Transaksi $transaksi, $promo)
-    {
-        $diskon = Diskon::where('code', $promo)->first();
-        if ($promo) {
-            $transaksi->update([
-                'promo_code' => $diskon->id,
-                'diskon' => $diskon->nominal,
-            ]);
-            $transaksi->recalculate();
-        } else {
-            $transaksi->update([
-                'promo_code' => null,
-                'diskon' => 0
-            ]);
-        }
-    }
+    // public function addCodeToTransaksi(Transaksi $transaksi, $promo)
+    // {
+    //     $diskon = Diskon::where('code', $promo)->first();
+    //     if ($promo) {
+    //         $transaksi->update([
+    //             'promo_code' => $diskon->id,
+    //             'diskon' => $diskon->nominal,
+    //         ]);
+    //         $transaksi->recalculate();
+    //     } else {
+    //         $transaksi->update([
+    //             'promo_code' => null,
+    //             'diskon' => 0
+    //         ]);
+    //     }
+    // }
 
     public function delete($id)
     {
