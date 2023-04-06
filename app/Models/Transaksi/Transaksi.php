@@ -60,7 +60,7 @@ class Transaksi extends Model
         //hitung diskon
         //promo kode bertumpuk
         foreach ($diskon_transaksi as $related) {
-            $promo = Diskon::find($related->diskon_id)->first();
+            $promo = Diskon::find($related->diskon_id);
             if ($promo->jenis_diskon == "percentage") {
                 $temp = $subtotal * floor($promo->nominal / 100);
                 if ($temp > $promo->maximal_diskon) {
