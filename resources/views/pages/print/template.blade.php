@@ -114,13 +114,8 @@
                         <td class="text-center">{{ $item->keterangan }}</td>
                     </tr>
                 @endforeach
-                <tr>
-                    <td colspan="5" class="hr-text" style="padding: 0px;">
-                        ============================================================================================================================
-                    </td>
-                </tr>
             </tbody>
-            <tfoot>
+            {{-- <tfoot>
                 <tr>
                     <td colspan="4" class="text-end fw-bold">Subtotal</td>
                     <td class="text-end thousand-separator">{{ $data->transaksi->subtotal }}</td>
@@ -133,7 +128,7 @@
                     <td colspan="4" class="text-end fw-bold">Grand Total</td>
                     <td class="text-end thousand-separator">{{ $data->transaksi->grand_total }}</td>
                 </tr>
-            </tfoot>
+            </tfoot> --}}
         </table>
         @elseif (str_contains($data->transaksi->kode, 'PR-'))
         <table style="font-size: 10pt">
@@ -196,22 +191,31 @@
         </p>
         <div style="position: relative; height: 90px;">
             <p style="position: absolute; left: 0px; top: 0px;">Subtotal</p>
-            <p style="position: absolute; left: 100px; top: 0px;">: {{ $data->transaksi->subtotal }}</p>
+            <p style="position: absolute; left: 100px; top: 0px;">:</p>
+            <p style="position: absolute; left: 100px; top: 0px; width: 75px;" class="text-end">{{ $data->transaksi->subtotal }}</p>
 
             <p style="position: absolute; left: 300px; top: 0px;">Grand Total</p>
-            <p style="position: absolute; left: 400px; top: 0px;">: {{ $data->transaksi->grand_total }}</p>
+            <p style="position: absolute; left: 400px; top: 0px;">:</p>
+            <p style="position: absolute; left: 400px; top: 0px; width: 75px;" class="text-end">{{ $data->transaksi->grand_total }}</p>
 
             <p style="position: absolute; left: 0px; top: 30px;">Diskon</p>
-            <p style="position: absolute; left: 100px; top: 30px;">: {{ $data->transaksi->diskon_jenis_item + $data->transaksi->total_diskon_promo + $data->transaksi->diskon_member }}</p>
+            <p style="position: absolute; left: 100px; top: 30px;">:</p>
+            <p style="position: absolute; left: 100px; top: 30px; width: 75px;" class="text-end">{{ $data->transaksi->diskon_jenis_item + $data->transaksi->total_diskon_promo + $data->transaksi->diskon_member }}</p>
 
             <p style="position: absolute; left: 300px; top: 30px;">Telah Bayar</p>
-            <p style="position: absolute; left: 400px; top: 30px;">: {{ $data->transaksi->terbayar }}</p>
+            <p style="position: absolute; left: 400px; top: 30px;">:</p>
+            <p style="position: absolute; left: 400px; top: 30px; width: 75px;" class="text-end">{{ isset($data->transaksi->terbayar) ? $data->transaksi->terbayar : '0' }}</p>
 
             <p style="position: absolute; left: 0px; top: 60px;">Delivery</p>
-            <p style="position: absolute; left: 100px; top: 60px;">: 0</p>
+            <p style="position: absolute; left: 100px; top: 60px;">:</p>
+            <p style="position: absolute; left: 100px; top: 60px; width: 75px;" class="text-end">0</p>
 
             <p style="position: absolute; left: 300px; top: 60px;">Sisa</p>
-            <p style="position: absolute; left: 400px; top: 60px;">: {{ $data->transaksi->grand_total - $data->transaksi->terbayar }}</p>
+            <p style="position: absolute; left: 400px; top: 60px;">:</p>
+            <p style="position: absolute; left: 400px; top: 60px; width: 75px;" class="text-end">{{ $data->transaksi->grand_total - $data->transaksi->terbayar }}</p>
+            @if (!$data->transaksi->lunas)
+            <p style="position: absolute; left: 500px; top: 60px;">BELUM LUNAS</p>
+            @endif
         </div>
         <p class="hr-text">
             ============================================================================================================================
