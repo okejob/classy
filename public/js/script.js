@@ -176,7 +176,7 @@ $(document).ready(function() {
 
     $('#side-icon').on('click', function(){
         sideNav_opened = !sideNav_opened;
-        console.log(sideNav_opened);
+        // console.log(sideNav_opened);
         if (sideNav_opened) {
             stateNav(true, true);
         } else {

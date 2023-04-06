@@ -62,12 +62,9 @@ class Transaksi extends Model
         foreach ($diskon_transaksi as $related) {
             $promo = Diskon::find($related->diskon_id)->first();
             if ($promo->jenis_diskon == "percentage") {
-                $temp = $subtotal * $promo->nominal;
-                if ($temp > 0) {
-                    $temp = floor($temp / 100);
-                    if ($temp > $promo->maximal_diskon) {
-                        $temp = $promo->maximal_diskon;
-                    }
+                $temp = $subtotal * floor($promo->nominal / 100);
+                if ($temp > $promo->maximal_diskon) {
+                    $temp = $promo->maximal_diskon;
                 }
                 $total_diskon_promo += $temp;
             } else {

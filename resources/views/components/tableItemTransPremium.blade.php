@@ -43,7 +43,7 @@
                 </td>
             </tr>
             @if($item->diskon_jenis_item != 0)
-            <tr id='diskon-{{ $item->id }}' class="diskon">
+            <tr id='row-diskon-{{ $item->id }}' class="diskon">
                 <td class="text-end" colspan="4">Diskon jenis item</td>
                 <td class="d-none d-md-table-cell">Rp</td>
                 <td class="d-none d-md-table-cell thousand-separator text-end">{{ $item->diskon_jenis_item }}</td>

@@ -642,7 +642,7 @@ $(document).ready(function() {
         }
     });
 
-    $('#kode-promo').on('click', function() {
+    function getActivePromo(showModal) {
         $.ajax({
             url: "/diskon-transaksi/" + transId,
         }).done(function(response) {
@@ -681,8 +681,14 @@ $(document).ready(function() {
             } else {
                 $('#active-promo').hide();
             }
-            $('#modal-kode-promo').modal('show');
+            if (showModal) {
+                $('#modal-kode-promo').modal('show');
+            }
         });
+    }
+
+    $('#kode-promo').on('click', function() {
+        getActivePromo(true);
     });
 
     $('#btn-apply-promo-basic').on('click', function() {
@@ -701,43 +707,9 @@ $(document).ready(function() {
             data: formData,
         }).done(function(response) {
             if (response.status == '200') {
-                $.ajax({
-                    url: "/diskon-transaksi/" + transId,
-                }).done(function(response) {
-                    $('#diskon-1 .kode-diskon').data('id', response.data[0].id);
-                    $('#diskon-1 .kode-diskon').text(response.data[0].diskon.code);
-                    if (response.data[0].diskon.jenis_diskon == "exact") {
-                        $('#diskon-1 .info-diskon').text("Rp " + response.data[0].diskon.nominal);
-                    } else if (response.data[0].diskon.jenis_diskon == "percentage") {
-                        if (response.data[0].diskon.maximal_diskon != 0) {
-                            $('#diskon-1 .info-diskon').text(response.data[0].diskon.nominal + " % - Max Rp " + response.data[0].diskon.maximal_diskon);
-                        } else {
-                            $('#diskon-1 .info-diskon').text(response.data[0].diskon.nominal + " %");
-                        }
-                    } else {
-                        console.log('tipe diskon : ' + response.data[0].diskon.jenis_diskon);
-                    }
-                    $('#diskon-2').hide();
-                    if (response.data.length == 2) {
-                        $('#diskon-2 .kode-diskon').data('id', response.data[1].id);
-                        $('#diskon-2 .kode-diskon').text(response.data[1].diskon.code);
-                        if (response.data[1].diskon.jenis_diskon == "exact") {
-                            $('#diskon-2 .info-diskon').text("Rp " + response.data[1].diskon.nominal);
-                        } else if (response.data[1].diskon.jenis_diskon == "percentage") {
-                            if (response.data[1].diskon.maximal_diskon != 0) {
-                                $('#diskon-2 .info-diskon').text(response.data[1].diskon.nominal + " % - Max Rp " + response.data[1].diskon.maximal_diskon);
-                            } else {
-                                $('#diskon-2 .info-diskon').text(response.data[1].diskon.nominal + " %");
-                            }
-                        } else {
-                            console.log('tipe diskon : ' + response.data[1].diskon.jenis_diskon);
-                        }
-                        $('#diskon-2').show();
-                    }
-                    $('#active-promo').show();
-                });
+                getActivePromo(false);
             } else {
-                alert(data.message);
+                alert(response.message);
             }
         }).fail(function(message) {
             alert('error');
@@ -750,6 +722,7 @@ $(document).ready(function() {
             url: "/diskon-transaksi/" + $(this).prev().find('.kode-diskon').data('id') + "/delete",
         }).done(function(response) {
             console.log(response);
+            getActivePromo(false);
         });
     });
 
@@ -784,19 +757,20 @@ $(document).ready(function() {
     //     });
     // });
 
-    $('#btn-apply-promo-spesial').on('click', function() {
-        $('#input-nominal-promo').val(removeDot($('#input-nominal-promo').val()));
-        $.ajax({
-            url: "/transaksi/diskon/special/transaksi/" + transId + "/nominal/" + $('#input-nominal-promo').val(),
-        }).done(function() {
-            window.location = window.location.origin + window.location.pathname;
-        }).fail(function(message) {
-            alert('error');
-            console.log(message);
-        });
-    });
+    // $('#btn-apply-promo-spesial').on('click', function() {
+    //     $('#input-nominal-promo').val(removeDot($('#input-nominal-promo').val()));
+    //     $.ajax({
+    //         url: "/transaksi/diskon/special/transaksi/" + transId + "/nominal/" + $('#input-nominal-promo').val(),
+    //     }).done(function() {
+    //         window.location = window.location.origin + window.location.pathname;
+    //     }).fail(function(message) {
+    //         alert('error');
+    //         console.log(message);
+    //     });
+    // });
 
     // Pembayaran
+    
     $('#nav-pembayaran').on('click', function() {
         $.ajax({
             url: "/transaksi/detail/" + transId,
