@@ -647,20 +647,22 @@ $(document).ready(function() {
             url: "/diskon-transaksi/" + transId,
         }).done(function(response) {
             if (response.data.length != 0) {
+                $('#diskon-1 .kode-diskon').data('id', response.data[0].id);
                 $('#diskon-1 .kode-diskon').text(response.data[0].diskon.code);
                 if (response.data[0].diskon.jenis_diskon == "exact") {
                     $('#diskon-1 .info-diskon').text("Rp " + response.data[0].diskon.nominal);
                 } else if (response.data[0].diskon.jenis_diskon == "percentage") {
                     if (response.data[1].diskon.maximal_diskon != 0) {
-                        $('#diskon-2 .info-diskon').text(response.data[0].diskon.nominal + " % - Max Rp " + response.data[0].diskon.maximal_diskon);
+                        $('#diskon-1 .info-diskon').text(response.data[0].diskon.nominal + " % - Max Rp " + response.data[0].diskon.maximal_diskon);
                     } else {
-                        $('#diskon-2 .info-diskon').text(response.data[0].diskon.nominal + " %");
+                        $('#diskon-1 .info-diskon').text(response.data[0].diskon.nominal + " %");
                     }
                 } else {
                     console.log('tipe diskon : ' + response.data[0].diskon.jenis_diskon)
                 }
                 $('#diskon-2').hide();
                 if (response.data.length == 2) {
+                    $('#diskon-2 .kode-diskon').data('id', response.data[1].id);
                     $('#diskon-2 .kode-diskon').text(response.data[1].diskon.code);
                     if (response.data[1].diskon.jenis_diskon == "exact") {
                         $('#diskon-2 .info-diskon').text("Rp " + response.data[1].diskon.nominal);
@@ -702,6 +704,7 @@ $(document).ready(function() {
                 $.ajax({
                     url: "/diskon-transaksi/" + transId,
                 }).done(function(response) {
+                    $('#diskon-1 .kode-diskon').data('id', response.data[0].id);
                     $('#diskon-1 .kode-diskon').text(response.data[0].diskon.code);
                     if (response.data[0].diskon.jenis_diskon == "exact") {
                         $('#diskon-1 .info-diskon').text("Rp " + response.data[0].diskon.nominal);
@@ -716,6 +719,7 @@ $(document).ready(function() {
                     }
                     $('#diskon-2').hide();
                     if (response.data.length == 2) {
+                        $('#diskon-2 .kode-diskon').data('id', response.data[1].id);
                         $('#diskon-2 .kode-diskon').text(response.data[1].diskon.code);
                         if (response.data[1].diskon.jenis_diskon == "exact") {
                             $('#diskon-2 .info-diskon').text("Rp " + response.data[1].diskon.nominal);
@@ -743,7 +747,7 @@ $(document).ready(function() {
 
     $('.cancel-diskon').on('click', function() {
         $.ajax({
-            url: "/diskon-transaksi/" + transId + "/delete",
+            url: "/diskon-transaksi/" + $(this).prev().find('.kode-diskon').data('id') + "/delete",
         }).done(function(response) {
             console.log(response);
         });

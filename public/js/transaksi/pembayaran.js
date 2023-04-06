@@ -98,6 +98,10 @@ $(document).ready(function() {
         });
     });
 
+    $('#btn-print').on('click', function() {
+        window.location = window.location.origin + "/print/" + btnId;
+    });
+
     var calculateNow;
     $('#input-nominal').on('input', function() {
         clearTimeout(calculateNow);
