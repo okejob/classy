@@ -20,16 +20,25 @@ class DiskonTransaksiController extends Controller
     {
         $diskon = Diskon::where('code', $request->code)->first();
         if ($diskon) {
-            DiskonTransaksi::create([
-                'transaksi_id' => $request->transaksi_id,
-                'diskon_id' => $diskon->id
-            ]);
-            $transaksi = Transaksi::find($request->transaksi_id);
-            $transaksi->recalculate();
-            return [
-                'status' => 200,
-                'message' => 'Success'
-            ];
+            $dt = DiskonTransaksi::where('transaksi_id', $request->transaksi_id)
+                ->where('diskon_id', $diskon->id)->first();
+            if (!$dt) {
+                DiskonTransaksi::create([
+                    'transaksi_id' => $request->transaksi_id,
+                    'diskon_id' => $diskon->id
+                ]);
+                $transaksi = Transaksi::find($request->transaksi_id);
+                $transaksi->recalculate();
+                return [
+                    'status' => 200,
+                    'message' => 'Success'
+                ];
+            } else {
+                return [
+                    'status' => 400,
+                    'message' => 'Code Used',
+                ];
+            }
         } else {
             return [
                 'status' => 400,
