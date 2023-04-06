@@ -652,7 +652,7 @@ $(document).ready(function() {
                 if (response.data[0].diskon.jenis_diskon == "exact") {
                     $('#diskon-1 .info-diskon').text("Rp " + response.data[0].diskon.nominal);
                 } else if (response.data[0].diskon.jenis_diskon == "percentage") {
-                    if (response.data[1].diskon.maximal_diskon != 0) {
+                    if (response.data[0].diskon.maximal_diskon != 0) {
                         $('#diskon-1 .info-diskon').text(response.data[0].diskon.nominal + " % - Max Rp " + response.data[0].diskon.maximal_diskon);
                     } else {
                         $('#diskon-1 .info-diskon').text(response.data[0].diskon.nominal + " %");
@@ -709,10 +709,10 @@ $(document).ready(function() {
                     if (response.data[0].diskon.jenis_diskon == "exact") {
                         $('#diskon-1 .info-diskon').text("Rp " + response.data[0].diskon.nominal);
                     } else if (response.data[0].diskon.jenis_diskon == "percentage") {
-                        if (response.data[1].diskon.maximal_diskon != 0) {
-                            $('#diskon-2 .info-diskon').text(response.data[0].diskon.nominal + " % - Max Rp " + response.data[0].diskon.maximal_diskon);
+                        if (response.data[0].diskon.maximal_diskon != 0) {
+                            $('#diskon-1 .info-diskon').text(response.data[0].diskon.nominal + " % - Max Rp " + response.data[0].diskon.maximal_diskon);
                         } else {
-                            $('#diskon-2 .info-diskon').text(response.data[0].diskon.nominal + " %");
+                            $('#diskon-1 .info-diskon').text(response.data[0].diskon.nominal + " %");
                         }
                     } else {
                         console.log('tipe diskon : ' + response.data[0].diskon.jenis_diskon);
