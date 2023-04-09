@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\InsertJenisRewashRequest;
 use App\Models\Data\JenisRewash;
+use App\Models\Notification;
+use App\Models\Packing\Packing;
 use App\Models\Transaksi\ItemTransaksi;
 use App\Models\Transaksi\Rewash;
 use App\Models\Transaksi\Transaksi;
@@ -22,14 +24,36 @@ class RewashController extends Controller
     {
         $item_transaksi = ItemTransaksi::find($request->item_transaksi_id);
         $transaksi = Transaksi::find($item_transaksi->transaksi_id);
+        $proses_asal = '';
+        $submitter = -1;
+        $packing = Packing::where('transaksi_id', $transaksi->id)->get();
+        if ($packing) {
+            $proses_asal = 'QC';
+            $submitter = $packing->modified_by;
+        } else {
+            if ($transaksi->penyetrika) {
+                $proses_asal = "setrika";
+                $submitter = $transaksi->penyetrika;
+            } else if ($transaksi->pencuci) {
+                $proses_asal = "cuci";
+                $submitter = $transaksi->pencuci;
+            }
+        }
         Rewash::create([
             'item_transaksi_id' => $request->item_transaksi_id,
             'jenis_rewash_id' => $request->jenis_rewash_id,
             'modified_by' => Auth::id(),
             'pencuci' => $transaksi->pencuci,
             'keterangan' => $request->keterangan,
+            'proses_asal' => $proses_asal,
+            'submitter' => $submitter,
         ]);
+        Notification::create([
+            'type' => 'Rewash',
+            'message' => 'Ada Item yang perlu di rewash! \n' . $request->keterangan,
+            'to_user' => $transaksi->pencuci
 
+        ]);
         return redirect()->back(); //->intended(route('menu-rewash'));
     }
 

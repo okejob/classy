@@ -29,6 +29,10 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $table->text('keterangan')->nullable();
             $table->boolean('status')->default(false);
+            $table->string('proses_asal');
+            $table->foreignId('submitter')
+                ->constrained('users', 'id')
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }
