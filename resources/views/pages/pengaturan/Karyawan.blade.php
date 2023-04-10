@@ -510,7 +510,7 @@
                                         <label class="form-check-label" for="check-transaksi-5">Mengubah data transaksi</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="check-transaksi-6" value="Menambahkan Penerima">
+                                        <input class="form-check-input" type="checkbox" id="check-transaksi-6" value="Menambahkan Penerima Ke Transaksi">
                                         <label class="form-check-label" for="check-transaksi-6">Menambahkan penerima</label>
                                     </div>
                                     <div class="form-check">
@@ -682,8 +682,8 @@
                                         <label class="form-check-label" for="check-proses-rewash-3">Menyatakan rewash selesai</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="check-proses-rewash-4" value="Menghapus Data Proses Rewash">
-                                        <label class="form-check-label" for="check-proses-rewash-4">Menghapus rewash</label>
+                                        <input class="form-check-input" type="checkbox" id="check-proses-rewash-4" {{-- value="Menghapus Data Proses Rewash" --}}>
+                                        <label class="form-check-label text-danger" for="check-proses-rewash-4">Menghapus rewash</label>
                                     </div>
                                 </div>
                                 <h5 class="fw-bold">Packing</h5>

@@ -49,9 +49,11 @@ $(document).ready(function() {
         if ($(this).closest('.hub-setrika').length != 0) {
             $('#action-add').show();
             $('#action-remove').hide();
+            $('#action-done').hide();
         } else if ($(this).closest('.hub-karyawan').length != 0) {
             $('#action-add').hide();
             $('#action-remove').show();
+            $('#action-done').show();
         }
     });
 
@@ -86,6 +88,10 @@ $(document).ready(function() {
             $('#trans-' + btnId).removeClass('disabled');
             karyawanHubCheck();
         });
+    });
+
+    $('#action-done').on('click', function() {
+
     });
 
     var flag = false;

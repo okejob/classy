@@ -217,6 +217,7 @@
                     <li id="action-add">Tambahkan</li>
                     <li id="action-remove">Kembalikan</li>
                     <li id="action-detail">Detail</li>
+                    {{-- <li id="action-done">Selesai</li> --}}
                 </ul>
             </div>
             <div class="modal fade" role="dialog" tabindex="-1" id="modal-detail">
