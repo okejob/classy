@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Diskon;
 use App\Models\DiskonTransaksi;
+use App\Models\LogTransaksi;
 use App\Models\Transaksi\Transaksi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DiskonTransaksiController extends Controller
 {
@@ -29,6 +31,11 @@ class DiskonTransaksiController extends Controller
                 ]);
                 $transaksi = Transaksi::find($request->transaksi_id);
                 $transaksi->recalculate();
+                LogTransaksi::create([
+                    'transaksi_id' => $request->transaksi_id,
+                    'penanggung_jawab' => Auth::id(),
+                    'process'=> strtoupper('add promo code '.$request->code)
+                ]);
                 return [
                     'status' => 200,
                     'message' => 'Success'
@@ -50,8 +57,14 @@ class DiskonTransaksiController extends Controller
     public function delete($id)
     {
         $transaksi = Transaksi::find($id);
+        $diskon_transaksi = DiskonTransaksi::find($id);
         DiskonTransaksi::destroy($id);
         $transaksi->recalculate();
+        LogTransaksi::create([
+            'transaksi_id' => $transaksi->id,
+            'penanggung_jawab' => Auth::id(),
+            'process'=> strtoupper('remove promo code '. $diskon_transaksi->code)
+        ]);
         return [
             'status' => 200,
         ];

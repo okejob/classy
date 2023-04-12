@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\InsertPickupDeliveryRequest;
+use App\Models\LogTransaksi;
 use App\Models\Transaksi\Penerima;
 use App\Models\Transaksi\PickupDelivery;
 use App\Models\Transaksi\Transaksi;
@@ -87,7 +88,13 @@ class PickupDeliveryController extends Controller
     public function changeDoneStatus(PickupDelivery $pickup_delivery)
     {
         $pickup_delivery->is_done = true;
+        $pickup_delivery->modified_by = Auth::id();
         $pickup_delivery->save();
+        LogTransaksi::create([
+            'transaksi_id' => $pickup_delivery->transaksi_id,
+            'penanggung_jawab' => Auth::id(),
+            'process' => strtoupper($pickup_delivery->action) . " DONE",
+        ]);
         return [
             'status' => 200
         ];

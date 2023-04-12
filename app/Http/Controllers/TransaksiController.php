@@ -6,6 +6,7 @@ use App\Http\Requests\InsertTransaksiRequest;
 use App\Http\Requests\UpdateTransaksiRequest;
 use App\Http\Requests\UserLoginRequest;
 use App\Models\Data\Pelanggan;
+use App\Models\LogTransaksi;
 use App\Models\Paket\PaketCuci;
 use App\Models\Transaksi\Transaksi;
 use Illuminate\Http\Request;
@@ -103,6 +104,11 @@ class TransaksiController extends Controller
         ])->toArray();
         $transaksi = Transaksi::create($merged);
         $transaksi = Transaksi::detail()->find($transaksi->id);
+        LogTransaksi::create([
+            'transaksi_id' => $transaksi->id,
+            'penanggung_jawab' => Auth::id(),
+            'process' => strtoupper('create transaksi'),
+        ]);
         return [
             'status' => 200,
             $transaksi,
@@ -171,6 +177,11 @@ class TransaksiController extends Controller
             $transaksi->kode = $kode . $paded;
             $transaksi->save();
         }
+        LogTransaksi::create([
+            'transaksi_id' => $transaksi->id,
+            'penanggung_jawab' => Auth::id(),
+            'process' => strtoupper('update transaksi'),
+        ]);
         return redirect()->back();
     }
 
@@ -180,6 +191,11 @@ class TransaksiController extends Controller
         if (empty($transaksi->pencuci)) {
             $transaksi->pencuci = Auth::id();
             $transaksi->save();
+            LogTransaksi::create([
+                'transaksi_id' => $transaksi->id,
+                'penanggung_jawab' => Auth::id(),
+                'process'=> strtoupper('take cuci job')
+            ]);
         }
     }
 
@@ -188,6 +204,11 @@ class TransaksiController extends Controller
         if (!empty($transaksi->pencuci) && $transaksi->pencuci == Auth::id()) {
             $transaksi->pencuci = NULL;
             $transaksi->save();
+            LogTransaksi::create([
+                'transaksi_id' => $transaksi->id,
+                'penanggung_jawab' => Auth::id(),
+                'process'=> strtoupper('remove cuci job')
+            ]);
         }
     }
 
@@ -197,6 +218,11 @@ class TransaksiController extends Controller
         if (empty($transaksi->penyetrika)) {
             $transaksi->penyetrika = Auth::id();
             $transaksi->save();
+            LogTransaksi::create([
+                'transaksi_id' => $transaksi->id,
+                'penanggung_jawab' => Auth::id(),
+                'process'=> strtoupper('take setrika job')
+            ]);
         }
     }
 
@@ -205,6 +231,11 @@ class TransaksiController extends Controller
         if (!empty($transaksi->penyetrika) && $transaksi->penyetrika == Auth::id()) {
             $transaksi->penyetrika = NULL;
             $transaksi->save();
+            LogTransaksi::create([
+                'transaksi_id' => $transaksi->id,
+                'penanggung_jawab' => Auth::id(),
+                'process'=> strtoupper('remove setrika job')
+            ]);
         }
     }
 
@@ -214,6 +245,11 @@ class TransaksiController extends Controller
             'status' => "cancelled"
         ]);
         $transaksi->delete();
+        LogTransaksi::create([
+            'transaksi_id' => $transaksi->id,
+            'penanggung_jawab' => Auth::id(),
+            'process'=> strtoupper('cancel transaksi')
+        ]);
         return [];
     }
 
@@ -223,7 +259,11 @@ class TransaksiController extends Controller
         $transaksi->status = "draft";
         $transaksi->save();
         Transaksi::withTrashed()->where('id', $id)->restore();
-
+        LogTransaksi::create([
+            'transaksi_id' => $transaksi->id,
+            'penanggung_jawab' => Auth::id(),
+            'process'=> strtoupper('restore transaksi from cancel')
+        ]);
         return [];
     }
 }

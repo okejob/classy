@@ -6,6 +6,7 @@ use App\Http\Requests\InsertPackingRequest;
 use App\Http\Traits\LaporanInventoryTrait;
 use App\Models\Data\Pelanggan;
 use App\Models\Inventory\Inventory;
+use App\Models\LogTransaksi;
 use App\Models\Packing\Packing;
 use App\Models\Packing\PackingInventory;
 use App\Models\Transaksi\PickupDelivery;
@@ -57,7 +58,11 @@ class PackingController extends Controller
             ]);
             LaporanInventoryTrait::stockist($inventory->inventory_id, $inventory->qty);
         }
-
+        LogTransaksi::create([
+            'transaksi_id' => $transaksi->id,
+            'penanggung_jawab' => Auth::id(),
+            'process'=> strtoupper('packing transaksi')
+        ]);
         return [
             'status' => 200,
             'message' => 'success',
