@@ -194,20 +194,37 @@ class TransaksiController extends Controller
             LogTransaksi::create([
                 'transaksi_id' => $transaksi->id,
                 'penanggung_jawab' => Auth::id(),
-                'process'=> strtoupper('take cuci job')
+                'process'=> strtoupper('take job cuci')
             ]);
         }
     }
 
     public function clearStatusCuci(Transaksi $transaksi)
     {
-        if (!empty($transaksi->pencuci) && $transaksi->pencuci == Auth::id()) {
+        if (!empty($transaksi->pencuci) && $transaksi->pencuci == Auth::id() && $transaksi->is_done_cuci != 1) {
             $transaksi->pencuci = NULL;
             $transaksi->save();
             LogTransaksi::create([
                 'transaksi_id' => $transaksi->id,
                 'penanggung_jawab' => Auth::id(),
-                'process'=> strtoupper('remove cuci job')
+                'process'=> strtoupper('remove job cuci')
+            ]);
+        } else {
+            return [
+                "message" => "aksi tidak valid. proses cuci sudah selesai."
+            ];
+        }
+    }
+
+    public function doneCuci(Transaksi $transaksi)
+    {
+        if (!empty($transaksi->pencuci) && $transaksi->pencuci == Auth::id()) {
+            $transaksi->is_done_cuci = 1;
+            $transaksi->save();
+            LogTransaksi::create([
+                'transaksi_id' => $transaksi->id,
+                'penanggung_jawab' => Auth::id(),
+                'process'=> strtoupper('done job cuci')
             ]);
         }
     }
@@ -221,20 +238,37 @@ class TransaksiController extends Controller
             LogTransaksi::create([
                 'transaksi_id' => $transaksi->id,
                 'penanggung_jawab' => Auth::id(),
-                'process'=> strtoupper('take setrika job')
+                'process'=> strtoupper('take job setrika')
             ]);
         }
     }
 
     public function clearStatusSetrika(Transaksi $transaksi)
     {
-        if (!empty($transaksi->penyetrika) && $transaksi->penyetrika == Auth::id()) {
+        if (!empty($transaksi->penyetrika) && $transaksi->penyetrika == Auth::id() && $transaksi->is_done_setrika != 1) {
             $transaksi->penyetrika = NULL;
             $transaksi->save();
             LogTransaksi::create([
                 'transaksi_id' => $transaksi->id,
                 'penanggung_jawab' => Auth::id(),
-                'process'=> strtoupper('remove setrika job')
+                'process'=> strtoupper('remove job setrika')
+            ]);
+        } else {
+            return [
+                "message" => "aksi tidak valid. proses setrika sudah selesai."
+            ];
+        }
+    }
+
+    public function doneSetrika(Transaksi $transaksi)
+    {
+        if (!empty($transaksi->penyetrika) && $transaksi->penyetrika == Auth::id()) {
+            $transaksi->is_done_setrika = 1;
+            $transaksi->save();
+            LogTransaksi::create([
+                'transaksi_id' => $transaksi->id,
+                'penanggung_jawab' => Auth::id(),
+                'process'=> strtoupper('done job setrika')
             ]);
         }
     }

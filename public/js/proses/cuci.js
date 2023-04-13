@@ -49,9 +49,11 @@ $(document).ready(function() {
         if ($(this).closest('.hub-cuci').length != 0) {
             $('#action-add').show();
             $('#action-remove').hide();
+            $('#action-done').hide();
         } else if ($(this).closest('.hub-karyawan').length != 0) {
             $('#action-add').hide();
             $('#action-remove').show();
+            $('#action-done').show();
         }
     });
 
@@ -65,7 +67,7 @@ $(document).ready(function() {
 
     $('#action-add').on('click', function() {
         $('#trans-' + btnId).addClass('disabled');
-        let temp = $('#trans-' + btnId).parent().detach();
+        let temp = $('#trans-' + btnId).parent().parent().detach();
         $.ajax({
             url: "/transaksi/" + btnId + "/pencuci",
         }).done(function() {
@@ -77,13 +79,29 @@ $(document).ready(function() {
 
     $('#action-remove').on('click', function() {
         $('#trans-' + btnId).addClass('disabled');
-        let temp = $('#trans-' + btnId).parent().detach();
+        let temp = $('#trans-' + btnId).parent().parent().detach();
         $.ajax({
             url: "/transaksi/" + btnId + "/pencuci/delete",
-        }).done(function() {
-            $('.hub-cuci').append(temp);
-            $('#trans-' + btnId).removeClass('disabled');
-            karyawanHubCheck();
+        }).done(function(error) {
+            if (error.message) {
+                alert("error");
+                console.log(message);
+                $('#trans-' + btnId).removeClass('disabled');
+            } else {
+                $('.hub-cuci').append(temp);
+                $('#trans-' + btnId).removeClass('disabled');
+                karyawanHubCheck();
+            }
         });
+    });
+
+    $('#action-done').on('click', function() {
+        if(confirm("Nyatakan cuci selesai ?")) {
+            $.ajax({
+                url: "/transaksi/" + btnId + "/pencuci/done",
+            }).done(function() {
+                location.reload();
+            });
+        }
     });
 });

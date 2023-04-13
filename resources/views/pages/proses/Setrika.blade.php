@@ -61,7 +61,7 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($transaksis as $transaksi)
-                                                @if($transaksi->status != 'done' && $transaksi->penyetrika != null)
+                                                @if(!$transaksi->is_done_setrika && $transaksi->penyetrika != null)
                                                 <tr>
                                                     <td class="text-center">{{ $transaksi->kode }}</td>
                                                     <td class="text-center">{{ $transaksi->created_at }}</td>
@@ -71,6 +71,39 @@
                                                         <td class="text-center">Normal</td>
                                                     @endif
                                                     <td class="text-center">{{ $transaksi->penyetrika }}</td>
+                                                </tr>
+                                                @endif
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+                            <hr style="margin: 1rem -1rem;" />
+                            <section id="section-on-process" class="mb-4">
+                                <h4>Done</h4>
+                                <hr />
+                                <div class="table-responsive mb-2">
+                                    <table class="table table-striped" id="table-on-process">
+                                        <thead>
+                                            <tr>
+                                                <th>Kode Transaksi</th>
+                                                <th>Tanggal</th>
+                                                <th>Jenis</th>
+                                                <th>Pencuci</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($transaksis as $transaksi)
+                                                @if($transaksi->is_done_setrika && $transaksi->pencuci != null)
+                                                <tr>
+                                                    <td class="text-center">{{ $transaksi->kode }}</td>
+                                                    <td class="text-center">{{ $transaksi->created_at }}</td>
+                                                    @if($transaksi->express)
+                                                        <td class="text-center">Express</td>
+                                                    @else
+                                                        <td class="text-center">Normal</td>
+                                                    @endif
+                                                    <td class="text-center">{{ $transaksi->pencuci }}</td>
                                                 </tr>
                                                 @endif
                                             @endforeach
@@ -90,7 +123,7 @@
                                 <h4>Staging</h4>
                                 <hr />
                                 <div class="hub-list hub-staging">
-                                    @foreach ($transaksis as $transaksi)
+                                    {{-- @foreach ($transaksis as $transaksi)
                                         @if($transaksi->status != 'done' && $transaksi->penyetrika == null)
                                         <div class="p-3 border rounded item d-flex justify-content-between align-items-start">
                                             <div class="d-flex flex-column">
@@ -102,6 +135,20 @@
                                             </button>
                                         </div>
                                         @endif
+                                    @endforeach --}}
+                                    @foreach ($transaksis as $transaksi)
+                                    @if ($transaksi->status != 'done' && $transaksi->penyetrika == null && ($transaksi->setrika_only || $transaksi->is_done_cuci))
+                                        <div class="p-3 border rounded d-flex justify-content-between align-items-center my-3" style="border-bottom: 3px solid rgb(255, 99, 132)!important; background-color: white;">
+                                            <div class="d-flex flex-column">
+                                                <h4>{{ $transaksi->kode }}</h4>
+                                                <h6 class="text-muted">{{ $transaksi->created_at }}</h6>
+                                            </div>
+                                            <div class="position-relative">
+                                                <h4 class="fw-bold me-4" style="font-style: italic;">Process</h4>
+                                                <i class="fa-solid fa-spinner position-absolute top-50 start-0 translate-middle fa-4x" style="font-style: italic; opacity: 0.25;"></i>
+                                            </div>
+                                        </div>
+                                    @endif
                                     @endforeach
                                 </div>
                             </div>
@@ -113,17 +160,27 @@
                                     <hr />
                                     <div class="hub-list hub-karyawan">
                                         @foreach ($transaksis as $transaksi)
-                                            @if ($transaksi->penyetrika == $penyetrika->id)
-                                            <div class="p-3 border rounded item d-flex justify-content-between align-items-start">
+                                        @if ($transaksi->status != 'done' && $transaksi->penyetrika == $penyetrika->id && ($transaksi->setrika_only || $transaksi->is_done_cuci))
+                                            @if ($transaksi->is_done_setrika == 1)
+                                                <div class="p-3 border rounded d-flex justify-content-between align-items-center my-3" style="border-bottom: 3px solid rgb(255, 99, 132)!important; background-image: linear-gradient(to bottom right, white, rgb(255, 99, 132, .5)); background-color: white;">
+                                            @else
+                                                <div class="p-3 border rounded d-flex justify-content-between align-items-center my-3" style="border-bottom: 3px solid rgb(255, 99, 132)!important; background-color: white;">
+                                            @endif
                                                 <div class="d-flex flex-column">
                                                     <h4>{{ $transaksi->kode }}</h4>
                                                     <h6 class="text-muted">{{ $transaksi->created_at }}</h6>
                                                 </div>
-                                                <button class="btn btn-sm btn-show-action" type="button" id="trans-{{ $transaksi->id }}" style="box-shadow: none;">
-                                                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                                                </button>
+                                                <div class="position-relative">
+                                                    @if ($transaksi->is_done_setrika == 1)
+                                                        <h4 class="fw-bold me-4" style="font-style: italic;">Done</h4>
+                                                        <i class="fa-solid fa-flag-checkered position-absolute top-50 start-0 translate-middle fa-4x" style="font-style: italic; opacity: 0.25;"></i>
+                                                    @else
+                                                        <h4 class="fw-bold me-4" style="font-style: italic;">Process</h4>
+                                                        <i class="fa-solid fa-spinner position-absolute top-50 start-0 translate-middle fa-4x" style="font-style: italic; opacity: 0.25;"></i>
+                                                    @endif
+                                                </div>
                                             </div>
-                                            @endif
+                                        @endif
                                         @endforeach
                                     </div>
                                 </div>
@@ -177,17 +234,21 @@
                         <hr />
                         <div class="hub-list hub-setrika">
                             @foreach ($transaksis as $transaksi)
-                                @if ($transaksi->penyetrika == null)
-                                <div class="p-3 border rounded item d-flex justify-content-between align-items-start">
+                            @if ($transaksi->status != 'done' && $transaksi->penyetrika == null && ($transaksi->setrika_only || $transaksi->is_done_cuci))
+                                <div class="p-3 border rounded item d-flex justify-content-between align-items-center my-3" style="border-bottom: 3px solid rgb(255, 99, 132)!important; background-color: white;">
                                     <div class="d-flex flex-column">
                                         <h4>{{ $transaksi->kode }}</h4>
                                         <h6 class="text-muted">{{ $transaksi->created_at }}</h6>
                                     </div>
-                                    <button class="btn btn-sm btn-show-action" type="button" id="trans-{{ $transaksi->id }}" style="box-shadow: none;">
-                                        <i class="fa-solid fa-ellipsis-vertical"></i>
-                                    </button>
+                                    <div class="position-relative">
+                                        <h4 class="fw-bold me-4" style="font-style: italic;">Process</h4>
+                                        <i class="fa-solid fa-spinner position-absolute top-50 start-0 translate-middle fa-4x" style="font-style: italic; opacity: 0.25;"></i>
+                                        <button class="btn btn-sm btn-show-action position-absolute end-0" type="button" style="top: -12px;" id="trans-{{ $transaksi->id }}" style="box-shadow: none;">
+                                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                                        </button>
+                                    </div>
                                 </div>
-                                @endif
+                            @endif
                             @endforeach
                         </div>
                     </div>
@@ -198,17 +259,30 @@
                         <hr />
                         <div class="hub-list hub-karyawan">
                             @foreach ($transaksis as $transaksi)
-                                @if ($transaksi->penyetrika == Auth::id())
-                                <div class="p-3 border rounded item d-flex justify-content-between align-items-start">
+                            @if ($transaksi->status != 'done' && $transaksi->penyetrika == Auth::id() && ($transaksi->setrika_only || $transaksi->is_done_cuci))
+                                @if ($transaksi->is_done_setrika == 1)
+                                    <div class="p-3 border rounded d-flex justify-content-between align-items-center my-3" style="border-bottom: 3px solid rgb(255, 99, 132)!important; background-image: linear-gradient(to bottom right, white, rgb(255, 99, 132, .5)); background-color: white;">
+                                @else
+                                    <div class="p-3 border rounded item d-flex justify-content-between align-items-center my-3" style="border-bottom: 3px solid rgb(255, 99, 132)!important; background-color: white;">
+                                @endif
                                     <div class="d-flex flex-column">
                                         <h4>{{ $transaksi->kode }}</h4>
                                         <h6 class="text-muted">{{ $transaksi->created_at }}</h6>
                                     </div>
-                                    <button class="btn btn-sm btn-show-action" type="button" id="trans-{{ $transaksi->id }}" style="box-shadow: none;">
-                                        <i class="fa-solid fa-ellipsis-vertical"></i>
-                                    </button>
+                                    <div class="position-relative">
+                                        @if ($transaksi->is_done_setrika == 1)
+                                            <h4 class="fw-bold me-4" style="font-style: italic;">Done</h4>
+                                            <i class="fa-solid fa-flag-checkered position-absolute top-50 start-0 translate-middle fa-4x" style="font-style: italic; opacity: 0.25;"></i>
+                                        @else
+                                            <h4 class="fw-bold me-4" style="font-style: italic;">Process</h4>
+                                            <i class="fa-solid fa-spinner position-absolute top-50 start-0 translate-middle fa-4x" style="font-style: italic; opacity: 0.25;"></i>
+                                            <button class="btn btn-sm btn-show-action position-absolute end-0" type="button" style="top: -12px;" id="trans-{{ $transaksi->id }}" style="box-shadow: none;">
+                                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                                            </button>
+                                        @endif
+                                    </div>
                                 </div>
-                                @endif
+                            @endif
                             @endforeach
                         </div>
                     </div>
@@ -217,7 +291,7 @@
                     <li id="action-add">Tambahkan</li>
                     <li id="action-remove">Kembalikan</li>
                     <li id="action-detail">Detail</li>
-                    {{-- <li id="action-done">Selesai</li> --}}
+                    <li id="action-done">Selesai</li>
                 </ul>
             </div>
             <div class="modal fade" role="dialog" tabindex="-1" id="modal-detail">

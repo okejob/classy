@@ -68,7 +68,7 @@ $(document).ready(function() {
 
     $('#action-add').on('click', function() {
         $('#trans-' + btnId).addClass('disabled');
-        let temp = $('#trans-' + btnId).parent().detach();
+        let temp = $('#trans-' + btnId).parent().parent().detach();
         $.ajax({
             url: "/transaksi/" + btnId + "/penyetrika",
         }).done(function() {
@@ -80,18 +80,30 @@ $(document).ready(function() {
 
     $('#action-remove').on('click', function() {
         $('#trans-' + btnId).addClass('disabled');
-        let temp = $('#trans-' + btnId).parent().detach();
+        let temp = $('#trans-' + btnId).parent().parent().detach();
         $.ajax({
             url: "/transaksi/" + btnId + "/penyetrika/delete",
-        }).done(function() {
-            $('.hub-setrika').append(temp);
-            $('#trans-' + btnId).removeClass('disabled');
-            karyawanHubCheck();
+        }).done(function(error) {
+            if (error.message) {
+                alert("error");
+                console.log(message);
+                $('#trans-' + btnId).removeClass('disabled');
+            } else {
+                $('.hub-setrika').append(temp);
+                $('#trans-' + btnId).removeClass('disabled');
+                karyawanHubCheck();
+            }
         });
     });
 
     $('#action-done').on('click', function() {
-
+        if(confirm("Nyatakan setrika selesai ?")) {
+            $.ajax({
+                url: "/transaksi/" + btnId + "/penyetrika/done",
+            }).done(function() {
+                location.reload();
+            });
+        }
     });
 
     var flag = false;

@@ -192,7 +192,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/proses/setrika', [PageController::class, 'hubSetrika'])->middleware('permission:Membuka Menu Hub Setrika');
     //ganti status pencuci & penyetrika
     Route::get('/transaksi/{transaksi}/pencuci', [TransaksiController::class, 'changeStatusCuci'])->middleware('permission:Mengambil Tugas Cuci');
+    Route::get('/transaksi/{transaksi}/pencuci/done', [TransaksiController::class, 'doneCuci']);
     Route::get('/transaksi/{transaksi}/penyetrika', [TransaksiController::class, 'changeStatusSetrika'])->middleware('permission:Mengambil Tugas Setrika');
+    Route::get('/transaksi/{transaksi}/penyetrika/done', [TransaksiController::class, 'doneSetrika']);
     //hapus status pencuci & penyetrika
     Route::get('/transaksi/{transaksi}/pencuci/delete', [TransaksiController::class, 'clearStatusCuci'])->middleware('permission:Mengurangi Tugas Cuci');
     Route::get('/transaksi/{transaksi}/penyetrika/delete', [TransaksiController::class, 'clearStatusSetrika'])->middleware('permission:Mengurangi Tugas Setrika');

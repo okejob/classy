@@ -33,6 +33,7 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $table->boolean('express')->default(false);
             $table->boolean('setrika_only')->default(false);
+            $table->boolean('on_time')->default(false);
             $table->integer('total_bobot')->default(0);
             $table->integer('jumlah_bucket')->default(0);
             $table->integer('subtotal')->default(0);
@@ -52,10 +53,12 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('users', 'id')
                 ->cascadeOnDelete();
+            $table->boolean('is_done_cuci')->default(false);
             $table->foreignId('penyetrika')
                 ->nullable()
                 ->constrained('users', 'id')
                 ->cascadeOnDelete();
+            $table->boolean('is_done_setrika')->default(false);
             $table->foreignId('modified_by')
                 ->nullable()
                 ->constrained('users', 'id')
