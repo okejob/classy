@@ -10,6 +10,7 @@ use App\Models\Data\Pelanggan;
 use App\Models\Data\Pengeluaran;
 use App\Models\Diskon;
 use App\Models\Inventory\Inventory;
+use App\Models\LogTransaksi;
 use App\Models\Outlet;
 use App\Models\Paket\PaketCuci;
 use App\Models\Paket\PaketDeposit;

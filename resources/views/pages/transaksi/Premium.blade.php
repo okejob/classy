@@ -168,6 +168,7 @@
             <li role="presentation" id="nav-trans" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link active" href="#tab-transaksi">Transaksi</a></li>
             <li role="presentation" id="nav-info" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link" href="#tab-info">Informasi</a></li>
             <li role="presentation" id="nav-pembayaran" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link" href="#tab-pembayaran">Pembayaran</a></li>
+            <li role="presentation" id="nav-log" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link" href="#tab-log">Log</a></li>
         </ul>
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active py-4" id="tab-transaksi">
@@ -767,6 +768,25 @@
                                 </div>
                                 <div class="modal-footer"><button class="btn btn-primary" type="submit">Simpan</button></div>
                             </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane py-4" id="tab-log">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="table-log">
+                                <thead>
+                                    <tr>
+                                        <th>Time</th>
+                                        <th>Penanggung Jawab</th>
+                                        <th>Proses</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

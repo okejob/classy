@@ -300,4 +300,11 @@ class TransaksiController extends Controller
         ]);
         return [];
     }
+
+    public function logTransaksi($id)
+    {
+        return [
+            "logs" => LogTransaksi::where('transaksi_id', $id)->get(),
+        ];
+    }
 }
