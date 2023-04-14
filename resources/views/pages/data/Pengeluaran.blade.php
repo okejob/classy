@@ -67,7 +67,7 @@
                         <h4 class="modal-title">Rubah Data</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form id="modal-form" action="/data/pengeluaran" method="POST">
+                    <form id="modal-form">
                         @csrf
                         <div class="modal-body">
                             <div class="row">
