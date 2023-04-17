@@ -706,6 +706,10 @@ $(document).ready(function() {
         }).done(function(response) {
             if (response.status == '200') {
                 getActivePromo(false);
+                $('#table-container').load(window.location.origin + '/component/transBucket/' + transId, function() {
+                    adjustWidth();
+                    setThousandSeparator();
+                });
             } else {
                 alert(response.message);
             }
@@ -721,6 +725,10 @@ $(document).ready(function() {
         }).done(function(response) {
             console.log(response);
             getActivePromo(false);
+            $('#table-container').load(window.location.origin + '/component/transBucket/' + transId, function() {
+                adjustWidth();
+                setThousandSeparator();
+            });
         });
     });
 
@@ -751,7 +759,7 @@ $(document).ready(function() {
             let trans = data;
             $('.kode-trans').text(trans.kode);
             $('#pembayaran-subtotal').html(trans.subtotal);
-            $('#pembayaran-diskon').html(trans.diskon_jenis_item + trans.total_diskon_promo + trans.diskon_member);
+            $('#pembayaran-diskon').html(trans.total_diskon_promo + trans.diskon_jenis_item + trans.diskon_member);
             $('#pembayaran-grand-total').html(trans.grand_total);
 
             $('#table-pembayaran tbody').empty();

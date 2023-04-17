@@ -97,7 +97,7 @@
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <h5>Telepon</h5>
-                                    <input class="form-control" type="text" id="input-telepon" name="phone" required />
+                                    <input class="form-control" type="text" id="input-telepon" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="phone" required />
                                 </div>
                                 <div class="col-12 col-sm-6" id="col-email">
                                     <h5>E-mail</h5>
