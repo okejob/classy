@@ -49,6 +49,21 @@ class ItemTransaksiController extends Controller
         ];
     }
 
+    public function getItemAndStatus($transaksi_id)
+    {
+        $itemTransaksis = ItemTransaksi::with(['rewash' => function ($query) {
+            $query->select('id', 'item_transaksi_id', 'status');
+        }])->where('transaksi_id', $transaksi_id)->get();
+
+        $itemTransaksis->each(function ($itemTransaksi) {
+            $itemTransaksi->rewash_status = $itemTransaksi->rewash ? $itemTransaksi->rewash->status : false;
+        });
+        return [
+            'status' => 200,
+            $itemTransaksis
+        ];
+    }
+
     public function updateQty(Request $request, $id)
     {
         $item_transaksi = ItemTransaksi::find($id);

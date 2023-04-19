@@ -159,6 +159,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/transaksi/item-transaksi/{id}', [ItemTransaksiController::class, 'update'])->middleware('permission:Mengubah Data Item Transaksi');
     Route::post('/transaksi/item-transaksi/{id}/qty', [ItemTransaksiController::class, 'updateQty']);
     Route::get('/transaksi/item-transaksi/delete/{id}', [ItemTransaksiController::class, 'delete'])->middleware('permission:Menghapus Item Transaksi');
+    Route::get('/transaksi/{transaksi_id}/item-transaksi/rewash-status', [ItemTransaksiController::class, 'getItemAndStatus']);
 
     //ItemNote
     Route::get('/transaksi/item/note/list/{item_transaksi_id}', [ItemNoteController::class, 'list'])->middleware('permission:Melihat Detail Daftar Catatan Item');
