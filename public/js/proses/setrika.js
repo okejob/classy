@@ -113,12 +113,12 @@ $(document).ready(function() {
         let lebarBtn = $(this).css('width');
         let lebarTambahan = 2;
         lebarBtn = parseInt(lebarBtn.substr(0, lebarBtn.indexOf('px')));
-        $('#list-action-2').css('left', $(this).offset().left - $('.modal-body').offset().left - lebarList + lebarBtn + lebarTambahan);
+        $('#list-action-2').css('left', $(this).offset().left - $('#modal-detail .modal-body').offset().left - lebarList + lebarBtn + lebarTambahan);
 
         let tinggiBtn = $(this).css('height');
         let tinggiHeader = 0;
         tinggiBtn = parseInt(tinggiBtn.substr(0, tinggiBtn.indexOf('px')));
-        $('#list-action-2').css('top', $(this).offset().top - $('.modal-body').offset().top + tinggiBtn + tinggiHeader);
+        $('#list-action-2').css('top', $(this).offset().top - $('#modal-detail .modal-body').offset().top + tinggiBtn + tinggiHeader);
 
         $('#list-action-2').show();
         btnItemTransId = $(this).attr('id').substring(4);
@@ -139,6 +139,8 @@ $(document).ready(function() {
 
     $('#action-rewash').on('click', function() {
         $('#input-nama').val($('#btn-' + btnItemTransId).closest('tr').children().eq(0).html());
+        $('#input-jenis').val("");
+        $('#input-keterangan').val("");
         $('#input-hidden-id').val(btnItemTransId);
         $('#modal-rewash').modal('show');
     });

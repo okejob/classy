@@ -275,6 +275,7 @@ class PageController extends Controller
     {
         $data['transaksis'] = Transaksi::detail()->latest()->get();
         $data['jenis_rewashes'] = JenisRewash::get();
+        $data['rewash'] = Rewash::get();
         $data['penyetrikas'] = User::role('produksi_setrika')->with('setrikaan')->get();
         return view('pages.proses.Setrika', $data);
     }

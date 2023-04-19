@@ -315,10 +315,20 @@
                                     <tbody>
                                         @foreach ($transaksis as $transaksi)
                                             @foreach ($transaksi->item_transaksi as $item_transaksi)
+                                            {{-- @dump($item_transaksi) --}}
                                             <tr class="trans-{{ $transaksi->id }}">
                                                 <td>{{ $item_transaksi->nama }}</td>
                                                 <td class="text-center">{{ $item_transaksi->nama_kategori }}</td>
-                                                <td>keterangan</td>
+                                                <td>
+                                                    {{-- tunda dulu --}}
+                                                    @foreach ($rewash as $item_rewash)
+                                                        @if ($item_rewash->item_transaksi_id == $item_transaksi->id)
+                                                            <div class="d-flex justify-content-between align-items-center">
+                                                                Rewash <i class="fa-solid fa-circle-exclamation text-danger"></i>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                </td>
                                                 <td class="cell-action" style="width: 46.25px;">
                                                     @if ($transaksi->pencuci != null && !$transaksi->setrika_only)
                                                     <button id="btn-{{ $item_transaksi->id }}" class="btn btn-primary btn-sm btn-show-action-2" type="button">
@@ -350,18 +360,22 @@
                             @csrf
                             <div class="modal-body position-relative">
                                 <div class="row">
-                                    <div class="col-8">
-                                        <h6>Nama Item</h6>
+                                    <div class="col-8 mb-2">
+                                        <h5>Nama Item</h5>
                                         <input id="input-nama" class="form-control disabled" type="text">
                                     </div>
-                                    <div class="col-4">
-                                        <h6>Keterangan</h6>
+                                    <div class="col-4 mb-2">
+                                        <h5>Keterangan</h5>
                                         <select class="form-select" name="jenis_rewash_id" id="input-jenis" required>
                                             <option value selected hidden>-</option>
                                             @foreach ($jenis_rewashes as $jenis_rewash)
                                                 <option value="{{ $jenis_rewash->id }}">{{ $jenis_rewash->keterangan }}</option>
                                             @endforeach
                                         </select>
+                                    </div>
+                                    <div class="col-12 mb-2">
+                                        <h5>Keterangan Item</h5>
+                                        <textarea id="input-keterangan" class="form-control" name="keterangan"></textarea>
                                     </div>
                                     <input id="input-hidden-id" type="hidden" name="item_transaksi_id" value="">
                                 </div>

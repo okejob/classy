@@ -27,7 +27,7 @@ class RewashController extends Controller
         $transaksi = Transaksi::find($item_transaksi->transaksi_id);
         $proses_asal = '';
         $submitter = -1;
-        $packing = Packing::where('transaksi_id', $transaksi->id)->get();
+        $packing = Packing::where('transaksi_id', $transaksi->id)->first();
         if ($packing) {
             $proses_asal = 'QC';
             $submitter = $packing->modified_by;
@@ -94,7 +94,7 @@ class RewashController extends Controller
     {
         $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
         JenisRewash::create($merged);
-        
+
         return redirect()->intended(route('data-rewash'));
     }
 
