@@ -192,9 +192,10 @@
                         <option value="" selected hidden>-</option>
                         <option value="2">Supervisor</option>
                         <option value="3">Operator</option>
-                        <option value="4">Pencuci</option>
-                        <option value="5">Penyetrika</option>
-                        <option value="6">Delivery</option>
+                        <option value="3">Packing</option>
+                        <option value="5">Pencuci</option>
+                        <option value="6">Penyetrika</option>
+                        <option value="7">Delivery</option>
                     </select>
                 </div>
                 <div class="row disabled" id="list-hak-akses">

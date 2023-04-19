@@ -21,7 +21,9 @@ class RoleSeeder extends Seeder
 
         $supervisor = Role::create(['name' => 'supervisor']);
         $supervisor->givePermissionTo(Permission::all());
+
         Role::create(['name' => 'operator']);
+
         $packing = Role::create(['name' => 'packing']);
         $packing->givePermissionTo(Permission::all());
 
@@ -36,7 +38,7 @@ class RoleSeeder extends Seeder
             'Mengambil Tugas Cuci',
             'Mengurangi Tugas Cuci',
 
-            'Membuka Menu Rewash'
+            'Membuka Menu Proses Rewash'
         ]);
 
         $produksi_setrika = Role::create(['name' => 'produksi_setrika']);
@@ -50,8 +52,8 @@ class RoleSeeder extends Seeder
             'Mengambil Tugas Setrika',
             'Mengurangi Tugas Setrika',
 
-            'Membuka Menu Rewash',
-            'Menambah Rewash'
+            'Membuka Menu Proses Rewash',
+            'Menambah Data Proses Rewash'
         ]);
 
         $delivery = Role::create(['name' => 'delivery']);
