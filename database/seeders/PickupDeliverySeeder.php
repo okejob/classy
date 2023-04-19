@@ -21,7 +21,7 @@ class PickupDeliverySeeder extends Seeder
             'transaksi_id' => 1,
             'kode' => 'PU-000001',
             'pelanggan_id' => 2,
-            'driver_id' => 4,
+            'driver_id' => 6,
             'action' => 'pickup',
             'alamat' => $pelanggan->alamat,
             'request' => '',

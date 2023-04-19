@@ -115,7 +115,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary float-end" type="submit"><i class="fas fa-save"></i> Simpan</button>
+                        <button class="btn btn-primary float-end" type="submit" id="btn-save"><i class="fas fa-save"></i> Simpan</button>
                     </div>
                 </form>
             </div>

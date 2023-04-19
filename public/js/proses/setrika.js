@@ -58,6 +58,7 @@ $(document).ready(function() {
     });
 
     $('#action-detail').on('click', function() {
+        // diganti ajax
         $('#table-trans-item tbody tr').each(function() {
             $(this).hide();
         });
