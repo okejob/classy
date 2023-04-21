@@ -20,6 +20,7 @@
                                     <tr>
                                         <th>Kode Transaksi</th>
                                         <th>Nama Item</th>
+                                        <th>Jenis</th>
                                         <th>Keterangan</th>
                                         <th>Status</th>
                                         <th style="width: 46.25px;"></th>
@@ -30,7 +31,8 @@
                                         <tr id='{{ $rewash->id }}'>
                                             <td class="text-center">{{ $rewash->itemTransaksi->kode_transaksi }}</td>
                                             <td>{{ $rewash->itemTransaksi->nama }}</td>
-                                            <td>{{ $rewash['jenis_rewash'] }}</td>
+                                            <td>{{ $rewash->jenis_rewash }}</td>
+                                            <td>{{ $rewash->keterangan }}</td>
                                             @if ($rewash->status)
                                                 <td class="text-center">is done</td>
                                             @else
