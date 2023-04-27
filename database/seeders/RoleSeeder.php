@@ -25,7 +25,20 @@ class RoleSeeder extends Seeder
         Role::create(['name' => 'operator']);
 
         $packing = Role::create(['name' => 'packing']);
-        $packing->givePermissionTo(Permission::all());
+        $packing->syncPermissions([
+            'Melihat Detail Item Transaksi',
+            'Melihat Detail Daftar Catatan Item',
+            'Melihat Detail Catatan Item',
+            'Membuat Catatan Item',
+
+            'Membuka Menu Packing',
+            'Menginputkan Data Packing',
+
+            'Membuka Menu Proses Rewash',
+            'Menambah Data Proses Rewash',
+
+            'Membuat Pickup Delivery',
+        ]);
 
         $produksi_cuci = Role::create(['name' => 'produksi_cuci']);
         $produksi_cuci->syncPermissions([
@@ -53,7 +66,6 @@ class RoleSeeder extends Seeder
             'Mengurangi Tugas Setrika',
 
             'Membuka Menu Proses Rewash',
-            'Menambah Data Proses Rewash'
         ]);
 
         $delivery = Role::create(['name' => 'delivery']);

@@ -50,6 +50,7 @@ class PackingController extends Controller
         ]);
 
         $inventories = json_decode($request->inventories);
+        // dd($request->inventories);
         foreach ($inventories as $inventory) {
             $packing_inventory = PackingInventory::create([
                 'packing_id' => $packing->id,
@@ -57,6 +58,9 @@ class PackingController extends Controller
                 'qty' => $inventory->qty,
             ]);
             LaporanInventoryTrait::stockist($inventory->inventory_id, $inventory->qty);
+            $stock = Inventory::find($inventory->inventory_id);
+            $stock->stok = $stock->stok - $inventory->qty;
+            $stock->save();
         }
         LogTransaksi::create([
             'transaksi_id' => $transaksi->id,

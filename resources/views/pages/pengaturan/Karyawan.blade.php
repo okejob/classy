@@ -192,7 +192,7 @@
                         <option value="" selected hidden>-</option>
                         <option value="2">Supervisor</option>
                         <option value="3">Operator</option>
-                        <option value="3">Packing</option>
+                        <option value="4">Packing</option>
                         <option value="5">Pencuci</option>
                         <option value="6">Penyetrika</option>
                         <option value="7">Delivery</option>
