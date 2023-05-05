@@ -59,10 +59,11 @@ $(document).ready(function() {
 
     $('#action-detail').on('click', function() {
         // diganti ajax
-        $('#table-trans-item tbody tr').each(function() {
-            $(this).hide();
-        });
-        $('#table-trans-item tbody tr.trans-' + btnId).show();
+        // $('#table-trans-item tbody tr').each(function() {
+        //     $(this).hide();
+        // });
+        // $('#table-trans-item tbody tr.trans-' + btnId).show();
+        $('#table-short-trans').load(window.location.origin + '/component/shortTrans/' + btnId);
         $('#kode-trans').text($('.btn-show-action').eq(btnIndex - 1).prev().find('h4').text());
         $('#modal-detail').modal('show');
     });
@@ -109,7 +110,7 @@ $(document).ready(function() {
 
     var flag = false;
     var btnItemTransId = 0;
-    $('.btn-show-action-2').on('click', function() {
+    $('#table-short-trans').on('click', '.btn-show-action-2', function() {
         let lebarList = 150;
         let lebarBtn = $(this).css('width');
         let lebarTambahan = 2;

@@ -181,6 +181,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/diskon-transaksi', [DiskonTransaksiController::class, 'insert']);
     Route::get('/diskon-transaksi/{id}/delete', [DiskonTransaksiController::class, 'delete']);
     Route::get('/transaksi/{id}/log', [TransaksiController::class, 'logTransaksi']);
+    Route::get('/component/shortTrans/{id}', [TransaksiController::class, 'shortTable']);
 
     // Bucket
     Route::get('/transaksi/bucket', [PageController::class, 'bucket'])->name('transaksi')->middleware('permission:Membuka Menu Transaksi');

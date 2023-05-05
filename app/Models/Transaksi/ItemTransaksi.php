@@ -62,4 +62,9 @@ class ItemTransaksi extends Model
     {
         return $this->belongsTo(Transaksi::class);
     }
+
+    public function rewash()
+    {
+        return $this->hasOne(Rewash::class);
+    }
 }

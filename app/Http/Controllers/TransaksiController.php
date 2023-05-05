@@ -36,6 +36,12 @@ class TransaksiController extends Controller
         ]);
     }
 
+    public function shortTable($id){
+        return view('components.tableItemTransShort', [
+            'trans' => Transaksi::detail()->find($id),
+        ]);
+    }
+
     public function historyPelanggan($id_pelanggan)
     {
         return view('components.tableHistoryTransaksi', [

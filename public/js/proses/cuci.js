@@ -58,10 +58,11 @@ $(document).ready(function() {
     });
 
     $('#action-detail').on('click', function() {
-        $('#table-trans-item tbody tr').each(function() {
-            $(this).hide();
-        });
-        $('#table-trans-item tbody tr.trans-' + btnId).show();
+        // $('#table-trans-item tbody tr').each(function() {
+        //     $(this).hide();
+        // });
+        // $('#table-trans-item tbody tr.trans-' + btnId).show();
+        $('#table-short-trans').load(window.location.origin + '/component/shortTrans/' + btnId);
         $('#modal-detail').modal('show');
     });
 

@@ -297,7 +297,8 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="table-responsive my-2 tbody-wrap">
+                                    <div id="table-short-trans"></div>
+                                    {{-- <div class="table-responsive my-2 tbody-wrap">
                                         <table class="table table-striped mb-0" id="table-trans-item">
                                             <thead>
                                                 <tr>
@@ -318,7 +319,7 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
