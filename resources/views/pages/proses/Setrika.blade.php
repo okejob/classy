@@ -1,7 +1,7 @@
 @extends('layouts.users')
 
 @section('content')
-@dump(Auth::user())
+{{-- @dump(Auth::user()) --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
 <div class="container">
     <header class="my-3" style="color: var(--bs-gray);"><a>Proses</a><i class="fas fa-angle-right mx-2"></i><a>Setrika</a></header>
