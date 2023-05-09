@@ -1,6 +1,8 @@
 @extends('layouts.users')
 
 @section('content')
+
+{{-- @dump(in_array("Melihat Detail Transaksi", Session::get('permissions'))) --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
 <div class="container">
     <header class="my-3" style="color: var(--bs-gray);">
@@ -336,7 +338,7 @@
                         <h4 class="modal-title">Detail Transaksi <span id="kode-transaksi"></span></h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body" id="detail-transaksi">
+                    <div class="modal-body" id="table-short-trans">
 
                     </div>
                 </div>
