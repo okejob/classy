@@ -57,13 +57,13 @@ class PelangganController extends Controller
             $conditions[] = function ($q) use ($request) {
                 return $q->where('nama', 'like', '%' . $request->key . '%');
             };
-        } else if ($request->filter === 'no_id') {
-            $conditions[] = function ($q) use ($request) {
-                return $q->where('no_id', 'like', '%' . $request->key . '%');
-            };
         } else if ($request->filter === 'telephone') {
             $conditions[] = function ($q) use ($request) {
                 return $q->where('telephone', 'like', '%' . $request->key . '%');
+            };
+        } else if ($request->filter === 'alamat') {
+            $conditions[] = function ($q) use ($request) {
+                return $q->where('alamat', 'like', '%' . $request->key . '%');
             };
         } else if ($request->filter === 'email') {
             $conditions[] = function ($q) use ($request) {
