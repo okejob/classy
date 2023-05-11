@@ -7,11 +7,14 @@ use App\Http\Requests\UpdateTransaksiRequest;
 use App\Http\Requests\UserLoginRequest;
 use App\Models\Data\Pelanggan;
 use App\Models\LogTransaksi;
+use App\Models\Packing\Packing;
+use App\Models\Packing\PackingInventory;
 use App\Models\Paket\PaketCuci;
 use App\Models\Transaksi\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class TransaksiController extends Controller
@@ -40,6 +43,29 @@ class TransaksiController extends Controller
         return view('components.tableItemTransShort', [
             'trans' => Transaksi::detail()->find($id),
         ]);
+    }
+
+    public function shortTableDelivery($id){
+
+        $packings = Packing::where('transaksi_id', $id)->get();
+
+        $inventoryData = collect();
+
+        foreach ($packings as $packing) {
+            foreach ($packing->packing_inventories as $packingInventory) {
+                $inventoryData->push([
+                    'name' => $packingInventory->inventory->nama,
+                    'qty' => $packingInventory->qty
+                ]);
+            }
+        }
+
+        return view('components.tableItemTransShort', [
+            'trans' => Transaksi::detail()->find($id),
+            'inventories' => $inventoryData,
+        ]);
+
+
     }
 
     public function historyPelanggan($id_pelanggan)

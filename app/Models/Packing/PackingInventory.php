@@ -2,6 +2,7 @@
 
 namespace App\Models\Packing;
 
+use App\Models\Inventory\Inventory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
