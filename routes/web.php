@@ -68,6 +68,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/setting/karyawan/outlet', [UserController::class, 'updateOutlet']);
     Route::post('/setting/karyawan/{id}', [UserController::class, 'update'])->middleware('permission:Mengubah Data Karyawan');
     Route::post('/setting/karyawan/{user}/change-password', [UserController::class, 'changePassword'])->middleware('permission:Mengubah Data Password Karyawan');
+    Route::get('/component/karyawan', [PageController::class, 'listKaryawan']);
 
     //outlet
     Route::get('/setting/outlet', [PageController::class, 'outlet'])->name('menu-outlet')->middleware('permission:Membuka Menu Outlet');

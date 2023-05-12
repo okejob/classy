@@ -25,13 +25,8 @@ class PackingController extends Controller
         $paded = str_pad($count, 6, '0', STR_PAD_LEFT);
         $kode = 'DV-' . $paded;
 
-        $alamat = '';
-        if (empty($request->alamat)) {
-            $pelanggan = Pelanggan::find($transaksi->pelanggan_id);
-            $alamat = $pelanggan->alamat;
-        } else {
-            $alamat = $request->alamat;
-        }
+        $pelanggan = Pelanggan::find($transaksi->pelanggan_id);
+        $alamat = $pelanggan->alamat;
 
         $pickup_delivery = PickupDelivery::create([
             'kode' => $kode,

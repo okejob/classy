@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    // base
     if($('#list-action').children().length == 0) {
         $('#list-action').detach();
     }
@@ -6,6 +7,24 @@ $(document).ready(function() {
     $('.btn-show-action').on('click', function() {
         btnIndex = $(this).index('.btn-show-action') + 1;
         btnId = $(this).attr('id').substring(4);
+    });
+
+
+    // data karyawan
+    function reloadList() {
+        let role = $('#dropdown-filter-role .dropdown-menu .dropdown-item.active').data('value');
+        $('#list-karyawan').load(window.location.origin + '/component/karyawan?key=' + $('#input-search').val() + (role != '' ? '&role=' + role : ''));
+    }
+    reloadList();
+    $('#dropdown-filter-role .dropdown-menu .dropdown-item').on('click', function() {
+        $('#dropdown-filter-role .dropdown-menu .dropdown-item.active').removeClass('active');
+        $(this).addClass('active');
+        reloadList();
+    });
+
+    $('#list-karyawan').on('click', '.page-link', function(e) {
+        e.preventDefault();
+        $('#list-karyawan').load($(this).attr('href'));
     });
 
     // untuk update data karyawan
@@ -108,6 +127,8 @@ $(document).ready(function() {
         });
     });
 
+
+    // role & permission
     $('#role-id').on('change', function() {
         $(this).addClass('disabled');
         $(".form-check-input").each(function() {

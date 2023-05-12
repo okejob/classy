@@ -8,47 +8,31 @@
             <div class="card-body">
                 <h4 class="card-title">Pengaturan Data Karyawan</h4>
                 <hr>
-                <div class="table-responsive">
-                    <table class="table" id="table-pengaturan-karyawan">
-                        <thead>
-                            <tr>
-                                <th>Username</th>
-                                <th>Nama Lengkap</th>
-                                <th>Telepon</th>
-                                <th>E-mail</th>
-                                <th>Outlet</th>
-                                <th>Role</th>
-                                <th>Status</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($data as $karyawan)
-                                <tr>
-                                    <td>{{ $karyawan->username }}</td>
-                                    <td>{{ $karyawan->name }}</td>
-                                    <td class="text-center">{{ $karyawan->phone }}</td>
-                                    <td>{{ $karyawan->email }}</td>
-                                    @if ($karyawan->outlet)
-                                        <td class="text-center">{{ $karyawan->outlet->nama }}</td>
-                                    @else
-                                        <td class="text-center">-</td>
-                                    @endif
-                                    <td class="text-center">{{ $karyawan->role }}</td>
-                                    @if ($karyawan->status)
-                                        <td class="text-center">Aktif</td>
-                                    @else
-                                        <td class="text-center">Tidak aktif</td>
-                                    @endif
-                                    <td class="cell-action">
-                                        <button id="btn-{{ $karyawan->id }}"  class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="dropdown" id="dropdown-filter-role">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButtonFilter" data-bs-toggle="dropdown" aria-expanded="false">
+                            Filter Role
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonFilter" style="min-width: 6rem; cursor:default;">
+                            <li><h6 class="dropdown-header">Role</h6></li>
+                            <li><a class="dropdown-item active" data-value=>Semua</a></li>
+                            <li><a class="dropdown-item" data-value='2'>Supervisor</a></li>
+                            <li><a class="dropdown-item" data-value='3'>Operator</a></li>
+                            <li><a class="dropdown-item" data-value='4'>Packing</a></li>
+                            <li><a class="dropdown-item" data-value='5'>Penyuci</a></li>
+                            <li><a class="dropdown-item" data-value='6'>Penyetrika</a></li>
+                            <li><a class="dropdown-item" data-value='7'>Delivery</a></li>
+                        </ul>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        Search :
+                        <input class="form-control mx-1" id="input-search" type="search" name="search" style="max-width: 200px;">
+                    </div>
                 </div>
-                {{ $data->links() }}
+
+                <div id="list-karyawan"></div>
+
                 @if(in_array("Menambahkan Karyawan", Session::get('permissions')) || Session::get('role') == 'administrator')
                 <button id="btn-add" class="btn btn-primary" type="button">
                     <i class="fas fa-plus-circle"></i>&nbsp;Tambah

@@ -15,13 +15,15 @@
                 <td class="text-center">{{ $item_transaksi->qty }}</td>
             </tr>
             @endforeach
-            @foreach ($inventories as $inventory)
-            <tr>
-                <td>{{ $inventory['name'] }}</td>
-                <td class="text-center">Packing</td>
-                <td class="text-center">{{ $inventory['qty'] }}</td>
-            </tr>
-            @endforeach
+            @if (isset($inventories))
+                @foreach ($inventories as $inventory)
+                <tr>
+                    <td>{{ $inventory['name'] }}</td>
+                    <td class="text-center">Packing</td>
+                    <td class="text-center">{{ $inventory['qty'] }}</td>
+                </tr>
+                @endforeach
+            @endif
         </tbody>
     </table>
 </div>

@@ -88,11 +88,6 @@
                     </div>
                     <form id="form-packing">
                         <div class="modal-body">
-                            <div class="mb-3">
-                                <h5>Alamat Antar</h5>
-                                <input id="alamat-antar" type="text" class="form-control" name="alamat" required/>
-                            </div>
-                            <hr>
                             <h5>Item</h5>
                             <div class="table-responsive mb-2">
                                 <table class="table" id="table-list-inventory">
@@ -104,27 +99,7 @@
                                         </tr>
                                     </thead>
                                     <tbody style="cursor: pointer">
-                                        <datalist id="data-inventory">
-                                            @foreach ($inventories as $inventory)
-                                                <option value="{{ $inventory->nama }}" data-id="{{ $inventory->id }}" data-stok="{{ $inventory->stok }}"></option>
-                                            @endforeach
-                                        </datalist>
-                                        <tr class="row-clone">
-                                            <td>
-                                                <input class="nama-inventory form-control" list="data-inventory" placeholder="nama item inventory">
-                                            </td>
-                                            <td>
-                                                <input class="qty-inventory form-control" type="number" min=1 placeholder="qty">
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-danger btn-delete-item" type="btn"><i class="fas fa-trash"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr class="row-add">
-                                            <td colspan="3" class="text-center">
-                                                <button class="btn btn-primary btn-sm" id="add-clone" type="button"><i class="fas fa-plus"></i></button>
-                                            </td>
-                                        </tr>
+
                                     </tbody>
                                 </table>
                             </div>

@@ -156,6 +156,18 @@ class PageController extends Controller
         );
     }
 
+    public function listKaryawan(Request $request)
+    {
+        return view(
+            'components.tableKaryawan',
+            [
+                'karyawans' => User::when($request->has("search"), function ($q) use ($request) {
+                    return $q->Where("name", "like", "%" . $request->get("search") . "%");
+                })->orderBy("id", "asc")->paginate(5),
+            ]
+        );
+    }
+
     //Menampilkan Menu Outlet
     public function outlet(Request $request)
     {
