@@ -756,7 +756,7 @@
                                             <select class="form-select" name="metode_pembayaran" required>
                                                 <option value hidden selected>-</option>
                                                 <option value="tunai">Tunai</option>
-                                                <option value="saldo" hidden>Saldo</option>
+                                                <option value="saldo">Saldo</option>
                                                 <option value="kredit">Kredit</option>
                                                 <option value="debit">Debit</option>
                                             </select>
