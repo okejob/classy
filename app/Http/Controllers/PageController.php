@@ -158,12 +158,25 @@ class PageController extends Controller
 
     public function listKaryawan(Request $request)
     {
+        $query = User::query();
+
+        if ($request->has('search')) {
+            $query->where('name', 'like', '%' . $request->get('search') . '%');
+        }
+
+        if ($request->has('role')) {
+            $roleId = $request->get('role');
+            $role = Role::find($roleId);
+            $query->whereHas('roles', function ($q) use ($role) {
+                $q->where('id', $role->id);
+            });
+        }
+
+        $karyawans = $query->orderBy('id', 'asc')->paginate(5);
         return view(
             'components.tableKaryawan',
             [
-                'karyawans' => User::when($request->has("search"), function ($q) use ($request) {
-                    return $q->Where("name", "like", "%" . $request->get("search") . "%");
-                })->orderBy("id", "asc")->paginate(5),
+                'karyawans' => $karyawans,
             ]
         );
     }
@@ -297,7 +310,7 @@ class PageController extends Controller
         return view('pages.proses.Packing',
             [
                 'last_transaksi' => Transaksi::latest()->paginate(5),
-                'inventories' => Inventory::get(),
+                'inventories' => Inventory::where('kategori','packing')->get(),
             ]
         );
     }

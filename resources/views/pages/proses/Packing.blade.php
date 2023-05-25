@@ -62,7 +62,7 @@
 
 
         <div class="modal fade" role="dialog" tabindex="-1" id="modal-detail">
-            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Detail Transaksi</h4>

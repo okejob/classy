@@ -11,13 +11,15 @@ class InventoryController extends Controller
     {
         $request->validate([
             'nama' => 'required|string',
-            'stok' => 'numeric|min:0'
+            'stok' => 'numeric|min:0',
+            'kategori' => 'required|string',
         ]);
 
         Inventory::create([
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,
-            'stok' => $request->stok
+            'stok' => $request->stok,
+            'kategori' => $request->kategori,
         ]);
 
         return redirect()->intended(route('menu-inventory'));
@@ -27,7 +29,8 @@ class InventoryController extends Controller
     {
         $request->validate([
             'nama' => 'required|string',
-            'stok' => 'numeric|min:0'
+            'stok' => 'numeric|min:0',
+            'kategori' => 'required|kategori',
         ]);
 
         $inventory->update([

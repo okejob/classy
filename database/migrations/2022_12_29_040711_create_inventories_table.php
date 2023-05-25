@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->text('deskripsi')->nullable();
+            $table->text('kategori');
             $table->integer('stok')->default(0);
             $table->timestamps();
         });
