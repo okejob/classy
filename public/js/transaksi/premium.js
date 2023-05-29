@@ -477,6 +477,7 @@ $(document).ready(function() {
         }).done(function(data) {
             let notes = data[0];
             $('#table-list-catatan tbody').empty();
+            console.log(notes);
 
             notes.forEach(note => {
                 $('#table-list-catatan tbody').append(
@@ -804,7 +805,7 @@ $(document).ready(function() {
     });
 
     $('#btn-print').on('click', function() {
-        window.location = window.location.origin + "/print/" + transId;
+        window.location = window.location.origin + "/printNota/" + transId;
     });
 
     var calculateNow;

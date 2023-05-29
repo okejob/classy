@@ -93,8 +93,9 @@
                                 <table class="table" id="table-list-inventory">
                                     <thead class="text-center">
                                         <tr>
-                                            <th style="width: 80%;">Nama Item</th>
-                                            <th>Quantity</th>
+                                            <th style="width: 50%;">Nama Item</th>
+                                            <th>QTY</th>
+                                            <th>Tipe Kemas</th>
                                             <th style="width: 56px;"></th>
                                         </tr>
                                     </thead>

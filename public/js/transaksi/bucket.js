@@ -832,7 +832,7 @@ $(document).ready(function() {
     });
 
     $('#btn-print').on('click', function() {
-        window.location = window.location.origin + "/print/" + transId;
+        window.location = window.location.origin + "/printNota/" + transId;
     });
 
     var calculateNow;
