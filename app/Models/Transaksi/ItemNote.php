@@ -31,4 +31,9 @@ class ItemNote extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function item_transaksi()
+    {
+        return $this->belongsTo(ItemTransaksi::class);
+    }
 }

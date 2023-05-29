@@ -42,7 +42,7 @@ class PrintController extends Controller
 
     public function nota($transaksi_id)
     {
-        $transaksi = Transaksi::detail()->find($transaksi_id);
+        $transaksi = Transaksi::detail()->with('item_transaksi.item_notes')->find($transaksi_id);
         $header = [
             'nama_usaha' => SettingUmum::where('nama', 'Print Header Nama Usaha')->first()->value,
             'delivery_text' => SettingUmum::where('nama', 'Print Header Delivery Text')->first()->value

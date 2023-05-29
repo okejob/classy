@@ -67,4 +67,9 @@ class ItemTransaksi extends Model
     {
         return $this->hasOne(Rewash::class);
     }
+
+    public function item_notes()
+    {
+        return $this->hasMany(ItemNote::class);
+    }
 }
