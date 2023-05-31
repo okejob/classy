@@ -15,7 +15,7 @@ class ItemNoteController extends Controller
     //Menampilkan List Semua Note 1 Item Transaksi
     public function list($item_transaksi_id)
     {
-        $item_notes = ItemNote::where('item_transaksi_id', $item_transaksi_id)->latest()->get();
+        $item_notes = ItemNote::where('item_transaksi_id', $item_transaksi_id)->with('user.role')->latest()->get();
         return [
             'status' => 200,
             $item_notes

@@ -360,6 +360,7 @@
                                                     <thead class="text-center">
                                                         <tr>
                                                             <th>Noted By</th>
+                                                            <th>Role</th>
                                                             <th>Catatan</th>
                                                             <th></th>
                                                         </tr>

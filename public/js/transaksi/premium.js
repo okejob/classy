@@ -483,6 +483,7 @@ $(document).ready(function() {
                 $('#table-list-catatan tbody').append(
                     "<tr id='" + note.id + "'>" +
                         "<td>" + note.nama_user + "</td>" +
+                        "<td>" + note.role_user + "</td>" +
                         "<td>" + note.catatan + "</td>" +
                         "<td class='text-end' style='padding: 4px 8px;'>" +
                             "<button class='btn btn-primary btn-sm' type='button'>Show</button>" +

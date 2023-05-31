@@ -18,7 +18,7 @@ class ItemNote extends Model
     public function getNamaUserAttribute()
     {
         $user = User::find($this->modified_by);
-        return $user->username;
+        return $user->name;
     }
 
     public static function boot()
