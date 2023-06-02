@@ -21,6 +21,11 @@ class ItemNote extends Model
         return $user->name;
     }
 
+    public function modifier()
+    {
+        return $this->belongsTo(User::class, 'modified_by');
+    }
+
     public static function boot()
     {
         parent::boot();
