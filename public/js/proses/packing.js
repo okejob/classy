@@ -40,6 +40,7 @@ $(document).ready(function() {
         });
     });
 
-    // modal kemas
-
+    $('#action-print').on('click', function() {
+        window.location = window.location.origin + "/printMemoProduksi/" + btnId;
+    });
 });

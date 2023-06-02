@@ -121,20 +121,6 @@
                     </tr>
                 @endforeach
             </tbody>
-            {{-- <tfoot>
-                <tr>
-                    <td colspan="4" class="text-end fw-bold">Subtotal</td>
-                    <td class="text-end thousand-separator">{{ $data->transaksi->subtotal }}</td>
-                </tr>
-                <tr>
-                    <td colspan="4" class="text-end fw-bold">Diskon</td>
-                    <td class="text-end thousand-separator">{{ $data->transaksi->diskon + $data->transaksi->special_diskon + $data->transaksi->diskon_member }}</td>
-                </tr>
-                <tr>
-                    <td colspan="4" class="text-end fw-bold">Grand Total</td>
-                    <td class="text-end thousand-separator">{{ $data->transaksi->grand_total }}</td>
-                </tr>
-            </tfoot> --}}
         </table>
         @elseif (str_contains($data->transaksi->kode, 'PR-'))
         <table style="font-size: 10pt">
@@ -168,20 +154,6 @@
                     </tr>
                 @endforeach
             </tbody>
-            {{-- <tfoot>
-                <tr>
-                    <td colspan="4" class="text-end fw-bold">Subtotal</td>
-                    <td class="text-end thousand-separator">{{ $data->transaksi->subtotal }}</td>
-                </tr>
-                <tr>
-                    <td colspan="4" class="text-end fw-bold">Diskon</td>
-                    <td class="text-end thousand-separator">{{ $data->transaksi->diskon +  $data->transaksi->special_diskon +$data->transaksi->diskon_member }}</td>
-                </tr>
-                <tr>
-                    <td colspan="4" class="text-end fw-bold">Grand Total</td>
-                    <td class="text-end thousand-separator">{{ $data->transaksi->grand_total }}</td>
-                </tr>
-            </tfoot> --}}
         </table>
         @endif
         <p class="hr-text" style="margin: 0px;">

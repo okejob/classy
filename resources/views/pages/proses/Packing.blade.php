@@ -22,8 +22,10 @@
                                 <th>Outlet</th>
                                 <th class="d-none d-lg-table-cell">Tanggal Transaksi</th>
                                 <th>Nama Pelanggan</th>
-                                <th colspan="2">Harga Total</th>
-                                <th>Lunas</th>
+                                @if(Session::get('role') == 'administrator')
+                                    <th colspan="2">Harga Total</th>
+                                    <th>Lunas</th>
+                                @endif
                                 <th style="width: 46.25px;"></th>
                             </tr>
                         </thead>
@@ -34,13 +36,15 @@
                                 <td class="text-center">{{ $trans->outlet->nama }}</td>
                                 <td class="d-none d-lg-table-cell text-center">{{ $trans->created_at }}</td>
                                 <td>{{ $trans->pelanggan->nama }}</td>
-                                <td>Rp</td>
-                                <td class="text-end thousand-separator">{{ $trans->grand_total }}</td>
-                                <td class="text-center" style="white-space: nowrap">
-                                @if($trans->lunas)
-                                    Lunas
-                                @else
-                                    Belum Lunas
+                                @if(Session::get('role') == 'administrator')
+                                    <td>Rp</td>
+                                    <td class="text-end thousand-separator">{{ $trans->grand_total }}</td>
+                                    <td class="text-center" style="white-space: nowrap">
+                                    @if($trans->lunas)
+                                        Lunas
+                                    @else
+                                        Belum Lunas
+                                    @endif
                                 @endif
                                 </td>
                                 <td class="cell-action">
@@ -53,9 +57,8 @@
                 </div>
                 {{ $last_transaksi->links() }}
                 <ul class="list-unstyled form-control" id="list-action">
-                    {{-- @if(in_array("Mengubah Data Kategori", Session::get('permissions')) || Session::get('role') == 'administrator') --}}
                     <li id="action-detail">Lihat Detail</li>
-                    {{-- @endif --}}
+                    <li id="action-print">Print Memo</li>
                 </ul>
             </div>
         </div>
