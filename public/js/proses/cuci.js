@@ -58,10 +58,6 @@ $(document).ready(function() {
     });
 
     $('#action-detail').on('click', function() {
-        // $('#table-trans-item tbody tr').each(function() {
-        //     $(this).hide();
-        // });
-        // $('#table-trans-item tbody tr.trans-' + btnId).show();
         $('#table-short-trans').load(window.location.origin + '/component/shortTrans/' + btnId);
         $('#modal-detail').modal('show');
     });
@@ -104,5 +100,40 @@ $(document).ready(function() {
                 location.reload();
             });
         }
+    });
+
+    var flag = false;
+    var btnItemTransId = 0;
+    $('#table-short-trans').on('click', '.btn-show-action-2', function() {
+        let lebarList = 150;
+        let lebarBtn = $(this).css('width');
+        let lebarTambahan = 2;
+        lebarBtn = parseInt(lebarBtn.substr(0, lebarBtn.indexOf('px')));
+        $('#list-action-2').css('left', $(this).offset().left - $('#modal-detail .modal-body').offset().left - lebarList + lebarBtn + lebarTambahan);
+
+        let tinggiBtn = $(this).css('height');
+        let tinggiHeader = 0;
+        tinggiBtn = parseInt(tinggiBtn.substr(0, tinggiBtn.indexOf('px')));
+        $('#list-action-2').css('top', $(this).offset().top - $('#modal-detail .modal-body').offset().top + tinggiBtn + tinggiHeader);
+
+        $('#list-action-2').show();
+        btnItemTransId = $(this).attr('id').substring(4);
+        flag = true;
+    });
+
+    $(document).on('click', function() {
+        setTimeout(function (){
+            if (flag) {
+                flag = !flag;
+            } else {
+                if ($('#list-action-2').css('display') == 'block') {
+                    $('#list-action-2').hide();
+                }
+            }
+        }, 10);
+    });
+
+    $('#action-notes').on('click', function() {
+        console.log('open note');
     });
 });

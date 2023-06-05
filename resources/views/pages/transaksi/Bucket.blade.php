@@ -290,28 +290,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            {{-- <div id="promo-spesial">
-                                                <h5>Promo Spesial</h5>
-                                                <div class="d-block rounded mt-3" style="height: 200px; background-color: lightgrey;">
-                                                    <div class="d-flex justify-content-center align-items-center h-100" id="div-login">
-                                                        <form id="authenticate-login" class="d-flex flex-column mb-0" style="300px;">
-                                                            <input class="form-control mb-2" id="input-username-auth" type="text" name="username" placeholder="username">
-                                                            <input class="form-control mb-3" id="input-password-auth" type="password" name="password" placeholder="password">
-                                                            <button id="btn-authenticate-login" class="btn btn-primary" type="button">Login</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                                <div class="d-none mt-3" id="div-promo-spesial">
-                                                    <div class="d-flex align-items-center">
-                                                        <p style="white-space: nowrap;">Besar Diskon : </p>
-                                                        <div class="form-control d-flex align-items-center mx-3">
-                                                            <p>Rp</p>
-                                                            <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-nominal-promo" name="nominal" required>
-                                                        </div>
-                                                        <button class="btn btn-primary" type="button" id="btn-apply-promo-spesial">Apply</button>
-                                                    </div>
-                                                </div>
-                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -356,31 +334,7 @@
                                             <h4 class="modal-title">Catatan Item</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <div class="table-responsive">
-                                                <table class="table" id="table-list-catatan">
-                                                    <thead class="text-center">
-                                                        <tr>
-                                                            <th>Noted By</th>
-                                                            <th>Catatan</th>
-                                                            <th></th>
-                                                        </tr>
-                                                    </thead>
-                                                    @if(in_array("Melihat Detail Catatan Item", Session::get('permissions')) || Session::get('role') == 'administrator')
-                                                    <tbody>
-                                                    </tbody>
-                                                    @else
-                                                    <tbody class="disabled">
-                                                    </tbody>
-                                                    @endif
-                                                    @if(in_array("Membuat Catatan Item", Session::get('permissions')) || Session::get('role') == 'administrator')
-                                                    <tfoot>
-                                                        <tr>
-                                                            <td class="text-center" colspan="3"><button class="btn btn-primary btn-sm" type="button" id="add-catatan-item"><i class="fas fa-plus"></i></button></td>
-                                                        </tr>
-                                                    </tfoot>
-                                                    @endif
-                                                </table>
-                                            </div>
+                                            <div id="table-catatan-item"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -406,48 +360,6 @@
                                                             <textarea class="form-control" id="catatan-item" required ></textarea>
                                                         </div>
                                                     </div>
-                                                    {{-- <div class="col-8">
-                                                        <ul role="tablist" class="nav nav-tabs">
-                                                            <li role="presentation" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link active" href="#tab-foto">Foto</a></li>
-                                                            <li role="presentation" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link" href="#tab-noda">Tandai Noda</a></li>
-                                                        </ul>
-                                                        <div class="tab-content card" style="border-top: none;border-radius: 0;height: 513px;">
-                                                            <div role="tabpanel" class="tab-pane active p-2" id="tab-foto">
-                                                                <img id="container-image-item" class="w-100 mb-2" style="object-fit: contain;max-height: 450px;height: 450px;" />
-                                                                <div class="text-end">
-                                                                    <input type="file" class="form-control" id="input-foto-item" accept="image/*" onchange="document.getElementById('container-image-item').src = window.URL.createObjectURL(this.files[0])" required />
-                                                                </div>
-                                                            </div>
-                                                            <div role="tabpanel" class="tab-pane p-2" id="tab-noda">
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <h5>Tampak Depan</h5>
-                                                                        <div id="tampak-depan" class="position-relative">
-                                                                            <div class="card p-2" style="height: 230px;">
-                                                                                <div class="w-100 h-100" style="background-image: url({{asset('image/tshirt-front.jpg')}});background-size: cover;"></div>
-                                                                            </div>
-                                                                            <div id="td-kiri-atas" class="position-absolute w-50 h-50 card stain-selection" style="top: 0;left: 0;"></div>
-                                                                            <div id="td-kanan-atas" class="position-absolute w-50 h-50 card stain-selection" style="top: 0;left: 50%;"></div>
-                                                                            <div id="td-kiri-bawah" class="position-absolute w-50 h-50 card stain-selection" style="top: 50%;left: 0;"></div>
-                                                                            <div id="td-kanan-bawah" class="position-absolute w-50 h-50 card stain-selection" style="top: 50%;left: 50%;"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col">
-                                                                        <h5>Tampak Belakang</h5>
-                                                                        <div id="tampak-belakang" class="position-relative">
-                                                                            <div class="card p-2" style="height: 230px;">
-                                                                                <div class="w-100 h-100" style="background-image: url({{asset('image/tshirt-back.jpg')}});background-size: cover;"></div>
-                                                                            </div>
-                                                                            <div id="tb-kiri-atas" class="position-absolute w-50 h-50 card stain-selection" style="top: 0;left: 0;"></div>
-                                                                            <div id="tb-kanan-atas" class="position-absolute w-50 h-50 card stain-selection" style="top: 0;left: 50%;"></div>
-                                                                            <div id="tb-kiri-bawah" class="position-absolute w-50 h-50 card stain-selection" style="top: 50%;left: 0;"></div>
-                                                                            <div id="tb-kanan-bawah" class="position-absolute w-50 h-50 card stain-selection" style="top: 50%;left: 50%;"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div> --}}
 
                                                     <div class="col col-lg-8">
                                                         <div class="position-relative">
@@ -460,7 +372,6 @@
                                                             <input type="file" class="form-control" id="input-foto-item" accept="image/*" onchange="document.getElementById('container-image-item').src = window.URL.createObjectURL(this.files[0])" required />
                                                         </div>
                                                     </div>
-
 
                                                 </div>
                                             </div>

@@ -289,28 +289,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            {{-- <div id="promo-spesial">
-                                                <h5>Promo Spesial</h5>
-                                                <div class="d-block rounded mt-3" style="height: 200px; background-color: lightgrey;">
-                                                    <div class="d-flex justify-content-center align-items-center h-100" id="div-login">
-                                                        <form id="authenticate-login" class="d-flex flex-column mb-0" style="300px;">
-                                                            <input class="form-control mb-2" id="input-username-auth" type="text" name="username" placeholder="username">
-                                                            <input class="form-control mb-3" id="input-password-auth" type="password" name="password" placeholder="password">
-                                                            <button id="btn-authenticate-login" class="btn btn-primary" type="button">Login</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                                <div class="d-none mt-3" id="div-promo-spesial">
-                                                    <div class="d-flex align-items-center">
-                                                        <p style="white-space: nowrap;">Besar Diskon : </p>
-                                                        <div class="form-control d-flex align-items-center mx-3">
-                                                            <p>Rp</p>
-                                                            <input class="w-100 ms-2 input-thousand-separator" type="text" id="input-nominal-promo" name="nominal" required>
-                                                        </div>
-                                                        <button class="btn btn-primary" type="button" id="btn-apply-promo-spesial">Apply</button>
-                                                    </div>
-                                                </div>
-                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -354,33 +332,12 @@
                                         <div class="modal-header">
                                             <h4 class="modal-title">Catatan Item</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <div class="modal-body">
-                                            <div class="table-responsive">
-                                                <table class="table" id="table-list-catatan">
-                                                    <thead class="text-center">
-                                                        <tr>
-                                                            <th>Noted By</th>
-                                                            <th>Role</th>
-                                                            <th>Catatan</th>
-                                                            <th></th>
-                                                        </tr>
-                                                    </thead>
-                                                    @if(in_array("Melihat Detail Catatan Item", Session::get('permissions')) || Session::get('role') == 'administrator')
-                                                    <tbody>
-                                                    </tbody>
-                                                    @else
-                                                    <tbody class="disabled">
-                                                    </tbody>
-                                                    @endif
-                                                    @if(in_array("Membuat Catatan Item", Session::get('permissions')) || Session::get('role') == 'administrator')
-                                                    <tfoot>
-                                                        <tr>
-                                                            <td class="text-center" colspan="3"><button class="btn btn-primary btn-sm" type="button" id="add-catatan-item"><i class="fas fa-plus"></i></button></td>
-                                                        </tr>
-                                                    </tfoot>
-                                                    @endif
-                                                </table>
-                                            </div>
+                                        <div class="modal-body position-relative">
+                                            <div id="table-catatan-item"></div>
+                                            <ul class="list-unstyled form-control list-action" id="list-action-2">
+                                                <li id="action-detail">Detail Catatan</li>
+                                                <li id="action-delete-note">Hapus Catatan</li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>

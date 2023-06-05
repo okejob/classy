@@ -472,26 +472,7 @@ $(document).ready(function() {
     });
 
     $('#action-notes').on('click', function() {
-        $.ajax({
-            url: "/transaksi/item/note/list/" + currentlySelectedItemTransactionID,
-        }).done(function(data) {
-            let notes = data[0];
-            $('#table-list-catatan tbody').empty();
-            console.log(notes);
-
-            notes.forEach(note => {
-                $('#table-list-catatan tbody').append(
-                    "<tr id='" + note.id + "'>" +
-                        "<td class='text-center'>" + note.nama_user + "</td>" +
-                        "<td class='text-center'>" + note.modifier.role + "</td>" +
-                        "<td>" + note.catatan + "</td>" +
-                        "<td class='text-end' style='padding: 4px 8px;'>" +
-                            "<button class='btn btn-primary btn-sm' type='button'>Show</button>" +
-                        "</td>" +
-                    "</tr>"
-                );
-            });
-
+        $('#table-catatan-item').load(window.location.origin + '/component/note/' + currentlySelectedItemTransactionID, function() {
             $('#modal-list-catatan-item').modal('show');
         });
     });
@@ -533,10 +514,41 @@ $(document).ready(function() {
         }
     });
 
-    $('#table-list-catatan tbody').on('click', '.btn', function() {
+    var flag = false;
+    var btnItemNoteId = 0;
+    $('#table-catatan-item').on('click', '.btn-show-action-2', function() {
+        let lebarList = 150;
+        let lebarBtn = $(this).css('width');
+        let lebarTambahan = 2;
+        lebarBtn = parseInt(lebarBtn.substr(0, lebarBtn.indexOf('px')));
+        $('#list-action-2').css('left', $(this).offset().left - $('#modal-list-catatan-item .modal-body').offset().left - lebarList + lebarBtn + lebarTambahan);
+
+        let tinggiBtn = $(this).css('height');
+        let tinggiHeader = 0;
+        tinggiBtn = parseInt(tinggiBtn.substr(0, tinggiBtn.indexOf('px')));
+        $('#list-action-2').css('top', $(this).offset().top - $('#modal-list-catatan-item .modal-body').offset().top + tinggiBtn + tinggiHeader);
+
+        $('#list-action-2').show();
+        btnItemNoteId = $(this).closest('tr').attr('id');
+        flag = true;
+    });
+
+    $(document).on('click', function() {
+        setTimeout(function (){
+            if (flag) {
+                flag = !flag;
+            } else {
+                if ($('#list-action-2').css('display') == 'block') {
+                    $('#list-action-2').hide();
+                }
+            }
+        }, 10);
+    });
+
+    $('#action-detail').on('click', function() {
         $('#catatan-item-name').text(currentlySelectedItemName);
         $.ajax({
-            url: "/transaksi/item/note/" + $(this).closest('tr').attr('id'),
+            url: "/transaksi/item/note/" + btnItemNoteId,
         }).done(function(data) {
             let transNote = data[0];
 
@@ -564,7 +576,7 @@ $(document).ready(function() {
         });
     });
 
-    $('#add-catatan-item').on('click', function() {
+    $('#table-catatan-item').on('click', '#add-catatan-item',function() {
         $('#catatan-item-name').text(currentlySelectedItemName);
 
         $('#penulis-catatan-item').parent().hide();
@@ -577,15 +589,6 @@ $(document).ready(function() {
         $('#catatan-item').val('');
         $('#container-image-item').prop('src', '');
         $('#input-foto-item').val('');
-
-        $('#td-kiri-atas').addClass('selected').removeClass('selected');
-        $('#td-kanan-atas').addClass('selected').removeClass('selected');
-        $('#td-kiri-bawah').addClass('selected').removeClass('selected');
-        $('#td-kanan-bawah').addClass('selected').removeClass('selected');
-        $('#tb-kiri-atas').addClass('selected').removeClass('selected');
-        $('#tb-kanan-atas').addClass('selected').removeClass('selected');
-        $('#tb-kiri-bawah').addClass('selected').removeClass('selected');
-        $('#tb-kanan-bawah').addClass('selected').removeClass('selected');
 
         $('#modal-catatan-item .modal-footer').show();
         $('#modal-catatan-item').modal('show');
@@ -628,6 +631,18 @@ $(document).ready(function() {
             });
         } else {
             $('#form-catatan')[0].reportValidity()
+        }
+    });
+
+    $('#action-delete-note').on('click', function() {
+        if (confirm('Hapus catatan item ?')) {
+            $.ajax({
+                url: "/transaksi/item/note/" + btnItemNoteId + "/delete",
+            }).done(function(response) {
+                if (response.status == '200') {
+                    $('#table-catatan-item').load(window.location.origin + '/component/note/' + currentlySelectedItemTransactionID);
+                }
+            });
         }
     });
 
@@ -708,7 +723,7 @@ $(document).ready(function() {
         }).done(function(response) {
             if (response.status == '200') {
                 getActivePromo(false);
-                $('#table-container').load(window.location.origin + '/component/transBucket/' + transId, function() {
+                $('#table-container').load(window.location.origin + '/component/transPremium/' + transId, function() {
                     adjustWidth();
                     setThousandSeparator();
                 });
@@ -727,7 +742,7 @@ $(document).ready(function() {
         }).done(function(response) {
             console.log(response);
             getActivePromo(false);
-            $('#table-container').load(window.location.origin + '/component/transBucket/' + transId, function() {
+            $('#table-container').load(window.location.origin + '/component/transPremium/' + transId, function() {
                 adjustWidth();
                 setThousandSeparator();
             });

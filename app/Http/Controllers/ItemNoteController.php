@@ -16,10 +16,9 @@ class ItemNoteController extends Controller
     public function list($item_transaksi_id)
     {
         $item_notes = ItemNote::with('modifier')->where('item_transaksi_id', $item_transaksi_id)->latest()->get();
-        return [
-            'status' => 200,
-            $item_notes
-        ];
+        return view('components.tableCatatanItem', [
+            'notes' => $item_notes
+        ]);
     }
 
     //Menampilkan detail 1 Note Item Transaksi
@@ -44,6 +43,15 @@ class ItemNoteController extends Controller
         return [
             'status' => 200,
             $item_notes
+        ];
+    }
+
+    public function delete($id)
+    {
+        ItemNote::destroy($id);
+
+        return [
+            'status' => 200
         ];
     }
 }

@@ -164,9 +164,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transaksi/{transaksi_id}/item-transaksi/rewash-status', [ItemTransaksiController::class, 'getItemAndStatus']);
 
     //ItemNote
-    Route::get('/transaksi/item/note/list/{item_transaksi_id}', [ItemNoteController::class, 'list'])->middleware('permission:Melihat Detail Daftar Catatan Item');
     Route::get('/transaksi/item/note/{id}', [ItemNoteController::class, 'show'])->middleware('permission:Melihat Detail Catatan Item');
     Route::post('/transaksi/item/note/add', [ItemNoteController::class, 'insert'])->middleware('permission:Membuat Catatan Item');
+    Route::get('/transaksi/item/note/{id}/delete', [ItemNoteController::class, 'delete']);
+    Route::get('/component/note/{item_transaksi_id}', [ItemNoteController::class, 'list'])->middleware('permission:Melihat Detail Daftar Catatan Item');
 
     //Transaksi
     Route::get('/transaksi', [PageController::class, 'transaksi'])->name('transaksi')->middleware('permission:Membuka Menu Transaksi');

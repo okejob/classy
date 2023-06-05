@@ -464,25 +464,7 @@ $(document).ready(function() {
     });
 
     $('#action-notes').on('click', function() {
-        $.ajax({
-            url: "/transaksi/item/note/list/" + currentlySelectedItemTransactionID,
-        }).done(function(data) {
-            let notes = data[0];
-            $('#table-list-catatan tbody').empty();
-
-            notes.forEach(note => {
-                $('#table-list-catatan tbody').append(
-                    "<tr id='" + note.id + "'>" +
-                        "<td class='text-center'>" + note.nama_user + "</td>" +
-                        "<td class='text-center'>" + note.modifier.role + "</td>" +
-                        "<td>" + note.catatan + "</td>" +
-                        "<td class='text-end' style='padding: 4px 8px;'>" +
-                            "<button class='btn btn-primary btn-sm' type='button'>Show</button>" +
-                        "</td>" +
-                    "</tr>"
-                );
-            });
-
+        $('#table-catatan-item').load(window.location.origin + '/component/note/' + currentlySelectedItemTransactionID, function() {
             $('#modal-list-catatan-item').modal('show');
         });
     });
@@ -579,15 +561,6 @@ $(document).ready(function() {
         $('#catatan-item').val('');
         $('#container-image-item').prop('src', '');
         $('#input-foto-item').val('');
-
-        $('#td-kiri-atas').addClass('selected').removeClass('selected');
-        $('#td-kanan-atas').addClass('selected').removeClass('selected');
-        $('#td-kiri-bawah').addClass('selected').removeClass('selected');
-        $('#td-kanan-bawah').addClass('selected').removeClass('selected');
-        $('#tb-kiri-atas').addClass('selected').removeClass('selected');
-        $('#tb-kanan-atas').addClass('selected').removeClass('selected');
-        $('#tb-kiri-bawah').addClass('selected').removeClass('selected');
-        $('#tb-kanan-bawah').addClass('selected').removeClass('selected');
 
         $('#modal-catatan-item .modal-footer').show();
         $('#modal-catatan-item').modal('show');
