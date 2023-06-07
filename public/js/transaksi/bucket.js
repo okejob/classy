@@ -517,10 +517,39 @@ $(document).ready(function() {
 
     });
 
-    $('#table-list-catatan tbody').on('click', '.btn', function() {
+    var flag = false;
+    var btnItemNoteId = 0;
+    $('#table-catatan-item').on('click', '.btn-show-action-2', function() {
+        let lebarList = 150;
+        let lebarBtn = $(this).css('width');
+        let lebarTambahan = 2;
+        lebarBtn = parseInt(lebarBtn.substr(0, lebarBtn.indexOf('px')));
+        $('#list-action-2').css('left', $(this).offset().left - $('#modal-list-catatan-item .modal-body').offset().left - lebarList + lebarBtn + lebarTambahan);
+        let tinggiBtn = $(this).css('height');
+        let tinggiHeader = 0;
+        tinggiBtn = parseInt(tinggiBtn.substr(0, tinggiBtn.indexOf('px')));
+        $('#list-action-2').css('top', $(this).offset().top - $('#modal-list-catatan-item .modal-body').offset().top + tinggiBtn + tinggiHeader);
+        $('#list-action-2').show();
+        btnItemNoteId = $(this).closest('tr').attr('id');
+        flag = true;
+    });
+
+    $(document).on('click', function() {
+        setTimeout(function (){
+            if (flag) {
+                flag = !flag;
+            } else {
+                if ($('#list-action-2').css('display') == 'block') {
+                    $('#list-action-2').hide();
+                }
+            }
+        }, 10);
+    });
+
+    $('#action-detail').on('click', function() {
         $('#catatan-item-name').text(currentlySelectedItemName);
         $.ajax({
-            url: "/transaksi/item/note/" + $(this).closest('tr').attr('id'),
+            url: "/transaksi/item/note/" + btnItemNoteId,
         }).done(function(data) {
             let transNote = data[0];
 
@@ -548,7 +577,7 @@ $(document).ready(function() {
         });
     });
 
-    $('#add-catatan-item').on('click', function() {
+    $('#table-catatan-item').on('click', '#add-catatan-item',function() {
         $('#catatan-item-name').text(currentlySelectedItemName);
 
         $('#penulis-catatan-item').parent().hide();
@@ -603,6 +632,18 @@ $(document).ready(function() {
             });
         } else {
             $('#form-catatan')[0].reportValidity()
+        }
+    });
+
+    $('#action-delete-note').on('click', function() {
+        if (confirm('Hapus catatan item ?')) {
+            $.ajax({
+                url: "/transaksi/item/note/" + btnItemNoteId + "/delete",
+            }).done(function(response) {
+                if (response.status == '200') {
+                    $('#table-catatan-item').load(window.location.origin + '/component/note/' + currentlySelectedItemTransactionID);
+                }
+            });
         }
     });
 
@@ -709,8 +750,6 @@ $(document).ready(function() {
             console.log(response);
         });
     });
-
-    // $('#input-nominal-promo').on('input', function() {
     //     // console.log('val = ' + $(this).val());
     //     if (parseInt($(this).val()) > parseInt($(this).attr('max'))) {
     //         $(this).val($(this).attr('max'));

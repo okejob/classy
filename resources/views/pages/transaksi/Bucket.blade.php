@@ -333,8 +333,12 @@
                                         <div class="modal-header">
                                             <h4 class="modal-title">Catatan Item</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <div class="modal-body">
+                                        <div class="modal-body position-relative">
                                             <div id="table-catatan-item"></div>
+                                            <ul class="list-unstyled form-control list-action" id="list-action-2">
+                                                <li id="action-detail">Detail Catatan</li>
+                                                <li id="action-delete-note">Hapus Catatan</li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -386,6 +390,7 @@
                     </div>
                 </section>
             </div>
+
             <div role="tabpanel" class="tab-pane py-4" id="tab-info">
                 <section id="section-info">
                     <div class="row">

@@ -418,6 +418,7 @@
                     </div>
                 </section>
             </div>
+
             <div role="tabpanel" class="tab-pane py-4" id="tab-info">
                 <section id="section-info">
                     <div class="row">

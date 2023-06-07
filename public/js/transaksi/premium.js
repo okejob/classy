@@ -749,25 +749,6 @@ $(document).ready(function() {
         });
     });
 
-    // $('#input-nominal-promo').on('input', function() {
-    //     console.log('val = ' + $(this).val());
-    //     if (parseInt($(this).val()) > parseInt($(this).attr('max'))) {
-    //         $(this).val($(this).attr('max'));
-    //     }
-    // });
-
-    // $('#btn-apply-promo-spesial').on('click', function() {
-    //     $('#input-nominal-promo').val(removeDot($('#input-nominal-promo').val()));
-    //     $.ajax({
-    //         url: "/transaksi/diskon/special/transaksi/" + transId + "/nominal/" + $('#input-nominal-promo').val(),
-    //     }).done(function() {
-    //         window.location = window.location.origin + window.location.pathname;
-    //     }).fail(function(message) {
-    //         alert('error');
-    //         console.log(message);
-    //     });
-    // });
-
     $('#nav-pembayaran').on('click', function() {
         $('#pembayaran-diskon').parent().show();
         $.ajax({
