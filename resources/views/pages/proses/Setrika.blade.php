@@ -295,6 +295,7 @@
                     <li id="action-done">Selesai</li>
                 </ul>
             </div>
+
             <div class="modal fade" role="dialog" tabindex="-1" id="modal-detail">
                 <div class="modal-dialog modal-lg modal-dialog-centered modal-fullscreen-lg-down" role="document">
                     <div class="modal-content">
@@ -305,12 +306,74 @@
                         <div class="modal-body position-relative">
                             <div id="table-short-trans"></div>
                             <ul class="list-unstyled form-control list-action" id="list-action-2">
+                                <li id="action-notes">Notes</li>
                                 <li id="action-rewash">Rewash</li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div role="dialog" tabindex="-1" class="modal fade" id="modal-list-catatan-item">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Catatan Item</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body position-relative">
+                            <div id="table-catatan-item"></div>
+                            <ul class="list-unstyled form-control list-action" id="list-action-3">
+                                <li id="action-detail-note">Detail Catatan</li>
+                                <li id="action-delete-note">Hapus Catatan</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div role="dialog" tabindex="-1" class="modal fade" id="modal-catatan-item">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Catatan Item <span id="catatan-item-name">nama item</span></h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form id="form-catatan">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="mb-2">
+                                            <h5>Noted by</h5>
+                                            <input type="text" class="form-control" id="penulis-catatan-item" />
+                                        </div>
+                                        <div class="h-100">
+                                            <h5>Notes</h5>
+                                            <textarea class="form-control" id="catatan-item" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-8">
+                                        <ul role="tablist" class="nav nav-tabs">
+                                            <li role="presentation" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link active" href="#tab-foto">Foto</a></li>
+                                            <li role="presentation" class="nav-item"><a role="tab" data-bs-toggle="tab" class="nav-link" href="#tab-noda">Tandai Noda</a></li>
+                                        </ul>
+                                        <div class="tab-content card" style="border-top: none;border-radius: 0;height: 513px;">
+                                            <div role="tabpanel" class="tab-pane active p-2" id="tab-foto">
+                                                <img id="container-image-item" class="w-100 mb-2" style="object-fit: contain;max-height: 450px;height: 450px;" />
+                                                <div class="text-end">
+                                                    <input type="file" class="form-control" id="input-foto-item" accept="image/*" onchange="document.getElementById('container-image-item').src = window.URL.createObjectURL(this.files[0])" required />
+                                                </div>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane p-2" id="tab-noda">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
             <div class="modal fade" role="dialog" tabindex="-1" id="modal-rewash">
                 <div class="modal-dialog modal-lg modal-dialog-centered modal-fullscreen-lg-down" role="document">
                     <div class="modal-content">

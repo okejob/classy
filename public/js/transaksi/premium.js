@@ -522,12 +522,10 @@ $(document).ready(function() {
         let lebarTambahan = 2;
         lebarBtn = parseInt(lebarBtn.substr(0, lebarBtn.indexOf('px')));
         $('#list-action-2').css('left', $(this).offset().left - $('#modal-list-catatan-item .modal-body').offset().left - lebarList + lebarBtn + lebarTambahan);
-
         let tinggiBtn = $(this).css('height');
         let tinggiHeader = 0;
         tinggiBtn = parseInt(tinggiBtn.substr(0, tinggiBtn.indexOf('px')));
         $('#list-action-2').css('top', $(this).offset().top - $('#modal-list-catatan-item .modal-body').offset().top + tinggiBtn + tinggiHeader);
-
         $('#list-action-2').show();
         btnItemNoteId = $(this).closest('tr').attr('id');
         flag = true;
