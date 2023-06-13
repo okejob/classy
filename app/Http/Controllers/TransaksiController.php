@@ -10,6 +10,7 @@ use App\Models\LogTransaksi;
 use App\Models\Packing\Packing;
 use App\Models\Packing\PackingInventory;
 use App\Models\Paket\PaketCuci;
+use App\Models\Transaksi\Rewash;
 use App\Models\Transaksi\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,6 +43,20 @@ class TransaksiController extends Controller
     public function shortTable($id){
         return view('components.tableItemTransShort', [
             'trans' => Transaksi::detail()->find($id),
+        ]);
+    }
+
+    public function shortTableProcess($id){
+        $rewashes = Rewash::with('itemTransaksi')->get();
+        $filteredRewash = [];
+        foreach ($rewashes as $rewash) {
+            if ($rewash->itemTransaksi->transaksi_id == $id) {
+                array_push($filteredRewash, $rewash);
+            }
+        }
+        return view('components.tableItemTransShort', [
+            'trans' => Transaksi::detail()->find($id),
+            'rewashes' => $filteredRewash,
         ]);
     }
 

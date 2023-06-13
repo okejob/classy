@@ -185,6 +185,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/diskon-transaksi/{id}/delete', [DiskonTransaksiController::class, 'delete']);
     Route::get('/transaksi/{id}/log', [TransaksiController::class, 'logTransaksi']);
     Route::get('/component/shortTrans/{id}', [TransaksiController::class, 'shortTable']);
+    Route::get('/component/shortTrans/{id}/process', [TransaksiController::class, 'shortTableProcess']);
     Route::get('/component/shortTrans/{id}/delivery', [TransaksiController::class, 'shortTableDelivery']);
 
     // Bucket

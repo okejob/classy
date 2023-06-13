@@ -14,10 +14,20 @@
                 <td style="width: 62.5%;">{{ $item_transaksi->nama }}</td>
                 <td style="width: 20%;" class="text-center">{{ $item_transaksi->nama_kategori }}</td>
                 <td style="width: 7.5%;" class="text-center">{{ $item_transaksi->qty }}</td>
-                <td class="cell-action" style="width: 46.25px;">
-                    <button id="btn-{{ $item_transaksi->id }}" class="btn btn-primary btn-sm btn-show-action-2" type="button">
-                        <i class="fas fa-bars"></i>
-                    </button>
+                <td class="cell-action">
+                    <div class="d-flex h-100 align-items-center justify-content-end">
+                        @if(isset($rewashes))
+                            @foreach ($rewashes as $rewash)
+                                @if($rewash->item_transaksi_id == $item_transaksi->id)
+                                    <i class="me-3 text-danger fa-solid fa-circle-exclamation"></i>
+                                @break
+                                @endif
+                            @endforeach
+                        @endif
+                        <button id="btn-{{ $item_transaksi->id }}" class="btn btn-primary btn-sm btn-show-action-2" type="button">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
                 </td>
             </tr>
             @endforeach

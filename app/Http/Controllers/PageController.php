@@ -292,7 +292,6 @@ class PageController extends Controller
         if ($role != 'produksi_cuci') {
             $data['pencucis'] = User::role('produksi_cuci')->with('cucian')->get();
         }
-
         return view('pages.proses.Cuci', $data);
     }
 

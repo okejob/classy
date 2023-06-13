@@ -58,7 +58,7 @@ $(document).ready(function() {
     });
 
     $('#action-detail').on('click', function() {
-        $('#table-short-trans').load(window.location.origin + '/component/shortTrans/' + btnId);
+        $('#table-short-trans').load(window.location.origin + '/component/shortTrans/' + btnId + '/process');
         $('#modal-detail').modal('show');
     });
 

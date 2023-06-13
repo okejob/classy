@@ -58,12 +58,7 @@ $(document).ready(function() {
     });
 
     $('#action-detail').on('click', function() {
-        // diganti ajax
-        // $('#table-trans-item tbody tr').each(function() {
-        //     $(this).hide();
-        // });
-        // $('#table-trans-item tbody tr.trans-' + btnId).show();
-        $('#table-short-trans').load(window.location.origin + '/component/shortTrans/' + btnId);
+        $('#table-short-trans').load(window.location.origin + '/component/shortTrans/' + btnId + '/process');
         $('#kode-trans').text($('.btn-show-action').eq(btnIndex - 1).prev().find('h4').text());
         $('#modal-detail').modal('show');
     });
