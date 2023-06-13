@@ -44,6 +44,7 @@ class Transaksi extends Model
         //find bucket dan premium
         $sum_bobot = ItemTransaksi::where('transaksi_id', $this->id)->sum('total_bobot');
         $sum_harga_premium = ItemTransaksi::where('transaksi_id', $this->id)->sum('total_premium');
+        $item_count = ItemTransaksi::where('transaksi_id', $this->id)->count();
 
         //kalkulasi bobot bucket
         $paket_bucket = PaketCuci::where('nama_paket', 'BUCKET')->first();
@@ -67,8 +68,19 @@ class Transaksi extends Model
                     $temp = $promo->maximal_diskon;
                 }
                 $total_diskon_promo += $temp;
-            } else {
+            } else if ($promo->jenis_diskon == "exact") {
                 $total_diskon_promo += $promo->nominal;
+            } else {
+                $halfCount = floor($item_count / 2);
+                $items = ItemTransaksi::where('transaksi_id', $this->id)
+                    ->orderBy('harga_premium', 'asc')
+                    ->limit($halfCount)
+                    ->get();
+
+                $items->each(function ($item) {
+                    $item->harga_premium = 0;
+                    $item->save();
+                });
             }
         }
         $this->total_diskon_promo = $total_diskon_promo;
