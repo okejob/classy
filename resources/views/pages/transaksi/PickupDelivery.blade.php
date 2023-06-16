@@ -338,8 +338,21 @@
                         <h4 class="modal-title">Detail Transaksi <span id="kode-transaksi"></span></h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body" id="table-short-trans">
-
+                    <div class="modal-body">
+                        <div id="table-short-trans"></div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-between align-items-center">
+                        <div>
+                            Status Pembayaran: <span id="status-transaksi"></span>
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-outline-primary" type="button" id="show-memo-produksi">
+                                Memo Produksi
+                            </button>
+                            <button class="btn btn-sm btn-primary" type="button" id="show-nota">
+                                Nota
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

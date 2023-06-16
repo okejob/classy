@@ -5,7 +5,9 @@
                 <th style="width: 62.5%;">Nama Item</th>
                 <th style="width: 20%;">Kategori</th>
                 <th style="width: 7.5%;">Qty</th>
+                @if(Session::get('role') != 'delivery')
                 <th class="column-action"></th>
+                @endif
             </tr>
         </thead>
         <tbody>
@@ -24,9 +26,11 @@
                                 @endif
                             @endforeach
                         @endif
+                        @if(Session::get('role') != 'delivery')
                         <button id="btn-{{ $item_transaksi->id }}" class="btn btn-primary btn-sm btn-show-action-2" type="button">
                             <i class="fas fa-bars"></i>
                         </button>
+                        @endif
                     </div>
                 </td>
             </tr>
@@ -37,7 +41,6 @@
                     <td style="width: 62.5%;">{{ $inventory['name'] }}</td>
                     <td style="width: 20%;" class="text-center">Packing</td>
                     <td style="width: 7.5%;" class="text-center">{{ $inventory['qty'] }}</td>
-                    <td></td>
                 </tr>
                 @endforeach
             @endif
