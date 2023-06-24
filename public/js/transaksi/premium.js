@@ -124,6 +124,12 @@ $(document).ready(function() {
                 setThousandSeparator();
             });
 
+            if (trans.lunas) {
+                $('#cancel-trans').hide();
+            } else {
+                $('#cancel-trans').show();
+            }
+
             $('#form-transaksi').attr('action', '/transaksi/update/' + trans.id);
 
             parent.removeClass('disabled');
