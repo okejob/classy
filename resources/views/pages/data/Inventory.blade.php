@@ -80,7 +80,15 @@
                                     <h5>Deskripsi</h5>
                                     <textarea class="form-control" id="input-deskripsi" name="deskripsi"></textarea>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-6">
+                                    <h5>Kategori</h5>
+                                    <select class="form-control" id="input-kategori" name="kategori" required >
+                                        <option value="" selected hidden>-</option>
+                                        <option value="inventory">Inventory</option>
+                                        <option value="packing">Packing</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
                                     <h5>Stok</h5>
                                     <input class="form-control" type="number" id="input-stok" name="stok" required>
                                 </div>
