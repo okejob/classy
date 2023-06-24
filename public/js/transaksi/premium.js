@@ -124,7 +124,6 @@ $(document).ready(function() {
                 setThousandSeparator();
             });
 
-            console.log(trans.lunas);
             if (trans.lunas) {
                 $('#cancel-trans').hide();
             } else {
