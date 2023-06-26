@@ -19,7 +19,7 @@ class PenerimaController extends Controller
         $penerima = Penerima::where('transaksi_id', $transaksi_id)->first();
         if (empty($penerima)) {
             $delivery = PickupDelivery::where('transaksi_id', $transaksi_id)->where('action', 'delivery')->first();
-            
+
             //Melakukan Pengecheckan apakah sudah dikirim tetapi request berisi ambil di outlet
             if (!empty($delivery) && $request->ambil_di_outlet == 1) {
                 return [
@@ -30,7 +30,7 @@ class PenerimaController extends Controller
             $path = $this->upload($request, 'penerima');
             $merged = $request->merge([
                 'modified_by' => Auth::id(),
-                'foto_penerima' => url($path),
+                'foto_penerima' => $path,
             ])->toArray();
             $penerima = Penerima::create($merged);
             return [
