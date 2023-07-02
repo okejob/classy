@@ -67,4 +67,12 @@ class PackingController extends Controller
             'message' => 'success',
         ];
     }
+
+    public function tablePacking($id)
+    {
+        return view('components.tablePacking', [
+            'transaksi' => Transaksi::detail()->find($id),
+            'inventories' => Inventory::where('kategori', 'packing')->get(),
+        ]);
+    }
 }

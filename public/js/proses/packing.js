@@ -21,26 +21,17 @@ $(document).ready(function() {
         }
     });
 
-    $('#btn-packing').on('click', function() {
-        $('#modal-detail').modal('hide');
-
-        $.ajax({
-            url: "/transaksi/detail/" + btnId,
-        }).done(function(response) {
-            console.log(response);
-            response.item_transaksi.forEach(value => {
-                let temp = "<tr><td></td></tr>"
-
-            });
-
+    $('#action-kemas').on('click', function() {
+        $('#table-container').load(window.location.origin + '/component/packing/' + btnId, function() {
             $('#modal-packing').modal('show');
-        }).fail(function(message) {
-            alert('error');
-            console.log(message);
         });
     });
 
     $('#action-print').on('click', function() {
         window.location = window.location.origin + "/printMemoProduksi/" + btnId;
+    });
+
+    $('#simpan-packing').on('click', function() {
+
     });
 });

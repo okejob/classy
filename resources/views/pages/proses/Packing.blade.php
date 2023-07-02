@@ -58,6 +58,7 @@
                 {{ $last_transaksi->links() }}
                 <ul class="list-unstyled form-control" id="list-action">
                     <li id="action-detail">Lihat Detail</li>
+                    <li id="action-kemas">Kemas</li>
                     <li id="action-print">Print Memo</li>
                 </ul>
             </div>
@@ -75,9 +76,6 @@
                         <div id="container-bucket"></div>
                         <div id="container-premium"></div>
                     </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-primary" id="btn-packing" type="btn">Kemas</button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -91,22 +89,7 @@
                     </div>
                     <form id="form-packing">
                         <div class="modal-body">
-                            <h5>Item</h5>
-                            <div class="table-responsive mb-2">
-                                <table class="table" id="table-list-inventory">
-                                    <thead class="text-center">
-                                        <tr>
-                                            <th style="width: 50%;">Nama Item</th>
-                                            <th>QTY</th>
-                                            <th>Tipe Kemas</th>
-                                            <th style="width: 56px;"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody style="cursor: pointer">
-
-                                    </tbody>
-                                </table>
-                            </div>
+                            <div id="table-container"></div>
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-primary" id="simpan-packing" type="submit">Simpan & Antar</button>

@@ -17,13 +17,13 @@ trait UploadTrait
         if ($file) {
             $file_name = time() . '.' . $file->getClientOriginalExtension();
             $final_path = $default_path . $file_name;
-            // $img = Image::make($file);
-            // $img->save($final_path, $quality);
+            $img = Image::make($file);
+            $img->save($final_path, $quality);
 
-            // return $final_path;
-            Storage::disk('digitalocean')->put('/Penerima/' . $file_name, $file, 'public');
-            $url = Storage::disk('digitalocean')->url('/Penerima' . $file_name);
-            return $url;
+            return $final_path;
+            // Storage::disk('digitalocean')->put('/Penerima/' . $file_name, $file, 'public');
+            // $url = Storage::disk('digitalocean')->url('/Penerima' . $file_name);
+            // return $url;
         }
         return null;
     }

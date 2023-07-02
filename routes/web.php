@@ -243,4 +243,5 @@ Route::middleware(['auth'])->group(function () {
     //Packing
     Route::get('/proses/packing', [PageController::class, 'packing'])->middleware('permission:Membuka Menu Packing');
     Route::post('/proses/packing', [PackingController::class, 'create'])->middleware('permission:Menginputkan Data Packing');
+    Route::get('/component/packing/{id}', [PackingController::class, 'tablePacking']);
 });
