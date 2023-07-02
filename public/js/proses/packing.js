@@ -31,7 +31,50 @@ $(document).ready(function() {
         window.location = window.location.origin + "/printMemoProduksi/" + btnId;
     });
 
-    $('#simpan-packing').on('click', function() {
+    $('#form-packing').on('submit', function(e) {
+        e.preventDefault();
 
+        let inventories = [], newData;
+        for (let i = 0; i < $('.input-inventory').length; i++) {
+            let currentInventory = $('.input-inventory').eq(i);
+            let tempData = {
+                inventory_id: currentInventory.val(),
+                qty: 1,
+            };
+            newData = true;
+
+            for (let j = 0; j < inventories.length; j++) {
+                if (inventories[j].inventory_id == tempData.inventory_id) {
+                    inventories[j].qty++;
+                    newData = false;
+                    break;
+                }
+            };
+
+            if (newData) {
+                inventories.push(tempData);
+            }
+        }
+
+        let formData = new FormData();
+        formData.append('transaksi_id', btnId);
+        formData.append('inventories', JSON.stringify(inventories));
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            },
+            url: "/proses/packing",
+            method: "POST",
+            contentType: false,
+            processData: false,
+            data: formData,
+        }).done(function() {
+            alert('success');
+            window.location = window.location.origin + window.location.pathname;
+        }).fail(function(message) {
+            alert('error');
+            console.log(message);
+        });
     });
 });

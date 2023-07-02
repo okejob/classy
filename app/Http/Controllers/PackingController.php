@@ -28,19 +28,19 @@ class PackingController extends Controller
         $pelanggan = Pelanggan::find($transaksi->pelanggan_id);
         $alamat = $pelanggan->alamat;
 
-        $pickup_delivery = PickupDelivery::create([
-            'kode' => $kode,
-            'transaksi_id' => $request->transaksi_id,
-            'pelanggan_id' => $transaksi->pelanggan_id,
-            'action' => 'delivery',
-            'is_done' => false,
-            'alamat' => $alamat,
-            'modified_by' => Auth::id(),
-        ]);
+        // $pickup_delivery = PickupDelivery::create([
+        //     'kode' => $kode,
+        //     'transaksi_id' => $request->transaksi_id,
+        //     'pelanggan_id' => $transaksi->pelanggan_id,
+        //     'action' => 'delivery',
+        //     'is_done' => false,
+        //     'alamat' => $alamat,
+        //     'modified_by' => Auth::id(),
+        // ]);
 
         $packing = Packing::create([
             'transaksi_id' => $request->transaksi_id,
-            'pickup_delivery_id' => $pickup_delivery->id,
+            // 'pickup_delivery_id' => $pickup_delivery->id,
             'modified_by' => Auth::id(),
         ]);
 
