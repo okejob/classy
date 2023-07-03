@@ -18,9 +18,9 @@ return new class extends Migration
             $table->foreignId('transaksi_id')
                 ->constrained()
                 ->cascadeOnDelete();
-            $table->foreignId('pickup_delivery_id')
-                ->constrained()
-                ->cascadeOnDelete();
+            // $table->foreignId('pickup_delivery_id')
+            //     ->constrained()
+            //     ->cascadeOnDelete();
             $table->foreignId('modified_by')
                 ->constrained('users', 'id')
                 ->cascadeOnDelete();
