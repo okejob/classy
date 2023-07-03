@@ -8,6 +8,7 @@ use App\Models\Outlet;
 use App\Models\Data\Parfum;
 use App\Models\Diskon;
 use App\Models\DiskonTransaksi;
+use App\Models\Packing\Packing;
 use App\Models\Paket\PaketCuci;
 use App\Models\User;
 use App\Observers\UserActionObserver;
@@ -105,7 +106,7 @@ class Transaksi extends Model
     //Function untuk melakukan Query detail Transaksi beserta table lain yang memiliki Relation
     public function scopeDetail($query)
     {
-        return $query->with('item_transaksi', 'pickup_delivery', 'outlet', 'parfum', 'pelanggan', 'penerima', 'pelanggan.catatan_pelanggan', 'penerima', 'item_transaksi.rewash');
+        return $query->with('item_transaksi', 'pickup_delivery', 'outlet', 'parfum', 'pelanggan', 'penerima', 'pelanggan.catatan_pelanggan', 'penerima', 'item_transaksi.rewash', 'packing');
     }
 
     public function item_transaksi()
@@ -136,5 +137,10 @@ class Transaksi extends Model
     public function penerima()
     {
         return $this->hasOne(Penerima::class);
+    }
+
+    public function packing()
+    {
+        return $this->hasOne(Packing::class);
     }
 }
