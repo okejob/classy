@@ -931,11 +931,11 @@ $(document).ready(function() {
         return "";
     }
 
+    /*
     if (getCookie('transaksi-intro_halaman') == '') {
         introHalaman();
     }
 
-    /*
     // untuk tutorial halaman detail
     function introHalaman() {
         introJs().setOptions({
