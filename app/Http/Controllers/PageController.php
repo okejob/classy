@@ -250,8 +250,14 @@ class PageController extends Controller
 
     public function bucket()
     {
+        $user = User::where('username', 'joko')->first();
+        $roles = $user->getRoleNames();
+        return $roles;
         if (!auth()->user()->can('Membuka Menu Transaksi')) {
-            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSIONS');
+            $user = User::where('username', 'joko')->first();
+            $roles = $user->getRoleNames();
+            return $roles;
+            // abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSIONS');
         }
 
         $data['transaksi_id'] = Transaksi::count() == 0 ? 1 : Transaksi::latest()->first()->id + 1;
