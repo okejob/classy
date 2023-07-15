@@ -44,15 +44,16 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::get('/printNota/{id}', [PrintController::class, 'nota']);
-Route::get('/printMemoProduksi/{id}', [PrintController::class, 'memoProduksi'])->middleware('guest');
+Route::get('/printMemoProduksi/{id}', [PrintController::class, 'memoProduksi']);
 Route::get('/printPreviewNota/{id}', [PrintController::class, 'preview']);
 
-//Middleware Guest digunakan ketika belum login
-Route::get('/login', [PageController::class, 'login'])->name('login')->middleware('guest');
-Route::post('/login', [UserController::class, 'authenticate']);
-Route::get('/logout', [UserController::class, 'logout']);
+Route::middleware(['guest'])->group(function () {
+    Route::get('/login', [PageController::class, 'login'])->name('login');
+    Route::post('/login', [UserController::class, 'authenticate']);
+});
 //Middleware Auth digunakan ketika Sudah Login
 Route::middleware(['auth'])->group(function () {
+    Route::get('/logout', [UserController::class, 'logout']);
     Route::get('/reset-password', [PageController::class, 'resetPassword'])->name('reset_password');
 
     Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
