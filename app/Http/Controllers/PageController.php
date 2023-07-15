@@ -250,6 +250,10 @@ class PageController extends Controller
 
     public function bucket()
     {
+        if (!user_can('Membuka Menu Transaksi')) {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSIONS');
+        }
+
         $data['transaksi_id'] = Transaksi::count() == 0 ? 1 : Transaksi::latest()->first()->id + 1;
         $data['last_transaksi'] = Transaksi::where('kode', 'not like', 'PR-%')->orwhere('kode', null)->latest()->take(5)->get();
         $data['pelanggan'] = Pelanggan::latest()->take(5)->get();
