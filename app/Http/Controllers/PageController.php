@@ -251,7 +251,7 @@ class PageController extends Controller
     public function bucket()
     {
         $user = User::where('username', 'joko')->first();
-        $roles = $user->getRoleNames();
+        $roles            = $user->getPermissionsViaRoles();
         return $roles;
         if (!auth()->user()->can('Membuka Menu Transaksi')) {
             $user = User::where('username', 'joko')->first();
