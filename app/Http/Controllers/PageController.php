@@ -250,7 +250,7 @@ class PageController extends Controller
 
     public function bucket()
     {
-        if (!user_can('Membuka Menu Transaksi')) {
+        if (!auth()->user()->can('Membuka Menu Transaksi')) {
             abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSIONS');
         }
 
@@ -310,10 +310,11 @@ class PageController extends Controller
 
     public function packing()
     {
-        return view('pages.proses.Packing',
+        return view(
+            'pages.proses.Packing',
             [
                 'last_transaksi' => Transaksi::latest()->paginate(5),
-                'inventories' => Inventory::where('kategori','packing')->get(),
+                'inventories' => Inventory::where('kategori', 'packing')->get(),
             ]
         );
     }
