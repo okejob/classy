@@ -51,9 +51,9 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/login', [PageController::class, 'login'])->name('login');
     Route::post('/login', [UserController::class, 'authenticate']);
 });
+Route::get('/logout', [UserController::class, 'logout']);
 //Middleware Auth digunakan ketika Sudah Login
 Route::middleware(['auth'])->group(function () {
-    Route::get('/logout', [UserController::class, 'logout']);
     Route::get('/reset-password', [PageController::class, 'resetPassword'])->name('reset_password');
 
     Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
@@ -190,7 +190,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/component/shortTrans/{id}/delivery', [TransaksiController::class, 'shortTableDelivery']);
 
     // Bucket
-    Route::get('/transaksi/bucket', [PageController::class, 'bucket'])->name('transaksi');
+    Route::get('/transaksi/bucket', [PageController::class, 'bucket'])->name('transaksi')->middleware(['permission:Membuka Menu Transaksi']);
     Route::get('/component/transBucket/{id}', [TransaksiController::class, 'tableBucket']);
     // Premium
     Route::get('/transaksi/premium', [PageController::class, 'premium'])->name('transaksi')->middleware('permission:Membuka Menu Transaksi');
