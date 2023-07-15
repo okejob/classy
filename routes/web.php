@@ -171,7 +171,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/component/note/{item_transaksi_id}', [ItemNoteController::class, 'list'])->middleware('permission:Melihat Detail Daftar Catatan Item');
 
     //Transaksi
-    Route::get('/transaksi', [PageController::class, 'transaksi'])->name('transaksi')->middleware('permission:Membuka Menu Transaksi');
+    Route::get('/transaksi', [PageController::class, 'transaksi'])->name('transaksi')->middleware('guard:web', 'permission:Membuka Menu Transaksi');
     Route::get('/transaksi/create', [TransaksiController::class, 'insert'])->middleware('permission:Membuat Transaksi');
     Route::get('/transaksi/detail/{id}', [TransaksiController::class, 'show'])->middleware('permission:Melihat Detail Transaksi');
     Route::get('/transaksi/search', [TransaksiController::class, 'search']);
