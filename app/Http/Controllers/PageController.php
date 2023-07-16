@@ -189,7 +189,7 @@ class PageController extends Controller
         $user = User::find(auth()->id());
         $permissions = $user->getPermissionsViaRoles();
         $permissionExist = collect($permissions)->first(function ($item) {
-            return $item->name === 'Membuka Menu Karyawant';
+            return $item->name === 'Membuka Menu Karyawan';
         });
         if ($permissionExist) {
             return view(
