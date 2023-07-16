@@ -71,6 +71,8 @@ class PageController extends Controller
                     'kategoris' => Kategori::all()
                 ]
             );
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
         }
     }
 
@@ -91,6 +93,8 @@ class PageController extends Controller
                     })->orderBy("nama", "asc")->paginate(5)
                 ]
             );
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
         }
     }
 
@@ -112,6 +116,8 @@ class PageController extends Controller
                     'data2' => Parfum::select('jenis')->orderBy("jenis", "asc")->distinct()->get()
                 ]
             );
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
         }
     }
 
@@ -124,6 +130,8 @@ class PageController extends Controller
         });
         if ($permissionExist) {
             return view('pages.data.Pelanggan');
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
         }
     }
 
@@ -144,6 +152,8 @@ class PageController extends Controller
                     })->where('outlet_id', Auth::user()->outlet_id)->orderBy("nama", "asc")->paginate(5)
                 ]
             );
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
         }
     }
 
@@ -161,6 +171,8 @@ class PageController extends Controller
                     'jenisRewashes' => JenisRewash::paginate(5),
                 ]
             );
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
         }
     }
 
@@ -181,6 +193,8 @@ class PageController extends Controller
                     'pencucis' => User::role('produksi_cuci')->get(),
                 ]
             );
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
         }
     }
 
@@ -200,6 +214,8 @@ class PageController extends Controller
                     'roles' => Role::get(),
                 ]
             );
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
         }
     }
 
@@ -246,6 +262,8 @@ class PageController extends Controller
                     })->orderBy("nama", "asc")->paginate(5)
                 ]
             );
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
         }
     }
 
@@ -263,6 +281,8 @@ class PageController extends Controller
                     'data' => PaketCuci::paginate(5)
                 ]
             );
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
         }
     }
 
@@ -280,6 +300,8 @@ class PageController extends Controller
                     'data' => PaketDeposit::where('id', '!=', 1)->paginate(5)
                 ]
             );
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
         }
     }
 
@@ -301,6 +323,8 @@ class PageController extends Controller
                     'dataDriver' => User::role('delivery')->get(),
                 ]
             );
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
         }
     }
 
@@ -346,6 +370,8 @@ class PageController extends Controller
                     'data' => $data
                 ]
             );
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
         }
     }
 
@@ -371,6 +397,8 @@ class PageController extends Controller
                     'data' => $data
                 ]
             );
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
         }
     }
 
@@ -389,6 +417,8 @@ class PageController extends Controller
                 $data['pencucis'] = User::role('produksi_cuci')->with('cucian')->get();
             }
             return view('pages.proses.Cuci', $data);
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
         }
     }
 
@@ -405,6 +435,8 @@ class PageController extends Controller
             $data['rewash'] = Rewash::get();
             $data['penyetrikas'] = User::role('produksi_setrika')->with('setrikaan')->get();
             return view('pages.proses.Setrika', $data);
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
         }
     }
 
@@ -423,6 +455,8 @@ class PageController extends Controller
                     'inventories' => Inventory::where('kategori', 'packing')->get(),
                 ]
             );
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
         }
     }
 
@@ -441,6 +475,8 @@ class PageController extends Controller
                     'pelanggans' => Pelanggan::where('status', 1)->get(),
                 ]
             );
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
         }
     }
 
@@ -458,6 +494,8 @@ class PageController extends Controller
                     'transaksis' => Transaksi::with('pelanggan')->latest()->take(5)->get(),
                 ]
             );
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
         }
     }
 
@@ -477,6 +515,8 @@ class PageController extends Controller
                     })->orderBy("nama", "asc")->paginate(5)
                 ]
             );
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
         }
     }
 
@@ -494,6 +534,8 @@ class PageController extends Controller
                     'diskons' => Diskon::withTrashed()->orderBy("code", "asc")->paginate(5)
                 ]
             );
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
         }
     }
 

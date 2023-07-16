@@ -23,7 +23,16 @@ class TransaksiController extends Controller
 
     public function show($id)
     {
-        return Transaksi::detail()->find($id);
+        $user = User::find(auth()->id());
+        $permissions = $user->getPermissionsViaRoles();
+        $permissionExist = collect($permissions)->first(function ($item) {
+            return $item->name === 'Melihat Detail Transaksi';
+        });
+        if ($permissionExist) {
+            return Transaksi::detail()->find($id);
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
+        }
     }
 
     public function tableBucket($id)
@@ -40,13 +49,15 @@ class TransaksiController extends Controller
         ]);
     }
 
-    public function shortTable($id){
+    public function shortTable($id)
+    {
         return view('components.tableItemTransShort', [
             'trans' => Transaksi::detail()->find($id),
         ]);
     }
 
-    public function shortTableProcess($id){
+    public function shortTableProcess($id)
+    {
         $rewashes = Rewash::with('itemTransaksi')->get();
         $filteredRewash = [];
         foreach ($rewashes as $rewash) {
@@ -60,7 +71,8 @@ class TransaksiController extends Controller
         ]);
     }
 
-    public function shortTableDelivery($id){
+    public function shortTableDelivery($id)
+    {
 
         $packings = Packing::where('transaksi_id', $id)->get();
 
@@ -79,16 +91,23 @@ class TransaksiController extends Controller
             'trans' => Transaksi::detail()->find($id),
             'inventories' => $inventoryData,
         ]);
-
-
     }
 
     public function historyPelanggan($id_pelanggan)
     {
-        return view('components.tableHistoryTransaksi', [
-            'status' => 200,
-            'transaksis' => Transaksi::detail()->where('pelanggan_id', $id_pelanggan)->latest()->paginate(5),
-        ]);
+        $user = User::find(auth()->id());
+        $permissions = $user->getPermissionsViaRoles();
+        $permissionExist = collect($permissions)->first(function ($item) {
+            return $item->name === 'Melihat Detail History Transaksi Pelanggan';
+        });
+        if ($permissionExist) {
+            return view('components.tableHistoryTransaksi', [
+                'status' => 200,
+                'transaksis' => Transaksi::detail()->where('pelanggan_id', $id_pelanggan)->latest()->paginate(5),
+            ]);
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
+        }
     }
 
     //Mencari Transaksi dengan KEY id, Kode Transaksi, atau Nama Pelanggan
@@ -144,22 +163,31 @@ class TransaksiController extends Controller
 
     public function insert(InsertTransaksiRequest $request)
     {
-        $merged = $request->merge([
-            'outlet_id' => Auth::user()->outlet->id,
-            'modified_by' => Auth::id(),
-            'status' => "draft"
-        ])->toArray();
-        $transaksi = Transaksi::create($merged);
-        $transaksi = Transaksi::detail()->find($transaksi->id);
-        LogTransaksi::create([
-            'transaksi_id' => $transaksi->id,
-            'penanggung_jawab' => Auth::id(),
-            'process' => strtoupper('create transaksi'),
-        ]);
-        return [
-            'status' => 200,
-            $transaksi,
-        ];
+        $user = User::find(auth()->id());
+        $permissions = $user->getPermissionsViaRoles();
+        $permissionExist = collect($permissions)->first(function ($item) {
+            return $item->name === 'Membuat Transaksi';
+        });
+        if ($permissionExist) {
+            $merged = $request->merge([
+                'outlet_id' => Auth::user()->outlet->id,
+                'modified_by' => Auth::id(),
+                'status' => "draft"
+            ])->toArray();
+            $transaksi = Transaksi::create($merged);
+            $transaksi = Transaksi::detail()->find($transaksi->id);
+            LogTransaksi::create([
+                'transaksi_id' => $transaksi->id,
+                'penanggung_jawab' => Auth::id(),
+                'process' => strtoupper('create transaksi'),
+            ]);
+            return [
+                'status' => 200,
+                $transaksi,
+            ];
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
+        }
     }
 
     public function authenticationDiskon(UserLoginRequest $request)
@@ -185,81 +213,108 @@ class TransaksiController extends Controller
 
     public function update(UpdateTransaksiRequest $request, $id)
     {
-        $express = false;
-        if ($request->express == "1") {
-            $express = true;
-        }
-        $setrika_only = false;
-        if ($request->setrika_only == "1") {
-            $setrika_only = true;
-        }
-        $status = 'draft';
-        if (
-            User::getRole(Auth::id()) == "administrator"
-            || User::getRole(Auth::id()) == "supervisor"
-            || User::getRole(Auth::id()) == "operator"
-        ) {
-            $status = "confirmed";
-        }
-        $merged = $request->merge([
-            'modified_by' => Auth::id(),
-            'status' => $status,
-            'express' => $express,
-            'setrika_only' => $setrika_only,
-        ])->toArray();
-        $transaksi = Transaksi::find($id);
-        $transaksi->update($merged);
+        $user = User::find(auth()->id());
+        $permissions = $user->getPermissionsViaRoles();
+        $permissionExist = collect($permissions)->first(function ($item) {
+            return $item->name === 'Mengubah Data Transaksi';
+        });
+        if ($permissionExist) {
+            $express = false;
+            if ($request->express == "1") {
+                $express = true;
+            }
+            $setrika_only = false;
+            if ($request->setrika_only == "1") {
+                $setrika_only = true;
+            }
+            $status = 'draft';
+            if (
+                User::getRole(Auth::id()) == "administrator"
+                || User::getRole(Auth::id()) == "supervisor"
+                || User::getRole(Auth::id()) == "operator"
+            ) {
+                $status = "confirmed";
+            }
+            $merged = $request->merge([
+                'modified_by' => Auth::id(),
+                'status' => $status,
+                'express' => $express,
+                'setrika_only' => $setrika_only,
+            ])->toArray();
+            $transaksi = Transaksi::find($id);
+            $transaksi->update($merged);
 
-        $kode = '';
-        if ($request->tipe_transaksi == 'bucket') {
-            $kode = 'BU-';
+            $kode = '';
+            if ($request->tipe_transaksi == 'bucket') {
+                $kode = 'BU-';
+            } else {
+                $kode = 'PR-';
+            }
+
+            if (empty($transaksi->kode) && $transaksi->status != "draft") {
+                $count = Transaksi::where('status', '!=', 'draft')->where('kode', 'like', $kode . '%')->count() + 1;
+                $paded = str_pad($count, 6, '0', STR_PAD_LEFT);
+
+                $transaksi->kode = $kode . $paded;
+                $transaksi->save();
+            }
+            LogTransaksi::create([
+                'transaksi_id' => $transaksi->id,
+                'penanggung_jawab' => Auth::id(),
+                'process' => strtoupper('update transaksi'),
+            ]);
+            return redirect()->back();
         } else {
-            $kode = 'PR-';
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
         }
-
-        if (empty($transaksi->kode) && $transaksi->status != "draft") {
-            $count = Transaksi::where('status', '!=', 'draft')->where('kode', 'like', $kode . '%')->count() + 1;
-            $paded = str_pad($count, 6, '0', STR_PAD_LEFT);
-
-            $transaksi->kode = $kode . $paded;
-            $transaksi->save();
-        }
-        LogTransaksi::create([
-            'transaksi_id' => $transaksi->id,
-            'penanggung_jawab' => Auth::id(),
-            'process' => strtoupper('update transaksi'),
-        ]);
-        return redirect()->back();
     }
 
     //Mengubah Data Status item menjadi "Cuci"
     public function changeStatusCuci(Transaksi $transaksi)
     {
-        if (empty($transaksi->pencuci)) {
-            $transaksi->pencuci = Auth::id();
-            $transaksi->save();
-            LogTransaksi::create([
-                'transaksi_id' => $transaksi->id,
-                'penanggung_jawab' => Auth::id(),
-                'process'=> strtoupper('take job cuci')
-            ]);
+        $user = User::find(auth()->id());
+        $permissions = $user->getPermissionsViaRoles();
+        $permissionExist = collect($permissions)->first(function ($item) {
+            return $item->name === 'Mengambil Tugas Cuci';
+        });
+        if ($permissionExist) {
+            if (empty($transaksi->pencuci)) {
+                $transaksi->pencuci = Auth::id();
+                $transaksi->save();
+                LogTransaksi::create([
+                    'transaksi_id' => $transaksi->id,
+                    'penanggung_jawab' => Auth::id(),
+                    'process' => strtoupper('take job cuci')
+                ]);
+            }
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
         }
     }
 
     public function clearStatusCuci(Transaksi $transaksi)
     {
-        if (!empty($transaksi->pencuci) && $transaksi->pencuci == Auth::id() && $transaksi->is_done_cuci != 1) {
-            $transaksi->pencuci = NULL;
-            $transaksi->save();
-            LogTransaksi::create([
-                'transaksi_id' => $transaksi->id,
-                'penanggung_jawab' => Auth::id(),
-                'process'=> strtoupper('remove job cuci')
-            ]);
+        $user = User::find(auth()->id());
+        $permissions = $user->getPermissionsViaRoles();
+        $permissionExist = collect($permissions)->first(function ($item) {
+            return $item->name === 'Mengurangi Tugas Cuci';
+        });
+        if ($permissionExist) {
+            if (!empty($transaksi->pencuci) && $transaksi->pencuci == Auth::id() && $transaksi->is_done_cuci != 1) {
+                $transaksi->pencuci = NULL;
+                $transaksi->save();
+                LogTransaksi::create([
+                    'transaksi_id' => $transaksi->id,
+                    'penanggung_jawab' => Auth::id(),
+                    'process' => strtoupper('remove job cuci')
+                ]);
+            } else {
+                return [
+                    "message" => "aksi tidak valid. proses cuci sudah selesai."
+                ];
+            }
         } else {
-            return [
-                "message" => "aksi tidak valid. proses cuci sudah selesai."
-            ];
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
         }
     }
 
@@ -271,7 +326,7 @@ class TransaksiController extends Controller
             LogTransaksi::create([
                 'transaksi_id' => $transaksi->id,
                 'penanggung_jawab' => Auth::id(),
-                'process'=> strtoupper('done job cuci')
+                'process' => strtoupper('done job cuci')
             ]);
         }
     }
@@ -279,31 +334,49 @@ class TransaksiController extends Controller
     //Mengubah Data Status itetm menjadi "Setrika"
     public function changeStatusSetrika(Transaksi $transaksi)
     {
-        if (empty($transaksi->penyetrika)) {
-            $transaksi->penyetrika = Auth::id();
-            $transaksi->save();
-            LogTransaksi::create([
-                'transaksi_id' => $transaksi->id,
-                'penanggung_jawab' => Auth::id(),
-                'process'=> strtoupper('take job setrika')
-            ]);
+        $user = User::find(auth()->id());
+        $permissions = $user->getPermissionsViaRoles();
+        $permissionExist = collect($permissions)->first(function ($item) {
+            return $item->name === 'Mengambil Tugas Setrika';
+        });
+        if ($permissionExist) {
+            if (empty($transaksi->penyetrika)) {
+                $transaksi->penyetrika = Auth::id();
+                $transaksi->save();
+                LogTransaksi::create([
+                    'transaksi_id' => $transaksi->id,
+                    'penanggung_jawab' => Auth::id(),
+                    'process' => strtoupper('take job setrika')
+                ]);
+            }
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
         }
     }
 
     public function clearStatusSetrika(Transaksi $transaksi)
     {
-        if (!empty($transaksi->penyetrika) && $transaksi->penyetrika == Auth::id() && $transaksi->is_done_setrika != 1) {
-            $transaksi->penyetrika = NULL;
-            $transaksi->save();
-            LogTransaksi::create([
-                'transaksi_id' => $transaksi->id,
-                'penanggung_jawab' => Auth::id(),
-                'process'=> strtoupper('remove job setrika')
-            ]);
+        $user = User::find(auth()->id());
+        $permissions = $user->getPermissionsViaRoles();
+        $permissionExist = collect($permissions)->first(function ($item) {
+            return $item->name === 'Mengurangi Tugas Setrika';
+        });
+        if ($permissionExist) {
+            if (!empty($transaksi->penyetrika) && $transaksi->penyetrika == Auth::id() && $transaksi->is_done_setrika != 1) {
+                $transaksi->penyetrika = NULL;
+                $transaksi->save();
+                LogTransaksi::create([
+                    'transaksi_id' => $transaksi->id,
+                    'penanggung_jawab' => Auth::id(),
+                    'process' => strtoupper('remove job setrika')
+                ]);
+            } else {
+                return [
+                    "message" => "aksi tidak valid. proses setrika sudah selesai."
+                ];
+            }
         } else {
-            return [
-                "message" => "aksi tidak valid. proses setrika sudah selesai."
-            ];
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
         }
     }
 
@@ -315,37 +388,55 @@ class TransaksiController extends Controller
             LogTransaksi::create([
                 'transaksi_id' => $transaksi->id,
                 'penanggung_jawab' => Auth::id(),
-                'process'=> strtoupper('done job setrika')
+                'process' => strtoupper('done job setrika')
             ]);
         }
     }
 
     public function cancelTransaksi(Transaksi $transaksi)
     {
-        $transaksi->update([
-            'status' => "cancelled"
-        ]);
-        $transaksi->delete();
-        LogTransaksi::create([
-            'transaksi_id' => $transaksi->id,
-            'penanggung_jawab' => Auth::id(),
-            'process'=> strtoupper('cancel transaksi')
-        ]);
-        return [];
+        $user = User::find(auth()->id());
+        $permissions = $user->getPermissionsViaRoles();
+        $permissionExist = collect($permissions)->first(function ($item) {
+            return $item->name === 'Membatalkan Transaksi';
+        });
+        if ($permissionExist) {
+            $transaksi->update([
+                'status' => "cancelled"
+            ]);
+            $transaksi->delete();
+            LogTransaksi::create([
+                'transaksi_id' => $transaksi->id,
+                'penanggung_jawab' => Auth::id(),
+                'process' => strtoupper('cancel transaksi')
+            ]);
+            return [];
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
+        }
     }
 
     public function restoreTransaksi($id)
     {
-        $transaksi = Transaksi::withTrashed()->where('id', $id)->first();
-        $transaksi->status = "draft";
-        $transaksi->save();
-        Transaksi::withTrashed()->where('id', $id)->restore();
-        LogTransaksi::create([
-            'transaksi_id' => $transaksi->id,
-            'penanggung_jawab' => Auth::id(),
-            'process'=> strtoupper('restore transaksi from cancel')
-        ]);
-        return [];
+        $user = User::find(auth()->id());
+        $permissions = $user->getPermissionsViaRoles();
+        $permissionExist = collect($permissions)->first(function ($item) {
+            return $item->name === 'Restore Transaksi';
+        });
+        if ($permissionExist) {
+            $transaksi = Transaksi::withTrashed()->where('id', $id)->first();
+            $transaksi->status = "draft";
+            $transaksi->save();
+            Transaksi::withTrashed()->where('id', $id)->restore();
+            LogTransaksi::create([
+                'transaksi_id' => $transaksi->id,
+                'penanggung_jawab' => Auth::id(),
+                'process' => strtoupper('restore transaksi from cancel')
+            ]);
+            return [];
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
+        }
     }
 
     public function logTransaksi($id)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\InsertJenisItemRequest;
 use App\Models\Data\JenisItem;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,7 +29,7 @@ class JenisItemController extends Controller
 
     public function componentFind(Request $request)
     {
-        return view('components.tableJenisItem',[
+        return view('components.tableJenisItem', [
             'items' => JenisItem::where(function ($query) use ($request) {
                 $query->where('nama', 'like', "%{$request->key}%")
                     ->orWhereHas('kategori', function ($q) use ($request) {
@@ -41,36 +42,72 @@ class JenisItemController extends Controller
     //Menyimpan Jenis Item ke DB
     public function insert(InsertJenisItemRequest $request)
     {
-        $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
-        JenisItem::create($merged);
+        $user = User::find(auth()->id());
+        $permissions = $user->getPermissionsViaRoles();
+        $permissionExist = collect($permissions)->first(function ($item) {
+            return $item->name === 'Membuat Jenis Item';
+        });
+        if ($permissionExist) {
+            $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
+            JenisItem::create($merged);
 
-        return redirect()->intended(route('menu-jenis-item'));
+            return redirect()->intended(route('menu-jenis-item'));
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
+        }
     }
 
     //Menampilkan Detail Jenis Item
     public function show($id)
     {
-        $jenis_item = JenisItem::find($id);
-        return [
-            'status' => 200,
-            $jenis_item,
-        ];
+        $user = User::find(auth()->id());
+        $permissions = $user->getPermissionsViaRoles();
+        $permissionExist = collect($permissions)->first(function ($item) {
+            return $item->name === 'Melihat Detail Jenis Item';
+        });
+        if ($permissionExist) {
+            $jenis_item = JenisItem::find($id);
+            return [
+                'status' => 200,
+                $jenis_item,
+            ];
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
+        }
     }
 
     //Update Jenis Item
     public function update(InsertJenisItemRequest $request, $id)
     {
-        $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
-        JenisItem::find($id)->update($merged);
+        $user = User::find(auth()->id());
+        $permissions = $user->getPermissionsViaRoles();
+        $permissionExist = collect($permissions)->first(function ($item) {
+            return $item->name === 'Mengubah Data Jenis Item';
+        });
+        if ($permissionExist) {
+            $merged = $request->merge(['modified_by' => Auth::id()])->toArray();
+            JenisItem::find($id)->update($merged);
 
-        return redirect()->intended(route('menu-jenis-item'));
+            return redirect()->intended(route('menu-jenis-item'));
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
+        }
     }
 
     //Delete Jenis Item
     public function delete($id)
     {
-        JenisItem::destroy($id);
+        $user = User::find(auth()->id());
+        $permissions = $user->getPermissionsViaRoles();
+        $permissionExist = collect($permissions)->first(function ($item) {
+            return $item->name === 'Menghapus Jenis Item';
+        });
+        if ($permissionExist) {
+            JenisItem::destroy($id);
 
-        return redirect()->intended(route('menu-jenis-item'));
+            return redirect()->intended(route('menu-jenis-item'));
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
+        }
     }
 }

@@ -57,45 +57,73 @@ class UserController extends Controller
      */
     public function insert(UserCreateRequest $request)
     {
-        User::create([
-            'username' => $request->username,
-            'password' => Hash::make($request->password),
-            'name' => $request->name,
-            'phone' => $request->phone,
-            'address' => $request->address,
-            'email' => $request->email,
-            'outlet_id' => $request->outlet_id,
-        ])->assignRole($request->role);
-        //need dashboard page
-        return redirect()->intended(route('menu-karyawan'));
+        $user = User::find(auth()->id());
+        $permissions = $user->getPermissionsViaRoles();
+        $permissionExist = collect($permissions)->first(function ($item) {
+            return $item->name === 'Menambahkan Karyawan';
+        });
+        if ($permissionExist) {
+            User::create([
+                'username' => $request->username,
+                'password' => Hash::make($request->password),
+                'name' => $request->name,
+                'phone' => $request->phone,
+                'address' => $request->address,
+                'email' => $request->email,
+                'outlet_id' => $request->outlet_id,
+            ])->assignRole($request->role);
+            //need dashboard page
+            return redirect()->intended(route('menu-karyawan'));
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
+        }
     }
 
     public function show($id)
     {
-        $user = User::find($id);
-        return [
-            'status' => 200,
-            $user,
-        ];
+        $user = User::find(auth()->id());
+        $permissions = $user->getPermissionsViaRoles();
+        $permissionExist = collect($permissions)->first(function ($item) {
+            return $item->name === 'Melihat Detail Karyawan';
+        });
+        if ($permissionExist) {
+            $user = User::find($id);
+            return [
+                'status' => 200,
+                $user,
+            ];
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
+        }
     }
 
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
-        $user->username = $request->username;
-        $user->name = $request->name;
-        $user->phone = $request->phone;
-        $user->address = $request->address;
-        $user->email = $request->email;
-        $user->status = $request->status;
-        $user->outlet_id = $request->outlet_id;
-        $user->changeRole($request->role);
-        $user->save();
-        return redirect()->intended(route('menu-karyawan'));
+        $user = User::find(auth()->id());
+        $permissions = $user->getPermissionsViaRoles();
+        $permissionExist = collect($permissions)->first(function ($item) {
+            return $item->name === 'Mengubah Data Karyawan';
+        });
+        if ($permissionExist) {
+            $user = User::find($id);
+            $user->username = $request->username;
+            $user->name = $request->name;
+            $user->phone = $request->phone;
+            $user->address = $request->address;
+            $user->email = $request->email;
+            $user->status = $request->status;
+            $user->outlet_id = $request->outlet_id;
+            $user->changeRole($request->role);
+            $user->save();
+            return redirect()->intended(route('menu-karyawan'));
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
+        }
     }
 
     public function updateOutlet(Request $request)
     {
+
         $user = User::find(Auth::user()->id);
         $user->outlet_id = $request->outlet_id;
         $user->save();
@@ -107,19 +135,28 @@ class UserController extends Controller
 
     public function changePassword(Request $request, User $user)
     {
-        if ($request->new_password != $request->new_password_confirmation) {
-            return [
-                'status' => 400,
-                'message' => 'Konfirmasi password salah'
-            ];
-        }
+        $user = User::find(auth()->id());
+        $permissions = $user->getPermissionsViaRoles();
+        $permissionExist = collect($permissions)->first(function ($item) {
+            return $item->name === 'Mengubah Data Password Karyawan';
+        });
+        if ($permissionExist) {
+            if ($request->new_password != $request->new_password_confirmation) {
+                return [
+                    'status' => 400,
+                    'message' => 'Konfirmasi password salah'
+                ];
+            }
 
-        $new = Hash::make($request->new_password);
-        $user->update(['password' => $new]);
-        return [
-            'status' => 200,
-            'message' => 'Success'
-        ];
+            $new = Hash::make($request->new_password);
+            $user->update(['password' => $new]);
+            return [
+                'status' => 200,
+                'message' => 'Success'
+            ];
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
+        }
     }
 
     public function logout(Request $request)
