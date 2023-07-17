@@ -101,7 +101,7 @@
                 <div class="d-flex align-items-center">
                     <h4 class="me-4">Tagihan</h4>
                     <h5>Rp<span class="thousand-separator ms-2">{{ $pelanggan->tagihan }}</span></h5>
-                    <button class="btn btn-primary btn-sm p-1 ms-4" id="btn-bayar">Bayar</button>
+                    <button class="btn btn-primary btn-sm ms-4" id="btn-bayar">Bayar</button>
                 </div>
             </section>
 

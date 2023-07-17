@@ -4,7 +4,7 @@
     </button>
     <div class="d-flex align-items-center">
         <div class="position-relative me-3">
-            <button class="btn btn-sm p-1 d-flex" type="button">
+            <button class="btn btn-sm d-flex" type="button">
                 <i class="fa-solid fa-bell" style="font-size: 1rem"></i>
             </button>
             {{-- <div class="triangle-up position-absolute" style="width: 0; height: 0; border-left: 12px solid transparent; border-right: 12px solid transparent; border-bottom: 12px solid #dee2e6; z-index: 2;"></div>

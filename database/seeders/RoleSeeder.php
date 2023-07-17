@@ -86,6 +86,11 @@ class RoleSeeder extends Seeder
             'Membuat Item Transaksi',
             'Mengubah Data Item Transaksi',
             'Menghapus Item Transaksi',
+
+            'Melihat Detail Jenis Item',
+            'Melihat Detail Daftar Catatan Item',
+            'Melihat Detail Catatan Item',
+            'Membuat Catatan Item',
         ]);
     }
 }

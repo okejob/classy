@@ -40,8 +40,8 @@
                                 <td>{{ $trans->pelanggan->nama }}</td>
                                 <td>Rp</td>
                                 <td class="text-end thousand-separator">{{ $trans->grand_total }}</td>
-                                <td class='text-end' style='width: 46.25px;'>
-                                    <button id='btn-{{ $trans->id }}' class='btn btn-primary btn-sm p-1 btn-show-action' type='button' style="line-height: .75rem">
+                                <td class='text-end p-1' style='width: 46.25px;'>
+                                    <button id='btn-{{ $trans->id }}' class='btn btn-primary btn-sm btn-show-action' type='button' style="line-height: .75rem">
                                         <i class='fas fa-bars' aria-hidden='true'></i>
                                     </button>
                                 </td>

@@ -40,7 +40,7 @@
                                 @else
                                     <td class="text-center">Tidak aktif</td>
                                 @endif
-                                <td class="cell-action"><button id="btn-{{ $outlet->id }}"  class="btn btn-primary btn-sm p-1 btn-show-action" type="button"><i class="fas fa-bars"></i></button></td>
+                                <td class="cell-action"><button id="btn-{{ $outlet->id }}"  class="btn btn-primary btn-sm btn-show-action" type="button"><i class="fas fa-bars"></i></button></td>
                             </tr>
                         @endforeach
                         </tbody>
