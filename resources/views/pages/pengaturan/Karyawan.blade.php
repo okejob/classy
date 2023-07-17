@@ -321,10 +321,10 @@
                                         <input class="form-check-input" type="checkbox" id="check-data-item-1" value="Membuka Menu Jenis Item">
                                         <label class="form-check-label" for="check-data-item-1">Membuka menu jenis item</label>
                                     </div>
-                                    {{-- <div class="form-check">
+                                    <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="check-data-item-2" value="Melihat Detail Jenis Item">
                                         <label class="form-check-label" for="check-data-item-2">Melihat detail jenis item</label>
-                                    </div> --}}
+                                    </div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="check-data-item-3" value="Membuat Jenis Item">
                                         <label class="form-check-label" for="check-data-item-3">Membuat jenis item</label>

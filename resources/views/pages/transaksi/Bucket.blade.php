@@ -9,7 +9,7 @@
             <i class="fas fa-angle-right mx-2"></i>
             <a>Bucket</a>
         </div>
-        <button class="btn btn-primary btn-sm" data-bs-toggle="tooltip" data-bss-tooltip="" id="show-option" type="button" title="Show options">
+        <button class="btn btn-primary btn-sm p-1" data-bs-toggle="tooltip" data-bss-tooltip="" id="show-option" type="button" title="Show options">
             <i class="fas fa-cog"></i>
         </button>
     </header>
@@ -81,7 +81,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Transaksi Baru</h4>
-                    <button type="button" class="btn btn-sm btn-primary" id="new-trans-back" data-bs-dismiss="modal" aria-label="">Kembali</button>
+                    <button type="button" class="btn btn-sm p-1 btn-primary" id="new-trans-back" data-bs-dismiss="modal" aria-label="">Kembali</button>
                 </div>
                 <div class="modal-body">
                     <section id="section-info-pelanggan-2">

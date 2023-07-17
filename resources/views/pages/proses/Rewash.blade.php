@@ -39,7 +39,7 @@
                                                 <td class="text-center">in progress</td>
                                             @endif
                                             <td class="cell-action" style="width: 46.25px;">
-                                                <button id="btn-{{ $rewash->id }}" class="btn btn-primary btn-sm btn-show-action" type="button">
+                                                <button id="btn-{{ $rewash->id }}" class="btn btn-primary btn-sm p-1 btn-show-action" type="button">
                                                     <i class="fas fa-bars"></i>
                                                 </button>
                                             </td>
@@ -138,7 +138,7 @@
                                                 </h4>
                                                 <h6 class="text-muted">{{ $transaksi->created_at }}</h6>
                                             </div>
-                                            <button class="btn btn-sm btn-show-action" type="button" id="trans-{{ $transaksi->id }}" style="box-shadow: none;">
+                                            <button class="btn btn-sm p-1 btn-show-action" type="button" id="trans-{{ $transaksi->id }}" style="box-shadow: none;">
                                                 <i class="fa-solid fa-ellipsis-vertical"></i>
                                             </button>
                                         </div>

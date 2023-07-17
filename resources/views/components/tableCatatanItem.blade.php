@@ -15,7 +15,7 @@
                 <td class='text-center'>{{ $note->modifier->role }}</td>
                 <td>{{ $note->catatan }}</td>
                 <td class='text-end' style='width: 46.25px;'>
-                    <button id='btn-{{ $note->id }}' class='btn btn-primary btn-sm btn-show-action-2' type='button'>
+                    <button id='btn-{{ $note->id }}' class='btn btn-primary btn-sm p-1 btn-show-action-2' type='button'>
                         <i class='fas fa-bars' aria-hidden='true'></i>
                     </button>
                 </td>
@@ -25,7 +25,7 @@
             <tfoot>
                 <tr>
                     <td class="text-center" colspan="4">
-                        <button class="btn btn-primary btn-sm" type="button" id="add-catatan-item"><i class="fas fa-plus"></i></button>
+                        <button class="btn btn-primary btn-sm p-1" type="button" id="add-catatan-item"><i class="fas fa-plus"></i></button>
                     </td>
                 </tr>
             </tfoot>

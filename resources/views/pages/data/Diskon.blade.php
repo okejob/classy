@@ -62,7 +62,7 @@
                                         <td class="text-center">Active</td>
                                     @endif
                                     <td class="cell-action">
-                                        <button id="btn-{{ $diskon->id }}" class="btn btn-primary btn-sm btn-show-action" type="button">
+                                        <button id="btn-{{ $diskon->id }}" class="btn btn-primary btn-sm p-1 btn-show-action" type="button">
                                             <i class="fas fa-bars"></i>
                                         </button>
                                     </td>

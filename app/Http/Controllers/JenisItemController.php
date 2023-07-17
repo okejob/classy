@@ -39,7 +39,6 @@ class JenisItemController extends Controller
         ]);
     }
 
-    //Menyimpan Jenis Item ke DB
     public function insert(InsertJenisItemRequest $request)
     {
         $user = User::find(auth()->id());
@@ -57,7 +56,6 @@ class JenisItemController extends Controller
         }
     }
 
-    //Menampilkan Detail Jenis Item
     public function show($id)
     {
         $user = User::find(auth()->id());
@@ -76,7 +74,6 @@ class JenisItemController extends Controller
         }
     }
 
-    //Update Jenis Item
     public function update(InsertJenisItemRequest $request, $id)
     {
         $user = User::find(auth()->id());
@@ -94,7 +91,6 @@ class JenisItemController extends Controller
         }
     }
 
-    //Delete Jenis Item
     public function delete($id)
     {
         $user = User::find(auth()->id());

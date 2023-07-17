@@ -401,6 +401,7 @@ $(document).ready(function() {
     });
 
     $('#table-items tbody').on('click', 'tr', function() {
+        alert('testing');
         let parent = $(this).parent();
         parent.addClass('disabled');
         let id = $(this).attr('id');

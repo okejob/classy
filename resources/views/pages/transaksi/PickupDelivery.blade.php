@@ -62,7 +62,7 @@
                         <div class="border rounded p-3">
                             <div class="d-flex justify-content-between align-items-center">
                                 <h4>Hub {{ $driver->name }}</h4>
-                                <button class="btn btn-sm btn-toggle" style="box-shadow: none;"><i class="fa-solid fa-down-left-and-up-right-to-center"></i></button>
+                                <button class="btn btn-sm p-1 btn-toggle" style="box-shadow: none;"><i class="fa-solid fa-down-left-and-up-right-to-center"></i></button>
                             </div>
                             <div class="hub-container">
                                 <hr />
@@ -242,7 +242,7 @@
                     <div class="card p-3">
                         <div class="d-flex justify-content-between align-items-center">
                             <h4>Hub {{ $driver->name }}</h4>
-                            <button class="btn btn-sm btn-toggle" style="box-shadow: none;"><i class="fa-solid fa-down-left-and-up-right-to-center"></i></button>
+                            <button class="btn btn-sm p-1 btn-toggle" style="box-shadow: none;"><i class="fa-solid fa-down-left-and-up-right-to-center"></i></button>
                         </div>
                         <div class="hub-container">
                             <hr />
@@ -273,7 +273,7 @@
                                                         <i class="fa-solid fa-flag-checkered position-absolute top-50 start-0 translate-middle fa-4x" style="font-style: italic; opacity: 0.25;"></i>
                                                     @else
                                                         <i class="fa-solid fa-spinner position-absolute top-50 start-0 translate-middle fa-4x" style="font-style: italic; opacity: 0.25;"></i>
-                                                        <button class="btn btn-sm btn-show-action position-absolute end-0" type="button" style="top: -12px;" id="trans-{{ $pickup->id }}" style="box-shadow: none;">
+                                                        <button class="btn btn-sm p-1 btn-show-action position-absolute end-0" type="button" style="top: -12px;" id="trans-{{ $pickup->id }}" style="box-shadow: none;">
                                                             <i class="fa-solid fa-ellipsis-vertical"></i>
                                                         </button>
                                                     @endif
@@ -308,7 +308,7 @@
                                                     <i class="fa-solid fa-flag-checkered position-absolute top-50 start-0 translate-middle fa-4x" style="font-style: italic; opacity: 0.25;"></i>
                                                 @else
                                                     <i class="fa-solid fa-spinner position-absolute top-50 start-0 translate-middle fa-4x" style="font-style: italic; opacity: 0.25;"></i>
-                                                    <button class="btn btn-sm btn-show-action position-absolute end-0" type="button" style="top: -12px;" id="trans-{{ $delivery->id }}" style="box-shadow: none;">
+                                                    <button class="btn btn-sm p-1 btn-show-action position-absolute end-0" type="button" style="top: -12px;" id="trans-{{ $delivery->id }}" style="box-shadow: none;">
                                                         <i class="fa-solid fa-ellipsis-vertical"></i>
                                                     </button>
                                                 @endif
@@ -346,10 +346,10 @@
                             Status Pembayaran: <span id="status-transaksi"></span>
                         </div>
                         <div>
-                            <button class="btn btn-sm btn-outline-primary" type="button" id="show-memo-produksi">
+                            <button class="btn btn-sm p-1 btn-outline-primary" type="button" id="show-memo-produksi">
                                 Memo Produksi
                             </button>
-                            <button class="btn btn-sm btn-primary" type="button" id="show-nota">
+                            <button class="btn btn-sm p-1 btn-primary" type="button" id="show-nota">
                                 Nota
                             </button>
                         </div>

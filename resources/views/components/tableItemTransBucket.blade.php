@@ -35,7 +35,7 @@
                 <td class='d-none d-md-table-cell text-center'>{{ $item->bobot_bucket }}</td>
                 <td class='text-center'>{{ $item->total_bobot }}</td>
                 <td class='text-end' style='width: 46.25px;'>
-                    <button id='btn-{{ $item->id }}' class='btn btn-primary btn-sm btn-show-action' type='button'>
+                    <button id='btn-{{ $item->id }}' class='btn btn-primary btn-sm p-1 btn-show-action' type='button'>
                         <i class='fas fa-bars' aria-hidden='true'></i>
                     </button>
                 </td>
@@ -54,7 +54,7 @@
             @if(in_array("Menambahkan Item Ke Transaksi", Session::get('permissions')) || Session::get('role') == 'administrator')
             <tr>
                 <td class="text-center" colspan="7" style="padding-top: 4px;padding-bottom: 4px;">
-                    <button class="btn btn-primary btn-sm" id="add-item" type="button">
+                    <button class="btn btn-primary btn-sm p-1" id="add-item" type="button">
                         <i class="fas fa-plus"></i>
                     </button>
                 </td>

@@ -56,7 +56,7 @@
                     <td class="text-center">Tidak aktif</td>
                 @endif
                 <td class="cell-action">
-                    <button id="btn-{{ $item->id }}" class="btn btn-primary btn-sm btn-show-action" type="button">
+                    <button id="btn-{{ $item->id }}" class="btn btn-primary btn-sm p-1 btn-show-action" type="button">
                         <i class="fas fa-bars"></i>
                     </button>
                 </td>
