@@ -50,7 +50,11 @@ class Transaksi extends Model
         //kalkulasi bobot bucket
         $paket_bucket = PaketCuci::where('nama_paket', 'BUCKET')->first();
         $jumlah_bucket = ceil($sum_bobot / $paket_bucket->jumlah_bobot);
-        $total_harga_bucket = $jumlah_bucket * $paket_bucket->harga_paket;
+        // $total_harga_bucket = $jumlah_bucket * $paket_bucket->harga_paket;
+        $total_harga_bucket = $paket_bucket->harga_bucket;
+        if ($sum_bobot > 15) {
+            $total_harga_bucket += ($sum_bobot - 15) * $paket_bucket->harga_per_bobot;
+        }
         //simpan bucket dan bobot
         $this->total_bobot = $sum_bobot;
         $this->jumlah_bucket = $jumlah_bucket;
@@ -99,6 +103,11 @@ class Transaksi extends Model
         //calculate grand total
         $grand_total = $subtotal - ($diskon_jenis_item + $diskon_member + $total_diskon_promo);
         $grand_total < 0 ? $this->grand_total = 0 : $this->grand_total = $grand_total;
+        if ($this->lunas) {
+            if ($this->total_terbayar < $grand_total) {
+                $this->lunas = false;
+            }
+        }
         $this->save();
         return $this;
     }
