@@ -19,6 +19,7 @@ $(document).ready(function() {
             $('#subtotal').html(trans.subtotal);
             $('#diskon').html(trans.diskon + trans.diskon_member);
             $('#grand-total').html(trans.grand_total);
+            $('#table-item-transaksi tbody').empty();
 
             let items = trans.item_transaksi;
             items.forEach(item => {
