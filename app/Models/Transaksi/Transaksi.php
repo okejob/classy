@@ -10,6 +10,7 @@ use App\Models\Diskon;
 use App\Models\DiskonTransaksi;
 use App\Models\Packing\Packing;
 use App\Models\Paket\PaketCuci;
+use App\Models\SettingUmum;
 use App\Models\User;
 use App\Observers\UserActionObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -27,6 +28,23 @@ class Transaksi extends Model
     {
         parent::boot();
         User::observe(new UserActionObserver);
+    }
+
+    function calcSetting($subtotal, $express = false, $setrika_only = false)
+    {
+        $expressMultiplier = SettingUmum::where('nama', 'multiplier express')->first();
+        $expressMultiplier = (float)$expressMultiplier;
+        $setrikaMultiplier = SettingUmum::where('nama', 'multiplier setrika only')->first();
+        $setrikaMultiplier = (float)$setrikaMultiplier;
+        $result = $subtotal;
+        if ($express && $setrika_only) {
+            $result = $subtotal * $setrikaMultiplier * $expressMultiplier;
+        } else if ($express) {
+            $result = $subtotal * $expressMultiplier;
+        } else if ($setrika_only) {
+            $result = $subtotal * $setrikaMultiplier;
+        }
+        return ceil($result);
     }
 
     //Function untuk menghitung nilai transaksi
@@ -61,7 +79,9 @@ class Transaksi extends Model
 
         //hitung subtotal
         $subtotal = $sum_harga_premium + $total_harga_bucket;
-        $this->subtotal = $subtotal;
+        $optionalSubtotal = $this->calcSetting($subtotal, $this->express, $this->setrika_only);
+        $this->subtotal = $optionalSubtotal;
+
         //hitung diskon
         //promo kode bertumpuk
         foreach ($diskon_transaksi as $related) {
