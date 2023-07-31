@@ -221,13 +221,23 @@
                                     <div class="col-md-4 col-12 mt-2 d-flex align-items-end justify-content-end">
                                         <button class="btn btn-primary full-when-small" id="kode-promo" type="button">Kode Promosi</button>
                                     </div>
-                                    <div class="col-md-8 col-12 mt-2 d-flex align-items-center">
+                                    <div class="col-md-4 col-12 mt-2 d-flex align-items-center">
                                         <div class="position-relative w-100">
                                             <button class="btn btn-primary full-when-small" id="show-catatan-trans" type="button" style="width: 200px;">Catatan Transaksi</button>
                                             <div class="position-absolute w-100 card p-2" style="z-index: 1;display: none; box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
                                                 <textarea class="form-control" id="input-catatan-trans" name="catatan" style="height: 300px;"></textarea>
                                                 <button class="btn btn-primary" id="save-catatan-trans" type="button">Simpan Catatan</button>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-12 mt-2 d-flex align-items-center justify-content-center">
+                                        <div class="d-flex align-items-center">
+                                            <p class="me-3" style="white-space: nowrap">Tanggal Selesai</p>
+                                            @if(in_array("Mengubah Data Transaksi", Session::get('permissions')) || Session::get('role') == 'administrator')
+                                                <input class="form-control" id="tanggal-selesai-proses" type="date" name="tanggal_selesai">
+                                            @else
+                                                <input class="form-control disabled" id="tanggal-selesai-proses" type="date" name="tanggal_selesai">
+                                            @endif
                                         </div>
                                     </div>
                                     <input type="hidden" name="tipe_transaksi" value="bucket">

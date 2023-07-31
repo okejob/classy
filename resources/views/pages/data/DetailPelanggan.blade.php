@@ -69,6 +69,10 @@
                             <h5>E-mail</h5>
                             <input class="form-control" type="text" id="input-email" name="email" value="{{ $pelanggan->email }}" disabled>
                         </div>
+                        <div class="col-12 mb-2">
+                            <h5>Catatan Pelanggan</h5>
+                            <textarea class="form-control" id="input-catatan-khusus" name="catatan_khusus" disabled></textarea>
+                        </div>
                         {{-- <div class="col-12 col-lg-4 mb-2">
                             <h5>Status</h5>
                             <div class="form-control d-flex align-items-center justify-content-around">

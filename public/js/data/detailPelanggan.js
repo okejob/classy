@@ -24,7 +24,7 @@ $(document).ready(function() {
     };
 
     $('#btn-ubah').on('click', function() {
-        $('#modal-form input:disabled').each(function(index, element) {
+        $('#modal-form input:disabled, #modal-form textarea:disabled').each(function(index, element) {
             $(element).attr('disabled', false);
         });
         $('#modal-form select:disabled').attr('disabled', false);
