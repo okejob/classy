@@ -220,7 +220,7 @@
                                     <div class="col-md-4 col-12 mt-2 d-flex align-items-end justify-content-end">
                                         <button class="btn btn-primary full-when-small" id="kode-promo" type="button">Kode Promosi</button>
                                     </div>
-                                    <div class="col-md-8 col-12 mt-2 d-flex align-items-center">
+                                    <div class="col-md-4 col-12 mt-2 d-flex align-items-center">
                                         <div class="position-relative w-100">
                                             <button class="btn btn-primary full-when-small" id="show-catatan-trans" type="button" style="width: 200px;">Catatan Transaksi</button>
                                             <div class="position-absolute w-100 card p-2" style="z-index: 1;display: none; box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
