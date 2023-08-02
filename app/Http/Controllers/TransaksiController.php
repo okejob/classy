@@ -269,6 +269,48 @@ class TransaksiController extends Controller
         }
     }
 
+    public function setExpress(Request $request, $id){
+        $user = User::find(auth()->id());
+        $permissions = $user->getPermissionsViaRoles();
+        $permissionExist = collect($permissions)->first(function ($item) {
+            return $item->name === 'Mengubah Data Transaksi';
+        });
+        if ($permissionExist) {
+            $transaksi = Transaksi::find($id);
+            $transaksi->express = $request->express;
+            $transaksi->save();
+            $transaksi->recalculate();
+            LogTransaksi::create([
+                'transaksi_id' => $id,
+                'penanggung_jawab' => Auth::id(),
+                'process' => strtoupper('update transaksi, tipe express'),
+            ]);
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
+        }
+    }
+
+    public function setSetrikaOnly(Request $request, $id){
+        $user = User::find(auth()->id());
+        $permissions = $user->getPermissionsViaRoles();
+        $permissionExist = collect($permissions)->first(function ($item) {
+            return $item->name === 'Mengubah Data Transaksi';
+        });
+        if ($permissionExist) {
+            $transaksi = Transaksi::find($id);
+            $transaksi->setrika_only = $request->setrika_only;
+            $transaksi->save();
+            $transaksi->recalculate();
+            LogTransaksi::create([
+                'transaksi_id' => $id,
+                'penanggung_jawab' => Auth::id(),
+                'process' => strtoupper('update transaksi, tipe setrika only'),
+            ]);
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
+        }
+    }
+
     //Mengubah Data Status item menjadi "Cuci"
     public function changeStatusCuci(Transaksi $transaksi)
     {

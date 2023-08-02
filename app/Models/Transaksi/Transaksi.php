@@ -29,6 +29,23 @@ class Transaksi extends Model
         User::observe(new UserActionObserver);
     }
 
+    function calcSetting($subtotal, $express = false, $setrika_only = false)
+    {
+        $expressMultiplier = SettingUmum::where('nama', 'multiplier express')->first();
+        $expressMultiplier = (float)$expressMultiplier->value;
+        $setrikaMultiplier = SettingUmum::where('nama', 'multiplier setrika only')->first();
+        $setrikaMultiplier = (float)$setrikaMultiplier->value;
+        $result = $subtotal;
+        if ($express && $setrika_only) {
+            $result = $subtotal * $setrikaMultiplier * $expressMultiplier;
+        } else if ($express) {
+            $result = $subtotal * $expressMultiplier;
+        } else if ($setrika_only) {
+            $result = $subtotal * $setrikaMultiplier;
+        }
+        return ceil($result);
+    }
+
     //Function untuk menghitung nilai transaksi
     public function recalculate()
     {
@@ -61,7 +78,10 @@ class Transaksi extends Model
 
         //hitung subtotal
         $subtotal = $sum_harga_premium + $total_harga_bucket;
-        $this->subtotal = $subtotal;
+        $optionalSubtotal = $this->calcSetting($subtotal, $this->express, $this->setrika_only);
+        $this->subtotal = $optionalSubtotal;
+        $subtotal = $optionalSubtotal;
+        
         //hitung diskon
         //promo kode bertumpuk
         foreach ($diskon_transaksi as $related) {
