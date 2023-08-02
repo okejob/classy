@@ -10,6 +10,7 @@ use App\Models\LogTransaksi;
 use App\Models\Packing\Packing;
 use App\Models\Packing\PackingInventory;
 use App\Models\Paket\PaketCuci;
+use App\Models\SettingUmum;
 use App\Models\Transaksi\Rewash;
 use App\Models\Transaksi\Transaksi;
 use Illuminate\Http\Request;
@@ -39,6 +40,8 @@ class TransaksiController extends Controller
     {
         return view('components.tableItemTransBucket', [
             'trans' => Transaksi::detail()->find($id),
+            'multiplier_express' => SettingUmum::where('nama', 'multiplier express')->first(),
+            'multiplier_setrika' => SettingUmum::where('nama', 'multiplier setrika only')->first(),
         ]);
     }
 
@@ -46,6 +49,8 @@ class TransaksiController extends Controller
     {
         return view('components.tableItemTransPremium', [
             'trans' => Transaksi::detail()->find($id),
+            'multiplier_express' => SettingUmum::where('nama', 'multiplier express')->first(),
+            'multiplier_setrika' => SettingUmum::where('nama', 'multiplier setrika only')->first(),
         ]);
     }
 
