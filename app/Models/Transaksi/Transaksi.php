@@ -81,6 +81,7 @@ class Transaksi extends Model
         $subtotal = $sum_harga_premium + $total_harga_bucket;
         $optionalSubtotal = $this->calcSetting($subtotal, $this->express, $this->setrika_only);
         $this->subtotal = $optionalSubtotal;
+        $subtotal = $optionalSubtotal;
 
         //hitung diskon
         //promo kode bertumpuk

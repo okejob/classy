@@ -298,7 +298,7 @@ class TransaksiController extends Controller
         });
         if ($permissionExist) {
             $transaksi = Transaksi::find($id);
-            $transaksi->express = $request->setrika_only;
+            $transaksi->setrika_only = $request->setrika_only;
             $transaksi->save();
             $transaksi->recalculate();
             LogTransaksi::create([
