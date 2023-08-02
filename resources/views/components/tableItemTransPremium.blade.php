@@ -64,35 +64,51 @@
             @endif
         </tbody>
         <tfoot>
+            @if($trans->express)
             <tr>
-                <td class="text-end">Sub Total</td>
-                <td style="width: 5%">Rp</td>
-                <td class="text-end thousand-separator" id="sub-total">{{ $trans->subtotal }}</td>
-                <td style="width: 46.25px;"></td>
+                <td class="text-end p-1">Multiplier Express</td>
+                <td class="p-1" style="width: 5%"></td>
+                <td class="text-end p-1">{{ $multiplier_express->value }} x</td>
+                <td class="p-1" style="width: 46.25px;"></td>
+            </tr>
+            @endif
+            @if($trans->setrika_only)
+            <tr>
+                <td class="text-end p-1">Multiplier Setrika Only</td>
+                <td class="p-1" style="width: 5%"></td>
+                <td class="text-end p-1">{{ $multiplier_setrika->value }} x</td>
+                <td class="p-1" style="width: 46.25px;"></td>
+            </tr>
+            @endif
+            <tr>
+                <td class="text-end p-1">Sub Total</td>
+                <td class="p-1" style="width: 5%">Rp</td>
+                <td class="text-end thousand-separator p-1" id="sub-total">{{ $trans->subtotal }}</td>
+                <td class="p-1" style="width: 46.25px;"></td>
             </tr>
             <tr>
-                <td class="text-end">Diskon Jenis Item</td>
-                <td style="width: 5%">Rp</td>
-                <td class="text-end thousand-separator" id="diskon-item">{{ $trans->diskon_jenis_item }}</td>
-                <td style="width: 46.25px;"></td>
+                <td class="text-end p-1">Diskon Jenis Item</td>
+                <td class="p-1" style="width: 5%">Rp</td>
+                <td class="text-end thousand-separator p-1" id="diskon-item">{{ $trans->diskon_jenis_item }}</td>
+                <td class="p-1" style="width: 46.25px;"></td>
             </tr>
             <tr>
-                <td class="text-end">Diskon Promo</td>
-                <td style="width: 5%">Rp</td>
-                <td class="text-end thousand-separator" id="diskon-promo">{{ $trans->total_diskon_promo }}</td>
-                <td style="width: 46.25px;"></td>
+                <td class="text-end p-1">Diskon Promo</td>
+                <td class="p-1" style="width: 5%">Rp</td>
+                <td class="text-end thousand-separator p-1" id="diskon-promo">{{ $trans->total_diskon_promo }}</td>
+                <td class="p-1" style="width: 46.25px;"></td>
             </tr>
             <tr>
-                <td class="text-end">Diskon Member</td>
-                <td style="width: 5%">Rp</td>
-                <td class="text-end thousand-separator" id="diskon-member">{{ $trans->diskon_member }}</td>
-                <td style="width: 46.25px;"></td>
+                <td class="text-end p-1">Diskon Member</td>
+                <td class="p-1" style="width: 5%">Rp</td>
+                <td class="text-end thousand-separator p-1" id="diskon-member">{{ $trans->diskon_member }}</td>
+                <td class="p-1" style="width: 46.25px;"></td>
             </tr>
             <tr>
-                <td class="text-end">Grand Total</td>
-                <td style="width: 5%">Rp</td>
-                <td class="text-end thousand-separator" id="grand-total">{{ $trans->grand_total }}</td>
-                <td style="width: 46.25px;"></td>
+                <td class="text-end p-1">Grand Total</td>
+                <td class="p-1" style="width: 5%">Rp</td>
+                <td class="text-end thousand-separator p-1" id="grand-total">{{ $trans->grand_total }}</td>
+                <td class="p-1" style="width: 46.25px;"></td>
             </tr>
         </tfoot>
     </table>
