@@ -33,9 +33,9 @@ class Transaksi extends Model
     function calcSetting($subtotal, $express = false, $setrika_only = false)
     {
         $expressMultiplier = SettingUmum::where('nama', 'multiplier express')->first();
-        $expressMultiplier = (float)$expressMultiplier;
+        $expressMultiplier = (float)$expressMultiplier->value;
         $setrikaMultiplier = SettingUmum::where('nama', 'multiplier setrika only')->first();
-        $setrikaMultiplier = (float)$setrikaMultiplier;
+        $setrikaMultiplier = (float)$setrikaMultiplier->value;
         $result = $subtotal;
         if ($express && $setrika_only) {
             $result = $subtotal * $setrikaMultiplier * $expressMultiplier;

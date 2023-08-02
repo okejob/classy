@@ -653,6 +653,52 @@ $(document).ready(function() {
         }
     });
 
+    $('#formCheck-express').on('change', function() {
+        let formData = new FormData();
+        formData.append('express', $(this).val());
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            },
+            url: "/transaksi/express/" + transId,
+            method: "POST",
+            contentType: false,
+            processData: false,
+            data: formData,
+        }).done(function() {
+            $('#table-container').load(window.location.origin + '/component/transBucket/' + transId, function() {
+                adjustWidth();
+                setThousandSeparator();
+            });
+        }).fail(function(message) {
+            console.log(message);
+        });
+    });
+
+    $('#formCheck-setrika').on('change', function() {
+        let formData = new FormData();
+        formData.append('setrika_only', $(this).val());
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            },
+            url: "/transaksi/setrika_only/" + transId,
+            method: "POST",
+            contentType: false,
+            processData: false,
+            data: formData,
+        }).done(function() {
+            $('#table-container').load(window.location.origin + '/component/transBucket/' + transId, function() {
+                adjustWidth();
+                setThousandSeparator();
+            });
+        }).fail(function(message) {
+            console.log(message);
+        });
+    });
+
     $('#cancel-trans').on('click', function() {
         if (confirm('Yakin membatalkan transaksi ?')) {
             $.ajax({

@@ -1,4 +1,3 @@
-{{-- @dd($transaksi->item_transaksi) --}}
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>

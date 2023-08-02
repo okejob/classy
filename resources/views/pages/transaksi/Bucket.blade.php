@@ -243,7 +243,7 @@
                                     <input type="hidden" name="tipe_transaksi" value="bucket">
                                     <div class="col-md-4 col-12 mt-2 d-flex align-items-center justify-content-end">
                                         @if(in_array("Membatalkan Transaksi", Session::get('permissions')) || Session::get('role') == 'administrator')
-                                        <button id="cancel-trans" class="btn btn-danger full-when-small" type="button">Cancel</button>
+                                            <button id="cancel-trans" class="btn btn-danger full-when-small" type="button">Cancel</button>
                                         @endif
                                         @if(in_array("Mengubah Data Transaksi", Session::get('permissions')) || Session::get('role') == 'administrator')
                                             <button id="save-trans" class="btn btn-primary full-when-small ms-2" type="submit">Simpan</button>
