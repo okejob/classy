@@ -83,6 +83,7 @@ class PrintController extends Controller
         $data = collect();
         $data->header = $header;
         $data->transaksi = $transaksi;
+        
 
         //8.5x 11 inch = 612x792 point
         $paper_size = [0, 0, 612, 792];
