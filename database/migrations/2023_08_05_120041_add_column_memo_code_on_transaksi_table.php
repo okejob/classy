@@ -14,9 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::table('transaksis', function (Blueprint $table) {
-            $table->date('memo_code')
+            $table->string('memo_code')
                 ->nullable()
                 ->after('is_done_setrika');
+            $table->string('kitir_code')
+                ->nullable()
+                ->after('memo_code');
         });
     }
 
@@ -29,6 +32,7 @@ return new class extends Migration
     {
         Schema::table('transaksis', function (Blueprint $table) {
             $table->dropColumn('memo_code');
+            $table->dropColumn('kitir_code');
         });
     }
 };
