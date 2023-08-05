@@ -30,6 +30,37 @@ class Transaksi extends Model
         User::observe(new UserActionObserver);
     }
 
+    public static function getKitirCode($id): string
+    {
+        $code = "";
+
+        $transaksi = Transaksi::find($id);
+        $outlet = Outlet::find($transaksi->outlet_id);
+        $kode_outlet = $outlet->kode;
+
+        $today = Carbon::today();
+        $formattedDate = $today->format('dm');
+
+        $code = $kode_outlet . $formattedDate;
+        return $code;
+    }
+
+    public static function getMemoCode($id): string
+    {
+        $code = "";
+
+        $transaksi = Transaksi::find($id);
+        $outlet = Outlet::find($transaksi->outlet_id);
+        $kode_outlet = $outlet->kode;
+
+        $today = Carbon::today();
+        $formattedDate = $today->format('dmY');
+
+        $count = Transaksi::where('memo_code', 'LIKE', '%' . $formattedDate . '%')->count() + 1;
+        $code = $kode_outlet . strval($transaksi->pelanggan_id) . $formattedDate . str_pad($count, 3, '0', STR_PAD_LEFT);
+        return $code;
+    }
+
     function calcSetting($subtotal, $express = false, $setrika_only = false)
     {
         $expressMultiplier = SettingUmum::where('nama', 'multiplier express')->first();
@@ -82,7 +113,7 @@ class Transaksi extends Model
         $optionalSubtotal = $this->calcSetting($subtotal, $this->express, $this->setrika_only);
         $this->subtotal = $optionalSubtotal;
         $subtotal = $optionalSubtotal;
-        
+
         //hitung diskon
         //promo kode bertumpuk
         foreach ($diskon_transaksi as $related) {
@@ -132,7 +163,7 @@ class Transaksi extends Model
         $this->save();
         return $this;
     }
-    
+
     //Function untuk melakukan Query detail Transaksi beserta table lain yang memiliki Relation
     public function scopeDetail($query)
     {

@@ -59,7 +59,8 @@
                 <ul class="list-unstyled form-control" id="list-action">
                     <li id="action-detail">Lihat Detail</li>
                     <li id="action-kemas">Kemas</li>
-                    <li id="action-print">Print Memo</li>
+                    <li id="action-print-memo">Print Memo</li>
+                    <li id="action-print-kitir">Print Kitir</li>
                 </ul>
             </div>
         </div>

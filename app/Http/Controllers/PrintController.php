@@ -83,7 +83,7 @@ class PrintController extends Controller
         $data = collect();
         $data->header = $header;
         $data->transaksi = $transaksi;
-        
+
 
         //8.5x 11 inch = 612x792 point
         $paper_size = [0, 0, 612, 792];
@@ -92,5 +92,16 @@ class PrintController extends Controller
         ])->setPaper($paper_size, 'landscape');
         return $pdf->stream('invoice.pdf');
         //stream kalau preview, download kalau lsg download
+    }
+
+    public function kitir($transaksi_id)
+    {
+        $transaksi = Transaksi::detail()->find($transaksi_id);
+
+        $paper_size = [0, 0, 75, 151];
+        $pdf = Pdf::loadView('pages.print.kitir', [
+            'data' => $transaksi
+        ])->setPaper($paper_size, 'landscape');
+        return $pdf->stream('invoice.pdf');
     }
 }

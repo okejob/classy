@@ -27,8 +27,12 @@ $(document).ready(function() {
         });
     });
 
-    $('#action-print').on('click', function() {
+    $('#action-print-memo').on('click', function() {
         window.location = window.location.origin + "/printMemoProduksi/" + btnId;
+    });
+
+    $('#action-print-kitir').on('click', function() {
+        window.location = window.location.origin + "/printKitir/" + btnId;
     });
 
     $('#form-packing').on('submit', function(e) {

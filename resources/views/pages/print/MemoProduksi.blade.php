@@ -58,7 +58,7 @@
         </p>
         <div style="position: relative; height: 150px;">
             <h1 style="position: absolute; left: 0px; top: -15px;">MEMO PRODUKSI</h1>
-            <h1 style="position: absolute; left: 400px; top: -15px;">&lt;&lt;KODE MEMO&gt;&gt;</h1>
+            <h1 style="position: absolute; left: 400px; top: -15px;">{{ $data->transaksi->memo_code }}</h1>
 
             <p style="position: absolute; left: 0px; top: 30px;">NO. ORDER</p>
             <p style="position: absolute; left: 100px; top: 30px;">: {{ $data->transaksi->kode }} / {{ $data->transaksi->jenis_transaksi }}</p>
@@ -172,7 +172,7 @@
         <div style="position: relative; height: 90px;">
             <p style="position: absolute; left: 0px; top: 25px;">Tim Produksi</p>
 
-            <p class="text-center" style="position: absolute; left: 100px; top: 40px; width: 200px;">{{ $data->transaksi->penyuci }}</p>
+            <p class="text-center" style="position: absolute; left: 100px; top: 40px; width: 200px;">{{ $data->transaksi->pencuci }}</p>
             <p class="text-center" style="position: absolute; left: 100px; top: 45px; width: 200px;">_______________</p>
             <p class="text-center" style="position: absolute; left: 100px; top: 60px; width: 200px;">cuci</p>
 
@@ -183,7 +183,7 @@
 
             <p class="text-center" style="position: absolute; left: 500px; top: 40px; width: 200px;">&lt;&lt;NAMA QC&gt;&gt;</p>
             <p class="text-center" style="position: absolute; left: 500px; top: 45px; width: 200px;">_______________</p>
-            <p class="text-center" style="position: absolute; left: 500px; top: 60px; width: 200px;">qc</p>
+            <p class="text-center" style="position: absolute; left: 500px; top: 60px; width: 200px;">packing</p>
 
             <p class="text-center" style="position: absolute; left: 700px; top: 40px; width: 200px;">&lt;&lt;NAMA DELIVERY&gt;&gt;</p>
             <p class="text-center" style="position: absolute; left: 700px; top: 45px; width: 200px;">_______________</p>
