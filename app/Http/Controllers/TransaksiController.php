@@ -10,6 +10,7 @@ use App\Models\LogTransaksi;
 use App\Models\Packing\Packing;
 use App\Models\Packing\PackingInventory;
 use App\Models\Paket\PaketCuci;
+use App\Models\SettingUmum;
 use App\Models\Transaksi\Rewash;
 use App\Models\Transaksi\Transaksi;
 use Illuminate\Http\Request;
@@ -39,6 +40,8 @@ class TransaksiController extends Controller
     {
         return view('components.tableItemTransBucket', [
             'trans' => Transaksi::detail()->find($id),
+            'multiplier_express' => SettingUmum::where('nama', 'multiplier express')->first(),
+            'multiplier_setrika' => SettingUmum::where('nama', 'multiplier setrika only')->first(),
         ]);
     }
 
@@ -46,6 +49,8 @@ class TransaksiController extends Controller
     {
         return view('components.tableItemTransPremium', [
             'trans' => Transaksi::detail()->find($id),
+            'multiplier_express' => SettingUmum::where('nama', 'multiplier express')->first(),
+            'multiplier_setrika' => SettingUmum::where('nama', 'multiplier setrika only')->first(),
         ]);
     }
 
@@ -264,6 +269,48 @@ class TransaksiController extends Controller
                 'process' => strtoupper('update transaksi'),
             ]);
             return redirect()->back();
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
+        }
+    }
+
+    public function setExpress(Request $request, $id){
+        $user = User::find(auth()->id());
+        $permissions = $user->getPermissionsViaRoles();
+        $permissionExist = collect($permissions)->first(function ($item) {
+            return $item->name === 'Mengubah Data Transaksi';
+        });
+        if ($permissionExist) {
+            $transaksi = Transaksi::find($id);
+            $transaksi->express = $request->express;
+            $transaksi->save();
+            $transaksi->recalculate();
+            LogTransaksi::create([
+                'transaksi_id' => $id,
+                'penanggung_jawab' => Auth::id(),
+                'process' => strtoupper('update transaksi, tipe express'),
+            ]);
+        } else {
+            abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
+        }
+    }
+
+    public function setSetrikaOnly(Request $request, $id){
+        $user = User::find(auth()->id());
+        $permissions = $user->getPermissionsViaRoles();
+        $permissionExist = collect($permissions)->first(function ($item) {
+            return $item->name === 'Mengubah Data Transaksi';
+        });
+        if ($permissionExist) {
+            $transaksi = Transaksi::find($id);
+            $transaksi->setrika_only = $request->setrika_only;
+            $transaksi->save();
+            $transaksi->recalculate();
+            LogTransaksi::create([
+                'transaksi_id' => $id,
+                'penanggung_jawab' => Auth::id(),
+                'process' => strtoupper('update transaksi, tipe setrika only'),
+            ]);
         } else {
             abort(403, 'USER DOES NOT HAVE THE RIGHT PERMISSION');
         }

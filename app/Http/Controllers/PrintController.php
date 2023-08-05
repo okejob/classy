@@ -69,7 +69,7 @@ class PrintController extends Controller
     public function memoProduksi($transaksi_id)
     {
         $transaksi = Transaksi::detail()->find($transaksi_id);
-        return $transaksi;
+        // return $transaksi;
         $header = [
             'nama_usaha' => SettingUmum::where('nama', 'Print Header Nama Usaha')->first()->value,
             'delivery_text' => SettingUmum::where('nama', 'Print Header Delivery Text')->first()->value
@@ -83,6 +83,7 @@ class PrintController extends Controller
         $data = collect();
         $data->header = $header;
         $data->transaksi = $transaksi;
+        
 
         //8.5x 11 inch = 612x792 point
         $paper_size = [0, 0, 612, 792];

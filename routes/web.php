@@ -177,6 +177,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transaksi/search', [TransaksiController::class, 'search']);
     Route::get('/transaksi/addItem', [ItemTransaksiController::class, 'addItemToTransaksi']);
     Route::post('/transaksi/update/{id}', [TransaksiController::class, 'update']);
+    Route::post('/transaksi/express/{id}', [TransaksiController::class, 'setExpress']);
+    Route::post('/transaksi/setrika_only/{id}', [TransaksiController::class, 'setSetrikaOnly']);
     Route::post('/transaksi/penerima', [PenerimaController::class, 'insert']);
     Route::get('/transaksi/cancelled', [PageController::class, 'cancel']);
     Route::get('/transaksi/{transaksi}/cancel', [TransaksiController::class, 'cancelTransaksi']);
