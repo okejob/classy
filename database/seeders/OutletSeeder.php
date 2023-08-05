@@ -15,6 +15,12 @@ class OutletSeeder extends Seeder
      */
     public function run()
     {
-        Outlet::factory(5)->create();
+        // Outlet::factory(5)->create();
+        Outlet::create([
+            "kode" => "DHU",
+            "nama" => "CLASSY LAUNDRY & DRY CLEAN",
+            "alamat" => "JL. RAYA DHARMAHUSADA 173",
+            "telp_1" => "0822-3000-8487",
+        ]);
     }
 }

@@ -131,7 +131,7 @@ class Transaksi extends Model
         $this->save();
         return $this;
     }
-
+    
     //Function untuk melakukan Query detail Transaksi beserta table lain yang memiliki Relation
     public function scopeDetail($query)
     {

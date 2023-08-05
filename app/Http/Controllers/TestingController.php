@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Testing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class TestingController extends Controller
 {
-    public function test(Request $request, $path)
+    public function test(Request $request)
     {
-        $default_path = 'image/' . $path;
-        $file = $request->file('image');
-        if ($file) {
-            $test = Storage::disk('digitalocean')->put($default_path, $file, 'public');
-            return Storage::disk('digitalocean')->url($test);
-        }
-        return null;
+        $emails = Testing::select('bcc')
+            ->groupBy('bcc')
+            ->get();
+        return $emails;
     }
 }
