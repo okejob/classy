@@ -13,6 +13,7 @@ use App\Models\Paket\PaketCuci;
 use App\Models\SettingUmum;
 use App\Models\User;
 use App\Observers\UserActionObserver;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -28,6 +29,23 @@ class Transaksi extends Model
     {
         parent::boot();
         User::observe(new UserActionObserver);
+    }
+
+    public function getMemoCode($id): string
+    {
+        $code = "";
+
+        $transaksi = Transaksi::find($id);
+        $outlet = Outlet::find($transaksi->outlet_id);
+        $kode_outlet = $outlet->kode;
+
+        $today = Carbon::today();
+        $formattedDate = $today->format('dmY');
+
+        $count = Transaksi::where('memo_code', 'LIKE', '%' . $formattedDate . '%')->count() + 1;
+
+        $code = $code + $transaksi->pelanggan_id + $formattedDate + $count;
+        return $code;
     }
 
     function calcSetting($subtotal, $express = false, $setrika_only = false)
@@ -82,7 +100,7 @@ class Transaksi extends Model
         $optionalSubtotal = $this->calcSetting($subtotal, $this->express, $this->setrika_only);
         $this->subtotal = $optionalSubtotal;
         $subtotal = $optionalSubtotal;
-        
+
         //hitung diskon
         //promo kode bertumpuk
         foreach ($diskon_transaksi as $related) {
@@ -132,7 +150,7 @@ class Transaksi extends Model
         $this->save();
         return $this;
     }
-    
+
     //Function untuk melakukan Query detail Transaksi beserta table lain yang memiliki Relation
     public function scopeDetail($query)
     {
