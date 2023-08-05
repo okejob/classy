@@ -31,7 +31,7 @@ class Transaksi extends Model
         User::observe(new UserActionObserver);
     }
 
-    public function getMemoCode($id): string
+    public static function getMemoCode($id): string
     {
         $code = "";
 

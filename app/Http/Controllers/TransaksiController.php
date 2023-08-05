@@ -261,6 +261,10 @@ class TransaksiController extends Controller
                 $paded = str_pad($count, 6, '0', STR_PAD_LEFT);
 
                 $transaksi->kode = $kode . $paded;
+
+                if (empty($transaksi->memo_code)) {
+                    $transaksi->memo_code = Transaksi::getMemoCode($transaksi->id);
+                }
                 $transaksi->save();
             }
             LogTransaksi::create([
@@ -274,7 +278,8 @@ class TransaksiController extends Controller
         }
     }
 
-    public function setExpress(Request $request, $id){
+    public function setExpress(Request $request, $id)
+    {
         $user = User::find(auth()->id());
         $permissions = $user->getPermissionsViaRoles();
         $permissionExist = collect($permissions)->first(function ($item) {
@@ -295,7 +300,8 @@ class TransaksiController extends Controller
         }
     }
 
-    public function setSetrikaOnly(Request $request, $id){
+    public function setSetrikaOnly(Request $request, $id)
+    {
         $user = User::find(auth()->id());
         $permissions = $user->getPermissionsViaRoles();
         $permissionExist = collect($permissions)->first(function ($item) {
