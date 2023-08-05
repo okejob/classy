@@ -82,7 +82,7 @@ class Transaksi extends Model
         $optionalSubtotal = $this->calcSetting($subtotal, $this->express, $this->setrika_only);
         $this->subtotal = $optionalSubtotal;
         $subtotal = $optionalSubtotal;
-
+        
         //hitung diskon
         //promo kode bertumpuk
         foreach ($diskon_transaksi as $related) {
