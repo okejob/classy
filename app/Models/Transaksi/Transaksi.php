@@ -44,7 +44,7 @@ class Transaksi extends Model
 
         $count = Transaksi::where('created_at', 'LIKE', $formattedDate . '%')->whereNotNull('kode')->count() + 1;
 
-        $code = $kode_outlet . str_pad($count, 3, '0', STR_PAD_LEFT) . str_pad(Carbon::today()->format('d'), 2, '0', STR_PAD_LEFT);
+        $code = $kode_outlet . str_pad(Carbon::today()->format('d'), 2, '0', STR_PAD_LEFT) . str_pad($count, 3, '0', STR_PAD_LEFT);
         return $code;
     }
 
