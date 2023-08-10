@@ -40,9 +40,11 @@ class Transaksi extends Model
         $kode_outlet = $outlet->kode;
 
         $today = Carbon::today();
-        $formattedDate = $today->format('dm');
+        $formattedDate = $today->format('Y-m-d');
 
-        $code = $kode_outlet . $formattedDate;
+        $count = Transaksi::where('created_at', 'LIKE', $formattedDate . '%')->whereNotNull('kode')->count() + 1;
+
+        $code = $kode_outlet . str_pad($count, 3, '0', STR_PAD_LEFT) . str_pad(Carbon::today()->format('d'), 2, '0', STR_PAD_LEFT);
         return $code;
     }
 
@@ -101,7 +103,7 @@ class Transaksi extends Model
         $paket_bucket = PaketCuci::where('nama_paket', 'BUCKET')->first();
         $jumlah_bucket = ceil($sum_bobot / $paket_bucket->jumlah_bobot);
         // $total_harga_bucket = $jumlah_bucket * $paket_bucket->harga_paket;
-        $total_harga_bucket = $paket_bucket->harga_bucket;
+        $total_harga_bucket = $paket_bucket->harga_paket;
         if ($sum_bobot > 15) {
             $total_harga_bucket += ($sum_bobot - 15) * $paket_bucket->harga_per_bobot;
         }
