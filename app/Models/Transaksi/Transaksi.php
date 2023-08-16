@@ -40,11 +40,12 @@ class Transaksi extends Model
         $kode_outlet = $outlet->kode;
 
         $today = Carbon::today();
-        $formattedDate = $today->format('Y-m-d');
 
-        $count = Transaksi::where('created_at', 'LIKE', $formattedDate . '%')->whereNotNull('kode')->count() + 1;
+        $code = $kode_outlet . "-" . $today->format('M') . str_pad(Carbon::today()->format('d'), 2, '0', STR_PAD_LEFT) . ".";
 
-        $code = $kode_outlet . str_pad(Carbon::today()->format('d'), 2, '0', STR_PAD_LEFT) . str_pad($count, 3, '0', STR_PAD_LEFT);
+        $count = Transaksi::where('kitir_code', 'LIKE', $code . '%')->whereNotNull('kode')->count() + 1;
+
+        $code = $code . str_pad($count, 3, '0', STR_PAD_LEFT);
         return $code;
     }
 
