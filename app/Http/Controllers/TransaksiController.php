@@ -261,15 +261,17 @@ class TransaksiController extends Controller
                 $paded = str_pad($count, 6, '0', STR_PAD_LEFT);
 
                 $transaksi->kode = $kode . $paded;
-
-                if (empty($transaksi->memo_code)) {
-                    $transaksi->memo_code = Transaksi::getMemoCode($transaksi->id);
-                }
-                if (empty($transaksi->kitir_code)) {
-                    $transaksi->kitir_code = Transaksi::getKitirCode($transaksi->id);
-                }
-                $transaksi->save();
             }
+
+            if (empty($transaksi->memo_code)) {
+                $transaksi->memo_code = Transaksi::getMemoCode($transaksi->id);
+            }
+
+            if (empty($transaksi->kitir_code)) {
+                $transaksi->kitir_code = Transaksi::getKitirCode($transaksi->id);
+            }
+
+            $transaksi->save();
             LogTransaksi::create([
                 'transaksi_id' => $transaksi->id,
                 'penanggung_jawab' => Auth::id(),

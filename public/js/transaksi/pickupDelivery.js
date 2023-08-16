@@ -48,11 +48,17 @@ $(document).ready(function() {
             currentlySelectedType = "pickup";
             transId = 0;
             $('#action-detail').hide();
+            $('#action-print-memo').hide();
         } else if ($(this).closest('.card-delivery').length == 1) {
             currentlySelectedType = "delivery";
             transId = $(this).closest('.card-delivery').data('transaksi');
             $('#action-detail').show();
+            $('#action-print-memo').show();
         }
+    });
+
+    $('#action-print-memo').on('click', function() {
+        window.location = window.location.origin + "/printMemoProduksi/" + btnId;
     });
 
     $('#action-change-status').on('click', function() {

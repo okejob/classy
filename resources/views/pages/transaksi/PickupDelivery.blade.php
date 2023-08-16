@@ -321,6 +321,7 @@
                                 @if(in_array("Melihat Detail Transaksi", Session::get('permissions')) || Session::get('role') == 'administrator')
                                     <li id="action-detail">Detail Transaksi</li>
                                 @endif
+                                <li id="action-print-memo">Print Memo</li>
                                 @if(in_array("Mengganti Status Selesai Pickup Delivery", Session::get('permissions')))
                                     <li id="action-change-status">Selesai</li>
                                 @endif
