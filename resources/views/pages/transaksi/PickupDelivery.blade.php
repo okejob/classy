@@ -2,8 +2,38 @@
 
 @section('content')
 
+<style>
+    #input-pickup-pelanggan::-webkit-calendar-picker-indicator {
+        opacity: 0;
+    }
+
+    datalist {
+        position: absolute;
+        max-height: 20em;
+        border: 0 none;
+        overflow-x: hidden;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+        border-radius: .25rem;
+    }
+
+    datalist option {
+        font-size: 0.8em;
+        padding: 0.3em 1em;
+        background-color: #fff;
+        cursor: pointer;
+    }
+
+    datalist option:hover, datalist option:focus {
+        color: #fff;
+        background-color: #036;
+        outline: 0 none;
+    }
+</style>
+
 {{-- @dump(in_array("Melihat Detail Transaksi", Session::get('permissions'))) --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/datalist-css/dist/datalist-css.min.js"></script>
 <div class="container">
     <header class="my-3" style="color: var(--bs-gray);">
         <a>Transaksi</a>
@@ -149,12 +179,13 @@
                             <div class="row">
                                 <div class="col-6 mb-2">
                                     <h5>Pilih Pelanggan</h5>
-                                    <select class="form-control" name="pelanggan_id" required >
-                                        <option value="" selected hidden>-</option>
+                                    <input id="input-pickup-pelanggan" list="data-pelanggan" class="form-control" type="text" autocomplete="off" required>
+                                    <datalist id="data-pelanggan" style="height:5.1em;overflow:hidden">
                                         @foreach ($dataPelanggan as $pelanggan)
-                                            <option value="{{ $pelanggan->id }}">{{ $pelanggan->nama }}</option>
+                                            <option data-id="{{ $pelanggan->id }}" data-alamat="{{ $pelanggan->alamat }}">{{ $pelanggan->nama }}</option>
                                         @endforeach
-                                    </select>
+                                    </datalist>
+                                    <input id="input-pickup-pelanggan-id" type="hidden" name="pelanggan_id" value="">
                                 </div>
                                 <div class="col-6 mb-2">
                                     <h5>Pilih Driver</h5>
@@ -167,7 +198,7 @@
                                 </div>
                                 <div class="col-12 mb-2">
                                     <h5>Alamat</h5>
-                                    <input type="text" class="form-control" name="alamat" required />
+                                    <input id="input-pickup-alamat" type="text" class="form-control" name="alamat" required />
                                 </div>
                                 <div class="col-12 mb-2">
                                     <h5>Catatan Pelanggan</h5>

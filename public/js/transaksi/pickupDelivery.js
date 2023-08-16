@@ -4,6 +4,18 @@ $(document).ready(function() {
         $('#modal-create-pickup').modal('show');
     });
 
+    $('#data-pelanggan').on('click', 'option', function() {
+        let selectedValue = $(this).val();
+        let dataListOptions = $('#data-pelanggan').find('option');
+
+        dataListOptions.each(function() {
+            if ($(this).val() === selectedValue) {
+                $('#input-pickup-alamat').val($(this).data('alamat'));
+                $('#input-pickup-pelanggan-id').val($(this).data('id'));
+            }
+        });
+    });
+
     // untuk menampilkan modal delivery
     $('#create-delivery').on('click', function() {
         $('#modal-create-delivery').modal('show');
