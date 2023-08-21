@@ -34,6 +34,7 @@ $(document).ready(function() {
                 $('#formCheck-setrika').val(1);
             }
             $('#input-catatan-trans').val(trans.catatan);
+            $('#tanggal-selesai-proses').val(trans.done_date);
 
             let pelanggan = trans.pelanggan;
             $('#input-nama').val(pelanggan.nama);
