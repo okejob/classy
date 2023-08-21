@@ -67,7 +67,7 @@
             <p style="position: absolute; left: 100px; top: 30px;">: {{ $data->transaksi->pelanggan->no_id }} / {{ $data->transaksi->pelanggan->nama }}</p>
 
             <p style="position: absolute; left: 400px; top: 30px;">TGL CUCI</p>
-            <p style="position: absolute; left: 500px; top: 30px;">: {{ date('d-M-Y h:i:s', strtotime($data->transaksi->created_at)) }} s.d {{ date('d-M-Y', strtotime($data->transaksi->updated_at)) }}</p>
+            <p style="position: absolute; left: 500px; top: 30px;">: {{ date('d-M-Y h:i:s', strtotime($data->transaksi->created_at)) }} s.d {{ date('d-M-Y', strtotime($data->transaksi->done_date)) }}</p>
 
             <p style="position: absolute; left: 0px; top: 60px;">ALAMAT/TELP</p>
             <p style="position: absolute; left: 100px; top: 60px;">: {{ $data->transaksi->pelanggan->alamat }} / {{ $data->transaksi->pelanggan->telephone }}</p>
@@ -82,7 +82,7 @@
             <p style="position: absolute; left: 400px; top: 120px;">: {{ $data->transaksi->setrika_only ? 'YA' : 'TIDAK' }}</p>
 
             <p style="position: absolute; left: 600px; top: 120px;">DELIVERY</p>
-            <p style="position: absolute; left: 700px; top: 120px;">: {{-- {{ $data->transaksi->setrika_only ? 'YA' : 'TIDAK' }} --}}</p>
+            <p style="position: absolute; left: 700px; top: 120px;">: {{ $data->status_delivery }}</p>
         </div>
         <p class="hr-text" style="margin-bottom: 0px;">
             ============================================================================================================================
@@ -161,10 +161,10 @@
         </p>
         <div style="position: relative; height: 60px;">
             <p style="position: absolute; left: 0px; top: 0px;">Jml Pcs</p>
-            <p style="position: absolute; left: 100px; top: 0px;">: 2</p>
+            <p style="position: absolute; left: 100px; top: 0px;">: {{ $data->total_qty }}</p>
 
             <p style="position: absolute; left: 200px; top: 0px;">Jml Bobot</p>
-            <p style="position: absolute; left: 300px; top: 0px;">: 0.00</p>
+            <p style="position: absolute; left: 300px; top: 0px;">: {{ $data->total_bobot }}</p>
 
             <p style="position: absolute; left: 400px; top: 0px;">Jml M2</p>
             <p style="position: absolute; left: 500px; top: 0px;">: 0</p>
@@ -178,19 +178,19 @@
         <div style="position: relative; height: 90px;">
             <p style="position: absolute; left: 0px; top: 0px;">Subtotal</p>
             <p style="position: absolute; left: 100px; top: 0px;">:</p>
-            <p style="position: absolute; left: 100px; top: 0px; width: 75px;" class="text-end">{{ $data->transaksi->subtotal }}</p>
+            <p style="position: absolute; left: 100px; top: 0px; width: 75px;" class="text-end">{{ number_format($data->transaksi->subtotal, 0, ',', '.') }}</p>
 
             <p style="position: absolute; left: 300px; top: 0px;">Grand Total</p>
             <p style="position: absolute; left: 400px; top: 0px;">:</p>
-            <p style="position: absolute; left: 400px; top: 0px; width: 75px;" class="text-end">{{ $data->transaksi->grand_total }}</p>
+            <p style="position: absolute; left: 400px; top: 0px; width: 75px;" class="text-end">{{ number_format($data->transaksi->grand_total, 0, ',', '.') }}</p>
 
             <p style="position: absolute; left: 0px; top: 30px;">Diskon</p>
             <p style="position: absolute; left: 100px; top: 30px;">:</p>
-            <p style="position: absolute; left: 100px; top: 30px; width: 75px;" class="text-end">{{ $data->transaksi->diskon_jenis_item + $data->transaksi->total_diskon_promo + $data->transaksi->diskon_member }}</p>
+            <p style="position: absolute; left: 100px; top: 30px; width: 75px;" class="text-end">{{ number_format($data->transaksi->diskon_jenis_item + $data->transaksi->total_diskon_promo + $data->transaksi->diskon_member, 0, ',', '.') }}</p>
 
             <p style="position: absolute; left: 300px; top: 30px;">Telah Bayar</p>
             <p style="position: absolute; left: 400px; top: 30px;">:</p>
-            <p style="position: absolute; left: 400px; top: 30px; width: 75px;" class="text-end">{{ isset($data->transaksi->terbayar) ? $data->transaksi->terbayar : '0' }}</p>
+            <p style="position: absolute; left: 400px; top: 30px; width: 75px;" class="text-end">{{ isset($data->transaksi->terbayar) ? number_format($data->transaksi->terbayar, 0, ',', '.') : '0' }}</p>
 
             <p style="position: absolute; left: 0px; top: 60px;">Delivery</p>
             <p style="position: absolute; left: 100px; top: 60px;">:</p>
@@ -198,7 +198,7 @@
 
             <p style="position: absolute; left: 300px; top: 60px;">Sisa</p>
             <p style="position: absolute; left: 400px; top: 60px;">:</p>
-            <p style="position: absolute; left: 400px; top: 60px; width: 75px;" class="text-end">{{ $data->transaksi->grand_total - $data->transaksi->terbayar }}</p>
+            <p style="position: absolute; left: 400px; top: 60px; width: 75px;" class="text-end">{{ number_format($data->transaksi->grand_total - $data->transaksi->terbayar, 0, ',', '.') }}</p>
             @if (!$data->transaksi->lunas)
             <p style="position: absolute; left: 500px; top: 60px;">BELUM LUNAS</p>
             @endif
@@ -210,7 +210,7 @@
             <div style="position: absolute; left: 0px; top: 0px;">KASIR</div>
             <div style="position: absolute; left: 100px; top: 0px;">: {{ Auth::user()->name }}</div>
             <div style="position: absolute; left: 300px; top: 0px;">Tagihan belum terbayar</div>
-            <div style="position: absolute; left: 500px; top: 0px;">: {{ $data->transaksi->pelanggan->tagihan }}</div>
+            <div style="position: absolute; left: 500px; top: 0px;">: {{ number_format($data->transaksi->pelanggan->tagihan, 0, ',', '.') }}</div>
         </div>
         <p class="hr-text" style="margin-top: 0px;">
             ============================================================================================================================

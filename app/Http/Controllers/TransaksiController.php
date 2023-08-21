@@ -16,6 +16,7 @@ use App\Models\Transaksi\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -228,10 +229,12 @@ class TransaksiController extends Controller
             if ($request->express == "1") {
                 $express = true;
             }
+
             $setrika_only = false;
             if ($request->setrika_only == "1") {
                 $setrika_only = true;
             }
+
             $status = 'draft';
             if (
                 User::getRole(Auth::id()) == "administrator"
@@ -240,6 +243,12 @@ class TransaksiController extends Controller
             ) {
                 $status = "confirmed";
             }
+
+            $done_date = $request->done_date;
+            if ($done_date === null) {
+                $done_date = Carbon::now()->addDays(3);
+            }
+
             $merged = $request->merge([
                 'modified_by' => Auth::id(),
                 'status' => $status,
@@ -266,7 +275,7 @@ class TransaksiController extends Controller
             if (empty($transaksi->memo_code)) {
                 $transaksi->memo_code = Transaksi::getMemoCode($transaksi->id);
             }
-            
+
             if (empty($transaksi->kitir_code)) {
                 $transaksi->kitir_code = Transaksi::getKitirCode($transaksi->id);
             }
