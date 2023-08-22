@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    // selectedPaketId untuk menyimpan paket id dari selected item
     var selectedPaketId = 0;
     $('#paket-container .card').on('click', function() {
         $('#paket-container .card').removeClass('selected');
@@ -14,19 +13,16 @@ $(document).ready(function() {
         }
     });
 
-    // menambahkan thousand separator bila mengisi paket manual
     $('#input-manual').on('input', function() {
         if ($(this).val() != "") {
             $('#input-dibayarkan').val(parseInt($(this).val()).toLocaleString(['ban', 'id']));
         }
     })
 
-    // pelangganId untuk menyimpan id pelanggan
     var pelangganId = 0;
     $('#nama-pelanggan').on('change', function() {
         if ($(this).val() != '') {
             pelangganId = $('#data-pelanggan option[data-id=' + $(this).val().split(' - ')[0] +']').data('id');
-            console.log(pelangganId);
 
             if (pelangganId !== undefined) {
                 $.ajax({
@@ -47,13 +43,49 @@ $(document).ready(function() {
         }
     });
 
-    /*
-        supaya halaman tidak di refresh karena function default form submit,
-        maka digunakan ajax form submit
-    */
+
     $('#form-saldo').on('submit', function(e) {
         e.preventDefault();
-        $('#submit-saldo').addClass('disabled');
+
+        if (pelangganId !== undefined && selectedPaketId != 0) {
+            $.ajax({
+                url: "/data/pelanggan/" + pelangganId + "/detail",
+            }).done(function(data) {
+                let member = data.member;
+
+                $.ajax({
+                    url: "/pelanggan/" + pelangganId + "/check-saldo",
+                }).done(function(data) {
+                    let saldo = data.saldo;
+
+                    if (saldo >= 100000) {
+                        $('#alert-saldo').addClass('d-none');
+                    } else {
+                        $('#alert-saldo').removeClass('d-none');
+                    }
+
+                    if (member) {
+                        $('#alert-member').addClass('d-none');
+                    } else {
+                        $('#alert-member').removeClass('d-none');
+                    }
+
+                    $('#input-total').val($('#input-dibayarkan').val());
+
+                    setThousandSeparator();
+                    $('#modal-pembayaran').modal('show');
+                });
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+            });
+        }
+    });
+
+    $('#btn-save').on('click', function(e) {
+        e.preventDefault();
+        $('#btn-save').addClass('disabled');
 
         let nominal = removeDot($('#paket-container .card.selected .nominal-paket .thousand-separator').text());
         if (selectedPaketId == 1) {
@@ -61,7 +93,6 @@ $(document).ready(function() {
         }
         let saldoAkhir = nominal + removeDot($('#input-saldo-akhir').val());
 
-        // bagian ini digunakan untuk "membuat komponen form" di javascript
         let formData = new FormData();
         formData.append('pelanggan_id', pelangganId);
         formData.append('paket_deposit_id', selectedPaketId);
@@ -75,18 +106,12 @@ $(document).ready(function() {
             },
             url: "/pelanggan/" + pelangganId + "/add-saldo",
             method: "POST",
-            contentType: false, // harus ada untuk mengsubmit FormData
-            processData: false, // harus ada untuk mengsubmit FormData
+            contentType: false,
+            processData: false,
             data: formData,
         }).done(function() {
             alert('Pengisian saldo berhasil');
-            $('#nama-pelanggan').trigger('change');
-            $('#paket-container .card.selected').removeClass('selected');
-            $('#input-dibayarkan').val(0);
-            $('#input-manual').val(0);
-
-            selectedPaketId = -1;
-            $('#submit-saldo').removeClass('disabled');
+            location.reload();
 
         }).fail(function(message) {
             alert('error');
@@ -94,7 +119,6 @@ $(document).ready(function() {
         });
     });
 
-    // untuk menghilangkan thousand separator
     function removeDot(val) {
         if (val != '') {
             while(val.indexOf('.') != -1) {
@@ -105,7 +129,6 @@ $(document).ready(function() {
         }
     }
 
-    // untuk merapikan halaman bila di resize
     function adjustWindow() {
         if ($(window).width() < 992) {
             $('#info-pelanggan').removeClass('border-start');
@@ -117,4 +140,40 @@ $(document).ready(function() {
     $(window).on('resize', function() {
         adjustWindow();
     });
+
+    function setThousandSeparator () {
+        let length = $('.thousand-separator').length;
+        if (length != 0) {
+            $('.thousand-separator').each(function(index, element) {
+                let val = $(element).text();
+                if (val != '') {
+                    while(val.indexOf('.') != -1) {
+                        val = val.replace('.', '');
+                    }
+                    let number = parseInt(val);
+                    $(element).text(number.toLocaleString(['ban', 'id']));
+                }
+            });
+        }
+    };
+
+    var calculateNow;
+    $('#input-nominal').on('input', function() {
+        clearTimeout(calculateNow);
+        if (!$('#btn-save').hasClass('disabled')) {
+            $('#btn-save').addClass('disabled');
+        }
+        calculateNow = setTimeout(calculate, 1000);
+    });
+
+    function calculate() {
+        let total = removeDot($('#input-total').val());
+        let nominal = removeDot($('#input-nominal').val());
+        if (total > nominal) {
+            $('#input-kembalian').val(0);
+        } else {
+            $('#input-kembalian').val((nominal - total).toLocaleString(['ban', 'id']));
+        }
+        $('#btn-save').removeClass('disabled');
+    }
 });

@@ -46,7 +46,7 @@
                     </div>
                     <hr class="d-lg-none">
                     <div class="col-lg-3 border-lg-start border-0" id="info-pelanggan">
-                        <form id="form-saldo" method="POST">
+                        <form id="form-saldo">
                             <div class="mb-2">
                                 <h5>Pelanggan</h5>
                                 <div>
@@ -62,10 +62,7 @@
                                 <h5>Saldo Akhir</h5>
                                 <input id="input-saldo-akhir" type="text" class="form-control disabled" required />
                             </div>
-                            <div class="mb-2">
-                                <h5>Dibayarkan</h5>
-                                <input id="input-dibayarkan" type="text" class="form-control disabled" required />
-                            </div>
+                            <input id="input-dibayarkan" type="hidden" class="form-control disabled" required />
                             @if(in_array("Topup Saldo Pelanggan", Session::get('permissions')) || Session::get('role') == 'administrator')
                             <div class="text-end">
                                 <button id="submit-saldo" class="btn btn-primary" type="submit">Beli</button>
@@ -77,6 +74,60 @@
             </div>
         </div>
     </section>
+
+    <div role="dialog" tabindex="-1" class="modal fade" id="modal-pembayaran">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Pembayaran <span class="kode-trans">kode trans</span></h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="form-pembayaran">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert" id="alert-saldo">
+                            Saldo kurang dari 100.000
+                        </div>
+                        <div class="alert alert-info alert-dismissible fade show" role="alert" id="alert-member">
+                            Pelanggan belum menjadi member
+                        </div>
+                        <div class="row">
+                            <input id="input-trans-id" type="hidden" name="transaksi_id" value >
+                            <div class="col-3 text-end mb-4">
+                                <h1>Total :</h1>
+                            </div>
+                            <div class="col-9 mb-4">
+                                <input type="text" class="form-control h-100 extra-large disabled input-thousand-separator" id="input-total" />
+                            </div>
+                            <div class="col-3 mb-2">
+                                <p class="d-flex align-items-center justify-content-end" style="height: 38px;">Metode Pembayaran :</p>
+                            </div>
+                            <div class="col-9 mb-2">
+                                <select class="form-select" name="metode_pembayaran" required>
+                                    <option value hidden selected>-</option>
+                                    <option value="tunai">Tunai</option>
+                                    <option value="kredit">Kredit</option>
+                                    <option value="debit">Debit</option>
+                                </select>
+                            </div>
+                            <div class="col-3 mb-2">
+                                <p class="d-flex align-items-center justify-content-end" style="height: 38px;" >Nominal :</p>
+                            </div>
+                            <div class="col-9 mb-2">
+                                <input type="text" class="form-control input-thousand-separator" id="input-nominal" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="nominal" required />
+                            </div>
+                            <div class="col-3 mb-2">
+                                <p class="d-flex align-items-center justify-content-end fw-bold" style="height: 38px;">Kembali :</p>
+                            </div>
+                            <div class="col-9 mb-2">
+                                <input type="text" class="form-control disabled input-thousand-separator" id="input-kembalian" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer"><button id="btn-save" class="btn btn-primary" type="submit">Simpan</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="{{ asset('js/transaksi/saldo.js') }}"></script>
