@@ -50,18 +50,6 @@ class AdminSeeder extends Seeder
         Outlet::find(1)->update([
             'modified_by' => 1
         ]);
-        // Outlet::find(2)->update([
-        //     'modified_by' => 1
-        // ]);
-        // Outlet::find(3)->update([
-        //     'modified_by' => 1
-        // ]);
-        // Outlet::find(4)->update([
-        //     'modified_by' => 1
-        // ]);
-        // Outlet::find(5)->update([
-        //     'modified_by' => 1
-        // ]);
 
         User::create([
             'username' => 'devan',
