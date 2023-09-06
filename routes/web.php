@@ -25,6 +25,7 @@ use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DiskonController;
 use App\Http\Controllers\DiskonTransaksiController;
+use App\Http\Controllers\LaporanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -247,4 +248,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/proses/packing', [PageController::class, 'packing']);
     Route::post('/proses/packing', [PackingController::class, 'create']);
     Route::get('/component/packing/{id}', [PackingController::class, 'tablePacking']);
+
+    //Laporan
+    Route::get('/laporan/piutang', [LaporanController::class, 'laporanPiutangPelanggan']);
+    // Route::get('/laporan/omset', [PageController::class, 'laporanOmset']);
+    // Route::get('/laporan/kas_masuk', [PageController::class, 'laporanKasMasuk']);
+    // Route::get('/laporan/mutasi_deposit', [PageController::class, 'laporanMutasiDepos']);
+    // Route::post('/proses/packing', [PackingController::class, 'create']);
+
 });

@@ -18,6 +18,7 @@ class LaporanController extends Controller
         $pelanggan = Pelanggan::get();
         return $pelanggan;
     }
+
     public function mutasiDepositPelanggan(Request $request)
     {
         $pelanggan = Pelanggan::where('id', $request->pelanggan_id)->with(['saldo' => function ($query) use ($request) {
@@ -75,13 +76,26 @@ class LaporanController extends Controller
         ];
     }
 
-    public function semuaPiutang()
+    public function laporanPiutangPelanggan(Request $request)
     {
         $totalPiutang = Transaksi::where('lunas', false)->sum(DB::raw('grand_total - total_terbayar'));
-        $pelanggan = Pelanggan::get();
-        return response()->json([
+        $pelanggans = Pelanggan::get();
+        $data = [];
+
+        foreach($pelanggans as $pelanggan) {
+            $piutang = Transaksi::where('lunas', false)->where('pelanggan_id', $pelanggan->id)->sum(DB::raw('grand_total - total_terbayar'));
+            $last_transaction = Transaksi::where('pelanggan_id', $pelanggan->id)->latest()->first();
+            $tempData['id'] = $pelanggan->id;
+            $tempData['nama'] = $pelanggan->nama;
+            $tempData['jumlah_transaksi'] = Transaksi::where('pelanggan_id', $pelanggan->id)->count();
+            $tempData['piutang'] = $piutang;
+            $tempData['last_transaction'] = $last_transaction !== null ? $last_transaction->created_at : '';
+            array_push($data, $tempData);
+        }
+
+        return view('pages.laporan.PiutangPelanggan',[
             'total_piutang' => $totalPiutang,
-            "pelanggan" => $pelanggan,
+            "pelanggans" => $data,
         ]);
     }
 
