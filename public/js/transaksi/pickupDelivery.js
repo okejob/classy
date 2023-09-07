@@ -52,10 +52,11 @@ $(document).ready(function() {
         }
     });
 
-    var btnIndex = -1, btnId = 0, currentlySelectedType = '', transId = 0;
+    var btnIndex = -1, btnId = 0, currentlySelectedType = '', transId = 0, pelangganId = 0;
     $('.btn-show-action').on('click', function() {
         btnIndex = $(this).index('.btn-show-action') + 1;
         btnId = $(this).closest('.border.rounded').data('transaksi');
+        pelangganId = $(this).closest('.border.rounded').find('.pelanggan-id').val();
         if ($(this).closest('.card-pickup').length == 1) {
             currentlySelectedType = "pickup";
             transId = 0;
@@ -71,6 +72,10 @@ $(document).ready(function() {
 
     $('#action-print-memo').on('click', function() {
         window.location = window.location.origin + "/printMemoProduksi/" + btnId;
+    });
+
+    $('#action-pelanggan').on('click', function() {
+        window.location = window.location.origin + "/data/pelanggan/" + pelangganId + "/detail";
     });
 
     $('#action-change-status').on('click', function() {
