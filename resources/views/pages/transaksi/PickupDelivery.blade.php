@@ -326,7 +326,7 @@
                                         >
                                             <div id="{{ $delivery->id }}" class="d-flex flex-column">
                                                 <h4>
-                                                    <input class="pelanggan-id" type="hidden" value="{{ $pickup->pelanggan->id }}">
+                                                    <input class="pelanggan-id" type="hidden" value="{{ $delivery->pelanggan->id }}">
                                                     <span class="pelanggan-nama">{{ $delivery->pelanggan->nama }}</span>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 16 16" fill="currentColor" class="bi bi-dot">
                                                         <path fill-rule="evenodd" d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"></path>
