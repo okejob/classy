@@ -73,6 +73,10 @@ $(document).ready(function() {
         window.location = window.location.origin + "/printMemoProduksi/" + btnId;
     });
 
+    $('#action-pelanggan').on('click', function() {
+        window.location = window.location.origin + "/data/pelanggan/" + pelangganId + "/detail";
+    });
+
     $('#action-change-status').on('click', function() {
         if (confirm('Nyatakan ' + currentlySelectedType + ' selesai ?') == true) {
             $.ajax({

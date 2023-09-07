@@ -289,7 +289,8 @@
                                         >
                                             <div id="{{ $pickup->id }}" class="d-flex flex-column">
                                                 <h4>
-                                                    <span>{{ $pickup->pelanggan->nama }}</span>
+                                                    <input class="pelanggan-id" type="hidden" value="{{ $pickup->pelanggan->id }}">
+                                                    <span class="pelanggan-nama">{{ $pickup->pelanggan->nama }}</span>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 16 16" fill="currentColor" class="bi bi-dot">
                                                         <path fill-rule="evenodd" d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"></path>
                                                     </svg>
@@ -325,7 +326,8 @@
                                         >
                                             <div id="{{ $delivery->id }}" class="d-flex flex-column">
                                                 <h4>
-                                                    <span>{{ $delivery->pelanggan->nama }}</span>
+                                                    <input class="pelanggan-id" type="hidden" value="{{ $delivery->pelanggan->id }}">
+                                                    <span class="pelanggan-nama">{{ $delivery->pelanggan->nama }}</span>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 16 16" fill="currentColor" class="bi bi-dot">
                                                         <path fill-rule="evenodd" d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"></path>
                                                     </svg>
@@ -353,6 +355,7 @@
                                     <li id="action-detail">Detail Transaksi</li>
                                 @endif
                                 <li id="action-print-memo">Print Memo</li>
+                                <li id="action-pelanggan">Detail Pelanggan</li>
                                 @if(in_array("Mengganti Status Selesai Pickup Delivery", Session::get('permissions')))
                                     <li id="action-change-status">Selesai</li>
                                 @endif
