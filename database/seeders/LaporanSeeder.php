@@ -19,14 +19,12 @@ class LaporanSeeder extends Seeder
         $twoMonthsAgo = Carbon::now()->subMonths(2);
         Saldo::create([
             'pelanggan_id' => '1',
-            'outlet_id' => '1',
             'nominal' => '10000',
             'jenis_input' => 'deposit',
             'saldo_akhir' => '10000',
         ]);
         Saldo::create([
             'pelanggan_id' => '1',
-            'outlet_id' => '1',
             'nominal' => '10000',
             'jenis_input' => 'deposit',
             'saldo_akhir' => '10000',

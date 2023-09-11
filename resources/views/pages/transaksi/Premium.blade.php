@@ -94,8 +94,8 @@
                                     <form class="mb-3">
                                         <div class="d-flex">
                                             <input type="search" class="form-control" id="input-nama-pelanggan-2" placeholder="Nama Pelanggan" />
-                                            <button class="btn btn-primary mx-3" data-bs-toggle="tooltip" id="search-nama-pelanggan-2" type="button" title="Cari transaksi"><i class="fas fa-search"></i></button>
-                                            <button class="btn btn-primary" data-bs-toggle="tooltip" id="add-new-pelanggan-2" type="button" title="Buat transaksi baru"><i class="fas fa-plus"></i></button>
+                                            <button class="btn btn-primary ms-3" data-bs-toggle="tooltip" id="search-nama-pelanggan-2" type="button" title="Cari transaksi"><i class="fas fa-search"></i></button>
+                                            <button class="btn btn-primary ms-3" data-bs-toggle="tooltip" id="add-new-pelanggan-2" type="button" title="Buat transaksi baru"><i class="fas fa-plus"></i></button>
                                         </div>
                                     </form>
                                     <div class="table-responsive">

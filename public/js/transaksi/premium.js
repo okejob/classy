@@ -427,7 +427,7 @@ $(document).ready(function() {
 
     $('#table-container').on('dblclick', '.col-qty', function() {
         let div = $(this).find('div').detach();
-        $(this).append('<input class="form-control text-center" type="number" step=1 min=1 name="qty" value=' + div.text() + '>');
+        $(this).append('<input class="form-control text-center" type="number" step=0.1 min=1 name="qty" value=' + div.text() + '>');
         $(this).find('input').focus();
     });
 

@@ -22,20 +22,19 @@ class PembayaranController extends Controller
             $request->validate([
                 'nominal' => 'required|integer'
             ]);
-            $transaksi = Transaksi::find($request->transaksi_id);
-            $pelanggan = Pelanggan::find($transaksi->pelanggan_id);
-            $saldo = Saldo::where('pelanggan_id', $transaksi->pelanggan_id);
-            if ($saldo->saldo_akhir > 0) {
-            
-            }else{
-                Pembayaran::create([
-                    'nominal' => $request->nominal,
-                    'outlet_id' => $user->outlet_id,
-                    'transaksi_id' => $request->transaksi_id,
-                    'saldo_id' => $request->saldo_id,
-                    'metode_pembayaran' => $request->metode_pembayaran
-                ]);
-            }
+            // $transaksi = Transaksi::find($request->transaksi_id);
+            // $pelanggan = Pelanggan::find($transaksi->pelanggan_id);
+            // $saldo = Saldo::where('pelanggan_id', $transaksi->pelanggan_id);
+            // if ($saldo->saldo_akhir > 0) {
+            // }else{
+            // }
+            Pembayaran::create([
+                'nominal' => $request->nominal,
+                'outlet_id' => $user->outlet_id,
+                'transaksi_id' => $request->transaksi_id,
+                'saldo_id' => $request->saldo_id,
+                'metode_pembayaran' => $request->metode_pembayaran
+            ]);
 
             //Mengubah Total Transaksi
             $transaksi = Transaksi::find($request->transaksi_id);
