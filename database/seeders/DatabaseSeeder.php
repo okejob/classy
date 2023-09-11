@@ -4,8 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\SettingUmum;
-use App\Models\Transaksi\PickupDelivery;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -32,10 +30,12 @@ class DatabaseSeeder extends Seeder
         $this->call(ParfumSeeder::class);
         $this->call(KategoriSeeder::class);
         $this->call(JenisRewashSeeder::class);
-        $this->call(PelangganSeeder::class);
         $this->call(SettingUmumSeeder::class);
-        $this->call(DriverSeeder::class);
         $this->call(JenisItemSeeder::class);
+
+        $this->call(PelangganSeeder::class);
+        $this->call(ProduksiSeeder::class);
+        $this->call(DriverSeeder::class);
         $this->call(TransaksiSeeder::class);
         $this->call(PickupDeliverySeeder::class);
         $this->call(DiskonSeeder::class);

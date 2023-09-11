@@ -31,12 +31,14 @@ class UserActionObserver
     //Dijalankan Ketika Melakukan Hapus, melakukan Pencatatan siapa yang melakukan.
     public function deleting($model)
     {
+        Log::info($model);
         if (Auth::check()) {
             UserAction::create([
                 'user_id'      => Auth::user()->id,
                 'action'       => 'deleted',
                 'action_model' => $model->getTable(),
-                'action_id'    => $model->id
+                'action_id'    => $model->id,
+                'model' => $model
             ]);
         }
     }
