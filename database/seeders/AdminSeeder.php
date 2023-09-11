@@ -50,7 +50,5 @@ class AdminSeeder extends Seeder
         Outlet::find(1)->update([
             'modified_by' => 1
         ]);
-
-        ;
     }
 }
