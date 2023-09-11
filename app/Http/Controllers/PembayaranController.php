@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Data\Pelanggan;
 use App\Models\Pembayaran;
+use App\Models\Saldo;
 use App\Models\Transaksi\Transaksi;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -21,9 +22,15 @@ class PembayaranController extends Controller
             $request->validate([
                 'nominal' => 'required|integer'
             ]);
-
+            // $transaksi = Transaksi::find($request->transaksi_id);
+            // $pelanggan = Pelanggan::find($transaksi->pelanggan_id);
+            // $saldo = Saldo::where('pelanggan_id', $transaksi->pelanggan_id);
+            // if ($saldo->saldo_akhir > 0) {
+            // }else{
+            // }
             Pembayaran::create([
                 'nominal' => $request->nominal,
+                'outlet_id' => $user->outlet_id,
                 'transaksi_id' => $request->transaksi_id,
                 'saldo_id' => $request->saldo_id,
                 'metode_pembayaran' => $request->metode_pembayaran

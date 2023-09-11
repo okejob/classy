@@ -50,37 +50,5 @@ class AdminSeeder extends Seeder
         Outlet::find(1)->update([
             'modified_by' => 1
         ]);
-        // Outlet::find(2)->update([
-        //     'modified_by' => 1
-        // ]);
-        // Outlet::find(3)->update([
-        //     'modified_by' => 1
-        // ]);
-        // Outlet::find(4)->update([
-        //     'modified_by' => 1
-        // ]);
-        // Outlet::find(5)->update([
-        //     'modified_by' => 1
-        // ]);
-
-        User::create([
-            'username' => 'devan',
-            'password' => Hash::make('devan'),
-            'name' => 'devan',
-            'phone' => '08123456789',
-            'address' => 'surabaya',
-            'email' => 'devan@mail.com',
-            'outlet_id' => 1,
-        ])->assignRole('produksi_cuci');
-
-        User::create([
-            'username' => 'leo',
-            'password' => Hash::make('leo'),
-            'name' => 'leo',
-            'phone' => '08879564123',
-            'address' => 'surabaya',
-            'email' => 'leo@mail.com',
-            'outlet_id' => 1,
-        ])->assignRole('produksi_setrika');
     }
 }
