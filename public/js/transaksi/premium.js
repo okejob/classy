@@ -427,16 +427,17 @@ $(document).ready(function() {
 
     $('#table-container').on('dblclick', '.col-qty', function() {
         let div = $(this).find('div').detach();
-        $(this).append('<input class="form-control text-center" type="number" step=1 min=1 name="qty" value=' + div.text() + '>');
+        $(this).append('<input class="form-control text-center" type="number" step=0.1 min=1 name="qty" value=' + div.text() + '>');
         $(this).find('input').focus();
     });
 
     $('#table-container').on('blur', '.col-qty', function() {
         let input = $(this).find('input').detach();
         $(this).append("<div class='d-flex align-items-center justify-content-center' style='height: 39.5px;'>" + input.val() + "</div>");
+        alert(input.val());
 
         let id = $(this).closest('tr').attr('id');
-        console.log(id);
+        // console.log(id);
         let formData = new FormData();
         formData.append('qty', input.val());
 
@@ -450,7 +451,7 @@ $(document).ready(function() {
             processData: false,
             data: formData,
         }).done(function(data) {
-            console.log(data)
+            // console.log(data)
             $('#table-container').load(window.location.origin + '/component/transPremium/' + transId, function() {
                 adjustWidth();
                 setThousandSeparator();
