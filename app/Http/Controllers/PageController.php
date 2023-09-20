@@ -205,6 +205,7 @@ class PageController extends Controller
         $permissionExist = collect($permissions)->first(function ($item) {
             return $item->name === 'Membuka Menu Karyawan';
         });
+        // dd($permissionExist);
         if ($permissionExist) {
             return view(
                 'pages.pengaturan.Karyawan',
