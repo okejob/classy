@@ -120,14 +120,8 @@ class TransaksiController extends Controller
     //Mencari Transaksi dengan KEY id, Kode Transaksi, atau Nama Pelanggan
     public function search(Request $request)
     {
-        $tipe = '';
-        if ($request->tipe == "bucket") {
-            $tipe = 'BU-';
-        } else {
-            $tipe = 'PR-';
-        }
         $transaksi = Transaksi::detail()
-            ->where('kode', 'like', $tipe . '%')
+            ->where('tipe_transaksi', $request->tipe)
             ->where(function ($query) use ($request) {
                 $query->where('id', 'like', '%' . $request->key . '%')
                     ->orWhereHas('pelanggan', function ($q) use ($request) {

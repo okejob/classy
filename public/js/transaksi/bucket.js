@@ -151,6 +151,7 @@ $(document).ready(function() {
             $('#table-list-trans tbody').empty();
             for (let i = 0; i < transaksi.length; i++) {
                 const trans = transaksi[i];
+                if (trans.kode == null) trans.kode = '';
                 $('#table-list-trans tbody').prepend(
                     "<tr data-bs-toggle='tooltip' data-bss-tooltip='' title='Double klik untuk memilih' id=" + trans.id + ">" +
                         "<td>" + trans.kode + "</td>" +
@@ -207,7 +208,7 @@ $(document).ready(function() {
     $('#create-trans').on('click', function() {
         let pelanggan_id = $('#input-id-2').val();
         $.ajax({
-            url: "/transaksi/create?pelanggan_id=" + pelanggan_id,
+            url: "/transaksi/create?pelanggan_id=" + pelanggan_id + "&tipe_transaksi=bucket",
         }).done(function(data) {
             window.location = window.location;
         });
