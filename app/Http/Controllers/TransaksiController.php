@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateTransaksiRequest;
 use App\Http\Requests\UserLoginRequest;
 use App\Models\Data\Pelanggan;
 use App\Models\LogTransaksi;
+use App\Models\Outlet;
 use App\Models\Packing\Packing;
 use App\Models\Packing\PackingInventory;
 use App\Models\Paket\PaketCuci;
@@ -119,14 +120,8 @@ class TransaksiController extends Controller
     //Mencari Transaksi dengan KEY id, Kode Transaksi, atau Nama Pelanggan
     public function search(Request $request)
     {
-        $tipe = '';
-        if ($request->tipe == "bucket") {
-            $tipe = 'BU-';
-        } else {
-            $tipe = 'PR-';
-        }
         $transaksi = Transaksi::detail()
-            ->where('kode', 'like', $tipe . '%')
+            ->where('tipe_transaksi', $request->tipe)
             ->where(function ($query) use ($request) {
                 $query->where('id', 'like', '%' . $request->key . '%')
                     ->orWhereHas('pelanggan', function ($q) use ($request) {
@@ -260,10 +255,12 @@ class TransaksiController extends Controller
             $transaksi->update($merged);
 
             $kode = '';
+            $outlet = Outlet::find($transaksi->outlet_id);
+            $kode = $outlet->kode . "-";
             if ($request->tipe_transaksi == 'bucket') {
-                $kode = 'BU-';
+                $kode = $kode . 'BU-';
             } else {
-                $kode = 'PR-';
+                $kode = $kode . 'PR-';
             }
 
             if (empty($transaksi->kode) && $transaksi->status != "draft") {
