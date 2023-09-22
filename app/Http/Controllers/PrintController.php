@@ -40,12 +40,6 @@ class PrintController extends Controller
             'nama_usaha' => SettingUmum::where('nama', 'Print Header Nama Usaha')->first()->value,
             'delivery_text' => SettingUmum::where('nama', 'Print Header Delivery Text')->first()->value
         ];
-        $pos = strpos($transaksi->kode, 'BU');
-        if ($pos === false) {
-            $transaksi->jenis_transaksi = 'PREMIUM';
-        } else {
-            $transaksi->jenis_transaksi = 'BUCKET';
-        }
         $total_qty = 0;
         $total_bobot = 0;
         foreach ($transaksi->item_transaksi as $item) {
@@ -78,20 +72,24 @@ class PrintController extends Controller
             'nama_usaha' => SettingUmum::where('nama', 'Print Header Nama Usaha')->first()->value,
             'delivery_text' => SettingUmum::where('nama', 'Print Header Delivery Text')->first()->value
         ];
-        $pos = strpos($transaksi->kode, 'BU');
-        if ($pos === false) {
-            $transaksi->jenis_transaksi = 'PREMIUM';
-        } else {
-            $transaksi->jenis_transaksi = 'BUCKET';
+        $total_qty = 0;
+        $total_bobot = 0;
+        foreach ($transaksi->item_transaksi as $item) {
+            $total_qty += $item->qty;
+            $total_bobot += $item->total_bobot;
         }
+        $status_delivery = PickupDelivery::where("transaksi_id", $transaksi_id)->where('action', 'delivery')->get()->count() != 0 ? 'YA' : 'TIDAK';
+
         $data = collect();
         $data->header = $header;
         $data->transaksi = $transaksi;
-
+        $data->total_qty = $total_qty;
+        $data->total_bobot = $total_bobot;
+        $data->status_delivery = $status_delivery;
 
         //8.5x 11 inch = 612x792 point
         $paper_size = [0, 0, 612, 792];
-        $pdf = Pdf::loadView('pages.print.memoProduksi', [
+        $pdf = Pdf::loadView('pages.print.MemoProduksi', [
             'data' => $data
         ])->setPaper($paper_size, 'landscape');
         return $pdf->stream('invoice.pdf');
