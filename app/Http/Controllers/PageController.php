@@ -473,7 +473,6 @@ class PageController extends Controller
                 'pages.transaksi.Saldo',
                 [
                     'paket_deposits' => PaketDeposit::where('status', 1)->where('id', '!=', 1)->orderBy('nominal', 'desc')->get(),
-                    'pelanggans' => Pelanggan::where('status', 1)->get(),
                 ]
             );
         } else {

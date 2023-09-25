@@ -128,7 +128,6 @@ class UserController extends Controller
 
     public function updateOutlet(Request $request)
     {
-
         $user = User::find(Auth::user()->id);
         $user->outlet_id = $request->outlet_id;
         $user->save();
@@ -168,8 +167,9 @@ class UserController extends Controller
     {
         $role = User::getRole(Auth::id());
         if ($role == "administrator") {
-            $user = User::find(Auth::id());
-            $user->outlet_id = null;
+            // $user = User::find(Auth::id());
+            // $user->outlet_id = null;
+            // $user->save();
         }
 
         Auth::logout();
