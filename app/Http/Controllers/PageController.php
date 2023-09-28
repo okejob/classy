@@ -412,7 +412,7 @@ class PageController extends Controller
         });
         if ($permissionExist) {
             $role = User::getRole(Auth::id());
-            $data['transaksis'] = Transaksi::detail()->latest()->get();
+            $data['transaksis'] = Transaksi::with('tukang_cuci')->detail()->latest()->get();
             $data['rewashes'] = Rewash::with('itemTransaksi')->where('pencuci', Auth::id())->get();
             if ($role != 'produksi_cuci') {
                 $data['pencucis'] = User::role('produksi_cuci')->with('cucian')->get();
@@ -431,7 +431,7 @@ class PageController extends Controller
             return $item->name === 'Membuka Menu Hub Setrika';
         });
         if ($permissionExist) {
-            $data['transaksis'] = Transaksi::detail()->latest()->get();
+            $data['transaksis'] = Transaksi::with('tukang_setrika')->detail()->latest()->get();
             $data['jenis_rewashes'] = JenisRewash::get();
             $data['rewash'] = Rewash::get();
             $data['penyetrikas'] = User::role('produksi_setrika')->with('setrikaan')->get();
@@ -452,7 +452,7 @@ class PageController extends Controller
             return view(
                 'pages.proses.Packing',
                 [
-                    'last_transaksi' => Transaksi::latest()->paginate(5),
+                    'last_transaksi' => Transaksi::with('packing')->latest()->paginate(5),
                     'inventories' => Inventory::where('kategori', 'packing')->get(),
                 ]
             );

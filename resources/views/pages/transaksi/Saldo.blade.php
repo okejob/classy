@@ -58,7 +58,7 @@
                             <input id="input-dibayarkan" type="hidden" class="form-control disabled" required />
                             @if(in_array("Topup Saldo Pelanggan", Session::get('permissions')) || Session::get('role') == 'administrator')
                                 <button id="pilih-pelanggan" class="btn btn-primary w-100" type="button">Pilih Pelanggan</button>
-                                <button id="submit-saldo" class="btn btn-primary w-100 mt-2" type="submit" style="display: none;">Beli</button>
+                                <button id="submit-saldo" class="btn btn-primary w-100 mt-2" type="submit" style="display: none;" disabled>Beli</button>
                             @endif
                         </form>
                     </div>
@@ -77,7 +77,7 @@
                 <div class="modal-body">
                     <div class="d-flex mb-3">
                         <div class="intro-1 d-flex flex-fill">
-                            <input class="form-control" type="search" id="input-nama-pelanggan">
+                            <input class="form-control" type="search" id="input-nama-pelanggan" placeholder="Cari nama pelanggan">
                             <button class="btn btn-primary ms-3" id="search-pelanggan" type="button">
                                 <i class="fas fa-search"></i>
                             </button>
