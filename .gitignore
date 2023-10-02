@@ -16,3 +16,5 @@ yarn-error.log
 /.vscode
 public/image/penerima/*
 public/image/item_notes/*
+
+*.sql
